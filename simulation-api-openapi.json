@@ -1,0 +1,2300 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "3.40.0",
+        "title": "Simulation API",
+        "description": "An API for managing simulations within ANSYS Additive.",
+        "termsOfService": "http:\/\/exmple.com\/license\/"
+    },
+    "servers": [
+        "http:\/\/3dsim.cloud.tyk.io\/simulation-api"
+    ],
+    "paths": {
+        "\/status": {
+            "get": {
+                "summary": "",
+                "description": "Use this endpoint to check server status.\n",
+                "operationId": "Status",
+                "deprecated": 0,
+                "parameters": [],
+                "responses": {
+                    "200": {
+                        "description": "status response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Status"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "\/materials": {
+            "get": {
+                "summary": "",
+                "description": "Get list of materials",
+                "operationId": "GetMaterials",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "organizationId",
+                        "in": "query",
+                        "description": "the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization."
+                    },
+                    {
+                        "name": "offset",
+                        "in": "query",
+                        "description": "starting paging count; ex. 60 will skip the first 60 items in the list"
+                    },
+                    {
+                        "name": "limit",
+                        "in": "query",
+                        "description": "number of items to return within the query"
+                    },
+                    {
+                        "name": "sort",
+                        "in": "query",
+                        "description": "key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc"
+                    },
+                    {
+                        "name": "archived",
+                        "in": "query",
+                        "description": "If true, will only return archived items.  If false, will only return unarchived items.  If not provided, will return both archived and unarchived items."
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "status response",
+                        "content": {
+                            "application\/json": {
+                                "schema": {
+                                    "$href": "#\/components\/schemas\/Status"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "summary": "",
+                "description": "Creates a new material for the organizationId specified",
+                "operationId": "AddMaterial",
+                "deprecated": 0,
+                "parameters": []
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "SimulationActivity": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "activityId": {
+                        "description": "the Amazon SWF activity id",
+                        "type": "string"
+                    },
+                    "activityName": {
+                        "description": "the name of the Amazon SWF activity",
+                        "type": "string"
+                    },
+                    "workerVersion": {
+                        "description": "the version of the worker, e.g. 1.9.0",
+                        "type": "string"
+                    },
+                    "startedAt": {
+                        "description": "started time stamp",
+                        "type": "string"
+                    },
+                    "completedAt": {
+                        "description": "completed time stamp",
+                        "type": "string"
+                    },
+                    "percentComplete": {
+                        "description": "number 0 - 100 representing percentage of activity already completed",
+                        "type": "integer"
+                    },
+                    "status": {
+                        "description": "status of the activity",
+                        "type": "string"
+                    }
+                }
+            },
+            "SimulationOutput": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "createdAt": {
+                        "description": "created time stamp",
+                        "type": "string"
+                    },
+                    "label": {
+                        "description": "User readable label of what the output contains",
+                        "type": "string"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    }
+                }
+            },
+            "SimulationPart": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "partId": {
+                        "description": "ID of the associated part",
+                        "type": "integer"
+                    },
+                    "part": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "xMin": {
+                        "description": "Smallest x coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the x dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "yMin": {
+                        "description": "Smallest y coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the y dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "zMin": {
+                        "description": "Not used at present. This must be set to 0",
+                        "type": "number"
+                    },
+                    "partSupportId": {
+                        "description": "Id of the support to use for the simulation. Can be null",
+                        "type": "integer"
+                    },
+                    "partSupport": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "partSupportConfigurationId": {
+                        "description": "Id of the PartSupportConfiguration to use for the simulation. Can be null",
+                        "type": "integer"
+                    },
+                    "partSupportConfiguration": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "part": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "originalFileName": {
+                        "description": "The original file name from the user",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "fileBucket": {
+                        "description": "S3 bucket containing part",
+                        "type": "string"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    },
+                    "availability": {
+                        "description": "Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "xMin": {
+                        "description": "Smallest x coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the x dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "yMin": {
+                        "description": "Smallest y coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the y dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "zMin": {
+                        "description": "Not used at present. This must be set to 0",
+                        "type": "number"
+                    },
+                    "sizeX": {
+                        "description": "Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeY": {
+                        "description": "Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeZ": {
+                        "description": "Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "originalX": {
+                        "description": "The smallest x location before transformation",
+                        "type": "number"
+                    },
+                    "originalY": {
+                        "description": "The smallest y location before transformation",
+                        "type": "number"
+                    },
+                    "originalZ": {
+                        "description": "The smallest z location before transformation",
+                        "type": "number"
+                    },
+                    "triangleCount": {
+                        "description": "Number of triangles in the original STL file, calculated when the part is processed, use 0 for initial post",
+                        "type": "integer"
+                    },
+                    "volume": {
+                        "description": "Approximate volume of the Part (in meters^3), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "last modified time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "supportVolume": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "elements": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "nodes": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "collapseCost": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "surfaceArea": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "estimatedMemory": {
+                        "description": "Estimated memory usage for mechanics solver using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "maxMemory": {
+                        "description": "Estimated max memory usage for mechanics solver using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "estimatedWork": {
+                        "description": "Estimated work using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "estimateVoxelSize": {
+                        "description": "Voxel size used for estimatedMemory, maxMemory, estimatedWork",
+                        "type": "number"
+                    },
+                    "errorReason": {
+                        "description": "If an error occurs uploading a part, a string will be populated in this field.",
+                        "type": "string"
+                    },
+                    "partSupports": {
+                        "description": "List of supports that have been uploaded for this part",
+                        "type": "array"
+                    },
+                    "partSupportConfigurations": {
+                        "description": "List of partsupport configurations",
+                        "type": "array"
+                    }
+                }
+            },
+            "partSupport": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "partId": {
+                        "description": "ID of the associated part",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "originalFileName": {
+                        "description": "The original file name from the user",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "availability": {
+                        "description": "Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.",
+                        "type": "string"
+                    },
+                    "supportType": {
+                        "description": "type of support used for simulation.",
+                        "type": "string"
+                    },
+                    "xMin": {
+                        "description": "Smallest x coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the x dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "yMin": {
+                        "description": "Smallest y coordinate of the part location on the powder bed in millimeters. The center of the powder bed in the y dimension is assumed to be 0",
+                        "type": "number"
+                    },
+                    "zMin": {
+                        "description": "Not used at present. This must be set to 0",
+                        "type": "number"
+                    },
+                    "sizeX": {
+                        "description": "Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeY": {
+                        "description": "Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeZ": {
+                        "description": "Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "triangleCount": {
+                        "description": "Number of triangles in the original STL file, calculated when the part is processed, use 0 for initial post",
+                        "type": "integer"
+                    },
+                    "volume": {
+                        "description": "Approximate volume of the Part (in meters^3), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "last modified time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "elements": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "nodes": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "collapseCost": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "surfaceArea": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "estimatedMemory": {
+                        "description": "Estimated memory usage for mechanics solver using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "maxMemory": {
+                        "description": "Estimated max memory usage for mechanics solver using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "estimatedWork": {
+                        "description": "Estimated work using estimateVoxelSize",
+                        "type": "integer"
+                    },
+                    "estimateVoxelSize": {
+                        "description": "Voxel size used for estimatedMemory, maxMemory, estimatedWork",
+                        "type": "number"
+                    },
+                    "minimumSupportHeight": {
+                        "description": "Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters",
+                        "type": "number"
+                    },
+                    "errorReason": {
+                        "description": "If an error occurs uploading a part, a string will be populated in this field.",
+                        "type": "string"
+                    },
+                    "lockToPartTranslation": {
+                        "description": "Whether the support should be translated with the part (true), or a minimumSupportHeight will be specified (false).",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "partSupportConfiguration": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "partId": {
+                        "description": "ID of the associated part",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "partSupportSections": {
+                        "description": "List of sections that are included in the configuration",
+                        "type": "array"
+                    }
+                }
+            },
+            "SimulationLog": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "loggedAt": {
+                        "description": "time stamp of log",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "level": {
+                        "description": "level of the log",
+                        "type": "string"
+                    },
+                    "activityId": {
+                        "description": "the Amazon SWF activity id",
+                        "type": "string"
+                    }
+                }
+            },
+            "Status": {
+                "type": "object",
+                "properties": {
+                    "status": {
+                        "description": "status of the activity",
+                        "type": "string"
+                    },
+                    "message": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "Simulation": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "parentId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "title": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "status": {
+                        "description": "status of the activity",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "materialId": {
+                        "description": "ID of the material to use in the simulation",
+                        "type": "integer"
+                    },
+                    "materialConfigurationId": {
+                        "description": "ID of the material configuration that was used in the simulation, set server-side, read only",
+                        "type": "integer"
+                    },
+                    "machineId": {
+                        "description": "ID of the machine to use in the simulation",
+                        "type": "integer"
+                    },
+                    "machineConfigurationId": {
+                        "description": "ID of the machine configuration that was used in the simulation, set server-side, read only",
+                        "type": "integer"
+                    },
+                    "started": {
+                        "description": "time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "startedBy": {
+                        "description": "set server-side, read only",
+                        "type": "string"
+                    },
+                    "completed": {
+                        "description": "time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "percentComplete": {
+                        "description": "set server-side, read only",
+                        "type": "number"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "last modified time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "simulationFolder": {
+                        "description": "s3 folder used to store input and output files for the simulation",
+                        "type": "string"
+                    },
+                    "workflowId": {
+                        "description": "workflow identifier - will be provided by the system",
+                        "type": "string"
+                    },
+                    "numberOfCores": {
+                        "description": "indicate the number of cores with which to run the simulation",
+                        "type": "integer"
+                    },
+                    "voxelLayers": {
+                        "description": "number of voxel layers in the voxelized part + supports",
+                        "type": "integer"
+                    },
+                    "sliceLayers": {
+                        "description": "number of slice layers in the part",
+                        "type": "integer"
+                    }
+                }
+            },
+            "type": {
+                "type": "object"
+            },
+            "tags": {
+                "type": "array"
+            },
+            "PorositySimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "geometryWidth": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "geometryLength": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "geometryHeight": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "startingLayerAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "layerRotationAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "layerThicknessValues": {
+                        "description": "Array of layer thickness values to simulate across, Each value must be between 0.00001 to 0.0001 meters",
+                        "type": "array"
+                    },
+                    "laserWattageValues": {
+                        "description": "Array of laser power values to simulate across, Each value must be between 10 to 1000 watts",
+                        "type": "array"
+                    },
+                    "scanSpeedValues": {
+                        "description": "Array of scan speed values to simulate across, Each value must be between 0.01 to 10 meters\/second",
+                        "type": "array"
+                    },
+                    "hatchSpacingValues": {
+                        "description": "Array of hatch spacing values to simulate across, Each value must be between 0.00001 to 0.001 meters",
+                        "type": "array"
+                    },
+                    "slicingStripeWidthValues": {
+                        "description": "Array of slicing strip width values to simulate across, Each value must be between 0.001 to 0.1 meters",
+                        "type": "array"
+                    },
+                    "meshLayersPerLayer": {
+                        "description": "Number of mesh layers used to simulate a single deposit layer",
+                        "type": "integer"
+                    },
+                    "heaterTemperature": {
+                        "description": "heater temperature in degrees kelvin",
+                        "type": "number"
+                    }
+                }
+            },
+            "layerThicknessValues": {
+                "type": "array"
+            },
+            "laserWattageValues": {
+                "type": "array"
+            },
+            "scanSpeedValues": {
+                "type": "array"
+            },
+            "hatchSpacingValues": {
+                "type": "array"
+            },
+            "slicingStripeWidthValues": {
+                "type": "array"
+            },
+            "PorositySimulation": {
+                "type": "object"
+            },
+            "SingleBeadSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "beadType": {
+                        "description": "Type of single bead simulation - either bead on plate or bead on powder.",
+                        "type": "string"
+                    },
+                    "beadLength": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "layerThickness": {
+                        "description": "Must be between 0.00001 to 0.0001 meters",
+                        "type": "number"
+                    },
+                    "laserWattageValues": {
+                        "description": "Array of laser power values to simulate across, Each value must be between 10 to 1000 watts",
+                        "type": "array"
+                    },
+                    "scanSpeedValues": {
+                        "description": "Array of scan speed values to simulate across, Each value must be between 0.01 to 10 meters\/second",
+                        "type": "array"
+                    },
+                    "powderThermalConductivityValues": {
+                        "description": "Array of Powder Thermal Conductivity Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal",
+                        "type": "array"
+                    },
+                    "powderPackingDensityValues": {
+                        "description": "Array of Powder Packing Density Percentage Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal",
+                        "type": "array"
+                    },
+                    "laserAbsorptivityInPowderValues": {
+                        "description": "Array of Powder Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal",
+                        "type": "array"
+                    },
+                    "laserAbsorptivityInSolidValues": {
+                        "description": "Array of Solid Laser Absorptivity Values to simulate across, Each value must be between 0% and 100%, expressed as a decimal",
+                        "type": "array"
+                    },
+                    "solidusTemperatureValues": {
+                        "description": "Array of Solidus Temperature Values Values to simulate across",
+                        "type": "array"
+                    },
+                    "liquidusTemperatureValues": {
+                        "description": "Array of Liquidus Temperature Values Values to simulate across",
+                        "type": "array"
+                    },
+                    "heaterTemperature": {
+                        "description": "heater temperature in degrees kelvin",
+                        "type": "number"
+                    }
+                }
+            },
+            "powderThermalConductivityValues": {
+                "type": "array"
+            },
+            "powderPackingDensityValues": {
+                "type": "array"
+            },
+            "laserAbsorptivityInPowderValues": {
+                "type": "array"
+            },
+            "laserAbsorptivityInSolidValues": {
+                "type": "array"
+            },
+            "solidusTemperatureValues": {
+                "type": "array"
+            },
+            "liquidusTemperatureValues": {
+                "type": "array"
+            },
+            "SingleBeadSimulation": {
+                "type": "object"
+            },
+            "PartBasedSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "simulationParts": {
+                        "description": "List of parts to simulate (current limit is one part, imposed by server)",
+                        "type": "array"
+                    },
+                    "supportFileLocation": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "partFileLocation": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "supportYieldStrength": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "supportYieldStrengthRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "elasticModulus": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "poissonRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "hardeningFactor": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "strainScalingFactor": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "buildFileId": {
+                        "description": "Id of build file being simulated, mutually exclusive with simulationParts",
+                        "type": "integer"
+                    },
+                    "performSupportOptimization": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "voxelSize": {
+                        "description": "Must be between 0.00002 to 0.002 meters",
+                        "type": "number"
+                    },
+                    "minimumThickWallThickness": {
+                        "description": "Must be between 0.00005 to 0.0003 meters, Must be less than maximumWallThickness",
+                        "type": "number"
+                    },
+                    "maximumThickWallThickness": {
+                        "description": "Must be between 0.00015 to 0.002 meters, Must be greater than minimumWallThickness",
+                        "type": "number"
+                    },
+                    "thickWallDistance": {
+                        "description": "The distance between thickwall supports",
+                        "type": "number"
+                    },
+                    "thinWallThickness": {
+                        "description": "The width of the thinwall supports",
+                        "type": "number"
+                    },
+                    "maximumThinWallDistance": {
+                        "description": "The maximum distance between thinwalls",
+                        "type": "number"
+                    },
+                    "minimumSupportHeight": {
+                        "description": "Distance to move the part off the base plate for supports, Must be between 0 to 0.005 meters",
+                        "type": "number"
+                    },
+                    "generateSupportVoxels": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "outputDisplacementAfterCutoff": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "performSupportOnlyCutoff": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "stressMode": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "supportAngle": {
+                        "description": "Must be between 1 to 89 degrees",
+                        "type": "number"
+                    },
+                    "supportFactorOfSafety": {
+                        "description": "Multiplier for support calculations, Must be between 0.1 to 10",
+                        "type": "number"
+                    },
+                    "outputLayerVtk": {
+                        "description": "if true, mechanics solver output will include a zip file with the stress \/ distortion state at the end of each voxel layer",
+                        "type": "boolean"
+                    },
+                    "detectBladeCrash": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "bladeCrashThreshold": {
+                        "description": "should be a number between 0.5 and 1.5",
+                        "type": "number"
+                    },
+                    "performDistortionCompensation": {
+                        "description": "if true, a predistorted STL file will be created using the distortion simulated by the mechanics solver",
+                        "type": "boolean"
+                    },
+                    "distortionScaleFactor": {
+                        "description": "a value that is used to scale the simulated distortion value",
+                        "type": "number"
+                    },
+                    "distortionScaleFactorValues": {
+                        "description": "Array of distortion scale factor values, each one will produce a separate distortion output",
+                        "type": "array"
+                    },
+                    "outputSupportsVtk": {
+                        "description": "if true, a VTK file of the support structure will be created",
+                        "type": "boolean"
+                    },
+                    "detectSupportFailure": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "supportFailureThreshold": {
+                        "description": "should be a number between 0.01 and 1.0",
+                        "type": "number"
+                    },
+                    "partFailureThreshold": {
+                        "description": "should be a number between 0.01 and 1.0",
+                        "type": "number"
+                    },
+                    "strainWarningThreshold": {
+                        "description": "should be a number between 0.01 and 1.0",
+                        "type": "number"
+                    },
+                    "performDistortionCompensationAfterCutoff": {
+                        "description": "if true, a predistorted STL file will be created using the distortion after cutoff simulated by the mechanics solver",
+                        "type": "boolean"
+                    },
+                    "distortionAfterCutoffScaleFactor": {
+                        "description": "a value that is used to scale the after cutoff simulated distortion values",
+                        "type": "number"
+                    },
+                    "distortionAfterCutoffScaleFactorValues": {
+                        "description": "Array of distortion after cutoff scale factor values, each one will produce a separate distortion after cutoff output",
+                        "type": "array"
+                    },
+                    "supportType": {
+                        "description": "type of support used for simulation.",
+                        "type": "string"
+                    },
+                    "voxelSampleRate": {
+                        "description": "the amount of sub voxels per voxel in each direction (x,y,z)",
+                        "type": "integer"
+                    }
+                }
+            },
+            "simulationParts": {
+                "type": "array"
+            },
+            "distortionScaleFactorValues": {
+                "type": "array"
+            },
+            "distortionAfterCutoffScaleFactorValues": {
+                "type": "array"
+            },
+            "AssumedStrainSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "layerThickness": {
+                        "description": "Must be between 0.00001 to 0.0001 meters",
+                        "type": "number"
+                    }
+                }
+            },
+            "AssumedStrainSimulation": {
+                "type": "object"
+            },
+            "ThermalSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "layerThickness": {
+                        "description": "Must be between 0.00001 to 0.0001 meters",
+                        "type": "number"
+                    },
+                    "hatchSpacing": {
+                        "description": "Must be between 0.00001 to 0.001 meters",
+                        "type": "number"
+                    },
+                    "laserWattage": {
+                        "description": "Must be between 10 to 1000 watts",
+                        "type": "number"
+                    },
+                    "scanSpeed": {
+                        "description": "Must be between 0.01 to 10 meters\/second",
+                        "type": "number"
+                    },
+                    "slicingStripeWidth": {
+                        "description": "Must be between 0.001 to 0.1 meters",
+                        "type": "number"
+                    },
+                    "startingLayerAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "layerRotationAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "outputStateMap": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "outputShrinkage": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "outputThermalVtk": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "outputThermalVtkLayers": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "outputPointThermalHistory": {
+                        "description": "for each slectedPoint, a series of vtk files will output thermal history around that point with a radius of staticVirtualSensorRadius.",
+                        "type": "boolean"
+                    },
+                    "staticVirtualSensorRadius": {
+                        "description": "should be a number between 0.05 and 5.0 mm",
+                        "type": "number"
+                    },
+                    "includeStressAnalysis": {
+                        "description": "false indicates that only the thermal solver will run, while true indicates that the mechanics solver will run after the thermal solver",
+                        "type": "boolean"
+                    },
+                    "anisotropicStrainCoefficientsParallel": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientsPerpendicular": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientsZ": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "selectedPoints": {
+                        "description": "List of points where the thermal solver will collect thermal history - limit 10",
+                        "type": "array"
+                    },
+                    "heaterTemperature": {
+                        "description": "heater temperature in degrees kelvin",
+                        "type": "number"
+                    },
+                    "outputInstantDynamicSensor": {
+                        "description": "if true, dyanmic sensor data will be collected for each layer specified in the instantDynamicSensorLayers property",
+                        "type": "boolean"
+                    },
+                    "instantDynamicSensorRadius": {
+                        "description": "radius for instant dynamic sensor data collection in mm",
+                        "type": "number"
+                    },
+                    "instantDynamicSensorLayers": {
+                        "description": "Array of integer layer numbers where instant dynamic sensor data will be collected",
+                        "type": "array"
+                    },
+                    "outputPrintRitePcsSensor": {
+                        "description": "if true, PrintRite sensor data will be collected for each selectedPoint property",
+                        "type": "boolean"
+                    },
+                    "printRitePcsSensorRadius": {
+                        "description": "radius for PrintRite sensor data collection in mm",
+                        "type": "number"
+                    },
+                    "pyroVirtualSensorOutputAllLayers": {
+                        "description": "if true, pyrometer sensor data will be collected for every layer",
+                        "type": "boolean"
+                    },
+                    "outputInstantStaticSensor": {
+                        "description": "if true, instant static sensor data will be collected for each selectedPoint property",
+                        "type": "boolean"
+                    },
+                    "instantStaticSensorRadius": {
+                        "description": "radius for instant static sensor data collection in mm",
+                        "type": "number"
+                    },
+                    "outputPointProbe": {
+                        "description": "if true, probe sensor data will be collected for each selectedPoint property",
+                        "type": "boolean"
+                    },
+                    "outputCoaxialAverageSensorData": {
+                        "description": "if true, coaxial average sensor data will be collected for the deposity layers specified by coaxialAverageSensorZHeights",
+                        "type": "boolean"
+                    },
+                    "coaxialAverageSensorRadius": {
+                        "description": "should be a number between 0.05 and 1.5 mm",
+                        "type": "number"
+                    },
+                    "coaxialAverageSensorZHeights": {
+                        "description": "list of z height (mm) ranges within the part where the coaxial average sensor will collect data",
+                        "type": "array"
+                    },
+                    "meshResolutionFactor": {
+                        "description": "multiplier of fine grid spacing for course grid portion of FEA mesh",
+                        "type": "integer"
+                    }
+                }
+            },
+            "selectedPoints": {
+                "type": "array"
+            },
+            "instantDynamicSensorLayers": {
+                "type": "array"
+            },
+            "coaxialAverageSensorZHeights": {
+                "type": "array"
+            },
+            "ThermalSimulation": {
+                "type": "object"
+            },
+            "ScanPatternSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "layerThickness": {
+                        "description": "Must be between 0.00001 to 0.0001 meters",
+                        "type": "number"
+                    },
+                    "startingLayerAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "layerRotationAngle": {
+                        "description": "Must be between 0 to 180 degrees",
+                        "type": "number"
+                    },
+                    "outputShrinkage": {
+                        "description": "",
+                        "type": "boolean"
+                    },
+                    "anisotropicStrainCoefficientsParallel": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientsPerpendicular": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientsZ": {
+                        "description": "",
+                        "type": "number"
+                    }
+                }
+            },
+            "ScanPatternSimulation": {
+                "type": "object"
+            },
+            "partSupports": {
+                "type": "array"
+            },
+            "partSupportConfigurations": {
+                "type": "array"
+            },
+            "PartPost": {
+                "type": "object",
+                "properties": {
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    }
+                }
+            },
+            "CustomMaterialPost": {
+                "type": "object",
+                "properties": {
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    }
+                }
+            },
+            "Material": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "coreVersion": {
+                        "description": "version of the core material this material was derived from",
+                        "type": "string"
+                    },
+                    "isCore": {
+                        "description": "flag whether it is a core material or a custom material",
+                        "type": "boolean"
+                    },
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "key": {
+                        "description": "key associated with this material.  e.g. Ti64",
+                        "type": "string"
+                    },
+                    "configurationId": {
+                        "description": "identifier for the active configuration for this material",
+                        "type": "integer"
+                    },
+                    "configuration": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "configurationHistory": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "last modified time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "thermalSimulationApproved": {
+                        "description": "true if the material properites have been tuned for thermal simulations",
+                        "type": "boolean"
+                    },
+                    "microstructureSimulationApproved": {
+                        "description": "true if the material properites have been tuned for microstructure simulations",
+                        "type": "boolean"
+                    }
+                }
+            },
+            "configuration": {
+                "type": "object"
+            },
+            "configurationHistory": {
+                "type": "array"
+            },
+            "MaterialConfiguration": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "materialId": {
+                        "description": "ID of the material to use in the simulation",
+                        "type": "integer"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "extinctionCoefOfPowderLaserSpeedCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "extinctionCoefOfPowderLaserPowerCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "extinctionCoefOfPowderOffset": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "extinctionCoefOfSolidLaserSpeedCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "extinctionCoefOfSolidLaserPowerCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "extinctionCoefOfSolidOffset": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "powderToSolidThermalConductivityRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "powderToSolidSpecificHeatRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "powderToSolidDensityRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "solidThermalConductivityAtRoomTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "solidDensityAtRoomTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "solidSpecificHeatAtRoomTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vaporizationLatentHeat": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "fusionLatentHeat": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "purgingGasConvectionCoefficient": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "solidusTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "liquidusTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vaporizationTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vaporizationStartTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "solidStateTransitionTemperature": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "energyAbsorbingRateByPowder": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "energyAbsorbingRateBySolid": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "thermalExpansionCoefficient": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "elasticModulus": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "elasticModulusOfBase": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "poissonRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "materialYieldStrength": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "supportYieldStrengthRatio": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "materialStrainSensitivity": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "surfaceTension": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "atomicWeight": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "assumedStrain": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "strainPlasticityRelaxationFactor": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientParallel": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientPerpendicular": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "anisotropicStrainCoefficientZ": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "lookupFileLocation": {
+                        "description": "Location where the lookup file is stored.  Set server side.  Only used internally.",
+                        "type": "string"
+                    },
+                    "capTemperatureLaserSpeedCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "capTemperatureLaserPowerCoef": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "capTemperatureOffset": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "laserSpeedLowerBound": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "laserSpeedUpperBound": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "laserPowerLowerBound": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "laserPowerUpperBound": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "hardeningFactor": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "nucleationConstantInterface": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "nucleationConstantBulk": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthPowderCoeffA": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthPowderCoeffB": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthSolidCoeffA": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthSolidCoeffB": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivityPowderCoeffA": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivityPowderCoeffB": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivitySolidCoeffA": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivitySolidCoeffB": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivityMinimum": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "absorptivityMaximum": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthMinimum": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "penetrationDepthMaximum": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "powderPackingDensity": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "w0LookupFileLocation": {
+                        "description": "Location where tuning method lookup file is stored. Set server side. Only used internally.",
+                        "type": "string"
+                    }
+                }
+            },
+            "MachineConfiguration": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "machineId": {
+                        "description": "ID of the machine to use in the simulation",
+                        "type": "integer"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "hatchSpacing": {
+                        "description": "Must be between 0.00001 to 0.001 meters",
+                        "type": "number"
+                    },
+                    "beamDiameter": {
+                        "description": "diameter of laser beam in meters",
+                        "type": "number"
+                    },
+                    "laserWattage": {
+                        "description": "Must be between 10 to 1000 watts",
+                        "type": "number"
+                    },
+                    "laserWaveLength": {
+                        "description": "laser light wavelength in meters",
+                        "type": "number"
+                    },
+                    "scanSpeed": {
+                        "description": "Must be between 0.01 to 10 meters\/second",
+                        "type": "number"
+                    },
+                    "timeDiscretizationDuringScanning": {
+                        "description": "calculation time interval in seconds",
+                        "type": "number"
+                    },
+                    "coolingToScanningTimeIncrementRatio": {
+                        "description": "ratio between cooling to scanning time",
+                        "type": "number"
+                    },
+                    "totalCoolingTime": {
+                        "description": "cooling time prior to deposition of next powder layer in seconds",
+                        "type": "number"
+                    },
+                    "heaterTemperature": {
+                        "description": "heater temperature in degrees kelvin",
+                        "type": "number"
+                    },
+                    "layerDelay": {
+                        "description": "delay time between layers, stored in seconds",
+                        "type": "number"
+                    },
+                    "scanLineDelay": {
+                        "description": "delay time between scan lines, stored in miliseconds",
+                        "type": "number"
+                    }
+                }
+            },
+            "Machine": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "isCore": {
+                        "description": "flag whether it is a core material or a custom material",
+                        "type": "boolean"
+                    },
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "key": {
+                        "description": "key associated with this material.  e.g. Ti64",
+                        "type": "string"
+                    },
+                    "configurationId": {
+                        "description": "identifier for the active configuration for this material",
+                        "type": "integer"
+                    },
+                    "MachineConfiguration": {
+                        "description": "",
+                        "type": "object"
+                    },
+                    "configuration": {
+                        "description": "",
+                        "type": ""
+                    },
+                    "configurationHistory": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "created": {
+                        "description": "created time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModified": {
+                        "description": "last modified time stamp, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    }
+                }
+            },
+            "PartUploadRequest": {
+                "type": "object",
+                "properties": {
+                    "signedUrl": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "s3Key": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "PartGeometryUrl": {
+                "type": "object",
+                "properties": {
+                    "signedUrl": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "GeometryTriangle": {
+                "type": "object",
+                "properties": {
+                    "normalX": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "normalY": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "normalZ": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex1X": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex1Y": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex1Z": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex2X": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex2Y": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex2Z": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex3X": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex3Y": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "vertex3Z": {
+                        "description": "",
+                        "type": "number"
+                    }
+                }
+            },
+            "Error": {
+                "type": "object",
+                "properties": {
+                    "code": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "message": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "PatchDocument": {
+                "type": "object",
+                "properties": {
+                    "op": {
+                        "description": "The operation to be performed",
+                        "type": "string"
+                    },
+                    "path": {
+                        "description": "A JSON-Pointer",
+                        "type": "string"
+                    },
+                    "value": {
+                        "description": "The value to be used within the operations.",
+                        "type": "object"
+                    },
+                    "from": {
+                        "description": "A string containing a JSON Pointer value.",
+                        "type": "string"
+                    }
+                }
+            },
+            "value": {
+                "type": "object"
+            },
+            "SimulationEstimate": {
+                "type": "object",
+                "properties": {
+                    "partId": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "estimate": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "type": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    }
+                }
+            },
+            "SelectedPoint": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "label": {
+                        "description": "User readable label of what the output contains",
+                        "type": "string"
+                    },
+                    "x": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "y": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "z": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "zMin": {
+                        "description": "Not used at present. This must be set to 0",
+                        "type": "number"
+                    },
+                    "zMax": {
+                        "description": "",
+                        "type": "number"
+                    },
+                    "sensorType": {
+                        "description": "type of point, usually relates to sensor that will be using this point",
+                        "type": "string"
+                    }
+                }
+            },
+            "BuildFile": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "buildFileLocation": {
+                        "description": "folder containing build file contents, multiple files may be contained within the folder",
+                        "type": "string"
+                    },
+                    "stlFileLocation": {
+                        "description": "path to STL file describing the part geometry",
+                        "type": "string"
+                    },
+                    "sliceZipFileLocation": {
+                        "description": "path to ZIP file containing scan pattern information for each powder deposition layer",
+                        "type": "string"
+                    },
+                    "archived": {
+                        "description": "True if simulation has been archived, false otherwise",
+                        "type": "boolean"
+                    },
+                    "availability": {
+                        "description": "Describes the availabity of the part. Uploaded - the part has been uploaded.  Processing - the part is being processed.  Available - the part was processed successfully and can be used in simulations.  Error - an error occurred, contact Ansys Support.",
+                        "type": "string"
+                    },
+                    "sizeX": {
+                        "description": "Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeY": {
+                        "description": "Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeZ": {
+                        "description": "Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "createdAt": {
+                        "description": "created time stamp",
+                        "type": "string"
+                    },
+                    "createdBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "lastModifiedAt": {
+                        "description": "time stamp of last change made to this build file",
+                        "type": "string"
+                    },
+                    "lastModifiedBy": {
+                        "description": "assigned user, set server-side, read only",
+                        "type": "string"
+                    },
+                    "fileVersion": {
+                        "description": "version of this build file",
+                        "type": "string"
+                    },
+                    "fileCreatedDate": {
+                        "description": "creation time stamp from original build file",
+                        "type": "string"
+                    },
+                    "errorReason": {
+                        "description": "If an error occurs uploading a part, a string will be populated in this field.",
+                        "type": "string"
+                    },
+                    "machineType": {
+                        "description": "type of machine associated with this build file",
+                        "type": "string"
+                    },
+                    "materialType": {
+                        "description": "material to use when performing simulation",
+                        "type": "string"
+                    },
+                    "jobId": {
+                        "description": "job number associated with this build file",
+                        "type": "string"
+                    },
+                    "jobName": {
+                        "description": "job name associated with this build file",
+                        "type": "string"
+                    },
+                    "numberOfLayers": {
+                        "description": "number of powder deposition layers",
+                        "type": "integer"
+                    },
+                    "totalScanDistance": {
+                        "description": "total distance laser travels when building the part",
+                        "type": "number"
+                    },
+                    "layerThickness": {
+                        "description": "Must be between 0.00001 to 0.0001 meters",
+                        "type": "number"
+                    },
+                    "originalX": {
+                        "description": "The smallest x location before transformation",
+                        "type": "number"
+                    },
+                    "originalY": {
+                        "description": "The smallest y location before transformation",
+                        "type": "number"
+                    },
+                    "originalZ": {
+                        "description": "The smallest z location before transformation",
+                        "type": "number"
+                    },
+                    "supportModelFileLocation": {
+                        "description": "path to support model file relative to buildFileLocation",
+                        "type": "string"
+                    },
+                    "uploadFileLocation": {
+                        "description": "path to uploaded zip file containing build file components, relative to s3 part bucket",
+                        "type": "string"
+                    },
+                    "buildFileSupports": {
+                        "description": "List of supports for this buildfile",
+                        "type": "array"
+                    }
+                }
+            },
+            "buildFileSupports": {
+                "type": "array"
+            },
+            "BuildFileSupport": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "buildFileId": {
+                        "description": "Id of build file being simulated, mutually exclusive with simulationParts",
+                        "type": "integer"
+                    },
+                    "originalFileName": {
+                        "description": "The original file name from the user",
+                        "type": "string"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    },
+                    "supportType": {
+                        "description": "type of support used for simulation.",
+                        "type": "string"
+                    },
+                    "sizeX": {
+                        "description": "Width of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeY": {
+                        "description": "Length of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    },
+                    "sizeZ": {
+                        "description": "Height of the Part bounding box (in meters), calculated when the part is processed, use 0 for initial post",
+                        "type": "number"
+                    }
+                }
+            },
+            "BuildFilePost": {
+                "type": "object",
+                "properties": {
+                    "organizationId": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "array"
+                    },
+                    "fileUploadLocation": {
+                        "description": "path of ZIP file containing build file elements",
+                        "type": "string"
+                    },
+                    "machineType": {
+                        "description": "type of machine associated with this build file",
+                        "type": "string"
+                    }
+                }
+            },
+            "ZHeightRange": {
+                "type": "object",
+                "properties": {
+                    "zHeightLowerBound": {
+                        "description": "lower bound of area of interest for z dimension in meters",
+                        "type": "number"
+                    },
+                    "zHeightUpperBound": {
+                        "description": "upper bound of area of interest for z dimension in meters",
+                        "type": "number"
+                    }
+                }
+            },
+            "PartSupportPost": {
+                "type": "object",
+                "properties": {
+                    "partId": {
+                        "description": "ID of the associated part",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "originalFileName": {
+                        "description": "The original file name from the user",
+                        "type": "string"
+                    },
+                    "fileLocation": {
+                        "description": "Location of file, usually an S3 location",
+                        "type": "string"
+                    }
+                }
+            },
+            "partSupportSections": {
+                "type": "array"
+            },
+            "PartSupportConfigurationPost": {
+                "type": "object",
+                "properties": {
+                    "partId": {
+                        "description": "ID of the associated part",
+                        "type": "integer"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "description": {
+                        "description": "",
+                        "type": "string"
+                    },
+                    "partSupportIds": {
+                        "description": "Ids for the part supports used in the configuration",
+                        "type": "array"
+                    }
+                }
+            },
+            "partSupportIds": {
+                "type": "array"
+            },
+            "PartSupportSection": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "partSupportConfigurationId": {
+                        "description": "Id of the PartSupportConfiguration to use for the simulation. Can be null",
+                        "type": "integer"
+                    },
+                    "partSupportId": {
+                        "description": "Id of the support to use for the simulation. Can be null",
+                        "type": "integer"
+                    },
+                    "partSupport": {
+                        "description": "",
+                        "type": ""
+                    }
+                }
+            },
+            "MicrostructureSimulationParameters": {
+                "type": "object",
+                "properties": {
+                    "geometryWidth": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "geometryLength": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "geometryHeight": {
+                        "description": "Must be between 0.001 to 0.01 meters",
+                        "type": "number"
+                    },
+                    "startingLayerAngleValues": {
+                        "description": "Array of starting layer angles to simulate across. Each value must be 0 to 180 degrees",
+                        "type": "array"
+                    },
+                    "layerRotationAngleValues": {
+                        "description": "Array of layer rotation angles to simulate across. Each value must be 0 to 180 degrees",
+                        "type": "array"
+                    },
+                    "layerThicknessValues": {
+                        "description": "Array of layer thickness values to simulate across, Each value must be between 0.00001 to 0.0001 meters",
+                        "type": "array"
+                    },
+                    "laserWattageValues": {
+                        "description": "Array of laser power values to simulate across, Each value must be between 10 to 1000 watts",
+                        "type": "array"
+                    },
+                    "scanSpeedValues": {
+                        "description": "Array of scan speed values to simulate across, Each value must be between 0.01 to 10 meters\/second",
+                        "type": "array"
+                    },
+                    "hatchSpacingValues": {
+                        "description": "Array of hatch spacing values to simulate across, Each value must be between 0.00001 to 0.001 meters",
+                        "type": "array"
+                    },
+                    "slicingStripeWidthValues": {
+                        "description": "Array of slicing strip width values to simulate across, Each value must be between 0.001 to 0.1 meters",
+                        "type": "array"
+                    },
+                    "heaterTemperatureValues": {
+                        "description": "Array of printer heater temperature values in degrees kelvin. Each value must be 293 and 474.",
+                        "type": "array"
+                    },
+                    "microstructureSensors": {
+                        "description": "List of sensor locations within the part where the microstructure will be evaluated",
+                        "type": "array"
+                    },
+                    "userProvidedThermalData": {
+                        "description": "True if user is providing cooling rate, thermal gradient and melt pool dimensions for each sensor. False if thermal solver should calculate these values. See MicrostructureSensor.",
+                        "type": "boolean"
+                    },
+                    "randomSeed": {
+                        "description": "Seed value used for random number generation. If not provided it will be auto-generated.",
+                        "type": "integer"
+                    }
+                }
+            },
+            "startingLayerAngleValues": {
+                "type": "array"
+            },
+            "layerRotationAngleValues": {
+                "type": "array"
+            },
+            "heaterTemperatureValues": {
+                "type": "array"
+            },
+            "microstructureSensors": {
+                "type": "array"
+            },
+            "MicrostructureSensor": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "integer"
+                    },
+                    "simulationId": {
+                        "description": "id of associated simulation, set server-side, read-only",
+                        "type": "integer"
+                    },
+                    "label": {
+                        "description": "User readable label of what the output contains",
+                        "type": "string"
+                    },
+                    "sensorDimensionLength": {
+                        "description": "Length of an edge of the sensor cube, 0.0001 to 0.001 meters",
+                        "type": "number"
+                    },
+                    "sensorX": {
+                        "description": "X coordinate of center of the sensor volume in meters",
+                        "type": "number"
+                    },
+                    "sensorY": {
+                        "description": "Y coordinate of center of the sensor volume in meters",
+                        "type": "number"
+                    },
+                    "sensorZ": {
+                        "description": "Z coordinate of center of the sensor volume in meters",
+                        "type": "number"
+                    },
+                    "coolingRate": {
+                        "description": "Cooling rate of material in kelvin\/sec. Only used when userProvidedThermalData is true on the simulation model.",
+                        "type": "number"
+                    },
+                    "thermalGradient": {
+                        "description": "Thermal gradient in kelvin\/meter. Only used when userProvidedThermalData is true on the simulation model.",
+                        "type": "number"
+                    },
+                    "meltPoolWidth": {
+                        "description": "Width of melt pool in meters. Only used when userProvidedThermalData is true on the simulation model.",
+                        "type": "number"
+                    },
+                    "meltPoolDepth": {
+                        "description": "Depth of melt pool in meters. Only used when userProvidedThermalData is true on the simulation model.",
+                        "type": "number"
+                    }
+                }
+            },
+            "MicrostructureSimulation": {
+                "type": "object"
+            },
+            "sort": {
+                "type": "array"
+            }
+        }
+    }
+}
