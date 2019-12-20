@@ -1,0 +1,167 @@
+{
+    "name": "Tyk",
+    "description": "Tyk - Open Source API Gateway, API Management Platform, Developer Portal and Analytics - Tyk",
+    "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11408-tyk.jpg",
+    "tags": [
+        "deployment",
+        "have api",
+        "have swagger",
+        "management",
+        "relative data",
+        "service api",
+        "webhook implementations"
+    ],
+    "created": "2019-12-19",
+    "modified": "2019-12-19",
+    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/tyk\/master\/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+        {
+            "name": "Tyk Gateway REST API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11408-tyk.jpg",
+            "humanURL": "http:\/\/www.tyk.io",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/tyk-gateway-rest-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/tyk-gateway-rest-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/tyk-gateway-rest-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Simulation API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11408-tyk.jpg",
+            "humanURL": "http:\/\/www.tyk.io",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/simulation-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/simulation-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/simulation-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Living Lab Bus API",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11408-tyk.jpg",
+            "humanURL": "http:\/\/www.tyk.io",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/living-lab-bus-api-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/living-lab-bus-api.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/living-lab-bus-api-postman-collection.json"
+                }
+            ]
+        },
+        {
+            "name": "Tyk Swagger Petstore",
+            "description": null,
+            "image": "http:\/\/kinlane-productions.s3.amazonaws.com\/screen-capture-api\/11408-tyk.jpg",
+            "humanURL": "http:\/\/www.tyk.io",
+            "baseURL": "",
+            "tags": [],
+            "properties": [
+                {
+                    "type": "x-openapi",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/tyk-swagger-petstore-openapi.json"
+                },
+                {
+                    "type": "x-openapi",
+                    "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-evangelist-site\/company\/openapis\/tyk-swagger-petstore.json"
+                },
+                {
+                    "type": "x-postman-collecction",
+                    "url": "https:\/\/raw.githubusercontent.com\/api-evangelist\/1forge\/master\/tyk-swagger-petstore-postman-collection.json"
+                }
+            ]
+        }
+    ],
+    "include": [],
+    "x-common": [
+        {
+            "type": "Website",
+            "url": "http:\/\/www.tyk.io"
+        },
+        {
+            "type": "Blog",
+            "url": "https:\/\/tyk.io\/news-2\/"
+        },
+        {
+            "type": "Blog RSS",
+            "url": "https:\/\/tyk.io\/feed\/"
+        },
+        {
+            "type": "Crunchbase",
+            "url": "https:\/\/crunchbase.com\/organization\/tyk-technologies-ltd"
+        },
+        {
+            "type": "Github",
+            "url": "https:\/\/github.com\/TykTechnologies"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-12-59-40.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-12-59-47.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-12-59-55.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-11-46-29.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-04-31-57.json"
+        },
+        {
+            "type": "Swagger",
+            "url": "http:\/\/kinlane-productions.s3.amazonaws.com\/api-definitions\/swagger\/11408-2019-09-04-01-38-13.json"
+        },
+        {
+            "type": "Twitter",
+            "url": "https:\/\/twitter.com\/tyk_io"
+        },
+        {
+            "type": "Webhooks",
+            "url": "https:\/\/tyk.io\/docs\/report-monitor-trigger-events\/webhooks\/"
+        },
+        {
+            "type": "Website",
+            "url": "http:\/\/tyk.io\/"
+        }
+    ]
+}
