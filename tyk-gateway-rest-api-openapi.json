@@ -1,0 +1,783 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "version": "1.9",
+        "title": "Tyk Gateway REST API",
+        "description": "The API for managing the Tyk API management gateway, allowing API control over the operation of a variety of APIs.",
+        "termsOfService": "https:\/\/tyk.io\/terms-and-conditions\/"
+    },
+    "servers": [
+        "https{baseURL}\/"
+    ],
+    "paths": {
+        "\/tyk\/keys\/": {
+            "get": {
+                "summary": "Get Keys",
+                "description": "Gets a list of *key* IDs (will only work with non-hashed installations)\n",
+                "operationId": "GetsAListOfKeyIdsWillOnlyWorkWithNonhashedInstallations",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "api_id",
+                        "in": "query",
+                        "description": "Back-end to target"
+                    },
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/keys\/create": {
+            "post": {
+                "summary": "Create Key",
+                "description": "Create a new *API token* with the *session object* defined in the body\n",
+                "operationId": "CreateANewApiTokenWithTheSessionObjectDefinedInTheBody",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "suppress_reset",
+                        "in": "query",
+                        "description": "Adding the `suppress_reset` parameter and setting it to `1`, will cause Tyk to not reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when ADDing a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+                    },
+                    {
+                        "name": "session_object",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/tyk\/keys\/{keyId}": {
+            "put": {
+                "summary": "Update Key",
+                "description": "Update an *API token* with the *session object* defined in the body, this operatin overwrites the existing object\n",
+                "operationId": "UpdateAnApiTokenWithTheSessionObjectDefinedInTheBodyThisOperatinOverwritesTheExistin",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "keyId",
+                        "in": "path",
+                        "description": "Access Token"
+                    },
+                    {
+                        "name": "suppress_reset",
+                        "in": "query",
+                        "description": "Adding the `suppress_reset` parameter and setting it to `1`, will cause Tyk to not reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when ADDing a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+                    },
+                    {
+                        "name": "session_object",
+                        "in": "body",
+                        "description": ""
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "query",
+                        "description": "Back-end to target"
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Add Custom Key",
+                "description": "Add a pre-specified *API token* with the *session object* defined in the body, this operatin creates a custom token that dsoes not use the gateway naming convention for tokens\n",
+                "operationId": "AddAPrespecifiedApiTokenWithTheSessionObjectDefinedInTheBodyThisOperatinCreatesACus",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "keyId",
+                        "in": "path",
+                        "description": "Access Token"
+                    },
+                    {
+                        "name": "session_object",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Remove Key",
+                "description": "Remove this *API token* from the gateway, this will completely destroy the token and metadata associated with the token and instantly stop access from being granted\n",
+                "operationId": "RemoveThisApiTokenFromTheGatewayThisWillCompletelyDestroyTheTokenAndMetadataAssociate",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "keyId",
+                        "in": "path",
+                        "description": "Access Token"
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "query",
+                        "description": "Back-end to target"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/apis\/": {
+            "get": {
+                "summary": "Get APIs",
+                "description": "Gets a list of *API Definition* objects that are currently live on the gateway\n",
+                "operationId": "GetsAListOfApiDefinitionObjectsThatAreCurrentlyLiveOnTheGateway",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    }
+                ]
+            },
+            "post": {
+                "summary": "Create API",
+                "description": "Create an *API Definition* object\n",
+                "operationId": "CreateAnApiDefinitionObject",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "api_definition",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/tyk\/apis\/{apiID}": {
+            "get": {
+                "summary": "Get API",
+                "description": "Gets an *API Definition* object, if it exists\n",
+                "operationId": "GetsAnApiDefinitionObjectIfItExists",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "path",
+                        "description": "API ID"
+                    }
+                ]
+            },
+            "delete": {
+                "summary": "Delete API",
+                "description": "Deletes an *API Definition* object, if it exists\n",
+                "operationId": "DeletesAnApiDefinitionObjectIfItExists",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "path",
+                        "description": "API ID"
+                    }
+                ]
+            },
+            "put": {
+                "summary": "Update API",
+                "description": "Updates an *API Definition* object, if it exists\n",
+                "operationId": "UpdatesAnApiDefinitionObjectIfItExists",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "path",
+                        "description": "API ID"
+                    },
+                    {
+                        "name": "api_definition",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/tyk\/health\/": {
+            "get": {
+                "summary": "Check Health",
+                "description": "Gets the health check values for an API if it is being recorded\n",
+                "operationId": "GetsTheHealthCheckValuesForAnApiIfItIsBeingRecorded",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "api_id",
+                        "in": "query",
+                        "description": "Back-end to target"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/reload\/": {
+            "get": {
+                "summary": "Reload Gateway",
+                "description": "Will reload the targetted gateway\n",
+                "operationId": "WillReloadTheTargettedGateway",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/reload\/group": {
+            "get": {
+                "summary": "Reload Group",
+                "description": "Will reload the cluster via the targeted gateway\n",
+                "operationId": "WillReloadTheClusterViaTheTargetedGateway",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/oauth\/clients\/create": {
+            "post": {
+                "summary": "OAuth Create Client",
+                "description": "Create a new OAuth client\n",
+                "operationId": "CreateANewOauthClient",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "oauth_client",
+                        "in": "body",
+                        "description": ""
+                    }
+                ]
+            }
+        },
+        "\/tyk\/oauth\/clients\/{apiId}\/{clientId}": {
+            "delete": {
+                "summary": "Delete Client",
+                "description": "Delete the OAuth client\n",
+                "operationId": "DeleteTheOauthClient",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "path",
+                        "description": "API ID"
+                    },
+                    {
+                        "name": "clientId",
+                        "in": "path",
+                        "description": "OAuth Client ID to delete"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/oauth\/clients\/{apiId}": {
+            "get": {
+                "summary": "OAuth Get Clients",
+                "description": "Get a list of OAuth clients bound to this back end\n",
+                "operationId": "GetAListOfOauthClientsBoundToThisBackEnd",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "path",
+                        "description": "API ID"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/oauth\/authorize-client\/": {
+            "post": {
+                "summary": "OAuth Authorize Client",
+                "description": "The final request from an authorising party for a redirect URI during the Tyk OAuth flow\n",
+                "operationId": "TheFinalRequestFromAnAuthorisingPartyForARedirectUriDuringTheTykOauthFlow",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "response_type",
+                        "in": "formData",
+                        "description": "Should be provided by requesting client as part of authorisation request, this should be either `code` or `token` depending on the methods you have specified for the API"
+                    },
+                    {
+                        "name": "client_id",
+                        "in": "formData",
+                        "description": "Should be provided by requesting client as part of authorisation request. The Client ID that is making the request"
+                    },
+                    {
+                        "name": "redirect_uri",
+                        "in": "formData",
+                        "description": "Should be provided by requesting client as part of authorisation request. Must match with the record stored with Tyk"
+                    },
+                    {
+                        "name": "key_rules",
+                        "in": "formData",
+                        "description": "A string representation of a *Session Object (form-encoded)*. This should be provided by your application in order to apply any quotas or rules to the key"
+                    }
+                ]
+            }
+        },
+        "\/tyk\/oauth\/refresh\/{keyId}": {
+            "delete": {
+                "summary": "Invalidate Key",
+                "description": "Invalidate a refresh token\n",
+                "operationId": "InvalidateARefreshToken",
+                "deprecated": 0,
+                "parameters": [
+                    {
+                        "name": "x",
+                        "in": "header",
+                        "description": "tyk gateway shared secret"
+                    },
+                    {
+                        "name": "keyId",
+                        "in": "path",
+                        "description": "Access Token"
+                    },
+                    {
+                        "name": "apiID",
+                        "in": "query",
+                        "description": "API ID"
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "OAuthClient": {
+                "type": "object",
+                "properties": {
+                    "client_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "secret": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "redirect_uri": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "AccessRights": {
+                "type": "object",
+                "properties": {
+                    "api_name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "api_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "versions": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "SessionObject": {
+                "type": "object",
+                "properties": {
+                    "allowance": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "rate": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "per": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "expires": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "quota_max": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "quota_renews": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "quota_remaining": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "quota_renewal_rate": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "access_rights": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "org_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "meta_data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "oauth_client_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "basic_auth_data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "jwt_data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "hmac_enabled": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "hmac_string": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "is_inactive": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "apply_policy_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "monitor": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "tags": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "EndpointMethodMeta": {
+                "type": "object",
+                "properties": {
+                    "action": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "code": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "headers": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "EndPointMeta": {
+                "type": "object",
+                "properties": {
+                    "path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "method_actions": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "TemplateMeta": {
+                "type": "object",
+                "properties": {
+                    "template_data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "method": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "HeaderInjectionMeta": {
+                "type": "object",
+                "properties": {
+                    "delete_headers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "add_headers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "method": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "VersionDefinition": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "expires": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "global_headers": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "global_headers_remove": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "global_size_limit": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "override_target": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_extended_paths": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "extended_paths": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "MiddlewareDefinition": {
+                "type": "object",
+                "properties": {
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "require_session": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "ServiceDiscoverConfiguration": {
+                "type": "object",
+                "properties": {
+                    "use_discovery_service": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "query_endpoint": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_nested_query": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "parent_data_path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "data_path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "port_data_path": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_target_list": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "cache_timeout": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "endpoint_returns_list": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            },
+            "APIDefinition": {
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "slug": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "api_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "org_id": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_keyless": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_oauth2": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "oauth_meta": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "auth": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "use_basic_auth": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enable_jwt": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "jwt_signing_method": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "jwt_source": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "jwt_identity_base_field": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "jwt_policy_field_name": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "notifications": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "enable_signature_checking": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "hmac_allowed_clock_skew": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "definition": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "version_data": {
+                        "description": "",
+                        "type": "delete"
+                    },
+                    "uptime_tests": {
+                        "description": "",
+                        "type": "delete"
+                    }
+                }
+            }
+        }
+    }
+}
