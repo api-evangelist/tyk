@@ -1,0 +1,753 @@
+{
+    "id": "fe2bbad36015aac43aee4371ec8620d0",
+    "name": "Tyk Gateway REST API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "93ecdc288cdfecbac950678b6fa66f4d",
+            "name": "Get Keys",
+            "url": "https{baseURL}\/\/tyk\/keys\/",
+            "description": "Gets a list of *key* IDs (will only work with non-hashed installations)\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "api_id",
+                    "description": "Back-end to target",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "563380d966e18f241615725617c3c123",
+            "name": "Create Key",
+            "url": "https{baseURL}\/\/tyk\/keys\/create",
+            "description": "Create a new *API token* with the *session object* defined in the body\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "suppress_reset",
+                    "description": "Adding the `suppress_reset` parameter and setting it to `1`, will cause Tyk to not reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when ADDing a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "session_object",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "bafc5da4949564c05d398130405cac01",
+            "name": "Update Key",
+            "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
+            "description": "Update an *API token* with the *session object* defined in the body, this operatin overwrites the existing object\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keyId",
+                    "description": "Access Token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "suppress_reset",
+                    "description": "Adding the `suppress_reset` parameter and setting it to `1`, will cause Tyk to not reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when ADDing a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "session_object",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "api_id",
+                    "description": "Back-end to target",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "4700ce96f9afd364f7f7ca11b5233a2e",
+            "name": "Add Custom Key",
+            "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
+            "description": "Add a pre-specified *API token* with the *session object* defined in the body, this operatin creates a custom token that dsoes not use the gateway naming convention for tokens\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keyId",
+                    "description": "Access Token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "session_object",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "032577bdf3e3b65fcf6fff86216fe1db",
+            "name": "Remove Key",
+            "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
+            "description": "Remove this *API token* from the gateway, this will completely destroy the token and metadata associated with the token and instantly stop access from being granted\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keyId",
+                    "description": "Access Token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "api_id",
+                    "description": "Back-end to target",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "20253a022c3526ae413987d3b8457a51",
+            "name": "Get APIs",
+            "url": "https{baseURL}\/\/tyk\/apis\/",
+            "description": "Gets a list of *API Definition* objects that are currently live on the gateway\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "50b50100357772f0b33b094197594a65",
+            "name": "Create API",
+            "url": "https{baseURL}\/\/tyk\/apis\/",
+            "description": "Create an *API Definition* object\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "api_definition",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "361d093a5588346b84da1965ba60b030",
+            "name": "Get API",
+            "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
+            "description": "Gets an *API Definition* object, if it exists\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "c718e2e33607ddca72193a0bfbe39c78",
+            "name": "Delete API",
+            "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
+            "description": "Deletes an *API Definition* object, if it exists\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "ab6dce5d6a73c59aa6873870c5820ffe",
+            "name": "Update API",
+            "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
+            "description": "Updates an *API Definition* object, if it exists\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "put",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "api_definition",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "60aa409c851e9b7d08e99c26b47f643d",
+            "name": "Check Health",
+            "url": "https{baseURL}\/\/tyk\/health\/",
+            "description": "Gets the health check values for an API if it is being recorded\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "api_id",
+                    "description": "Back-end to target",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "8e125c733aa39de420dd40036cec0f91",
+            "name": "Reload Gateway",
+            "url": "https{baseURL}\/\/tyk\/reload\/",
+            "description": "Will reload the targetted gateway\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "62f4548f84d979a05b606cfcb07c5d43",
+            "name": "Reload Group",
+            "url": "https{baseURL}\/\/tyk\/reload\/group",
+            "description": "Will reload the cluster via the targeted gateway\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "dd22855c6f4a8acc7acc2e14026f9313",
+            "name": "OAuth Create Client",
+            "url": "https{baseURL}\/\/tyk\/oauth\/clients\/create",
+            "description": "Create a new OAuth client\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "oauth_client",
+                    "description": "",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "b7754397db8f803af49c8844b91ea940",
+            "name": "Delete Client",
+            "url": "https{baseURL}\/\/tyk\/oauth\/clients\/{apiId}\/{clientId}",
+            "description": "Delete the OAuth client\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "clientId",
+                    "description": "OAuth Client ID to delete",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "cb575bfc37e3f394cdb899a1236b50a2",
+            "name": "OAuth Get Clients",
+            "url": "https{baseURL}\/\/tyk\/oauth\/clients\/{apiId}",
+            "description": "Get a list of OAuth clients bound to this back end\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "e4d47991bd455a9aa2c1954020d3f512",
+            "name": "OAuth Authorize Client",
+            "url": "https{baseURL}\/\/tyk\/oauth\/authorize-client\/",
+            "description": "The final request from an authorising party for a redirect URI during the Tyk OAuth flow\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "response_type",
+                    "description": "Should be provided by requesting client as part of authorisation request, this should be either `code` or `token` depending on the methods you have specified for the API",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "client_id",
+                    "description": "Should be provided by requesting client as part of authorisation request. The Client ID that is making the request",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "redirect_uri",
+                    "description": "Should be provided by requesting client as part of authorisation request. Must match with the record stored with Tyk",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "key_rules",
+                    "description": "A string representation of a *Session Object (form-encoded)*. This should be provided by your application in order to apply any quotas or rules to the key",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        },
+        {
+            "id": "74acaad5a1d8efb35d75e1635fe91343",
+            "name": "Invalidate Key",
+            "url": "https{baseURL}\/\/tyk\/oauth\/refresh\/{keyId}",
+            "description": "Invalidate a refresh token\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "delete",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "x",
+                    "description": "tyk gateway shared secret",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "keyId",
+                    "description": "Access Token",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "apiID",
+                    "description": "API ID",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "rawModeData": ""
+        }
+    ]
+}
