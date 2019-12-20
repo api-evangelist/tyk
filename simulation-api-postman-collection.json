@@ -1,0 +1,118 @@
+{
+    "id": "38e7f8f07acc58f0c8a48763e5045f4d",
+    "name": "Simulation API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "79aa1b25e8ac6b1993ccf51a9f842fcd",
+            "name": "",
+            "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/status",
+            "description": "Use this endpoint to check server status.\n",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "rawModeData": ""
+        },
+        {
+            "id": "9d4e9181e8025d147b6d0ebde0c0f141",
+            "name": "",
+            "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/materials",
+            "description": "Get list of materials",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "organizationId",
+                    "description": "the organization id to get items for.  Must be provided as API callers only have access to items belonging to their organization.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "offset",
+                    "description": "starting paging count; ex. 60 will skip the first 60 items in the list",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "limit",
+                    "description": "number of items to return within the query",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "sort",
+                    "description": "key:direction pairs for one or multiple field sort orders.  e.g. sort=key1:desc,key2:asc",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                },
+                {
+                    "key": "archived",
+                    "description": "If true, will only return archived items.  If false, will only return unarchived items.  If not provided, will return both archived and unarchived items.",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "rawModeData": ""
+        },
+        {
+            "id": "14b1c76c5d4feeab750932a073642b56",
+            "name": "",
+            "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/materials",
+            "description": "Creates a new material for the organizationId specified",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "post",
+            "pathVariableData": [],
+            "queryParams": [],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "rawModeData": ""
+        }
+    ]
+}
