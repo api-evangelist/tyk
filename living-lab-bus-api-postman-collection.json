@@ -1,0 +1,44 @@
+{
+    "id": "fde18fd81b8d7a5115dda2195e4b07f9",
+    "name": "Living Lab Bus API",
+    "description": null,
+    "auth": null,
+    "events": null,
+    "variables": [],
+    "order": [],
+    "folders_order": [],
+    "folders": [],
+    "requests": [
+        {
+            "id": "53cb78c3daa2c7aedca9850254afea0c",
+            "name": "",
+            "url": "http:\/\/llb.cloud.tyk.io\/llb-bus-api\/\/GetData?",
+            "description": "",
+            "data": [],
+            "dataMode": "raw",
+            "headerData": null,
+            "method": "get",
+            "pathVariableData": [],
+            "queryParams": [
+                {
+                    "key": "busId",
+                    "description": "BUSID == four digit bus number from (currently only 1612, 3008 and 3009 are in use)",
+                    "value": "",
+                    "equals": true,
+                    "enabled": true
+                }
+            ],
+            "auth": null,
+            "events": null,
+            "folder": null,
+            "protocolProfileBehavior": {
+                "disableBodyPruning": true
+            },
+            "responses": [],
+            "currentHelper": null,
+            "helperAttributes": null,
+            "collectionId": "fde18fd81b8d7a5115dda2195e4b07f9",
+            "rawModeData": ""
+        }
+    ]
+}
