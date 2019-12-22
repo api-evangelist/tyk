@@ -1,5 +1,5 @@
 {
-    "id": "fde18fd81b8d7a5115dda2195e4b07f9",
+    "id": "94f22d66b278366fa1b889a4ac62212b",
     "name": "Living Lab Bus API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "53cb78c3daa2c7aedca9850254afea0c",
+            "id": "1ee534b023b36de06b2d6e8d8810d4fc",
             "name": "",
             "url": "http:\/\/llb.cloud.tyk.io\/llb-bus-api\/\/GetData?",
             "description": "",
@@ -37,7 +37,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fde18fd81b8d7a5115dda2195e4b07f9",
+            "collectionId": "94f22d66b278366fa1b889a4ac62212b",
             "rawModeData": ""
         }
     ]
