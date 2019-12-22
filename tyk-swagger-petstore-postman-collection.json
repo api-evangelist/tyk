@@ -1,5 +1,5 @@
 {
-    "id": "a48aee4dcc242db2f8637a92e3533a1c",
+    "id": "ea27f1ac79b69127a17fd8a5c55b29f1",
     "name": "Tyk Swagger Petstore",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "e21f42d18c10fd57a2ccfbbc4ad9f5bb",
+            "id": "27e1e896c0dd140e438e9ed53ce79d41",
             "name": "Add a new pet to the store",
             "url": "http:\/\/api-workshop.cloud.tyk.io\/petstore\/pet",
             "description": "",
@@ -29,7 +29,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "a48aee4dcc242db2f8637a92e3533a1c",
+            "collectionId": "ea27f1ac79b69127a17fd8a5c55b29f1",
             "rawModeData": ""
         }
     ]
