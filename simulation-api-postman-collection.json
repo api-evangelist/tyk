@@ -1,5 +1,5 @@
 {
-    "id": "38e7f8f07acc58f0c8a48763e5045f4d",
+    "id": "f74940eceaa7dd2d11fadf2c79f1fee4",
     "name": "Simulation API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "79aa1b25e8ac6b1993ccf51a9f842fcd",
+            "id": "9dce634c41655d26125d368283b9c39a",
             "name": "",
             "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/status",
             "description": "Use this endpoint to check server status.\n",
@@ -29,11 +29,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "collectionId": "f74940eceaa7dd2d11fadf2c79f1fee4",
             "rawModeData": ""
         },
         {
-            "id": "9d4e9181e8025d147b6d0ebde0c0f141",
+            "id": "a38a31858b87fcf4f32ab12f7ac22700",
             "name": "",
             "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/materials",
             "description": "Get list of materials",
@@ -88,11 +88,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "collectionId": "f74940eceaa7dd2d11fadf2c79f1fee4",
             "rawModeData": ""
         },
         {
-            "id": "14b1c76c5d4feeab750932a073642b56",
+            "id": "b6b88cd132b46bfe298d45c98e03dfab",
             "name": "",
             "url": "http:\/\/3dsim.cloud.tyk.io\/simulation-api\/materials",
             "description": "Creates a new material for the organizationId specified",
@@ -111,7 +111,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "38e7f8f07acc58f0c8a48763e5045f4d",
+            "collectionId": "f74940eceaa7dd2d11fadf2c79f1fee4",
             "rawModeData": ""
         }
     ]
