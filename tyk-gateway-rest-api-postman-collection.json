@@ -1,5 +1,5 @@
 {
-    "id": "fe2bbad36015aac43aee4371ec8620d0",
+    "id": "7b49e445ebc31dc62fd805a03ca423d7",
     "name": "Tyk Gateway REST API",
     "description": null,
     "auth": null,
@@ -10,7 +10,7 @@
     "folders": [],
     "requests": [
         {
-            "id": "93ecdc288cdfecbac950678b6fa66f4d",
+            "id": "fcba858825c6fa37028b3e2cf848e9e4",
             "name": "Get Keys",
             "url": "https{baseURL}\/\/tyk\/keys\/",
             "description": "Gets a list of *key* IDs (will only work with non-hashed installations)\n",
@@ -44,11 +44,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "563380d966e18f241615725617c3c123",
+            "id": "8c90fd5b32c1b6247cc2af54bb7d4f21",
             "name": "Create Key",
             "url": "https{baseURL}\/\/tyk\/keys\/create",
             "description": "Create a new *API token* with the *session object* defined in the body\n",
@@ -89,11 +89,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "bafc5da4949564c05d398130405cac01",
+            "id": "10ca38186f7f5f6d0910c395eb45629e",
             "name": "Update Key",
             "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
             "description": "Update an *API token* with the *session object* defined in the body, this operatin overwrites the existing object\n",
@@ -148,11 +148,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "4700ce96f9afd364f7f7ca11b5233a2e",
+            "id": "1a54af538baccaee18c9b57ef942f092",
             "name": "Add Custom Key",
             "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
             "description": "Add a pre-specified *API token* with the *session object* defined in the body, this operatin creates a custom token that dsoes not use the gateway naming convention for tokens\n",
@@ -193,11 +193,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "032577bdf3e3b65fcf6fff86216fe1db",
+            "id": "c3bb04178b1fb430e6b012ac6e4a12ca",
             "name": "Remove Key",
             "url": "https{baseURL}\/\/tyk\/keys\/{keyId}",
             "description": "Remove this *API token* from the gateway, this will completely destroy the token and metadata associated with the token and instantly stop access from being granted\n",
@@ -238,11 +238,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "20253a022c3526ae413987d3b8457a51",
+            "id": "9b5427ded55b90d88244b59112d9ad34",
             "name": "Get APIs",
             "url": "https{baseURL}\/\/tyk\/apis\/",
             "description": "Gets a list of *API Definition* objects that are currently live on the gateway\n",
@@ -269,11 +269,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "50b50100357772f0b33b094197594a65",
+            "id": "4db0e94d48ebacdc92a59f3feff5efb6",
             "name": "Create API",
             "url": "https{baseURL}\/\/tyk\/apis\/",
             "description": "Create an *API Definition* object\n",
@@ -300,11 +300,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "361d093a5588346b84da1965ba60b030",
+            "id": "5ce2438f2c21eb7d0c36812118ed6cbb",
             "name": "Get API",
             "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
             "description": "Gets an *API Definition* object, if it exists\n",
@@ -338,11 +338,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "c718e2e33607ddca72193a0bfbe39c78",
+            "id": "136a30767f52bdf4712d8ac386727587",
             "name": "Delete API",
             "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
             "description": "Deletes an *API Definition* object, if it exists\n",
@@ -376,11 +376,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "ab6dce5d6a73c59aa6873870c5820ffe",
+            "id": "26d2eb765373eb484242597fa77d49c6",
             "name": "Update API",
             "url": "https{baseURL}\/\/tyk\/apis\/{apiID}",
             "description": "Updates an *API Definition* object, if it exists\n",
@@ -421,11 +421,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "60aa409c851e9b7d08e99c26b47f643d",
+            "id": "fdcca7f37178ce7ad09d6fe2c7a3bc31",
             "name": "Check Health",
             "url": "https{baseURL}\/\/tyk\/health\/",
             "description": "Gets the health check values for an API if it is being recorded\n",
@@ -459,11 +459,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "8e125c733aa39de420dd40036cec0f91",
+            "id": "d941305aba6e3bae01bfc9ef009f0be9",
             "name": "Reload Gateway",
             "url": "https{baseURL}\/\/tyk\/reload\/",
             "description": "Will reload the targetted gateway\n",
@@ -490,11 +490,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "62f4548f84d979a05b606cfcb07c5d43",
+            "id": "df5b932885b6bb4640fb1315a6023d76",
             "name": "Reload Group",
             "url": "https{baseURL}\/\/tyk\/reload\/group",
             "description": "Will reload the cluster via the targeted gateway\n",
@@ -521,11 +521,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "dd22855c6f4a8acc7acc2e14026f9313",
+            "id": "8c9a14ccdc89664a68a2739d17bf6fb2",
             "name": "OAuth Create Client",
             "url": "https{baseURL}\/\/tyk\/oauth\/clients\/create",
             "description": "Create a new OAuth client\n",
@@ -559,11 +559,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "b7754397db8f803af49c8844b91ea940",
+            "id": "85d83833801fdb9019d996b60ceb89ee",
             "name": "Delete Client",
             "url": "https{baseURL}\/\/tyk\/oauth\/clients\/{apiId}\/{clientId}",
             "description": "Delete the OAuth client\n",
@@ -604,11 +604,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "cb575bfc37e3f394cdb899a1236b50a2",
+            "id": "dbcc826d0beed08e035243a87786a9a7",
             "name": "OAuth Get Clients",
             "url": "https{baseURL}\/\/tyk\/oauth\/clients\/{apiId}",
             "description": "Get a list of OAuth clients bound to this back end\n",
@@ -642,11 +642,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "e4d47991bd455a9aa2c1954020d3f512",
+            "id": "590dc333ac13339d74fc98562d70fdf7",
             "name": "OAuth Authorize Client",
             "url": "https{baseURL}\/\/tyk\/oauth\/authorize-client\/",
             "description": "The final request from an authorising party for a redirect URI during the Tyk OAuth flow\n",
@@ -701,11 +701,11 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         },
         {
-            "id": "74acaad5a1d8efb35d75e1635fe91343",
+            "id": "86e8072d778149e468629db34678e870",
             "name": "Invalidate Key",
             "url": "https{baseURL}\/\/tyk\/oauth\/refresh\/{keyId}",
             "description": "Invalidate a refresh token\n",
@@ -746,7 +746,7 @@
             "responses": [],
             "currentHelper": null,
             "helperAttributes": null,
-            "collectionId": "fe2bbad36015aac43aee4371ec8620d0",
+            "collectionId": "7b49e445ebc31dc62fd805a03ca423d7",
             "rawModeData": ""
         }
     ]
