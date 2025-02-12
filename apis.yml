@@ -17,24 +17,22 @@ apis:
       that is used to communicate with your Tyk nodes can be kept secret and
       access to the wider management functions can be handled on a user-by-user
       and organisation-by-organisation basis.
-  - aid: tyk:tyk-dashboard-admin-api
+  - &ref_0
+    aid: tyk:tyk-dashboard-admin-api
     name: Tyk Dashboard Admin API
-    description: >-
-      For Tyk On-Premises installations only, the Dashboard Admin API has two
-      endpoints and is used to set up and provision a Tyk Dashboard instance
-      without the command line.
+    tags:
+      - API Management
+      - Dashboards
+      - Administration
     humanURL: https://tyk.io/docs/dashboard-admin-api/
-    tags: []
     properties: []
-  - aid: tyk:tyk-dashboard-admin-api
-    name: Tyk Dashboard Admin API
     description: >-
-      For Tyk On-Premises installations only, the Dashboard Admin API has two
-      endpoints and is used to set up and provision a Tyk Dashboard instance
-      without the command line.
-    humanURL: https://tyk.io/docs/dashboard-admin-api/
-    tags: []
-    properties: []
+      For Tyk On-Premises installations, the Dashboard Admin API provides two
+      endpoints for setting up and provisioning a Tyk Dashboard instance without
+      using the command line. To use the API, retrieve the admin_secret value
+      from your Tyk Dashboard configuration. This secret must be included as a
+      header in every Dashboard Admin API request for successful authentication.
+  - *ref_0
   - aid: tyk:tyk-mdcb-api
     name: Tyk MDCB API
     description: >-
