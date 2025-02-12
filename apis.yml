@@ -52,14 +52,19 @@ apis:
       built-in pprof diagnostics for advanced performance profiling.
   - aid: tyk:tyk-gateway-api
     name: Tyk Gateway API
-    description: >-
+    tags:
+      - Gateways
+      - API Management
+    humanURL: https://tyk.io/docs/tyk-gateway-api/
+    properties:
+      - type: OpenAPI
+        url: properties/tyk-gateway-api-openapi.yml
+    description: >+
       The Tyk Gateway API is the primary means for integrating your application
       with the Tyk API Gateway system. This API is very small, and has no
       granular permissions system. It is intended to be used purely for internal
       automation and integration.
-    humanURL: https://tyk.io/docs/tyk-gateway-api/
-    tags: []
-    properties: []
+
 name: Tyk
 tags:
   - Management
