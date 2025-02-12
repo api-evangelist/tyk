@@ -7,7 +7,9 @@ apis:
       - Dashboards
       - API Management
     humanURL: https://tyk.io/docs/tyk-dashboard-api/
-    properties: []
+    properties:
+      - type: OpenAPI
+        url: properties/tyk-dashboard-api-openapi.yml
     description: >-
       The Tyk Dashboard API offers granular, programmatic access to a
       centralised database of resources that your Tyk nodes can pull from. This
