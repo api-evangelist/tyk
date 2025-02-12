@@ -25,7 +25,9 @@ apis:
       - Dashboards
       - Administration
     humanURL: https://tyk.io/docs/dashboard-admin-api/
-    properties: []
+    properties:
+      - type: OpenAPI
+        url: properties/tyk-dashboard-admin-api-openapi.yml
     description: >-
       For Tyk On-Premises installations, the Dashboard Admin API provides two
       endpoints for setting up and provisioning a Tyk Dashboard instance without
