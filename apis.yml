@@ -113,6 +113,9 @@ common:
 created: '2025-01-08'
 modified: '2025-08-19'
 position: Consumer
+segments:
+  - Gateways
+  - Documentation
 description: >-
   API discovery is the process of searching for and finding API resources. It
   covers both internal and external APIs. Why use API discovery?
