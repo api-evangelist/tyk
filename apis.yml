@@ -10,6 +10,8 @@ apis:
     properties:
       - url: properties/tyk-dashboard-api-openapi.yml
         type: OpenAPI
+      - url: https://tyk.io/docs/tyk-dashboard-api/
+        type: Documentation
     description: >-
       The Tyk Dashboard API offers granular, programmatic access to a
       centralised database of resources that your Tyk nodes can pull from. This
@@ -27,6 +29,8 @@ apis:
     properties:
       - url: properties/tyk-dashboard-admin-api-openapi.yml
         type: OpenAPI
+      - url: https://tyk.io/docs/dashboard-admin-api/
+        type: Documentation
     description: >-
       For Tyk On-Premises installations, the Dashboard Admin API provides two
       endpoints for setting up and provisioning a Tyk Dashboard instance without
@@ -43,6 +47,8 @@ apis:
     properties:
       - url: properties/tyk-dashboard-admin-api-openapi.yml
         type: OpenAPI
+      - url: https://tyk.io/docs/dashboard-admin-api/
+        type: Documentation
     description: >-
       For Tyk On-Premises installations, the Dashboard Admin API provides two
       endpoints for setting up and provisioning a Tyk Dashboard instance without
@@ -59,11 +65,30 @@ apis:
     properties:
       - url: properties/tyk-mdcb-api-openapi.yml
         type: OpenAPI
+      - url: https://tyk.io/docs/tyk-mdcb-api/
+        type: Documentation
     description: >-
       This API provides operations for monitoring Data Planes connected to MDCB
       and accessing diagnostic data. It includes endpoints for retrieving
       connected data plane details, performing health checks, and accessing Gos
       built-in pprof diagnostics for advanced performance profiling.
+  - aid: tyk:tyk-enterprise-developer-portal-api
+    name: Tyk Enterprise Developer Portal API
+    tags:
+      - Portals
+      - Developer Experience
+      - API Management
+    humanURL: https://tyk.io/docs/product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api/
+    properties:
+      - url: https://tyk.io/docs/product-stack/tyk-enterprise-developer-portal/api-documentation/tyk-edp-api/
+        type: Documentation
+    description: >-
+      The Tyk Enterprise Developer Portal API offers programmatic access to all
+      portal resources that your instance of the portal manages. It repeats the
+      functionality of the user interface and enables integration with external
+      IT systems such as billing platforms, CRM software, and ITSM tools. Access
+      requires an admin authorisation token available for admin users of the
+      portal in the profile page.
   - aid: tyk:tyk-gateway-api
     name: Tyk Gateway API
     tags:
@@ -73,6 +98,8 @@ apis:
     properties:
       - url: properties/tyk-gateway-api-openapi.yml
         type: OpenAPI
+      - url: https://tyk.io/docs/tyk-gateway-api/
+        type: Documentation
     description: >+
       The Tyk Gateway API is the primary means for integrating your application
       with the Tyk API Gateway system. This API is very small, and has no
@@ -110,8 +137,77 @@ common:
     description: 'null'
     url: https://tyk.io/case-studies/
     type: CaseStudies
+  - name: About Tyk
+    url: https://tyk.io/about-us/
+    type: About
+  - name: Tyk API Gateway Documentation
+    url: https://tyk.io/docs/
+    type: Documentation
+  - name: Tyk Getting Started
+    url: https://tyk.io/getting-started-with-tyk/
+    type: GettingStarted
+  - name: Tyk Sign Up
+    url: https://tyk.io/sign-up/
+    type: SignUp
+  - name: Tyk Support
+    url: https://tyk.io/customer-engineering/support/
+    type: Support
+  - name: Tyk Community Forum
+    url: https://community.tyk.io/
+    type: Community
+  - name: Tyk Cloud Status
+    url: https://status.tyk.io/
+    type: Status
+  - name: Tyk Terms and Conditions
+    url: https://tyk.io/terms-conditions/
+    type: TermsOfService
+  - name: Tyk Privacy Policy
+    url: https://tyk.io/privacy-policy-2/
+    type: PrivacyPolicy
+  - name: Tyk Responsible Disclosure
+    url: https://tyk.io/responsible-disclosure/
+    type: Security
+  - name: Tyk Partners
+    url: https://tyk.io/partners/
+    type: Partners
+  - name: Tyk Events and Webinars
+    url: https://tyk.io/events/
+    type: Events
+  - name: Tyk on GitHub
+    url: https://github.com/TykTechnologies
+    type: GitHubOrganization
+  - name: Tyk on LinkedIn
+    url: https://www.linkedin.com/company/tyk
+    type: LinkedIn
+  - name: Tyk on X
+    url: https://x.com/tyk_io
+    type: X
+  - name: Tyk Dashboard Release Notes
+    url: https://tyk.io/docs/developer-support/release-notes/dashboard
+    type: ChangeLog
+  - name: Tyk Contact
+    url: https://tyk.io/contact/
+    type: Contact
+  - name: Tyk Book a Demo
+    url: https://tyk.io/contact-book-a-demo/
+    type: Contact
+  - name: Tyk Learning Center
+    url: https://tyk.io/learning-center/
+    type: LearningCenter
+  - name: Tyk Demo Library
+    url: https://tyk.io/demo-library/
+    type: Videos
+  - name: Tyk Enterprise Developer Portal
+    url: https://tyk.io/developer-portal/
+    type: Portal
+  - name: Tyk GDPR Policy
+    url: https://tyk.io/gdpr/
+    type: PrivacyPolicy
+  - name: Tyk QuickStart
+    url: https://tyk.io/docs/getting-started/configure-first-api
+    type: Quickstart
 created: '2025-01-08'
-modified: '2025-08-19'
+modified: '2026-03-03'
 position: Consumer
 segments:
   - Gateways
