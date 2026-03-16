@@ -207,7 +207,7 @@ common:
     url: https://tyk.io/docs/getting-started/configure-first-api
     type: Quickstart
 created: '2025-01-08'
-modified: '2026-03-03'
+modified: '2026-03-16'
 position: Consumer
 segments:
   - Gateways
@@ -217,5 +217,5 @@ description: >-
   covers both internal and external APIs. Why use API discovery?
 maintainers:
   - FN: Kin Lane
-    email: info@apievangelist.com
+    email: kin@apievangelist.com
 specificationVersion: '0.19'
