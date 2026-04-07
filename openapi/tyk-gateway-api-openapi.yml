@@ -61,83 +61,6 @@ security:
   - api_key: []
 tags:
   - description: >
-      **Note: Applies only to Tyk Gateway Community Edition** <br/>
-
-
-      API management is very simple using the Tyk Rest API: each update only
-      affects the underlying file, and this endpoint will only work with disk
-      based installations, not database-backed ones.<br/>
-
-
-      APIs that are added this way are flushed to to disk into the app_path
-      folder using the format: *{api-id}.json*. Updating existing APIs that use
-      a different naming convention will cause those APIs to be added, which
-      could subsequently lead to a loading error and crash if they use the same
-      listen_path. <br/>
-
-
-      These methods only work on a single API node. If updating a cluster, it is
-      important to ensure that all nodes are updated before initiating a
-      reload.<br/>
-    name: APIs
-  - description: |+
-      **Note: Applies only to Tyk Gateway Community Edition** <br/>
-
-    name: Tyk OAS APIs
-  - description: >
-      All keys that are used to access services via Tyk correspond to a session
-      object that informs Tyk about the context of this particular token, like
-      access rules and rate/quota allowance.
-    name: Keys
-  - description: >
-      It is possible to force API quota and rate limit across all keys that
-      belong to a specific organisation ID. Rate limiting at an organisation
-      level is useful for creating tiered access levels and trial accounts.<br
-      />
-
-
-      The Organisation rate limiting middleware works with both Quotas and Rate
-      Limiters. In order to manage this functionality, a simple API has been put
-      in place to manage these sessions. <br />
-
-
-      Although the Organisation session-limiter uses the same session object,
-      all other security keys are optional as they are not used. <br />
-
-
-      <h3>Managing active status</h3> <br />
-
-
-      To disallow access to an entire group of keys without rate limiting the
-      organisation, create a session object with the "is_inactive" key set to
-      true. This will block access before any other middleware is executed. It
-      is useful when managing subscriptions for an organisation group and access
-      needs to be blocked because of non-payment. <br />
-    name: Organisation Quotas
-  - description: >
-      Sometimes a cache might contain stale data, or it may just need to be
-      cleared because of an invalid configuration. This call will purge all keys
-      associated with a cache on an API-by-API basis.
-    name: Cache Invalidation
-  - description: >-
-      Use the endpoints under this tag to manage your certificates. You can add,
-      delete and list certificates using these endpoints.
-    name: Certs
-  - description: |
-      Force restart of the Gateway or whole cluster.
-    name: Hot Reload
-  - description: |
-      Check health status of the Tyk Gateway and loaded APIs.
-    name: Health Checking
-  - description: >
-      A Tyk security policy incorporates several security options that can be
-      applied to an API key. It acts as a template that can override individual
-      sections of an API key (or identity) in Tyk.
-    name: Policies
-  - description: |
-      Manage OAuth clients, and manage their tokens
-    name: OAuth
-  - description: >
       Tyk supports batch requests, so a client makes a single request to the API
       but gets a compound response object back.
 
@@ -376,7 +299,67 @@ tags:
 
       The options for the `header_injector` are global, and will apply to all
       outbound requests.
-    name: Batch requests
+    name: Batch Requests
+  - description: >
+      Sometimes a cache might contain stale data, or it may just need to be
+      cleared because of an invalid configuration. This call will purge all keys
+      associated with a cache on an API-by-API basis.
+    name: Cache Invalidation
+  - description: >-
+      Use the endpoints under this tag to manage your certificates. You can add,
+      delete and list certificates using these endpoints.
+    name: Certs
+  - name: CertsTag
+  - name: Debug
+  - description: |
+      Check health status of the Tyk Gateway and loaded APIs.
+    name: Health Checking
+  - description: |
+      Force restart of the Gateway or whole cluster.
+    name: Hot Reload
+  - description: >
+      All keys that are used to access services via Tyk correspond to a session
+      object that informs Tyk about the context of this particular token, like
+      access rules and rate/quota allowance.
+    name: Keys
+  - description: |
+      Manage OAuth clients, and manage their tokens
+    name: OAuth
+  - description: >
+      It is possible to force API quota and rate limit across all keys that
+      belong to a specific organisation ID. Rate limiting at an organisation
+      level is useful for creating tiered access levels and trial accounts.<br
+      />
+
+
+      The Organisation rate limiting middleware works with both Quotas and Rate
+      Limiters. In order to manage this functionality, a simple API has been put
+      in place to manage these sessions. <br />
+
+
+      Although the Organisation session-limiter uses the same session object,
+      all other security keys are optional as they are not used. <br />
+
+
+      <h3>Managing active status</h3> <br />
+
+
+      To disallow access to an entire group of keys without rate limiting the
+      organisation, create a session object with the "is_inactive" key set to
+      true. This will block access before any other middleware is executed. It
+      is useful when managing subscriptions for an organisation group and access
+      needs to be blocked because of non-payment. <br />
+    name: Organisation Quotas
+  - description: >
+      A Tyk security policy incorporates several security options that can be
+      applied to an API key. It acts as a template that can override individual
+      sections of an API key (or identity) in Tyk.
+    name: Policies
+  - name: Schema
+  - description: |+
+      **Note: Applies only to Tyk Gateway Community Edition** <br/>
+
+    name: Tyk OAS APIs
 paths:
   /hello:
     get:
@@ -463,8 +446,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
       summary: Tyk Get list of apis
-      tags:
-        - APIs
+      tags: []
     post:
       description: >-
         Create API. A single Tyk node can have its API Definitions queried,
@@ -566,8 +548,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
       summary: Tyk Creat an API
-      tags:
-        - APIs
+      tags: []
   /tyk/apis/{apiID}:
     delete:
       description: >-
@@ -622,8 +603,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
       summary: Tyk Deleting an API definition with ID.
-      tags:
-        - APIs
+      tags: []
     get:
       description: Get API definition from Tyk Gateway.
       operationId: getApi
@@ -686,8 +666,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: API not found.
       summary: Tyk Get API definition with it's ID.
-      tags:
-        - APIs
+      tags: []
     put:
       description: >-
         Updating an API definition uses the same signature and object as a
@@ -779,8 +758,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
       summary: Tyk Updating an API definition with its ID.
-      tags:
-        - APIs
+      tags: []
   /tyk/apis/{apiID}/versions:
     get:
       description: Listing versions of an API.
@@ -836,8 +814,7 @@ paths:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: API not found.
       summary: Tyk Listing versions of an API.
-      tags:
-        - APIs
+      tags: []
   /tyk/apis/oas:
     get:
       description: List all APIs in Tyk OAS API format, from Tyk Gateway.
@@ -4680,7 +4657,7 @@ paths:
           description: Forbidden
       summary: Tyk Run batch request.
       tags:
-        - Batch requests
+        - Batch Requests
   /tyk/schema:
     get:
       description: Get OAS schema definition using a version.

@@ -9,8 +9,8 @@ image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
 tags:
   - API Gateway
   - API Management
-  - Open Source
   - GraphQL
+  - Open Source
 url: >-
   https://raw.githubusercontent.com/api-evangelist/tyk/refs/heads/main/apis.yml
 created: '2026-03-18'
@@ -48,10 +48,10 @@ apis:
     humanURL: https://tyk.io/docs/tyk-apis/
     baseURL: https://tyk.io/
     tags:
-      - Gateway
-      - REST API
       - Administration
+      - Gateway
       - Open Source
+      - REST API
     properties:
       - type: Documentation
         url: https://tyk.io/docs/tyk-apis/
@@ -70,10 +70,10 @@ apis:
     humanURL: https://tyk.io/docs/tyk-dashboard-api
     baseURL: https://tyk.io/
     tags:
-      - Dashboard
-      - REST API
-      - Management
       - Administration
+      - Dashboard
+      - Management
+      - REST API
     properties:
       - type: Documentation
         url: https://tyk.io/docs/tyk-dashboard-api
@@ -93,10 +93,10 @@ apis:
     humanURL: https://tyk.io/docs/tyk-dashboard-api
     baseURL: https://tyk.io/
     tags:
-      - Dashboard
       - Admin
-      - REST API
+      - Dashboard
       - Multi-Tenant
+      - REST API
     properties:
       - type: Documentation
         url: https://tyk.io/docs/tyk-dashboard-api

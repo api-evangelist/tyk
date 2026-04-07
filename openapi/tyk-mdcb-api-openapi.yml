@@ -54,6 +54,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      tags:
+        - Dataplanes
   /health:
     get:
       summary: Tyk Health Check
@@ -67,6 +69,8 @@ paths:
               schema:
                 type: string
                 example: OK
+      tags:
+        - Health
   /readiness:
     get:
       summary: Tyk Check system readiness status
@@ -92,6 +96,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/ReadinessFailure'
+      tags:
+        - Readiness
   /liveness:
     get:
       summary: Tyk Check liveness status
@@ -104,6 +110,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/LivenessStatus'
+      tags:
+        - Liveness
   /debug/pprof/profile:
     get:
       summary: Tyk CPU Profiling data
@@ -119,6 +127,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      tags:
+        - Debug
   /debug/pprof/{profileType}:
     get:
       summary: Tyk pprof data
@@ -146,6 +156,8 @@ paths:
               schema:
                 type: string
                 format: binary
+      tags:
+        - Debug
   /config:
     get:
       summary: Tyk Retrieve current configuration status
@@ -180,6 +192,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      tags:
+        - Config
   /env:
     get:
       summary: Tyk Retrieve environment variables
@@ -218,6 +232,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+      tags:
+        - Env
 components:
   schemas:
     Node:
@@ -739,3 +755,11 @@ components:
       in: header
       name: X-Tyk-Authorization
       type: apiKey
+tags:
+  - name: Config
+  - name: Dataplanes
+  - name: Debug
+  - name: Env
+  - name: Health
+  - name: Liveness
+  - name: Readiness
