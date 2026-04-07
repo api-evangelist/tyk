@@ -462,7 +462,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Get list of apis
+      summary: Tyk Get list of apis
       tags:
         - APIs
     post:
@@ -565,7 +565,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Creat an API
+      summary: Tyk Creat an API
       tags:
         - APIs
   /tyk/apis/{apiID}:
@@ -621,7 +621,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Deleting an API definition with ID.
+      summary: Tyk Deleting an API definition with ID.
       tags:
         - APIs
     get:
@@ -685,7 +685,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: API not found.
-      summary: Get API definition with it's ID.
+      summary: Tyk Get API definition with it's ID.
       tags:
         - APIs
     put:
@@ -778,7 +778,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Updating an API definition with its ID.
+      summary: Tyk Updating an API definition with its ID.
       tags:
         - APIs
   /tyk/apis/{apiID}/versions:
@@ -835,7 +835,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: API not found.
-      summary: Listing versions of an API.
+      summary: Tyk Listing versions of an API.
       tags:
         - APIs
   /tyk/apis/oas:
@@ -1738,7 +1738,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Invalidate cache.
+      summary: Tyk Invalidate cache.
       tags:
         - Cache Invalidation
   /tyk/certs:
@@ -1785,7 +1785,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: List certificates.
+      summary: Tyk List certificates.
       tags:
         - Certs
     post:
@@ -1834,7 +1834,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Malformed request body.
-      summary: Add a certificate.
+      summary: Tyk Add a certificate.
       tags:
         - Certs
   /tyk/certs/{certID}:
@@ -1876,7 +1876,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Delete certificate.
+      summary: Tyk Delete certificate.
       tags:
         - Certs
     get:
@@ -2008,7 +2008,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Test an an API definition.
+      summary: Tyk Test an an API definition.
       tags:
         - Debug
   /tyk/keys:
@@ -2034,7 +2034,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Disabled hashed key listing.
-      summary: List keys.
+      summary: Tyk List keys.
       tags:
         - Keys
     post:
@@ -2145,7 +2145,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Create a key.
+      summary: Tyk Create a key.
       tags:
         - Keys
   /tyk/keys/{keyID}:
@@ -2210,7 +2210,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Key not found.
-      summary: Delete a key.
+      summary: Tyk Delete a key.
       tags:
         - Keys
     get:
@@ -2313,7 +2313,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Key not found.
-      summary: Get a key with ID.
+      summary: Tyk Get a key with ID.
       tags:
         - Keys
     post:
@@ -2442,7 +2442,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Create custom key / Import key
+      summary: Tyk Create custom key / Import key
       tags:
         - Keys
     put:
@@ -2579,7 +2579,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Update key.
+      summary: Tyk Update key.
       tags:
         - Keys
   /tyk/keys/create:
@@ -2674,7 +2674,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Malformed body.
-      summary: Create a key.
+      summary: Tyk Create a key.
       tags:
         - Keys
   /tyk/keys/policy/{keyID}:
@@ -2745,7 +2745,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Set policies for a hashed key.
+      summary: Tyk Set policies for a hashed key.
       tags:
         - Keys
   /tyk/keys/preview:
@@ -2870,7 +2870,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: This will validate a key definition.
+      summary: Tyk This will validate a key definition.
       tags:
         - Keys
   /tyk/oauth/clients/{apiID}:
@@ -2915,7 +2915,7 @@ paths:
           description: Forbidden
         '404':
           description: Api no found
-      summary: List oAuth clients
+      summary: Tyk List oAuth clients
       tags:
         - OAuth
   /tyk/oauth/clients/{apiID}/{keyName}:
@@ -2977,7 +2977,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Delete OAuth client
+      summary: Tyk Delete OAuth client
       tags:
         - OAuth
     get:
@@ -3030,7 +3030,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: OAuth Client not found
-      summary: Get OAuth client
+      summary: Tyk Get OAuth client
       tags:
         - OAuth
     put:
@@ -3118,7 +3118,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: malformed request body
-      summary: Update OAuth metadata,redirecturi,description and Policy ID
+      summary: Tyk Update OAuth metadata,redirecturi,description and Policy ID
       tags:
         - OAuth
   /tyk/oauth/clients/{apiID}/{keyName}/rotate:
@@ -3181,7 +3181,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Rotate the oath client secret
+      summary: Tyk Rotate the oath client secret
       tags:
         - OAuth
   /tyk/oauth/clients/{apiID}/{keyName}/tokens:
@@ -3262,7 +3262,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: List tokens for a provided API ID and OAuth-client ID
+      summary: Tyk List tokens for a provided API ID and OAuth-client ID
       tags:
         - OAuth
   /tyk/oauth/clients/apis/{appID}:
@@ -3308,7 +3308,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Get API IDs for APIS that use the specified client_id(appID) for OAuth
+      summary: Tyk Get API IDs for APIS that use the specified client_id(appID) for OAuth
       tags:
         - OAuth
   /tyk/oauth/clients/create:
@@ -3376,7 +3376,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Unmarshalling failed
-      summary: Create new OAuth client
+      summary: Tyk Create new OAuth client
       tags:
         - OAuth
   /tyk/oauth/refresh/{keyName}:
@@ -3447,7 +3447,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Invalidate OAuth refresh token
+      summary: Tyk Invalidate OAuth refresh token
       tags:
         - OAuth
   /tyk/oauth/revoke:
@@ -3512,7 +3512,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: revoke token
+      summary: Tyk revoke token
       tags:
         - OAuth
   /tyk/oauth/revoke_all:
@@ -3585,7 +3585,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: not found
-      summary: Revoke all client's tokens
+      summary: Tyk Revoke all client's tokens
       tags:
         - OAuth
   /tyk/oauth/tokens:
@@ -3648,7 +3648,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Purge lapsed OAuth tokens
+      summary: Tyk Purge lapsed OAuth tokens
       tags:
         - OAuth
   /tyk/org/keys:
@@ -3700,7 +3700,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: ORG not found
-      summary: List Organisation Keys
+      summary: Tyk List Organisation Keys
       tags:
         - Organisation Quotas
   /tyk/org/keys/{keyID}:
@@ -3755,7 +3755,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Org not found
-      summary: Delete Key
+      summary: Tyk Delete Key
       tags:
         - Organisation Quotas
     get:
@@ -3934,7 +3934,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Org not found
-      summary: Get an Organisation Key
+      summary: Tyk Get an Organisation Key
       tags:
         - Organisation Quotas
     post:
@@ -4058,7 +4058,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Create an organisation key
+      summary: Tyk Create an organisation key
       tags:
         - Organisation Quotas
     put:
@@ -4187,7 +4187,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Update Organisation Key
+      summary: Tyk Update Organisation Key
       tags:
         - Organisation Quotas
   /tyk/policies:
@@ -4217,7 +4217,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: List policies.
+      summary: Tyk List policies.
       tags:
         - Policies
     post:
@@ -4304,7 +4304,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Create a policy.
+      summary: Tyk Create a policy.
       tags:
         - Policies
   /tyk/policies/{polID}:
@@ -4359,7 +4359,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Delete a policy.
+      summary: Tyk Delete a policy.
       tags:
         - Policies
     get:
@@ -4436,7 +4436,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Policy not found
-      summary: Get a policy.
+      summary: Tyk Get a policy.
       tags:
         - Policies
     put:
@@ -4531,7 +4531,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Update a policy.
+      summary: Tyk Update a policy.
       tags:
         - Policies
   /tyk/reload:
@@ -4574,7 +4574,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Hot-reload a single node.
+      summary: Tyk Hot-reload a single node.
       tags:
         - Hot Reload
   /tyk/reload/group:
@@ -4678,7 +4678,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Run batch request.
+      summary: Tyk Run batch request.
       tags:
         - Batch requests
   /tyk/schema:
@@ -4721,7 +4721,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/OASSchemaResponse'
           description: Version not found
-      summary: Get OAS schema.
+      summary: Tyk Get OAS schema.
       tags:
         - Schema
 components:
@@ -4771,8 +4771,8 @@ components:
           CommonName: tyk.io
           Country:
             - Peachtree
-          ExtraNames: null
-          Locality: null
+          ExtraNames:
+          Locality:
           Names:
             - Type:
                 - 2
@@ -4811,18 +4811,18 @@ components:
             - tyk
           OrganizationalUnit:
             - tyk
-          PostalCode: null
-          Province: null
+          PostalCode:
+          Province:
           SerialNumber: ''
-          StreetAddress: null
+          StreetAddress:
         not_after: '2034-03-26T08:46:37Z'
         not_before: '2024-03-25T08:46:37Z'
         subject:
           CommonName: tyk.io
           Country:
             - Peachtree
-          ExtraNames: null
-          Locality: null
+          ExtraNames:
+          Locality:
           Names:
             - Type:
                 - 2
@@ -4861,10 +4861,10 @@ components:
             - tyk
           OrganizationalUnit:
             - tyk
-          PostalCode: null
-          Province: null
+          PostalCode:
+          Province:
           SerialNumber: ''
-          StreetAddress: null
+          StreetAddress:
     certificateMetaListExample:
       value:
         - dns_names:
@@ -4878,8 +4878,8 @@ components:
             CommonName: tyk.io
             Country:
               - Peachtree
-            ExtraNames: null
-            Locality: null
+            ExtraNames:
+            Locality:
             Names:
               - Type:
                   - 2
@@ -4918,18 +4918,18 @@ components:
               - tyk
             OrganizationalUnit:
               - tyk
-            PostalCode: null
-            Province: null
+            PostalCode:
+            Province:
             SerialNumber: ''
-            StreetAddress: null
+            StreetAddress:
           not_after: '2034-03-26T08:46:37Z'
           not_before: '2024-03-25T08:46:37Z'
           subject:
             CommonName: tyk.io
             Country:
               - Peachtree
-            ExtraNames: null
-            Locality: null
+            ExtraNames:
+            Locality:
             Names:
               - Type:
                   - 2
@@ -4968,10 +4968,10 @@ components:
               - tyk
             OrganizationalUnit:
               - tyk
-            PostalCode: null
-            Province: null
+            PostalCode:
+            Province:
             SerialNumber: ''
-            StreetAddress: null
+            StreetAddress:
     oasExample:
       value:
         components:
@@ -5117,7 +5117,7 @@ components:
                 - Default
           active: true
           enable_http_signature_validation: false
-          graphql_access_rights: null
+          graphql_access_rights:
           hmac_enabled: false
           id: 5ead7120575961000181867e
           is_inactive: false
