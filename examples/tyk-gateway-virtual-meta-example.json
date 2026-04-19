@@ -1,0 +1,10 @@
+{
+  "disabled": true,
+  "function_source_type": "example_value",
+  "function_source_uri": "example_value",
+  "method": "example_value",
+  "path": "example_value",
+  "proxy_on_error": true,
+  "response_function_name": "example_value",
+  "use_session": true
+}

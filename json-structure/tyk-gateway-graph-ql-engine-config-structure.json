@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLEngineConfig",
+  "type": "object",
+  "properties": {
+    "data_sources": {
+      "type": "array"
+    },
+    "field_configs": {
+      "type": "array"
+    },
+    "global_headers": {
+      "type": "array"
+    }
+  }
+}

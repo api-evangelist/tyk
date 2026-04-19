@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HealthCheckItem",
+  "type": "object",
+  "properties": {
+    "componentId": {
+      "type": "string"
+    },
+    "componentType": {
+      "type": "string"
+    },
+    "output": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "time": {
+      "type": "string"
+    }
+  }
+}

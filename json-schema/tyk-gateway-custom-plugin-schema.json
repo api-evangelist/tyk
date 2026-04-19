@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CustomPlugin",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "functionName": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "rawBodyOnly": {
+      "type": "boolean"
+    },
+    "requireSession": {
+      "type": "boolean"
+    }
+  }
+}

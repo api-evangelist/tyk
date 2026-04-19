@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "LivenessStatus",
+  "type": "object",
+  "properties": {
+    "status": {
+      "type": "string"
+    },
+    "status_code": {
+      "type": "integer"
+    }
+  }
+}

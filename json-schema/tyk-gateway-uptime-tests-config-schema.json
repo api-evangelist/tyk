@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UptimeTestsConfig",
+  "type": "object",
+  "properties": {
+    "expire_utime_after": {
+      "type": "integer"
+    },
+    "recheck_wait": {
+      "type": "integer"
+    }
+  }
+}

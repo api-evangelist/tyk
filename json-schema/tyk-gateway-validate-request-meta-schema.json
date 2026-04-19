@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ValidateRequestMeta",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "error_response_code": {
+      "type": "integer"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

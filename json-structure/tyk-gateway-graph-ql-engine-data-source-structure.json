@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLEngineDataSource",
+  "type": "object",
+  "properties": {
+    "config": {
+      "type": "string"
+    },
+    "internal": {
+      "type": "boolean"
+    },
+    "kind": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "root_fields": {
+      "type": "array"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FromOASExamples",
+  "type": "object",
+  "properties": {
+    "code": {
+      "type": "integer"
+    },
+    "contentType": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "exampleName": {
+      "type": "string"
+    }
+  }
+}

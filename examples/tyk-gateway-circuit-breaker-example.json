@@ -1,0 +1,7 @@
+{
+  "coolDownPeriod": 10,
+  "enabled": true,
+  "halfOpenStateEnabled": true,
+  "sampleSize": 10,
+  "threshold": 42.5
+}

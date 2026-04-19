@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PolicyUpdateObj",
+  "type": "object",
+  "properties": {
+    "apply_policies": {
+      "type": "array"
+    },
+    "policy": {
+      "type": "string"
+    }
+  }
+}

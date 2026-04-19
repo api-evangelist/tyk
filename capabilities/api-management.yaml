@@ -1,0 +1,269 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk API Management"
+  description: "Unified API management workflow combining Gateway and Dashboard APIs for API developers and platform engineers to manage API definitions, keys, policies, and portal configurations."
+  tags:
+    - API Management
+    - Gateway
+    - Tyk
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_GATEWAY_SECRET: TYK_GATEWAY_SECRET
+      TYK_DASHBOARD_API_KEY: TYK_DASHBOARD_API_KEY
+
+capability:
+  consumes:
+    - import: tyk-gateway
+      location: ./shared/gateway.yaml
+    - import: tyk-dashboard
+      location: ./shared/dashboard.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: tyk-api-management-api
+      description: "Unified REST API for Tyk API management operations."
+      resources:
+        - path: /v1/apis
+          name: apis
+          description: "API definitions"
+          operations:
+            - method: GET
+              name: list-apis
+              description: "List all API definitions from Dashboard"
+              call: "tyk-dashboard.list-apis"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: GET
+              name: get-api
+              description: "Get a specific API definition"
+              call: "tyk-dashboard.get-api"
+              with:
+                apiID: "rest.apiID"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-api
+              description: "Create a new API definition"
+              call: "tyk-dashboard.create-api"
+              with:
+                api_definition: "rest.api_definition"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/keys
+          name: keys
+          description: "API keys"
+          operations:
+            - method: GET
+              name: list-keys
+              description: "List all API keys"
+              call: "tyk-dashboard.list-keys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/policies
+          name: policies
+          description: "Security policies"
+          operations:
+            - method: GET
+              name: list-policies
+              description: "List all policies"
+              call: "tyk-dashboard.list-policies"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/users
+          name: users
+          description: "Dashboard users"
+          operations:
+            - method: GET
+              name: list-users
+              description: "List all dashboard users"
+              call: "tyk-dashboard.list-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/health
+          name: health
+          description: "Gateway health"
+          operations:
+            - method: GET
+              name: check-health
+              description: "Check gateway health"
+              call: "tyk-gateway.check-health"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/catalogue
+          name: catalogue
+          description: "Portal catalogue"
+          operations:
+            - method: GET
+              name: get-catalogue
+              description: "Get portal catalogue"
+              call: "tyk-dashboard.get-catalogue"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: tyk-api-management-mcp
+      transport: http
+      description: "MCP server for AI-assisted Tyk API management."
+      tools:
+        - name: dashboard-list-apis
+          description: "List all API definitions from the Tyk Dashboard"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tyk-dashboard.list-apis"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-get-api
+          description: "Get a specific API definition from the Dashboard"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.get-api"
+          with:
+            apiID: "tools.apiID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-create-api
+          description: "Create a new API definition in the Dashboard"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard.create-api"
+          with:
+            api_definition: "tools.api_definition"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-update-api
+          description: "Update an API definition in the Dashboard"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "tyk-dashboard.update-api"
+          with:
+            apiID: "tools.apiID"
+            api_definition: "tools.api_definition"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-delete-api
+          description: "Delete an API definition from the Dashboard"
+          hints:
+            destructive: true
+            idempotent: true
+          call: "tyk-dashboard.delete-api"
+          with:
+            apiID: "tools.apiID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-list-policies
+          description: "List all security policies"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.list-policies"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-get-policy
+          description: "Get a specific policy"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.get-policy"
+          with:
+            polID: "tools.polID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-create-policy
+          description: "Create a new security policy"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard.create-policy"
+          with:
+            policy: "tools.policy"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-list-keys
+          description: "List all API keys"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.list-keys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-create-key
+          description: "Create a new API key"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard.create-key"
+          with:
+            key: "tools.key"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-list-users
+          description: "List all dashboard users"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.list-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: dashboard-get-catalogue
+          description: "Get the developer portal catalogue"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard.get-catalogue"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: gateway-list-apis
+          description: "List all API definitions directly from the Gateway"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.list-apis"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: gateway-check-health
+          description: "Check the gateway health status"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.check-health"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: gateway-hot-reload
+          description: "Hot reload the gateway configuration"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "tyk-gateway.hot-reload"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: gateway-list-certificates
+          description: "List all certificates on the gateway"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.list-certificates"
+          outputParameters:
+            - type: object
+              mapping: "$."

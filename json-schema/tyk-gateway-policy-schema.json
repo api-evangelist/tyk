@@ -1,0 +1,70 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Policy",
+  "type": "object",
+  "properties": {
+    "_id": {
+      "type": "string"
+    },
+    "access_rights": {
+      "type": "object"
+    },
+    "active": {
+      "type": "boolean"
+    },
+    "enable_http_signature_validation": {
+      "type": "boolean"
+    },
+    "graphql_access_rights": {
+      "type": "object"
+    },
+    "hmac_enabled": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string"
+    },
+    "is_inactive": {
+      "type": "boolean"
+    },
+    "key_expires_in": {
+      "type": "integer"
+    },
+    "last_updated": {
+      "type": "string"
+    },
+    "max_query_depth": {
+      "type": "integer"
+    },
+    "meta_data": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "org_id": {
+      "type": "string"
+    },
+    "per": {
+      "type": "number"
+    },
+    "quota_max": {
+      "type": "integer"
+    },
+    "quota_renewal_rate": {
+      "type": "integer"
+    },
+    "rate": {
+      "type": "number"
+    },
+    "tags": {
+      "type": "array"
+    },
+    "throttle_interval": {
+      "type": "number"
+    },
+    "throttle_retry_limit": {
+      "type": "integer"
+    }
+  }
+}

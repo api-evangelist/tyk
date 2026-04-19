@@ -1,0 +1,9 @@
+{
+  "disable_half_open_state": true,
+  "disabled": true,
+  "method": "example_value",
+  "path": "example_value",
+  "return_to_service_after": 10,
+  "samples": 10,
+  "threshold_percent": 42.5
+}

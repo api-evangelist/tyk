@@ -1,0 +1,97 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ConfigStatus",
+  "type": "object",
+  "properties": {
+    "listen_port": {
+      "type": "integer"
+    },
+    "healthcheck_port": {
+      "type": "integer"
+    },
+    "http_port": {
+      "type": "integer"
+    },
+    "enable_http_profiler": {
+      "type": "boolean"
+    },
+    "server_options": {
+      "type": "object"
+    },
+    "http_server_options": {
+      "type": "object"
+    },
+    "security": {
+      "type": "object"
+    },
+    "storage": {
+      "type": "object"
+    },
+    "analytics": {
+      "type": "object"
+    },
+    "hash_keys": {
+      "type": "boolean"
+    },
+    "session_timeout": {
+      "type": "integer"
+    },
+    "forward_analytics_to_pump": {
+      "type": "boolean"
+    },
+    "enable_multiple_analytics_keys": {
+      "type": "boolean"
+    },
+    "dont_store_selective": {
+      "type": "boolean"
+    },
+    "dont_store_aggregate": {
+      "type": "boolean"
+    },
+    "org_session_expiration": {
+      "type": "integer"
+    },
+    "org_session_cleanup": {
+      "type": "integer"
+    },
+    "license": {
+      "type": "string"
+    },
+    "aggregates_ignore_tags": {
+      "type": "string"
+    },
+    "track_all_paths": {
+      "type": "boolean"
+    },
+    "store_analytics_per_minute": {
+      "type": "boolean"
+    },
+    "ignore_tag_prefix_list": {
+      "type": "string"
+    },
+    "threshold_len_tag_list": {
+      "type": "integer"
+    },
+    "omit_analytics_index_creation": {
+      "type": "boolean"
+    },
+    "enable_separate_analytics_store": {
+      "type": "boolean"
+    },
+    "analytics_storage": {
+      "type": "object"
+    },
+    "log_level": {
+      "type": "string"
+    },
+    "enable_key_logging": {
+      "type": "boolean"
+    },
+    "sync_worker_config": {
+      "type": "object"
+    },
+    "enable_ownership": {
+      "type": "boolean"
+    }
+  }
+}

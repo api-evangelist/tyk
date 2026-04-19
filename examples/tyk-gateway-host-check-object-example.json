@@ -1,0 +1,10 @@
+{
+  "body": "example_value",
+  "commands": [],
+  "enable_proxy_protocol": true,
+  "headers": "example_value",
+  "method": "example_value",
+  "protocol": "example_value",
+  "timeout": 10,
+  "url": "https://www.example.com"
+}

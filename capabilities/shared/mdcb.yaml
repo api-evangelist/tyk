@@ -1,0 +1,79 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk MDCB"
+  description: "Tyk Multi Data Centre Bridge API for monitoring data planes and accessing diagnostic data."
+  tags:
+    - MDCB
+    - Multi-Data Center
+    - Monitoring
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_MDCB_API_KEY: TYK_MDCB_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: tyk-mdcb
+      baseUri: "{TYK_MDCB_URL}"
+      description: "Tyk MDCB API for data plane monitoring and diagnostics."
+      authentication:
+        type: apikey
+        key: x-tyk-authorization
+        value: "{{TYK_MDCB_API_KEY}}"
+        placement: header
+      resources:
+        - name: dataplanes
+          path: /dataplanes
+          description: "Data plane monitoring"
+          operations:
+            - name: list-dataplanes
+              method: GET
+              description: "List all connected data plane nodes"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-dataplane
+              method: GET
+              description: "Get details for a specific data plane"
+              inputParameters:
+                - name: dataplaneID
+                  in: path
+                  type: string
+                  required: true
+                  description: "Data plane ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: health
+          path: /health
+          description: "Health check"
+          operations:
+            - name: check-health
+              method: GET
+              description: "MDCB health check"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: diagnostics
+          path: /debug/pprof
+          description: "Performance profiling diagnostics"
+          operations:
+            - name: get-profile
+              method: GET
+              description: "Get pprof profile data"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

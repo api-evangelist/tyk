@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "PaginationStatus",
+  "type": "object",
+  "properties": {
+    "page_num": {
+      "type": "integer"
+    },
+    "page_size": {
+      "type": "integer"
+    },
+    "page_total": {
+      "type": "integer"
+    }
+  }
+}

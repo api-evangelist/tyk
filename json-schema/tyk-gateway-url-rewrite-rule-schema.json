@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "URLRewriteRule",
+  "type": "object",
+  "properties": {
+    "in": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "negate": {
+      "type": "boolean"
+    },
+    "pattern": {
+      "type": "string"
+    }
+  }
+}

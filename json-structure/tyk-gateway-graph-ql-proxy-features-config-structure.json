@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLProxyFeaturesConfig",
+  "type": "object",
+  "properties": {
+    "use_immutable_headers": {
+      "type": "boolean"
+    }
+  }
+}

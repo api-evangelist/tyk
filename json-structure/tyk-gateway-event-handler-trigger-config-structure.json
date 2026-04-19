@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EventHandlerTriggerConfig",
+  "type": "object",
+  "properties": {
+    "handler_meta": {
+      "type": "object"
+    },
+    "handler_name": {
+      "type": "string"
+    }
+  }
+}

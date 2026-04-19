@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLProxyConfig",
+  "type": "object",
+  "properties": {
+    "auth_headers": {
+      "type": "object"
+    },
+    "request_headers": {
+      "type": "object"
+    },
+    "request_headers_rewrite": {
+      "type": "object"
+    },
+    "subscription_type": {
+      "type": "string"
+    }
+  }
+}

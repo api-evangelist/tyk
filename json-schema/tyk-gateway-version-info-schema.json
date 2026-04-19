@@ -1,0 +1,46 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VersionInfo",
+  "type": "object",
+  "properties": {
+    "expires": {
+      "type": "string"
+    },
+    "global_headers": {
+      "type": "object"
+    },
+    "global_headers_disabled": {
+      "type": "boolean"
+    },
+    "global_headers_remove": {
+      "type": "array"
+    },
+    "global_response_headers": {
+      "type": "object"
+    },
+    "global_response_headers_disabled": {
+      "type": "boolean"
+    },
+    "global_response_headers_remove": {
+      "type": "array"
+    },
+    "global_size_limit": {
+      "type": "integer"
+    },
+    "ignore_endpoint_case": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "override_target": {
+      "type": "string"
+    },
+    "paths": {
+      "type": "object"
+    },
+    "use_extended_paths": {
+      "type": "boolean"
+    }
+  }
+}

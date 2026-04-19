@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "StringRegexMap",
+  "type": "object",
+  "properties": {
+    "match_rx": {
+      "type": "string"
+    },
+    "reverse": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "EndpointMethodMeta",
+  "type": "object",
+  "properties": {
+    "action": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer"
+    },
+    "data": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object"
+    }
+  }
+}

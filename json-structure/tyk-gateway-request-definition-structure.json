@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "RequestDefinition",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object"
+    },
+    "method": {
+      "type": "string"
+    },
+    "relative_url": {
+      "type": "string"
+    }
+  }
+}

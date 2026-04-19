@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VersionMetas",
+  "type": "object",
+  "properties": {
+    "apis": {
+      "type": "array"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

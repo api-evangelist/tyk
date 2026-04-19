@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "State",
+  "type": "object",
+  "properties": {
+    "active": {
+      "type": "boolean"
+    },
+    "internal": {
+      "type": "boolean"
+    }
+  }
+}

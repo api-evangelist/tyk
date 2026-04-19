@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLSupergraphConfig",
+  "type": "object",
+  "properties": {
+    "disable_query_batching": {
+      "type": "boolean"
+    },
+    "global_headers": {
+      "type": "object"
+    },
+    "merged_sdl": {
+      "type": "string"
+    },
+    "subgraphs": {
+      "type": "array"
+    },
+    "updated_at": {
+      "type": "string"
+    }
+  }
+}

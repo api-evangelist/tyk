@@ -1,0 +1,10 @@
+{
+  "algorithm": "example_value",
+  "allowed_clock_skew": 10,
+  "error_code": 10,
+  "error_message": "example_value",
+  "header": "example_value",
+  "param_name": "example_value",
+  "secret": "example_value",
+  "use_param": true
+}

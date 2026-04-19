@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLSubgraphEntity",
+  "type": "object",
+  "properties": {
+    "api_id": {
+      "type": "string"
+    },
+    "headers": {
+      "type": "object"
+    },
+    "name": {
+      "type": "string"
+    },
+    "sdl": {
+      "type": "string"
+    },
+    "subscription_type": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

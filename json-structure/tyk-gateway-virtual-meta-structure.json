@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "VirtualMeta",
+  "type": "object",
+  "properties": {
+    "disabled": {
+      "type": "boolean"
+    },
+    "function_source_type": {
+      "type": "string"
+    },
+    "function_source_uri": {
+      "type": "string"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "proxy_on_error": {
+      "type": "boolean"
+    },
+    "response_function_name": {
+      "type": "string"
+    },
+    "use_session": {
+      "type": "boolean"
+    }
+  }
+}

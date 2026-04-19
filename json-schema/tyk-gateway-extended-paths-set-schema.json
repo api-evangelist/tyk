@@ -1,0 +1,85 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ExtendedPathsSet",
+  "type": "object",
+  "properties": {
+    "advance_cache_config": {
+      "type": "array"
+    },
+    "black_list": {
+      "type": "array"
+    },
+    "cache": {
+      "type": "array"
+    },
+    "circuit_breakers": {
+      "type": "array"
+    },
+    "do_not_track_endpoints": {
+      "type": "array"
+    },
+    "go_plugin": {
+      "type": "array"
+    },
+    "hard_timeouts": {
+      "type": "array"
+    },
+    "ignored": {
+      "type": "array"
+    },
+    "internal": {
+      "type": "array"
+    },
+    "method_transforms": {
+      "type": "array"
+    },
+    "mock_response": {
+      "type": "array"
+    },
+    "persist_graphql": {
+      "type": "array"
+    },
+    "rate_limit": {
+      "type": "array"
+    },
+    "size_limits": {
+      "type": "array"
+    },
+    "track_endpoints": {
+      "type": "array"
+    },
+    "transform": {
+      "type": "array"
+    },
+    "transform_headers": {
+      "type": "array"
+    },
+    "transform_jq": {
+      "type": "array"
+    },
+    "transform_jq_response": {
+      "type": "array"
+    },
+    "transform_response": {
+      "type": "array"
+    },
+    "transform_response_headers": {
+      "type": "array"
+    },
+    "url_rewrites": {
+      "type": "array"
+    },
+    "validate_json": {
+      "type": "array"
+    },
+    "validate_request": {
+      "type": "array"
+    },
+    "virtual": {
+      "type": "array"
+    },
+    "white_list": {
+      "type": "array"
+    }
+  }
+}

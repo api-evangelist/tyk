@@ -1,0 +1,10 @@
+{
+  "dns_names": [],
+  "has_private": true,
+  "id": "abc123",
+  "is_ca": true,
+  "issuer_cn": "example_value",
+  "not_after": "example_value",
+  "not_before": "example_value",
+  "subject_cn": "example_value"
+}

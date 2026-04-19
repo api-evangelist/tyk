@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PinnedPublicKey",
+  "type": "object",
+  "properties": {
+    "domain": {
+      "type": "string"
+    },
+    "publicKeys": {
+      "type": "array"
+    }
+  }
+}

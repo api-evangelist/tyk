@@ -12,17 +12,17 @@ info:
     connected data plane details, performing health checks,  and accessing Go's
     built-in pprof diagnostics for advanced performance profiling.
 servers:
-  - url: https://{tenant}
-    variables:
-      tenant:
-        default: localhost:8181
-        description: Your MDCB host
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8181
+      description: Your MDCB host
 security:
-  - api_key: []
+- api_key: []
 paths:
   /dataplanes:
     get:
-      summary: Tyk Retrieve information of all the connected data plane nodes.
+      summary: Tyk Retrieve Information of All the Connected Data Plane Nodes.
       description: >-
         Provides a list of all the data plane nodes connected to MDCB. Data
         plane nodes are Tyk Gateways that make your APIs available to your
@@ -31,12 +31,12 @@ paths:
         nodes, allowing for monitoring and troubleshooting.
       operationId: dataplanesGet
       parameters:
-        - in: header
-          name: x-tyk-authorization
-          description: Secret value set in sink.conf
-          required: true
-          schema:
-            type: string
+      - in: header
+        name: x-tyk-authorization
+        description: Secret value set in sink.conf
+        required: true
+        schema:
+          type: string
       responses:
         '200':
           description: Successful retrieval of the connected data planes.
@@ -55,7 +55,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       tags:
-        - Dataplanes
+      - Dataplanes
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /health:
     get:
       summary: Tyk Health Check
@@ -70,10 +73,13 @@ paths:
                 type: string
                 example: OK
       tags:
-        - Health
+      - Health
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /readiness:
     get:
-      summary: Tyk Check system readiness status
+      summary: Tyk Check System Readiness Status
       description: >
         Assesses the readiness of the system and its critical components. This
         endpoint determines if the system is prepared to handle requests by
@@ -97,10 +103,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ReadinessFailure'
       tags:
-        - Readiness
+      - Readiness
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /liveness:
     get:
-      summary: Tyk Check liveness status
+      summary: Tyk Check Liveness Status
       description: Provides the liveness status of the service.
       operationId: livenessGet
       responses:
@@ -111,10 +120,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/LivenessStatus'
       tags:
-        - Liveness
+      - Liveness
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /debug/pprof/profile:
     get:
-      summary: Tyk CPU Profiling data
+      summary: Tyk Cpu Profiling Data
       description: >-
         Returns CPU profiling data. Available only when HTTPProfile is enabled
         in sink.conf.
@@ -128,10 +140,13 @@ paths:
                 type: string
                 format: binary
       tags:
-        - Debug
+      - Debug
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /debug/pprof/{profileType}:
     get:
-      summary: Tyk pprof data
+      summary: Tyk Pprof Data
       description: >
         Serves various pprof data like heap, goroutine, threadcreate, block, and
         so on. The `{profileType}` path parameter can accept various profiling
@@ -139,15 +154,15 @@ paths:
         is enabled in sink.conf.
       operationId: debugPprofProfileTypeGet
       parameters:
-        - in: path
-          name: profileType
-          required: true
-          description: >-
-            The specific pprof data to retrieve (heap, goroutine, threadcreate,
-            block, etc.), or a pattern matching multiple types.
-          schema:
-            type: string
-            example: heap
+      - in: path
+        name: profileType
+        required: true
+        description: >-
+          The specific pprof data to retrieve (heap, goroutine, threadcreate,
+          block, etc.), or a pattern matching multiple types.
+        schema:
+          type: string
+          example: heap
       responses:
         '200':
           description: pprof data.
@@ -157,10 +172,13 @@ paths:
                 type: string
                 format: binary
       tags:
-        - Debug
+      - Debug
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /config:
     get:
-      summary: Tyk Retrieve current configuration status
+      summary: Tyk Retrieve Current Configuration Status
       description: |
         Returns the current configuration status of the system.
 
@@ -172,13 +190,13 @@ paths:
         ```
       operationId: configGet
       parameters:
-        - in: header
-          name: X-Tyk-Authorization
-          description: Secret value set in sink.conf
-          required: true
-          schema:
-            type: string
-          example: your-secret-key
+      - in: header
+        name: X-Tyk-Authorization
+        description: Secret value set in sink.conf
+        required: true
+        schema:
+          type: string
+        example: your-secret-key
       responses:
         '200':
           description: Successful retrieval of the current configuration.
@@ -193,10 +211,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       tags:
-        - Config
+      - Config
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
   /env:
     get:
-      summary: Tyk Retrieve environment variables
+      summary: Tyk Retrieve Environment Variables
       description: |
         Returns the current configuration status of the system.
 
@@ -209,13 +230,13 @@ paths:
         ```
       operationId: envGet
       parameters:
-        - in: header
-          name: X-Tyk-Authorization
-          description: Secret value set in sink.conf
-          required: true
-          schema:
-            type: string
-          example: your-secret-key
+      - in: header
+        name: X-Tyk-Authorization
+        description: Secret value set in sink.conf
+        required: true
+        schema:
+          type: string
+        example: your-secret-key
       responses:
         '200':
           description: Successful retrieval of environment variables.
@@ -233,7 +254,10 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
       tags:
-        - Env
+      - Env
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
 components:
   schemas:
     Node:
@@ -259,8 +283,8 @@ components:
           items:
             type: string
           example:
-            - tag1
-            - tag2
+          - tag1
+          - tag2
         health:
           $ref: '#/components/schemas/Health'
         stats:
@@ -321,6 +345,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ComponentReadiness'
+          example: []
     ReadinessFailure:
       type: object
       properties:
@@ -334,6 +359,7 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/ComponentReadinessFailure'
+          example: []
     ComponentReadiness:
       type: object
       properties:
@@ -414,6 +440,7 @@ components:
             ssl_certificates:
               type: string
               nullable: true
+          example: example_value
         http_server_options:
           type: object
           properties:
@@ -438,6 +465,7 @@ components:
             ssl_certificates:
               type: string
               nullable: true
+          example: example_value
         security:
           type: object
           properties:
@@ -450,6 +478,7 @@ components:
             secret:
               type: string
               example: ''
+          example: example_value
         storage:
           type: object
           properties:
@@ -525,6 +554,7 @@ components:
             min_version:
               type: string
               example: ''
+          example: example_value
         analytics:
           type: object
           properties:
@@ -594,6 +624,7 @@ components:
             mongo_direct_connection:
               type: boolean
               example: false
+          example: example_value
         hash_keys:
           type: boolean
           example: true
@@ -624,6 +655,7 @@ components:
         aggregates_ignore_tags:
           type: string
           nullable: true
+          example: example_value
         track_all_paths:
           type: boolean
           example: false
@@ -633,6 +665,7 @@ components:
         ignore_tag_prefix_list:
           type: string
           nullable: true
+          example: example_value
         threshold_len_tag_list:
           type: integer
           example: 1000
@@ -717,6 +750,7 @@ components:
             min_version:
               type: string
               example: ''
+          example: example_value
         log_level:
           type: string
           example: info
@@ -747,6 +781,7 @@ components:
             group_key_ttl:
               type: integer
               example: 30
+          example: example_value
         enable_ownership:
           type: boolean
           example: false
@@ -756,10 +791,10 @@ components:
       name: X-Tyk-Authorization
       type: apiKey
 tags:
-  - name: Config
-  - name: Dataplanes
-  - name: Debug
-  - name: Env
-  - name: Health
-  - name: Liveness
-  - name: Readiness
+- name: Config
+- name: Dataplanes
+- name: Debug
+- name: Env
+- name: Health
+- name: Liveness
+- name: Readiness

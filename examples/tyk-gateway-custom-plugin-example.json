@@ -1,0 +1,7 @@
+{
+  "enabled": true,
+  "functionName": "example_value",
+  "path": "example_value",
+  "rawBodyOnly": true,
+  "requireSession": true
+}

@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "HeaderInjectionMeta",
+  "type": "object",
+  "properties": {
+    "act_on": {
+      "type": "boolean"
+    },
+    "add_headers": {
+      "type": "object"
+    },
+    "delete_headers": {
+      "type": "array"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "disabled": true,
+  "match_pattern": "example_value",
+  "method": "example_value",
+  "path": "example_value",
+  "rewrite_to": "example_value",
+  "triggers": []
+}

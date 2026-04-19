@@ -1,0 +1,11 @@
+{
+  "check_host_against_uptime_tests": true,
+  "disable_strip_slash": true,
+  "enable_load_balancing": true,
+  "listen_path": "example_value",
+  "preserve_host_header": true,
+  "strip_listen_path": true,
+  "target_list": [],
+  "target_url": "https://www.example.com",
+  "transport": "example_value"
+}

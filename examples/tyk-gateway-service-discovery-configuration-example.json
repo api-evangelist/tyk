@@ -1,0 +1,13 @@
+{
+  "cache_disabled": true,
+  "cache_timeout": 10,
+  "data_path": "example_value",
+  "endpoint_returns_list": true,
+  "parent_data_path": "example_value",
+  "port_data_path": "example_value",
+  "query_endpoint": "example_value",
+  "target_path": "example_value",
+  "use_discovery_service": true,
+  "use_nested_query": true,
+  "use_target_list": true
+}

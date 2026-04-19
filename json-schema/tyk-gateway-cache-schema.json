@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Cache",
+  "type": "object",
+  "properties": {
+    "cacheAllSafeRequests": {
+      "type": "boolean"
+    },
+    "cacheByHeaders": {
+      "type": "array"
+    },
+    "cacheResponseCodes": {
+      "type": "array"
+    },
+    "controlTTLHeaderName": {
+      "type": "string"
+    },
+    "enableUpstreamCacheControl": {
+      "type": "boolean"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "timeout": {
+      "type": "integer"
+    }
+  }
+}

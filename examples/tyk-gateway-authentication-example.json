@@ -1,0 +1,5 @@
+{
+  "baseIdentityProvider": "example_value",
+  "enabled": true,
+  "stripAuthorizationData": true
+}

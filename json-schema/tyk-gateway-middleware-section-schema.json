@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MiddlewareSection",
+  "type": "object",
+  "properties": {
+    "driver": {
+      "type": "string"
+    },
+    "post": {
+      "type": "array"
+    },
+    "post_key_auth": {
+      "type": "array"
+    },
+    "pre": {
+      "type": "array"
+    },
+    "response": {
+      "type": "array"
+    }
+  }
+}

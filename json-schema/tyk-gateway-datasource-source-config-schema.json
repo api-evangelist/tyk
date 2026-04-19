@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "DatasourceSourceConfig",
+  "type": "object",
+  "properties": {
+    "data_source_config": {
+      "type": "string"
+    },
+    "kind": {
+      "type": "string"
+    }
+  }
+}

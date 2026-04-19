@@ -1,0 +1,6 @@
+{
+  "cacheByRegex": "example_value",
+  "cacheResponseCodes": [],
+  "enabled": true,
+  "timeout": 10
+}

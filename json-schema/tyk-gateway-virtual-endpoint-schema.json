@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VirtualEndpoint",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "functionName": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "proxyOnError": {
+      "type": "boolean"
+    },
+    "requireSession": {
+      "type": "boolean"
+    }
+  }
+}

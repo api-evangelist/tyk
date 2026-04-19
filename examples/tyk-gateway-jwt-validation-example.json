@@ -1,0 +1,9 @@
+{
+  "enabled": true,
+  "expires_at_validation_skew": 10,
+  "identity_base_field": "example_value",
+  "issued_at_validation_skew": 10,
+  "not_before_validation_skew": 10,
+  "signing_method": "example_value",
+  "source": "example_value"
+}

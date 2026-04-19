@@ -1,0 +1,9 @@
+{
+  "dns_names": [],
+  "fingerprint": "example_value",
+  "has_private": true,
+  "id": "abc123",
+  "is_ca": true,
+  "not_after": "example_value",
+  "not_before": "example_value"
+}

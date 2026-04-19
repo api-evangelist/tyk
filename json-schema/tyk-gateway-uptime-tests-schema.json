@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "UptimeTests",
+  "type": "object",
+  "properties": {
+    "check_list": {
+      "type": "array"
+    }
+  }
+}

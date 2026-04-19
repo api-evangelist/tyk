@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RequestSigningMeta",
+  "type": "object",
+  "properties": {
+    "algorithm": {
+      "type": "string"
+    },
+    "certificate_id": {
+      "type": "string"
+    },
+    "header_list": {
+      "type": "array"
+    },
+    "is_enabled": {
+      "type": "boolean"
+    },
+    "key_id": {
+      "type": "string"
+    },
+    "secret": {
+      "type": "string"
+    },
+    "signature_header": {
+      "type": "string"
+    }
+  }
+}

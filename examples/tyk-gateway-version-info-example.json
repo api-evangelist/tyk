@@ -1,0 +1,15 @@
+{
+  "expires": "example_value",
+  "global_headers": "example_value",
+  "global_headers_disabled": true,
+  "global_headers_remove": [],
+  "global_response_headers": "example_value",
+  "global_response_headers_disabled": true,
+  "global_response_headers_remove": [],
+  "global_size_limit": 10,
+  "ignore_endpoint_case": true,
+  "name": "Example Title",
+  "override_target": "example_value",
+  "paths": "example_value",
+  "use_extended_paths": true
+}

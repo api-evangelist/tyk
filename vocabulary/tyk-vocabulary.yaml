@@ -1,0 +1,26 @@
+name: tyk API Vocabulary
+provider: tyk
+created: '2026-04-19'
+modified: '2026-04-19'
+operations: 66
+schemas: 213
+tags:
+- Batch Requests
+- Cache Invalidation
+- Certs
+- CertsTag
+- Config
+- Dataplanes
+- Debug
+- Env
+- Health
+- Health Checking
+- Hot Reload
+- Keys
+- Liveness
+- OAuth
+- Organisation Quotas
+- Policies
+- Readiness
+- Schema
+- Tyk OAS APIs

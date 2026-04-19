@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Info",
+  "type": "object",
+  "properties": {
+    "dbId": {
+      "type": "string"
+    },
+    "expiration": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "orgId": {
+      "type": "string"
+    }
+  }
+}

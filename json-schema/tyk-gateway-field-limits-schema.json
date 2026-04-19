@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FieldLimits",
+  "type": "object",
+  "properties": {
+    "max_query_depth": {
+      "type": "integer"
+    }
+  }
+}

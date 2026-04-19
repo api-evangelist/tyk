@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "DatasourceTypeFieldConfiguration",
+  "type": "object",
+  "properties": {
+    "field_name": {
+      "type": "string"
+    },
+    "type_name": {
+      "type": "string"
+    }
+  }
+}

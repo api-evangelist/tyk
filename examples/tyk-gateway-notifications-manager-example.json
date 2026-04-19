@@ -1,0 +1,4 @@
+{
+  "oauth_on_keychange_url": "https://www.example.com",
+  "shared_secret": "example_value"
+}

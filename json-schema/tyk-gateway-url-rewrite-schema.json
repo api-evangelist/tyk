@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "URLRewrite",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "pattern": {
+      "type": "string"
+    },
+    "rewriteTo": {
+      "type": "string"
+    },
+    "triggers": {
+      "type": "array"
+    }
+  }
+}

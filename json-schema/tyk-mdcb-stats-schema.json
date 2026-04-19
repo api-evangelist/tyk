@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Stats",
+  "type": "object",
+  "properties": {
+    "apis_count": {
+      "type": "integer"
+    },
+    "policies_count": {
+      "type": "integer"
+    }
+  }
+}

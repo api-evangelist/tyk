@@ -1,0 +1,9 @@
+{
+  "algorithm": "example_value",
+  "certificate_id": "500123",
+  "header_list": [],
+  "is_enabled": true,
+  "key_id": "500123",
+  "secret": "example_value",
+  "signature_header": "example_value"
+}

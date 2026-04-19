@@ -1,0 +1,8 @@
+{
+  "api_id": "500123",
+  "headers": "example_value",
+  "name": "Example Title",
+  "sdl": "example_value",
+  "subscription_type": "example_value",
+  "url": "https://www.example.com"
+}

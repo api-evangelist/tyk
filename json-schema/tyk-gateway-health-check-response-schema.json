@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HealthCheckResponse",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string"
+    },
+    "details": {
+      "type": "object"
+    },
+    "output": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "version": {
+      "type": "string"
+    }
+  }
+}

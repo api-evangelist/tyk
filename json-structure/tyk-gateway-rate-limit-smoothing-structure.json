@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "RateLimitSmoothing",
+  "type": "object",
+  "properties": {
+    "delay": {
+      "type": "integer"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "step": {
+      "type": "integer"
+    },
+    "threshold": {
+      "type": "integer"
+    },
+    "trigger": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NewClientRequest",
+  "type": "object",
+  "properties": {
+    "api_id": {
+      "type": "string"
+    },
+    "client_id": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "meta_data": {
+      "type": "object"
+    },
+    "policy_id": {
+      "type": "string"
+    },
+    "redirect_uri": {
+      "type": "string"
+    },
+    "secret": {
+      "type": "string"
+    }
+  }
+}

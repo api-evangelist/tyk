@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TemplateData",
+  "type": "object",
+  "properties": {
+    "enable_session": {
+      "type": "boolean"
+    },
+    "input_type": {
+      "type": "string"
+    },
+    "template_mode": {
+      "type": "string"
+    },
+    "template_source": {
+      "type": "string"
+    }
+  }
+}

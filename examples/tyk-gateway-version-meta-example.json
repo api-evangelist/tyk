@@ -1,0 +1,8 @@
+{
+  "expirationDate": "example_value",
+  "id": "abc123",
+  "internal": true,
+  "isDefaultVersion": true,
+  "name": "Example Title",
+  "versionName": "example_value"
+}

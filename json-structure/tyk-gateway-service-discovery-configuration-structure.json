@@ -1,0 +1,40 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "ServiceDiscoveryConfiguration",
+  "type": "object",
+  "properties": {
+    "cache_disabled": {
+      "type": "boolean"
+    },
+    "cache_timeout": {
+      "type": "integer"
+    },
+    "data_path": {
+      "type": "string"
+    },
+    "endpoint_returns_list": {
+      "type": "boolean"
+    },
+    "parent_data_path": {
+      "type": "string"
+    },
+    "port_data_path": {
+      "type": "string"
+    },
+    "query_endpoint": {
+      "type": "string"
+    },
+    "target_path": {
+      "type": "string"
+    },
+    "use_discovery_service": {
+      "type": "boolean"
+    },
+    "use_nested_query": {
+      "type": "boolean"
+    },
+    "use_target_list": {
+      "type": "boolean"
+    }
+  }
+}

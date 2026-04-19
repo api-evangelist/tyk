@@ -1,0 +1,109 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "SessionState",
+  "type": "object",
+  "properties": {
+    "access_rights": {
+      "type": "object"
+    },
+    "alias": {
+      "type": "string"
+    },
+    "allowance": {
+      "type": "number"
+    },
+    "apply_policies": {
+      "type": "array"
+    },
+    "apply_policy_id": {
+      "type": "string"
+    },
+    "certificate": {
+      "type": "string"
+    },
+    "data_expires": {
+      "type": "integer"
+    },
+    "date_created": {
+      "type": "string"
+    },
+    "enable_detail_recording": {
+      "type": "boolean"
+    },
+    "enable_detailed_recording": {
+      "type": "boolean"
+    },
+    "enable_http_signature_validation": {
+      "type": "boolean"
+    },
+    "expires": {
+      "type": "integer"
+    },
+    "hmac_enabled": {
+      "type": "boolean"
+    },
+    "hmac_string": {
+      "type": "string"
+    },
+    "id_extractor_deadline": {
+      "type": "integer"
+    },
+    "is_inactive": {
+      "type": "boolean"
+    },
+    "last_check": {
+      "type": "integer"
+    },
+    "last_updated": {
+      "type": "string"
+    },
+    "max_query_depth": {
+      "type": "integer"
+    },
+    "meta_data": {
+      "type": "object"
+    },
+    "oauth_client_id": {
+      "type": "string"
+    },
+    "oauth_keys": {
+      "type": "object"
+    },
+    "org_id": {
+      "type": "string"
+    },
+    "per": {
+      "type": "number"
+    },
+    "quota_max": {
+      "type": "integer"
+    },
+    "quota_remaining": {
+      "type": "integer"
+    },
+    "quota_renewal_rate": {
+      "type": "integer"
+    },
+    "quota_renews": {
+      "type": "integer"
+    },
+    "rate": {
+      "type": "number"
+    },
+    "rsa_certificate_id": {
+      "type": "string"
+    },
+    "session_lifetime": {
+      "type": "integer"
+    },
+    "tags": {
+      "type": "array"
+    },
+    "throttle_interval": {
+      "type": "number"
+    },
+    "throttle_retry_limit": {
+      "type": "integer"
+    }
+  }
+}

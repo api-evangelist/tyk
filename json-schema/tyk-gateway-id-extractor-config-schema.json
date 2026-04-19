@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "IDExtractorConfig",
+  "type": "object",
+  "properties": {
+    "formParamName": {
+      "type": "string"
+    },
+    "headerName": {
+      "type": "string"
+    },
+    "regexp": {
+      "type": "string"
+    },
+    "regexpMatchIndex": {
+      "type": "integer"
+    },
+    "xPathExp": {
+      "type": "string"
+    }
+  }
+}

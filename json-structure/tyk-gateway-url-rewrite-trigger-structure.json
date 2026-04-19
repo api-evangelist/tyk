@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "URLRewriteTrigger",
+  "type": "object",
+  "properties": {
+    "condition": {
+      "type": "string"
+    },
+    "rewriteTo": {
+      "type": "string"
+    },
+    "rules": {
+      "type": "array"
+    }
+  }
+}

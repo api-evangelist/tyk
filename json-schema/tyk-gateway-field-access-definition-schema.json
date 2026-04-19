@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "FieldAccessDefinition",
+  "type": "object",
+  "properties": {
+    "field_name": {
+      "type": "string"
+    },
+    "type_name": {
+      "type": "string"
+    }
+  }
+}

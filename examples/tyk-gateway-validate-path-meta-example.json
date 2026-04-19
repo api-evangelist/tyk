@@ -1,0 +1,8 @@
+{
+  "disabled": true,
+  "error_response_code": 10,
+  "method": "example_value",
+  "path": "example_value",
+  "schema": "example_value",
+  "schema_b64": "example_value"
+}

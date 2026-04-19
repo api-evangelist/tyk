@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AuthConfig",
+  "type": "object",
+  "properties": {
+    "auth_header_name": {
+      "type": "string"
+    },
+    "cookie_name": {
+      "type": "string"
+    },
+    "disable_header": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "param_name": {
+      "type": "string"
+    },
+    "use_certificate": {
+      "type": "boolean"
+    },
+    "use_cookie": {
+      "type": "boolean"
+    },
+    "use_param": {
+      "type": "boolean"
+    },
+    "validate_signature": {
+      "type": "boolean"
+    }
+  }
+}

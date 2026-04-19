@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PolicyPartitions",
+  "type": "object",
+  "properties": {
+    "acl": {
+      "type": "boolean"
+    },
+    "complexity": {
+      "type": "boolean"
+    },
+    "per_api": {
+      "type": "boolean"
+    },
+    "quota": {
+      "type": "boolean"
+    },
+    "rate_limit": {
+      "type": "boolean"
+    }
+  }
+}

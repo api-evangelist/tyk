@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphQLTypeFields",
+  "type": "object",
+  "properties": {
+    "fields": {
+      "type": "array"
+    },
+    "type": {
+      "type": "string"
+    }
+  }
+}

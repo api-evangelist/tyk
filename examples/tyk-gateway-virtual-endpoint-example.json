@@ -1,0 +1,9 @@
+{
+  "body": "example_value",
+  "enabled": true,
+  "functionName": "example_value",
+  "name": "Example Title",
+  "path": "example_value",
+  "proxyOnError": true,
+  "requireSession": true
+}

@@ -1,0 +1,23 @@
+{
+  "_id": "500123",
+  "access_rights": "example_value",
+  "active": true,
+  "enable_http_signature_validation": true,
+  "graphql_access_rights": "example_value",
+  "hmac_enabled": true,
+  "id": "abc123",
+  "is_inactive": true,
+  "key_expires_in": 10,
+  "last_updated": "example_value",
+  "max_query_depth": 10,
+  "meta_data": "example_value",
+  "name": "Example Title",
+  "org_id": "500123",
+  "per": 42.5,
+  "quota_max": 10,
+  "quota_renewal_rate": 10,
+  "rate": 42.5,
+  "tags": [],
+  "throttle_interval": 42.5,
+  "throttle_retry_limit": 10
+}

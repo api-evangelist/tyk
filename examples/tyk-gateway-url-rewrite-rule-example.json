@@ -1,0 +1,6 @@
+{
+  "in": "example_value",
+  "name": "Example Title",
+  "negate": true,
+  "pattern": "example_value"
+}

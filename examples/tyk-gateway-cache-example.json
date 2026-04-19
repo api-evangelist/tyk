@@ -1,0 +1,9 @@
+{
+  "cacheAllSafeRequests": true,
+  "cacheByHeaders": [],
+  "cacheResponseCodes": [],
+  "controlTTLHeaderName": "example_value",
+  "enableUpstreamCacheControl": true,
+  "enabled": true,
+  "timeout": 10
+}

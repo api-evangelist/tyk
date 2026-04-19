@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CORSConfig",
+  "type": "object",
+  "properties": {
+    "allow_credentials": {
+      "type": "boolean"
+    },
+    "allowed_headers": {
+      "type": "array"
+    },
+    "allowed_methods": {
+      "type": "array"
+    },
+    "allowed_origins": {
+      "type": "array"
+    },
+    "debug": {
+      "type": "boolean"
+    },
+    "enable": {
+      "type": "boolean"
+    },
+    "exposed_headers": {
+      "type": "array"
+    },
+    "max_age": {
+      "type": "integer"
+    },
+    "options_passthrough": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "AnalyticsPluginConfig",
+  "type": "object",
+  "properties": {
+    "enable": {
+      "type": "boolean"
+    },
+    "func_name": {
+      "type": "string"
+    },
+    "plugin_path": {
+      "type": "string"
+    }
+  }
+}

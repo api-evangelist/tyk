@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "OpenIDOptions",
+  "type": "object",
+  "properties": {
+    "providers": {
+      "type": "array"
+    },
+    "segregate_by_client": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "default": "example_value",
+  "enabled": true,
+  "fallbackToDefault": true,
+  "key": "example_value",
+  "location": "example_value",
+  "name": "Example Title",
+  "stripVersioningData": true,
+  "urlVersioningPattern": "https://www.example.com",
+  "versions": []
+}

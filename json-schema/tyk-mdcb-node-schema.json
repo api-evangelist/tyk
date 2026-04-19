@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Node",
+  "type": "object",
+  "properties": {
+    "node_id": {
+      "type": "string"
+    },
+    "api_key": {
+      "type": "string"
+    },
+    "group_id": {
+      "type": "string"
+    },
+    "node_version": {
+      "type": "string"
+    },
+    "ttl": {
+      "type": "integer"
+    },
+    "tags": {
+      "type": "array"
+    }
+  }
+}

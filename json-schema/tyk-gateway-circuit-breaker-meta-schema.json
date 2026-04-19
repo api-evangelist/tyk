@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CircuitBreakerMeta",
+  "type": "object",
+  "properties": {
+    "disable_half_open_state": {
+      "type": "boolean"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "return_to_service_after": {
+      "type": "integer"
+    },
+    "samples": {
+      "type": "integer"
+    },
+    "threshold_percent": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "delay": 10,
+  "enabled": true,
+  "step": 10,
+  "threshold": 10,
+  "trigger": 42.5
+}

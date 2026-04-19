@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HostCheckObject",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "commands": {
+      "type": "array"
+    },
+    "enable_proxy_protocol": {
+      "type": "boolean"
+    },
+    "headers": {
+      "type": "object"
+    },
+    "method": {
+      "type": "string"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "timeout": {
+      "type": "integer"
+    },
+    "url": {
+      "type": "string"
+    }
+  }
+}

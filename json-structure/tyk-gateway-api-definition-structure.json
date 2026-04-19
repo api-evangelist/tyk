@@ -1,0 +1,229 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "APIDefinition",
+  "type": "object",
+  "properties": {
+    "active": {
+      "type": "boolean"
+    },
+    "allowed_ips": {
+      "type": "array"
+    },
+    "api_id": {
+      "type": "string"
+    },
+    "auth_configs": {
+      "type": "object"
+    },
+    "base_identity_provided_by": {
+      "type": "string"
+    },
+    "basic_auth": {
+      "type": "object"
+    },
+    "blacklisted_ips": {
+      "type": "array"
+    },
+    "certificate_pinning_disabled": {
+      "type": "boolean"
+    },
+    "certificates": {
+      "type": "array"
+    },
+    "client_certificates": {
+      "type": "array"
+    },
+    "config_data": {
+      "type": "object"
+    },
+    "config_data_disabled": {
+      "type": "boolean"
+    },
+    "custom_middleware_bundle": {
+      "type": "string"
+    },
+    "custom_middleware_bundle_disabled": {
+      "type": "boolean"
+    },
+    "custom_plugin_auth_enabled": {
+      "type": "boolean"
+    },
+    "detailed_tracing": {
+      "type": "boolean"
+    },
+    "disable_quota": {
+      "type": "boolean"
+    },
+    "disable_rate_limit": {
+      "type": "boolean"
+    },
+    "do_not_track": {
+      "type": "boolean"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "domain_disabled": {
+      "type": "boolean"
+    },
+    "dont_set_quota_on_create": {
+      "type": "boolean"
+    },
+    "enable_batch_request_support": {
+      "type": "boolean"
+    },
+    "enable_context_vars": {
+      "type": "boolean"
+    },
+    "enable_coprocess_auth": {
+      "type": "boolean"
+    },
+    "enable_detailed_recording": {
+      "type": "boolean"
+    },
+    "enable_ip_blacklisting": {
+      "type": "boolean"
+    },
+    "enable_ip_whitelisting": {
+      "type": "boolean"
+    },
+    "enable_jwt": {
+      "type": "boolean"
+    },
+    "enable_proxy_protocol": {
+      "type": "boolean"
+    },
+    "enable_signature_checking": {
+      "type": "boolean"
+    },
+    "expiration": {
+      "type": "string"
+    },
+    "expire_analytics_after": {
+      "type": "integer"
+    },
+    "hmac_allowed_algorithms": {
+      "type": "array"
+    },
+    "hmac_allowed_clock_skew": {
+      "type": "number"
+    },
+    "id": {
+      "type": "string"
+    },
+    "idp_client_id_mapping_disabled": {
+      "type": "boolean"
+    },
+    "internal": {
+      "type": "boolean"
+    },
+    "is_oas": {
+      "type": "boolean"
+    },
+    "jwt_client_base_field": {
+      "type": "string"
+    },
+    "jwt_default_policies": {
+      "type": "array"
+    },
+    "jwt_expires_at_validation_skew": {
+      "type": "integer"
+    },
+    "jwt_identity_base_field": {
+      "type": "string"
+    },
+    "jwt_issued_at_validation_skew": {
+      "type": "integer"
+    },
+    "jwt_not_before_validation_skew": {
+      "type": "integer"
+    },
+    "jwt_policy_field_name": {
+      "type": "string"
+    },
+    "jwt_scope_claim_name": {
+      "type": "string"
+    },
+    "jwt_scope_to_policy_mapping": {
+      "type": "object"
+    },
+    "jwt_signing_method": {
+      "type": "string"
+    },
+    "jwt_skip_kid": {
+      "type": "boolean"
+    },
+    "jwt_source": {
+      "type": "string"
+    },
+    "listen_port": {
+      "type": "integer"
+    },
+    "name": {
+      "type": "string"
+    },
+    "oauth_meta": {
+      "type": "object"
+    },
+    "org_id": {
+      "type": "string"
+    },
+    "pinned_public_keys": {
+      "type": "object"
+    },
+    "protocol": {
+      "type": "string"
+    },
+    "response_processors": {
+      "type": "array"
+    },
+    "session_lifetime": {
+      "type": "integer"
+    },
+    "session_lifetime_respects_key_expiration": {
+      "type": "boolean"
+    },
+    "slug": {
+      "type": "string"
+    },
+    "strip_auth_data": {
+      "type": "boolean"
+    },
+    "tag_headers": {
+      "type": "array"
+    },
+    "tags": {
+      "type": "array"
+    },
+    "tags_disabled": {
+      "type": "boolean"
+    },
+    "upstream_certificates": {
+      "type": "object"
+    },
+    "upstream_certificates_disabled": {
+      "type": "boolean"
+    },
+    "use_basic_auth": {
+      "type": "boolean"
+    },
+    "use_go_plugin_auth": {
+      "type": "boolean"
+    },
+    "use_keyless": {
+      "type": "boolean"
+    },
+    "use_mutual_tls_auth": {
+      "type": "boolean"
+    },
+    "use_oauth2": {
+      "type": "boolean"
+    },
+    "use_openid": {
+      "type": "boolean"
+    },
+    "use_standard_auth": {
+      "type": "boolean"
+    }
+  }
+}

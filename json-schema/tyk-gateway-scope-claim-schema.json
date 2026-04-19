@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ScopeClaim",
+  "type": "object",
+  "properties": {
+    "scope_claim_name": {
+      "type": "string"
+    },
+    "scope_to_policy": {
+      "type": "object"
+    }
+  }
+}

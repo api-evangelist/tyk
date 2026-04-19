@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "PersistGraphQLMeta",
+  "type": "object",
+  "properties": {
+    "method": {
+      "type": "string"
+    },
+    "operation": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "variables": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CertsCertificateMeta",
+  "type": "object",
+  "properties": {
+    "dns_names": {
+      "type": "array"
+    },
+    "fingerprint": {
+      "type": "string"
+    },
+    "has_private": {
+      "type": "boolean"
+    },
+    "id": {
+      "type": "string"
+    },
+    "is_ca": {
+      "type": "boolean"
+    },
+    "not_after": {
+      "type": "string"
+    },
+    "not_before": {
+      "type": "string"
+    }
+  }
+}

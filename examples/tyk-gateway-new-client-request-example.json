@@ -1,0 +1,9 @@
+{
+  "api_id": "500123",
+  "client_id": "500123",
+  "description": "A sample description.",
+  "meta_data": "example_value",
+  "policy_id": "500123",
+  "redirect_uri": "example_value",
+  "secret": "example_value"
+}

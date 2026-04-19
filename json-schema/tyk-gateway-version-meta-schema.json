@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "VersionMeta",
+  "type": "object",
+  "properties": {
+    "expirationDate": {
+      "type": "string"
+    },
+    "id": {
+      "type": "string"
+    },
+    "internal": {
+      "type": "boolean"
+    },
+    "isDefaultVersion": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "versionName": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,10 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "GraphQLResponseExtensions",
+  "type": "object",
+  "properties": {
+    "on_error_forwarding": {
+      "type": "boolean"
+    }
+  }
+}

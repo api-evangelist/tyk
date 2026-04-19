@@ -1,0 +1,7 @@
+{
+  "client_id": "500123",
+  "client_secret": "example_value",
+  "enabled": true,
+  "identity_base_field": "example_value",
+  "url": "https://www.example.com"
+}

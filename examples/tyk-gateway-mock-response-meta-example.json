@@ -1,0 +1,9 @@
+{
+  "body": "example_value",
+  "code": 10,
+  "disabled": true,
+  "headers": "example_value",
+  "ignore_case": true,
+  "method": "example_value",
+  "path": "example_value"
+}

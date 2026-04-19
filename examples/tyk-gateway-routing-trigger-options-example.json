@@ -1,0 +1,7 @@
+{
+  "header_matches": "example_value",
+  "path_part_matches": "example_value",
+  "query_val_matches": "example_value",
+  "request_context_matches": "example_value",
+  "session_meta_matches": "example_value"
+}

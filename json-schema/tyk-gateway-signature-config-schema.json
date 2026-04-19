@@ -1,0 +1,31 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SignatureConfig",
+  "type": "object",
+  "properties": {
+    "algorithm": {
+      "type": "string"
+    },
+    "allowed_clock_skew": {
+      "type": "integer"
+    },
+    "error_code": {
+      "type": "integer"
+    },
+    "error_message": {
+      "type": "string"
+    },
+    "header": {
+      "type": "string"
+    },
+    "param_name": {
+      "type": "string"
+    },
+    "secret": {
+      "type": "string"
+    },
+    "use_param": {
+      "type": "boolean"
+    }
+  }
+}

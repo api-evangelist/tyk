@@ -1,0 +1,307 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk Gateway"
+  description: "Tyk Gateway API for managing API definitions, keys, certificates, and health checks on a Tyk Gateway node."
+  tags:
+    - API Gateway
+    - API Management
+    - Open Source
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_GATEWAY_SECRET: TYK_GATEWAY_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: tyk-gateway
+      baseUri: "{TYK_GATEWAY_URL}"
+      description: "Tyk Gateway API for managing APIs, keys, and certificates."
+      authentication:
+        type: apikey
+        key: x-tyk-authorization
+        value: "{{TYK_GATEWAY_SECRET}}"
+        placement: header
+      resources:
+        - name: apis
+          path: /tyk/apis
+          description: "API definition management"
+          operations:
+            - name: list-apis
+              method: GET
+              description: "List all API definitions"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-api
+              method: GET
+              description: "Get a single API definition by ID"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-api
+              method: POST
+              description: "Create a new API definition"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  api_definition: "{{tools.api_definition}}"
+            - name: update-api
+              method: PUT
+              description: "Update an existing API definition"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  api_definition: "{{tools.api_definition}}"
+            - name: delete-api
+              method: DELETE
+              description: "Delete an API definition"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: keys
+          path: /tyk/keys
+          description: "API key management"
+          operations:
+            - name: list-keys
+              method: GET
+              description: "List all API keys"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-key
+              method: POST
+              description: "Create a new API key"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  session_object: "{{tools.session_object}}"
+            - name: get-key
+              method: GET
+              description: "Get a specific API key"
+              inputParameters:
+                - name: keyID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The key ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: delete-key
+              method: DELETE
+              description: "Delete an API key"
+              inputParameters:
+                - name: keyID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The key ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: policies
+          path: /tyk/policies
+          description: "Policy management"
+          operations:
+            - name: list-policies
+              method: GET
+              description: "List all policies"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-policy
+              method: GET
+              description: "Get a specific policy"
+              inputParameters:
+                - name: polID
+                  in: path
+                  type: string
+                  required: true
+                  description: "The policy ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: certificates
+          path: /tyk/certs
+          description: "Certificate management"
+          operations:
+            - name: list-certificates
+              method: GET
+              description: "List all certificates"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: health
+          path: /tyk/health
+          description: "Health check"
+          operations:
+            - name: check-health
+              method: GET
+              description: "Check gateway health"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: reload
+          path: /tyk/reload
+          description: "Gateway reload"
+          operations:
+            - name: hot-reload
+              method: GET
+              description: "Hot reload the gateway configuration"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+
+  exposes:
+    - type: rest
+      port: 8100
+      namespace: tyk-gateway-api
+      resources:
+        - path: /v1/apis
+          name: apis
+          description: "API definition management"
+          operations:
+            - method: GET
+              name: list-apis
+              description: "List all API definitions"
+              call: "tyk-gateway.list-apis"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/keys
+          name: keys
+          description: "API key management"
+          operations:
+            - method: GET
+              name: list-keys
+              description: "List all API keys"
+              call: "tyk-gateway.list-keys"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9100
+      namespace: tyk-gateway-mcp
+      transport: http
+      tools:
+        - name: list-apis
+          description: "List all API definitions on the gateway"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tyk-gateway.list-apis"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-api
+          description: "Get a single API definition by ID"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.get-api"
+          with:
+            apiID: "tools.apiID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-keys
+          description: "List all API keys"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.list-keys"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-policies
+          description: "List all policies"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.list-policies"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-certificates
+          description: "List all certificates"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.list-certificates"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-health
+          description: "Check gateway health"
+          hints:
+            readOnly: true
+          call: "tyk-gateway.check-health"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: hot-reload
+          description: "Hot reload the gateway configuration"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "tyk-gateway.hot-reload"
+          outputParameters:
+            - type: object
+              mapping: "$."

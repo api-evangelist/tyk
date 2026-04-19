@@ -1,0 +1,11 @@
+{
+  "auth_header_name": "example_value",
+  "cookie_name": "example_value",
+  "disable_header": true,
+  "name": "Example Title",
+  "param_name": "example_value",
+  "use_certificate": true,
+  "use_cookie": true,
+  "use_param": true,
+  "validate_signature": true
+}

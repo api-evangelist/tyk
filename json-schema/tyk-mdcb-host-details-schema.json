@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "HostDetails",
+  "type": "object",
+  "properties": {
+    "Hostname": {
+      "type": "string"
+    },
+    "PID": {
+      "type": "integer"
+    },
+    "Address": {
+      "type": "string"
+    }
+  }
+}

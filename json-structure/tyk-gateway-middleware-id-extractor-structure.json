@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MiddlewareIdExtractor",
+  "type": "object",
+  "properties": {
+    "disabled": {
+      "type": "boolean"
+    },
+    "extract_from": {
+      "type": "string"
+    },
+    "extract_with": {
+      "type": "string"
+    },
+    "extractor_config": {
+      "type": "object"
+    }
+  }
+}

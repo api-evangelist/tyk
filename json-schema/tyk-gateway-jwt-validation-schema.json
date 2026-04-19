@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "JWTValidation",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "expires_at_validation_skew": {
+      "type": "integer"
+    },
+    "identity_base_field": {
+      "type": "string"
+    },
+    "issued_at_validation_skew": {
+      "type": "integer"
+    },
+    "not_before_validation_skew": {
+      "type": "integer"
+    },
+    "signing_method": {
+      "type": "string"
+    },
+    "source": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "MockResponseMeta",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "headers": {
+      "type": "object"
+    },
+    "ignore_case": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

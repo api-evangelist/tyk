@@ -1,0 +1,16 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MockResponse",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "code": {
+      "type": "integer"
+    },
+    "enabled": {
+      "type": "boolean"
+    }
+  }
+}

@@ -1,0 +1,133 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk Dashboard Admin"
+  description: "Tyk Dashboard Admin API for bootstrapping and managing multi-organization Tyk deployments."
+  tags:
+    - Administration
+    - Dashboard
+    - Multi-Tenant
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_ADMIN_SECRET: TYK_ADMIN_SECRET
+
+capability:
+  consumes:
+    - type: http
+      namespace: tyk-dashboard-admin
+      baseUri: "{TYK_DASHBOARD_URL}"
+      description: "Tyk Dashboard Admin API for super-administrative access."
+      authentication:
+        type: apikey
+        key: admin-auth
+        value: "{{TYK_ADMIN_SECRET}}"
+        placement: header
+      resources:
+        - name: organizations
+          path: /admin/organisations
+          description: "Organization management"
+          operations:
+            - name: list-organizations
+              method: GET
+              description: "List all organizations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-organization
+              method: POST
+              description: "Create a new organization"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  org: "{{tools.org}}"
+            - name: update-organization
+              method: PUT
+              description: "Update an organization"
+              inputParameters:
+                - name: orgID
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  org: "{{tools.org}}"
+            - name: delete-organization
+              method: DELETE
+              description: "Delete an organization"
+              inputParameters:
+                - name: orgID
+                  in: path
+                  type: string
+                  required: true
+                  description: "Organization ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: users
+          path: /admin/users
+          description: "Admin user management"
+          operations:
+            - name: list-admin-users
+              method: GET
+              description: "List admin users"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-admin-user
+              method: POST
+              description: "Create an admin user"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  user: "{{tools.user}}"
+        - name: system
+          path: /admin/system
+          description: "System operations"
+          operations:
+            - name: export-system
+              method: GET
+              description: "Export system configuration"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: import-system
+              method: POST
+              description: "Import system configuration"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  data: "{{tools.data}}"

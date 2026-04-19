@@ -1,0 +1,28 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CacheOptions",
+  "type": "object",
+  "properties": {
+    "cache_all_safe_requests": {
+      "type": "boolean"
+    },
+    "cache_by_headers": {
+      "type": "array"
+    },
+    "cache_control_ttl_header": {
+      "type": "string"
+    },
+    "cache_response_codes": {
+      "type": "array"
+    },
+    "cache_timeout": {
+      "type": "integer"
+    },
+    "enable_cache": {
+      "type": "boolean"
+    },
+    "enable_upstream_cache_control": {
+      "type": "boolean"
+    }
+  }
+}

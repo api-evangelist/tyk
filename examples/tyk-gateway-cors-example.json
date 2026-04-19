@@ -1,0 +1,11 @@
+{
+  "allowCredentials": true,
+  "allowedHeaders": [],
+  "allowedMethods": [],
+  "allowedOrigins": [],
+  "debug": true,
+  "enabled": true,
+  "exposedHeaders": [],
+  "maxAge": 10,
+  "optionsPassthrough": true
+}

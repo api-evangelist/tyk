@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "RoutingTriggerOptions",
+  "type": "object",
+  "properties": {
+    "header_matches": {
+      "type": "object"
+    },
+    "path_part_matches": {
+      "type": "object"
+    },
+    "query_val_matches": {
+      "type": "object"
+    },
+    "request_context_matches": {
+      "type": "object"
+    },
+    "session_meta_matches": {
+      "type": "object"
+    }
+  }
+}

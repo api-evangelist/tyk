@@ -1,0 +1,6 @@
+{
+  "auth_headers": "example_value",
+  "request_headers": "example_value",
+  "request_headers_rewrite": "example_value",
+  "subscription_type": "example_value"
+}

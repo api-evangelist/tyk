@@ -1,0 +1,205 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk Platform Administration"
+  description: "Platform administration workflow combining Dashboard Admin and MDCB APIs for platform administrators to manage organizations, multi-data center deployments, and system diagnostics."
+  tags:
+    - Administration
+    - MDCB
+    - Platform
+    - Tyk
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_ADMIN_SECRET: TYK_ADMIN_SECRET
+      TYK_MDCB_API_KEY: TYK_MDCB_API_KEY
+
+capability:
+  consumes:
+    - import: tyk-dashboard-admin
+      location: ./shared/dashboard-admin.yaml
+    - import: tyk-mdcb
+      location: ./shared/mdcb.yaml
+
+  exposes:
+    - type: rest
+      port: 8081
+      namespace: tyk-platform-admin-api
+      description: "Unified REST API for Tyk platform administration."
+      resources:
+        - path: /v1/organizations
+          name: organizations
+          description: "Organization management"
+          operations:
+            - method: GET
+              name: list-organizations
+              description: "List all organizations"
+              call: "tyk-dashboard-admin.list-organizations"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+            - method: POST
+              name: create-organization
+              description: "Create a new organization"
+              call: "tyk-dashboard-admin.create-organization"
+              with:
+                org: "rest.org"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/admin-users
+          name: admin-users
+          description: "Admin user management"
+          operations:
+            - method: GET
+              name: list-admin-users
+              description: "List admin users"
+              call: "tyk-dashboard-admin.list-admin-users"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/dataplanes
+          name: dataplanes
+          description: "Data plane monitoring"
+          operations:
+            - method: GET
+              name: list-dataplanes
+              description: "List all connected data planes"
+              call: "tyk-mdcb.list-dataplanes"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/health
+          name: health
+          description: "MDCB health"
+          operations:
+            - method: GET
+              name: check-mdcb-health
+              description: "Check MDCB health"
+              call: "tyk-mdcb.check-health"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9091
+      namespace: tyk-platform-admin-mcp
+      transport: http
+      description: "MCP server for AI-assisted Tyk platform administration."
+      tools:
+        - name: list-organizations
+          description: "List all Tyk organizations"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tyk-dashboard-admin.list-organizations"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-organization
+          description: "Create a new organization"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard-admin.create-organization"
+          with:
+            org: "tools.org"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: update-organization
+          description: "Update an organization"
+          hints:
+            readOnly: false
+            idempotent: true
+          call: "tyk-dashboard-admin.update-organization"
+          with:
+            orgID: "tools.orgID"
+            org: "tools.org"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: delete-organization
+          description: "Delete an organization"
+          hints:
+            destructive: true
+            idempotent: true
+          call: "tyk-dashboard-admin.delete-organization"
+          with:
+            orgID: "tools.orgID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-admin-users
+          description: "List all admin users"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard-admin.list-admin-users"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-admin-user
+          description: "Create an admin user"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard-admin.create-admin-user"
+          with:
+            user: "tools.user"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: export-system
+          description: "Export system configuration"
+          hints:
+            readOnly: true
+          call: "tyk-dashboard-admin.export-system"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: import-system
+          description: "Import system configuration"
+          hints:
+            readOnly: false
+          call: "tyk-dashboard-admin.import-system"
+          with:
+            data: "tools.data"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-dataplanes
+          description: "List all connected data plane nodes"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "tyk-mdcb.list-dataplanes"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-dataplane
+          description: "Get details for a specific data plane"
+          hints:
+            readOnly: true
+          call: "tyk-mdcb.get-dataplane"
+          with:
+            dataplaneID: "tools.dataplaneID"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: check-mdcb-health
+          description: "Check MDCB health"
+          hints:
+            readOnly: true
+          call: "tyk-mdcb.check-health"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-diagnostics
+          description: "Get pprof diagnostic data from MDCB"
+          hints:
+            readOnly: true
+          call: "tyk-mdcb.get-profile"
+          outputParameters:
+            - type: object
+              mapping: "$."

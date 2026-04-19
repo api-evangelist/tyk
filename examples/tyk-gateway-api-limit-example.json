@@ -1,0 +1,11 @@
+{
+  "max_query_depth": 10,
+  "per": 42.5,
+  "quota_max": 10,
+  "quota_remaining": 10,
+  "quota_renewal_rate": 10,
+  "quota_renews": 10,
+  "rate": 42.5,
+  "throttle_interval": 42.5,
+  "throttle_retry_limit": 10
+}

@@ -1,0 +1,7 @@
+{
+  "disabled": true,
+  "name": "Example Title",
+  "path": "example_value",
+  "raw_body_only": true,
+  "require_session": true
+}

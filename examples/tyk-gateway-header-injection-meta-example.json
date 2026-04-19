@@ -1,0 +1,8 @@
+{
+  "act_on": true,
+  "add_headers": "example_value",
+  "delete_headers": [],
+  "disabled": true,
+  "method": "example_value",
+  "path": "example_value"
+}

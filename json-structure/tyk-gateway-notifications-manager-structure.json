@@ -1,0 +1,13 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "NotificationsManager",
+  "type": "object",
+  "properties": {
+    "oauth_on_keychange_url": {
+      "type": "string"
+    },
+    "shared_secret": {
+      "type": "string"
+    }
+  }
+}

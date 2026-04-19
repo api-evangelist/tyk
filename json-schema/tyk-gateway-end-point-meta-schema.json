@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "EndPointMeta",
+  "type": "object",
+  "properties": {
+    "disabled": {
+      "type": "boolean"
+    },
+    "ignore_case": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "method_actions": {
+      "type": "object"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

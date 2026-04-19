@@ -1,0 +1,7 @@
+{
+  "disable_query_batching": true,
+  "global_headers": "example_value",
+  "merged_sdl": "example_value",
+  "subgraphs": [],
+  "updated_at": "2026-01-15T10:30:00Z"
+}

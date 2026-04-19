@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CachePlugin",
+  "type": "object",
+  "properties": {
+    "cacheByRegex": {
+      "type": "string"
+    },
+    "cacheResponseCodes": {
+      "type": "array"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "timeout": {
+      "type": "integer"
+    }
+  }
+}

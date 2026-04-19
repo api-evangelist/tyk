@@ -1,0 +1,220 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Tyk Dashboard"
+  description: "Tyk Dashboard API for centralized management of API definitions, keys, policies, users, and organizations."
+  tags:
+    - API Management
+    - Dashboard
+  created: "2026-04-19"
+  modified: "2026-04-19"
+
+binds:
+  - namespace: env
+    keys:
+      TYK_DASHBOARD_API_KEY: TYK_DASHBOARD_API_KEY
+
+capability:
+  consumes:
+    - type: http
+      namespace: tyk-dashboard
+      baseUri: "{TYK_DASHBOARD_URL}"
+      description: "Tyk Dashboard API for centralized API management."
+      authentication:
+        type: apikey
+        key: Authorization
+        value: "{{TYK_DASHBOARD_API_KEY}}"
+        placement: header
+      resources:
+        - name: apis
+          path: /api/apis
+          description: "API definition management via Dashboard"
+          operations:
+            - name: list-apis
+              method: GET
+              description: "List all API definitions"
+              inputParameters:
+                - name: p
+                  in: query
+                  type: integer
+                  required: false
+                  description: "Page number"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-api
+              method: GET
+              description: "Get API definition by ID"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-api
+              method: POST
+              description: "Create API definition"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  api_definition: "{{tools.api_definition}}"
+            - name: update-api
+              method: PUT
+              description: "Update API definition"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  api_definition: "{{tools.api_definition}}"
+            - name: delete-api
+              method: DELETE
+              description: "Delete API definition"
+              inputParameters:
+                - name: apiID
+                  in: path
+                  type: string
+                  required: true
+                  description: "API ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: policies
+          path: /api/portal/policies
+          description: "Security policy management"
+          operations:
+            - name: list-policies
+              method: GET
+              description: "List all policies"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: get-policy
+              method: GET
+              description: "Get a specific policy"
+              inputParameters:
+                - name: polID
+                  in: path
+                  type: string
+                  required: true
+                  description: "Policy ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-policy
+              method: POST
+              description: "Create a new policy"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  policy: "{{tools.policy}}"
+            - name: update-policy
+              method: PUT
+              description: "Update a policy"
+              inputParameters:
+                - name: polID
+                  in: path
+                  type: string
+                  required: true
+                  description: "Policy ID"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  policy: "{{tools.policy}}"
+        - name: keys
+          path: /api/keys
+          description: "Key management"
+          operations:
+            - name: list-keys
+              method: GET
+              description: "List all keys"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+            - name: create-key
+              method: POST
+              description: "Create a key"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+              body:
+                type: json
+                data:
+                  key: "{{tools.key}}"
+        - name: users
+          path: /api/users
+          description: "User management"
+          operations:
+            - name: list-users
+              method: GET
+              description: "List all dashboard users"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: portal-catalogue
+          path: /api/portal/catalogue
+          description: "Portal catalogue management"
+          operations:
+            - name: get-catalogue
+              method: GET
+              description: "Get the portal catalogue"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."
+        - name: organizations
+          path: /api/org
+          description: "Organization management"
+          operations:
+            - name: list-organizations
+              method: GET
+              description: "List organizations"
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: "$."

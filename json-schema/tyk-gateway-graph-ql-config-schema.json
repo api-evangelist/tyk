@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphQLConfig",
+  "type": "object",
+  "properties": {
+    "enabled": {
+      "type": "boolean"
+    },
+    "execution_mode": {
+      "type": "string"
+    },
+    "last_schema_update": {
+      "type": "string"
+    },
+    "schema": {
+      "type": "string"
+    },
+    "type_field_configurations": {
+      "type": "array"
+    },
+    "version": {
+      "type": "string"
+    }
+  }
+}

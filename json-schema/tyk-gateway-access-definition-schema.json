@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "AccessDefinition",
+  "type": "object",
+  "properties": {
+    "allowance_scope": {
+      "type": "string"
+    },
+    "allowed_types": {
+      "type": "array"
+    },
+    "allowed_urls": {
+      "type": "array"
+    },
+    "api_id": {
+      "type": "string"
+    },
+    "api_name": {
+      "type": "string"
+    },
+    "disable_introspection": {
+      "type": "boolean"
+    },
+    "field_access_rights": {
+      "type": "array"
+    },
+    "restricted_types": {
+      "type": "array"
+    },
+    "versions": {
+      "type": "array"
+    }
+  }
+}

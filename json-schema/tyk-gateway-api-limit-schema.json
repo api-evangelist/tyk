@@ -1,0 +1,34 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "APILimit",
+  "type": "object",
+  "properties": {
+    "max_query_depth": {
+      "type": "integer"
+    },
+    "per": {
+      "type": "number"
+    },
+    "quota_max": {
+      "type": "integer"
+    },
+    "quota_remaining": {
+      "type": "integer"
+    },
+    "quota_renewal_rate": {
+      "type": "integer"
+    },
+    "quota_renews": {
+      "type": "integer"
+    },
+    "rate": {
+      "type": "number"
+    },
+    "throttle_interval": {
+      "type": "number"
+    },
+    "throttle_retry_limit": {
+      "type": "integer"
+    }
+  }
+}

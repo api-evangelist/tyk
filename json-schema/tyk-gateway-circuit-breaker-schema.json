@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "CircuitBreaker",
+  "type": "object",
+  "properties": {
+    "coolDownPeriod": {
+      "type": "integer"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "halfOpenStateEnabled": {
+      "type": "boolean"
+    },
+    "sampleSize": {
+      "type": "integer"
+    },
+    "threshold": {
+      "type": "number"
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "cache_all_safe_requests": true,
+  "cache_by_headers": [],
+  "cache_control_ttl_header": "example_value",
+  "cache_response_codes": [],
+  "cache_timeout": 10,
+  "enable_cache": true,
+  "enable_upstream_cache_control": true
+}

@@ -1,0 +1,11 @@
+{
+  "allowance_scope": "example_value",
+  "allowed_types": [],
+  "allowed_urls": "https://www.example.com",
+  "api_id": "500123",
+  "api_name": "example_value",
+  "disable_introspection": true,
+  "field_access_rights": [],
+  "restricted_types": [],
+  "versions": []
+}

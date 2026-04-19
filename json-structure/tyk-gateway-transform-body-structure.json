@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "TransformBody",
+  "type": "object",
+  "properties": {
+    "body": {
+      "type": "string"
+    },
+    "enabled": {
+      "type": "boolean"
+    },
+    "format": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    }
+  }
+}

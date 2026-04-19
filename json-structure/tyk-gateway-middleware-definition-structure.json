@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "MiddlewareDefinition",
+  "type": "object",
+  "properties": {
+    "disabled": {
+      "type": "boolean"
+    },
+    "name": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "raw_body_only": {
+      "type": "boolean"
+    },
+    "require_session": {
+      "type": "boolean"
+    }
+  }
+}

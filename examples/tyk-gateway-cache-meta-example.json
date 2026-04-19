@@ -1,0 +1,8 @@
+{
+  "cache_key_regex": "example_value",
+  "cache_response_codes": [],
+  "disabled": true,
+  "method": "example_value",
+  "path": "example_value",
+  "timeout": 10
+}

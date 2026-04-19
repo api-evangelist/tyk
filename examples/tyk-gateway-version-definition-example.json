@@ -1,0 +1,12 @@
+{
+  "default": "example_value",
+  "enabled": true,
+  "fallback_to_default": true,
+  "key": "example_value",
+  "location": "example_value",
+  "name": "Example Title",
+  "strip_path": true,
+  "strip_versioning_data": true,
+  "url_versioning_pattern": "https://www.example.com",
+  "versions": "example_value"
+}

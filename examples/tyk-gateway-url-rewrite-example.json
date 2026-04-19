@@ -1,0 +1,6 @@
+{
+  "enabled": true,
+  "pattern": "example_value",
+  "rewriteTo": "example_value",
+  "triggers": []
+}

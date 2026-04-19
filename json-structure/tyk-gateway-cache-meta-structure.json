@@ -1,0 +1,25 @@
+{
+  "$schema": "https://json-structure.org/draft/2020-12/schema",
+  "name": "CacheMeta",
+  "type": "object",
+  "properties": {
+    "cache_key_regex": {
+      "type": "string"
+    },
+    "cache_response_codes": {
+      "type": "array"
+    },
+    "disabled": {
+      "type": "boolean"
+    },
+    "method": {
+      "type": "string"
+    },
+    "path": {
+      "type": "string"
+    },
+    "timeout": {
+      "type": "integer"
+    }
+  }
+}

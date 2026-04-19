@@ -1,0 +1,12 @@
+{
+  "cacheTimeout": 10,
+  "dataPath": "example_value",
+  "enabled": true,
+  "endpointReturnsList": true,
+  "parentDataPath": "example_value",
+  "portDataPath": "example_value",
+  "queryEndpoint": "example_value",
+  "targetPath": "example_value",
+  "useNestedQuery": true,
+  "useTargetList": true
+}

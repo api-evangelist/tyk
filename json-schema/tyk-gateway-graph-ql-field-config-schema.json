@@ -1,0 +1,19 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "GraphQLFieldConfig",
+  "type": "object",
+  "properties": {
+    "disable_default_mapping": {
+      "type": "boolean"
+    },
+    "field_name": {
+      "type": "string"
+    },
+    "path": {
+      "type": "array"
+    },
+    "type_name": {
+      "type": "string"
+    }
+  }
+}
