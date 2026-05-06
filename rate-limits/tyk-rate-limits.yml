@@ -4,100 +4,51 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Tyk
 providerId: tyk
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - API Gateway
   - API Management
   - GraphQL
   - Open Source
   - Rate Limiting
-  - Quotas
-  - Throttling
-description: Machine-readable rate limit definitions for the Tyk API surface. Captures per-tier quotas,
-  burst behavior, response signaling, and recovery semantics. Defaults are scaffold values to be replaced
-  with published provider limits.
-headers:
-  limit: X-RateLimit-Limit
-  remaining: X-RateLimit-Remaining
-  reset: X-RateLimit-Reset
-  retryAfter: Retry-After
-  policy: RateLimit-Policy
+description: Tyk's gateway-side rate limiting is operator-configurable rather than fixed per tier. The
+  documentation describes multiple algorithms (Redis-backed sliding window, fixed window, smoothing)
+  but does not publish per-second numeric defaults for the SaaS Tyk Cloud surface — limits are tied to
+  the operator's policy/key configuration. Throttled requests return HTTP 429.
+sources:
+  - https://tyk.io/docs/api-management/rate-limit/
+  - https://tyk.io/pricing/
 responseCodes:
   throttled: 429
-  quotaExceeded: 429
-  serviceUnavailable: 503
 limits:
-  - tier: free
-    name: Free Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 10
-    burst: 20
-    timeFrame: minute
-    applies:
-      - Tyk Gateway API
-      - Tyk Dashboard API
-      - Tyk Dashboard Admin API
-      - Tyk MDCB API
-  - tier: free
-    name: Free Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 1000
-    timeFrame: month
-    applies:
-      - Tyk Gateway API
-      - Tyk Dashboard API
-      - Tyk Dashboard Admin API
-      - Tyk MDCB API
-  - tier: professional
-    name: Professional Tier Default
-    scope: api-key
-    metric: requests_per_minute
-    limit: 100
-    burst: 200
-    timeFrame: minute
-    applies:
-      - Tyk Gateway API
-      - Tyk Dashboard API
-      - Tyk Dashboard Admin API
-      - Tyk MDCB API
-  - tier: professional
-    name: Professional Tier Monthly Quota
-    scope: api-key
-    metric: requests_per_month
-    limit: 100000
-    timeFrame: month
-    applies:
-      - Tyk Gateway API
-      - Tyk Dashboard API
-      - Tyk Dashboard Admin API
-      - Tyk MDCB API
-  - tier: enterprise
-    name: Enterprise Negotiated Limit
-    scope: contract
-    metric: requests_per_minute
-    limit: 1000
-    burst: 5000
-    timeFrame: minute
-    applies:
-      - Tyk Gateway API
-      - Tyk Dashboard API
-      - Tyk Dashboard Admin API
-      - Tyk MDCB API
+  - name: Operator-Configured Rate Limit
+    scope: key
+    metric: varies
+    limit: see https://tyk.io/docs/api-management/rate-limit/
+    notes: Configured per API key, policy, or endpoint by the gateway operator. Default values are not
+      published as fixed per-tier numbers; commercial plans (Core, Professional) advertise unlimited
+      gateway capacity.
+  - name: Spike Arrest (Redis Limiter)
+    scope: key
+    metric: varies
+    limit: see https://tyk.io/docs/api-management/rate-limit/
+    notes: Redis-backed limiter blocks requests until the rolling rate drops below the configured threshold.
+  - name: Fixed Window Limiter
+    scope: key
+    metric: varies
+    limit: see https://tyk.io/docs/api-management/rate-limit/
+    notes: Blocks requests for the remainder of a fixed window once the threshold is exceeded.
 policies:
-  - name: Backoff Strategy
-    description: Clients should implement exponential backoff with jitter, honoring the Retry-After header
-      when present.
-  - name: Burst Handling
-    description: Short bursts above the steady-state limit are tolerated up to the documented burst ceiling
-      before throttling engages.
-  - name: Quota Reset
-    description: Monthly quotas reset at the start of each calendar month in UTC. Per-minute and per-second
-      windows reset on a sliding-window basis.
-  - name: Fair Use
-    description: Even on uncapped enterprise tiers, sustained usage that materially impacts shared infrastructure
-      may be subject to fair-use throttling.
+  - name: Algorithm Choice
+    description: Operators can select between Redis-backed sliding window, fixed window, and rate-limit
+      smoothing. Algorithm and threshold are set on the API definition or policy.
+  - name: Smoothing
+    description: Rate-limit smoothing gradually adjusts allowance rather than abruptly blocking, giving
+      clients time to back off.
+  - name: 429 Handling
+    description: Clients should detect HTTP 429 and apply exponential backoff with jitter; specific Retry-After
+      timing is implementation-dependent.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com

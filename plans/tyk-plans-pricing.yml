@@ -4,152 +4,127 @@ schema: https://raw.githubusercontent.com/api-evangelist/interface-research/main
 provider: Tyk
 providerId: tyk
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - API Gateway
   - API Management
   - GraphQL
   - Open Source
-description: Machine-readable plans and pricing scaffold for this API provider. Conforms to the API Commons
-  Plans schema. Tier limits and prices are scaffold defaults; replace with provider-published values.
+description: Tyk publishes a three-tier commercial offering (Core, Professional, Enterprise) on top of
+  a fully featured open-source gateway. Numeric per-tier request quotas and per-second rates are not
+  published; pricing is consumption-based for Core, flat unlimited for Professional, and contact-sales
+  for Enterprise. A 48-hour fully-featured Tyk Cloud free trial is available.
+sources:
+  - https://tyk.io/pricing/
+  - https://tyk.io/docs/api-management/rate-limit/
 plans:
-  - id: tyk-free
-    name: Free
+  - id: tyk-open-source
+    name: Tyk Open Source
     type: freemium
-    description: Free entry tier for the Tyk API surface. Intended for evaluation, prototyping, and low-volume
-      integrations. Real limits and pricing must be reconciled with the provider's published plan documentation.
+    description: Free, fully-featured open-source API gateway distributed via GitHub. Self-hosted; community
+      support only.
     entries:
-      - label: API Requests
-        description: Monthly API request quota across all included endpoints
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 1000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://tyk.io/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the free tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 10
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://tyk.io/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-    elements:
-      - name: Public Documentation
-      - name: Community Support
-      - name: Sandbox Access
-      - name: Tyk Gateway API
-      - name: Tyk Dashboard API
-      - name: Tyk Dashboard Admin API
-      - name: Tyk MDCB API
-  - id: tyk-pro
-    name: Professional
-    type: paid
-    description: Production tier for Tyk. Provides higher quotas, priority support, and access to the
-      broader API portfolio. Pricing placeholder; align with the provider's pricing page.
-    entries:
-      - label: API Requests
-        description: Monthly API request quota
-        name: api_requests
-        type: quota
-        metric: requests
-        limit: 100000
-        timeFrame: month
-        geo: global
-        domains:
-          - https://tyk.io/
-        unit: 1
-        price: TBD
-        userMultiplied: false
-      - label: Rate Limit
-        description: Maximum requests per minute on the professional tier
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 100
-        timeFrame: minute
-        geo: global
-        domains:
-          - https://tyk.io/
-        unit: 1
-        price: '0.00'
-        userMultiplied: false
-      - label: Overage
-        description: Per-request price after monthly quota is exceeded
-        name: overage
-        type: metered
-        metric: requests
+      - label: Self-Hosted Gateway
+        name: self_hosted_gateway
+        type: flat
+        metric: month
         limit: -1
         timeFrame: month
         geo: global
-        domains:
-          - https://tyk.io/
-        unit: 1000
-        price: TBD
+        unit: 1
+        price: '0.00'
         userMultiplied: false
     elements:
-      - name: All Production Endpoints
-      - name: Email Support
-      - name: SLA Targets
-      - name: Webhook Subscriptions
-      - name: Tyk Gateway API
-      - name: Tyk Dashboard API
-      - name: Tyk Dashboard Admin API
-      - name: Tyk MDCB API
+      - name: Open-Source Gateway
+      - name: Community Support
+      - name: GitHub Source Access
+  - id: tyk-core
+    name: Core
+    type: usage-based
+    description: Usage-based commercial tier for startups and scale-ups. Cloud, hybrid, or self-managed
+      deployment. Unlimited API gateways and developer portal included.
+    entries:
+      - label: Consumption-Based
+        name: consumption
+        type: metered
+        metric: varies
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: see https://tyk.io/pricing/
+        userMultiplied: false
+    elements:
+      - name: Unlimited API Gateways
+      - name: Developer Portal
+      - name: Enhanced Success Plan
+      - name: Cloud / Hybrid / Self-Managed Deployment
+  - id: tyk-professional
+    name: Professional
+    type: subscription
+    description: Flat-priced unlimited tier for high-growth teams standardizing on APIs. One price, unlimited
+      access including unlimited API requests per month.
+    entries:
+      - label: Unlimited Subscription
+        name: subscription
+        type: subscription
+        metric: month
+        limit: -1
+        timeFrame: month
+        geo: global
+        unit: 1
+        price: see https://tyk.io/pricing/
+        userMultiplied: false
+    elements:
+      - name: Unlimited API Gateways
+      - name: Unlimited APIs
+      - name: Unlimited API Requests
+      - name: Developer Portal
+      - name: Enhanced Success Plan
   - id: tyk-enterprise
     name: Enterprise
     type: enterprise
-    description: Custom-negotiated tier for Tyk. Includes dedicated capacity, contractual SLAs, security
-      review, data residency options, and named technical account management.
+    description: Custom-priced tier for regulated industries, global enterprises, and mission-critical
+      platforms. Adds advanced governance, premium support with custom SLAs, multi-region/multi-cloud
+      deployments, named CSM, and guided PoC.
     entries:
-      - label: API Requests
-        description: Negotiated request volume; -1 indicates uncapped subject to fair use
-        name: api_requests
-        type: quota
-        metric: requests
+      - label: Custom Contract
+        name: custom_contract
+        type: flat
+        metric: varies
         limit: -1
-        timeFrame: month
-        geo: configurable
-        domains:
-          - https://tyk.io/
+        timeFrame: year
+        geo: global
         unit: 1
-        price: custom
-        userMultiplied: false
-      - label: Rate Limit
-        description: Negotiated burst and steady-state rate
-        name: rate_limit
-        type: rate
-        metric: requests_per_minute
-        limit: 1000
-        timeFrame: minute
-        geo: configurable
-        domains:
-          - https://tyk.io/
-        unit: 1
-        price: custom
+        price: contact sales
         userMultiplied: false
     elements:
-      - name: Unlimited / Negotiated Volume
-      - name: 24/7 Dedicated Support
-      - name: Contractual SLA
-      - name: Security & Compliance Review
-      - name: Dedicated Account Manager
-      - name: Custom Data Residency
-      - name: Tyk Gateway API
-      - name: Tyk Dashboard API
-      - name: Tyk Dashboard Admin API
-      - name: Tyk MDCB API
+      - name: Everything in Professional
+      - name: Advanced Governance and Security
+      - name: Premium Support with Custom SLAs
+      - name: Multi-Region Deployments
+      - name: Multi-Cloud Architecture
+      - name: Named Customer Success Manager
+      - name: Guided PoC
+  - id: tyk-cloud-trial
+    name: Tyk Cloud Free Trial
+    type: freemium
+    description: 48-hour fully-featured Tyk Cloud trial. No credit card required.
+    entries:
+      - label: Free Trial
+        name: free_trial
+        type: flat
+        metric: varies
+        limit: 48
+        timeFrame: day
+        geo: global
+        unit: 1
+        price: '0.00'
+        userMultiplied: false
+    elements:
+      - name: Full Feature Access
+      - name: No Credit Card Required
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
