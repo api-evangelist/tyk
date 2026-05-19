@@ -1,0 +1,114 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Gateway API — Hot Reload
+  description: 'Tyk Gateway API — Hot Reload. 2 operations. Lead operation: Tyk Hot-reload a Single Node.. Self-contained
+    Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Hot Reload
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-hot-reload
+    baseUri: https://{tenant}
+    description: Tyk Gateway API — Hot Reload business capability. Self-contained, no shared references.
+    resources:
+    - name: tyk-reload
+      path: /tyk/reload
+      operations:
+      - name: hotreload
+        method: GET
+        description: Tyk Hot-reload a Single Node.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: block
+          in: query
+          type: boolean
+          description: Block a response until the reload is performed. This can be useful in scripting environments like CI/CD
+            workflows.
+    - name: tyk-reload-group
+      path: /tyk/reload/group
+      operations:
+      - name: hotreloadgroup
+        method: GET
+        description: Hot-reload a Group of Tyk Nodes.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-hot-reload-rest
+    port: 8080
+    description: REST adapter for Tyk Gateway API — Hot Reload. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tyk/reload
+      name: tyk-reload
+      description: REST surface for tyk-reload.
+      operations:
+      - method: GET
+        name: hotreload
+        description: Tyk Hot-reload a Single Node.
+        call: gateway-hot-reload.hotreload
+        with:
+          block: rest.block
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/reload/group
+      name: tyk-reload-group
+      description: REST surface for tyk-reload-group.
+      operations:
+      - method: GET
+        name: hotreloadgroup
+        description: Hot-reload a Group of Tyk Nodes.
+        call: gateway-hot-reload.hotreloadgroup
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-hot-reload-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk Gateway API — Hot Reload. One tool per consumed operation, routed inline through this
+      capability's consumes block.
+    tools:
+    - name: tyk-hot-reload-single-node
+      description: Tyk Hot-reload a Single Node.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-hot-reload.hotreload
+      with:
+        block: tools.block
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: hot-reload-group-tyk-nodes
+      description: Hot-reload a Group of Tyk Nodes.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-hot-reload.hotreloadgroup
+      outputParameters:
+      - type: object
+        mapping: $.

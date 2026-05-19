@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Gateway API — Cache Invalidation
+  description: 'Tyk Gateway API — Cache Invalidation. 1 operations. Lead operation: Tyk Invalidate Cache.. Self-contained
+    Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Cache Invalidation
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-cache-invalidation
+    baseUri: https://{tenant}
+    description: Tyk Gateway API — Cache Invalidation business capability. Self-contained, no shared references.
+    resources:
+    - name: tyk-cache-apiID
+      path: /tyk/cache/{apiID}
+      operations:
+      - name: invalidatecache
+        method: DELETE
+        description: Tyk Invalidate Cache.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID.
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-cache-invalidation-rest
+    port: 8080
+    description: REST adapter for Tyk Gateway API — Cache Invalidation. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/tyk/cache/{apiid}
+      name: tyk-cache-apiid
+      description: REST surface for tyk-cache-apiID.
+      operations:
+      - method: DELETE
+        name: invalidatecache
+        description: Tyk Invalidate Cache.
+        call: gateway-cache-invalidation.invalidatecache
+        with:
+          apiID: rest.apiID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-cache-invalidation-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk Gateway API — Cache Invalidation. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: tyk-invalidate-cache
+      description: Tyk Invalidate Cache.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-cache-invalidation.invalidatecache
+      with:
+        apiID: tools.apiID
+      outputParameters:
+      - type: object
+        mapping: $.

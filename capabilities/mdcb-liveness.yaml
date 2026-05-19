@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk MDCB Data Planes and Diagnostics API — Liveness
+  description: 'Tyk MDCB Data Planes and Diagnostics API — Liveness. 1 operations. Lead operation: Tyk Check Liveness Status.
+    Self-contained Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Liveness
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mdcb-liveness
+    baseUri: https://{tenant}
+    description: Tyk MDCB Data Planes and Diagnostics API — Liveness business capability. Self-contained, no shared references.
+    resources:
+    - name: liveness
+      path: /liveness
+      operations:
+      - name: livenessget
+        method: GET
+        description: Tyk Check Liveness Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: mdcb-liveness-rest
+    port: 8080
+    description: REST adapter for Tyk MDCB Data Planes and Diagnostics API — Liveness. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/liveness
+      name: liveness
+      description: REST surface for liveness.
+      operations:
+      - method: GET
+        name: livenessget
+        description: Tyk Check Liveness Status
+        call: mdcb-liveness.livenessget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mdcb-liveness-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk MDCB Data Planes and Diagnostics API — Liveness. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: tyk-check-liveness-status
+      description: Tyk Check Liveness Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mdcb-liveness.livenessget
+      outputParameters:
+      - type: object
+        mapping: $.

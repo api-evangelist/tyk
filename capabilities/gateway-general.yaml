@@ -1,0 +1,291 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Gateway API
+  description: 'Tyk Gateway API. 6 operations. Lead operation: Tyk Get List of Apis. Self-contained Naftiko capability covering
+    one Tyk business surface.'
+  tags:
+  - Tyk
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-general
+    baseUri: https://{tenant}
+    description: Tyk Gateway API business capability. Self-contained, no shared references.
+    resources:
+    - name: tyk-apis
+      path: /tyk/apis
+      operations:
+      - name: listapis
+        method: GET
+        description: Tyk Get List of Apis
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+      - name: createapi
+        method: POST
+        description: Tyk Creat an Api
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: base_api_id
+          in: query
+          type: string
+          description: The base API which the new version will be linked to.
+        - name: base_api_version_name
+          in: query
+          type: string
+          description: The version name of the base API while creating the first version. This doesn't have to be sent for
+            the next versions but if it is set, it will override base AP
+        - name: new_version_name
+          in: query
+          type: string
+          description: The version name of the created version.
+        - name: set_default
+          in: query
+          type: boolean
+          description: If true, the new version is set as default version.
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-apis-apiID
+      path: /tyk/apis/{apiID}
+      operations:
+      - name: deleteapi
+        method: DELETE
+        description: Tyk Deleting an Api Definition With Id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID.
+          required: true
+      - name: getapi
+        method: GET
+        description: Tyk Get Api Definition With It's Id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID.
+          required: true
+      - name: updateapi
+        method: PUT
+        description: Tyk Updating an Api Definition With Its Id.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-apis-apiID-versions
+      path: /tyk/apis/{apiID}/versions
+      operations:
+      - name: listapiversions
+        method: GET
+        description: Tyk Listing Versions of an Api.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID.
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-general-rest
+    port: 8080
+    description: REST adapter for Tyk Gateway API. One Spectral-compliant resource per consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/tyk/apis
+      name: tyk-apis
+      description: REST surface for tyk-apis.
+      operations:
+      - method: GET
+        name: listapis
+        description: Tyk Get List of Apis
+        call: gateway-general.listapis
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: POST
+        name: createapi
+        description: Tyk Creat an Api
+        call: gateway-general.createapi
+        with:
+          base_api_id: rest.base_api_id
+          base_api_version_name: rest.base_api_version_name
+          new_version_name: rest.new_version_name
+          set_default: rest.set_default
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/apis/{apiid}
+      name: tyk-apis-apiid
+      description: REST surface for tyk-apis-apiID.
+      operations:
+      - method: DELETE
+        name: deleteapi
+        description: Tyk Deleting an Api Definition With Id.
+        call: gateway-general.deleteapi
+        with:
+          apiID: rest.apiID
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getapi
+        description: Tyk Get Api Definition With It's Id.
+        call: gateway-general.getapi
+        with:
+          apiID: rest.apiID
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateapi
+        description: Tyk Updating an Api Definition With Its Id.
+        call: gateway-general.updateapi
+        with:
+          apiID: rest.apiID
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/apis/{apiid}/versions
+      name: tyk-apis-apiid-versions
+      description: REST surface for tyk-apis-apiID-versions.
+      operations:
+      - method: GET
+        name: listapiversions
+        description: Tyk Listing Versions of an Api.
+        call: gateway-general.listapiversions
+        with:
+          apiID: rest.apiID
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-general-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk Gateway API. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: tyk-get-list-apis
+      description: Tyk Get List of Apis
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-general.listapis
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-creat-api
+      description: Tyk Creat an Api
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-general.createapi
+      with:
+        base_api_id: tools.base_api_id
+        base_api_version_name: tools.base_api_version_name
+        new_version_name: tools.new_version_name
+        set_default: tools.set_default
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-deleting-api-definition-id
+      description: Tyk Deleting an Api Definition With Id.
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-general.deleteapi
+      with:
+        apiID: tools.apiID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-get-api-definition-it-s
+      description: Tyk Get Api Definition With It's Id.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-general.getapi
+      with:
+        apiID: tools.apiID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-updating-api-definition-its
+      description: Tyk Updating an Api Definition With Its Id.
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-general.updateapi
+      with:
+        apiID: tools.apiID
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-listing-versions-api
+      description: Tyk Listing Versions of an Api.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-general.listapiversions
+      with:
+        apiID: tools.apiID
+      outputParameters:
+      - type: object
+        mapping: $.

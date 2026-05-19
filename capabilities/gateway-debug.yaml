@@ -1,0 +1,82 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Gateway API — Debug
+  description: 'Tyk Gateway API — Debug. 1 operations. Lead operation: Tyk Test an an Api Definition.. Self-contained Naftiko
+    capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Debug
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-debug
+    baseUri: https://{tenant}
+    description: Tyk Gateway API — Debug business capability. Self-contained, no shared references.
+    resources:
+    - name: tyk-debug
+      path: /tyk/debug
+      operations:
+      - name: debugapidefinition
+        method: POST
+        description: Tyk Test an an Api Definition.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-debug-rest
+    port: 8080
+    description: REST adapter for Tyk Gateway API — Debug. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tyk/debug
+      name: tyk-debug
+      description: REST surface for tyk-debug.
+      operations:
+      - method: POST
+        name: debugapidefinition
+        description: Tyk Test an an Api Definition.
+        call: gateway-debug.debugapidefinition
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-debug-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk Gateway API — Debug. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: tyk-test-api-definition
+      description: Tyk Test an an Api Definition.
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: false
+      call: gateway-debug.debugapidefinition
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.

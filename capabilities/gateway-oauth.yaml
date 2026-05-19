@@ -1,0 +1,591 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Gateway API — OAuth
+  description: 'Tyk Gateway API — OAuth. 12 operations. Lead operation: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid)
+    for Oauth. Self-contained Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - OAuth
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: gateway-oauth
+    baseUri: https://{tenant}
+    description: Tyk Gateway API — OAuth business capability. Self-contained, no shared references.
+    resources:
+    - name: tyk-oauth-clients-apis-appID
+      path: /tyk/oauth/clients/apis/{appID}
+      operations:
+      - name: getapisforoauthapp
+        method: GET
+        description: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: appID
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+        - name: orgID
+          in: query
+          type: string
+          description: The Org Id
+    - name: tyk-oauth-clients-create
+      path: /tyk/oauth/clients/create
+      operations:
+      - name: createoauthclient
+        method: POST
+        description: Tyk Create New Oauth Client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-oauth-clients-apiID
+      path: /tyk/oauth/clients/{apiID}
+      operations:
+      - name: listoauthclients
+        method: GET
+        description: Tyk List Oauth Clients
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API ID
+          required: true
+    - name: tyk-oauth-clients-apiID-keyName
+      path: /tyk/oauth/clients/{apiID}/{keyName}
+      operations:
+      - name: deleteoauthclient
+        method: DELETE
+        description: Tyk Delete Oauth Client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API id
+          required: true
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+      - name: getoauthclient
+        method: GET
+        description: Tyk Get Oauth Client
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API id
+          required: true
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+      - name: updateoauthclient
+        method: PUT
+        description: Tyk Update Oauth Metadata,redirecturi,description and Policy Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API id
+          required: true
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-oauth-clients-apiID-keyName-rotate
+      path: /tyk/oauth/clients/{apiID}/{keyName}/rotate
+      operations:
+      - name: rotateoauthclient
+        method: PUT
+        description: Tyk Rotate the Oath Client Secret
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API id
+          required: true
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+    - name: tyk-oauth-clients-apiID-keyName-tokens
+      path: /tyk/oauth/clients/{apiID}/{keyName}/tokens
+      operations:
+      - name: getoauthclienttokens
+        method: GET
+        description: Tyk List Tokens for a Provided Api Id and Oauth-client Id
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: The API id
+          required: true
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+        - name: page
+          in: query
+          type: integer
+          description: Use page query parameter to say which page number you want returned.
+    - name: tyk-oauth-refresh-keyName
+      path: /tyk/oauth/refresh/{keyName}
+      operations:
+      - name: invalidateoauthrefresh
+        method: DELETE
+        description: Tyk Invalidate Oauth Refresh Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyName
+          in: path
+          type: string
+          description: The Client ID
+          required: true
+        - name: api_id
+          in: query
+          type: string
+          description: The API id
+          required: true
+    - name: tyk-oauth-revoke
+      path: /tyk/oauth/revoke
+      operations:
+      - name: revokesingletoken
+        method: POST
+        description: Tyk Revoke Token
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-oauth-revoke_all
+      path: /tyk/oauth/revoke_all
+      operations:
+      - name: revokealltokens
+        method: POST
+        description: Tyk Revoke All Client's Tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: false
+    - name: tyk-oauth-tokens
+      path: /tyk/oauth/tokens
+      operations:
+      - name: purgelapsedoauthtokens
+        method: DELETE
+        description: Tyk Purge Lapsed Oauth Tokens
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: scope
+          in: query
+          type: string
+          description: purge lapsed tokens
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: gateway-oauth-rest
+    port: 8080
+    description: REST adapter for Tyk Gateway API — OAuth. One Spectral-compliant resource per consumed operation, prefixed
+      with /v1.
+    resources:
+    - path: /v1/tyk/oauth/clients/apis/{appid}
+      name: tyk-oauth-clients-apis-appid
+      description: REST surface for tyk-oauth-clients-apis-appID.
+      operations:
+      - method: GET
+        name: getapisforoauthapp
+        description: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth
+        call: gateway-oauth.getapisforoauthapp
+        with:
+          appID: rest.appID
+          orgID: rest.orgID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/clients/create
+      name: tyk-oauth-clients-create
+      description: REST surface for tyk-oauth-clients-create.
+      operations:
+      - method: POST
+        name: createoauthclient
+        description: Tyk Create New Oauth Client
+        call: gateway-oauth.createoauthclient
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/clients/{apiid}
+      name: tyk-oauth-clients-apiid
+      description: REST surface for tyk-oauth-clients-apiID.
+      operations:
+      - method: GET
+        name: listoauthclients
+        description: Tyk List Oauth Clients
+        call: gateway-oauth.listoauthclients
+        with:
+          apiID: rest.apiID
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/clients/{apiid}/{keyname}
+      name: tyk-oauth-clients-apiid-keyname
+      description: REST surface for tyk-oauth-clients-apiID-keyName.
+      operations:
+      - method: DELETE
+        name: deleteoauthclient
+        description: Tyk Delete Oauth Client
+        call: gateway-oauth.deleteoauthclient
+        with:
+          apiID: rest.apiID
+          keyName: rest.keyName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: GET
+        name: getoauthclient
+        description: Tyk Get Oauth Client
+        call: gateway-oauth.getoauthclient
+        with:
+          apiID: rest.apiID
+          keyName: rest.keyName
+        outputParameters:
+        - type: object
+          mapping: $.
+      - method: PUT
+        name: updateoauthclient
+        description: Tyk Update Oauth Metadata,redirecturi,description and Policy Id
+        call: gateway-oauth.updateoauthclient
+        with:
+          apiID: rest.apiID
+          keyName: rest.keyName
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/clients/{apiid}/{keyname}/rotate
+      name: tyk-oauth-clients-apiid-keyname-rotate
+      description: REST surface for tyk-oauth-clients-apiID-keyName-rotate.
+      operations:
+      - method: PUT
+        name: rotateoauthclient
+        description: Tyk Rotate the Oath Client Secret
+        call: gateway-oauth.rotateoauthclient
+        with:
+          apiID: rest.apiID
+          keyName: rest.keyName
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/clients/{apiid}/{keyname}/tokens
+      name: tyk-oauth-clients-apiid-keyname-tokens
+      description: REST surface for tyk-oauth-clients-apiID-keyName-tokens.
+      operations:
+      - method: GET
+        name: getoauthclienttokens
+        description: Tyk List Tokens for a Provided Api Id and Oauth-client Id
+        call: gateway-oauth.getoauthclienttokens
+        with:
+          apiID: rest.apiID
+          keyName: rest.keyName
+          page: rest.page
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/refresh/{keyname}
+      name: tyk-oauth-refresh-keyname
+      description: REST surface for tyk-oauth-refresh-keyName.
+      operations:
+      - method: DELETE
+        name: invalidateoauthrefresh
+        description: Tyk Invalidate Oauth Refresh Token
+        call: gateway-oauth.invalidateoauthrefresh
+        with:
+          keyName: rest.keyName
+          api_id: rest.api_id
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/revoke
+      name: tyk-oauth-revoke
+      description: REST surface for tyk-oauth-revoke.
+      operations:
+      - method: POST
+        name: revokesingletoken
+        description: Tyk Revoke Token
+        call: gateway-oauth.revokesingletoken
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/revoke-all
+      name: tyk-oauth-revoke-all
+      description: REST surface for tyk-oauth-revoke_all.
+      operations:
+      - method: POST
+        name: revokealltokens
+        description: Tyk Revoke All Client's Tokens
+        call: gateway-oauth.revokealltokens
+        with:
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/tyk/oauth/tokens
+      name: tyk-oauth-tokens
+      description: REST surface for tyk-oauth-tokens.
+      operations:
+      - method: DELETE
+        name: purgelapsedoauthtokens
+        description: Tyk Purge Lapsed Oauth Tokens
+        call: gateway-oauth.purgelapsedoauthtokens
+        with:
+          scope: rest.scope
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: gateway-oauth-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk Gateway API — OAuth. One tool per consumed operation, routed inline through this capability's
+      consumes block.
+    tools:
+    - name: tyk-get-api-ids-apis
+      description: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.getapisforoauthapp
+      with:
+        appID: tools.appID
+        orgID: tools.orgID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-create-new-oauth-client
+      description: Tyk Create New Oauth Client
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-oauth.createoauthclient
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-list-oauth-clients
+      description: Tyk List Oauth Clients
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.listoauthclients
+      with:
+        apiID: tools.apiID
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-delete-oauth-client
+      description: Tyk Delete Oauth Client
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-oauth.deleteoauthclient
+      with:
+        apiID: tools.apiID
+        keyName: tools.keyName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-get-oauth-client
+      description: Tyk Get Oauth Client
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.getoauthclient
+      with:
+        apiID: tools.apiID
+        keyName: tools.keyName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-update-oauth-metadata-redirecturi-description-and
+      description: Tyk Update Oauth Metadata,redirecturi,description and Policy Id
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.updateoauthclient
+      with:
+        apiID: tools.apiID
+        keyName: tools.keyName
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-rotate-oath-client-secret
+      description: Tyk Rotate the Oath Client Secret
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.rotateoauthclient
+      with:
+        apiID: tools.apiID
+        keyName: tools.keyName
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-list-tokens-provided-api
+      description: Tyk List Tokens for a Provided Api Id and Oauth-client Id
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: gateway-oauth.getoauthclienttokens
+      with:
+        apiID: tools.apiID
+        keyName: tools.keyName
+        page: tools.page
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-invalidate-oauth-refresh-token
+      description: Tyk Invalidate Oauth Refresh Token
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-oauth.invalidateoauthrefresh
+      with:
+        keyName: tools.keyName
+        api_id: tools.api_id
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-revoke-token
+      description: Tyk Revoke Token
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-oauth.revokesingletoken
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-revoke-all-client-s-tokens
+      description: Tyk Revoke All Client's Tokens
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: gateway-oauth.revokealltokens
+      with:
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-purge-lapsed-oauth-tokens
+      description: Tyk Purge Lapsed Oauth Tokens
+      hints:
+        readOnly: false
+        destructive: true
+        idempotent: true
+      call: gateway-oauth.purgelapsedoauthtokens
+      with:
+        scope: tools.scope
+      outputParameters:
+      - type: object
+        mapping: $.

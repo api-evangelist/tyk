@@ -1,0 +1,115 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk MDCB Data Planes and Diagnostics API — Debug
+  description: 'Tyk MDCB Data Planes and Diagnostics API — Debug. 2 operations. Lead operation: Tyk Cpu Profiling Data. Self-contained
+    Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Debug
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mdcb-debug
+    baseUri: https://{tenant}
+    description: Tyk MDCB Data Planes and Diagnostics API — Debug business capability. Self-contained, no shared references.
+    resources:
+    - name: debug-pprof-profile
+      path: /debug/pprof/profile
+      operations:
+      - name: debugpprofprofileget
+        method: GET
+        description: Tyk Cpu Profiling Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    - name: debug-pprof-profileType
+      path: /debug/pprof/{profileType}
+      operations:
+      - name: debugpprofprofiletypeget
+        method: GET
+        description: Tyk Pprof Data
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: profileType
+          in: path
+          type: string
+          description: The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching
+            multiple types.
+          required: true
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: mdcb-debug-rest
+    port: 8080
+    description: REST adapter for Tyk MDCB Data Planes and Diagnostics API — Debug. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/debug/pprof/profile
+      name: debug-pprof-profile
+      description: REST surface for debug-pprof-profile.
+      operations:
+      - method: GET
+        name: debugpprofprofileget
+        description: Tyk Cpu Profiling Data
+        call: mdcb-debug.debugpprofprofileget
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/debug/pprof/{profiletype}
+      name: debug-pprof-profiletype
+      description: REST surface for debug-pprof-profileType.
+      operations:
+      - method: GET
+        name: debugpprofprofiletypeget
+        description: Tyk Pprof Data
+        call: mdcb-debug.debugpprofprofiletypeget
+        with:
+          profileType: rest.profileType
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mdcb-debug-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk MDCB Data Planes and Diagnostics API — Debug. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: tyk-cpu-profiling-data
+      description: Tyk Cpu Profiling Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mdcb-debug.debugpprofprofileget
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: tyk-pprof-data
+      description: Tyk Pprof Data
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mdcb-debug.debugpprofprofiletypeget
+      with:
+        profileType: tools.profileType
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,72 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk MDCB Data Planes and Diagnostics API — Readiness
+  description: 'Tyk MDCB Data Planes and Diagnostics API — Readiness. 1 operations. Lead operation: Tyk Check System Readiness
+    Status. Self-contained Naftiko capability covering one Tyk business surface.'
+  tags:
+  - Tyk
+  - Readiness
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: mdcb-readiness
+    baseUri: https://{tenant}
+    description: Tyk MDCB Data Planes and Diagnostics API — Readiness business capability. Self-contained, no shared references.
+    resources:
+    - name: readiness
+      path: /readiness
+      operations:
+      - name: readinessget
+        method: GET
+        description: Tyk Check System Readiness Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+    authentication:
+      type: apikey
+      key: X-Tyk-Authorization
+      value: '{{env.TYK_API_KEY}}'
+      placement: header
+  exposes:
+  - type: rest
+    namespace: mdcb-readiness-rest
+    port: 8080
+    description: REST adapter for Tyk MDCB Data Planes and Diagnostics API — Readiness. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/readiness
+      name: readiness
+      description: REST surface for readiness.
+      operations:
+      - method: GET
+        name: readinessget
+        description: Tyk Check System Readiness Status
+        call: mdcb-readiness.readinessget
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: mdcb-readiness-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Tyk MDCB Data Planes and Diagnostics API — Readiness. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: tyk-check-system-readiness-status
+      description: Tyk Check System Readiness Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: mdcb-readiness.readinessget
+      outputParameters:
+      - type: object
+        mapping: $.
