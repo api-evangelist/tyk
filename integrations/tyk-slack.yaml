@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Alert Slack on Tyk gateway errors and policy changes
+  description: Post a Slack message when the Tyk gateway returns elevated 5xx rates or when a policy or key is created, updated, or deleted by an operator.
+  tags:
+  - Tyk
+  - Integration
+  - Notifications
+  - slack
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    SLACK_API_KEY: SLACK_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-policies
+      path: /tyk/policies
+      operations:
+      - name: listpolicies
+        method: GET
+        description: List Tyk policies to include in change-detection alerts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-keys
+      path: /tyk/keys
+      operations:
+      - name: listkeys
+        method: GET
+        description: List Tyk keys to include in audit alerts.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: hello
+      path: /hello
+      operations:
+      - name: gatewayhealth
+        method: GET
+        description: Tyk gateway health used to escalate the alert severity.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: slack
+    baseUri: https://hooks.slack.com
+    description: Slack Incoming Webhooks operations consumed by this integration.
+    resources:
+    - name: services-t-b-x
+      path: /services/{T}/{B}/{X}
+      operations:
+      - name: postmessage
+        method: POST
+        description: 'Slack Incoming Webhooks: postMessage'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: T
+          in: path
+          type: string
+          description: Path parameter T.
+          required: true
+        - name: B
+          in: path
+          type: string
+          description: Path parameter B.
+          required: true
+        - name: X
+          in: path
+          type: string
+          description: Path parameter X.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-slack-mcp
+    description: MCP adapter for the tyk-slack integration.
+    tools:
+    - name: tyk_slack
+      description: Execute the tyk slack integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-slack-rest
+    port: 8080
+    description: REST adapter for the tyk-slack integration.
+    resources:
+    - path: /tyk-slack
+      name: tyk-slack
+      description: REST surface for the tyk-slack integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-slack integration.
+        call: tyk_slack
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

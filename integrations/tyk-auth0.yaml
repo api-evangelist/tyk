@@ -1,0 +1,134 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Provision Tyk keys from Auth0 users
+  description: When an Auth0 user logs in for the first time, mint a corresponding Tyk gateway key bound to the right policy ID so the user gets API access immediately.
+  tags:
+  - Tyk
+  - Integration
+  - Identity
+  - auth0
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    AUTH0_API_KEY: AUTH0_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-keys-create
+      path: /tyk/keys/create
+      operations:
+      - name: createkey
+        method: POST
+        description: Mint a new Tyk gateway key for an Auth0 user.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tyk-keys
+      path: /tyk/keys
+      operations:
+      - name: addkey
+        method: POST
+        description: Add a Tyk key with policy bindings derived from Auth0 user metadata.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: auth0
+    baseUri: https://yourdomain.auth0.com
+    description: Auth0 Management API operations consumed by this integration.
+    resources:
+    - name: api-v2-users-id
+      path: /api/v2/users/{id}
+      operations:
+      - name: getuser
+        method: GET
+        description: 'Auth0 Management API: getUser'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+    - name: api-v2-users-id
+      path: /api/v2/users/{id}
+      operations:
+      - name: updateuserappmetadata
+        method: PATCH
+        description: 'Auth0 Management API: updateUserAppMetadata'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: id
+          in: path
+          type: string
+          description: Path parameter id.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-auth0-mcp
+    description: MCP adapter for the tyk-auth0 integration.
+    tools:
+    - name: tyk_auth0
+      description: Execute the tyk auth0 integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-auth0-rest
+    port: 8080
+    description: REST adapter for the tyk-auth0 integration.
+    resources:
+    - path: /tyk-auth0
+      name: tyk-auth0
+      description: REST surface for the tyk-auth0 integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-auth0 integration.
+        call: tyk_auth0
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

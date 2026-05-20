@@ -1,0 +1,119 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Send Tyk gateway logs and traces to Grafana Cloud
+  description: Push Tyk gateway access logs and trace spans to Grafana Cloud (Loki + Tempo) so SRE teams can correlate API latency with downstream service health.
+  tags:
+  - Tyk
+  - Integration
+  - Observability
+  - grafana
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    GRAFANA_API_KEY: GRAFANA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-debug
+      path: /tyk/debug
+      operations:
+      - name: getdebug
+        method: GET
+        description: Pull Tyk gateway debug output for shipping to Loki.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-apis
+      path: /tyk/apis
+      operations:
+      - name: listapis
+        method: GET
+        description: List Tyk APIs to label log streams by API.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: grafana
+    baseUri: https://logs-prod.grafana.net
+    description: Grafana Cloud Loki + Tempo API operations consumed by this integration.
+    resources:
+    - name: loki-api-v1-push
+      path: /loki/api/v1/push
+      operations:
+      - name: pushlogs
+        method: POST
+        description: 'Grafana Cloud Loki + Tempo API: pushLogs'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: api-traces
+      path: /api/traces
+      operations:
+      - name: pushtraces
+        method: POST
+        description: 'Grafana Cloud Loki + Tempo API: pushTraces'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-grafana-mcp
+    description: MCP adapter for the tyk-grafana integration.
+    tools:
+    - name: tyk_grafana
+      description: Execute the tyk grafana integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-grafana-rest
+    port: 8080
+    description: REST adapter for the tyk-grafana integration.
+    resources:
+    - path: /tyk-grafana
+      name: tyk-grafana
+      description: REST surface for the tyk-grafana integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-grafana integration.
+        call: tyk_grafana
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

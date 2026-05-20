@@ -1,0 +1,102 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Diff Tyk-fronted GraphQL schemas with GraphQL Inspector
+  description: When a GraphQL API behind Tyk publishes a new schema, diff it against the previous version with GraphQL Inspector and surface breaking-change warnings before promote.
+  tags:
+  - Tyk
+  - Integration
+  - Governance
+  - graphql-inspector
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    GRAPHQL_INSPECTOR_API_KEY: GRAPHQL_INSPECTOR_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-schema
+      path: /tyk/schema
+      operations:
+      - name: getschema
+        method: GET
+        description: Retrieve the Tyk-managed GraphQL schema for diffing.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-apis
+      path: /tyk/apis
+      operations:
+      - name: listapis
+        method: GET
+        description: List Tyk APIs to find GraphQL-fronted endpoints.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: graphql-inspector
+    baseUri: https://api.graphql-inspector.com
+    description: GraphQL Inspector API operations consumed by this integration.
+    resources:
+    - name: v1-schemas-diff
+      path: /v1/schemas/diff
+      operations:
+      - name: diffschemas
+        method: POST
+        description: 'GraphQL Inspector API: diffSchemas'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-graphql-inspector-mcp
+    description: MCP adapter for the tyk-graphql-inspector integration.
+    tools:
+    - name: tyk_graphql_inspector
+      description: Execute the tyk graphql inspector integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-graphql-inspector-rest
+    port: 8080
+    description: REST adapter for the tyk-graphql-inspector integration.
+    resources:
+    - path: /tyk-graphql-inspector
+      name: tyk-graphql-inspector
+      description: REST surface for the tyk-graphql-inspector integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-graphql-inspector integration.
+        call: tyk_graphql_inspector
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

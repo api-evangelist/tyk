@@ -1,0 +1,166 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Externalize Tyk gateway rate-limit counters to Redis
+  description: Mirror Tyk gateway rate-limit counters into an external Redis cluster so multi-cluster Tyk deployments share quota state and downstream services can read live remaining-quota.
+  tags:
+  - Tyk
+  - Integration
+  - Rate limiting
+  - redis
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    REDIS_API_KEY: REDIS_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-keys-keyid
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: getkey
+        method: GET
+        description: Fetch a Tyk key to read its current quota and rate-limit state.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyID
+          in: path
+          type: string
+          description: Path parameter keyID.
+          required: true
+    - name: tyk-keys-keyid
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: updatekey
+        method: PUT
+        description: Update a Tyk key's rate-limit configuration to match the external Redis cluster.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyID
+          in: path
+          type: string
+          description: Path parameter keyID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tyk-cache-apiid
+      path: /tyk/cache/{apiID}
+      operations:
+      - name: invalidatecache
+        method: POST
+        description: Invalidate the Tyk gateway cache for an API when counters reset.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: Path parameter apiID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: redis
+    baseUri: https://redis-rest.example.com
+    description: Redis REST Gateway operations consumed by this integration.
+    resources:
+    - name: set-key-value
+      path: /set/{key}/{value}
+      operations:
+      - name: setcounter
+        method: POST
+        description: 'Redis REST Gateway: setCounter'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: Path parameter key.
+          required: true
+        - name: value
+          in: path
+          type: string
+          description: Path parameter value.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: get-key
+      path: /get/{key}
+      operations:
+      - name: getcounter
+        method: GET
+        description: 'Redis REST Gateway: getCounter'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: key
+          in: path
+          type: string
+          description: Path parameter key.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-redis-mcp
+    description: MCP adapter for the tyk-redis integration.
+    tools:
+    - name: tyk_redis
+      description: Execute the tyk redis integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-redis-rest
+    port: 8080
+    description: REST adapter for the tyk-redis integration.
+    resources:
+    - path: /tyk-redis
+      name: tyk-redis
+      description: REST surface for the tyk-redis integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-redis integration.
+        call: tyk_redis
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

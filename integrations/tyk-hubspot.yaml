@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sync Tyk developer portal signups into HubSpot
+  description: When a developer signs up for an API key in Tyk, create or update the matching HubSpot contact with their requested APIs and plan so sales can follow up on high-intent signups.
+  tags:
+  - Tyk
+  - Integration
+  - CRM
+  - hubspot
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    HUBSPOT_API_KEY: HUBSPOT_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-keys
+      path: /tyk/keys
+      operations:
+      - name: listkeys
+        method: GET
+        description: List newly-issued Tyk keys to identify developer signups.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-keys-keyid
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: getkey
+        method: GET
+        description: Fetch the Tyk key details (plan, quota, APIs) for the contact record.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyID
+          in: path
+          type: string
+          description: Path parameter keyID.
+          required: true
+    - name: tyk-policies
+      path: /tyk/policies
+      operations:
+      - name: listpolicies
+        method: GET
+        description: List Tyk policies to attach plan names to the HubSpot contact.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  - type: http
+    namespace: hubspot
+    baseUri: https://api.hubapi.com
+    description: HubSpot CRM API operations consumed by this integration.
+    resources:
+    - name: crm-v3-objects-contacts
+      path: /crm/v3/objects/contacts
+      operations:
+      - name: createcontact
+        method: POST
+        description: 'HubSpot CRM API: createContact'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: crm-v3-objects-contacts-contactid
+      path: /crm/v3/objects/contacts/{contactId}
+      operations:
+      - name: updatecontact
+        method: PATCH
+        description: 'HubSpot CRM API: updateContact'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: contactId
+          in: path
+          type: string
+          description: Path parameter contactId.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-hubspot-mcp
+    description: MCP adapter for the tyk-hubspot integration.
+    tools:
+    - name: tyk_hubspot
+      description: Execute the tyk hubspot integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-hubspot-rest
+    port: 8080
+    description: REST adapter for the tyk-hubspot integration.
+    resources:
+    - path: /tyk-hubspot
+      name: tyk-hubspot
+      description: REST surface for the tyk-hubspot integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-hubspot integration.
+        call: tyk_hubspot
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

@@ -1,0 +1,112 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Lint Tyk OAS APIs with Spectral on publish
+  description: Before promoting a Tyk OAS API to production, run the OpenAPI document through a Spectral ruleset and block publish on rule violations.
+  tags:
+  - Tyk
+  - Integration
+  - Governance
+  - spectral
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    SPECTRAL_API_KEY: SPECTRAL_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-apis-oas-apiid
+      path: /tyk/apis/oas/{apiID}
+      operations:
+      - name: getoasapi
+        method: GET
+        description: Fetch the Tyk OAS API document for linting.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: Path parameter apiID.
+          required: true
+    - name: tyk-apis-oas-apiid-export
+      path: /tyk/apis/oas/{apiID}/export
+      operations:
+      - name: exportoasapi
+        method: GET
+        description: Export the Tyk OAS API definition prior to publishing.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: Path parameter apiID.
+          required: true
+  - type: http
+    namespace: spectral
+    baseUri: https://api.stoplight.io
+    description: Stoplight Spectral API operations consumed by this integration.
+    resources:
+    - name: spectral-lint
+      path: /spectral/lint
+      operations:
+      - name: lintdocument
+        method: POST
+        description: 'Stoplight Spectral API: lintDocument'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-spectral-mcp
+    description: MCP adapter for the tyk-spectral integration.
+    tools:
+    - name: tyk_spectral
+      description: Execute the tyk spectral integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-spectral-rest
+    port: 8080
+    description: REST adapter for the tyk-spectral integration.
+    resources:
+    - path: /tyk-spectral
+      name: tyk-spectral
+      description: REST surface for the tyk-spectral integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-spectral integration.
+        call: tyk_spectral
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

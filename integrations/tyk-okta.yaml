@@ -1,0 +1,129 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Map Okta groups to Tyk policies
+  description: Reflect Okta group membership changes as Tyk policy assignments — adding or removing a user from an Okta group attaches or detaches the matching Tyk policy on their key.
+  tags:
+  - Tyk
+  - Integration
+  - Identity
+  - okta
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    OKTA_API_KEY: OKTA_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-policies
+      path: /tyk/policies
+      operations:
+      - name: listpolicies
+        method: GET
+        description: List Tyk policies to map against Okta groups.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-keys-keyid
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: updatekey
+        method: PUT
+        description: Update a Tyk key to attach or detach a policy when group membership changes.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyID
+          in: path
+          type: string
+          description: Path parameter keyID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: okta
+    baseUri: https://yourdomain.okta.com
+    description: Okta API operations consumed by this integration.
+    resources:
+    - name: api-v1-groups-groupid-users
+      path: /api/v1/groups/{groupId}/users
+      operations:
+      - name: listgroupusers
+        method: GET
+        description: 'Okta API: listGroupUsers'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: groupId
+          in: path
+          type: string
+          description: Path parameter groupId.
+          required: true
+    - name: api-v1-users-userid-groups
+      path: /api/v1/users/{userId}/groups
+      operations:
+      - name: listusergroups
+        method: GET
+        description: 'Okta API: listUserGroups'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: userId
+          in: path
+          type: string
+          description: Path parameter userId.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-okta-mcp
+    description: MCP adapter for the tyk-okta integration.
+    tools:
+    - name: tyk_okta
+      description: Execute the tyk okta integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-okta-rest
+    port: 8080
+    description: REST adapter for the tyk-okta integration.
+    resources:
+    - path: /tyk-okta
+      name: tyk-okta
+      description: REST surface for the tyk-okta integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-okta integration.
+        call: tyk_okta
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

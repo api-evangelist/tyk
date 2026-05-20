@@ -1,0 +1,171 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Sync Tyk OAS APIs from a GitHub repository
+  description: On push to main, read the OpenAPI document from a GitHub repo and import or update the corresponding Tyk OAS API so source-of-truth lives with the code.
+  tags:
+  - Tyk
+  - Integration
+  - DevOps
+  - github
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    GITHUB_API_KEY: GITHUB_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-apis-oas-import
+      path: /tyk/apis/oas/import
+      operations:
+      - name: importoasapi
+        method: POST
+        description: Import an OpenAPI document into Tyk as an OAS API.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tyk-apis-oas-apiid
+      path: /tyk/apis/oas/{apiID}
+      operations:
+      - name: updateoasapi
+        method: PUT
+        description: Update the Tyk OAS API definition from the GitHub spec.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: Path parameter apiID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tyk-reload-group
+      path: /tyk/reload/group
+      operations:
+      - name: reloadgroup
+        method: POST
+        description: Trigger a Tyk gateway hot-reload after the spec is updated.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+  - type: http
+    namespace: github
+    baseUri: https://api.github.com
+    description: GitHub REST API operations consumed by this integration.
+    resources:
+    - name: repos-owner-repo-contents-path
+      path: /repos/{owner}/{repo}/contents/{path}
+      operations:
+      - name: getrepocontent
+        method: GET
+        description: 'GitHub REST API: getRepoContent'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Path parameter owner.
+          required: true
+        - name: repo
+          in: path
+          type: string
+          description: Path parameter repo.
+          required: true
+        - name: path
+          in: path
+          type: string
+          description: Path parameter path.
+          required: true
+    - name: repos-owner-repo-commits-ref
+      path: /repos/{owner}/{repo}/commits/{ref}
+      operations:
+      - name: getcommit
+        method: GET
+        description: 'GitHub REST API: getCommit'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: owner
+          in: path
+          type: string
+          description: Path parameter owner.
+          required: true
+        - name: repo
+          in: path
+          type: string
+          description: Path parameter repo.
+          required: true
+        - name: ref
+          in: path
+          type: string
+          description: Path parameter ref.
+          required: true
+  exposes:
+  - type: mcp
+    namespace: tyk-github-mcp
+    description: MCP adapter for the tyk-github integration.
+    tools:
+    - name: tyk_github
+      description: Execute the tyk github integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-github-rest
+    port: 8080
+    description: REST adapter for the tyk-github integration.
+    resources:
+    - path: /tyk-github
+      name: tyk-github
+      description: REST surface for the tyk-github integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-github integration.
+        call: tyk_github
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

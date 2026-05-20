@@ -1,0 +1,141 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Front OpenAI traffic through Tyk for cost and quota control
+  description: Proxy OpenAI completions through a Tyk API so per-team rate limits, prompt logging, and cost attribution are enforced consistently before the request reaches OpenAI.
+  tags:
+  - Tyk
+  - Integration
+  - AI gateway
+  - openai
+  created: '2026-05-20'
+  modified: '2026-05-20'
+binds:
+- namespace: env
+  keys:
+    TYK_API_KEY: TYK_API_KEY
+    OPENAI_API_KEY: OPENAI_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: tyk
+    baseUri: https://tyk-gateway.example.com
+    description: Tyk API operations consumed by this integration.
+    resources:
+    - name: tyk-apis
+      path: /tyk/apis
+      operations:
+      - name: listapis
+        method: GET
+        description: List Tyk APIs to find the OpenAI-facing proxy definition.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+    - name: tyk-apis-oas-apiid
+      path: /tyk/apis/oas/{apiID}
+      operations:
+      - name: updateoasapi
+        method: PUT
+        description: Update the Tyk OAS API definition that fronts OpenAI to roll out new quotas.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: apiID
+          in: path
+          type: string
+          description: Path parameter apiID.
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: tyk-keys-keyid
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: getkey
+        method: GET
+        description: Read the Tyk key for the calling team to attribute OpenAI spend.
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: keyID
+          in: path
+          type: string
+          description: Path parameter keyID.
+          required: true
+  - type: http
+    namespace: openai
+    baseUri: https://api.openai.com
+    description: OpenAI API operations consumed by this integration.
+    resources:
+    - name: v1-chat-completions
+      path: /v1/chat/completions
+      operations:
+      - name: createchatcompletion
+        method: POST
+        description: 'OpenAI API: createChatCompletion'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-models
+      path: /v1/models
+      operations:
+      - name: listmodels
+        method: GET
+        description: 'OpenAI API: listModels'
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters: []
+  exposes:
+  - type: mcp
+    namespace: tyk-openai-mcp
+    description: MCP adapter for the tyk-openai integration.
+    tools:
+    - name: tyk_openai
+      description: Execute the tyk openai integration end-to-end.
+      inputSchema:
+        type: object
+        properties:
+          trigger_event:
+            type: object
+            description: Triggering event payload.
+        required:
+        - trigger_event
+  - type: rest
+    namespace: tyk-openai-rest
+    port: 8080
+    description: REST adapter for the tyk-openai integration.
+    resources:
+    - path: /tyk-openai
+      name: tyk-openai
+      description: REST surface for the tyk-openai integration.
+      operations:
+      - method: POST
+        name: trigger
+        description: Trigger the tyk-openai integration.
+        call: tyk_openai
+        with:
+          trigger_event: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.

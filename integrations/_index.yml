@@ -1,0 +1,70 @@
+- slug: tyk-datadog
+  label: Stream Tyk gateway metrics into Datadog
+  partner: datadog
+  category: Observability
+  use_case: Forward Tyk gateway request counts, latency, and error rates into Datadog as custom metrics for unified API observability dashboards.
+- slug: tyk-grafana
+  label: Send Tyk gateway logs and traces to Grafana Cloud
+  partner: grafana
+  category: Observability
+  use_case: Push Tyk gateway access logs and trace spans to Grafana Cloud (Loki + Tempo) so SRE teams can correlate API latency with downstream service health.
+- slug: tyk-spectral
+  label: Lint Tyk OAS APIs with Spectral on publish
+  partner: spectral
+  category: Governance
+  use_case: Before promoting a Tyk OAS API to production, run the OpenAPI document through a Spectral ruleset and block publish on rule violations.
+- slug: tyk-opa
+  label: Enforce Open Policy Agent decisions on Tyk policy changes
+  partner: opa
+  category: Governance
+  use_case: When a Tyk Policy is created or updated, evaluate the change against an OPA policy bundle and reject mutations that violate governance rules.
+- slug: tyk-auth0
+  label: Provision Tyk keys from Auth0 users
+  partner: auth0
+  category: Identity
+  use_case: When an Auth0 user logs in for the first time, mint a corresponding Tyk gateway key bound to the right policy ID so the user gets API access immediately.
+- slug: tyk-okta
+  label: Map Okta groups to Tyk policies
+  partner: okta
+  category: Identity
+  use_case: Reflect Okta group membership changes as Tyk policy assignments — adding or removing a user from an Okta group attaches or detaches the matching Tyk policy on their key.
+- slug: tyk-github
+  label: Sync Tyk OAS APIs from a GitHub repository
+  partner: github
+  category: DevOps
+  use_case: On push to main, read the OpenAPI document from a GitHub repo and import or update the corresponding Tyk OAS API so source-of-truth lives with the code.
+- slug: tyk-slack
+  label: Alert Slack on Tyk gateway errors and policy changes
+  partner: slack
+  category: Notifications
+  use_case: Post a Slack message when the Tyk gateway returns elevated 5xx rates or when a policy or key is created, updated, or deleted by an operator.
+- slug: tyk-stripe
+  label: Meter Tyk API usage into Stripe subscription items
+  partner: stripe
+  category: Billing
+  use_case: For each Tyk key bound to a paying customer, aggregate request counts and push usage records into the matching Stripe metered subscription item for usage-based billing.
+- slug: tyk-hubspot
+  label: Sync Tyk developer portal signups into HubSpot
+  partner: hubspot
+  category: CRM
+  use_case: When a developer signs up for an API key in Tyk, create or update the matching HubSpot contact with their requested APIs and plan so sales can follow up on high-intent signups.
+- slug: tyk-redis
+  label: Externalize Tyk gateway rate-limit counters to Redis
+  partner: redis
+  category: Rate limiting
+  use_case: Mirror Tyk gateway rate-limit counters into an external Redis cluster so multi-cluster Tyk deployments share quota state and downstream services can read live remaining-quota.
+- slug: tyk-graphql-inspector
+  label: Diff Tyk-fronted GraphQL schemas with GraphQL Inspector
+  partner: graphql-inspector
+  category: Governance
+  use_case: When a GraphQL API behind Tyk publishes a new schema, diff it against the previous version with GraphQL Inspector and surface breaking-change warnings before promote.
+- slug: tyk-keycloak
+  label: Mirror Keycloak clients as Tyk OAuth clients
+  partner: keycloak
+  category: Identity
+  use_case: When a Keycloak client is created or updated, mirror it as a Tyk OAuth client bound to the right API so the same identity provider drives both Tyk and Keycloak.
+- slug: tyk-openai
+  label: Front OpenAI traffic through Tyk for cost and quota control
+  partner: openai
+  category: AI gateway
+  use_case: Proxy OpenAI completions through a Tyk API so per-team rate limits, prompt logging, and cost attribution are enforced consistently before the request reaches OpenAI.

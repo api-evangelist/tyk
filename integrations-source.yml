@@ -1,0 +1,350 @@
+# Curated Tyk integrations. Each entry becomes one Naftiko capability YAML in integrations/.
+# Categories reflect Tyk's actual strengths: gateway, dev portal, key/policy mgmt,
+# observability, identity, governance, AI gateway, and commerce.
+# Tyk-side paths use real gateway endpoints from temp/tyk/openapi/tyk-gateway-api-openapi.yml.
+
+# Observability (2)
+- partner: datadog
+  name: Stream Tyk gateway metrics into Datadog
+  category: Observability
+  use_case: Forward Tyk gateway request counts, latency, and error rates into Datadog as custom metrics for unified API observability dashboards.
+  partner_baseUri: https://api.datadoghq.com
+  partner_api: Datadog Metrics API
+  provider_ops:
+    - method: GET
+      path: /tyk/apis
+      name: listApis
+      description: List Tyk APIs to label the metric series by API ID and name.
+    - method: GET
+      path: /hello
+      name: gatewayHealth
+      description: Tyk gateway health check used to mark the metric series up/down.
+  partner_ops:
+    - method: POST
+      path: /api/v2/series
+      name: submitMetrics
+    - method: POST
+      path: /api/v1/events
+      name: postEvent
+
+- partner: grafana
+  name: Send Tyk gateway logs and traces to Grafana Cloud
+  category: Observability
+  use_case: Push Tyk gateway access logs and trace spans to Grafana Cloud (Loki + Tempo) so SRE teams can correlate API latency with downstream service health.
+  partner_baseUri: https://logs-prod.grafana.net
+  partner_api: Grafana Cloud Loki + Tempo API
+  provider_ops:
+    - method: GET
+      path: /tyk/debug
+      name: getDebug
+      description: Pull Tyk gateway debug output for shipping to Loki.
+    - method: GET
+      path: /tyk/apis
+      name: listApis
+      description: List Tyk APIs to label log streams by API.
+  partner_ops:
+    - method: POST
+      path: /loki/api/v1/push
+      name: pushLogs
+    - method: POST
+      path: /api/traces
+      name: pushTraces
+
+# Governance / linting (2)
+- partner: spectral
+  name: Lint Tyk OAS APIs with Spectral on publish
+  category: Governance
+  use_case: Before promoting a Tyk OAS API to production, run the OpenAPI document through a Spectral ruleset and block publish on rule violations.
+  partner_baseUri: https://api.stoplight.io
+  partner_api: Stoplight Spectral API
+  provider_ops:
+    - method: GET
+      path: /tyk/apis/oas/{apiID}
+      name: getOasApi
+      description: Fetch the Tyk OAS API document for linting.
+    - method: GET
+      path: /tyk/apis/oas/{apiID}/export
+      name: exportOasApi
+      description: Export the Tyk OAS API definition prior to publishing.
+  partner_ops:
+    - method: POST
+      path: /spectral/lint
+      name: lintDocument
+
+- partner: opa
+  name: Enforce Open Policy Agent decisions on Tyk policy changes
+  category: Governance
+  use_case: When a Tyk Policy is created or updated, evaluate the change against an OPA policy bundle and reject mutations that violate governance rules.
+  partner_baseUri: https://opa.internal.example.com
+  partner_api: Open Policy Agent Data API
+  provider_ops:
+    - method: GET
+      path: /tyk/policies
+      name: listPolicies
+      description: List current Tyk policies to feed OPA evaluation context.
+    - method: GET
+      path: /tyk/policies/{polID}
+      name: getPolicy
+      description: Retrieve the Tyk policy under change.
+  partner_ops:
+    - method: POST
+      path: /v1/data/tyk/policy/allow
+      name: evaluatePolicy
+
+# Identity / SSO (2)
+- partner: auth0
+  name: Provision Tyk keys from Auth0 users
+  category: Identity
+  use_case: When an Auth0 user logs in for the first time, mint a corresponding Tyk gateway key bound to the right policy ID so the user gets API access immediately.
+  partner_baseUri: https://yourdomain.auth0.com
+  partner_api: Auth0 Management API
+  provider_ops:
+    - method: POST
+      path: /tyk/keys/create
+      name: createKey
+      description: Mint a new Tyk gateway key for an Auth0 user.
+    - method: POST
+      path: /tyk/keys
+      name: addKey
+      description: Add a Tyk key with policy bindings derived from Auth0 user metadata.
+  partner_ops:
+    - method: GET
+      path: /api/v2/users/{id}
+      name: getUser
+    - method: PATCH
+      path: /api/v2/users/{id}
+      name: updateUserAppMetadata
+
+- partner: okta
+  name: Map Okta groups to Tyk policies
+  category: Identity
+  use_case: Reflect Okta group membership changes as Tyk policy assignments — adding or removing a user from an Okta group attaches or detaches the matching Tyk policy on their key.
+  partner_baseUri: https://yourdomain.okta.com
+  partner_api: Okta API
+  provider_ops:
+    - method: GET
+      path: /tyk/policies
+      name: listPolicies
+      description: List Tyk policies to map against Okta groups.
+    - method: PUT
+      path: /tyk/keys/{keyID}
+      name: updateKey
+      description: Update a Tyk key to attach or detach a policy when group membership changes.
+  partner_ops:
+    - method: GET
+      path: /api/v1/groups/{groupId}/users
+      name: listGroupUsers
+    - method: GET
+      path: /api/v1/users/{userId}/groups
+      name: listUserGroups
+
+# Spec / CI sync (1)
+- partner: github
+  name: Sync Tyk OAS APIs from a GitHub repository
+  category: DevOps
+  use_case: On push to main, read the OpenAPI document from a GitHub repo and import or update the corresponding Tyk OAS API so source-of-truth lives with the code.
+  partner_baseUri: https://api.github.com
+  partner_api: GitHub REST API
+  provider_ops:
+    - method: POST
+      path: /tyk/apis/oas/import
+      name: importOasApi
+      description: Import an OpenAPI document into Tyk as an OAS API.
+    - method: PUT
+      path: /tyk/apis/oas/{apiID}
+      name: updateOasApi
+      description: Update the Tyk OAS API definition from the GitHub spec.
+    - method: POST
+      path: /tyk/reload/group
+      name: reloadGroup
+      description: Trigger a Tyk gateway hot-reload after the spec is updated.
+  partner_ops:
+    - method: GET
+      path: /repos/{owner}/{repo}/contents/{path}
+      name: getRepoContent
+    - method: GET
+      path: /repos/{owner}/{repo}/commits/{ref}
+      name: getCommit
+
+# Alerts / notifications (1)
+- partner: slack
+  name: Alert Slack on Tyk gateway errors and policy changes
+  category: Notifications
+  use_case: Post a Slack message when the Tyk gateway returns elevated 5xx rates or when a policy or key is created, updated, or deleted by an operator.
+  partner_baseUri: https://hooks.slack.com
+  partner_api: Slack Incoming Webhooks
+  provider_ops:
+    - method: GET
+      path: /tyk/policies
+      name: listPolicies
+      description: List Tyk policies to include in change-detection alerts.
+    - method: GET
+      path: /tyk/keys
+      name: listKeys
+      description: List Tyk keys to include in audit alerts.
+    - method: GET
+      path: /hello
+      name: gatewayHealth
+      description: Tyk gateway health used to escalate the alert severity.
+  partner_ops:
+    - method: POST
+      path: /services/{T}/{B}/{X}
+      name: postMessage
+
+# Billing / monetization (1)
+- partner: stripe
+  name: Meter Tyk API usage into Stripe subscription items
+  category: Billing
+  use_case: For each Tyk key bound to a paying customer, aggregate request counts and push usage records into the matching Stripe metered subscription item for usage-based billing.
+  partner_baseUri: https://api.stripe.com
+  partner_api: Stripe API
+  provider_ops:
+    - method: GET
+      path: /tyk/keys
+      name: listKeys
+      description: List Tyk keys to attribute API usage by customer.
+    - method: GET
+      path: /tyk/keys/{keyID}
+      name: getKey
+      description: Fetch a Tyk key to read its quota and remaining counters.
+    - method: GET
+      path: /tyk/org/keys
+      name: listOrgKeys
+      description: List per-organization keys to roll usage up to the billing account.
+  partner_ops:
+    - method: POST
+      path: /v1/subscription_items/{subscription_item}/usage_records
+      name: createUsageRecord
+
+# Dev portal CRM (1)
+- partner: hubspot
+  name: Sync Tyk developer portal signups into HubSpot
+  category: CRM
+  use_case: When a developer signs up for an API key in Tyk, create or update the matching HubSpot contact with their requested APIs and plan so sales can follow up on high-intent signups.
+  partner_baseUri: https://api.hubapi.com
+  partner_api: HubSpot CRM API
+  provider_ops:
+    - method: GET
+      path: /tyk/keys
+      name: listKeys
+      description: List newly-issued Tyk keys to identify developer signups.
+    - method: GET
+      path: /tyk/keys/{keyID}
+      name: getKey
+      description: Fetch the Tyk key details (plan, quota, APIs) for the contact record.
+    - method: GET
+      path: /tyk/policies
+      name: listPolicies
+      description: List Tyk policies to attach plan names to the HubSpot contact.
+  partner_ops:
+    - method: POST
+      path: /crm/v3/objects/contacts
+      name: createContact
+    - method: PATCH
+      path: /crm/v3/objects/contacts/{contactId}
+      name: updateContact
+
+# Rate limiting / backend (1)
+- partner: redis
+  name: Externalize Tyk gateway rate-limit counters to Redis
+  category: Rate limiting
+  use_case: Mirror Tyk gateway rate-limit counters into an external Redis cluster so multi-cluster Tyk deployments share quota state and downstream services can read live remaining-quota.
+  partner_baseUri: https://redis-rest.example.com
+  partner_api: Redis REST Gateway
+  provider_ops:
+    - method: GET
+      path: /tyk/keys/{keyID}
+      name: getKey
+      description: Fetch a Tyk key to read its current quota and rate-limit state.
+    - method: PUT
+      path: /tyk/keys/{keyID}
+      name: updateKey
+      description: Update a Tyk key's rate-limit configuration to match the external Redis cluster.
+    - method: POST
+      path: /tyk/cache/{apiID}
+      name: invalidateCache
+      description: Invalidate the Tyk gateway cache for an API when counters reset.
+  partner_ops:
+    - method: POST
+      path: /set/{key}/{value}
+      name: setCounter
+    - method: GET
+      path: /get/{key}
+      name: getCounter
+
+# Schema introspection (1)
+- partner: graphql-inspector
+  name: Diff Tyk-fronted GraphQL schemas with GraphQL Inspector
+  category: Governance
+  use_case: When a GraphQL API behind Tyk publishes a new schema, diff it against the previous version with GraphQL Inspector and surface breaking-change warnings before promote.
+  partner_baseUri: https://api.graphql-inspector.com
+  partner_api: GraphQL Inspector API
+  provider_ops:
+    - method: GET
+      path: /tyk/schema
+      name: getSchema
+      description: Retrieve the Tyk-managed GraphQL schema for diffing.
+    - method: GET
+      path: /tyk/apis
+      name: listApis
+      description: List Tyk APIs to find GraphQL-fronted endpoints.
+  partner_ops:
+    - method: POST
+      path: /v1/schemas/diff
+      name: diffSchemas
+
+# OAuth client mgmt (1)
+- partner: keycloak
+  name: Mirror Keycloak clients as Tyk OAuth clients
+  category: Identity
+  use_case: When a Keycloak client is created or updated, mirror it as a Tyk OAuth client bound to the right API so the same identity provider drives both Tyk and Keycloak.
+  partner_baseUri: https://keycloak.example.com
+  partner_api: Keycloak Admin REST API
+  provider_ops:
+    - method: POST
+      path: /tyk/oauth/clients/create
+      name: createOAuthClient
+      description: Create a Tyk OAuth client mirroring a Keycloak client.
+    - method: GET
+      path: /tyk/oauth/clients/{apiID}
+      name: listOAuthClients
+      description: List Tyk OAuth clients to reconcile with Keycloak.
+    - method: POST
+      path: /tyk/oauth/revoke
+      name: revokeToken
+      description: Revoke a Tyk-issued OAuth token when the matching Keycloak credential rotates.
+  partner_ops:
+    - method: GET
+      path: /admin/realms/{realm}/clients
+      name: listClients
+    - method: POST
+      path: /admin/realms/{realm}/clients
+      name: createClient
+
+# AI / LLM gateway (1)
+- partner: openai
+  name: Front OpenAI traffic through Tyk for cost and quota control
+  category: AI gateway
+  use_case: Proxy OpenAI completions through a Tyk API so per-team rate limits, prompt logging, and cost attribution are enforced consistently before the request reaches OpenAI.
+  partner_baseUri: https://api.openai.com
+  partner_api: OpenAI API
+  provider_ops:
+    - method: GET
+      path: /tyk/apis
+      name: listApis
+      description: List Tyk APIs to find the OpenAI-facing proxy definition.
+    - method: PUT
+      path: /tyk/apis/oas/{apiID}
+      name: updateOasApi
+      description: Update the Tyk OAS API definition that fronts OpenAI to roll out new quotas.
+    - method: GET
+      path: /tyk/keys/{keyID}
+      name: getKey
+      description: Read the Tyk key for the calling team to attribute OpenAI spend.
+  partner_ops:
+    - method: POST
+      path: /v1/chat/completions
+      name: createChatCompletion
+    - method: GET
+      path: /v1/models
+      name: listModels
