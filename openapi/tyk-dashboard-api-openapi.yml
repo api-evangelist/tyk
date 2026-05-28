@@ -142,7 +142,7 @@ tags:
       users.
 
       3. Control access for individual fields. For example, do not allow
-      changing the API active status (e.g. deploy), unless you have a specific
+      changing the API  active  status (e.g. deploy), unless you have a specific
       permission set.
 
       4. And many more <br/>
@@ -249,7 +249,7 @@ tags:
         https://tyk.io/docs/basic-config-and-security/security/authentication-authorization/basic-auth/
     name: Basic Authentication
   - description: >-
-      Tyk allows you to work with APIs that youve designed with the OpenAPI
+      Tyk allows you to work with APIs that you ve designed with the OpenAPI
       Specification version 3.0.x, making it even easier to get your API up and
       running. Use the endpoints in this tag to create,delete,import and update
       OAS APIs.
@@ -3737,7 +3737,7 @@ paths:
         instance
       operationId: getOathClientsList
       parameters:
-        - description: The APIs ID.
+        - description: The API s ID.
           example: e95400eba23c4a2d4622a722be06fe95
           in: path
           name: apiId
@@ -3830,7 +3830,7 @@ paths:
         will need to provide dynamic key rules to client authorization endpoint.
       operationId: createNewClientApp
       parameters:
-        - description: The APIs ID.
+        - description: The API s ID.
           example: e95400eba23c4a2d4622a722be06fe95
           in: path
           name: apiId
@@ -3917,7 +3917,7 @@ paths:
         tokens issued with the client ID will still be valid until they expire.
       operationId: deleteOathClient
       parameters:
-        - description: The APIs ID.
+        - description: The API s ID.
           example: e95400eba23c4a2d4622a722be06fe95
           in: path
           name: apiId
@@ -3999,7 +3999,7 @@ paths:
       description: Get single  OAuth client details with its client ID.
       operationId: getOAuthClientDetail
       parameters:
-        - description: The APIs ID.
+        - description: The API s ID.
           example: e95400eba23c4a2d4622a722be06fe95
           in: path
           name: apiId
@@ -4093,7 +4093,7 @@ paths:
         their expiry date for a provided API ID and OAuth client ID.
       operationId: getClientTokens
       parameters:
-        - description: The APIs ID.
+        - description: The API s ID.
           example: e95400eba23c4a2d4622a722be06fe95
           in: path
           name: apiId

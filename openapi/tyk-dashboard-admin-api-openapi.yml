@@ -240,7 +240,7 @@ paths:
       description: >-
         The organisation object is the most fundamental object in a Tyk setup,
         all other ownership properties hang off the relationship between an
-        organisation and its APIs, Policies and API Tokens.
+        organisation and it s APIs, Policies and API Tokens.
       operationId: importOrgs
       tags:
         - Import
