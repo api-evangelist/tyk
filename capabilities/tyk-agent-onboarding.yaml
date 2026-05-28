@@ -1,0 +1,250 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Tyk Agent Onboarding (One-Shot Credential)
+  description: 'Tyk Agent Onboarding — the shortest adapter in the field. Tyk collapses
+    identity + credential + scope + rate-limit into a single POST /tyk/keys call: the
+    addKey operation accepts an access_rights array (which APIs + versions + URL patterns
+    + methods the key can call), rate + per (RPS + window), quota_max + quota_renewal_rate
+    (period quota), and tags, all atomically. There is no separate ensure-consumer-group
+    / ensure-usage-plan / ensure-api-product step; the scope is encoded on the key itself.'
+  tags:
+  - Tyk
+  - Agent Onboarding
+  - Web Bot Auth
+  - GraphQL Gateway
+  - One-Shot Credential
+  - Atomic Issuance
+  - Open Source
+  - Naftiko Capability
+  created: '2026-05-28'
+  modified: '2026-05-28'
+  related:
+  - https://apievangelist.com/2026/05/27/automated-agent-onboarding-is-a-naftiko-capability-not-a-gateway-feature/
+  - https://github.com/api-evangelist/tyk
+binds:
+- namespace: env
+  keys:
+    TYK_GATEWAY_BASE_URI: TYK_GATEWAY_BASE_URI
+    TYK_GATEWAY_SECRET: TYK_GATEWAY_SECRET
+    TYK_ANALYTICS_WEBHOOK: TYK_ANALYTICS_WEBHOOK
+    AGENT_TRUSTED_ISSUERS: AGENT_TRUSTED_ISSUERS
+    AGENT_CONSENT_HASH: AGENT_CONSENT_HASH
+capability:
+  consumes:
+  - type: http
+    namespace: tyk-gateway
+    baseUri: '{{env.TYK_GATEWAY_BASE_URI}}'
+    description: Tyk Gateway Admin API — addKey is the one operation that does everything
+      most other gateways need 3-5 operations for. listKeys + getKey are observation; deleteKey
+      is revocation.
+    resources:
+    - name: keys
+      path: /tyk/keys
+      operations:
+      - name: addkey
+        method: POST
+        description: 'Mint an API key with embedded access_rights (the scope), rate + per
+          (the throttle), quota_max + quota_renewal_rate (the quota), alias (operator-readable
+          identifier), and tags (the audit join key). Atomic — no enabled-but-unscoped window.
+          GraphQL gateways: access_rights can declare GraphQL field-level scope under
+          allowed_urls + restricted_types.'
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true, description: 'Full SessionState envelope including access_rights + rate + quota.' }
+    - name: keys-id
+      path: /tyk/keys/{keyID}
+      operations:
+      - name: getkey
+        method: GET
+        description: Read a key's current state (for revocation lookups + audit observation).
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+      - name: deletekey
+        method: DELETE
+        description: Revoke the key. Atomic — no cascading entity cleanup needed.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+    - name: apis
+      path: /tyk/apis
+      operations:
+      - name: listapis
+        method: GET
+        description: Enumerate APIs registered with the gateway — used during scope
+          classification to validate that requested api_ids exist before key issuance.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+    authentication:
+      type: apikey
+      key: x-tyk-authorization
+      value: '{{env.TYK_GATEWAY_SECRET}}'
+      placement: header
+  - type: http
+    namespace: tyk-audit
+    baseUri: '{{env.TYK_ANALYTICS_WEBHOOK}}'
+    description: Tyk's OpenAPI exposes no audit operations natively. The orchestration emits
+      to a customer-configured analytics webhook (Tyk Pump destination, Tyk Dashboard
+      analytics endpoint, or a generic provider-managed log sink). This is the multi-origin
+      audit shape the post calls out — analogous to AWS CloudTrail or Azure Monitor.
+    resources:
+    - name: audit-events
+      path: /
+      operations:
+      - name: emitevent
+        method: POST
+        description: Write a structured agent-onboarding audit event to the customer's
+          analytics destination.
+        outputRawFormat: json
+        outputParameters:
+        - { name: result, type: object, value: $. }
+        inputParameters:
+        - { name: body, in: body, type: object, required: true }
+    authentication:
+      type: none
+  orchestration:
+  - name: onboard-agent
+    description: Five-step orchestration — shorter than every other adapter in the series
+      because Tyk's addKey collapses identity + credential + scope + rate-limit into one
+      atomic operation. No ensure-scope-tier step. No bind-key-to-tier step. No rollback
+      window between issuance and binding.
+    inputs:
+    - { name: signature, type: object, required: true }
+    - { name: signature_agent, type: string, required: true }
+    - { name: skill_id, type: string, required: true }
+    - { name: requested_scopes, type: array, required: true, description: 'Each scope name maps to a Tyk access_rights array (api_id + versions + allowed_urls + allowed_methods) per provider policy. GraphQL gateways may include restricted_types for field-level scope.' }
+    - { name: consent_hash, type: string, required: true }
+    - { name: contact, type: object, required: true }
+    steps:
+    - id: verify_signature
+      type: builtin.web-bot-auth.verify
+      with:
+        signature: '${input.signature}'
+        agent: '${input.signature_agent}'
+        trusted_issuers: '{{env.AGENT_TRUSTED_ISSUERS}}'
+      on_failure: deny
+    - id: verify_consent
+      type: builtin.policy.assert
+      with:
+        assert: '${input.consent_hash} == {{env.AGENT_CONSENT_HASH}}'
+      on_failure: deny
+    - id: classify_scopes
+      type: builtin.policy.scope-classify
+      description: Map each requested scope name to its Tyk access_rights, rate, per, and
+        quota fields per the provider's policy file. The output is a complete SessionState
+        envelope ready to POST to /tyk/keys.
+      with:
+        requested: '${input.requested_scopes}'
+    - id: mint_key
+      call: tyk-gateway.addkey
+      description: One call. Returns key value, key_hash, expires, all scope/rate/quota
+        already attached. Compare with Kong (4 ops), Apigee (3 ops), AWS (3 ops).
+      with:
+        body:
+          alias: 'agent-${steps.verify_signature.agent_id}'
+          access_rights: '${steps.classify_scopes.tyk_access_rights}'
+          rate: '${steps.classify_scopes.rate}'
+          per: '${steps.classify_scopes.per}'
+          quota_max: '${steps.classify_scopes.quota_max}'
+          quota_renewal_rate: '${steps.classify_scopes.quota_renewal_rate}'
+          expires: '${steps.classify_scopes.expires_epoch}'
+          tags:
+          - 'agent'
+          - 'operator:${input.contact.operator}'
+          - 'skill:${input.skill_id}'
+          - 'naftiko-managed'
+          meta_data:
+            agent_id: '${steps.verify_signature.agent_id}'
+            operator: '${input.contact.operator}'
+            support_url: '${input.contact.support_url}'
+            consent_hash: '${input.consent_hash}'
+            signature_keyid: '${steps.verify_signature.keyid}'
+    - id: emit_audit
+      call: tyk-audit.emitevent
+      description: Emit to the customer's configured analytics destination. Tyk Dashboard
+        analytics or Tyk Pump destination if either is wired; otherwise a generic webhook.
+      with:
+        body:
+          event_type: agent.onboarded
+          agent_id: '${steps.verify_signature.agent_id}'
+          operator: '${input.contact.operator}'
+          support_url: '${input.contact.support_url}'
+          purpose: '${input.contact.purpose}'
+          skill_id: '${input.skill_id}'
+          scope_tier: '${steps.classify_scopes.target}'
+          access_rights_summary: '${steps.classify_scopes.access_rights_summary}'
+          consent_hash: '${input.consent_hash}'
+          signature_keyid: '${steps.verify_signature.keyid}'
+          key_id: '${steps.mint_key.key_hash}'
+          expires_epoch: '${steps.classify_scopes.expires_epoch}'
+    output:
+      agent_id: '${steps.verify_signature.agent_id}'
+      key_id: '${steps.mint_key.key_hash}'
+      credential:
+        type: Bearer
+        header: Authorization
+        value: '${steps.mint_key.key}'
+        expires_epoch: '${steps.classify_scopes.expires_epoch}'
+        revocation_url: '/v1/agents/${steps.verify_signature.agent_id}/revoke'
+      scope_tier: '${steps.classify_scopes.target}'
+      access_rights: '${steps.classify_scopes.tyk_access_rights}'
+  - name: revoke-agent
+    description: Atomic — delete the key. No cascading cleanup, no separate entity teardown.
+    inputs:
+    - { name: key_id, type: string, required: true }
+    steps:
+    - id: delete_key
+      call: tyk-gateway.deletekey
+      with:
+        keyID: '${input.key_id}'
+    - id: emit_revoke_audit
+      call: tyk-audit.emitevent
+      with:
+        body:
+          event_type: agent.revoked
+          key_id: '${input.key_id}'
+    output:
+      revoked: true
+  exposes:
+  - type: rest
+    namespace: tyk-agent-onboarding-rest
+    port: 8080
+    resources:
+    - path: /v1/agents/onboard
+      operations:
+      - { method: POST, name: onboardagent, call: orchestration.onboard-agent }
+    - path: /v1/agents/{agent_id}/revoke
+      operations:
+      - { method: POST, name: revokeagent, call: orchestration.revoke-agent }
+  - type: mcp
+    namespace: tyk-agent-onboarding-mcp
+    port: 9090
+    transport: http
+    tools:
+    - name: agent-register
+      hints: { readOnly: false, destructive: false, idempotent: false }
+      call: orchestration.onboard-agent
+    - name: agent-revoke
+      hints: { readOnly: false, destructive: true, idempotent: true }
+      call: orchestration.revoke-agent
+  - type: agent-skill
+    namespace: tyk-agent-onboarding-skill
+    description: 'Agent skill at /skills/onboard-agent.md. Tyk-specific addenda — (1)
+      one round trip from request to credential because Tyk issues the key with scope and
+      throttle already attached; (2) for GraphQL gateways, the requested scopes can declare
+      field-level access via the access_rights restricted_types vocabulary, giving agents
+      operating against GraphQL surfaces tighter scope than path-based gateways allow.'
+    skill:
+      name: onboard-agent
+      file: skills/onboard-agent.md
+  governance:
+  - { id: require-web-bot-auth, severity: blocking, description: 'All onboard calls must carry a valid RFC 9421 signature.', enforce_at: [runtime] }
+  - { id: require-consent-hash-match, severity: blocking, description: 'Submitted consent_hash must match AGENT_CONSENT_HASH.', enforce_at: [runtime] }
+  - { id: forbidden-scopes-deny, severity: blocking, description: 'Forbidden scopes return 403.', enforce_at: [runtime] }
+  - { id: approval-required-defer, severity: advisory, description: 'Approval-required scopes return 202 + status URL.', enforce_at: [runtime] }
+  - { id: atomic-issuance-no-rollback-needed, severity: advisory, description: 'Because Tyk issues key + scope + throttle atomically in one call, the AWS-style usage-plan-bind-window invariant does not apply. There is no enabled-but-unscoped window to roll back from. This is Tyk''s structural simplification.', enforce_at: [runtime] }
+  - { id: graphql-field-level-scope-supported, severity: advisory, description: 'For GraphQL gateways the policy file MAY declare restricted_types in the scope tier; the orchestration passes them into access_rights unchanged. Field-level GraphQL scope is unique to Tyk among the evaluated gateways.', enforce_at: [validation, runtime] }
+  - { id: audit-multi-origin, severity: advisory, description: 'Tyk Gateway OpenAPI exposes no audit operations. Audit is emitted to a customer-configured webhook (Tyk Pump destination, Dashboard analytics, or a generic log sink). Worker SHOULD reconcile this stream with whatever Tyk Dashboard analytics exposes for the runtime traffic record.', enforce_at: [runtime] }
