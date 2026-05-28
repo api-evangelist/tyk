@@ -6,7 +6,7 @@ info:
     addKey operation accepts an access_rights array (which APIs + versions + URL patterns
     + methods the key can call), rate + per (RPS + window), quota_max + quota_renewal_rate
     (period quota), and tags, all atomically. There is no separate ensure-consumer-group
-    / ensure-usage-plan / ensure-api-product step; the scope is encoded on the key itself.'
+    / ensure-usage-plan / ensure-api-product step; the scope is encoded on the key itself. Runtime policy enforcement (signature verify, consent check, scope classify, audit emit) lives in the orchestration.steps below — each step that gates issuance carries on_failure: deny. Lint-time validation of this capability shape lives in the companion Polychro ruleset at https://github.com/api-evangelist/posts/blob/main/polychro/agent-onboarding-rules.yaml — Polychro is Naftiko''s governance layer, separate from the capability spec, and is the correct home for cross-object consistency rules that apply across every agent-onboarding capability.'
   tags:
   - Tyk
   - Agent Onboarding
@@ -240,11 +240,3 @@ capability:
     skill:
       name: onboard-agent
       file: skills/onboard-agent.md
-  governance:
-  - { id: require-web-bot-auth, severity: blocking, description: 'All onboard calls must carry a valid RFC 9421 signature.', enforce_at: [runtime] }
-  - { id: require-consent-hash-match, severity: blocking, description: 'Submitted consent_hash must match AGENT_CONSENT_HASH.', enforce_at: [runtime] }
-  - { id: forbidden-scopes-deny, severity: blocking, description: 'Forbidden scopes return 403.', enforce_at: [runtime] }
-  - { id: approval-required-defer, severity: advisory, description: 'Approval-required scopes return 202 + status URL.', enforce_at: [runtime] }
-  - { id: atomic-issuance-no-rollback-needed, severity: advisory, description: 'Because Tyk issues key + scope + throttle atomically in one call, the AWS-style usage-plan-bind-window invariant does not apply. There is no enabled-but-unscoped window to roll back from. This is Tyk''s structural simplification.', enforce_at: [runtime] }
-  - { id: graphql-field-level-scope-supported, severity: advisory, description: 'For GraphQL gateways the policy file MAY declare restricted_types in the scope tier; the orchestration passes them into access_rights unchanged. Field-level GraphQL scope is unique to Tyk among the evaluated gateways.', enforce_at: [validation, runtime] }
-  - { id: audit-multi-origin, severity: advisory, description: 'Tyk Gateway OpenAPI exposes no audit operations. Audit is emitted to a customer-configured webhook (Tyk Pump destination, Dashboard analytics, or a generic log sink). Worker SHOULD reconcile this stream with whatever Tyk Dashboard analytics exposes for the runtime traffic record.', enforce_at: [runtime] }
