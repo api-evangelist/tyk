@@ -1,0 +1,323 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard URL Reload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reloads dashboard urls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/admin/system/reload"
+          },
+          "docs": "Reloads dashboard urls."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Single Sign On",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate authentication token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/sso/",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Dashboard exposes the /admin/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Export",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Export Organisations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/admin/organisations/:orgID",
+            "params": [
+              {
+                "name": "orgID",
+                "value": "",
+                "type": "path",
+                "description": "ID of organisation"
+              }
+            ]
+          },
+          "docs": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and its APIs, Policies and API Tokens."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import organisations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/organisations/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and it s APIs, Policies and API Tokens."
+        },
+        {
+          "info": {
+            "name": "Import APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/apis/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The import APIs operates on lists of APIs."
+        },
+        {
+          "info": {
+            "name": "Import Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/policies/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The import Policies operates on lists of Policies."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allow password reset for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/admin/users/:USER_ID/actions/allow_reset_passwords",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "USER_ID",
+                "value": "",
+                "type": "path",
+                "description": "User ID of the user whose password is being reset"
+              }
+            ]
+          },
+          "docs": "Allow password reset for a User."
+        },
+        {
+          "info": {
+            "name": "Disallow password reset for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/admin/users/:USER_ID/actions/disallow_reset_passwords",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "USER_ID",
+                "value": "",
+                "type": "path",
+                "description": "User ID of the user whose password reset capability is being disallowed"
+              }
+            ]
+          },
+          "docs": "Disallow password reset for a User."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Organisations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve a single organisation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/admin/organisations/:org-id",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org-id",
+                "value": "",
+                "type": "path",
+                "description": "Organisation ID of the org to add, update, or delete."
+              }
+            ]
+          },
+          "docs": "Retrieve a single organisation"
+        },
+        {
+          "info": {
+            "name": "Update organisation details",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/admin/organisations/:org-id",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org-id",
+                "value": "",
+                "type": "path",
+                "description": "Organisation ID of the org to add, update, or delete."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update Organisation details. This operation will replace the existing Organisation details with those provided in the request payload. It is important to provide the entire object - for example linked APIs - to avoid overwriting existing data with empty values."
+        },
+        {
+          "info": {
+            "name": "Delete an organisation",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/admin/organisations/:org-id",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "org-id",
+                "value": "",
+                "type": "path",
+                "description": "Organisation ID of the org to add, update, or delete."
+              }
+            ]
+          },
+          "docs": "Delete an organisation"
+        },
+        {
+          "info": {
+            "name": "List all organisations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/admin/organisations/",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "List all organisations"
+        },
+        {
+          "info": {
+            "name": "Create an Organisation",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/organisations/",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an Organisation"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

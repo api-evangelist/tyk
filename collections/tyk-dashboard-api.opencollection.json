@@ -1,0 +1,2751 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard API",
+    "version": "5.7.1"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analytics of API Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+            "params": [
+              {
+                "name": "startDay",
+                "value": "15",
+                "type": "path",
+                "description": "Day to start querying the analytics from."
+              },
+              {
+                "name": "startMonth",
+                "value": "1",
+                "type": "path",
+                "description": "Month to start querying the analytics from."
+              },
+              {
+                "name": "startYear",
+                "value": "2024",
+                "type": "path",
+                "description": "Year to start querying the analytics from."
+              },
+              {
+                "name": "EndDay",
+                "value": "20",
+                "type": "path",
+                "description": "End date of analytics to query."
+              },
+              {
+                "name": "EndMonth",
+                "value": "6",
+                "type": "path",
+                "description": "End month of analytics to query."
+              },
+              {
+                "name": "EndYear",
+                "value": "2025",
+                "type": "path",
+                "description": "End year of analytics to query."
+              },
+              {
+                "name": "keyHash",
+                "value": "",
+                "type": "path",
+                "description": "Hash of your API key."
+              }
+            ]
+          },
+          "docs": "It returns analytics of the endpoints of all APIs called a key between start and end date."
+        },
+        {
+          "info": {
+            "name": "Analytics of Oauth Client ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+            "params": [
+              {
+                "name": "startDay",
+                "value": "15",
+                "type": "path",
+                "description": "Day to start querying the analytics from."
+              },
+              {
+                "name": "startMonth",
+                "value": "1",
+                "type": "path",
+                "description": "Month to start querying the analytics from."
+              },
+              {
+                "name": "startYear",
+                "value": "2024",
+                "type": "path",
+                "description": "Year to start querying the analytics from."
+              },
+              {
+                "name": "EndDay",
+                "value": "20",
+                "type": "path",
+                "description": "End date of analytics to query."
+              },
+              {
+                "name": "EndMonth",
+                "value": "6",
+                "type": "path",
+                "description": "End month of analytics to query."
+              },
+              {
+                "name": "EndYear",
+                "value": "2025",
+                "type": "path",
+                "description": "End year of analytics to query."
+              },
+              {
+                "name": "OAuthClientID",
+                "value": "",
+                "type": "path",
+                "description": "OAuthClientID"
+              }
+            ]
+          },
+          "docs": "Returns activity of all endpoints which used the given OAuth client between the given time range."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get List of APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis",
+            "params": [
+              {
+                "name": "compressed",
+                "value": "1",
+                "type": "query",
+                "description": "Return smaller API list payload."
+              },
+              {
+                "name": "api_type",
+                "value": "rest",
+                "type": "query",
+                "description": "API Type, internal or external."
+              },
+              {
+                "name": "category",
+                "value": "",
+                "type": "query",
+                "description": "Comma separated list of categories you want to filter Apis by."
+              },
+              {
+                "name": "auth_type",
+                "value": "keyless,authToken",
+                "type": "query",
+                "description": "Comma separated list of authentication type you want to filter apis by."
+              },
+              {
+                "name": "base_apis",
+                "value": "1",
+                "type": "query",
+                "description": "For versioned APIs, return only the base versions.If any value is sent in this query parameter only the base version will be returned"
+              },
+              {
+                "name": "q",
+                "value": "Rate Limit Path API 1",
+                "type": "query",
+                "description": "Query string for search/filtering.This will return all apis whose names matches the given pattern"
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "sort",
+                "value": "name",
+                "type": "query",
+                "description": "* 'name' - Sort by name in ascending order.\n* '-name' - Sort by name in descending order.\n* 'updated_at' - Sort by updated_at in ascending order.\n* '-updated_at' - Sort by updated_at in descending order.\n* 'created_at' - Sort by created_at in ascending order.\n* '-created_at' - Sort by created_at in descending order."
+              }
+            ]
+          },
+          "docs": "Get List of APIs.By default the returned apis will be sorted by created_at field in descending order but this can be changed via sort query parameter.The apis returned are paginated"
+        },
+        {
+          "info": {
+            "name": "Create API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis",
+            "params": [
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API Definition in Tyk Classic API format.\n  Note that the response includes the newly created Tyk Classic API Definition containing the unique identifier for the APIs (`api_id`). You can provide a value for the `api_id` in the request body, otherwise Tyk will automatically generate a value for you.\n    The `ID` field within the Tyk Classic API Definition is a proprietary field used by Tyk to identify the API within the database and cannot be chosen or modified by the user."
+        },
+        {
+          "info": {
+            "name": "Get API access rights (users and userGroups)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiID/access",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ]
+          },
+          "docs": "This will return APIAccessManagementPayload that has two lists containing users and user groups that have access to an API."
+        },
+        {
+          "info": {
+            "name": "Update API access rights (users and userGroups)",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/:apiID/access",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will update the user group and users that have access to an API.The userIds and userGroup sent will entirely replace the existing userIds IDs and userGroup ids."
+        },
+        {
+          "info": {
+            "name": "Get a single API by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "ID of API to get. Can either be internal or public API ID."
+              }
+            ]
+          },
+          "docs": "Get an API by ID"
+        },
+        {
+          "info": {
+            "name": "Update API Definition",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "ID of API to get. Can either be internal or public API ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an API Definition. api_id can be updated for On-Premise installations, but it cannot be updated when the Dashboard resides in Tyk Cloud. Updates to api_id in Tyk Cloud will be ignored."
+        },
+        {
+          "info": {
+            "name": "Delete a single API by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/apis/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "ID of API to delete. Can either be internal or public API ID."
+              }
+            ]
+          },
+          "docs": "Delete an API by ID"
+        },
+        {
+          "info": {
+            "name": "Get API URLs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiId/url",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ]
+          },
+          "docs": "This will return your API BasePath(your API listen path) ,Host(your API domain or gateway hostname ) and API URL (full url to your API upstream which is a combination of the protocol the API uses (e.g http)+ host name(e.g tyk.io) and the API listen_path )"
+        },
+        {
+          "info": {
+            "name": "Get API Categories",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/categories"
+          },
+          "docs": "Get a list of all the defined API categories and the number(count) of APIs that are in each category."
+        },
+        {
+          "info": {
+            "name": "Get API Groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/groups"
+          },
+          "docs": "This will return a map/hashmap with categories as keys and the key values will be a list that contains all the APIIDs that belong to that category."
+        },
+        {
+          "info": {
+            "name": "Search List of APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/search",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "q",
+                "value": "Rate Limit Path API 1",
+                "type": "query",
+                "description": "The name of the APIs you want to search"
+              }
+            ]
+          },
+          "docs": "This will return a list of APIs whose names matches the provided q query parameter.If q is not sent all APIs will be returned.The returned results are paginated."
+        },
+        {
+          "info": {
+            "name": "Get a list of example API definitions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/examples",
+            "headers": [
+              {
+                "name": "x-tyk-examples-index",
+                "value": "https://raw.githubusercontent.com/TykTechnologies/tyk-examples/main/repository.json"
+              }
+            ]
+          },
+          "docs": "Returns a list of all example API definitions available in \"repository.json\" file defined in \"x-tyk-examples-index\" header. If the header is not provided, Tyk will use the default value of this header which is `tyk-examples` repo."
+        },
+        {
+          "info": {
+            "name": "Get details of a single example API definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/examples/:location",
+            "headers": [
+              {
+                "name": "x-tyk-examples-index",
+                "value": "https://raw.githubusercontent.com/TykTechnologies/tyk-examples/main/repository.json"
+              },
+              {
+                "name": "x-tyk-repo-url",
+                "value": "https://github.com/TykTechnologies/tyk-examples.git"
+              }
+            ],
+            "params": [
+              {
+                "name": "location",
+                "value": "udg/vat-checker",
+                "type": "path",
+                "description": "Location of the tyk example in the repository defined in `x-tyk-repo-url`."
+              },
+              {
+                "name": "readme",
+                "value": "false",
+                "type": "query",
+                "description": "If set to true, the response will contain the content of the Readme file for the specified example, the readme content will be present as the `readme` field."
+              },
+              {
+                "name": "apiDef",
+                "value": "false",
+                "type": "query",
+                "description": "If set to true, the response will contain the APIDefinition of the specified example, the definition will be present as the `apiDefinition` field."
+              }
+            ]
+          },
+          "docs": "Get the details of a single API definition, details include full name, location in the repository, description, features and min tyk version."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keys by API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiID/keys",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "apiID",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Lists keys that grant access to the API with the ID {apiID}."
+        },
+        {
+          "info": {
+            "name": "Get key details with API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The Key ID."
+              }
+            ]
+          },
+          "docs": "Fetches the key that grant access to the API with the ID {apiID} and key ID {keyID}."
+        },
+        {
+          "info": {
+            "name": "With API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "suppress_reset",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The Key ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way."
+        },
+        {
+          "info": {
+            "name": "Delete key with API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key is a username."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The key ID"
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available."
+        },
+        {
+          "info": {
+            "name": "Search keys by API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/:apiId/keys/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi",
+                "type": "query",
+                "description": "Filter and return all keys that contain this text in there key ID."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "apiId",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Lists keys that grant access to the API with the ID {apiID}. When q query parameter is passed it will only return keys that contains the string sent by q."
+        },
+        {
+          "info": {
+            "name": "List All the keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/keys",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of keys."
+        },
+        {
+          "info": {
+            "name": "Create a key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/keys",
+            "params": [
+              {
+                "name": "basic_auth",
+                "value": "true",
+                "type": "query",
+                "description": "Set this to true to create a basic user. Note you have to send basic_auth_data(user and password) in the request body if this value is set to true."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API owners should segmentation be needed at an organisational level.\n  <br/><br/>\n API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always embed access_rights data in a key to ensure that only targeted API"
+        },
+        {
+          "info": {
+            "name": "Get key Details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              },
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              }
+            ]
+          },
+          "docs": "Get the details of a key."
+        },
+        {
+          "info": {
+            "name": "Create custom key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "my-custom-key",
+                "type": "path",
+                "description": "The ID to give the key."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a key with a custom key ID."
+        },
+        {
+          "info": {
+            "name": "Update key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "suppress_reset",
+                "value": "",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way."
+        },
+        {
+          "info": {
+            "name": "Delete key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/keys/:keyId",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key is a username"
+              },
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available."
+        },
+        {
+          "info": {
+            "name": "List All the Keys info.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/keys/detailed",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi",
+                "type": "query",
+                "description": "Filter and return all keys that contain this text in there key ID."
+              }
+            ]
+          },
+          "docs": "List all the keys and all the keys details. If `q` query parameter is passed it will only return keys whose key ID contain the passed text."
+        },
+        {
+          "info": {
+            "name": "This will validate a key definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/keys/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will check if the body of a key definition is valid. And return a response with how the key would look like if you create it."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Basic Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Basic Auth User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/keys/basic/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "itachi",
+                "type": "path",
+                "description": " Username of Basic Auth user to create or update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Basic Auth user with the username specified in the path {username}. Note you have to send password via(the basic_auth_data.password field) in the request body."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Streams APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/streams",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Streams API Definition in Tyk OAS API format.\n Note that the response includes the newly created Tyk Streams API Definition containing the unique identifier for the API (`ID`). You can provide a value for `ID` in the request body, otherwise Tyk will automatically generate a value."
+        },
+        {
+          "info": {
+            "name": "Get Streams API details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/streams/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single Streams API definition."
+        },
+        {
+          "info": {
+            "name": "Update Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/streams/:apiId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an API definition uses the same signature object as a `POST`. It will first ensure that the API ID being updated is the same as in the `PUT` object.<br/> Updating will completely replace the file descriptor and will not change an API definition that has already been loaded. The hot-reload endpoint will need to be called to push the new definition to live."
+        },
+        {
+          "info": {
+            "name": "Patch a single Streams API by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}/api/apis/streams/:apiId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to patch."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Tyk Streams API. You can use this endpoint to update the OAS part of your Tyk Streams API definition. This endpoint allows you to configure the Tyk OAS extension based on the query parameters provided (similar to import)."
+        },
+        {
+          "info": {
+            "name": "Delete Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/apis/streams/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to delete."
+              }
+            ]
+          },
+          "docs": "Deleting a Streams API definition will remove the file from the file store. The API definition will not be unloaded and a separate reload request will need to be made to disable the API endpoint."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "OAS APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/oas",
+            "params": [
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              },
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API Definition in Tyk OAS API format.\n Note that the response includes the newly created Tyk OAS API Definition containing the unique identifier for the API (`ID`). You can provide a value for `ID` in the request body, otherwise Tyk will automatically generate a value."
+        },
+        {
+          "info": {
+            "name": "Get OAS API details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single API definition in OAS format."
+        },
+        {
+          "info": {
+            "name": "Update OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an API definition uses the same signature object as a `POST`. It will first ensure that the API ID being updated is the same as in the `PUT` object.<br/> Updating will completely replace the file descriptor and will not change an API definition that has already been loaded. The hot-reload endpoint will need to be called to push the new definition to live."
+        },
+        {
+          "info": {
+            "name": "Patch a single OAS API by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "https://{tenant}/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to patch."
+              },
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Tyk OAS API. You can use this endpoint to update the OAS part of your Tyk OAS API definition. This endpoint allows you to configure the Tyk OAS extension based on the query parameters provided (similar to import)."
+        },
+        {
+          "info": {
+            "name": "Delete OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to delete."
+              }
+            ]
+          },
+          "docs": "Deleting an API definition will remove the file from the file store. The API definition will not be unloaded and a separate reload request will need to be made to disable the API endpoint."
+        },
+        {
+          "info": {
+            "name": "Get OAS API's Categories.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oas/:apiId/categories",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Get a list of the API categories associated with the specified API."
+        },
+        {
+          "info": {
+            "name": "Update OAS API categories.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/apis/oas/:apiId/categories",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the list of API categories associated with the specified API."
+        },
+        {
+          "info": {
+            "name": "Export OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oas/:apiId/export",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to export."
+              },
+              {
+                "name": "mode",
+                "value": "public",
+                "type": "query",
+                "description": "Mode of OAS export, by default mode could be empty which means to export OAS spec including OAS Tyk extension. When mode=public, OAS spec excluding Tyk extension is exported."
+              }
+            ]
+          },
+          "docs": "Download API definition in OAS format (only APIs saved in OAS format). When you set the mode query parameter to public the OAS spec exported will exclude the x-tyk-api-gateway part. When mode query parameter is empty or is set to any other value apart from public then the exported OAS spec will include the x-tyk-api-gateway part."
+        },
+        {
+          "info": {
+            "name": "List OAS API versions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oas/:apiId/versions",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              },
+              {
+                "name": "searchText",
+                "value": "Sample oas",
+                "type": "query",
+                "description": "Search for API version name."
+              },
+              {
+                "name": "accessType",
+                "value": "internal",
+                "type": "query",
+                "description": "Filter for internal or external API versions."
+              }
+            ]
+          },
+          "docs": "List all the  versions of an OAS API."
+        },
+        {
+          "info": {
+            "name": "Dry Run OAS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/oas/dry-run",
+            "params": [
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              },
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              },
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a Tyk OAS API definition without saving it to the Dashboard database.\nThis endpoint is used to produce a Tyk OAS API definition without creating the API proxy itself. This provides a dry run functionality for Tyk OAS API creation, showing what would be created in the Dashboard given the set of inputs provided."
+        },
+        {
+          "info": {
+            "name": "Import OAS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/oas/import",
+            "params": [
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              },
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              },
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "For use with an existing OpenAPI document that you want to expose via your Tyk Gateway. <br/> Create a new Tyk OAS API from an OpenAPI document in JSON format (without x-tyk-api-gateway extension). <br/>The payload can contain either a fully fledged OpenAPI document or a URL pointing to an OpenAPI document."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Oauth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OAuth clients.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oauth/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              }
+            ]
+          },
+          "docs": "Return all the auth 2 clients that have been registered with you tyk instance"
+        },
+        {
+          "info": {
+            "name": "Create a new OAuth2.0 client.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/apis/oauth/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Client apps are created dynamically, the only parameter required to create a new client app with Tyk is to specify the redirect URI, this is used as part of the client authentication and cannot be edited later. Please note that if you don't attach a policy to the OAuth client you will need to provide dynamic key rules to client authorization endpoint."
+        },
+        {
+          "info": {
+            "name": "Get single OAuth client details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oauth/:apiId/:clientId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "Get single  OAuth client details with its client ID."
+        },
+        {
+          "info": {
+            "name": "Delete OAuth client.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/apis/oauth/:apiId/:clientId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "You can delete an OAuth client using this endpoint. Please note that tokens issued with the client ID will still be valid until they expire."
+        },
+        {
+          "info": {
+            "name": "List OAuth client tokens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/apis/oauth/:apiId/:clientId/tokens",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth client ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve list of assets.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/assets",
+            "params": [
+              {
+                "name": "kind",
+                "value": "oas-template",
+                "type": "query",
+                "description": "Filter assets by kind (optional)."
+              }
+            ]
+          },
+          "docs": "Retrieves all types of assets with optional kind filter."
+        },
+        {
+          "info": {
+            "name": "Create an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an asset that you can use as a blueprint from which you can create a new Tyk OAS API definition."
+        },
+        {
+          "info": {
+            "name": "Retrieve an asset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ]
+          },
+          "docs": "Retrieve an asset by ID."
+        },
+        {
+          "info": {
+            "name": "Update an asset by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an asset by ID.You cannot update _id (database ID assigned by tyk)"
+        },
+        {
+          "info": {
+            "name": "Delete an asset by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ]
+          },
+          "docs": "Remove an asset ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Certificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Certificates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/certs",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "mode",
+                "value": "detailed",
+                "type": "query",
+                "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates)."
+              }
+            ]
+          },
+          "docs": "Return list of certificates. If you send the mode query parameter with the value `detailed` the certificates returned will have more information (Will contains all certs basic details). To retrieve a list with complete certificate details use [this endpoint](#operation/listDetailedCertificates). If the mode query parameter is omitted or is empty this endpoint will only return the certificates IDs. The list of certificates returned is paginated."
+        },
+        {
+          "info": {
+            "name": "Create a certificate in Tyk org cert store.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/certs",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload new SSL certificate in PEM format (you should upload as a file). If the certificate should have a private key, convert both the public certificate and the associated private key to PEM format and concatenate them to a single file. You can only upload one certificate at a time."
+        },
+        {
+          "info": {
+            "name": "Get single certificate with ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/certs/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single certificate details with the certificate's ID."
+        },
+        {
+          "info": {
+            "name": "Delete Certificate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/certs/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to delete."
+              }
+            ]
+          },
+          "docs": "Delete certificate by their ID."
+        },
+        {
+          "info": {
+            "name": "Get Certificate Dependencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/certs/dependencies/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to fetch dependencies for."
+              }
+            ]
+          },
+          "docs": "This will return the API IDs and API names of all APIs that uses this certificates as either upstream certificates or as client certificates."
+        },
+        {
+          "info": {
+            "name": "Delete Certificate dependencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/certs/dependencies/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to delete dependencies for."
+              }
+            ]
+          },
+          "docs": "This endpoint will remove the certificates from any APIs that contains it as an upstream certificates or as a client certificate. It will also remove any key that uses this certificate."
+        },
+        {
+          "info": {
+            "name": "List all certificates details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/certs/details",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a list that contains certificates and their full details."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/hooks",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/hooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook. The webhook method and target_path fields are required. Method can either be DELETE,GET,PUT,POST or PATCH."
+        },
+        {
+          "info": {
+            "name": "Get single webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "66498cd1e2fcd1000184ecb9",
+                "type": "path",
+                "description": "ID of the webhook to fetch."
+              }
+            ]
+          },
+          "docs": "Get a webhook details with its ID."
+        },
+        {
+          "info": {
+            "name": "Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "664b70285715ec4c96cbef3f",
+                "type": "path",
+                "description": "ID of the webhook to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a web hook using its ID. The webhook method and target_path fields are required in the request body when updating. *Note the original webhook data will be completely replaced with the new update request object(so if for example you don't send the name or webhook_id fields in your request body those fields will be updated to empty string even if they existed in your original webhook object.)*"
+        },
+        {
+          "info": {
+            "name": "Delete web hook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "66498cd1e2fcd1000184ecb9",
+                "type": "path",
+                "description": "ID of the webhook to delete."
+              }
+            ]
+          },
+          "docs": "Delete webhook with ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Open Policy Agent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OPA rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/org/opa"
+          },
+          "docs": "List your organisation OPA rules."
+        },
+        {
+          "info": {
+            "name": "Update OPA rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/org/opa",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify your OPA rules."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Additional Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List additional permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/org/permissions"
+          },
+          "docs": "This API returns by default the initial set of additional permissions defined in your Tyk Dashboard configuration, under `security.additional_permissions`. Once you update the permissions via the API, they will be stored at organisation level."
+        },
+        {
+          "info": {
+            "name": "Add/Delete/Update additional permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/org/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Whenever you want to add/update/delete an additional permission, just send back the updated list of permissions, through this PUT request to the API. For example if you initially had two additional permissions e.g ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager}}``` to add a third permission called `custom_permission` you would append it to the original permission list and your request body would be: ```{additional_permissions: {api_developer: API Developer, a"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list portal policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/portal/policies",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "active",
+                "value": "true",
+                "type": "query",
+                "description": "Send any value in this query parameter to return only the active policies."
+              }
+            ]
+          },
+          "docs": "Get list of policies. The result returned are paginated. Use the p query parameter to say which page you want returned. The default pagesize of the results is 10 but this can be changed in the dashboard config."
+        },
+        {
+          "info": {
+            "name": "Create policy definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/portal/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creating policy definitions is slightly different to the core API, API definitions are wrapped inside an api_definition field and event handlers, such as webhooks are not embedded in the main api_definition object (though they can be), webhooks are instead appended as references into the hook_references field, the API will embed the correct webhook data into the event handler interface."
+        },
+        {
+          "info": {
+            "name": "Get a single policy by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to get."
+              }
+            ]
+          },
+          "docs": "Get a policy by ID."
+        },
+        {
+          "info": {
+            "name": "Update policy definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a policy definition."
+        },
+        {
+          "info": {
+            "name": "Delete a single policy by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to delete."
+              }
+            ]
+          },
+          "docs": "Delete a Policy by ID."
+        },
+        {
+          "info": {
+            "name": "Search list of policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/portal/policies/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "5eb6349543f0440001373f5c",
+                "type": "query",
+                "description": "Search for policy using policy ID or name."
+              },
+              {
+                "name": "policy_ids",
+                "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e",
+                "type": "query",
+                "description": "A list of comma separated policy IDs that you want to search for."
+              },
+              {
+                "name": "active",
+                "value": "true",
+                "type": "query",
+                "description": "Send any value in this query parameter to return only the active policies."
+              },
+              {
+                "name": "state",
+                "value": "deny",
+                "type": "query",
+                "description": "Return policies whose state field matches the sent value e.g if you send state as deny policies returned are those whose state filed value is set as deny."
+              },
+              {
+                "name": "sort",
+                "value": "name",
+                "type": "query",
+                "description": "Field you want to use to sort the returned policies."
+              },
+              {
+                "name": "api_id",
+                "value": "5963f8fdedee405143f5858ea17de422",
+                "type": "query",
+                "description": "Comma separate list of API IDs. Return only policy that that have the given API IDs in their access_right."
+              },
+              {
+                "name": "auth_type",
+                "value": "authToken",
+                "type": "query",
+                "description": "Return policy whose auth_type field has the given value."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Search list of policies. If query parameter q is a policy ID it will look for policies that have the given ID. However if q is not a policy ID it will return policies with whose name matches the patten based via q query parameter. If you send a policy ID in query parameter q and also send query parameter policy_ids,only policy_ids will be used for searching."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OAS schema.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/schema",
+            "params": [
+              {
+                "name": "oasVersion",
+                "value": "3.0.3",
+                "type": "query",
+                "description": "The OAS version."
+              }
+            ]
+          },
+          "docs": "Get OAS schema."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Single Sign On",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Generate authentication token.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/sso",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The Dashboard exposes the /api/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get system usage info.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/system/stats",
+            "params": [
+              {
+                "name": "start_day",
+                "value": "2023-07-01",
+                "type": "query",
+                "description": "start date"
+              },
+              {
+                "name": "end_day",
+                "value": " 2023-07-31",
+                "type": "query",
+                "description": "end date"
+              },
+              {
+                "name": "resolution",
+                "value": "day",
+                "type": "query",
+                "description": "Resolve daily."
+              },
+              {
+                "name": "entity",
+                "value": "apis",
+                "type": "query",
+                "description": "The entity for which stats should be retrieved."
+              }
+            ]
+          },
+          "docs": "Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "UserGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/usergroups",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "This will return a list of all the user groups. The returned user groups are paginated."
+        },
+        {
+          "info": {
+            "name": "Create user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/usergroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Instead of assigning permission to each individual users, per user, you can create a user group and configure the permissions for all users in the group. This endpoint allow you to create a user group and set permission for the user group."
+        },
+        {
+          "info": {
+            "name": "Get user group details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to fetch."
+              }
+            ]
+          },
+          "docs": "Return a user group object with all the details of a specified group."
+        },
+        {
+          "info": {
+            "name": "Update user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of a user group. You must have either admin or user groups permission to be able to modify user groups. Note you cannot update the ResetPassword permission with this endpoint. For that you need to use Admin API. When updating a user group you also need to specify at least one permission in the user_permissions field."
+        },
+        {
+          "info": {
+            "name": "Delete user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to delete."
+              }
+            ]
+          },
+          "docs": "Delete user group using the group ID."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/users",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Lists dashboard users"
+        },
+        {
+          "info": {
+            "name": "Add user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user. If you want to create an admin user, you need to send {IsAdmin: admin} in the user_permissions field e.g ```{user_permissions: {IsAdmin: admin},last_name: sasuke,email_address: itachi@gmail.com,first_name: itachi}```. You can add a user to a given user-group by sending the group_id in the request body. If you want to give a user access only to specific objects e.g policies you can send the object and the permission granted to the user (read or write permission in the  user_permiss"
+        },
+        {
+          "info": {
+            "name": "Get user details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user to retrieve data for."
+              }
+            ]
+          },
+          "docs": "Return a user object with details of the user specified by user ID in path."
+        },
+        {
+          "info": {
+            "name": "Update user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "USER ID of the user to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a user with user ID. If you update the user as inactive they will be logged out of all dashboard sessions. User password can only be updated via admin API or the update password endpoint. ResetPassword is also only available via the admin API."
+        },
+        {
+          "info": {
+            "name": "Delete a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "https://{tenant}/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user to delete."
+              }
+            ]
+          },
+          "docs": "Delete a user with user ID."
+        },
+        {
+          "info": {
+            "name": "Reset user Dashboard API access credentials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/users/:userId/actions/key/reset",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose key you want to reset."
+              }
+            ]
+          },
+          "docs": "Reset specified user's Dashboard API access credentials by generating a new access key for the specified user."
+        },
+        {
+          "info": {
+            "name": "Set user password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/users/:userId/actions/reset",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose password is being reset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a user's password. The password need to be 6 character long. If you are trying to update another users password you also need to have permission to update they password or you need to be a super-admin. You cannot also reuse a password."
+        },
+        {
+          "info": {
+            "name": "Revoke user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://{tenant}/api/users/:userId/actions/revoke",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose access you want to revoke."
+              }
+            ]
+          },
+          "docs": "This will set the use account as inactive. It will also disable API Access and log out the user from all dashboards."
+        },
+        {
+          "info": {
+            "name": "Get current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/users/me"
+          },
+          "docs": "Return a user object with the details of the current user. This request need to have a session cookie with the key authorisation."
+        },
+        {
+          "info": {
+            "name": "Search Users(Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/users/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi@tyk.io",
+                "type": "query",
+                "description": "Query term used to search for users (email address)."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to search for users by providing their email address as a query parameter."
+        },
+        {
+          "info": {
+            "name": "Search user with email.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}/api/users/search",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to search for users with their email address (e.g if you send the filter @gmail.com` in the request payload, all users whole email contain the string @gmail.com will be returned)."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "AuditLogs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/api/audit-logs",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. The size of the page is determined by the configuration option page_size of dashboard."
+              },
+              {
+                "name": "user",
+                "value": "jhon@mail.com",
+                "type": "query",
+                "description": "Filters audit logs to show only actions performed by the specified user. This parameter allows you to focus on the activity of a particular user across the system."
+              },
+              {
+                "name": "action",
+                "value": "List APIs",
+                "type": "query",
+                "description": "Filters audit logs based on the specific action performed by users. This parameter allows you to focus on particular types of activities within the system."
+              },
+              {
+                "name": "ip",
+                "value": "127.0.0.1",
+                "type": "query",
+                "description": "Filters audit logs based on the IP address from which the action originated. This parameter allows you to focus on activities from specific network locations or to investigate actions from particular IP addresses."
+              },
+              {
+                "name": "method",
+                "value": "POST",
+                "type": "query",
+                "description": "Filters audit logs based on the HTTP method used in the API request. This parameter allows you to focus on specific types of operations performed on the API."
+              },
+              {
+                "name": "status",
+                "value": "200",
+                "type": "query",
+                "description": "Filters audit logs based on the HTTP status code returned by the API in response to the request. This parameter allows you to focus on specific outcomes of API interactions."
+              },
+              {
+                "name": "url",
+                "value": "/api/apis",
+                "type": "query",
+                "description": "Filters audit logs based on the specific URL path of the API endpoint that was accessed. This parameter allows you to focus on actions performed on particular resources or sections of your API."
+              },
+              {
+                "name": "from_date",
+                "value": "01-01-1990",
+                "type": "query",
+                "description": "Specifies the start date for the audit log search. If not provided, the search will include records from the earliest available date. Format DD-MM-YYY."
+              },
+              {
+                "name": "to_date",
+                "value": "01-01-2030",
+                "type": "query",
+                "description": "Specifies the end date for the audit log search. If not provided, the search will include records up to the current date and time. Format DD-MM-YYY."
+              }
+            ]
+          },
+          "docs": "Retrieve audit logs from database"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

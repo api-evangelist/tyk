@@ -1,0 +1,188 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk MDCB Data Planes and Diagnostics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "X-Tyk-Authorization",
+      "value": "{{X-Tyk-Authorization}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dataplanes",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/dataplanes",
+            "headers": [
+              {
+                "name": "x-tyk-authorization",
+                "value": ""
+              }
+            ]
+          },
+          "docs": "Provides a list of all the data plane nodes connected to MDCB. Data plane nodes are Tyk Gateways that make your APIs available to your consumers. MDCB offers centralised management of your data plane nodes. This endpoint offers metadata and status for all connected data plane nodes, allowing for monitoring and troubleshooting."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Health",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Health Check",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/health"
+          },
+          "docs": "Returns OK if the service is up and running."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Readiness",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Check System Readiness Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/readiness"
+          },
+          "docs": "Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Liveness",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Check Liveness Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/liveness"
+          },
+          "docs": "Provides the liveness status of the service."
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Debug",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Cpu Profiling Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/debug/pprof/profile"
+          },
+          "docs": "Returns CPU profiling data. Available only when HTTPProfile is enabled in sink.conf."
+        },
+        {
+          "info": {
+            "name": "Tyk Pprof Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/debug/pprof/:profileType",
+            "params": [
+              {
+                "name": "profileType",
+                "value": "",
+                "type": "path",
+                "description": "The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+              }
+            ]
+          },
+          "docs": "Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Config",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Retrieve Current Configuration Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/config",
+            "headers": [
+              {
+                "name": "X-Tyk-Authorization",
+                "value": "your-secret-key"
+              }
+            ]
+          },
+          "docs": "Returns the current configuration status of the system.\n\nExample curl command:\n```\ncurl -X GET \\\nhttp://localhost:8181/config \\\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+        }
+      ]
+    },
+    {
+      "info": {
+        "name": "Env",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Retrieve Environment Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}/env",
+            "headers": [
+              {
+                "name": "X-Tyk-Authorization",
+                "value": "your-secret-key"
+              }
+            ]
+          },
+          "docs": "Returns the current configuration status of the system.\n\n**Example curl command:**\n\n```bash\ncurl -X GET \\ \nhttp://localhost:8181/config\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

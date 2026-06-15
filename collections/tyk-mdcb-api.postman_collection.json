@@ -1,0 +1,1136 @@
+{
+  "item": [
+    {
+      "id": "0d861a9e-6bf3-4827-aa10-be4bbb500744",
+      "name": "Config",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2d57a02c-cee2-46cd-ba53-ee62b5b060ad",
+          "name": "Tyk Retrieve Current Configuration Status",
+          "request": {
+            "name": "Tyk Retrieve Current Configuration Status",
+            "description": {
+              "content": "Returns the current configuration status of the system.\n\nExample curl command:\n```\ncurl -X GET \\\nhttp://localhost:8181/config \\\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "X-Tyk-Authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ff418c5d-f379-4847-93b6-e53151a75b1b",
+              "name": "Successful retrieval of the current configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listen_port\": 9090,\n  \"healthcheck_port\": 8180,\n  \"http_port\": 8180,\n  \"enable_http_profiler\": false,\n  \"server_options\": {\n    \"use_ssl\": false,\n    \"certificate\": {\n      \"cert_file\": \"./server.crt\",\n      \"key_file\": \"./server.key\"\n    },\n    \"min_version\": 0,\n    \"ssl_ciphers\": \"string\",\n    \"ssl_certificates\": \"string\"\n  },\n  \"http_server_options\": {\n    \"use_ssl\": false,\n    \"certificate\": {\n      \"cert_file\": \"\",\n      \"key_file\": \"\"\n    },\n    \"min_version\": 0,\n    \"ssl_ciphers\": \"string\",\n    \"ssl_certificates\": \"string\"\n  },\n  \"security\": {\n    \"private_certificate_encoding_secret\": \"\",\n    \"enable_http_secure_endpoints\": true,\n    \"secret\": \"\"\n  },\n  \"storage\": {\n    \"type\": \"redis\",\n    \"host\": \"localhost\",\n    \"port\": 6379,\n    \"master_name\": \"\",\n    \"sentinel_password\": \"\",\n    \"username\": \"\",\n    \"password\": \"\",\n    \"database\": 0,\n    \"optimisation_max_idle\": 0,\n    \"optimisation_max_active\": 0,\n    \"enable_cluster\": false,\n    \"hosts\": \"string\",\n    \"addrs\": \"string\",\n    \"redis_use_ssl\": false,\n    \"redis_ssl_insecure_skip_verify\": false,\n    \"debug\": false,\n    \"timeout\": 0,\n    \"use_ssl\": false,\n    \"ssl_insecure_skip_verify\": false,\n    \"ca_file\": \"\",\n    \"cert_file\": \"\",\n    \"key_file\": \"\",\n    \"max_version\": \"\",\n    \"min_version\": \"\"\n  },\n  \"analytics\": {\n    \"type\": \"mongo\",\n    \"connection_string\": \"\",\n    \"table_sharding\": false,\n    \"batch_size\": 0,\n    \"postgres\": {\n      \"prefer_simple_protocol\": false\n    },\n    \"mysql\": {\n      \"default_string_size\": 0,\n      \"disable_datetime_precision\": false,\n      \"dont_support_rename_index\": false,\n      \"dont_support_rename_column\": false,\n      \"skip_initialize_with_version\": false\n    },\n    \"mongo_url\": \"\",\n    \"mongo_use_ssl\": false,\n    \"mongo_ssl_insecure_skip_verify\": false,\n    \"mongo_ssl_allow_invalid_hostnames\": false,\n    \"mongo_ssl_ca_file\": \"\",\n    \"mongo_ssl_pem_keyfile\": \"\",\n    \"mongo_session_consistency\": \"\",\n    \"mongo_batch_size\": 0,\n    \"driver\": \"mongo-go\",\n    \"mongo_direct_connection\": false\n  },\n  \"hash_keys\": true,\n  \"session_timeout\": 0,\n  \"forward_analytics_to_pump\": false,\n  \"enable_multiple_analytics_keys\": false,\n  \"dont_store_selective\": false,\n  \"dont_store_aggregate\": false,\n  \"org_session_expiration\": 60,\n  \"org_session_cleanup\": 60,\n  \"license\": \"\",\n  \"aggregates_ignore_tags\": \"example_value\",\n  \"track_all_paths\": false,\n  \"store_analytics_per_minute\": false,\n  \"ignore_tag_prefix_list\": \"example_value\",\n  \"threshold_len_tag_list\": 1000,\n  \"omit_analytics_index_creation\": false,\n  \"enable_separate_analytics_store\": false,\n  \"analytics_storage\": {\n    \"type\": \"\",\n    \"host\": \"\",\n    \"port\": 0,\n    \"master_name\": \"\",\n    \"sentinel_password\": \"\",\n    \"username\": \"\",\n    \"password\": \"\",\n    \"database\": 0,\n    \"optimisation_max_idle\": 0,\n    \"optimisation_max_active\": 0,\n    \"enable_cluster\": false,\n    \"hosts\": \"string\",\n    \"addrs\": \"string\",\n    \"redis_use_ssl\": false,\n    \"redis_ssl_insecure_skip_verify\": false,\n    \"debug\": false,\n    \"timeout\": 0,\n    \"use_ssl\": false,\n    \"ssl_insecure_skip_verify\": false,\n    \"ca_file\": \"\",\n    \"cert_file\": \"\",\n    \"key_file\": \"\",\n    \"max_version\": \"\",\n    \"min_version\": \"\"\n  },\n  \"log_level\": \"info\",\n  \"enable_key_logging\": false,\n  \"sync_worker_config\": {\n    \"enabled\": true,\n    \"hash_keys\": true,\n    \"max_batch_size\": 1000,\n    \"time_between_batches\": 3,\n    \"max_workers\": 1000,\n    \"warmup_time\": 0,\n    \"group_key_ttl\": 30\n  },\n  \"enable_ownership\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "23e8dcc3-c034-41d2-aab5-cfdd2d740d22",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Attempted administrative access with invalid or missing key!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "ee2e5cf1-18b6-4aab-be4b-e61d901d6e4f",
+      "name": "Dataplanes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "baa52ccc-470a-4ba8-bde5-da0f5cfa47ec",
+          "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+          "request": {
+            "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+            "description": {
+              "content": "Provides a list of all the data plane nodes connected to MDCB. Data plane nodes are Tyk Gateways that make your APIs available to your consumers. MDCB offers centralised management of your data plane nodes. This endpoint offers metadata and status for all connected data plane nodes, allowing for monitoring and troubleshooting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataplanes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "x-tyk-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e427178a-ec9e-4ab0-8c03-3404c6dfa70e",
+              "name": "Successful retrieval of the connected data planes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    },\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f0b6978a-9ee8-470f-97fb-3202749fb887",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Attempted administrative access with invalid or missing key!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "f0bcde91-cd24-448f-85b2-2579602e3a87",
+      "name": "Debug",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "00a7ff92-3c22-453e-a5f2-3f2c764a821b",
+          "name": "Tyk Cpu Profiling Data",
+          "request": {
+            "name": "Tyk Cpu Profiling Data",
+            "description": {
+              "content": "Returns CPU profiling data. Available only when HTTPProfile is enabled in sink.conf.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "pprof",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3537b9fc-ba07-4fd8-9f5b-374cb4dfb477",
+              "name": "CPU profiling data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "pprof",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "35135fb5-2dac-4e29-9e78-056357df9bd9",
+          "name": "Tyk Pprof Data",
+          "request": {
+            "name": "Tyk Pprof Data",
+            "description": {
+              "content": "Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "pprof",
+                ":profileType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileType",
+                  "description": "(Required) The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+                },
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "d3c465cc-3c72-4447-8b9a-62fbd7edbd96",
+              "name": "pprof data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "pprof",
+                    ":profileType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileType",
+                      "description": "(Required) The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+                    },
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "27ba643f-4fbd-47d2-b634-848ee74d214e",
+      "name": "Env",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1a729750-80d6-4132-800c-8d9a13e04f59",
+          "name": "Tyk Retrieve Environment Variables",
+          "request": {
+            "name": "Tyk Retrieve Environment Variables",
+            "description": {
+              "content": "Returns the current configuration status of the system.\n\n**Example curl command:**\n\n```bash\ncurl -X GET \\ \nhttp://localhost:8181/config\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "env"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "X-Tyk-Authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "eb542def-9967-4839-b1ea-bef9ca0406ff",
+              "name": "Successful retrieval of environment variables.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "env"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  \"TYK_MDCB_ANALYTICSSTORAGE_SSLINSECURESKIPVERIFY=false\",\n  \"TYK_MDCB_ANALYTICSSTORAGE_SSLINSECURESKIPVERIFY=false\"\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df34f2f5-230e-423f-bdce-fe0973e321bf",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "env"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Attempted administrative access with invalid or missing key!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "a61622e1-eee4-4f30-8a1b-7434b350fedb",
+      "name": "Health",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1be00766-debc-433e-9e1d-0136f254f34f",
+          "name": "Tyk Health Check",
+          "request": {
+            "name": "Tyk Health Check",
+            "description": {
+              "content": "Returns OK if the service is up and running.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "health"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fca6bd76-cd2c-484e-a0dd-865ff266c387",
+              "name": "Service is up and running.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "health"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "OK",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "9758881d-48bb-4c05-8ab3-8a660787fedb",
+      "name": "Liveness",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "ef686e4a-38c0-4389-807e-34b7f1f8a166",
+          "name": "Tyk Check Liveness Status",
+          "request": {
+            "name": "Tyk Check Liveness Status",
+            "description": {
+              "content": "Provides the liveness status of the service.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "liveness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "60811dce-8321-4c0c-b947-17d17abf99f8",
+              "name": "MDCB is alive.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "liveness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"pass\",\n  \"status_code\": 200\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "bf0592bd-b714-4aef-a451-5f4d27f62739",
+      "name": "Readiness",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d3f986b0-a182-4e96-afb6-c2627b95f622",
+          "name": "Tyk Check System Readiness Status",
+          "request": {
+            "name": "Tyk Check System Readiness Status",
+            "description": {
+              "content": "Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "readiness"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your MDCB host",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "11374c96-f6ac-4eb9-9531-9ae4b7ed80a8",
+              "name": "System is ready. All critical components are operational and  the system is capable of handling requests.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "readiness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"pass\",\n  \"status_code\": 200\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "64bc6086-cef7-4bb0-b090-dd35d32e7030",
+              "name": "System is not ready. One or more critical components are  non-operational, preventing the system from handling requests properly.\n",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "readiness"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your MDCB host",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "X-Tyk-Authorization",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"fail\",\n  \"status_code\": 503\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your MDCB host",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "localhost:8181",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "X-Tyk-Authorization"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "b3f6f058-28dd-4f95-9782-74237cbfb2ad",
+    "name": "Tyk MDCB Data Planes and Diagnostics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data.  It includes endpoints for retrieving connected data plane details, performing health checks,  and accessing Go's built-in pprof diagnostics for advanced performance profiling.\n\n\nContact Support:\n Name: Tyk Technologies\n Email: support@tyk.io",
+      "type": "text/plain"
+    }
+  }
+}

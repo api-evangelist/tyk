@@ -1,0 +1,2112 @@
+{
+  "item": [
+    {
+      "id": "a7cac5e4-ba6c-40eb-aed0-548d624d0e2c",
+      "name": "Export",
+      "description": {
+        "content": "To make Tyk installations more portable, the Export API enables you to export key configuration objects required to back-up and re-deploy a basic Tyk Pro installation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fbf5fb5e-224a-4e16-92bb-01a2d094574f",
+          "name": "Export Organisations",
+          "request": {
+            "name": "Export Organisations",
+            "description": {
+              "content": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and its APIs, Policies and API Tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":orgID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgID",
+                  "description": "(Required) ID of organisation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "056a488a-291a-471c-a9d5-9dc00aa73605",
+              "name": "Organisation exported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae441e10-c41c-4d47-8414-1921beaff22d",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Request body malformed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a59ea274-af83-42ae-aecf-2e30d9ebfacd",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a6289916-86ea-4595-a35f-48238019357c",
+              "name": "Org not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Could not retrieve org detail\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "cf440f20-301b-4875-aa8f-b8e784929d14",
+      "name": "Import",
+      "description": {
+        "content": "The import API enables you to add Organisations, APIs and Policies back into a Tyk installation while retaining their base IDs so that they work together.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "20ae3669-beee-42d1-a3bd-1d959e0d2a89",
+          "name": "Import organisations",
+          "request": {
+            "name": "Import organisations",
+            "description": {
+              "content": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and it s APIs, Policies and API Tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apis\": [\n    {\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"CORS\": {\n        \"allow_credentials\": \"<boolean>\",\n        \"allowed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_origins\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"debug\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"exposed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_age\": \"<long>\",\n        \"options_passthrough\": \"<boolean>\"\n      },\n      \"active\": \"<boolean>\",\n      \"allowed_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"api_id\": \"<string>\",\n      \"auth\": {\n        \"auth_header_name\": \"<string>\",\n        \"cookie_name\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"signature\": {\n          \"algorithm\": \"<string>\",\n          \"allowed_clock_skew\": \"<long>\",\n          \"error_code\": \"<long>\",\n          \"error_message\": \"<string>\",\n          \"header\": \"<string>\",\n          \"secret\": \"<string>\"\n        },\n        \"use_certificate\": \"<boolean>\",\n        \"use_cookie\": \"<boolean>\",\n        \"use_param\": \"<boolean>\",\n        \"validate_signature\": \"<boolean>\"\n      },\n      \"auth_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"base_identity_provided_by\": \"<string>\",\n      \"basic_auth\": {\n        \"body_password_regexp\": \"<string>\",\n        \"body_user_regexp\": \"<string>\",\n        \"cache_ttl\": \"<long>\",\n        \"disable_caching\": \"<boolean>\",\n        \"extract_from_body\": \"<boolean>\"\n      },\n      \"blacklisted_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cache_options\": {\n        \"cache_all_safe_requests\": \"<boolean>\",\n        \"cache_control_ttl_header\": \"<string>\",\n        \"cache_response_codes\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cache_timeout\": \"<long>\",\n        \"enable_cache\": \"<boolean>\",\n        \"enable_upstream_cache_control\": \"<boolean>\"\n      },\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"client_certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"config_data\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\"\n      },\n      \"custom_middleware\": {\n        \"auth_check\": {\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"require_session\": \"<boolean>\"\n        },\n        \"driver\": \"<string>\",\n        \"id_extractor\": {\n          \"extract_from\": \"<string>\",\n          \"extract_with\": \"<string>\",\n          \"extractor_config\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\",\n            \"key_2\": \"<object>\"\n          }\n        },\n        \"post\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"post_key_auth\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"pre\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"response\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ]\n      },\n      \"custom_middleware_bundle\": \"<string>\",\n      \"definition\": {\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"strip_path\": \"<boolean>\"\n      },\n      \"disable_quota\": \"<boolean>\",\n      \"disable_rate_limit\": \"<boolean>\",\n      \"do_not_track\": \"<boolean>\",\n      \"domain\": \"<string>\",\n      \"dont_set_quota_on_create\": \"<boolean>\",\n      \"enable_batch_request_support\": \"<boolean>\",\n      \"enable_context_vars\": \"<boolean>\",\n      \"enable_coprocess_auth\": \"<boolean>\",\n      \"enable_ip_blacklisting\": \"<boolean>\",\n      \"enable_ip_whitelisting\": \"<boolean>\",\n      \"enable_jwt\": \"<boolean>\",\n      \"enable_signature_checking\": \"<boolean>\",\n      \"event_handlers\": {\n        \"events\": {}\n      },\n      \"expire_analytics_after\": \"<long>\",\n      \"global_rate_limit\": {\n        \"per\": \"<double>\",\n        \"rate\": \"<double>\"\n      },\n      \"hmac_allowed_algorithms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hmac_allowed_clock_skew\": \"<double>\",\n      \"id\": \"<string>\",\n      \"internal\": \"<boolean>\",\n      \"jwt_client_base_field\": \"<string>\",\n      \"jwt_expires_at_validation_skew\": \"<uint64>\",\n      \"jwt_identity_base_field\": \"<string>\",\n      \"jwt_issued_at_validation_skew\": \"<uint64>\",\n      \"jwt_not_before_validation_skew\": \"<uint64>\",\n      \"jwt_policy_field_name\": \"<string>\",\n      \"jwt_scope_claim_name\": \"<string>\",\n      \"jwt_scope_to_policy_mapping\": {\n        \"key_0\": \"<string>\"\n      },\n      \"jwt_signing_method\": \"<string>\",\n      \"jwt_skip_kid\": \"<boolean>\",\n      \"jwt_source\": \"<string>\",\n      \"name\": \"<string>\",\n      \"notifications\": {\n        \"oauth_on_keychange_url\": \"<string>\",\n        \"shared_secret\": \"<string>\"\n      },\n      \"oauth_meta\": {\n        \"allowed_access_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_authorize_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"auth_login_redirect\": \"<string>\"\n      },\n      \"openid_options\": {\n        \"providers\": [\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          },\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          }\n        ],\n        \"segregate_by_client\": \"<boolean>\"\n      },\n      \"org_id\": \"<string>\",\n      \"pinned_public_keys\": {\n        \"key_0\": \"<string>\"\n      },\n      \"proxy\": {\n        \"check_host_against_uptime_tests\": \"<boolean>\",\n        \"disable_strip_slash\": \"<boolean>\",\n        \"enable_load_balancing\": \"<boolean>\",\n        \"listen_path\": \"<string>\",\n        \"preserve_host_header\": \"<boolean>\",\n        \"service_discovery\": {\n          \"cache_timeout\": \"<long>\",\n          \"data_path\": \"<string>\",\n          \"endpoint_returns_list\": \"<boolean>\",\n          \"parent_data_path\": \"<string>\",\n          \"port_data_path\": \"<string>\",\n          \"query_endpoint\": \"<string>\",\n          \"target_path\": \"<string>\",\n          \"use_discovery_service\": \"<boolean>\",\n          \"use_nested_query\": \"<boolean>\",\n          \"use_target_list\": \"<boolean>\"\n        },\n        \"strip_listen_path\": \"<boolean>\",\n        \"target_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"target_url\": \"<string>\",\n        \"transport\": {\n          \"proxy_url\": \"<string>\",\n          \"ssl_ciphers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ssl_insecure_skip_verify\": \"<boolean>\",\n          \"ssl_min_version\": \"<uint16>\"\n        }\n      },\n      \"response_processors\": [\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        }\n      ],\n      \"session_lifetime\": \"<long>\",\n      \"session_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\",\n          \"key_3\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"slug\": \"<string>\",\n      \"strip_auth_data\": \"<boolean>\",\n      \"tag_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upstream_certificates\": {\n        \"key_0\": \"<string>\"\n      },\n      \"uptime_tests\": {\n        \"check_list\": [\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ],\n        \"config\": {\n          \"expire_utime_after\": \"<long>\",\n          \"recheck_wait\": \"<long>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          }\n        }\n      },\n      \"use_basic_auth\": \"<boolean>\",\n      \"use_keyless\": \"<boolean>\",\n      \"use_mutual_tls_auth\": \"<boolean>\",\n      \"use_oauth2\": \"<boolean>\",\n      \"use_openid\": \"<boolean>\",\n      \"use_standard_auth\": \"<boolean>\",\n      \"version_data\": {\n        \"default_version\": \"<string>\",\n        \"not_versioned\": \"<boolean>\",\n        \"versions\": {\n          \"key_0\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          }\n        }\n      }\n    },\n    {\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"CORS\": {\n        \"allow_credentials\": \"<boolean>\",\n        \"allowed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_origins\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"debug\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"exposed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_age\": \"<long>\",\n        \"options_passthrough\": \"<boolean>\"\n      },\n      \"active\": \"<boolean>\",\n      \"allowed_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"api_id\": \"<string>\",\n      \"auth\": {\n        \"auth_header_name\": \"<string>\",\n        \"cookie_name\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"signature\": {\n          \"algorithm\": \"<string>\",\n          \"allowed_clock_skew\": \"<long>\",\n          \"error_code\": \"<long>\",\n          \"error_message\": \"<string>\",\n          \"header\": \"<string>\",\n          \"secret\": \"<string>\"\n        },\n        \"use_certificate\": \"<boolean>\",\n        \"use_cookie\": \"<boolean>\",\n        \"use_param\": \"<boolean>\",\n        \"validate_signature\": \"<boolean>\"\n      },\n      \"auth_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"base_identity_provided_by\": \"<string>\",\n      \"basic_auth\": {\n        \"body_password_regexp\": \"<string>\",\n        \"body_user_regexp\": \"<string>\",\n        \"cache_ttl\": \"<long>\",\n        \"disable_caching\": \"<boolean>\",\n        \"extract_from_body\": \"<boolean>\"\n      },\n      \"blacklisted_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cache_options\": {\n        \"cache_all_safe_requests\": \"<boolean>\",\n        \"cache_control_ttl_header\": \"<string>\",\n        \"cache_response_codes\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cache_timeout\": \"<long>\",\n        \"enable_cache\": \"<boolean>\",\n        \"enable_upstream_cache_control\": \"<boolean>\"\n      },\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"client_certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"config_data\": {\n        \"key_0\": \"<object>\"\n      },\n      \"custom_middleware\": {\n        \"auth_check\": {\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"require_session\": \"<boolean>\"\n        },\n        \"driver\": \"<string>\",\n        \"id_extractor\": {\n          \"extract_from\": \"<string>\",\n          \"extract_with\": \"<string>\",\n          \"extractor_config\": {\n            \"key_0\": \"<object>\"\n          }\n        },\n        \"post\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"post_key_auth\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"pre\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"response\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ]\n      },\n      \"custom_middleware_bundle\": \"<string>\",\n      \"definition\": {\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"strip_path\": \"<boolean>\"\n      },\n      \"disable_quota\": \"<boolean>\",\n      \"disable_rate_limit\": \"<boolean>\",\n      \"do_not_track\": \"<boolean>\",\n      \"domain\": \"<string>\",\n      \"dont_set_quota_on_create\": \"<boolean>\",\n      \"enable_batch_request_support\": \"<boolean>\",\n      \"enable_context_vars\": \"<boolean>\",\n      \"enable_coprocess_auth\": \"<boolean>\",\n      \"enable_ip_blacklisting\": \"<boolean>\",\n      \"enable_ip_whitelisting\": \"<boolean>\",\n      \"enable_jwt\": \"<boolean>\",\n      \"enable_signature_checking\": \"<boolean>\",\n      \"event_handlers\": {\n        \"events\": {}\n      },\n      \"expire_analytics_after\": \"<long>\",\n      \"global_rate_limit\": {\n        \"per\": \"<double>\",\n        \"rate\": \"<double>\"\n      },\n      \"hmac_allowed_algorithms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hmac_allowed_clock_skew\": \"<double>\",\n      \"id\": \"<string>\",\n      \"internal\": \"<boolean>\",\n      \"jwt_client_base_field\": \"<string>\",\n      \"jwt_expires_at_validation_skew\": \"<uint64>\",\n      \"jwt_identity_base_field\": \"<string>\",\n      \"jwt_issued_at_validation_skew\": \"<uint64>\",\n      \"jwt_not_before_validation_skew\": \"<uint64>\",\n      \"jwt_policy_field_name\": \"<string>\",\n      \"jwt_scope_claim_name\": \"<string>\",\n      \"jwt_scope_to_policy_mapping\": {\n        \"key_0\": \"<string>\"\n      },\n      \"jwt_signing_method\": \"<string>\",\n      \"jwt_skip_kid\": \"<boolean>\",\n      \"jwt_source\": \"<string>\",\n      \"name\": \"<string>\",\n      \"notifications\": {\n        \"oauth_on_keychange_url\": \"<string>\",\n        \"shared_secret\": \"<string>\"\n      },\n      \"oauth_meta\": {\n        \"allowed_access_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_authorize_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"auth_login_redirect\": \"<string>\"\n      },\n      \"openid_options\": {\n        \"providers\": [\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          },\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          }\n        ],\n        \"segregate_by_client\": \"<boolean>\"\n      },\n      \"org_id\": \"<string>\",\n      \"pinned_public_keys\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\",\n        \"key_2\": \"<string>\"\n      },\n      \"proxy\": {\n        \"check_host_against_uptime_tests\": \"<boolean>\",\n        \"disable_strip_slash\": \"<boolean>\",\n        \"enable_load_balancing\": \"<boolean>\",\n        \"listen_path\": \"<string>\",\n        \"preserve_host_header\": \"<boolean>\",\n        \"service_discovery\": {\n          \"cache_timeout\": \"<long>\",\n          \"data_path\": \"<string>\",\n          \"endpoint_returns_list\": \"<boolean>\",\n          \"parent_data_path\": \"<string>\",\n          \"port_data_path\": \"<string>\",\n          \"query_endpoint\": \"<string>\",\n          \"target_path\": \"<string>\",\n          \"use_discovery_service\": \"<boolean>\",\n          \"use_nested_query\": \"<boolean>\",\n          \"use_target_list\": \"<boolean>\"\n        },\n        \"strip_listen_path\": \"<boolean>\",\n        \"target_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"target_url\": \"<string>\",\n        \"transport\": {\n          \"proxy_url\": \"<string>\",\n          \"ssl_ciphers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ssl_insecure_skip_verify\": \"<boolean>\",\n          \"ssl_min_version\": \"<uint16>\"\n        }\n      },\n      \"response_processors\": [\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        }\n      ],\n      \"session_lifetime\": \"<long>\",\n      \"session_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"slug\": \"<string>\",\n      \"strip_auth_data\": \"<boolean>\",\n      \"tag_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upstream_certificates\": {\n        \"key_0\": \"<string>\"\n      },\n      \"uptime_tests\": {\n        \"check_list\": [\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ],\n        \"config\": {\n          \"expire_utime_after\": \"<long>\",\n          \"recheck_wait\": \"<long>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          }\n        }\n      },\n      \"use_basic_auth\": \"<boolean>\",\n      \"use_keyless\": \"<boolean>\",\n      \"use_mutual_tls_auth\": \"<boolean>\",\n      \"use_oauth2\": \"<boolean>\",\n      \"use_openid\": \"<boolean>\",\n      \"use_standard_auth\": \"<boolean>\",\n      \"version_data\": {\n        \"default_version\": \"<string>\",\n        \"not_versioned\": \"<boolean>\",\n        \"versions\": {\n          \"key_0\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "19b5b56c-ffb4-4118-b966-ee3289d78406",
+              "name": "Org imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org imported\",\n  \"Meta\": \"53ac07777cbb8c2d53000002\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c305c5cc-6fbf-428c-8e11-9e2e37951f2b",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Failed to save new Org object to DB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0679f61f-bbc7-487a-b5f1-aa1f68ecd8b3",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "54c4a85c-ad59-4fc0-ae34-60ccfd6199a7",
+          "name": "Import APIs",
+          "request": {
+            "name": "Import APIs",
+            "description": {
+              "content": "The import APIs operates on lists of APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "apis",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": \"<object>\",\n      \"api_definition\": {\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"CORS\": {\n          \"allow_credentials\": \"<boolean>\",\n          \"allowed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_origins\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"debug\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"exposed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"max_age\": \"<long>\",\n          \"options_passthrough\": \"<boolean>\"\n        },\n        \"active\": \"<boolean>\",\n        \"allowed_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"api_id\": \"<string>\",\n        \"auth\": {\n          \"auth_header_name\": \"<string>\",\n          \"cookie_name\": \"<string>\",\n          \"param_name\": \"<string>\",\n          \"signature\": {\n            \"algorithm\": \"<string>\",\n            \"allowed_clock_skew\": \"<long>\",\n            \"error_code\": \"<long>\",\n            \"error_message\": \"<string>\",\n            \"header\": \"<string>\",\n            \"secret\": \"<string>\"\n          },\n          \"use_certificate\": \"<boolean>\",\n          \"use_cookie\": \"<boolean>\",\n          \"use_param\": \"<boolean>\",\n          \"validate_signature\": \"<boolean>\"\n        },\n        \"auth_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\",\n            \"key_2\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"base_identity_provided_by\": \"<string>\",\n        \"basic_auth\": {\n          \"body_password_regexp\": \"<string>\",\n          \"body_user_regexp\": \"<string>\",\n          \"cache_ttl\": \"<long>\",\n          \"disable_caching\": \"<boolean>\",\n          \"extract_from_body\": \"<boolean>\"\n        },\n        \"blacklisted_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cache_options\": {\n          \"cache_all_safe_requests\": \"<boolean>\",\n          \"cache_control_ttl_header\": \"<string>\",\n          \"cache_response_codes\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"cache_timeout\": \"<long>\",\n          \"enable_cache\": \"<boolean>\",\n          \"enable_upstream_cache_control\": \"<boolean>\"\n        },\n        \"certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"client_certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"config_data\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\"\n        },\n        \"custom_middleware\": {\n          \"auth_check\": {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          \"driver\": \"<string>\",\n          \"id_extractor\": {\n            \"extract_from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extract_with\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extractor_config\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"post\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"post_key_auth\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pre\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"response\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"custom_middleware_bundle\": \"<string>\",\n        \"definition\": {\n          \"key\": \"<string>\",\n          \"location\": \"<string>\",\n          \"strip_path\": \"<boolean>\"\n        },\n        \"disable_quota\": \"<boolean>\",\n        \"disable_rate_limit\": \"<boolean>\",\n        \"do_not_track\": \"<boolean>\",\n        \"domain\": \"<string>\",\n        \"dont_set_quota_on_create\": \"<boolean>\",\n        \"enable_batch_request_support\": \"<boolean>\",\n        \"enable_context_vars\": \"<boolean>\",\n        \"enable_coprocess_auth\": \"<boolean>\",\n        \"enable_ip_blacklisting\": \"<boolean>\",\n        \"enable_ip_whitelisting\": \"<boolean>\",\n        \"enable_jwt\": \"<boolean>\",\n        \"enable_signature_checking\": \"<boolean>\",\n        \"event_handlers\": {\n          \"events\": {}\n        },\n        \"expire_analytics_after\": \"<long>\",\n        \"global_rate_limit\": {\n          \"per\": \"<double>\",\n          \"rate\": \"<double>\"\n        },\n        \"hmac_allowed_algorithms\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hmac_allowed_clock_skew\": \"<double>\",\n        \"id\": \"<string>\",\n        \"internal\": \"<boolean>\",\n        \"jwt_client_base_field\": \"<string>\",\n        \"jwt_expires_at_validation_skew\": \"<uint64>\",\n        \"jwt_identity_base_field\": \"<string>\",\n        \"jwt_issued_at_validation_skew\": \"<uint64>\",\n        \"jwt_not_before_validation_skew\": \"<uint64>\",\n        \"jwt_policy_field_name\": \"<string>\",\n        \"jwt_scope_claim_name\": \"<string>\",\n        \"jwt_scope_to_policy_mapping\": {\n          \"key_0\": \"<string>\"\n        },\n        \"jwt_signing_method\": \"<string>\",\n        \"jwt_skip_kid\": \"<boolean>\",\n        \"jwt_source\": \"<string>\",\n        \"name\": \"<string>\",\n        \"notifications\": {\n          \"oauth_on_keychange_url\": \"<string>\",\n          \"shared_secret\": \"<string>\"\n        },\n        \"oauth_meta\": {\n          \"allowed_access_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_authorize_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"auth_login_redirect\": \"<string>\"\n        },\n        \"openid_options\": {\n          \"providers\": [\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"segregate_by_client\": \"<boolean>\"\n        },\n        \"org_id\": \"<string>\",\n        \"pinned_public_keys\": {\n          \"key_0\": \"<string>\"\n        },\n        \"proxy\": {\n          \"check_host_against_uptime_tests\": \"<boolean>\",\n          \"disable_strip_slash\": \"<boolean>\",\n          \"enable_load_balancing\": \"<boolean>\",\n          \"listen_path\": \"<string>\",\n          \"preserve_host_header\": \"<boolean>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          },\n          \"strip_listen_path\": \"<boolean>\",\n          \"target_list\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"target_url\": \"<string>\",\n          \"transport\": {\n            \"proxy_url\": \"<string>\",\n            \"ssl_ciphers\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"ssl_insecure_skip_verify\": \"<boolean>\",\n            \"ssl_min_version\": \"<uint16>\"\n          }\n        },\n        \"response_processors\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          }\n        ],\n        \"session_lifetime\": \"<long>\",\n        \"session_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"slug\": \"<string>\",\n        \"strip_auth_data\": \"<boolean>\",\n        \"tag_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"upstream_certificates\": {\n          \"key_0\": \"<string>\"\n        },\n        \"uptime_tests\": {\n          \"check_list\": [\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_2\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_3\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ],\n          \"config\": {\n            \"expire_utime_after\": \"<long>\",\n            \"recheck_wait\": \"<long>\",\n            \"service_discovery\": {\n              \"cache_timeout\": \"<long>\",\n              \"data_path\": \"<string>\",\n              \"endpoint_returns_list\": \"<boolean>\",\n              \"parent_data_path\": \"<string>\",\n              \"port_data_path\": \"<string>\",\n              \"query_endpoint\": \"<string>\",\n              \"target_path\": \"<string>\",\n              \"use_discovery_service\": \"<boolean>\",\n              \"use_nested_query\": \"<boolean>\",\n              \"use_target_list\": \"<boolean>\"\n            }\n          }\n        },\n        \"use_basic_auth\": \"<boolean>\",\n        \"use_keyless\": \"<boolean>\",\n        \"use_mutual_tls_auth\": \"<boolean>\",\n        \"use_oauth2\": \"<boolean>\",\n        \"use_openid\": \"<boolean>\",\n        \"use_standard_auth\": \"<boolean>\",\n        \"version_data\": {\n          \"default_version\": \"<string>\",\n          \"not_versioned\": \"<boolean>\",\n          \"versions\": {\n            \"key_0\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            },\n            \"key_1\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            }\n          }\n        }\n      },\n      \"hook_references\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"is_site\": \"<boolean>\",\n      \"sort_by\": \"<integer>\"\n    },\n    {\n      \"api_model\": \"<object>\",\n      \"api_definition\": {\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"CORS\": {\n          \"allow_credentials\": \"<boolean>\",\n          \"allowed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_origins\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"debug\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"exposed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"max_age\": \"<long>\",\n          \"options_passthrough\": \"<boolean>\"\n        },\n        \"active\": \"<boolean>\",\n        \"allowed_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"api_id\": \"<string>\",\n        \"auth\": {\n          \"auth_header_name\": \"<string>\",\n          \"cookie_name\": \"<string>\",\n          \"param_name\": \"<string>\",\n          \"signature\": {\n            \"algorithm\": \"<string>\",\n            \"allowed_clock_skew\": \"<long>\",\n            \"error_code\": \"<long>\",\n            \"error_message\": \"<string>\",\n            \"header\": \"<string>\",\n            \"secret\": \"<string>\"\n          },\n          \"use_certificate\": \"<boolean>\",\n          \"use_cookie\": \"<boolean>\",\n          \"use_param\": \"<boolean>\",\n          \"validate_signature\": \"<boolean>\"\n        },\n        \"auth_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"base_identity_provided_by\": \"<string>\",\n        \"basic_auth\": {\n          \"body_password_regexp\": \"<string>\",\n          \"body_user_regexp\": \"<string>\",\n          \"cache_ttl\": \"<long>\",\n          \"disable_caching\": \"<boolean>\",\n          \"extract_from_body\": \"<boolean>\"\n        },\n        \"blacklisted_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cache_options\": {\n          \"cache_all_safe_requests\": \"<boolean>\",\n          \"cache_control_ttl_header\": \"<string>\",\n          \"cache_response_codes\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"cache_timeout\": \"<long>\",\n          \"enable_cache\": \"<boolean>\",\n          \"enable_upstream_cache_control\": \"<boolean>\"\n        },\n        \"certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"client_certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"config_data\": {\n          \"key_0\": \"<object>\"\n        },\n        \"custom_middleware\": {\n          \"auth_check\": {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          \"driver\": \"<string>\",\n          \"id_extractor\": {\n            \"extract_from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extract_with\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extractor_config\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"post\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"post_key_auth\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pre\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"response\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"custom_middleware_bundle\": \"<string>\",\n        \"definition\": {\n          \"key\": \"<string>\",\n          \"location\": \"<string>\",\n          \"strip_path\": \"<boolean>\"\n        },\n        \"disable_quota\": \"<boolean>\",\n        \"disable_rate_limit\": \"<boolean>\",\n        \"do_not_track\": \"<boolean>\",\n        \"domain\": \"<string>\",\n        \"dont_set_quota_on_create\": \"<boolean>\",\n        \"enable_batch_request_support\": \"<boolean>\",\n        \"enable_context_vars\": \"<boolean>\",\n        \"enable_coprocess_auth\": \"<boolean>\",\n        \"enable_ip_blacklisting\": \"<boolean>\",\n        \"enable_ip_whitelisting\": \"<boolean>\",\n        \"enable_jwt\": \"<boolean>\",\n        \"enable_signature_checking\": \"<boolean>\",\n        \"event_handlers\": {\n          \"events\": {}\n        },\n        \"expire_analytics_after\": \"<long>\",\n        \"global_rate_limit\": {\n          \"per\": \"<double>\",\n          \"rate\": \"<double>\"\n        },\n        \"hmac_allowed_algorithms\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hmac_allowed_clock_skew\": \"<double>\",\n        \"id\": \"<string>\",\n        \"internal\": \"<boolean>\",\n        \"jwt_client_base_field\": \"<string>\",\n        \"jwt_expires_at_validation_skew\": \"<uint64>\",\n        \"jwt_identity_base_field\": \"<string>\",\n        \"jwt_issued_at_validation_skew\": \"<uint64>\",\n        \"jwt_not_before_validation_skew\": \"<uint64>\",\n        \"jwt_policy_field_name\": \"<string>\",\n        \"jwt_scope_claim_name\": \"<string>\",\n        \"jwt_scope_to_policy_mapping\": {\n          \"key_0\": \"<string>\"\n        },\n        \"jwt_signing_method\": \"<string>\",\n        \"jwt_skip_kid\": \"<boolean>\",\n        \"jwt_source\": \"<string>\",\n        \"name\": \"<string>\",\n        \"notifications\": {\n          \"oauth_on_keychange_url\": \"<string>\",\n          \"shared_secret\": \"<string>\"\n        },\n        \"oauth_meta\": {\n          \"allowed_access_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_authorize_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"auth_login_redirect\": \"<string>\"\n        },\n        \"openid_options\": {\n          \"providers\": [\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"segregate_by_client\": \"<boolean>\"\n        },\n        \"org_id\": \"<string>\",\n        \"pinned_public_keys\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"proxy\": {\n          \"check_host_against_uptime_tests\": \"<boolean>\",\n          \"disable_strip_slash\": \"<boolean>\",\n          \"enable_load_balancing\": \"<boolean>\",\n          \"listen_path\": \"<string>\",\n          \"preserve_host_header\": \"<boolean>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          },\n          \"strip_listen_path\": \"<boolean>\",\n          \"target_list\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"target_url\": \"<string>\",\n          \"transport\": {\n            \"proxy_url\": \"<string>\",\n            \"ssl_ciphers\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"ssl_insecure_skip_verify\": \"<boolean>\",\n            \"ssl_min_version\": \"<uint16>\"\n          }\n        },\n        \"response_processors\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          }\n        ],\n        \"session_lifetime\": \"<long>\",\n        \"session_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"slug\": \"<string>\",\n        \"strip_auth_data\": \"<boolean>\",\n        \"tag_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"upstream_certificates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"uptime_tests\": {\n          \"check_list\": [\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_2\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ],\n          \"config\": {\n            \"expire_utime_after\": \"<long>\",\n            \"recheck_wait\": \"<long>\",\n            \"service_discovery\": {\n              \"cache_timeout\": \"<long>\",\n              \"data_path\": \"<string>\",\n              \"endpoint_returns_list\": \"<boolean>\",\n              \"parent_data_path\": \"<string>\",\n              \"port_data_path\": \"<string>\",\n              \"query_endpoint\": \"<string>\",\n              \"target_path\": \"<string>\",\n              \"use_discovery_service\": \"<boolean>\",\n              \"use_nested_query\": \"<boolean>\",\n              \"use_target_list\": \"<boolean>\"\n            }\n          }\n        },\n        \"use_basic_auth\": \"<boolean>\",\n        \"use_keyless\": \"<boolean>\",\n        \"use_mutual_tls_auth\": \"<boolean>\",\n        \"use_oauth2\": \"<boolean>\",\n        \"use_openid\": \"<boolean>\",\n        \"use_standard_auth\": \"<boolean>\",\n        \"version_data\": {\n          \"default_version\": \"<string>\",\n          \"not_versioned\": \"<boolean>\",\n          \"versions\": {\n            \"key_0\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            },\n            \"key_1\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            }\n          }\n        }\n      },\n      \"hook_references\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"is_site\": \"<boolean>\",\n      \"sort_by\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6b89ccfd-6082-4a48-9013-31c4b9f9d88b",
+              "name": "APIs imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"APIs imported\",\n  \"Meta\": {\n    \"5fa2db834e07444f760b7ceb314209fb\": true,\n    \"7a6ddeca9244448a4233866938a0d6e2\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70c561ca-7ff6-4160-acdf-0541b95de882",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Request body malformed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da504a5b-77ed-490c-a1bb-644fbd19afbf",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bfd587d6-7943-43b3-927c-2e83e2a548fd",
+          "name": "Import Policies",
+          "request": {
+            "name": "Import Policies",
+            "description": {
+              "content": "The import Policies operates on lists of Policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "policies",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"rate\": \"<double>\",\n      \"per\": \"<double>\",\n      \"quota_max\": \"<long>\",\n      \"quota_renewal_rate\": \"<long>\",\n      \"throttle_interval\": \"<double>\",\n      \"throttle_retry_limit\": \"<number>\",\n      \"max_query_depth\": \"<number>\",\n      \"access_rights\": {\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          },\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          }\n        ],\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"limit\": {\n          \"per\": \"<double>\",\n          \"quota_max\": \"<long>\",\n          \"quota_remaining\": \"<long>\",\n          \"quota_renewal_rate\": \"<long>\",\n          \"quota_renews\": \"<long>\",\n          \"rate\": \"<double>\",\n          \"set_by_policy\": \"<boolean>\",\n          \"throttle_interval\": \"<double>\",\n          \"throttle_retry_limit\": \"<long>\"\n        },\n        \"versions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"hmac_enabled\": \"<boolean>\",\n      \"enable_http_signature_validation\": \"<boolean>\",\n      \"active\": \"<boolean>\",\n      \"is_inactive\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_expires_in\": \"<int64>\",\n      \"partitions\": {\n        \"quota\": \"<boolean>\",\n        \"rate_limit\": \"<boolean>\",\n        \"complexity\": \"<boolean>\",\n        \"acl\": \"<boolean>\",\n        \"per_api\": \"<boolean>\"\n      },\n      \"last_updated\": \"<string>\",\n      \"meta_data\": \"<object>\",\n      \"graphql_access_rights\": \"<object>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"rate\": \"<double>\",\n      \"per\": \"<double>\",\n      \"quota_max\": \"<long>\",\n      \"quota_renewal_rate\": \"<long>\",\n      \"throttle_interval\": \"<double>\",\n      \"throttle_retry_limit\": \"<number>\",\n      \"max_query_depth\": \"<number>\",\n      \"access_rights\": {\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          },\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          }\n        ],\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"limit\": {\n          \"per\": \"<double>\",\n          \"quota_max\": \"<long>\",\n          \"quota_remaining\": \"<long>\",\n          \"quota_renewal_rate\": \"<long>\",\n          \"quota_renews\": \"<long>\",\n          \"rate\": \"<double>\",\n          \"set_by_policy\": \"<boolean>\",\n          \"throttle_interval\": \"<double>\",\n          \"throttle_retry_limit\": \"<long>\"\n        },\n        \"versions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"hmac_enabled\": \"<boolean>\",\n      \"enable_http_signature_validation\": \"<boolean>\",\n      \"active\": \"<boolean>\",\n      \"is_inactive\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_expires_in\": \"<int64>\",\n      \"partitions\": {\n        \"quota\": \"<boolean>\",\n        \"rate_limit\": \"<boolean>\",\n        \"complexity\": \"<boolean>\",\n        \"acl\": \"<boolean>\",\n        \"per_api\": \"<boolean>\"\n      },\n      \"last_updated\": \"<string>\",\n      \"meta_data\": \"<object>\",\n      \"graphql_access_rights\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fdee268a-722c-4f5f-8bf1-6abfba3930ad",
+              "name": "Policies imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Policies imported\",\n  \"Meta\": {\n    \"61df10078f11dd00097cb55f\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c393d50-786a-4ed3-94af-2219ab890527",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Failed to save new Org object to DB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00399660-38a8-4fe8-a533-63d47c4e6203",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "e74454eb-2f65-43d7-a04c-1406411b6cd8",
+      "name": "Single Sign On",
+      "description": {
+        "content": "The Dashboard SSO API allows you to implement custom authentication schemes for the Dashboard and Portal. Our Tyk Identity Broker (TIB) internally also uses this API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "41ae7d93-c906-4a0b-acb9-28105f29da69",
+          "name": "Generate authentication token",
+          "request": {
+            "name": "Generate authentication token",
+            "description": {
+              "content": "The Dashboard exposes the /admin/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "sso",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"ForSection\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"GroupID\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "7feec684-0696-4700-86d1-48bf8ab1e4e2",
+              "name": "Additional Permissions updated successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sso",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ForSection\": \"dashboard\",\n  \"OrgID\": \"588b4f0bb275ff0001cc7471\",\n  \"EmailAddress\": \"name@somewhere.com\",\n  \"GroupID\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"SSO Nonce created\",\n  \"Meta\": \"YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0d82c6a8-4c0c-4390-81a8-a4ef9c594bfc",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sso",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ForSection\": \"dashboard\",\n  \"OrgID\": \"588b4f0bb275ff0001cc7471\",\n  \"EmailAddress\": \"name@somewhere.com\",\n  \"GroupID\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Cannot create an SSO session for an invalid payload: [Error: Org id not found ('588b4f0bb275ff0001cc7471').]\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e1ece4f0-91b4-4139-b1a5-fff351162ea5",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "sso",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ForSection\": \"dashboard\",\n  \"OrgID\": \"588b4f0bb275ff0001cc7471\",\n  \"EmailAddress\": \"name@somewhere.com\",\n  \"GroupID\": \"\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "8db848e6-d15c-414c-b427-2defb5af7a14",
+      "name": "Dashboard URL Reload",
+      "description": {
+        "content": "Since the Dashboard can have multiple URLs associated with it. It is possible to force a URL reload by calling an API endpoint of the Dashboard API.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de46f625-132c-4ad4-ae9e-9d5dc4a5edbe",
+          "name": "Reloads dashboard urls",
+          "request": {
+            "name": "Reloads dashboard urls",
+            "description": {
+              "content": "Reloads dashboard urls.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "system",
+                "reload"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "1d21b821-1727-4b03-be34-a90102fd828f",
+              "name": "URLs reloaded successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "system",
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "10eae10f-5bd3-40d4-b1f9-7415710f6b45",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "system",
+                    "reload"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "86086642-90cf-4f2f-9fdb-c712d38ea346",
+      "name": "Organisations",
+      "description": {
+        "content": "The organisations API gives the ability to manage your Tyk organisation(s).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fb13f911-bde7-40d3-8193-1215ed37d8b4",
+          "name": "Retrieve a single organisation",
+          "request": {
+            "name": "Retrieve a single organisation",
+            "description": {
+              "content": "Retrieve a single organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "997189d3-de6e-4258-80c2-6eaa3f8de5d6",
+              "name": "Organisation retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5cc03283d07e7f00019404b3\",\n  \"owner_name\": \"TestOrg5 Ltd.\",\n  \"owner_slug\": \"testorg\",\n  \"cname_enabled\": true,\n  \"cname\": \"www.tyk-portal-test.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"First API #Test\",\n      \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n    }\n  ],\n  \"developer_quota\": 0,\n  \"developer_count\": 0,\n  \"event_options\": {},\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false,\n    \"cloud\": false\n  },\n  \"org_options_meta\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9c30a77e-a273-4f3a-817e-41cdfdbf443a",
+          "name": "Update organisation details",
+          "request": {
+            "name": "Update organisation details",
+            "description": {
+              "content": "Update Organisation details. This operation will replace the existing Organisation details with those provided in the request payload. It is important to provide the entire object - for example linked APIs - to avoid overwriting existing data with empty values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"owner_name\": \"<string>\",\n  \"owner_slug\": \"<string>\",\n  \"cname_enabled\": \"<boolean>\",\n  \"cname\": \"<string>\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"<string>\",\n      \"api_id\": \"<string>\"\n    },\n    {\n      \"api_human_name\": \"<string>\",\n      \"api_id\": \"<string>\"\n    }\n  ],\n  \"sso_enabled\": \"<boolean>\",\n  \"developer_quota\": \"<integer>\",\n  \"developer_count\": \"<integer>\",\n  \"event_options\": {\n    \"key_0\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    },\n    \"key_1\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    },\n    \"key_2\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    },\n    \"key_3\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    },\n    \"key_4\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    }\n  },\n  \"hybrid_enabled\": \"<boolean>\",\n  \"ui\": {\n    \"languages\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"hide_help\": \"<boolean>\",\n    \"default_lang\": \"<string>\",\n    \"login_page\": \"<object>\",\n    \"nav\": \"<object>\",\n    \"uptime\": \"<object>\",\n    \"portal_section\": \"<object>\",\n    \"designer\": \"<object>\",\n    \"dont_show_admin_sockets\": \"<boolean>\",\n    \"dont_allow_license_management\": \"<boolean>\",\n    \"dont_allow_license_management_view\": \"<boolean>\",\n    \"cloud\": \"<boolean>\",\n    \"dev\": \"<boolean>\"\n  },\n  \"org_options_meta\": \"<object>\",\n  \"open_policy\": {\n    \"rules\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"additional_permissions\": {\n    \"key_0\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "66b10707-5460-48d9-abd4-f74fc7adbc6d",
+              "name": "Organisation updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"5cc03283d07e7f00019404b3\",\n  \"owner_name\": \"Jively\",\n  \"owner_slug\": \"testorg\",\n  \"cname\": \"jive.ly\",\n  \"cname_enabled\": true,\n  \"apis\": [\n    {\n      \"api_human_name\": \"First API #Test\",\n      \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n    }\n  ],\n  \"developer_quota\": 0,\n  \"developer_count\": 0,\n  \"event_options\": {},\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false,\n    \"cloud\": false\n  },\n  \"org_options_meta\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org updated\",\n  \"Meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "865f0a1d-3f46-46b0-8411-efcd1830ddd7",
+          "name": "Delete an organisation",
+          "request": {
+            "name": "Delete an organisation",
+            "description": {
+              "content": "Delete an organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2ee9c3b5-e000-49d0-8bea-5f342bd84438",
+              "name": "Organisation deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org deleted\",\n  \"Meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b2cd5717-5716-4a89-88cd-3332b29639fb",
+          "name": "List all organisations",
+          "request": {
+            "name": "List all organisations",
+            "description": {
+              "content": "List all organisations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5c870f5f-997f-4a71-b2c8-ab822dad69a5",
+              "name": "Organisations retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organisations\": [\n    {\n      \"id\": \"5cc03283d07e7f00019404b3\",\n      \"owner_name\": \"TestOrg5 Ltd.\",\n      \"owner_slug\": \"testorg\",\n      \"cname_enabled\": true,\n      \"cname\": \"www.tyk-portal-test.com\",\n      \"apis\": [\n        {\n          \"api_human_name\": \"First API #Test\",\n          \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n        }\n      ],\n      \"developer_quota\": 0,\n      \"developer_count\": 0,\n      \"event_options\": {},\n      \"hybrid_enabled\": false,\n      \"ui\": {\n        \"languages\": {},\n        \"hide_help\": false,\n        \"default_lang\": \"\",\n        \"login_page\": {},\n        \"nav\": {},\n        \"uptime\": {},\n        \"portal_section\": {},\n        \"designer\": {},\n        \"dont_show_admin_sockets\": false,\n        \"dont_allow_license_management\": false,\n        \"dont_allow_license_management_view\": false,\n        \"cloud\": false\n      },\n      \"org_options_meta\": {}\n    },\n    {\n      \"id\": \"5ccae84aa402ce00018b5435\",\n      \"owner_name\": \"Jively\",\n      \"owner_slug\": \"\",\n      \"cname_enabled\": true,\n      \"cname\": \"jive.ly\",\n      \"apis\": [],\n      \"developer_quota\": 0,\n      \"developer_count\": 0,\n      \"event_options\": {},\n      \"hybrid_enabled\": false,\n      \"ui\": {\n        \"languages\": {},\n        \"hide_help\": false,\n        \"default_lang\": \"\",\n        \"login_page\": {},\n        \"nav\": {},\n        \"uptime\": {},\n        \"portal_section\": {},\n        \"designer\": {},\n        \"dont_show_admin_sockets\": false,\n        \"dont_allow_license_management\": false,\n        \"dont_allow_license_management_view\": false,\n        \"cloud\": false\n      },\n      \"org_options_meta\": {}\n    }\n  ],\n  \"pages\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "fc89ef5e-6283-4ad3-bbd3-5fd254c95fe4",
+          "name": "Create an Organisation",
+          "request": {
+            "name": "Create an Organisation",
+            "description": {
+              "content": "Create an Organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "dacc1857-e447-41a2-a082-f9804d599ffd",
+              "name": "Organisation created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"owner_name\": \"Jively\",\n  \"cname\": \"jive.ly\",\n  \"cname_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org created\",\n  \"Meta\": \"54b53d3aeba6db5c35000002\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    },
+    {
+      "id": "674ad16a-61bc-4c60-a12c-ef790152ad0c",
+      "name": "Users",
+      "description": {
+        "content": "The admin portion of the users API gives you the ability to manage password reset policies for your Dashboard users.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "1f31f56e-d888-4196-9c1e-b35a6fc8fc85",
+          "name": "Allow password reset for a User",
+          "request": {
+            "name": "Allow password reset for a User",
+            "description": {
+              "content": "Allow password reset for a User.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "users",
+                ":USER_ID",
+                "actions",
+                "allow_reset_passwords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "USER_ID",
+                  "description": "(Required) User ID of the user whose password is being reset"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "5ac099a2-4ef9-4196-a331-a7881ba96f40",
+              "name": "Password reset for user enabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    ":USER_ID",
+                    "actions",
+                    "allow_reset_passwords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "USER_ID",
+                      "description": "(Required) User ID of the user whose password is being reset"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"User updated\",\n  \"Meta\": {\n    \"api_model\": {},\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email_address\": \"john@test.com\",\n    \"org_id\": \"60ef3a1dcb83670001bf2df9\",\n    \"active\": true,\n    \"id\": \"614215edb2d47190f98b3b79\",\n    \"access_key\": \"68b225c4376748207453c235ed8e2a82\",\n    \"user_permissions\": {\n      \"IsAdmin\": \"admin\",\n      \"ResetPassword\": \"admin\"\n    },\n    \"group_id\": \"\",\n    \"password_max_days\": 0,\n    \"password_updated\": \"2021-09-15T15:49:01.863Z\",\n    \"PWHistory\": [],\n    \"last_login_date\": \"2021-09-15T15:49:49.754Z\",\n    \"created_at\": \"2021-09-15T15:49:01Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "05ef62fb-8898-4cc8-b161-ce095b4b2081",
+          "name": "Disallow password reset for a User",
+          "request": {
+            "name": "Disallow password reset for a User",
+            "description": {
+              "content": "Disallow password reset for a User.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "users",
+                ":USER_ID",
+                "actions",
+                "disallow_reset_passwords"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "USER_ID",
+                  "description": "(Required) User ID of the user whose password reset capability is being disallowed"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0214afb9-4c88-44ee-b704-fa9206b082a2",
+              "name": "Password reset for user disabled",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "users",
+                    ":USER_ID",
+                    "actions",
+                    "disallow_reset_passwords"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "USER_ID",
+                      "description": "(Required) User ID of the user whose password reset capability is being disallowed"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"User updated\",\n  \"Meta\": {\n    \"api_model\": {},\n    \"first_name\": \"John\",\n    \"last_name\": \"Doe\",\n    \"email_address\": \"john@test.com\",\n    \"org_id\": \"60ef3a1dcb83670001bf2df9\",\n    \"active\": true,\n    \"id\": \"614215edb2d47190f98b3b79\",\n    \"access_key\": \"68b225c4376748207453c235ed8e2a82\",\n    \"user_permissions\": {\n      \"IsAdmin\": \"admin\"\n    },\n    \"group_id\": \"\",\n    \"password_max_days\": 0,\n    \"password_updated\": \"2021-09-15T15:49:01.863Z\",\n    \"PWHistory\": [],\n    \"last_login_date\": \"2021-09-15T15:49:49.754Z\",\n    \"created_at\": \"2021-09-15T15:49:01Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "fc1fca13-4a9d-4052-92c2-393b3f61630b",
+    "name": "Tyk Dashboard Admin API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}
