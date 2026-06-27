@@ -137,7 +137,7 @@ common:
   url: https://tyk.io/price-comparison/
 - type: CLI
   url: https://github.com/TykTechnologies/tyk-cli
-- type: SDK
+- type: SDKs
   url: https://github.com/TykTechnologies/tyk
   title: Go Gateway SDK
 - type: SpectralRules
