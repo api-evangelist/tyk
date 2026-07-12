@@ -1,0 +1,31 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/tyk-dashboard-admin-api-openapi.yml, openapi/tyk-dashboard-api-openapi.yml,
+  openapi/tyk-gateway-api-openapi.yml, openapi/tyk-mdcb-api-openapi.yml
+summary:
+  types:
+  - apiKey
+  - http
+  api_key_in:
+  - header
+schemes:
+- name: ApiKeyAuth
+  type: apiKey
+  in: header
+  parameter: Admin-Auth
+  sources:
+  - openapi/tyk-dashboard-admin-api-openapi.yml
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  description: The Tyk Dashboard API Access Credentials
+  sources:
+  - openapi/tyk-dashboard-api-openapi.yml
+- name: api_key
+  type: apiKey
+  in: header
+  parameter: X-Tyk-Authorization
+  description: Api key
+  sources:
+  - openapi/tyk-gateway-api-openapi.yml
+  - openapi/tyk-mdcb-api-openapi.yml

@@ -111,6 +111,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: VulnerabilityDisclosure
+  url: security/tyk-vulnerability-disclosure.yml
+- type: DomainSecurity
+  url: security/tyk-domain-security.yml
+- type: Authentication
+  url: authentication/tyk-authentication.yml
 - type: LinkedIn
   url: https://www.linkedin.com/company/tyk
 - type: Portal
