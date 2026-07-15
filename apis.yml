@@ -111,6 +111,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: AgenticAccess
+  url: agentic-access/tyk-agentic-access.yml
 - type: VulnerabilityDisclosure
   url: security/tyk-vulnerability-disclosure.yml
 - type: DomainSecurity
