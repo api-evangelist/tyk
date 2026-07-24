@@ -1,0 +1,1704 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Policies API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: Policies are a template that enable you to create access rules, usage quota and rate limits that can be applied to multiple keys. They are a useful way to manage large groups of users, and to enforce quota changes on a global scale across any number of keys that are using a policy. When used in conjunction with the portal, developers that enroll for API access will be given a key that is attached to a specific policy. The policy settings are refreshed every time a key attempts access, meaning that updating a policy will have an effect across any keys that are attached to it.
+  externalDocs:
+    description: Security Policies Documentation.
+    url: https://tyk.io/docs/basic-config-and-security/security/security-policies/
+  name: Policies
+paths:
+  /api/portal/policies:
+    get:
+      description: Get list of policies. The result returned are paginated. Use the p query parameter to say which page you want returned. The default pagesize of the results is 10 but this can be changed in the dashboard config.
+      operationId: getPolicies
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      - description: Send any value in this query parameter to return only the active policies.
+        example: 'true'
+        in: query
+        name: active
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                policiesExample:
+                  $ref: '#/components/examples/policiesExample'
+              schema:
+                $ref: '#/components/schemas/ReturnDataStruct'
+          description: List of all policies.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/portal/policies'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned if you do not have access to policies.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve object list.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get list portal policies.
+      tags:
+      - Policies
+    post:
+      description: Creating policy definitions is slightly different to the core API, API definitions are wrapped inside an api_definition field and event handlers, such as webhooks are not embedded in the main api_definition object (though they can be), webhooks are instead appended as references into the hook_references field, the API will embed the correct webhook data into the event handler interface.
+      operationId: postPolicies
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                Itachi API:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi API
+                  disable_introspection: false
+                  versions:
+                  - Default
+              active: true
+              hmac_enabled: false
+              is_inactive: false
+              key_expires_in: 2592000
+              max_query_depth: -1
+              meta_data:
+                email: itachi@tyk.io
+                user_type: mobile_user
+              name: Sample policy
+              partitions:
+                acl: true
+                complexity: false
+                per_api: false
+                quota: true
+                rate_limit: true
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              rate: 1000
+              tags:
+              - security
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: 663b4bbd5715ec323b424dca
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Policy created.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: This policy name has already been used. Enter a unique policy name.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when the policy body fails validation.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send a malformed request body or when you don't have permission to add this object.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failure creating data, please contact your administrator.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create policy definition.
+      tags:
+      - Policies
+  /api/portal/policies/{id}:
+    delete:
+      description: Delete a Policy by ID.
+      operationId: deletePolicy
+      parameters:
+      - description: ID of policy to delete.
+        example: 66570989d98dd00001da17f1
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Data deleted
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Deleted policy successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Invalid policy ID.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send a policy ID that is invalid.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/portal/policies/{id}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned if you do not have access to policies.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve object for deletion
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned if policy with specified ID does not exist.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failure deleting data, please contact your administrator.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete a single policy by ID.
+      tags:
+      - Policies
+    get:
+      description: Get a policy by ID.
+      operationId: getPolicy
+      parameters:
+      - description: ID of policy to get.
+        example: 66570989d98dd00001da17f1
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_rights:
+                  Itachi API:
+                    allowed_urls:
+                    - methods:
+                      - GET
+                      url: /users
+                    api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                    api_name: Itachi API
+                    disable_introspection: false
+                    versions:
+                    - Default
+                active: true
+                hmac_enabled: false
+                is_inactive: false
+                key_expires_in: 2592000
+                max_query_depth: -1
+                meta_data:
+                  email: itachi@tyk.io
+                  user_type: mobile_user
+                name: Sample policy
+                partitions:
+                  acl: true
+                  complexity: false
+                  per_api: false
+                  quota: true
+                  rate_limit: true
+                per: 60
+                quota_max: 10000
+                quota_renewal_rate: 3600
+                rate: 1000
+                tags:
+                - security
+                throttle_interval: 10
+                throttle_retry_limit: 10
+              schema:
+                $ref: '#/components/schemas/Policy'
+          description: Policy fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Invalid policy ID.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send a policy ID that is invalid.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/portal/policies/{id}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve portal object.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Policy with the given ID was not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failure creating data, please contact your administrator.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get a single policy by ID.
+      tags:
+      - Policies
+    put:
+      description: Update a policy definition.
+      operationId: putPolicies
+      parameters:
+      - description: ID of policy to update.
+        example: 66570989d98dd00001da17f1
+        in: path
+        name: id
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                Itachi API:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi API
+                  disable_introspection: false
+                  versions:
+                  - Default
+              active: true
+              hmac_enabled: false
+              is_inactive: false
+              key_expires_in: 2592000
+              max_query_depth: -1
+              meta_data:
+                email: itachi@tyk.io
+                user_type: mobile_user
+              name: Sample policy
+              partitions:
+                acl: true
+                complexity: false
+                per_api: false
+                quota: true
+                rate_limit: true
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              rate: 1000
+              tags:
+              - security
+              - messages
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/Policy'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Data updated
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Policy updated.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Invalid policy ID.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send an invalid ID or when the policy body fails validation.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send a malformed request body or when you don't have permission to update this object.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve portal object.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned if policy with specified ID does not exist.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failure saving data, please contact your administrator.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Update policy definition.
+      tags:
+      - Policies
+  /api/portal/policies/search:
+    get:
+      description: Search list of policies. If query parameter q is a policy ID it will look for policies that have the given ID. However if q is not a policy ID it will return policies with whose name matches the patten based via q query parameter. If you send a policy ID in query parameter q and also send query parameter policy_ids,only policy_ids will be used for searching.
+      operationId: searchPolicies
+      parameters:
+      - description: Search for policy using policy ID or name.
+        example: 5eb6349543f0440001373f5c
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+      - description: A list of comma separated policy IDs that you want to search for.
+        example: 5eb6349543f0440001373f5c,5ead7120575961000181867e
+        in: query
+        name: policy_ids
+        required: false
+        schema:
+          type: string
+      - description: Send any value in this query parameter to return only the active policies.
+        example: 'true'
+        in: query
+        name: active
+        required: false
+        schema:
+          type: string
+      - description: Return policies whose state field matches the sent value e.g if you send state as deny policies returned are those whose state filed value is set as deny.
+        example: deny
+        in: query
+        name: state
+        required: false
+        schema:
+          enum:
+          - deny
+          - active
+          - draft
+          type: string
+      - description: Field you want to use to sort the returned policies.
+        example: name
+        in: query
+        name: sort
+        required: false
+        schema:
+          enum:
+          - date_created
+          - name
+          - state
+          type: string
+      - description: Comma separate list of API IDs. Return only policy that that have the given API IDs in their access_right.
+        example: 5963f8fdedee405143f5858ea17de422
+        in: query
+        name: api_id
+        required: false
+        schema:
+          type: string
+      - description: Return policy whose auth_type field has the given value.
+        example: authToken
+        in: query
+        name: auth_type
+        required: false
+        schema:
+          type: string
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                policiesExample:
+                  $ref: '#/components/examples/policiesExample'
+              schema:
+                $ref: '#/components/schemas/ReturnDataStruct'
+          description: List of policies.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Policy ID is not in hex format.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when you send policy IDs that are not in hexadecimal format.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/portal/policies/search'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve policies.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal data
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Search list of policies.
+      tags:
+      - Policies
+  /tyk/policies:
+    get:
+      description: Retrieve all the policies in your Tyk instance. Returns an array policies.
+      operationId: listPolicies
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                policiesExample:
+                  $ref: '#/components/examples/policiesExample_2'
+              schema:
+                items:
+                  $ref: '#/components/schemas/Policy_2'
+                type: array
+          description: List of all policies.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: Tyk List Policies.
+      tags:
+      - Policies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: Create a policy in your Tyk Instance.
+      operationId: addPolicy
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  disable_introspection: false
+                  versions:
+                  - Default
+              active: true
+              hmac_enabled: false
+              id: 5ead7120575961000181867e
+              is_inactive: false
+              key_expires_in: 2592000
+              max_query_depth: -1
+              meta_data:
+                update: sample policy update
+                user_type: mobile_user
+              name: Sample policy
+              partitions:
+                acl: true
+                complexity: false
+                per_api: false
+                quota: true
+                rate_limit: true
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              rate: 1000
+              tags:
+              - security
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/Policy_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: 5ead7120575961000181867e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Policy created.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Malformed request.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Due to enabled service policy source, please use the Dashboard API.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Create a Policy.
+      tags:
+      - Policies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/policies/{polID}:
+    delete:
+      description: Delete a policy by ID in your Tyk instance.
+      operationId: deletePolicy
+      parameters:
+      - description: You can retrieve details of a single policy by ID in your Tyk instance.
+        example: 5ead7120575961000181867e
+        in: path
+        name: polID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: 5ead7120575961000181867e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Deleted policy by ID
+        '400':
+          content:
+            application/json:
+              example:
+                message: Must specify an apiID to update
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Policy Id not provided
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Delete failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Delete a Policy.
+      tags:
+      - Policies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      description: You can retrieve details of a single policy by ID in your Tyk instance.
+      operationId: getPolicy
+      parameters:
+      - description: You can retrieve details of a single policy by ID in your Tyk instance.
+        example: 5ead7120575961000181867e
+        in: path
+        name: polID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_rights:
+                  itachi-api:
+                    allowed_urls:
+                    - methods:
+                      - GET
+                      url: /users
+                    api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                    api_name: Itachi api
+                    disable_introspection: false
+                    versions:
+                    - Default
+                active: true
+                hmac_enabled: false
+                id: 5ead7120575961000181867e
+                is_inactive: false
+                key_expires_in: 2592000
+                max_query_depth: -1
+                meta_data:
+                  update: sample policy update
+                  user_type: mobile_user
+                name: Sample policy
+                partitions:
+                  acl: true
+                  complexity: false
+                  per_api: false
+                  quota: true
+                  rate_limit: true
+                per: 60
+                quota_max: 10000
+                quota_renewal_rate: 3600
+                rate: 1000
+                tags:
+                - security
+                throttle_interval: 10
+                throttle_retry_limit: 10
+              schema:
+                $ref: '#/components/schemas/Policy_2'
+          description: Get details of a single policy.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Policy not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Policy not found
+      summary: Tyk Get a Policy.
+      tags:
+      - Policies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: You can update a Policy in your Tyk Instance by ID.
+      operationId: updatePolicy
+      parameters:
+      - description: You can retrieve details of a single policy by ID in your Tyk instance.
+        example: 5ead7120575961000181867e
+        in: path
+        name: polID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  disable_introspection: false
+                  versions:
+                  - Default
+              active: true
+              hmac_enabled: false
+              id: 5ead7120575961000181867e
+              is_inactive: false
+              key_expires_in: 2592000
+              max_query_depth: -1
+              meta_data:
+                update: sample policy update
+                user_type: mobile_user
+              name: update policy sample
+              partitions:
+                acl: true
+                complexity: false
+                per_api: false
+                quota: true
+                rate_limit: true
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              rate: 1000
+              tags:
+              - security
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/Policy_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: modified
+                key: 5ead7120575961000181867e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Policy updated
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: malformed request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failed to create file!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Update a Policy.
+      tags:
+      - Policies
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APILimit:
+      nullable: true
+      properties:
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type: object
+    RateLimitSmoothing:
+      nullable: true
+      properties:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
+          format: int64
+          minimum: 1
+          type: integer
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
+          type: boolean
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
+          type: integer
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
+      type: object
+    AccessSpec_2:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          nullable: true
+          type: array
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    Policy_2:
+      properties:
+        _id:
+          example: 5ead7120575961000181867e
+          type: string
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition_2'
+          nullable: true
+          type: object
+          example: example_value
+        active:
+          example: true
+          type: boolean
+        enable_http_signature_validation:
+          example: false
+          type: boolean
+        graphql_access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/GraphAccessDefinition'
+          nullable: true
+          type: object
+          example: example_value
+        hmac_enabled:
+          example: false
+          type: boolean
+        id:
+          example: 5ead7120575961000181867e
+          type: string
+        is_inactive:
+          example: false
+          type: boolean
+        key_expires_in:
+          example: 0
+          format: int64
+          type: integer
+        last_updated:
+          example: '1655965189'
+          type: string
+        max_query_depth:
+          example: -1
+          type: integer
+        meta_data:
+          additionalProperties: {}
+          nullable: true
+          type: object
+          example: example_value
+        name:
+          example: Swagger Petstore Policy
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        partitions:
+          $ref: '#/components/schemas/PolicyPartitions'
+        per:
+          example: 60
+          format: double
+          type: number
+        quota_max:
+          example: -1
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          example: 3600
+          format: int64
+          type: integer
+        rate:
+          example: 1000
+          format: double
+          type: number
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        throttle_interval:
+          example: -1
+          format: double
+          type: number
+        throttle_retry_limit:
+          example: -1
+          type: integer
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+        name:
+          type: string
+      type: object
+    PolicyPartitions:
+      properties:
+        acl:
+          example: true
+          type: boolean
+        complexity:
+          example: false
+          type: boolean
+        per_api:
+          example: false
+          type: boolean
+        quota:
+          example: true
+          type: boolean
+        rate_limit:
+          example: true
+          type: boolean
+      type: object
+    APILimit_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+        per:
+          type: number
+          example: 42.5
+        quota_max:
+          type: integer
+          example: 10
+        quota_remaining:
+          type: integer
+          example: 10
+        quota_renewal_rate:
+          type: integer
+          example: 10
+        quota_renews:
+          type: integer
+          example: 10
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        throttle_interval:
+          type: number
+          example: 42.5
+        throttle_retry_limit:
+          type: integer
+          example: 10
+      type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    FieldLimits_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
+      type: object
+    SessionEndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
+          type: string
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+      type: object
+    FieldAccessDefinition_2:
+      properties:
+        field_name:
+          type: string
+          example: example_value
+        limits:
+          $ref: '#/components/schemas/FieldLimits_2'
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
+    GraphAccessDefinition:
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          nullable: true
+          type: array
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    SessionEndpoint:
+      properties:
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    RateLimitSmoothing_2:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
+      type: object
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
+          type: string
+          example: example_value
+      type: object
+    AccessDefinition_2:
+      properties:
+        allowance_scope:
+          example: d371b83b249845a2497ab9a947fd6210
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          nullable: true
+          type: array
+          example: []
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec_2'
+          nullable: true
+          type: array
+          example: https://www.example.com
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          $ref: '#/components/schemas/Endpoints'
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition_2'
+          nullable: true
+          type: array
+          example: []
+        limit:
+          $ref: '#/components/schemas/APILimit_2'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          nullable: true
+          type: array
+          example: []
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec'
+          nullable: true
+          type: array
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          items:
+            $ref: '#/components/schemas/SessionEndpoint'
+          type: array
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition'
+          nullable: true
+          type: array
+        limit:
+          $ref: '#/components/schemas/APILimit'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ReturnDataStruct:
+      properties:
+        Data:
+          $ref: '#/components/schemas/PolicyList'
+        Pages:
+          type: integer
+      type: object
+    Policy:
+      properties:
+        _id:
+          type: string
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition'
+          nullable: true
+          type: object
+        active:
+          type: boolean
+        date_created:
+          format: date-time
+          type: string
+        hmac_enabled:
+          type: boolean
+        id:
+          type: string
+        is_inactive:
+          type: boolean
+        key_expires_in:
+          format: int64
+          type: integer
+        last_updated:
+          type: string
+        max_query_depth:
+          type: integer
+        meta_data:
+          additionalProperties: {}
+          nullable: true
+          type: object
+        name:
+          type: string
+        org_id:
+          type: string
+        partitions:
+          properties:
+            acl:
+              type: boolean
+            complexity:
+              type: boolean
+            per_api:
+              type: boolean
+            quota:
+              type: boolean
+            rate_limit:
+              type: boolean
+          type: object
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type: object
+    PolicyList:
+      items:
+        $ref: '#/components/schemas/Policy'
+      nullable: true
+      type: array
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+      type: object
+  examples:
+    policiesExample:
+      value:
+        Data:
+        - _id: '363635373039383964393864643030303031646131376631'
+          access_rights:
+            8ddd91f3cda9453442c477b06c4e2da4:
+              allowance_scope: ''
+              allowed_types: []
+              allowed_urls:
+              - methods:
+                - GET
+                url: /users
+              api_id: 8ddd91f3cda9453442c477b06c4e2da4
+              api_name: Itachi API
+              disable_introspection: false
+              field_access_rights: []
+              limit:
+                max_query_depth: 0
+                per: 0
+                quota_max: 0
+                quota_remaining: 0
+                quota_renewal_rate: 0
+                quota_renews: 0
+                rate: 0
+                set_by_policy: false
+                smoothing:
+                  delay: 30
+                  enabled: false
+                  step: 100
+                  threshold: 500
+                  trigger: 0.8
+                throttle_interval: 0
+                throttle_retry_limit: 0
+              restricted_types: []
+              versions:
+              - Default
+          active: true
+          date_created: '2024-05-27T10:24:31.099Z'
+          hmac_enabled: false
+          id: ''
+          is_inactive: false
+          key_expires_in: 2592000
+          last_updated: '1716980105'
+          max_query_depth: -1
+          meta_data:
+            user_type: mobile_user
+          name: Sample policy
+          org_id: 664a14650619d40001f1f00f
+          partitions:
+            acl: true
+            complexity: false
+            per_api: false
+            quota: true
+            rate_limit: true
+          per: 60
+          quota_max: 10000
+          quota_renewal_rate: 3600
+          rate: 1000
+          smoothing:
+            delay: 30
+            enabled: false
+            step: 100
+            threshold: 500
+            trigger: 0.8
+          tags:
+          - security
+          throttle_interval: 10
+          throttle_retry_limit: 10
+        Pages: 1
+    policiesExample_2:
+      value:
+      - _id: ''
+        access_rights:
+          8ddd91f3cda9453442c477b06c4e2da4:
+            allowance_scope: ''
+            allowed_types: []
+            allowed_urls:
+            - methods:
+              - GET
+              url: /users
+            api_id: 8ddd91f3cda9453442c477b06c4e2da4
+            api_name: Itachi api
+            disable_introspection: false
+            field_access_rights: []
+            limit:
+              max_query_depth: 0
+              per: 0
+              quota_max: 0
+              quota_remaining: 0
+              quota_renewal_rate: 0
+              quota_renews: 0
+              rate: 0
+              smoothing:
+                delay: 30
+                enabled: false
+                step: 100
+                threshold: 500
+                trigger: 0.8
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            restricted_types: []
+            versions:
+            - Default
+        active: true
+        enable_http_signature_validation: false
+        graphql_access_rights: null
+        hmac_enabled: false
+        id: 5ead7120575961000181867e
+        is_inactive: false
+        key_expires_in: 2592000
+        last_updated: '1716980105'
+        max_query_depth: -1
+        meta_data:
+          user_type: mobile_user
+        name: Sample policy
+        org_id: 664a14650619d40001f1f00f
+        partitions:
+          acl: true
+          complexity: false
+          per_api: false
+          quota: true
+          rate_limit: true
+        per: 60
+        quota_max: 10000
+        quota_renewal_rate: 3600
+        rate: 1000
+        smoothing:
+          delay: 30
+          enabled: false
+          step: 100
+          threshold: 500
+          trigger: 0.8
+        tags:
+        - security
+        throttle_interval: 10
+        throttle_retry_limit: 10
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

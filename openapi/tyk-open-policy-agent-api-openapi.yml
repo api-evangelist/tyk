@@ -1,0 +1,188 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Open Policy Agent API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'The Tyk Dashboard permission system can be extended by writing custom rules using an Open Policy Agent (OPA). The rules engine works on top of your Dashboard API, which means you can control not only access rules, but also behaviour of all Dashboard APIs (except your public developer portal)  <br/>
+
+
+    By default the Dashboard OPA engine is turned off, and you need to explicitly enable it via your Dashboard tyk_analytics.conf file. <br/>
+
+
+    You can use OPA rule to accomplish tasks like: <br/>
+
+
+    1. Prevent users from creating keyless APIs.
+
+    2. Assign specific categories to APIs created to certain user groups or users.
+
+    3. Control access for individual fields. For example, do not allow changing the API  active  status (e.g. deploy), unless you have a specific permission set.
+
+    4. And many more <br/>
+
+
+    [Read more about Tyk Open Policy Agent here](https://tyk.io/docs/tyk-dashboard/open-policy-agent/)
+
+    '
+  externalDocs:
+    description: Tyk Open Policy Agent Full Documentation.
+    url: https://tyk.io/docs/tyk-dashboard/open-policy-agent/
+  name: Open Policy Agent
+paths:
+  /api/org/opa:
+    get:
+      description: List your organisation OPA rules.
+      operationId: getOPARules
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                open_policy:
+                  rules: "package dashboard_users\ndefault request_intent = \"read\"\nrequest_intent = \"write\" { input.request.method == \"POST\" }\nrequest_intent = \"write\" { input.request.method == \"PUT\" }\nrequest_intent = \"delete\" { input.request.method == \"DELETE\" }\ndeny[\"You cannot create a keyless API.\"] {\n    request_intent == \"write\"\n    contains(input.request.path, \"api/apis\")\n    input.request.body.api_definition.use_keyless == true\n}"
+              schema:
+                $ref: '#/components/schemas/NewOPARules'
+          description: OPA rules fetched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Your license does not support Open Policy.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Upgrade licence.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to identify organisation.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List OPA rules.
+      tags:
+      - Open Policy Agent
+    put:
+      description: Modify your OPA rules.
+      operationId: updateOrgOPARules
+      requestBody:
+        content:
+          application/json:
+            example:
+              open_policy:
+                rules: "package dashboard_users\ndefault request_intent = \"read\"\nrequest_intent = \"write\" { input.request.method == \"POST\" }\nrequest_intent = \"write\" { input.request.method == \"PUT\" }\nrequest_intent = \"delete\" { input.request.method == \"DELETE\" }\ndeny[\"You cannot create a keyless API.\"] {\n    request_intent == \"write\"\n    contains(input.request.path, \"api/apis\")\n    input.request.body.api_definition.use_keyless == true\n}"
+            schema:
+              $ref: '#/components/schemas/NewOPARules'
+        description: Create rule to prevent creation of keyless APIs.
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: OPA rules has been updated on org level.
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OPA rules updated.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Invalid OPA rules.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Invalid OPA rules.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Your license does not support Open Policy.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Upgrade licence.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal response body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: malformed request body.
+      summary: Update OPA rules.
+      tags:
+      - Open Policy Agent
+components:
+  schemas:
+    NewOPARules:
+      properties:
+        open_policy:
+          properties:
+            rules:
+              type: string
+          type: object
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

@@ -1,0 +1,135 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Health Checking API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'Check health status of the Tyk Gateway and loaded APIs.
+
+    '
+  name: Health Checking
+paths:
+  /hello:
+    get:
+      description: From v2.7.5 you can now rename the `/hello`  endpoint by using the `health_check_endpoint_name` option.
+      operationId: hello
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                description: Tyk GW
+                details:
+                  redis:
+                    componentType: datastore
+                    status: pass
+                    time: '2020-05-19T03:42:55+01:00'
+                status: pass
+                version: v5.5.0-dev
+              schema:
+                $ref: '#/components/schemas/HealthCheckResponse'
+          description: Success.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '405':
+          content:
+            application/json:
+              example:
+                message: Method Not Allowed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Method Not Allowed
+      summary: Check the Health of the Tyk Gateway.
+      tags:
+      - Health Checking
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    HealthCheckItem:
+      properties:
+        componentId:
+          type: string
+          example: '500123'
+        componentType:
+          type: string
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        status:
+          enum:
+          - pass
+          - fail
+          - warn
+          type: string
+          example: pass
+        time:
+          type: string
+          example: example_value
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    HealthCheckResponse:
+      properties:
+        description:
+          type: string
+          example: A sample description.
+        details:
+          additionalProperties:
+            $ref: '#/components/schemas/HealthCheckItem'
+          type: object
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        status:
+          enum:
+          - pass
+          - fail
+          - warn
+          type: string
+          example: pass
+        version:
+          type: string
+          example: example_value
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

@@ -1,0 +1,1440 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Oauth API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: Use the endpoints in this tag to manage OAuth flow.
+  externalDocs:
+    description: OAuth Documentation
+    url: https://tyk.io/docs/basic-config-and-security/security/authentication-authorization/oauth-2-0/
+  name: Oauth
+paths:
+  /api/apis/oauth/{apiId}:
+    get:
+      description: Return all the auth 2 clients that have been registered with you tyk instance
+      operationId: getOathClientsList
+      parameters:
+      - description: The API s ID.
+        example: e95400eba23c4a2d4622a722be06fe95
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                apps:
+                - client_id: 2a06b398c17f46908de3dffcb71ef87d
+                  client_name: ''
+                  dcr_registration:
+                    access_token: ''
+                    client_uri: ''
+                    provider: ''
+                  description: google client
+                  meta_data:
+                    user_id: 362b3fb9a1d5e4f00017226f5
+                  policy_id: 665d51505715ec2d76022c87
+                  redirect_uri: https://httpbin.org/ip
+                  secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/OAuthApps'
+          description: Fetched successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: API Reference not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not enough permissions or  API not found.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/oauth/{apiId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve apps list.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal key data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List OAuth clients.
+      tags:
+      - Oauth
+    post:
+      description: Client apps are created dynamically, the only parameter required to create a new client app with Tyk is to specify the redirect URI, this is used as part of the client authentication and cannot be edited later. Please note that if you don't attach a policy to the OAuth client you will need to provide dynamic key rules to client authorization endpoint.
+      operationId: createNewClientApp
+      parameters:
+      - description: The API s ID.
+        example: e95400eba23c4a2d4622a722be06fe95
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              meta_data:
+                user_id: 362b3fb9a1d5e4f00017226f5
+              policy_id: 665d51505715ec2d76022c87
+              redirect_uri: https://httpbin.org/ip
+            schema:
+              $ref: '#/components/schemas/NewClientRequest'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87d
+                client_name: ''
+                dcr_registration:
+                  access_token: ''
+                  client_uri: ''
+                  provider: ''
+                description: google client
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                policy_id: 665d51505715ec2d76022c87
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/OAuthClient'
+          description: Client created.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: API reference not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Request body malformed.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve policy details.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create a new OAuth2.0 client.
+      tags:
+      - Oauth
+  /api/apis/oauth/{apiId}/{clientId}:
+    delete:
+      description: You can delete an OAuth client using this endpoint. Please note that tokens issued with the client ID will still be valid until they expire.
+      operationId: deleteOathClient
+      parameters:
+      - description: The API s ID.
+        example: e95400eba23c4a2d4622a722be06fe95
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      - description: The client ID.
+        example: 2a06b398c17f46908de3dffcb71ef87
+        in: path
+        name: clientId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: OAuth client deleted successfully.
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Deleted successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: API Reference not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: You don't have access to this.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: You have no access.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve app detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Could not remove app.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete OAuth client.
+      tags:
+      - Oauth
+    get:
+      description: Get single  OAuth client details with its client ID.
+      operationId: getOAuthClientDetail
+      parameters:
+      - description: The API s ID.
+        example: e95400eba23c4a2d4622a722be06fe95
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      - description: The client ID.
+        example: 2a06b398c17f46908de3dffcb71ef87
+        in: path
+        name: clientId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87d
+                client_name: ''
+                dcr_registration:
+                  access_token: ''
+                  client_uri: ''
+                  provider: ''
+                description: google client
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                policy_id: 665d51505715ec2d76022c87
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/OAuthClient'
+          description: Details fetched successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: API reference not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: You don't have access to this.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: You have no access.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve app detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal app data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get single OAuth client details.
+      tags:
+      - Oauth
+  /api/apis/oauth/{apiId}/{clientId}/tokens:
+    get:
+      description: This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth client ID.
+      operationId: getClientTokens
+      parameters:
+      - description: The API s ID.
+        example: e95400eba23c4a2d4622a722be06fe95
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      - description: The client ID.
+        example: 2a06b398c17f46908de3dffcb71ef87
+        in: path
+        name: clientId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
+                expires: 1618158407
+              - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
+                expires: 1618158594
+              schema:
+                $ref: '#/components/schemas/OAuthClientTokens'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                Message: API Reference not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/oauth/{apiId}/{clientId}/tokens'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve tokens.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal tokens data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List OAuth client tokens.
+      tags:
+      - Oauth
+  /tyk/oauth/clients/{apiID}:
+    get:
+      description: OAuth Clients are organised by API ID, and therefore are queried as such.
+      operationId: listOAuthClients
+      parameters:
+      - description: The API ID
+        example: 1bd5c61b0e694082902cf15ddcc9e6a7
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - api_id: b84fe1a04e5648927971c0557971565c
+                client_id: 2a06b398c17f46908de3dffcb71ef87df
+                description: google client
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                items:
+                  $ref: '#/components/schemas/NewClientRequest_2'
+                type: array
+          description: Get OAuth client details or a list of OAuth clients
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          description: Api no found
+      summary: Tyk List Oauth Clients
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/clients/{apiID}/{keyName}:
+    delete:
+      description: Please note that tokens issued with the client ID will still be valid until they expire.
+      operationId: deleteOAuthClient
+      parameters:
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: 2a06b398c17f46908de3dffcb71ef87df
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: OAuth client deleted
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: OAuth Client ID not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Delete failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Delete Oauth Client
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      description: Get OAuth client details tied to an api
+      operationId: getOAuthClient
+      parameters:
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87df
+                description: changed description sample
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/NewClientRequest_2'
+          description: OAuth client details
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: OAuth Client ID not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: OAuth Client not found
+      summary: Tyk Get Oauth Client
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: Allows you to update the metadata,redirecturi,description and Policy ID for an OAuth client.
+      operationId: updateOAuthClient
+      parameters:
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              api_id: b84fe1a04e5648927971c0557971565c
+              client_id: 2a06b398c17f46908de3dffcb71ef87df
+              description: changed description sample
+              meta_data:
+                user_id: 362b3fb9a1d5e4f00017226f5
+              redirect_uri: https://httpbin.org/ip
+              secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+            schema:
+              $ref: '#/components/schemas/NewClientRequest_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87df
+                description: changed description sample
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/NewClientRequest_2'
+          description: OAuth client updated
+        '400':
+          content:
+            application/json:
+              example:
+                message: Policy access rights doesn't contain API this OAuth client belongs to
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API doesn't exist
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unmarshalling failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: malformed request body
+      summary: Tyk Update Oauth Metadata,redirecturi,description and Policy Id
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/clients/{apiID}/{keyName}/rotate:
+    put:
+      description: Generate a new secret
+      operationId: rotateOauthClient
+      parameters:
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87df
+                description: google client
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/NewClientRequest_2'
+          description: New secret has been created
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API doesn't exist
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failure in storing client data
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Rotate the Oath Client Secret
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/clients/{apiID}/{keyName}/tokens:
+    get:
+      description: "This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth-client ID .If page query parameter is sent the tokens will be paginated. This endpoint will work only for newly created tokens.\n        <br/>\n        <br/>\n        You can control how long you want to store expired tokens in this list using `oauth_token_expired_retain_period` gateway option, which specifies retain period for expired tokens stored in\nRedis. By default expired token not get removed. See <a href=\"https://tyk.io/docs/configure/tyk-gateway-configuration-options/#a-name-oauth-token-expired-retain-period-a-oauth-token-expired-retain-period\" target=\"_blank\">here</a> for more details."
+      operationId: getOAuthClientTokens
+      parameters:
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      - description: Use page query parameter to say which page number you want returned.
+        example: 1
+        in: query
+        name: page
+        required: false
+        schema:
+          default: 1
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                paginatedTokenExample:
+                  $ref: '#/components/examples/paginatedTokenExample'
+                tokenListExample:
+                  $ref: '#/components/examples/tokenListExample'
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/PaginatedOAuthClientTokens'
+                - items:
+                    $ref: '#/components/schemas/OAuthClientToken_2'
+                  nullable: true
+                  type: array
+          description: Tokens returned successfully.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: OAuth Client ID not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: OAuth Client ID not found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Get client tokens failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk List Tokens for a Provided Api Id and Oauth-client Id
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/clients/apis/{appID}:
+    get:
+      description: Get all API IDs for APIs that have use_oauth2 enabled and use the client_id (appID) specified in the path parameter for OAuth2. You can use the org_id query parameter to specify from which organization you want the API IDs to be returned. To return APIs from all organizations, send org_id as an empty string.
+      operationId: getApisForOauthApp
+      parameters:
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: appID
+        required: true
+        schema:
+          type: string
+      - description: The Org Id
+        in: query
+        name: orgID
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - b84fe1a04e5648927971c0557971565c
+              schema:
+                items:
+                  type: string
+                type: array
+          description: Return an array of apis ids
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/clients/create:
+    post:
+      description: "Any OAuth keys must be generated with the help of a client ID. These need to be pre-registered with Tyk before they can be used (in a similar vein to how you would register your app with Twitter before attempting to ask user permissions using their API).\n        <br/><br/>\n        <h3>Creating OAuth clients with Access to Multiple APIs</h3>\n        New from Tyk Gateway 2.6.0 is the ability to create OAuth clients with access to more than one API. If you provide the api_id it works the same as in previous releases. If you don't provide\nthe api_id the request uses policy access rights and enumerates APIs from their setting in the newly created OAuth-client.\n"
+      operationId: createOAuthClient
+      requestBody:
+        content:
+          application/json:
+            example:
+              api_id: b84fe1a04e5648927971c0557971565c
+              client_id: 2a06b398c17f46908de3dffcb71ef87df
+              description: google client
+              meta_data:
+                user_id: 362b3fb9a1d5e4f00017226f5
+              redirect_uri: https://httpbin.org/ip
+              secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+            schema:
+              $ref: '#/components/schemas/NewClientRequest_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                client_id: 2a06b398c17f46908de3dffcb71ef87df
+                description: google client
+                meta_data:
+                  user_id: 362b3fb9a1d5e4f00017226f5
+                redirect_uri: https://httpbin.org/ip
+                secret: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+              schema:
+                $ref: '#/components/schemas/NewClientRequest_2'
+          description: Client created
+        '400':
+          content:
+            application/json:
+              example:
+                message: API doesn't exist
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Api Not found
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unmarshalling failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Unmarshalling failed
+      summary: Tyk Create New Oauth Client
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/refresh/{keyName}:
+    delete:
+      description: It is possible to invalidate refresh tokens in order to manage OAuth client access more robustly.
+      operationId: invalidateOAuthRefresh
+      parameters:
+      - description: The Client ID
+        example: 2a06b398c17f46908de3dffcb71ef87df
+        in: path
+        name: keyName
+        required: true
+        schema:
+          type: string
+      - description: The API id
+        example: b84fe1a04e5648927971c0557971565c
+        in: query
+        name: api_id
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: 2a06b398c17f46908de3dffcb71ef87df
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Deleted
+        '400':
+          content:
+            application/json:
+              example:
+                message: Missing parameter api_id
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: missing api_Id query parameter
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API for this refresh token not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failed to invalidate refresh token
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Invalidate Oauth Refresh Token
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/revoke:
+    post:
+      description: revoke a single token
+      operationId: revokeSingleToken
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                client_id:
+                  description: id of oauth client
+                  example: 2a06b398c17f46908de3dffcb71ef87df
+                  type: string
+                org_id:
+                  example: 6492f66e6ebbc56c6a6bf022
+                  type: string
+                token:
+                  description: token to be revoked
+                  example: eyJvcmciOiI1ZTIwOTFjNGQ0YWVmY2U2MGMwNGZiOTIiLCJpZCI6IjIyODQ1NmFjNmJlMjRiMzI5MTIyOTdlODQ5NTc4NjJhIiwiaCI6Im11cm11cjY0In0=
+                  type: string
+                token_type_hint:
+                  description: type of token to be revoked, if sent then the accepted values are access_token and refresh_token. String value and optional, of not provided then it will attempt to remove access and refresh tokens that matches
+                  example: access_token
+                  type: string
+              required:
+              - token
+              - client_id
+              type: object
+        description: token revoked successfully
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: token revoked successfully
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: token revoked
+        '400':
+          content:
+            application/json:
+              example:
+                message: cannot parse form. Form malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: malformed form data
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: Tyk Revoke Token
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/revoke_all:
+    post:
+      description: Revoke all the tokens for a given oauth client
+      operationId: revokeAllTokens
+      requestBody:
+        content:
+          application/x-www-form-urlencoded:
+            schema:
+              properties:
+                client_id:
+                  description: id of oauth client
+                  example: 2a06b398c17f46908de3dffcb71ef87df
+                  type: string
+                client_secret:
+                  description: OAuth client secret to ensure that its a valid operation
+                  example: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+                  type: string
+                org_id:
+                  example: 6492f66e6ebbc56c6a6bf022
+                  type: string
+              required:
+              - client_secret
+              - client_id
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: tokens revoked successfully
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: tokens revoked
+        '400':
+          content:
+            application/json:
+              example:
+                message: cannot parse form. Form malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                message: client_id is required
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: missing client id
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: oauth client doesn't exist
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: not found
+      summary: Tyk Revoke All Client's Tokens
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/oauth/tokens:
+    delete:
+      description: Purge all lapsed OAuth token
+      operationId: purgeLapsedOAuthTokens
+      parameters:
+      - description: purge lapsed tokens
+        example: lapsed
+        in: query
+        name: scope
+        required: true
+        schema:
+          enum:
+          - lapsed
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: lapsed tokens purged
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: lapsed tokens purged successfully
+        '400':
+          content:
+            application/json:
+              example:
+                message: unknown scope
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Sending a value other than lapsed in scope query
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '422':
+          content:
+            application/json:
+              example:
+                message: scope parameter is required
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Missing lapsed query parameter
+        '500':
+          content:
+            application/json:
+              example:
+                message: error purging lapsed tokens
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Purge Lapsed Oauth Tokens
+      tags:
+      - Oauth
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    OAuthClientTokens:
+      items:
+        $ref: '#/components/schemas/OAuthClientToken'
+      nullable: true
+      type: array
+    ApiModel:
+      type: object
+    PaginationStatus:
+      properties:
+        page_num:
+          type: integer
+          example: 10
+        page_size:
+          type: integer
+          example: 10
+        page_total:
+          type: integer
+          example: 10
+      type: object
+    PaginatedOAuthClientTokens:
+      properties:
+        Pagination:
+          $ref: '#/components/schemas/PaginationStatus'
+        Tokens:
+          items:
+            $ref: '#/components/schemas/OAuthClientToken_2'
+          nullable: true
+          type: array
+          example: []
+      type: object
+    DcrpRegistration:
+      properties:
+        access_token:
+          type: string
+        client_uri:
+          type: string
+        provider:
+          type: string
+      type: object
+    OAuthClientToken:
+      properties:
+        code:
+          type: string
+        expires:
+          format: int64
+          type: integer
+      type: object
+    OAuthClient:
+      properties:
+        client_id:
+          type: string
+        client_name:
+          type: string
+        dcr_registration:
+          $ref: '#/components/schemas/DcrpRegistration'
+        description:
+          type: string
+        meta_data:
+          additionalProperties:
+            type: string
+          type: object
+        policy_id:
+          type: string
+        redirect_uri:
+          type: string
+        secret:
+          type: string
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    NewClientRequest:
+      properties:
+        api_id:
+          type: string
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        client_id:
+          type: string
+        client_name:
+          type: string
+        description:
+          type: string
+        meta_data: {}
+        policy_id:
+          type: string
+        redirect_uri:
+          type: string
+        secret:
+          type: string
+      type: object
+    OAuthClientToken_2:
+      properties:
+        code:
+          type: string
+          example: example_value
+        expires:
+          type: integer
+          example: 10
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    NewClientRequest_2:
+      properties:
+        api_id:
+          example: keyless
+          type: string
+        client_id:
+          example: 2a06b398c17f46908de3dffcb71ef87b
+          type: string
+        description:
+          example: google client login
+          type: string
+        meta_data:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+          example: example_value
+        policy_id:
+          type: string
+          example: '500123'
+        redirect_uri:
+          example: https://httpbin.org/ip
+          type: string
+        secret:
+          example: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
+          type: string
+      type: object
+    OAuthApps:
+      properties:
+        apps:
+          items:
+            $ref: '#/components/schemas/OAuthClient'
+          nullable: true
+          type: array
+        pages:
+          type: integer
+      type: object
+  examples:
+    paginatedTokenExample:
+      value:
+        Pagination:
+          page_num: 1
+          page_size: 100
+          page_total: 0
+        Tokens:
+        - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
+          expires: 1518158407
+        - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
+          expires: 1518158594
+        - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
+          expires: 1518158638
+        - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
+          expires: 1518159792
+    tokenListExample:
+      value:
+      - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
+        expires: 1518158407
+      - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
+        expires: 1518158594
+      - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
+        expires: 1518158638
+      - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
+        expires: 1518159792
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

@@ -1,0 +1,204 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Single Sign On API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Single Sign On
+  description: The Dashboard SSO API allows you to implement custom authentication schemes for the Dashboard and Portal. Our Tyk Identity Broker (TIB) internally also uses this API.
+paths:
+  /admin/sso/:
+    post:
+      summary: Generate authentication token
+      description: The Dashboard exposes the /admin/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds.
+      operationId: generateAuthToken
+      tags:
+      - Single Sign On
+      requestBody:
+        content:
+          application/json:
+            schema:
+              properties:
+                ForSection:
+                  type: string
+                  enum:
+                  - dashboard
+                  - portal
+                OrgID:
+                  type: string
+                EmailAddress:
+                  type: string
+                GroupID:
+                  type: string
+            example:
+              ForSection: dashboard
+              OrgID: 588b4f0bb275ff0001cc7471
+              EmailAddress: name@somewhere.com
+              GroupID: ''
+      responses:
+        '200':
+          description: Additional Permissions updated successfully.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiStatusMessage'
+              example:
+                Status: OK
+                Message: SSO Nonce created
+                Meta: YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw
+        '400':
+          description: Back Request.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiStatusMessage'
+              example:
+                Status: Error
+                Message: 'Cannot create an SSO session for an invalid payload: [Error: Org id not found (''588b4f0bb275ff0001cc7471'').]'
+        '401':
+          description: Unauthorized.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/apiStatusMessage'
+              example:
+                Status: Error
+                Message: Not authorised
+  /api/sso:
+    post:
+      description: The Dashboard exposes the /api/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds.
+      operationId: generateAuthToken
+      requestBody:
+        content:
+          application/json:
+            example:
+              DisplayName: ''
+              EmailAddress: name@somewhere.com
+              ForSection: dashboard
+              GroupID: ''
+              OrgID: 588b4f0bb275ff0001cc7471
+              SSOOnlyForRegisteredUsers: false
+              UserNotAllowed: false
+            schema:
+              $ref: '#/components/schemas/SSOAccessData'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: SSO Nonce created.
+                Meta: YTNiOGUzZjctYWZkYi00OTNhLTYwODItZTAzMDI3MjM0OTEw
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Created successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request body.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: SSO not enabled for org.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to read response body, body empty.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Generate authentication token.
+      tags:
+      - Single Sign On
+components:
+  schemas:
+    SSOAccessData:
+      properties:
+        DisplayName:
+          type: string
+        EmailAddress:
+          type: string
+        ForSection:
+          enum:
+          - dashboard
+          - portal
+          type: string
+        GroupID:
+          type: string
+        OrgID:
+          type: string
+        SSOOnlyForRegisteredUsers:
+          type: boolean
+        UserNotAllowed:
+          type: boolean
+      type: object
+    apiStatusMessage:
+      description: apiStatusMessage represents an API status message
+      properties:
+        message:
+          description: Response details
+          type: string
+          x-go-name: Message
+        status:
+          type: string
+          x-go-name: Status
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

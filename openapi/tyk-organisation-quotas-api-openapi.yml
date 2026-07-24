@@ -1,0 +1,962 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Organisation Quotas API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'It is possible to force API quota and rate limit across all keys that belong to a specific organisation ID. Rate limiting at an organisation level is useful for creating tiered access levels and trial accounts.<br />
+
+
+    The Organisation rate limiting middleware works with both Quotas and Rate Limiters. In order to manage this functionality, a simple API has been put in place to manage these sessions. <br />
+
+
+    Although the Organisation session-limiter uses the same session object, all other security keys are optional as they are not used. <br />
+
+
+    <h3>Managing active status</h3> <br />
+
+
+    To disallow access to an entire group of keys without rate limiting the organisation, create a session object with the "is_inactive" key set to true. This will block access before any other middleware is executed. It is useful when managing subscriptions for an organisation group and access needs to be blocked because of non-payment. <br />
+
+    '
+  name: Organisation Quotas
+paths:
+  /tyk/org/keys:
+    get:
+      description: You can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set 'rate' or 'per' to zero, or don't add them to your request.
+      operationId: listOrgKeys
+      parameters:
+      - description: Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys
+        example: default*
+        in: query
+        name: filter
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                keys:
+                - 5e9d9544a1dcd60001d0ed2008500e44fa644f939b640a4b8b4ea58c
+              schema:
+                $ref: '#/components/schemas/ApiAllKeys'
+          description: List of all org keys
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: ORG not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: ORG not found
+      summary: Tyk List Organisation Keys
+      tags:
+      - Organisation Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/org/keys/{keyID}:
+    delete:
+      description: Deleting a key will remove all limits from organisation. It does not affects regular keys created within organisation.
+      operationId: deleteOrgKey
+      parameters:
+      - description: The Key ID
+        example: e389ae00a2b145feaf28d6cc11f0f86d
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: e389ae00a2b145feaf28d6cc11f0f86d
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                message: Failed to remove the key
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Org not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Org not found
+      summary: Tyk Delete Key
+      tags:
+      - Organisation Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      description: Get session info about specified organisation key. Should return up to date rate limit and quota usage numbers.
+      operationId: getOrgKey
+      parameters:
+      - description: The Org ID
+        example: 664a14650619d40001f1f00f
+        in: query
+        name: orgID
+        required: false
+        schema:
+          type: string
+      - description: The Key ID
+        example: e389ae00a2b145feaf28d6cc11f0f86d
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_rights:
+                  itachi-api:
+                    allowed_urls:
+                    - methods:
+                      - GET
+                      url: /users
+                    api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                    api_name: Itachi api
+                    limit:
+                      per: 60
+                      quota_max: 10000
+                      quota_remaining: 10000
+                      quota_renewal_rate: 3600
+                      rate: 1000
+                      throttle_interval: 10
+                      throttle_retry_limit: 10
+                    versions:
+                    - Default
+                alias: portal-key
+                allowance: 1000
+                apply_policies:
+                - 5ead7120575961000181867e
+                date_created: '2024-08-09T14:40:34.87614+03:00'
+                enable_detailed_recording: true
+                last_updated: '1723203634'
+                meta_data:
+                  new-update-key-sample: update-key-sample
+                  tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                  update: sample policy update
+                  user_type: mobile_user
+                org_id: 5e9d9544a1dcd60001d0ed20
+                per: 60
+                quota_max: 10000
+                quota_renewal_rate: 3600
+                quota_renews: 1723207234
+                rate: 1000
+                tags:
+                - security
+                - edge
+                - edge-eu
+                throttle_interval: 10
+                throttle_retry_limit: 10
+              schema:
+                properties:
+                  access_rights:
+                    additionalProperties:
+                      properties:
+                        allowed_urls:
+                          items:
+                            properties:
+                              methods:
+                                items:
+                                  type: string
+                                nullable: true
+                                type: array
+                              url:
+                                type: string
+                            type: object
+                          nullable: true
+                          type: array
+                        api_id:
+                          type: string
+                        api_name:
+                          type: string
+                        limit:
+                          properties:
+                            per:
+                              type: integer
+                            quota_max:
+                              type: integer
+                            quota_remaining:
+                              type: integer
+                            quota_renewal_rate:
+                              type: integer
+                            rate:
+                              type: integer
+                            throttle_interval:
+                              type: integer
+                            throttle_retry_limit:
+                              type: integer
+                          type: object
+                        versions:
+                          items:
+                            type: string
+                          nullable: true
+                          type: array
+                      type: object
+                    nullable: true
+                    type: object
+                  alias:
+                    type: string
+                  allowance:
+                    type: integer
+                  apply_policies:
+                    items:
+                      type: string
+                    nullable: true
+                    type: array
+                  date_created:
+                    format: date-time
+                    type: string
+                  enable_detailed_recording:
+                    type: boolean
+                  last_updated:
+                    type: string
+                  meta_data:
+                    additionalProperties:
+                      type: string
+                    nullable: true
+                    type: object
+                  org_id:
+                    type: string
+                  per:
+                    type: integer
+                  quota_max:
+                    type: integer
+                  quota_renewal_rate:
+                    type: integer
+                  quota_renews:
+                    type: integer
+                  rate:
+                    type: integer
+                  tags:
+                    items:
+                      type: string
+                    nullable: true
+                    type: array
+                  throttle_interval:
+                    type: integer
+                  throttle_retry_limit:
+                    type: integer
+                type: object
+          description: OK
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Org not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Org not found
+      summary: Tyk Get an Organisation Key
+      tags:
+      - Organisation Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: This work similar to Keys API except that Key ID is always equals Organisation ID
+      operationId: addOrgKey
+      parameters:
+      - description: The Key ID
+        example: e389ae00a2b145feaf28d6cc11f0f86d
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      - description: Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.
+        example: '1'
+        in: query
+        name: reset_quota
+        required: false
+        schema:
+          enum:
+          - '1'
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: e389ae00a2b145feaf28d6cc11f0f86d
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: No such organisation found in Active API list
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: 'Error writing to key store '
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Create an Organisation Key
+      tags:
+      - Organisation Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: 'This work similar to Keys API except that Key ID is always equals Organisation ID
+
+
+        For Gateway v2.6.0 onwards, you can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don''t want to have organisation level rate limiting, set `rate` or `per` to zero, or don''t add them to your request.'
+      operationId: updateOrgKey
+      parameters:
+      - description: Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.
+        example: '1'
+        in: query
+        name: reset_quota
+        required: false
+        schema:
+          enum:
+          - '1'
+          type: string
+      - description: The Key ID
+        example: e389ae00a2b145feaf28d6cc11f0f86d
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              - update-sample-tag
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: No such organisation found in Active API list
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: 'Error writing to key store '
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Update Organisation Key
+      tags:
+      - Organisation Quotas
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APILimit:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+        per:
+          type: number
+          example: 42.5
+        quota_max:
+          type: integer
+          example: 10
+        quota_remaining:
+          type: integer
+          example: 10
+        quota_renewal_rate:
+          type: integer
+          example: 10
+        quota_renews:
+          type: integer
+          example: 10
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          type: number
+          example: 42.5
+        throttle_retry_limit:
+          type: integer
+          example: 10
+      type: object
+    RateLimitSmoothing:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
+      type: object
+    Monitor:
+      properties:
+        trigger_limits:
+          example:
+          - 80
+          - 60
+          - 50
+          items:
+            type: number
+          nullable: true
+          type: array
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    ApiAllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+      type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+          example: example_value
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    SessionState:
+      properties:
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition'
+          nullable: true
+          type: object
+          example: example_value
+        alias:
+          example: portal-developer@example.org
+          type: string
+        allowance:
+          example: 1000
+          format: double
+          type: number
+        apply_policies:
+          example:
+          - 641c15dd0fffb800010197bf
+          items:
+            type: string
+          nullable: true
+          type: array
+        apply_policy_id:
+          deprecated: true
+          description: deprecated use apply_policies going forward instead to send a list of policies ids
+          example: 641c15dd0fffb800010197bf
+          type: string
+        basic_auth_data:
+          $ref: '#/components/schemas/BasicAuthData'
+        certificate:
+          type: string
+          example: example_value
+        data_expires:
+          example: 0
+          format: int64
+          type: integer
+        date_created:
+          example: '2024-03-13T03:56:46.568042549Z'
+          format: date-time
+          type: string
+        enable_detail_recording:
+          deprecated: true
+          description: deprecated use enable_detailed_recording going forward instead
+          example: false
+          type: boolean
+        enable_detailed_recording:
+          example: true
+          type: boolean
+        enable_http_signature_validation:
+          example: false
+          type: boolean
+        expires:
+          example: 1712895619
+          format: int64
+          type: integer
+        hmac_enabled:
+          example: false
+          type: boolean
+        hmac_string:
+          type: string
+          example: example_value
+        id_extractor_deadline:
+          format: int64
+          type: integer
+          example: 10
+        is_inactive:
+          example: false
+          type: boolean
+        jwt_data:
+          $ref: '#/components/schemas/JWTData'
+        last_check:
+          example: 0
+          format: int64
+          type: integer
+        last_updated:
+          example: '1710302206'
+          type: string
+        max_query_depth:
+          example: -1
+          type: integer
+        meta_data:
+          additionalProperties: {}
+          example:
+            tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+          nullable: true
+          type: object
+        monitor:
+          $ref: '#/components/schemas/Monitor'
+        oauth_client_id:
+          type: string
+          example: '500123'
+        oauth_keys:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+          example: example_value
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        per:
+          example: 5
+          format: double
+          type: number
+        quota_max:
+          example: 20000
+          format: int64
+          type: integer
+        quota_remaining:
+          example: 20000
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          example: 31556952
+          format: int64
+          type: integer
+        quota_renews:
+          example: 1710302205
+          format: int64
+          type: integer
+        rate:
+          example: 1
+          format: double
+          type: number
+        rsa_certificate_id:
+          type: string
+          example: '500123'
+        session_lifetime:
+          example: 0
+          format: int64
+          type: integer
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        tags:
+          example:
+          - edge
+          - edge-eu
+          items:
+            type: string
+          nullable: true
+          type: array
+        throttle_interval:
+          example: 10
+          format: double
+          type: number
+        throttle_retry_limit:
+          example: 1000
+          type: integer
+      type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          nullable: true
+          type: array
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
+          type: string
+          example: example_value
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          example: d371b83b249845a2497ab9a947fd6210
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+          example: []
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec'
+          nullable: true
+          type: array
+          example: https://www.example.com
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          $ref: '#/components/schemas/Endpoints'
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition'
+          nullable: true
+          type: array
+          example: []
+        limit:
+          $ref: '#/components/schemas/APILimit'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+          example: []
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    JWTData:
+      properties:
+        secret:
+          type: string
+          example: example_value
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+      type: object
+    BasicAuthData:
+      properties:
+        hash_type:
+          type: string
+          example: example_value
+        password:
+          type: string
+          example: example_value
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

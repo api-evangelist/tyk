@@ -1,0 +1,647 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Assets API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'An API template is an asset managed by Tyk Dashboard that is used as the starting point - a blueprint - from which you can create a new Tyk OAS API definition. <br/>
+
+
+    Templates are used only during the creation of an API, they cannot be applied later.
+
+
+    [Read more about API template assets here](https://tyk.io/docs/product-stack/tyk-dashboard/advanced-configurations/templates/template-overview/)
+
+    '
+  externalDocs:
+    description: API Templates full documentation.
+    url: https://tyk.io/docs/product-stack/tyk-dashboard/advanced-configurations/templates/template-overview/
+  name: Assets
+paths:
+  /api/assets:
+    get:
+      description: Retrieves all types of assets with optional kind filter.
+      operationId: listAssets
+      parameters:
+      - description: Filter assets by kind (optional).
+        example: oas-template
+        in: query
+        name: kind
+        required: false
+        schema:
+          default: oas-template
+          enum:
+          - oas-template
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+              - _id: '363634636164353135373135656333663739386262636433'
+                data:
+                  info:
+                    title: Our Sample OAS
+                    version: 1.0.0
+                  openapi: 3.0.3
+                  paths:
+                    /anything:
+                      post:
+                        operationId: anythingpost
+                        responses:
+                          '200':
+                            description: Post created
+                  x-tyk-api-gateway:
+                    middleware:
+                      global:
+                        cache:
+                          cacheAllSafeRequests: true
+                          enabled: true
+                          timeout: 5
+                      operations:
+                        anythingpost:
+                          requestSizeLimit:
+                            enabled: true
+                            value: 100
+                description: My first template
+                id: my-unique-template-id
+                kind: oas-template
+                last_updated: '2024-05-21T17:18:57.294797+03:00'
+                name: my-template
+                org_id: 5e9d9544a1dcd60001d0ed20
+              schema:
+                items:
+                  $ref: '#/components/schemas/Asset'
+                type: array
+          description: templates fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: 'unsupported asset kind: ''oas-temp'''
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: sending a type that is not supported in the kind query parameter.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/assets'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: error listing assets.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Retrieve list of assets.
+      tags:
+      - Assets
+    post:
+      description: Create an asset that you can use as a blueprint from which you can create a new Tyk OAS API definition.
+      operationId: addAsset
+      requestBody:
+        content:
+          application/json:
+            example:
+              data:
+                info:
+                  title: Our Sample OAS
+                  version: 1.0.0
+                openapi: 3.0.3
+                paths:
+                  /anything:
+                    post:
+                      operationId: anythingpost
+                      responses:
+                        '200':
+                          description: post created
+                x-tyk-api-gateway:
+                  middleware:
+                    global:
+                      cache:
+                        cacheAllSafeRequests: true
+                        enabled: true
+                        timeout: 5
+              description: My first template
+              id: my-unique-template-id
+              kind: oas-template
+              name: my-template
+            schema:
+              properties:
+                data:
+                  $ref: '#/components/schemas/JSONRawMessage'
+                description:
+                  type: string
+                id:
+                  type: string
+                kind:
+                  type: string
+                name:
+                  type: string
+              type: object
+        description: Sample asset.
+      responses:
+        '201':
+          content:
+            application/json:
+              example:
+                ID: my-unique-template-id
+                Message: asset created
+                Meta: 664d86e35715ec0d370bbe11
+                Status: success
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: asset created
+        '400':
+          content:
+            application/json:
+              example:
+                Message: error reading json body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: malformed request body.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/assets'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '409':
+          content:
+            application/json:
+              example:
+                Message: 'Asset ID already exists: ''my-unique-template-id''.'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: trying to add an asset with an ID that already exist.
+        '422':
+          content:
+            application/json:
+              example:
+                Message: 'unsupported asset kind: ''oas-templat''.'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: validation failed
+        '500':
+          content:
+            application/json:
+              example:
+                Message: error adding asset.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create an asset
+      tags:
+      - Assets
+  /api/assets/{assetID}:
+    delete:
+      description: Remove an asset ID.
+      operationId: deleteAsset
+      parameters:
+      - description: ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update.
+        examples:
+          customID:
+            summary: Custom template ID.
+            value: my-unique-template-id
+          dbID:
+            summary: A unique database identifier assigned by Tyk.
+            value: 664cad515715ec3f798bbcd3
+        in: path
+        name: assetID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Asset removed successfully
+                Meta: null
+                Status: success
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Asset deleted
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/assets/{assetID}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: asset not found
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Asset with ID does not exist.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Error removing asset
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete an asset by ID.
+      tags:
+      - Assets
+    get:
+      description: Retrieve an asset by ID.
+      operationId: getAsset
+      parameters:
+      - description: ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update.
+        examples:
+          customID:
+            summary: Custom template ID.
+            value: my-unique-template-id
+          dbID:
+            summary: A unique database identifier assigned by Tyk.
+            value: 664cad515715ec3f798bbcd3
+        in: path
+        name: assetID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                _id: '363634636164353135373135656333663739386262636433'
+                data:
+                  info:
+                    title: Our Sample OAS
+                    version: 1.0.0
+                  openapi: 3.0.3
+                  paths:
+                    /anything:
+                      post:
+                        operationId: anythingpost
+                        responses:
+                          '200':
+                            description: Post created
+                  x-tyk-api-gateway:
+                    middleware:
+                      global:
+                        cache:
+                          cacheAllSafeRequests: true
+                          enabled: true
+                          timeout: 5
+                      operations:
+                        anythingpost:
+                          requestSizeLimit:
+                            enabled: true
+                            value: 100
+                description: My first template
+                id: my-unique-template-id
+                kind: oas-template
+                last_updated: '2024-05-21T17:18:57.294797+03:00'
+                name: my-template
+                org_id: 5e9d9544a1dcd60001d0ed20
+              schema:
+                $ref: '#/components/schemas/Asset'
+          description: Asset fetched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/assets/{assetID}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Asset not found
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Asset with ID does not exist
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Error fetching asset.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Retrieve an asset.
+      tags:
+      - Assets
+    put:
+      description: Update an asset by ID.You cannot update _id (database ID assigned by tyk)
+      operationId: updateAsset
+      parameters:
+      - description: ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update.
+        examples:
+          customID:
+            summary: Custom template ID.
+            value: my-unique-template-id
+          dbID:
+            summary: A unique database identifier assigned by Tyk.
+            value: 664cad515715ec3f798bbcd3
+        in: path
+        name: assetID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              data:
+                info:
+                  title: Our Sample OAS
+                  version: 1.0.0
+                openapi: 3.0.3
+                paths:
+                  /anything:
+                    post:
+                      operationId: anythingpost
+                      responses:
+                        '200':
+                          description: post created
+                x-tyk-api-gateway:
+                  middleware:
+                    global:
+                      cache:
+                        cacheAllSafeRequests: true
+                        enabled: true
+                        timeout: 5
+              description: My first template
+              id: my-unique-template-id
+              kind: oas-template
+              name: Update asset name example.
+            schema:
+              properties:
+                data:
+                  $ref: '#/components/schemas/JSONRawMessage'
+                description:
+                  type: string
+                id:
+                  type: string
+                kind:
+                  type: string
+                name:
+                  type: string
+              type: object
+        description: update name example.
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                ID: my-unique-template-id
+                Message: asset updated
+                Meta: 664d86e35715ec0d370bbe11
+                Status: success
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: asset updated
+        '400':
+          content:
+            application/json:
+              example:
+                Message: error reading json body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: malformed  request body
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/assets/{assetID}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Asset not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Asset with ID does not exist.
+        '409':
+          content:
+            application/json:
+              example:
+                Message: 'Asset ID already exists: ''my-unique-template-id.''.'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Trying to update an asset ID with an ID that is used by another asset.
+        '422':
+          content:
+            application/json:
+              example:
+                Message: 'unsupported asset kind: ''oas-templat''.'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: validation failed.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: error fetching asset.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Update an asset by ID.
+      tags:
+      - Assets
+components:
+  schemas:
+    JSONRawMessage:
+      example:
+        info:
+          title: Our Sample OAS
+          version: 1.0.0
+        openapi: 3.0.3
+        paths:
+          /anything:
+            post:
+              operationId: anythingpost
+              responses:
+                '200':
+                  description: Post created
+        x-tyk-api-gateway:
+          middleware:
+            global:
+              cache:
+                cacheAllSafeRequests: true
+                enabled: true
+                timeout: 5
+            operations:
+              anythingpost:
+                requestSizeLimit:
+                  enabled: true
+                  value: 100
+      type: object
+    Asset:
+      properties:
+        _id:
+          description: database id of asset
+          example: 659b9613a1ed7ef7afdccb9d
+          readOnly: true
+          type: string
+        data:
+          $ref: '#/components/schemas/JSONRawMessage'
+        description:
+          type: string
+        id:
+          description: custom id of asset that can be provided while creation/updating.
+          example: my-unique-template-id
+          type: string
+        kind:
+          default: oas-template
+          description: the asset type, which is set to oas-template
+          enum:
+          - oas-template
+          example: oas-template
+          type: string
+        last_updated:
+          description: last updated time stamp
+          example: '2024-01-10T08:48:36.183Z'
+          format: date-time
+          readOnly: true
+          type: string
+        name:
+          description: human-readable name for the template
+          type: string
+        org_id:
+          type: string
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

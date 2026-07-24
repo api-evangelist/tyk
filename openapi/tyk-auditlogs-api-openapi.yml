@@ -1,0 +1,217 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions AuditLogs API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: AuditLogs
+paths:
+  /api/audit-logs:
+    get:
+      description: Retrieve audit logs from database
+      operationId: getAuditLogs
+      parameters:
+      - description: Use p query parameter to say which page you want returned. The size of the page is determined by the configuration option page_size of dashboard.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      - description: Filters audit logs to show only actions performed by the specified user. This parameter allows you to focus on the activity of a particular user across the system.
+        example: jhon@mail.com
+        in: query
+        name: user
+        required: false
+        schema:
+          type: string
+      - description: Filters audit logs based on the specific action performed by users. This parameter allows you to focus on particular types of activities within the system.
+        example: List APIs
+        in: query
+        name: action
+        required: false
+        schema:
+          type: string
+      - description: Filters audit logs based on the IP address from which the action originated. This parameter allows you to focus on activities from specific network locations or to investigate actions from particular IP addresses.
+        example: 127.0.0.1
+        in: query
+        name: ip
+        required: false
+        schema:
+          type: string
+      - description: Filters audit logs based on the HTTP method used in the API request. This parameter allows you to focus on specific types of operations performed on the API.
+        example: POST
+        in: query
+        name: method
+        required: false
+        schema:
+          type: string
+      - description: Filters audit logs based on the HTTP status code returned by the API in response to the request. This parameter allows you to focus on specific outcomes of API interactions.
+        example: 200
+        in: query
+        name: status
+        required: false
+        schema:
+          type: integer
+      - description: Filters audit logs based on the specific URL path of the API endpoint that was accessed. This parameter allows you to focus on actions performed on particular resources or sections of your API.
+        example: /api/apis
+        in: query
+        name: url
+        required: false
+        schema:
+          type: string
+      - description: Specifies the start date for the audit log search. If not provided, the search will include records from the earliest available date. Format DD-MM-YYY.
+        example: 01-01-1990
+        in: query
+        name: from_date
+        required: false
+        schema:
+          type: string
+      - description: Specifies the end date for the audit log search. If not provided, the search will include records up to the current date and time. Format DD-MM-YYY.
+        example: 01-01-2030
+        in: query
+        name: to_date
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                pages: 1
+                audit_logs:
+                - _id: 672a83e2b0418b224440ce29
+                  req_id: 0462e283-a55f-41ab-6482-60d2eeb1858c
+                  org_id: 66cf7f8db0418b1fbe91852b
+                  date: Tue, 05 Nov 2024 17:45:22 -03
+                  timestamp: 1730839522
+                  ip: 127.0.0.1
+                  user: jhon@mail.com
+                  action: ''
+                  method: GET
+                  url: /api/audit-logs
+                  status: 200
+                - _id: 672a83e9b0418b224440ce2a
+                  req_id: 1276517a-a57e-4b20-5cf5-a6d830fc399d
+                  org_id: 66cf7f8db0418b1fbe91852b
+                  date: Tue, 05 Nov 2024 17:45:29 -03
+                  timestamp: 1730839529
+                  ip: 127.0.0.1
+                  user: jhon@mail.com
+                  action: ''
+                  method: GET
+                  url: /api/audit-logs
+                  status: 200
+                - _id: 672a83ecb0418b224440ce2b
+                  req_id: 9c720384-2c93-4c38-7164-35b876fd56ef
+                  org_id: 66cf7f8db0418b1fbe91852b
+                  date: Tue, 05 Nov 2024 17:45:32 -03
+                  timestamp: 1730839532
+                  ip: 127.0.0.1
+                  user: jhon@mail.com
+                  action: ''
+                  method: GET
+                  url: /api/audit-logs
+                  status: 200
+              schema:
+                $ref: '#/components/schemas/AuditLogs'
+          description: Audit Logs retrieved successfully
+        '400':
+          content:
+            application/json:
+              example:
+                Message: could not retrieve audit records
+                Meta: null
+                Status: Error
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/audit-logs'
+                Meta: null
+                Status: Error
+          description: Forbidden
+      summary: List audit logs
+      tags:
+      - AuditLogs
+components:
+  schemas:
+    AuditLog:
+      properties:
+        _id:
+          example: 672a83e2b0418b224440ce29
+          type: string
+        req_id:
+          example: 0462e283-a55f-41ab-6482-60d2eeb1858c
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        date:
+          example: Tue, 05 Nov 2024 17:45:22 -03
+          type: string
+        timestamp:
+          example: 1730839522
+          type: integer
+        ip:
+          example: 127.0.0.1
+          type: string
+        user:
+          example: jhon@mail.com
+          type: string
+        action:
+          example: List APIS
+          type: string
+        method:
+          example: GET
+          type: string
+        url:
+          example: /api/apis
+          type: string
+        status:
+          example: 200
+          type: integer
+      type: object
+    AuditLogs:
+      properties:
+        pages:
+          type: integer
+        audit_logs:
+          items:
+            $ref: '#/components/schemas/AuditLog'
+          nullable: true
+          type: array
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

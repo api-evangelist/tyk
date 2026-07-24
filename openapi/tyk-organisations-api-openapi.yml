@@ -1,0 +1,391 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Organisations API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Organisations
+  description: The organisations API gives the ability to manage your Tyk organisation(s).
+paths:
+  /admin/organisations/{org-id}:
+    parameters:
+    - name: org-id
+      in: path
+      description: Organisation ID of the org to add, update, or delete.
+      required: true
+      schema:
+        type: string
+    - name: admin-auth
+      in: header
+      description: admin_secret value from your tyk_analtyics.conf
+      required: true
+      schema:
+        type: string
+    get:
+      summary: Retrieve a single organisation
+      description: Retrieve a single organisation
+      operationId: getOrg
+      tags:
+      - Organisations
+      responses:
+        '200':
+          description: Organisation retrieved
+          content:
+            application/json:
+              example:
+                id: 5cc03283d07e7f00019404b3
+                owner_name: TestOrg5 Ltd.
+                owner_slug: testorg
+                cname_enabled: true
+                cname: www.tyk-portal-test.com
+                apis:
+                - api_human_name: 'First API #Test'
+                  api_id: 5508bd9429434d5768c423a04db259ea
+                developer_quota: 0
+                developer_count: 0
+                event_options: {}
+                hybrid_enabled: false
+                ui:
+                  languages: {}
+                  hide_help: false
+                  default_lang: ''
+                  login_page: {}
+                  nav: {}
+                  uptime: {}
+                  portal_section: {}
+                  designer: {}
+                  dont_show_admin_sockets: false
+                  dont_allow_license_management: false
+                  dont_allow_license_management_view: false
+                  cloud: false
+                org_options_meta: {}
+    put:
+      summary: Update organisation details
+      description: Update Organisation details. This operation will replace the existing Organisation details with those provided in the request payload. It is important to provide the entire object - for example linked APIs - to avoid overwriting existing data with empty values.
+      operationId: updateOrg
+      tags:
+      - Organisations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/OrganisationDocument'
+            example:
+              id: 5cc03283d07e7f00019404b3
+              owner_name: Jively
+              owner_slug: testorg
+              cname: jive.ly
+              cname_enabled: true
+              apis:
+              - api_human_name: 'First API #Test'
+                api_id: 5508bd9429434d5768c423a04db259ea
+              developer_quota: 0
+              developer_count: 0
+              event_options: {}
+              hybrid_enabled: false
+              ui:
+                languages: {}
+                hide_help: false
+                default_lang: ''
+                login_page: {}
+                nav: {}
+                uptime: {}
+                portal_section: {}
+                designer: {}
+                dont_show_admin_sockets: false
+                dont_allow_license_management: false
+                dont_allow_license_management_view: false
+                cloud: false
+              org_options_meta: {}
+      responses:
+        '200':
+          description: Organisation updated successfully
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Status: OK
+                Message: Org updated
+                Meta: ''
+    delete:
+      summary: Delete an organisation
+      description: Delete an organisation
+      operationId: deleteOrg
+      tags:
+      - Organisations
+      responses:
+        '200':
+          description: Organisation deleted
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Status: OK
+                Message: Org deleted
+                Meta: ''
+  /admin/organisations/:
+    parameters:
+    - name: admin-auth
+      in: header
+      description: admin_secret value from your tyk_analtyics.conf
+      required: true
+      schema:
+        type: string
+    get:
+      summary: List all organisations
+      description: List all organisations
+      operationId: getOrgs
+      tags:
+      - Organisations
+      responses:
+        '200':
+          description: Organisations retrieved successfully
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                organisations:
+                - id: 5cc03283d07e7f00019404b3
+                  owner_name: TestOrg5 Ltd.
+                  owner_slug: testorg
+                  cname_enabled: true
+                  cname: www.tyk-portal-test.com
+                  apis:
+                  - api_human_name: 'First API #Test'
+                    api_id: 5508bd9429434d5768c423a04db259ea
+                  developer_quota: 0
+                  developer_count: 0
+                  event_options: {}
+                  hybrid_enabled: false
+                  ui:
+                    languages: {}
+                    hide_help: false
+                    default_lang: ''
+                    login_page: {}
+                    nav: {}
+                    uptime: {}
+                    portal_section: {}
+                    designer: {}
+                    dont_show_admin_sockets: false
+                    dont_allow_license_management: false
+                    dont_allow_license_management_view: false
+                    cloud: false
+                  org_options_meta: {}
+                - id: 5ccae84aa402ce00018b5435
+                  owner_name: Jively
+                  owner_slug: ''
+                  cname_enabled: true
+                  cname: jive.ly
+                  apis: []
+                  developer_quota: 0
+                  developer_count: 0
+                  event_options: {}
+                  hybrid_enabled: false
+                  ui:
+                    languages: {}
+                    hide_help: false
+                    default_lang: ''
+                    login_page: {}
+                    nav: {}
+                    uptime: {}
+                    portal_section: {}
+                    designer: {}
+                    dont_show_admin_sockets: false
+                    dont_allow_license_management: false
+                    dont_allow_license_management_view: false
+                    cloud: false
+                  org_options_meta: {}
+                pages: 0
+    post:
+      summary: Create an Organisation
+      description: Create an Organisation
+      operationId: createOrg
+      tags:
+      - Organisations
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+            example:
+              owner_name: Jively
+              cname: jive.ly
+              cname_enabled: true
+      responses:
+        '200':
+          description: Organisation created
+          content:
+            application/json:
+              schema:
+                type: object
+              example:
+                Status: OK
+                Message: Org created
+                Meta: 54b53d3aeba6db5c35000002
+components:
+  schemas:
+    ApiDocument:
+      properties:
+        api_human_name:
+          type: string
+        api_id:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+      - api_human_name
+      - api_id
+    EventConfig:
+      properties:
+        webhook:
+          type: string
+        email:
+          type: string
+        redis:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - webhook
+      - email
+      - redis
+    UIOptions:
+      properties:
+        languages:
+          additionalProperties:
+            type: string
+          type: object
+        hide_help:
+          type: boolean
+        default_lang:
+          type: string
+        login_page:
+          type: object
+        nav:
+          type: object
+        uptime:
+          type: object
+        portal_section:
+          type: object
+        designer:
+          type: object
+        dont_show_admin_sockets:
+          type: boolean
+        dont_allow_license_management:
+          type: boolean
+        dont_allow_license_management_view:
+          type: boolean
+        cloud:
+          type: boolean
+        dev:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - languages
+      - hide_help
+      - default_lang
+      - login_page
+      - nav
+      - uptime
+      - portal_section
+      - designer
+      - dont_show_admin_sockets
+      - dont_allow_license_management
+      - dont_allow_license_management_view
+      - cloud
+      - dev
+    OpenPolicyConf:
+      properties:
+        rules:
+          type: string
+        enabled:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - rules
+      - enabled
+    OrganisationDocument:
+      description: The fields that describe the "organisation" object as stored in Tyk
+      properties:
+        id:
+          type: string
+        owner_name:
+          type: string
+        owner_slug:
+          type: string
+        cname_enabled:
+          type: boolean
+        cname:
+          type: string
+        apis:
+          items:
+            $ref: '#/components/schemas/ApiDocument'
+          type: array
+        sso_enabled:
+          type: boolean
+        developer_quota:
+          type: integer
+        developer_count:
+          type: integer
+        event_options:
+          additionalProperties:
+            $ref: '#/components/schemas/EventConfig'
+          type: object
+        hybrid_enabled:
+          type: boolean
+        ui:
+          $ref: '#/components/schemas/UIOptions'
+        org_options_meta:
+          type: object
+        open_policy:
+          $ref: '#/components/schemas/OpenPolicyConf'
+        additional_permissions:
+          additionalProperties:
+            type: string
+          type: object
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - owner_name
+      - owner_slug
+      - cname_enabled
+      - cname
+      - apis
+      - sso_enabled
+      - developer_quota
+      - developer_count
+      - event_options
+      - hybrid_enabled
+      - ui
+      - org_options_meta
+      - open_policy
+      - additional_permissions
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

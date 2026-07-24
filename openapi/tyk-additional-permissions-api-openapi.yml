@@ -1,0 +1,174 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: "These APIs helps you get,add and delete (CRUD) a list of additional (custom) permissions for your Dashboard users. You can use the created additional permissions with Open Policy Agent (OPA). <br/>\n\n Once created, a custom permission will be added to standard list of user permissions. <br/>\n\nYou can also configure these custom permissions in the security.additional_permissions map in the Tyk Dashboard configuration file.\n\nYou can check the [full documentation here](https://tyk.io/docs/tyk-dashboard-api/org/permissions/).\n"
+  externalDocs:
+    description: Additional Permissions full documentation.
+    url: https://tyk.io/docs/tyk-dashboard-api/org/permissions/
+  name: Additional Permissions
+paths:
+  /api/org/permissions:
+    get:
+      description: This API returns by default the initial set of additional permissions defined in your Tyk Dashboard configuration, under `security.additional_permissions`. Once you update the permissions via the API, they will be stored at organisation level.
+      operationId: listAdditionalPermissions
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                additional_permissions:
+                  api_developer: API Developer
+                  api_manager: API Manager
+              schema:
+                $ref: '#/components/schemas/NewAdditionalPermissions'
+          description: Additional Permissions retrieved successfully.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/org/permissions'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal additional permissions.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List additional permissions.
+      tags:
+      - Additional Permissions
+    put:
+      description: 'Whenever you want to add/update/delete an additional permission, just send back the updated list of permissions, through this PUT request to the API. For example if you initially had two additional permissions e.g ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager}}``` to add a third permission called `custom_permission` you would append it to the original permission list and your request body would be: ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager, custom_permission: Custom Permission}}```.'
+      operationId: updateAdditionalPermissions
+      requestBody:
+        content:
+          application/json:
+            example:
+              additional_permissions:
+                api_developer: API Developer
+                api_manager: API Manager
+                custom_permission: Custom Permission
+            schema:
+              $ref: '#/components/schemas/NewAdditionalPermissions'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Additional Permissions updated in org level.
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Additional Permissions updated successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Failed to read response body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Empty request body.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/org/permissions'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal response body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Invalid request body or failed to save permission.
+      summary: Add/Delete/Update additional permission.
+      tags:
+      - Additional Permissions
+components:
+  schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    NewAdditionalPermissions:
+      properties:
+        additional_permissions:
+          additionalProperties:
+            type: string
+          example:
+            api_developer: API Developer
+            api_manager: API Manager
+            custom_permission: Custom Permission
+          nullable: true
+          type: object
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

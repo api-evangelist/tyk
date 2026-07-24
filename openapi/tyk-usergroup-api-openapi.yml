@@ -1,0 +1,466 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions UserGroup API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: When you have a large number of users and teams with different access requirements, instead of setting permissions per user, you can create a user group and configure the permissions for all users in the group. Note that a user can only belong to one group.
+  externalDocs:
+    description: Manage Tyk Dashboard User Groups.
+    url: https://tyk.io/docs/basic-config-and-security/security/dashboard/create-user-groups/
+  name: UserGroup
+paths:
+  /api/usergroups:
+    get:
+      description: This will return a list of all the user groups. The returned user groups are paginated.
+      operationId: listUserGroups
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                groups:
+                - active: true
+                  description: devs company
+                  id: '363634393938366435373135656334633936636265663262'
+                  name: devs
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  user_permissions:
+                    analytics: read
+                    api_assets: write
+                    apis: write
+                    certs: write
+                    hooks: write
+                    idm: write
+                    keys: write
+                    log: read
+                    oauth: write
+                    owned_analytics: deny
+                    policies: write
+                    portal: write
+                    system: write
+                    user_groups: write
+                    users: write
+                    websockets: read
+                - active: true
+                  description: Devops logs and analytics access
+                  id: '363634396664346235373135656334633936636265663338'
+                  name: Devops
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  user_permissions:
+                    analytics: read
+                    log: read
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/UserGroups'
+          description: User groups fetched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/usergroups'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user groups.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to fetch groups.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal keys data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List user groups.
+      tags:
+      - UserGroup
+    post:
+      description: Instead of assigning permission to each individual users, per user, you can create a user group and configure the permissions for all users in the group. This endpoint allow you to create a user group and set permission for the user group.
+      operationId: createUserGroup
+      requestBody:
+        content:
+          application/json:
+            example:
+              active: true
+              description: Devops logs and analytics access
+              name: Devops
+              org_id: 5e9d9544a1dcd60001d0ed20
+              user_permissions:
+                analytics: read
+                log: read
+            schema:
+              $ref: '#/components/schemas/UserGroup'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User group created
+                Meta: 6649fb3e5715ec4c96cbef36
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User group created.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request data.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to read response body, body empty.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create user group.
+      tags:
+      - UserGroup
+  /api/usergroups/{groupId}:
+    delete:
+      description: Delete user group using the group ID.
+      operationId: deleteUserGroup
+      parameters:
+      - description: ID of the group you want to delete.
+        example: 6649fd535715ec4c96cbef39
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User group deleted
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not delete the user group.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Failed to delete user group.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/usergroups/{groupId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Group not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete user group.
+      tags:
+      - UserGroup
+    get:
+      description: Return a user group object with all the details of a specified group.
+      operationId: getUserGroup
+      parameters:
+      - description: ID of the group you want to fetch.
+        example: 6649fd535715ec4c96cbef39
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                active: true
+                description: Devops logs and analytics access
+                id: '363634396664346235373135656334633936636265663338'
+                name: Devops
+                org_id: 5e9d9544a1dcd60001d0ed20
+                password_max_days: 0
+                user_permissions:
+                  analytics: read
+                  log: read
+              schema:
+                $ref: '#/components/schemas/UserGroup'
+          description: User grouped fetched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/usergroups/{groupId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user group detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Group not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get user group details.
+      tags:
+      - UserGroup
+    put:
+      description: Update the details of a user group. You must have either admin or user groups permission to be able to modify user groups. Note you cannot update the ResetPassword permission with this endpoint. For that you need to use Admin API. When updating a user group you also need to specify at least one permission in the user_permissions field.
+      operationId: updateUserGroup
+      parameters:
+      - description: ID of the group you want to update.
+        example: 6649fd535715ec4c96cbef39
+        in: path
+        name: groupId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              active: true
+              description: Devops logs and analytics access
+              name: Devops
+              org_id: 5e9d9544a1dcd60001d0ed20
+              user_permissions:
+                analytics: read
+                log: read
+            schema:
+              $ref: '#/components/schemas/UserGroup'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User group updated
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Group ID does not exist
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Group not found or malformed request body.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/usergroups/{groupId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Update user group.
+      tags:
+      - UserGroup
+components:
+  schemas:
+    UserPermissionObject:
+      additionalProperties:
+        type: string
+      type: object
+    UserGroups:
+      properties:
+        groups:
+          items:
+            $ref: '#/components/schemas/UserGroup'
+          nullable: true
+          type: array
+        pages:
+          type: integer
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    UserGroup:
+      properties:
+        active:
+          example: true
+          type: boolean
+        description:
+          example: Devops logs and analytics access
+          type: string
+        id:
+          example: 6649986d5715ec4c96cbef2b
+          type: string
+        name:
+          example: 66498cd1e2fcd1000184ecb8
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        password_max_days:
+          example: 0
+          type: integer
+        user_permissions:
+          $ref: '#/components/schemas/UserPermissionObject'
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

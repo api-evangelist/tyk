@@ -1,0 +1,1142 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Users API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Users
+  description: The admin portion of the users API gives you the ability to manage password reset policies for your Dashboard users.
+paths:
+  /admin/users/{USER_ID}/actions/allow_reset_passwords:
+    parameters:
+    - name: USER_ID
+      in: path
+      description: User ID of the user whose password is being reset
+      required: true
+      schema:
+        type: string
+    - name: admin-auth
+      in: header
+      description: admin_secret value from your tyk_analtyics.conf
+      required: true
+      schema:
+        type: string
+    put:
+      summary: Allow password reset for a User
+      description: Allow password reset for a User.
+      operationId: allowResetPassword
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Password reset for user enabled
+          content:
+            application/json:
+              example:
+                Status: OK
+                Message: User updated
+                Meta:
+                  api_model: {}
+                  first_name: John
+                  last_name: Doe
+                  email_address: john@test.com
+                  org_id: 60ef3a1dcb83670001bf2df9
+                  active: true
+                  id: 614215edb2d47190f98b3b79
+                  access_key: 68b225c4376748207453c235ed8e2a82
+                  user_permissions:
+                    IsAdmin: admin
+                    ResetPassword: admin
+                  group_id: ''
+                  password_max_days: 0
+                  password_updated: '2021-09-15T15:49:01.863Z'
+                  PWHistory: []
+                  last_login_date: '2021-09-15T15:49:49.754Z'
+                  created_at: '2021-09-15T15:49:01Z'
+  /admin/users/{USER_ID}/actions/disallow_reset_passwords:
+    parameters:
+    - name: USER_ID
+      in: path
+      description: User ID of the user whose password reset capability is being disallowed
+      required: true
+      schema:
+        type: string
+    - name: admin-auth
+      in: header
+      description: admin_secret value from your tyk_analtyics.conf
+      required: true
+      schema:
+        type: string
+    put:
+      summary: Disallow password reset for a User
+      description: Disallow password reset for a User.
+      operationId: disallowResetPassword
+      tags:
+      - Users
+      responses:
+        '200':
+          description: Password reset for user disabled
+          content:
+            application/json:
+              example:
+                Status: OK
+                Message: User updated
+                Meta:
+                  api_model: {}
+                  first_name: John
+                  last_name: Doe
+                  email_address: john@test.com
+                  org_id: 60ef3a1dcb83670001bf2df9
+                  active: true
+                  id: 614215edb2d47190f98b3b79
+                  access_key: 68b225c4376748207453c235ed8e2a82
+                  user_permissions:
+                    IsAdmin: admin
+                  group_id: ''
+                  password_max_days: 0
+                  password_updated: '2021-09-15T15:49:01.863Z'
+                  PWHistory: []
+                  last_login_date: '2021-09-15T15:49:49.754Z'
+                  created_at: '2021-09-15T15:49:01Z'
+  /api/users:
+    get:
+      description: Lists dashboard users
+      operationId: getUsers
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                pages: 1
+                users:
+                - access_key: d7ebef749e4348cb67fec3cfc81f0a50
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T08:23:29.173+03:00'
+                  email_address: multi-org-user@example.org
+                  first_name: Multi org
+                  group_id: ''
+                  id: '363634393863643165326663643130303031383465636235'
+                  last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                  last_name: User
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T08:23:29.281+03:00'
+                  user_permissions:
+                    IsAdmin: admin
+                    ResetPassword: admin
+                - access_key: f4b94c64017043dc4d1918db7e3436dd
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T08:23:29.034+03:00'
+                  email_address: admin-user@example.org
+                  first_name: Admin
+                  group_id: ''
+                  id: '363634393863643165326663643130303031383465636234'
+                  last_login_date: '2024-05-19T08:42:22.659839+03:00'
+                  last_name: User
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T08:23:29.146+03:00'
+                  user_permissions:
+                    IsAdmin: admin
+                    ResetPassword: admin
+                - access_key: d19fc75cd3aa497f6cb042f72e47ce8c
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T08:45:09.53319+03:00'
+                  email_address: itachi.w@tyk.io
+                  first_name: sasuke
+                  group_id: ''
+                  id: '363634393931653535373135656334633936636265663261'
+                  last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                  last_name: itachi
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T08:45:09.53319+03:00'
+                  user_permissions:
+                    IsAdmin: admin
+                - access_key: b26feb8ff86b48e15ae2513a2de6f8f7
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T09:14:13.461142+03:00'
+                  email_address: munene@gmail.com
+                  first_name: munene
+                  group_id: 6649986d5715ec4c96cbef2b
+                  id: '363634393938623535373135656334633936636265663263'
+                  last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                  last_name: wachira
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T09:14:13.461142+03:00'
+                  user_permissions:
+                    analytics: read
+                    api_assets: write
+                    apis: write
+                    certs: write
+                    hooks: write
+                    idm: write
+                    keys: write
+                    log: read
+                    oauth: write
+                    policies: write
+                    portal: write
+                    system: write
+                    user_groups: write
+                    users: write
+                    websockets: read
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: Users retrieved successfully.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve users.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Error retrieving users from db.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal keys data from Tyk API
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List users
+      tags:
+      - Users
+    post:
+      description: 'Create a user. If you want to create an admin user, you need to send {IsAdmin: admin} in the user_permissions field e.g ```{user_permissions: {IsAdmin: admin},last_name: sasuke,email_address: itachi@gmail.com,first_name: itachi}```. You can add a user to a given user-group by sending the group_id in the request body. If you want to give a user access only to specific objects e.g policies you can send the object and the permission granted to the user (read or write permission in the  user_permissions field  (check the request example given for more details)).'
+      operationId: addUser
+      requestBody:
+        content:
+          application/json:
+            example:
+              active: true
+              email_address: itachi@gmail.com
+              first_name: itachi
+              last_name: sasuke
+              user_permissions:
+                analytics: read
+                api_assets: write
+                apis: write
+                certs: write
+                hooks: write
+                idm: write
+                keys: write
+                log: read
+                oauth: write
+                policies: write
+                portal: write
+                system: write
+                user_groups: write
+                users: write
+                websockets: read
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User and session have been created
+                Meta: 6649a9e85715ec4c96cbef2f
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User added successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: User object validation failed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Failure to send all required fields.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: User email already exists for this org.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User already exist.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Couldn't retrieve user session details.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Add user.
+      tags:
+      - Users
+  /api/users/{userId}:
+    delete:
+      description: Delete a user with user ID.
+      operationId: deleteUser
+      parameters:
+      - description: User ID of the user to delete.
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User deleted
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not delete the user.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Failed to delete user.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/{userId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete a user.
+      tags:
+      - Users
+    get:
+      description: Return a user object with details of the user specified by user ID in path.
+      operationId: getUser
+      parameters:
+      - description: User ID of the user to retrieve data for.
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_key: f4b94c64017043dc4d1918db7e3436dd
+                active: true
+                api_model: {}
+                created_at: '2024-05-19T08:23:29.034+03:00'
+                email_address: admin-user@example.org
+                first_name: Admin
+                group_id: ''
+                id: '363634393863643165326663643130303031383465636234'
+                last_login_date: '2024-05-19T08:42:22.659839+03:00'
+                last_name: User
+                org_id: 5e9d9544a1dcd60001d0ed20
+                password_max_days: 0
+                password_updated: '2024-05-19T08:23:29.146+03:00'
+                user_permissions:
+                  IsAdmin: admin
+                  ResetPassword: admin
+              schema:
+                $ref: '#/components/schemas/User'
+          description: User retrieved successfully.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/{userId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get user details.
+      tags:
+      - Users
+    put:
+      description: Update a user with user ID. If you update the user as inactive they will be logged out of all dashboard sessions. User password can only be updated via admin API or the update password endpoint. ResetPassword is also only available via the admin API.
+      operationId: updateUser
+      parameters:
+      - description: USER ID of the user to update
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              active: true
+              email_address: itachi@gmail.com
+              first_name: itachi
+              last_name: sasuke
+              user_permissions:
+                IsAdmin: admin
+            schema:
+              properties:
+                active:
+                  type: boolean
+                email_address:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                user_permissions:
+                  $ref: '#/components/schemas/UserPermissionObject'
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User updated
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Updated successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: user does not exist.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found or malformed request body.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: To create a user specify at least one permission, or make them an admin.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Empty user rights or invalid email format.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Update user.
+      tags:
+      - Users
+  /api/users/{userId}/actions/key/reset:
+    put:
+      description: Reset specified user's Dashboard API access credentials by generating a new access key for the specified user.
+      operationId: resetUserKey
+      parameters:
+      - description: User ID of the user whose key you want to reset.
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User session renewed
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: New access key generated.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Problem updating user with new key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to update user details.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/{userId}/actions/key/reset'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Reset user Dashboard API access credentials.
+      tags:
+      - Users
+  /api/users/{userId}/actions/reset:
+    post:
+      description: Set a user's password. The password need to be 6 character long. If you are trying to update another users password you also need to have permission to update they password or you need to be a super-admin. You cannot also reuse a password.
+      operationId: setUserPassword
+      parameters:
+      - description: User ID of the user whose password is being reset.
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              api_model: {}
+              current_password: minimum6charactersPassword
+              new_password: newMinimum6CharactersPassword
+            schema:
+              $ref: '#/components/schemas/UserPassword'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User password updated
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request body or you don't have permission to change this users password.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Set user password.
+      tags:
+      - Users
+  /api/users/{userId}/actions/revoke:
+    put:
+      description: This will set the use account as inactive. It will also disable API Access and log out the user from all dashboards.
+      operationId: revokeUser
+      parameters:
+      - description: User ID of the user whose access you want to revoke.
+        example: 66498cd1e2fcd1000184ecb4
+        in: path
+        name: userId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: User revoked
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: OK
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/{userId}/actions/revoke'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Revoke user.
+      tags:
+      - Users
+  /api/users/me:
+    get:
+      description: Return a user object with the details of the current user. This request need to have a session cookie with the key authorisation.
+      operationId: currentUserDetail
+      parameters:
+      - description: authorisation session cookie
+        example: 1b7eecc5-6dt5-4df8-5472-0c7frc3ae4f2
+        in: cookie
+        name: authorisation
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_key: d7ebef749e4348cb67fec3cfc81f0a50
+                active: true
+                api_model: {}
+                created_at: '2024-05-19T08:23:29.173+03:00'
+                email_address: multi-org-user@example.org
+                first_name: Multi org
+                group_id: ''
+                id: '363634393863643165326663643130303031383465636235'
+                last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                last_name: User
+                org_id: 5e9d9544a1dcd60001d0ed20
+                password_max_days: 0
+                password_updated: '2024-05-19T08:23:29.281+03:00'
+                user_permissions:
+                  IsAdmin: admin
+                  ResetPassword: admin
+              schema:
+                $ref: '#/components/schemas/User'
+          description: OK
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/me'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve current user detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: User not found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal current user data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get current user.
+      tags:
+      - Users
+  /api/users/search:
+    get:
+      deprecated: true
+      description: This endpoint allows you to search for users by providing their email address as a query parameter.
+      operationId: searchUserGet
+      parameters:
+      - description: Query term used to search for users (email address).
+        example: itachi@tyk.io
+        in: query
+        name: q
+        required: true
+        schema:
+          type: string
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                pages: 1
+                users:
+                - access_key: d19fc75cd3aa497f6cb042f72e47ce8c
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T08:45:09.53319+03:00'
+                  email_address: itachi.w@tyk.io
+                  first_name: sasuke
+                  group_id: ''
+                  id: '363634393931653535373135656334633936636265663261'
+                  last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                  last_name: itachi
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T08:45:09.53319+03:00'
+                  user_permissions:
+                    IsAdmin: admin
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: User searched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/search'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not search users.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to search user.
+      summary: Search Users(Deprecated)
+      tags:
+      - Users
+    post:
+      description: This endpoint allows you to search for users with their email address (e.g if you send the filter @gmail.com` in the request payload, all users whole email contain the string @gmail.com will be returned).
+      operationId: searchUser
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      requestBody:
+        content:
+          application/json:
+            example:
+              filters:
+                query: itachi@tyk.io
+            schema:
+              $ref: '#/components/schemas/UserSearchPayload'
+        description: User search criteria.
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                pages: 1
+                users:
+                - access_key: d19fc75cd3aa497f6cb042f72e47ce8c
+                  active: true
+                  api_model: {}
+                  created_at: '2024-05-19T08:45:09.53319+03:00'
+                  email_address: itachi.w@tyk.io
+                  first_name: sasuke
+                  group_id: ''
+                  id: '363634393931653535373135656334633936636265663261'
+                  last_login_date: '2024-05-19T08:45:09.53319+03:00'
+                  last_name: itachi
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  password_max_days: 0
+                  password_updated: '2024-05-19T08:45:09.53319+03:00'
+                  user_permissions:
+                    IsAdmin: admin
+              schema:
+                $ref: '#/components/schemas/Users'
+          description: User searched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not extract search filter from request body.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to get filters.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/users/search'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not search users.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to search user.
+      summary: Search user with email.
+      tags:
+      - Users
+components:
+  schemas:
+    User:
+      properties:
+        access_key:
+          example: d7ebef749e4348cb67fec3cfc81f0a50
+          type: string
+        active:
+          example: true
+          type: boolean
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        created_at:
+          example: '2024-05-19T08:23:29.034+03:00'
+          format: date-time
+          type: string
+        email_address:
+          example: multi-org-user@example.org
+          type: string
+        first_name:
+          example: itachi
+          type: string
+        group_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        id:
+          example: 66498cd1e2fcd1000184ecb5
+          type: string
+        last_login_date:
+          example: '2024-05-19T08:42:22.659839+03:00'
+          format: date-time
+          type: string
+        last_name:
+          example: sasuke
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        password_max_days:
+          example: 0
+          type: integer
+        password_updated:
+          example: '2024-05-19T08:23:29.146+03:00'
+          format: date-time
+          type: string
+        user_permissions:
+          $ref: '#/components/schemas/UserPermissionObject'
+      required:
+      - first_name
+      - last_name
+      - email_address
+      - user_permissions
+      type: object
+    UserPermissionObject:
+      additionalProperties:
+        type: string
+      type: object
+    ApiModel:
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    UserPassword:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        current_password:
+          example: testuser1password
+          minLength: 6
+          type: string
+        new_password:
+          example: newtestuser1password
+          minLength: 6
+          type: string
+      type: object
+    Users:
+      properties:
+        pages:
+          type: integer
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          nullable: true
+          type: array
+      type: object
+    UserSearchPayload:
+      properties:
+        filters:
+          properties:
+            query:
+              example: itachi@tyk.io
+              type: string
+          type: object
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

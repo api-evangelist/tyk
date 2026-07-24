@@ -1,0 +1,2883 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Keys API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: All keys that are used to access services via Tyk correspond to a session object that informs Tyk about the context of this particular token, like access rules and rate/quota allowance.
+  externalDocs:
+    description: API Key Management.
+    url: https://tyk.io/docs/tyk-apis/tyk-dashboard-api/api-keys/
+  name: Keys
+paths:
+  /api/apis/{apiID}/keys:
+    get:
+      description: Lists keys that grant access to the API with the ID {apiID}.
+      operationId: listApiKeys
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      - description: ID of the API.
+        example: 663a4ed9b6be920001b191ae
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                data:
+                  keys:
+                  - 5e9d9544a1dcd60001d0ed20a28c495beff140a4a6d8c272a1956b99
+                  - 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+                  - 5e9d9544a1dcd60001d0ed2060ff87c0deab4a508dd2ac18ccb8b664
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/Keys'
+          description: Paginated key IDs.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/{apiID}/keys'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve keys.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Returned when keys are hashed and hashed key listing is disabled.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal keys data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List keys by API.
+      tags:
+      - Keys
+  /api/apis/{apiID}/keys/{keyID}:
+    delete:
+      description: Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available.
+      operationId: deleteApiKeyDetail
+      parameters:
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: Set to true if the passed key is a username.
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: ID of API the keys grant access to. Can either be the internal or external API ID.
+        example: 546e885199c947147e7f39b7d6e8e984
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The key ID
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Key deleted successfully.
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key deleted.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Attempted access to non-owned key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Trying to access a key your org does not own.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/{apiID}/keys/{keyID}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Could not delete key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete key with API ID and key ID.
+      tags:
+      - Keys
+    get:
+      description: Fetches the key that grant access to the API with the ID {apiID} and key ID {keyID}.
+      operationId: getApiKeyDetail
+      parameters:
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: Set to true if the passed key ID is a username.
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: ID of API the keys grant access to. Can either be the internal or external API ID.
+        example: 546e885199c947147e7f39b7d6e8e984
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Key ID.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key data fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Attempted access to non-owned key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Trying to access a key your org does not own.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/{apiID}/keys/{keyID}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found.
+      summary: Get key details with API ID and key ID.
+      tags:
+      - Keys
+    put:
+      description: You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way.
+      operationId: updateApiKeyDetail
+      parameters:
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: Set to true if the passed key ID is a username.
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.
+        example: '1'
+        in: query
+        name: suppress_reset
+        required: false
+        schema:
+          type: string
+      - description: ID of API the keys grant access to. Can either be the internal or external API ID.
+        example: 546e885199c947147e7f39b7d6e8e984
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: The Key ID.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 62a0ec9092faf50001395817
+              enable_detailed_recording: true
+              expires: 1718439136
+              hmac_enabled: false
+              is_inactive: false
+              meta_data:
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: -1
+              quota_remaining: 0
+              quota_renewal_rate: -1
+              quota_renews: 1715847135
+              rate: 1000
+              tags:
+              - edge-eu
+              - edge
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key updated
+        '400':
+          content:
+            application/json:
+              example:
+                Message: User/Key object validation failed, most likely malformed input.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed input.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unmarshalling request body failed, malformed.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal Key data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: With API ID and key ID.
+      tags:
+      - Keys
+  /api/apis/{apiId}/keys/search:
+    get:
+      description: Lists keys that grant access to the API with the ID {apiID}. When q query parameter is passed it will only return keys that contains the string sent by q.
+      operationId: SearchKeys
+      parameters:
+      - description: Filter and return all keys that contain this text in there key ID.
+        example: itachi
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      - description: ID of the API.
+        example: 663a4ed9b6be920001b191ae
+        in: path
+        name: apiId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                data:
+                  keys:
+                  - 5e9d9544a1dcd60001d0ed20itachi
+                  - 5e9d9544a1dcd60001d0ed20ns-itachi
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/Keys'
+          description: Paginated key IDs
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not search keys.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Could not search keys.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/{apiId}/keys/search'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal user data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Search keys by API.
+      tags:
+      - Keys
+  /api/apis/keys:
+    get:
+      description: Return a paginated list of keys.
+      operationId: listKeys
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                data:
+                  keys:
+                  - 5e9d9544a1dcd60001d0ed20a28c495beff140a4a6d8c272a1956b99
+                  - 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+                  - 5e9d9544a1dcd60001d0ed2060ff87c0deab4a508dd2ac18ccb8b664
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/Keys'
+          description: Paginated key IDs.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/apis/keys'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal keys data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List All the keys.
+      tags:
+      - Keys
+  /api/keys:
+    post:
+      description: "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API owners should segmentation be needed at an organisational level.\n  <br/><br/>\n API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always embed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to."
+      operationId: addKey
+      parameters:
+      - description: Set this to true to create a basic user. Note you have to send basic_auth_data(user and password) in the request body if this value is set to true.
+        example: true
+        in: query
+        name: basic_auth
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            example:
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 62a0ec9092faf50001395817
+              enable_detailed_recording: true
+              expires: 1718439136
+              hmac_enabled: false
+              is_inactive: false
+              meta_data:
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: -1
+              quota_remaining: 0
+              quota_renewal_rate: -1
+              quota_renews: 1715847135
+              rate: 1000
+              tags:
+              - edge-eu
+              - edge
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: New Key added.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unmarshalling request body failed, malformed.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal key data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create a key.
+      tags:
+      - Keys
+  /api/keys/{keyId}:
+    delete:
+      description: Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available.
+      operationId: deleteKey
+      parameters:
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: Set to true if the passed key is a username
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: The ID of the key.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Key deleted successfully.
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key deleted.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Attempted access to non-owned key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Trying to access a key your org does not own.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/keys/{keyId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Could not delete key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Delete key.
+      tags:
+      - Keys
+    get:
+      description: Get the details of a key.
+      operationId: getKeyDetail
+      parameters:
+      - description: The ID of the key.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: string
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: Set to true if the passed key ID is a username.
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key Data fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Attempted access to non-owned key.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Trying to access a key your org does not own.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/keys/{keyId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal key data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get key Details.
+      tags:
+      - Keys
+    post:
+      description: Creates a key with a custom key ID.
+      operationId: createCustomKey
+      parameters:
+      - description: The ID to give the key.
+        example: my-custom-key
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 62a0ec9092faf50001395817
+              enable_detailed_recording: true
+              expires: 1718439136
+              hmac_enabled: false
+              is_inactive: false
+              meta_data:
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: -1
+              quota_remaining: 0
+              quota_renewal_rate: -1
+              quota_renews: 1715847135
+              rate: 1000
+              tags:
+              - edge-eu
+              - edge
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key created.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unmarshalling request body failed, malformed.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal Key data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Create custom key.
+      tags:
+      - Keys
+    put:
+      description: You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way.
+      operationId: updateKeyDetail
+      parameters:
+      - description: The ID of the key.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyId
+        required: true
+        schema:
+          type: string
+      - description: Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input.
+        example: '1'
+        in: query
+        name: hashed
+        required: false
+        schema:
+          type: string
+      - description: If you are not sure if a key is hashed you can send this as true.
+        example: true
+        in: query
+        name: auto_guess
+        required: false
+        schema:
+          default: false
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Set to true if the passed key ID is a username.
+        example: true
+        in: query
+        name: username
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.
+        in: query
+        name: suppress_reset
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 62a0ec9092faf50001395817
+              enable_detailed_recording: true
+              expires: 1718439136
+              hmac_enabled: false
+              is_inactive: false
+              meta_data:
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: -1
+              quota_remaining: 0
+              quota_renewal_rate: -1
+              quota_renews: 1715847135
+              rate: 1000
+              tags:
+              - edge-eu
+              - edge
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key updated
+        '400':
+          content:
+            application/json:
+              example:
+                Message: User/Key object validation failed, most likely malformed input.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: malformed input.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unmarshalling request body failed, malformed.
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve key detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Key with ID not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal key data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Update key.
+      tags:
+      - Keys
+  /api/keys/detailed:
+    get:
+      description: List all the keys and all the keys details. If `q` query parameter is passed it will only return keys whose key ID contain the passed text.
+      operationId: getKeysDetailed
+      parameters:
+      - description: Filter and return all keys that contain this text in there key ID.
+        example: itachi
+        in: query
+        name: q
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeysDetailed'
+          description: Keys fetched.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/keys/detailed'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve keys.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unable to connect to the gateway.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal keys data from Tyk API.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List All the Keys info.
+      tags:
+      - Keys
+  /api/keys/preview:
+    post:
+      description: This will check if the body of a key definition is valid. And return a response with how the key would look like if you create it.
+      operationId: validateAKeyDefinition
+      requestBody:
+        content:
+          application/json:
+            example:
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 62a0ec9092faf50001395817
+              enable_detailed_recording: true
+              expires: 1718439136
+              hmac_enabled: false
+              is_inactive: false
+              meta_data:
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: -1
+              quota_remaining: 0
+              quota_renewal_rate: -1
+              quota_renews: 1715847135
+              rate: 1000
+              tags:
+              - edge-eu
+              - edge
+              throttle_interval: 0
+              throttle_retry_limit: 0
+            schema:
+              $ref: '#/components/schemas/SessionState'
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/KeyData'
+          description: Key definition is valid.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: User/Key object validation failed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed key data.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to unmarshal User data.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: This will validate a key definition.
+      tags:
+      - Keys
+  /tyk/keys:
+    get:
+      description: List all the API keys.
+      operationId: listKeys
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiAllKeys'
+          description: List of all API keys.
+        '403':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Disabled hashed key listing.
+      summary: Tyk List Keys.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API Owners should segmentation be needed at an organisational level.\n <br/><br/>\n  API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always\nembed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to."
+      operationId: addKey
+      parameters:
+      - description: When set to true the key_hash returned will be similar to the un-hashed key name.
+        example: true
+        in: query
+        name: hashed
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: 5e9d9544a1dcd60001d0ed20a2290376f89846b798b7e5197584ef6d
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: New key added.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failed to create key, ensure security settings are correct.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Create a Key.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/keys/{keyID}:
+    delete:
+      description: Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available.
+      operationId: deleteKey
+      parameters:
+      - description: Use the hash of the key as input instead of the full key.
+        example: false
+        in: query
+        name: hashed
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: The key ID.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Key deleted.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Failed to remove the key
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: There is no such key found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Key not found.
+      summary: Tyk Delete a Key.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      description: Get session info about the specified key. Should return up to date rate limit and quota usage numbers.
+      operationId: getKey
+      parameters:
+      - description: Use the hash of the key as input instead of the full key.
+        example: true
+        in: query
+        name: hashed
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: The key ID.
+        example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_rights:
+                  itachi-api:
+                    allowed_urls:
+                    - methods:
+                      - GET
+                      url: /users
+                    api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                    api_name: Itachi api
+                    limit:
+                      per: 60
+                      quota_max: 10000
+                      quota_remaining: 10000
+                      quota_renewal_rate: 3600
+                      rate: 1000
+                      throttle_interval: 10
+                      throttle_retry_limit: 10
+                    versions:
+                    - Default
+                alias: portal-key
+                allowance: 1000
+                apply_policies:
+                - 5ead7120575961000181867e
+                date_created: '2024-08-09T14:40:34.87614+03:00'
+                enable_detailed_recording: true
+                last_updated: '1723203634'
+                meta_data:
+                  new-update-key-sample: update-key-sample
+                  tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                  update: sample policy update
+                  user_type: mobile_user
+                org_id: 5e9d9544a1dcd60001d0ed20
+                per: 60
+                quota_max: 10000
+                quota_renewal_rate: 3600
+                quota_renews: 1723207234
+                rate: 1000
+                tags:
+                - security
+                - edge
+                - edge-eu
+                throttle_interval: 10
+                throttle_retry_limit: 10
+              schema:
+                $ref: '#/components/schemas/SessionState_2'
+          description: Key fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Key requested by hash but key hashing is not enabled.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Key not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Key not found.
+      summary: Tyk Get a Key With Id.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: You can use this endpoint to import existing keys into Tyk or to create a new custom key.
+      operationId: createCustomKey
+      parameters:
+      - description: Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.
+        example: '1'
+        in: query
+        name: suppress_reset
+        required: false
+        schema:
+          enum:
+          - '1'
+          type: string
+      - description: When set to true the key_hash returned will be similar to the un-hashed key name.
+        example: true
+        in: query
+        name: hashed
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: Name to give the custom key.
+        example: customKey
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: 5e9d9544a1dcd60001d0ed20customKey
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: New custom key added.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failed to create key, ensure security settings are correct.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Create Custom Key / Import Key
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: ' You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended that when using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way.'
+      operationId: updateKey
+      parameters:
+      - description: Adding the suppress_reset parameter and setting it to 1 will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.
+        example: '1'
+        in: query
+        name: suppress_reset
+        required: false
+        schema:
+          enum:
+          - '1'
+          type: string
+      - description: When set to true the key_hash returned will be similar to the un-hashed key name.
+        example: true
+        in: query
+        name: hashed
+        required: false
+        schema:
+          enum:
+          - true
+          - false
+          type: boolean
+      - description: ID of the key you want to update.
+        example: 5e9d9544a1dcd60001d0ed20766d9a6ec6b4403b93a554feefef4708
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              - update-sample-tag
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: modified
+                key: 5e9d9544a1dcd60001d0ed20766d9a6ec6b4403b93a554feefef4708
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Key updated.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request malformed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Key is not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Key not found.
+        '500':
+          content:
+            application/json:
+              example:
+                message: Failed to create key, ensure security settings are correct.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Update Key.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/keys/create:
+    post:
+      description: Create a key.
+      operationId: createKey
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: 5e9d9544a1dcd60001d0ed207eb558517c3c48fb826c62cc6f6161eb
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Key created.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Failed to create key, keys must have at least one Access Rights record set.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: No access right.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unmarshalling failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Malformed body.
+      summary: Tyk Create a Key.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/keys/policy/{keyID}:
+    post:
+      description: This will set policies to a hashed key.
+      operationId: setPoliciesToHashedKey
+      parameters:
+      - description: Name to give the custom key.
+        example: 5e9d9544a1dcd60001d0ed207eb558517c3c48fb826c62cc6f6161eb
+        in: path
+        name: keyID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              apply_policies:
+              - 5ead7120575961000181867e
+              policy: ''
+            schema:
+              $ref: '#/components/schemas/PolicyUpdateObj'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: updated
+                key: 5e9d9544a1dcd60001d0ed207eb558517c3c48fb826c62cc6f6161eb
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: Updated hashed key.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Couldn't decode instruction
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Malformed request body.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Key not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Key not found.
+        '500':
+          content:
+            application/json:
+              example:
+                message: Could not write key data.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Set Policies for a Hashed Key.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/keys/preview:
+    post:
+      description: This will check if the body of a key definition is valid. And return a response with how the key would look like if you were to create it.
+      operationId: validateAKeyDefinition
+      requestBody:
+        content:
+          application/json:
+            example:
+              access_rights:
+                itachi-api:
+                  allowed_urls:
+                  - methods:
+                    - GET
+                    url: /users
+                  api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                  api_name: Itachi api
+                  limit:
+                    per: 60
+                    quota_max: 10000
+                    quota_remaining: 10000
+                    quota_renewal_rate: 3600
+                    rate: 1000
+                    throttle_interval: 10
+                    throttle_retry_limit: 10
+                  versions:
+                  - Default
+              alias: portal-key
+              allowance: 1000
+              apply_policies:
+              - 5ead7120575961000181867e
+              date_created: '2024-08-09T14:40:34.87614+03:00'
+              enable_detailed_recording: true
+              last_updated: '1723203634'
+              meta_data:
+                new-update-key-sample: update-key-sample
+                tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                update: sample policy update
+                user_type: mobile_user
+              org_id: 5e9d9544a1dcd60001d0ed20
+              per: 60
+              quota_max: 10000
+              quota_renewal_rate: 3600
+              quota_renews: 1723207234
+              rate: 1000
+              tags:
+              - security
+              - edge
+              - edge-eu
+              throttle_interval: 10
+              throttle_retry_limit: 10
+            schema:
+              $ref: '#/components/schemas/SessionState_2'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                access_rights:
+                  itachi-api:
+                    allowed_urls:
+                    - methods:
+                      - GET
+                      url: /users
+                    api_id: 8ddd91f3cda9453442c477b06c4e2da4
+                    api_name: Itachi api
+                    limit:
+                      per: 60
+                      quota_max: 10000
+                      quota_remaining: 10000
+                      quota_renewal_rate: 3600
+                      rate: 1000
+                      throttle_interval: 10
+                      throttle_retry_limit: 10
+                    versions:
+                    - Default
+                alias: portal-key
+                allowance: 1000
+                apply_policies:
+                - 5ead7120575961000181867e
+                date_created: '2024-08-09T14:40:34.87614+03:00'
+                enable_detailed_recording: true
+                last_updated: '1723203634'
+                meta_data:
+                  new-update-key-sample: update-key-sample
+                  tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+                  update: sample policy update
+                  user_type: mobile_user
+                org_id: 5e9d9544a1dcd60001d0ed20
+                per: 60
+                quota_max: 10000
+                quota_renewal_rate: 3600
+                quota_renews: 1723207234
+                rate: 1000
+                tags:
+                - security
+                - edge
+                - edge-eu
+                throttle_interval: 10
+                throttle_retry_limit: 10
+              schema:
+                $ref: '#/components/schemas/SessionState_2'
+          description: Key definition is valid.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unmarshalling failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk This Will Validate a Key Definition.
+      tags:
+      - Keys
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APILimit:
+      nullable: true
+      properties:
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type: object
+    RateLimitSmoothing:
+      nullable: true
+      properties:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
+          format: int64
+          minimum: 1
+          type: integer
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
+          type: boolean
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
+          type: integer
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
+      type: object
+    AccessSpec_2:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          nullable: true
+          type: array
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    Monitor:
+      properties:
+        trigger_limits:
+          example:
+          - 80
+          - 60
+          - 50
+          items:
+            type: number
+          nullable: true
+          type: array
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+        name:
+          type: string
+      type: object
+    ApiAllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+      type: object
+    APILimit_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+        per:
+          type: number
+          example: 42.5
+        quota_max:
+          type: integer
+          example: 10
+        quota_remaining:
+          type: integer
+          example: 10
+        quota_renewal_rate:
+          type: integer
+          example: 10
+        quota_renews:
+          type: integer
+          example: 10
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        throttle_interval:
+          type: number
+          example: 42.5
+        throttle_retry_limit:
+          type: integer
+          example: 10
+      type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    FieldLimits_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
+      type: object
+    SessionState_2:
+      properties:
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition_2'
+          nullable: true
+          type: object
+          example: example_value
+        alias:
+          example: portal-developer@example.org
+          type: string
+        allowance:
+          example: 1000
+          format: double
+          type: number
+        apply_policies:
+          example:
+          - 641c15dd0fffb800010197bf
+          items:
+            type: string
+          nullable: true
+          type: array
+        apply_policy_id:
+          deprecated: true
+          description: deprecated use apply_policies going forward instead to send a list of policies ids
+          example: 641c15dd0fffb800010197bf
+          type: string
+        basic_auth_data:
+          $ref: '#/components/schemas/BasicAuthData'
+        certificate:
+          type: string
+          example: example_value
+        data_expires:
+          example: 0
+          format: int64
+          type: integer
+        date_created:
+          example: '2024-03-13T03:56:46.568042549Z'
+          format: date-time
+          type: string
+        enable_detail_recording:
+          deprecated: true
+          description: deprecated use enable_detailed_recording going forward instead
+          example: false
+          type: boolean
+        enable_detailed_recording:
+          example: true
+          type: boolean
+        enable_http_signature_validation:
+          example: false
+          type: boolean
+        expires:
+          example: 1712895619
+          format: int64
+          type: integer
+        hmac_enabled:
+          example: false
+          type: boolean
+        hmac_string:
+          type: string
+          example: example_value
+        id_extractor_deadline:
+          format: int64
+          type: integer
+          example: 10
+        is_inactive:
+          example: false
+          type: boolean
+        jwt_data:
+          $ref: '#/components/schemas/JWTData'
+        last_check:
+          example: 0
+          format: int64
+          type: integer
+        last_updated:
+          example: '1710302206'
+          type: string
+        max_query_depth:
+          example: -1
+          type: integer
+        meta_data:
+          additionalProperties: {}
+          example:
+            tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+          nullable: true
+          type: object
+        monitor:
+          $ref: '#/components/schemas/Monitor'
+        oauth_client_id:
+          type: string
+          example: '500123'
+        oauth_keys:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+          example: example_value
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        per:
+          example: 5
+          format: double
+          type: number
+        quota_max:
+          example: 20000
+          format: int64
+          type: integer
+        quota_remaining:
+          example: 20000
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          example: 31556952
+          format: int64
+          type: integer
+        quota_renews:
+          example: 1710302205
+          format: int64
+          type: integer
+        rate:
+          example: 1
+          format: double
+          type: number
+        rsa_certificate_id:
+          type: string
+          example: '500123'
+        session_lifetime:
+          example: 0
+          format: int64
+          type: integer
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        tags:
+          example:
+          - edge
+          - edge-eu
+          items:
+            type: string
+          nullable: true
+          type: array
+        throttle_interval:
+          example: 10
+          format: double
+          type: number
+        throttle_retry_limit:
+          example: 1000
+          type: integer
+      type: object
+    SessionEndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
+          type: string
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+      type: object
+    ApiModel:
+      type: object
+    FieldAccessDefinition_2:
+      properties:
+        field_name:
+          type: string
+          example: example_value
+        limits:
+          $ref: '#/components/schemas/FieldLimits_2'
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    PolicyUpdateObj:
+      properties:
+        apply_policies:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        policy:
+          type: string
+          example: example_value
+      type: object
+    SessionState:
+      properties:
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition'
+          nullable: true
+          type: object
+        alias:
+          example: portal-developer@example.org
+          type: string
+        allowance:
+          example: 1000
+          format: double
+          type: number
+        apply_policies:
+          example:
+          - 641c15dd0fffb800010197bf
+          - 615d2e528bf3980001c7c6c2
+          items:
+            type: string
+          nullable: true
+          type: array
+        apply_policy_id:
+          deprecated: true
+          description: deprecated use apply_policies going forward instead to send a list of policies ids
+          example: 641c15dd0fffb800010197bf
+          type: string
+        basic_auth_data:
+          properties:
+            hash_type:
+              example: bcrypt
+              type: string
+            password:
+              example: testuse1
+              type: string
+            user:
+              example: admin-user@example.org
+              type: string
+          type: object
+        certificate:
+          type: string
+        data_expires:
+          example: 0
+          format: int64
+          type: integer
+        date_created:
+          example: '2024-05-14T13:15:46.560506+03:00'
+          format: date-time
+          type: string
+        enable_detailed_recording:
+          example: true
+          type: boolean
+        expires:
+          example: 1716895221
+          format: int64
+          type: integer
+        hmac_enabled:
+          example: false
+          type: boolean
+        hmac_string:
+          type: string
+        id_extractor_deadline:
+          example: 0
+          format: int64
+          type: integer
+        is_inactive:
+          type: boolean
+        jwt_data:
+          properties:
+            secret:
+              type: string
+          type: object
+        key_id:
+          type: string
+        last_check:
+          example: 0
+          format: int64
+          type: integer
+        last_updated:
+          example: '1715681746'
+          type: string
+        max_query_depth:
+          example: 5
+          type: integer
+        meta_data:
+          example:
+            tyk_developer_id: 62b3fb9a1d5e4f00017226f5
+        monitor:
+          properties:
+            trigger_limits:
+              example:
+              - 80
+              - 60
+              - 50
+              items:
+                format: double
+                type: number
+              nullable: true
+              type: array
+          type: object
+        oauth_client_id:
+          type: string
+        oauth_keys:
+          additionalProperties:
+            type: string
+          nullable: true
+          type: object
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        per:
+          example: 60
+          format: double
+          type: number
+        quota_max:
+          example: 1710302205
+          format: int64
+          type: integer
+        quota_remaining:
+          example: 20000
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          example: -1
+          format: int64
+          type: integer
+        quota_renews:
+          example: 1715681745
+          format: int64
+          type: integer
+        rate:
+          example: 1000
+          format: double
+          type: number
+        session_lifetime:
+          example: 0
+          format: int64
+          type: integer
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        tags:
+          example:
+          - edge
+          - edge-eu
+          items:
+            type: string
+          nullable: true
+          type: array
+        throttle_interval:
+          example: 10
+          format: double
+          type: number
+        throttle_retry_limit:
+          example: -1
+          type: integer
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
+    AllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          nullable: true
+          type: array
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    SessionEndpoint:
+      properties:
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    RateLimitSmoothing_2:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
+      type: object
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
+          type: string
+          example: example_value
+      type: object
+    AccessDefinition_2:
+      properties:
+        allowance_scope:
+          example: d371b83b249845a2497ab9a947fd6210
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          nullable: true
+          type: array
+          example: []
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec_2'
+          nullable: true
+          type: array
+          example: https://www.example.com
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          $ref: '#/components/schemas/Endpoints'
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition_2'
+          nullable: true
+          type: array
+          example: []
+        limit:
+          $ref: '#/components/schemas/APILimit_2'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          nullable: true
+          type: array
+          example: []
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    Keys:
+      properties:
+        data:
+          $ref: '#/components/schemas/AllKeys'
+        pages:
+          type: integer
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec'
+          nullable: true
+          type: array
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          items:
+            $ref: '#/components/schemas/SessionEndpoint'
+          type: array
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition'
+          nullable: true
+          type: array
+        limit:
+          $ref: '#/components/schemas/APILimit'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          nullable: true
+          type: array
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          nullable: true
+          type: array
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    JWTData:
+      properties:
+        secret:
+          type: string
+          example: example_value
+      type: object
+    KeyData:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        data:
+          $ref: '#/components/schemas/SessionState'
+        key_hash:
+          example: 41c5cb1e
+          type: string
+        key_id:
+          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+          type: string
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+      type: object
+    KeysDetailed:
+      properties:
+        keys:
+          items:
+            $ref: '#/components/schemas/KeyData'
+          nullable: true
+          type: array
+        pages:
+          type: integer
+      type: object
+    BasicAuthData:
+      properties:
+        hash_type:
+          type: string
+          example: example_value
+        password:
+          type: string
+          example: example_value
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

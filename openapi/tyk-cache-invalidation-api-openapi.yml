@@ -1,0 +1,91 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Cache Invalidation API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'Sometimes a cache might contain stale data, or it may just need to be cleared because of an invalid configuration. This call will purge all keys associated with a cache on an API-by-API basis.
+
+    '
+  name: Cache Invalidation
+paths:
+  /tyk/cache/{apiID}:
+    delete:
+      description: Invalidate cache for the given API.
+      operationId: invalidateCache
+      parameters:
+      - description: The API ID.
+        example: ae67bb862a3241a49117508e0f9ee839
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: cache invalidated
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Cache invalidated.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Cache invalidation failed.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Tyk Invalidate Cache.
+      tags:
+      - Cache Invalidation
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

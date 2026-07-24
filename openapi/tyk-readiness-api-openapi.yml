@@ -1,0 +1,116 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Readiness API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Readiness
+paths:
+  /readiness:
+    get:
+      summary: Tyk Check System Readiness Status
+      description: 'Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.
+
+        '
+      operationId: readinessGet
+      responses:
+        '200':
+          description: 'System is ready. All critical components are operational and  the system is capable of handling requests.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessStatus'
+        '503':
+          description: 'System is not ready. One or more critical components are  non-operational, preventing the system from handling requests properly.
+
+            '
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadinessFailure'
+      tags:
+      - Readiness
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ComponentReadiness:
+      type: object
+      properties:
+        name:
+          type: string
+          example: postgres
+        status:
+          type: string
+          example: pass
+        observation_ts:
+          type: string
+          format: date-time
+          example: '2024-07-29T13:58:56.699052-04:00'
+    ReadinessStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          example: pass
+        status_code:
+          type: integer
+          example: 200
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentReadiness'
+          example: []
+    ComponentReadinessFailure:
+      type: object
+      properties:
+        name:
+          type: string
+          example: postgres
+        status:
+          type: string
+          example: fail
+        observation_ts:
+          type: string
+          format: date-time
+          example: '2024-07-29T13:58:56.699052-04:00'
+    ReadinessFailure:
+      type: object
+      properties:
+        status:
+          type: string
+          example: fail
+        status_code:
+          type: integer
+          example: 503
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentReadinessFailure'
+          example: []
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

@@ -1,0 +1,279 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Certs API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates using these endpoints.
+  name: Certs
+paths:
+  /tyk/certs:
+    get:
+      description: List all certificates in the Tyk Gateway.
+      operationId: listCerts
+      parameters:
+      - description: Organisation ID to list the certificates.
+        example: 5e9d9544a1dcd60001d0ed20
+        in: query
+        name: org_id
+        required: false
+        schema:
+          type: string
+      - description: Mode to list the certificate details.
+        example: detailed
+        in: query
+        name: mode
+        required: false
+        schema:
+          enum:
+          - detailed
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                certIdList:
+                  $ref: '#/components/examples/certIdList'
+                certificateBasicList:
+                  $ref: '#/components/examples/certificateBasicList'
+              schema:
+                oneOf:
+                - $ref: '#/components/schemas/APIAllCertificateBasics'
+                - $ref: '#/components/schemas/APIAllCertificates'
+          description: OK
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: Tyk List Certificates.
+      tags:
+      - Certs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: Add a certificate to the Tyk Gateway.
+      operationId: addCert
+      parameters:
+      - description: Organisation ID to add the certificate to.
+        example: 5e9d9544a1dcd60001d0ed20
+        in: query
+        name: org_id
+        required: false
+        schema:
+          type: string
+      requestBody:
+        content:
+          text/plain:
+            schema:
+              type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+                message: Certificate added
+                status: ok
+              schema:
+                $ref: '#/components/schemas/APICertificateStatusMessage'
+          description: New certificate added.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Certificate with  ID already exists.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: When certificates you send already exist in the gateway.
+        '405':
+          content:
+            application/json:
+              example:
+                message: Malformed request body
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Malformed request body.
+      summary: Tyk Add a Certificate.
+      tags:
+      - Certs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/certs/{certID}:
+    delete:
+      description: Delete certificate by ID.
+      operationId: deleteCerts
+      parameters:
+      - description: Certificate ID to be deleted.
+        example: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+        in: path
+        name: certID
+        required: true
+        schema:
+          type: string
+      - description: Organisation ID to delete the certificates from.
+        example: 5e9d9544a1dcd60001d0ed20
+        in: query
+        name: org_id
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: removed
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Deleted certificate.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: Tyk Delete Certificate.
+      tags:
+      - Certs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    APIAllCertificateBasics:
+      properties:
+        certs:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          nullable: true
+          type: array
+          example: []
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    APIAllCertificates:
+      properties:
+        certs:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+      type: object
+    CertsCertificateBasics:
+      properties:
+        dns_names:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        has_private:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: abc123
+        is_ca:
+          type: boolean
+          example: true
+        issuer_cn:
+          type: string
+          example: example_value
+        not_after:
+          format: date-time
+          type: string
+          example: '2026-01-15T10:30:00Z'
+        not_before:
+          format: date-time
+          type: string
+          example: '2026-01-15T10:30:00Z'
+        subject_cn:
+          type: string
+          example: example_value
+      type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+  examples:
+    certIdList:
+      value:
+        certs:
+        - 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+        - 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+    certificateBasicList:
+      value:
+        certs:
+        - dns_names:
+          - example.com
+          - www.example.com
+          has_private: true
+          id: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+          is_ca: false
+          issuer_cn: Issuer 1
+          not_after: '2024-01-01T00:00:00Z'
+          not_before: '2023-01-01T00:00:00Z'
+          subject_cn: Subject 1
+        - dns_names:
+          - example.org
+          - www.example.org
+          has_private: false
+          id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          is_ca: true
+          issuer_cn: Issuer 2
+          not_after: '2024-02-01T00:00:00Z'
+          not_before: '2023-02-01T00:00:00Z'
+          subject_cn: Subject 2
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

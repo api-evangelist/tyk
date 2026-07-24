@@ -1,0 +1,2097 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Tyk OAS APIs API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: '**Note: Applies only to Tyk Gateway Community Edition** <br/>
+
+
+    '
+  name: Tyk OAS APIs
+paths:
+  /tyk/apis/oas:
+    get:
+      description: List all APIs in Tyk OAS API format, from Tyk Gateway.
+      operationId: listApisOAS
+      parameters:
+      - description: "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+        example: public
+        in: query
+        name: mode
+        required: false
+        schema:
+          enum:
+          - public
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                oasExampleList:
+                  $ref: '#/components/examples/oasExampleList'
+              schema:
+                items:
+                  allOf:
+                  - $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+                  - $ref: '#/components/schemas/XTykAPIGateway'
+                type: array
+          description: List of API definitions in Tyk OAS format.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+      summary: List All Apis in Tyk Oas Api Format.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    post:
+      description: Create an API with Tyk OAS API format on the Tyk Gateway.
+      operationId: createApiOAS
+      parameters:
+      - description: The base API which the new version will be linked to.
+        example: 663a4ed9b6be920001b191ae
+        in: query
+        name: base_api_id
+        required: false
+        schema:
+          type: string
+      - description: The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name.
+        example: Default
+        in: query
+        name: base_api_version_name
+        required: false
+        schema:
+          type: string
+      - description: The version name of the created version.
+        example: v2
+        in: query
+        name: new_version_name
+        required: false
+        schema:
+          type: string
+      - description: If true, the new version is set as default version.
+        example: true
+        in: query
+        name: set_default
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            example:
+              components:
+                securitySchemes:
+                  bearerAuth:
+                    description: The API Access Credentials
+                    scheme: bearer
+                    type: http
+              info:
+                description: This is a sample OAS.
+                title: OAS Sample
+                version: 1.0.0
+              openapi: 3.0.3
+              paths:
+                /api/sample/users:
+                  get:
+                    operationId: getUsers
+                    responses:
+                      '200':
+                        content:
+                          application/json:
+                            schema:
+                              items:
+                                properties:
+                                  name:
+                                    type: string
+                                type: object
+                              type: array
+                        description: fetched users
+                    summary: Get users
+                    tags:
+                    - users
+              security:
+              - bearerAuth: []
+              servers:
+              - url: https://localhost:8080
+              x-tyk-api-gateway:
+                info:
+                  name: user
+                  state:
+                    active: true
+                server:
+                  listenPath:
+                    strip: true
+                    value: /user-test/
+                upstream:
+                  url: https://localhost:8080
+            schema:
+              allOf:
+              - $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+              - $ref: '#/components/schemas/XTykAPIGateway'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: e30bee13ad4248c3b529a4c58bb7be4e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: API created.
+        '400':
+          content:
+            application/json:
+              example:
+                message: the payload should contain x-tyk-api-gateway
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: file object creation failed, write error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Create an Api With Tyk Oas Format.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/apis/oas/{apiID}:
+    delete:
+      description: Deleting an API definition will remove the file from the file store, the API definition will not be unloaded, a separate reload request will need to be made to disable the API endpoint.
+      operationId: deleteOASApi
+      parameters:
+      - description: The API ID.
+        example: 1bd5c61b0e694082902cf15ddcc9e6a7
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: deleted
+                key: 1bd5c61b0e694082902cf15ddcc9e6a7
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: API deleted
+        '400':
+          content:
+            application/json:
+              example:
+                message: Must specify an apiID to delete
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: API not found.
+        '500':
+          content:
+            application/json:
+              example:
+                message: Delete failed
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Deleting a Tyk Oas Api.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    get:
+      description: Get Tyk OAS API definition using an API ID.
+      operationId: getOASApi
+      parameters:
+      - description: "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+        example: public
+        in: query
+        name: mode
+        required: false
+        schema:
+          enum:
+          - public
+          type: string
+      - description: ID of the API you want to fetch
+        example: 4c1c0d8fc885401053ddac4e39ef676b
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                oasExample:
+                  $ref: '#/components/examples/oasExample'
+              schema:
+                allOf:
+                - $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+                - $ref: '#/components/schemas/XTykAPIGateway'
+          description: OK
+          headers:
+            x-tyk-base-api-id:
+              description: ID of the base API if the requested API is a version.
+              schema:
+                type: string
+              style: simple
+        '400':
+          content:
+            application/json:
+              example:
+                message: the requested API definition is in Tyk classic format, please use old API endpoint
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: API not found.
+      summary: Get a Tyk Oas Api Definition.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    patch:
+      description: 'You can use this endpoint to update Tyk OAS part of the Tyk API definition.
+
+        This endpoint allows you to configure Tyk OAS extension based on query params provided(similar to import).'
+      operationId: patchApiOAS
+      parameters:
+      - description: ID of the API you want to fetch.
+        example: 4c1c0d8fc885401053ddac4e39ef676b
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/UpstreamURL'
+      - $ref: '#/components/parameters/ListenPath'
+      - $ref: '#/components/parameters/CustomDomain'
+      - $ref: '#/components/parameters/AllowList'
+      - $ref: '#/components/parameters/ValidateRequest'
+      - $ref: '#/components/parameters/MockResponse'
+      - $ref: '#/components/parameters/Authentication'
+      requestBody:
+        content:
+          application/json:
+            example:
+              components:
+                securitySchemes:
+                  bearerAuth:
+                    description: The API Access Credentials
+                    scheme: bearer
+                    type: http
+              info:
+                description: This is a sample OAS.
+                title: OAS Sample
+                version: 1.0.0
+              openapi: 3.0.3
+              paths:
+                /api/sample/users:
+                  get:
+                    operationId: getUsers
+                    responses:
+                      '200':
+                        content:
+                          application/json:
+                            schema:
+                              items:
+                                properties:
+                                  name:
+                                    type: string
+                                type: object
+                              type: array
+                        description: fetched users
+                    summary: Get users
+                    tags:
+                    - users
+              security:
+              - bearerAuth: []
+              servers:
+              - url: https://localhost:8080
+              x-tyk-api-gateway:
+                info:
+                  name: user
+                  state:
+                    active: true
+                server:
+                  listenPath:
+                    strip: true
+                    value: /user-test/
+                upstream:
+                  url: https://localhost:8080
+            schema:
+              $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: API patched.
+        '400':
+          content:
+            application/json:
+              example:
+                message: Must specify an apiID to patch
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: API not found.
+        '500':
+          content:
+            application/json:
+              example:
+                message: file object creation failed, write error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Patch Api in Tyk Oas Format.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+    put:
+      description: "Updating an API definition uses the same signature an object as a `POST`, however it will first ensure that the API ID that is being updated is the same as the one in the object being `PUT`.\n\n\n      Updating will completely replace the file descriptor and will not change an API Definition that has already been loaded, the hot-reload endpoint will need to be called to push the new definition\nto live."
+      operationId: updateApiOAS
+      parameters:
+      - description: ID of the API you want to fetch
+        example: 4c1c0d8fc885401053ddac4e39ef676b
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              components:
+                securitySchemes:
+                  bearerAuth:
+                    description: The API Access Credentials
+                    scheme: bearer
+                    type: http
+              info:
+                description: This is a sample OAS.
+                title: OAS Sample
+                version: 1.0.0
+              openapi: 3.0.3
+              paths:
+                /api/sample/users:
+                  get:
+                    operationId: getUsers
+                    responses:
+                      '200':
+                        content:
+                          application/json:
+                            schema:
+                              items:
+                                properties:
+                                  name:
+                                    type: string
+                                type: object
+                              type: array
+                        description: fetched users
+                    summary: Get users
+                    tags:
+                    - users
+              security:
+              - bearerAuth: []
+              servers:
+              - url: https://localhost:8080
+              x-tyk-api-gateway:
+                info:
+                  name: user
+                  state:
+                    active: true
+                server:
+                  listenPath:
+                    strip: true
+                    value: /user-test/
+                upstream:
+                  url: https://localhost:8080
+            schema:
+              allOf:
+              - $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+              - $ref: '#/components/schemas/XTykAPIGateway'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: modified
+                key: e30bee13ad4248c3b529a4c58bb7be4e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: API updated
+        '400':
+          content:
+            application/json:
+              example:
+                message: Request APIID does not match that in Definition! For Update operations these must match.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: API not found
+        '500':
+          content:
+            application/json:
+              example:
+                message: file object creation failed, write error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Update a Tyk Oas Api Definition.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/apis/oas/{apiID}/export:
+    get:
+      description: Use the mode query parameter to specify if you want the x-tyk-api-gateway stripped out.
+      operationId: downloadApiOASPublic
+      parameters:
+      - description: ID of the API you want to fetch.
+        example: 4c1c0d8fc885401053ddac4e39ef676b
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - description: "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+        example: public
+        in: query
+        name: mode
+        required: false
+        schema:
+          enum:
+          - public
+          type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: Exported API definition file
+        '400':
+          content:
+            application/json:
+              example:
+                message: requesting API definition that is in Tyk classic format
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Not Found
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unexpected error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Download a Tyk Oas Format Api.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/apis/oas/{apiID}/versions:
+    get:
+      description: Listing versions of a Tyk OAS API.
+      operationId: listOASApiVersions
+      parameters:
+      - description: ID of the API you want to fetch.
+        example: 4c1c0d8fc885401053ddac4e39ef676b
+        in: path
+        name: apiID
+        required: true
+        schema:
+          type: string
+      - $ref: '#/components/parameters/SearchText'
+      - $ref: '#/components/parameters/AccessType'
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                apis:
+                - expirationDate: ''
+                  id: keyless
+                  internal: false
+                  isDefaultVersion: false
+                  name: Tyk Test Keyless API
+                  versionName: ''
+                - expirationDate: ''
+                  id: 1f20d5d2731d47ac9c79fddf826eda00
+                  internal: false
+                  isDefaultVersion: true
+                  name: Version three Api
+                  versionName: v2
+                status: success
+              schema:
+                $ref: '#/components/schemas/VersionMetas'
+          description: API version metas.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: API not found.
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: API not found
+      summary: Listing Versions of a Tyk Oas Api.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/apis/oas/export:
+    get:
+      description: Download all Tyk OAS format APIs, from the Gateway.
+      operationId: downloadApisOASPublic
+      parameters:
+      - description: "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+        example: public
+        in: query
+        name: mode
+        required: false
+        schema:
+          enum:
+          - public
+          type: string
+      responses:
+        '200':
+          content:
+            application/octet-stream:
+              schema:
+                format: binary
+                type: string
+          description: Get a list of Tyk OAS APIs definitions.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: Unexpected error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Download All Tyk Oas Format Apis.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /tyk/apis/oas/import:
+    post:
+      description: "Import an Tyk OAS format API without x-tyk-gateway.\n For use with an existing Tyk OAS API that you want to expose via your Tyk Gateway."
+      operationId: importOAS
+      parameters:
+      - $ref: '#/components/parameters/UpstreamURL'
+      - $ref: '#/components/parameters/ListenPath'
+      - $ref: '#/components/parameters/CustomDomain'
+      - $ref: '#/components/parameters/AllowList'
+      - $ref: '#/components/parameters/ValidateRequest'
+      - $ref: '#/components/parameters/MockResponse'
+      - $ref: '#/components/parameters/Authentication'
+      - description: The base API which the new version will be linked to.
+        example: 663a4ed9b6be920001b191ae
+        in: query
+        name: base_api_id
+        required: false
+        schema:
+          type: string
+      - description: The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name.
+        example: Default
+        in: query
+        name: base_api_version_name
+        required: false
+        schema:
+          type: string
+      - description: The version name of the created version.
+        example: v2
+        in: query
+        name: new_version_name
+        required: false
+        schema:
+          type: string
+      - description: If true, the new version is set as default version.
+        example: true
+        in: query
+        name: set_default
+        required: false
+        schema:
+          type: boolean
+      requestBody:
+        content:
+          application/json:
+            example:
+              components:
+                securitySchemes:
+                  bearerAuth:
+                    description: The API Access Credentials
+                    scheme: bearer
+                    type: http
+              info:
+                description: This is a sample OAS.
+                title: OAS Sample
+                version: 1.0.0
+              openapi: 3.0.3
+              paths:
+                /api/sample/users:
+                  get:
+                    operationId: getUsers
+                    responses:
+                      '200':
+                        content:
+                          application/json:
+                            schema:
+                              items:
+                                properties:
+                                  name:
+                                    type: string
+                                type: object
+                              type: array
+                        description: fetched users
+                    summary: Get users
+                    tags:
+                    - users
+              security:
+              - bearerAuth: []
+              servers:
+              - url: https://localhost:8080
+            schema:
+              $ref: https://raw.githubusercontent.com/TykTechnologies/tyk/refs/heads/master/apidef/oas/schema/3.0.json
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                action: added
+                key: e30bee13ad4248c3b529a4c58bb7be4e
+                status: ok
+              schema:
+                $ref: '#/components/schemas/ApiModifyKeySuccess'
+          description: API imported.
+        '400':
+          content:
+            application/json:
+              example:
+                message: the import payload should not contain x-tyk-api-gateway
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Bad Request
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                message: file object creation failed, write error
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Internal server error.
+      summary: Import an Api in Tyk Oas Format.
+      tags:
+      - Tyk OAS APIs
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Operation:
+      properties:
+        allow:
+          $ref: '#/components/schemas/Allowance'
+        block:
+          $ref: '#/components/schemas/Allowance'
+        cache:
+          $ref: '#/components/schemas/CachePlugin'
+        circuitBreaker:
+          $ref: '#/components/schemas/CircuitBreaker'
+        doNotTrackEndpoint:
+          $ref: '#/components/schemas/TrackEndpoint'
+        enforceTimeout:
+          $ref: '#/components/schemas/EnforceTimeout'
+        ignoreAuthentication:
+          $ref: '#/components/schemas/Allowance'
+        internal:
+          $ref: '#/components/schemas/Internal'
+        mockResponse:
+          $ref: '#/components/schemas/MockResponse'
+        postPlugins:
+          $ref: '#/components/schemas/EndpointPostPlugins'
+        rateLimit:
+          $ref: '#/components/schemas/RateLimitEndpoint'
+        requestSizeLimit:
+          $ref: '#/components/schemas/RequestSizeLimit'
+        trackEndpoint:
+          $ref: '#/components/schemas/TrackEndpoint'
+        transformRequestBody:
+          $ref: '#/components/schemas/TransformBody'
+        transformRequestHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
+        transformRequestMethod:
+          $ref: '#/components/schemas/TransformRequestMethod'
+        transformResponseBody:
+          $ref: '#/components/schemas/TransformBody'
+        transformResponseHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
+        urlRewrite:
+          $ref: '#/components/schemas/URLRewrite'
+        validateRequest:
+          $ref: '#/components/schemas/ValidateRequest'
+        virtualEndpoint:
+          $ref: '#/components/schemas/VirtualEndpoint'
+      type: object
+    Cache:
+      properties:
+        cacheAllSafeRequests:
+          type: boolean
+          example: true
+        cacheByHeaders:
+          items:
+            type: string
+          type: array
+          example: []
+        cacheResponseCodes:
+          items:
+            type: integer
+          type: array
+          example: []
+        controlTTLHeaderName:
+          type: string
+          example: example_value
+        enableUpstreamCacheControl:
+          type: boolean
+          example: true
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          type: integer
+          example: 10
+      type: object
+    PluginConfigData:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        value:
+          additionalProperties: {}
+          nullable: true
+          type: object
+          example: example_value
+      type: object
+    BooleanQueryParam:
+      enum:
+      - true
+      - false
+      example: true
+      type: boolean
+    Internal:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    URLRewriteTrigger:
+      properties:
+        condition:
+          type: string
+          example: example_value
+        rewriteTo:
+          type: string
+          example: example_value
+        rules:
+          items:
+            $ref: '#/components/schemas/URLRewriteRule'
+          type: array
+          example: []
+      type: object
+    ValidateRequest:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        errorResponseCode:
+          type: integer
+          example: 10
+      type: object
+    GatewayTags:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        tags:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    MockResponse:
+      properties:
+        body:
+          type: string
+          example: example_value
+        code:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        fromOASExamples:
+          $ref: '#/components/schemas/FromOASExamples'
+        headers:
+          $ref: '#/components/schemas/Headers'
+      type: object
+    SecuritySchemes:
+      additionalProperties: {}
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    Header:
+      properties:
+        name:
+          type: string
+          example: Example Title
+        value:
+          type: string
+          example: example_value
+      type: object
+    URLRewriteRule:
+      properties:
+        in:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        negate:
+          type: boolean
+          example: true
+        pattern:
+          type: string
+          example: example_value
+      type: object
+    PinnedPublicKeys:
+      items:
+        $ref: '#/components/schemas/PinnedPublicKey'
+      nullable: true
+      type: array
+    TrafficLogs:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    CertificatePinning:
+      properties:
+        domainToPublicKeysMapping:
+          $ref: '#/components/schemas/PinnedPublicKeys'
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    EndpointPostPlugins:
+      items:
+        $ref: '#/components/schemas/EndpointPostPlugin'
+      type: array
+    AuthSources:
+      properties:
+        cookie:
+          $ref: '#/components/schemas/AuthSource'
+        header:
+          $ref: '#/components/schemas/AuthSource'
+        query:
+          $ref: '#/components/schemas/AuthSource'
+      type: object
+    ProviderType2:
+      properties:
+        clientToPolicyMapping:
+          items:
+            $ref: '#/components/schemas/ClientToPolicy'
+          type: array
+          example: []
+        issuer:
+          type: string
+          example: example_value
+      type: object
+    IDExtractor:
+      properties:
+        config:
+          $ref: '#/components/schemas/IDExtractorConfig'
+        enabled:
+          type: boolean
+          example: true
+        source:
+          type: string
+          example: example_value
+        with:
+          type: string
+          example: example_value
+      type: object
+    CircuitBreaker:
+      properties:
+        coolDownPeriod:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        halfOpenStateEnabled:
+          type: boolean
+          example: true
+        sampleSize:
+          type: integer
+          example: 10
+        threshold:
+          type: number
+          example: 42.5
+      type: object
+    CustomPluginAuthentication:
+      properties:
+        AuthSources:
+          $ref: '#/components/schemas/AuthSources'
+        config:
+          $ref: '#/components/schemas/AuthenticationPlugin'
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    Test:
+      properties:
+        serviceDiscovery:
+          $ref: '#/components/schemas/ServiceDiscovery'
+      type: object
+    Headers:
+      items:
+        $ref: '#/components/schemas/Header'
+      type: array
+    EventHandlers:
+      items:
+        $ref: '#/components/schemas/EventHandler'
+      type: array
+    TransformBody:
+      properties:
+        body:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        format:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+      type: object
+    ClientToPolicy:
+      properties:
+        clientId:
+          type: string
+          example: '500123'
+        policyId:
+          type: string
+          example: '500123'
+      type: object
+    ClientCertificates:
+      properties:
+        allowlist:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    ScopesType2:
+      properties:
+        claimName:
+          type: string
+          example: example_value
+        scopeToPolicyMapping:
+          items:
+            $ref: '#/components/schemas/ScopeToPolicy'
+          type: array
+          example: []
+      type: object
+    PostAuthenticationPlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    PinnedPublicKey:
+      properties:
+        domain:
+          type: string
+          example: example_value
+        publicKeys:
+          items:
+            type: string
+          nullable: true
+          type: array
+          example: []
+      type: object
+    EnforceTimeout:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        value:
+          type: integer
+          example: 10
+      type: object
+    URLRewrite:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        pattern:
+          type: string
+          example: example_value
+        rewriteTo:
+          type: string
+          example: example_value
+        triggers:
+          items:
+            $ref: '#/components/schemas/URLRewriteTrigger'
+          type: array
+          example: []
+      type: object
+    HMAC:
+      properties:
+        AuthSources:
+          $ref: '#/components/schemas/AuthSources'
+        allowedAlgorithms:
+          items:
+            type: string
+          type: array
+          example: []
+        allowedClockSkew:
+          type: number
+          example: 42.5
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    CustomPlugin:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        functionName:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        rawBodyOnly:
+          type: boolean
+          example: true
+        requireSession:
+          type: boolean
+          example: true
+      type: object
+    Upstream:
+      properties:
+        certificatePinning:
+          $ref: '#/components/schemas/CertificatePinning'
+        mutualTLS:
+          $ref: '#/components/schemas/MutualTLS'
+        rateLimit:
+          $ref: '#/components/schemas/RateLimit'
+        serviceDiscovery:
+          $ref: '#/components/schemas/ServiceDiscovery'
+        test:
+          $ref: '#/components/schemas/Test'
+        url:
+          type: string
+          example: https://www.example.com
+      type: object
+    CustomPlugins:
+      items:
+        $ref: '#/components/schemas/CustomPlugin'
+      type: array
+    OIDC:
+      properties:
+        AuthSources:
+          $ref: '#/components/schemas/AuthSources'
+        enabled:
+          type: boolean
+          example: true
+        providers:
+          items:
+            $ref: '#/components/schemas/ProviderType2'
+          type: array
+          example: []
+        scopes:
+          $ref: '#/components/schemas/ScopesType2'
+        segregateByClientId:
+          type: boolean
+          example: '500123'
+      type: object
+    RequestSizeLimit:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        value:
+          type: integer
+          example: 10
+      type: object
+    PostPlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    ListenPath:
+      properties:
+        strip:
+          type: boolean
+          example: true
+        value:
+          type: string
+          example: example_value
+      type: object
+    Allowance:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        ignoreCase:
+          type: boolean
+          example: true
+      type: object
+    ServiceDiscovery:
+      properties:
+        cache:
+          $ref: '#/components/schemas/ServiceDiscoveryCache'
+        cacheTimeout:
+          type: integer
+          example: 10
+        dataPath:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        endpointReturnsList:
+          type: boolean
+          example: true
+        parentDataPath:
+          type: string
+          example: example_value
+        portDataPath:
+          type: string
+          example: example_value
+        queryEndpoint:
+          type: string
+          example: example_value
+        targetPath:
+          type: string
+          example: example_value
+        useNestedQuery:
+          type: boolean
+          example: true
+        useTargetList:
+          type: boolean
+          example: true
+      type: object
+    PluginBundle:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        path:
+          type: string
+          example: example_value
+      type: object
+    Info:
+      properties:
+        dbId:
+          type: string
+          example: '500123'
+        expiration:
+          type: string
+          example: example_value
+        id:
+          type: string
+          example: abc123
+        name:
+          type: string
+          example: Example Title
+        orgId:
+          type: string
+          example: '500123'
+        state:
+          $ref: '#/components/schemas/State'
+        versioning:
+          $ref: '#/components/schemas/Versioning'
+      type: object
+    EndpointPostPlugin:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        functionName:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        path:
+          type: string
+          example: example_value
+      type: object
+    State:
+      properties:
+        active:
+          type: boolean
+          example: true
+        internal:
+          type: boolean
+          example: true
+      type: object
+    VersionMeta:
+      properties:
+        expirationDate:
+          example: 2026-03-26 09:00
+          type: string
+        id:
+          example: keyless
+          type: string
+        internal:
+          example: false
+          type: boolean
+        isDefaultVersion:
+          example: true
+          type: boolean
+        name:
+          example: Tyk Test Keyless API
+          type: string
+        versionName:
+          example: v2
+          type: string
+      type: object
+    Authentication:
+      properties:
+        baseIdentityProvider:
+          type: string
+          example: example_value
+        custom:
+          $ref: '#/components/schemas/CustomPluginAuthentication'
+        enabled:
+          type: boolean
+          example: true
+        hmac:
+          $ref: '#/components/schemas/HMAC'
+        oidc:
+          $ref: '#/components/schemas/OIDC'
+        securitySchemes:
+          $ref: '#/components/schemas/SecuritySchemes'
+        stripAuthorizationData:
+          type: boolean
+          example: true
+      type: object
+    CORS:
+      properties:
+        allowCredentials:
+          type: boolean
+          example: true
+        allowedHeaders:
+          items:
+            type: string
+          type: array
+          example: []
+        allowedMethods:
+          items:
+            type: string
+          type: array
+          example: []
+        allowedOrigins:
+          items:
+            type: string
+          type: array
+          example: []
+        debug:
+          type: boolean
+          example: true
+        enabled:
+          type: boolean
+          example: true
+        exposedHeaders:
+          items:
+            type: string
+          type: array
+          example: []
+        maxAge:
+          type: integer
+          example: 10
+        optionsPassthrough:
+          type: boolean
+          example: true
+      type: object
+    FromOASExamples:
+      properties:
+        code:
+          type: integer
+          example: 10
+        contentType:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        exampleName:
+          type: string
+          example: example_value
+      type: object
+    DetailedActivityLogs:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    TrackEndpoint:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    VersionMetas:
+      properties:
+        apis:
+          items:
+            $ref: '#/components/schemas/VersionMeta'
+          nullable: true
+          type: array
+          example: []
+        status:
+          example: success
+          type: string
+      type: object
+    ServiceDiscoveryCache:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          type: integer
+          example: 10
+      type: object
+    Server:
+      properties:
+        authentication:
+          $ref: '#/components/schemas/Authentication'
+        clientCertificates:
+          $ref: '#/components/schemas/ClientCertificates'
+        customDomain:
+          $ref: '#/components/schemas/Domain'
+        detailedActivityLogs:
+          $ref: '#/components/schemas/DetailedActivityLogs'
+        detailedTracing:
+          $ref: '#/components/schemas/DetailedTracing'
+        eventHandlers:
+          $ref: '#/components/schemas/EventHandlers'
+        gatewayTags:
+          $ref: '#/components/schemas/GatewayTags'
+        listenPath:
+          $ref: '#/components/schemas/ListenPath'
+      type: object
+    RateLimit:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        per:
+          type: integer
+          example: 10
+        rate:
+          type: integer
+          example: 10
+      type: object
+    AuthSource:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Example Title
+      type: object
+    ScopeToPolicy:
+      properties:
+        policyId:
+          type: string
+          example: '500123'
+        scope:
+          type: string
+          example: example_value
+      type: object
+    DomainToCertificate:
+      properties:
+        certificate:
+          type: string
+          example: example_value
+        domain:
+          type: string
+          example: example_value
+      type: object
+    TransformHeaders:
+      properties:
+        add:
+          $ref: '#/components/schemas/Headers'
+        enabled:
+          type: boolean
+          example: true
+        remove:
+          items:
+            type: string
+          type: array
+          example: []
+      type: object
+    XTykAPIGateway:
+      properties:
+        info:
+          $ref: '#/components/schemas/Info'
+        middleware:
+          $ref: '#/components/schemas/Middleware'
+        server:
+          $ref: '#/components/schemas/Server'
+        upstream:
+          $ref: '#/components/schemas/Upstream'
+      type: object
+    PluginConfig:
+      properties:
+        bundle:
+          $ref: '#/components/schemas/PluginBundle'
+        data:
+          $ref: '#/components/schemas/PluginConfigData'
+        driver:
+          type: string
+          example: example_value
+      type: object
+    DetailedTracing:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    Middleware:
+      properties:
+        global:
+          $ref: '#/components/schemas/Global'
+        operations:
+          $ref: '#/components/schemas/Operations'
+      type: object
+    ResponsePlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    AuthenticationPlugin:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        functionName:
+          type: string
+          example: example_value
+        idExtractor:
+          $ref: '#/components/schemas/IDExtractor'
+        path:
+          type: string
+          example: example_value
+        rawBodyOnly:
+          type: boolean
+          example: true
+      type: object
+    CachePlugin:
+      properties:
+        cacheByRegex:
+          type: string
+          example: example_value
+        cacheResponseCodes:
+          items:
+            type: integer
+          type: array
+          example: []
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          type: integer
+          example: 10
+      type: object
+    MutualTLS:
+      properties:
+        domainToCertificateMapping:
+          items:
+            $ref: '#/components/schemas/DomainToCertificate'
+          nullable: true
+          type: array
+          example: []
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    VirtualEndpoint:
+      properties:
+        body:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        functionName:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        path:
+          type: string
+          example: example_value
+        proxyOnError:
+          type: boolean
+          example: true
+        requireSession:
+          type: boolean
+          example: true
+      type: object
+    PrePlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    Global:
+      properties:
+        cache:
+          $ref: '#/components/schemas/Cache'
+        contextVariables:
+          $ref: '#/components/schemas/ContextVariables'
+        cors:
+          $ref: '#/components/schemas/CORS'
+        pluginConfig:
+          $ref: '#/components/schemas/PluginConfig'
+        postAuthenticationPlugin:
+          $ref: '#/components/schemas/PostAuthenticationPlugin'
+        postAuthenticationPlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        postPlugin:
+          $ref: '#/components/schemas/PostPlugin'
+        postPlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        prePlugin:
+          $ref: '#/components/schemas/PrePlugin'
+        prePlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        responsePlugin:
+          $ref: '#/components/schemas/ResponsePlugin'
+        responsePlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        trafficLogs:
+          $ref: '#/components/schemas/TrafficLogs'
+        transformRequestHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
+        transformResponseHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
+      type: object
+    VersionToID:
+      properties:
+        id:
+          type: string
+          example: abc123
+        name:
+          type: string
+          example: Example Title
+      type: object
+    TransformRequestMethod:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        toMethod:
+          type: string
+          example: example_value
+      type: object
+    IDExtractorConfig:
+      properties:
+        formParamName:
+          type: string
+          example: example_value
+        headerName:
+          type: string
+          example: example_value
+        regexp:
+          type: string
+          example: example_value
+        regexpMatchIndex:
+          type: integer
+          example: 10
+        xPathExp:
+          type: string
+          example: example_value
+      type: object
+    RateLimitEndpoint:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        per:
+          type: integer
+          example: 10
+        rate:
+          type: integer
+          example: 10
+      type: object
+    Operations:
+      additionalProperties:
+        $ref: '#/components/schemas/Operation'
+      type: object
+    ContextVariables:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    EventHandler:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: abc123
+        name:
+          type: string
+          example: Example Title
+        trigger:
+          type: string
+          example: example_value
+        type:
+          type: string
+          example: example_value
+      type: object
+    Versioning:
+      properties:
+        default:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        fallbackToDefault:
+          type: boolean
+          example: true
+        key:
+          type: string
+          example: example_value
+        location:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        stripVersioningData:
+          type: boolean
+          example: true
+        urlVersioningPattern:
+          type: string
+          example: https://www.example.com
+        versions:
+          items:
+            $ref: '#/components/schemas/VersionToID'
+          nullable: true
+          type: array
+          example: []
+      type: object
+    Domain:
+      properties:
+        certificates:
+          items:
+            type: string
+          type: array
+          example: []
+        enabled:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Example Title
+      type: object
+  parameters:
+    ListenPath:
+      description: Listen path for the API
+      example: /user-test/
+      in: query
+      name: listenPath
+      required: false
+      schema:
+        type: string
+    AccessType:
+      description: Filter for internal or external API versions
+      example: internal
+      in: query
+      name: accessType
+      required: false
+      schema:
+        enum:
+        - internal
+        - external
+        type: string
+    MockResponse:
+      description: Enable mockResponse middleware for all endpoints having responses configured.
+      in: query
+      name: mockResponse
+      required: false
+      schema:
+        $ref: '#/components/schemas/BooleanQueryParam'
+    AllowList:
+      description: Enable allowList middleware for all endpoints
+      in: query
+      name: allowList
+      required: false
+      schema:
+        $ref: '#/components/schemas/BooleanQueryParam'
+    Authentication:
+      description: Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API
+      in: query
+      name: authentication
+      schema:
+        $ref: '#/components/schemas/BooleanQueryParam'
+    ValidateRequest:
+      description: Enable validateRequest middleware for all endpoints having a request body with media type application/json
+      in: query
+      name: validateRequest
+      required: false
+      schema:
+        $ref: '#/components/schemas/BooleanQueryParam'
+    SearchText:
+      description: Search for API version name
+      example: Sample oas
+      in: query
+      name: searchText
+      required: false
+      schema:
+        type: string
+    UpstreamURL:
+      description: Upstream URL for the API
+      example: https://localhost:8080
+      in: query
+      name: upstreamURL
+      required: false
+      schema:
+        type: string
+    CustomDomain:
+      description: Custom domain for the API
+      example: tyk.io
+      in: query
+      name: customDomain
+      required: false
+      schema:
+        type: string
+  examples:
+    oasExampleList:
+      value:
+      - components:
+          securitySchemes:
+            bearerAuth:
+              description: The API Access Credentials
+              scheme: bearer
+              type: http
+        info:
+          description: This is a sample OAS.
+          title: OAS Sample
+          version: 1.0.0
+        openapi: 3.0.3
+        paths:
+          /api/sample/users:
+            get:
+              operationId: getUsers
+              responses:
+                '200':
+                  content:
+                    application/json:
+                      schema:
+                        items:
+                          properties:
+                            name:
+                              type: string
+                          type: object
+                        type: array
+                  description: fetched users
+              summary: Get users
+              tags:
+              - users
+        security:
+        - bearerAuth: []
+        servers:
+        - url: https://localhost:8080
+        x-tyk-api-gateway:
+          info:
+            name: user
+            state:
+              active: true
+          server:
+            listenPath:
+              strip: true
+              value: /user-test/
+          upstream:
+            url: https://localhost:8080
+    oasExample:
+      value:
+        components:
+          securitySchemes:
+            bearerAuth:
+              description: The API Access Credentials
+              scheme: bearer
+              type: http
+        info:
+          description: This is a sample OAS.
+          title: OAS Sample
+          version: 1.0.0
+        openapi: 3.0.3
+        paths:
+          /api/sample/users:
+            get:
+              operationId: getUsers
+              responses:
+                '200':
+                  content:
+                    application/json:
+                      schema:
+                        items:
+                          properties:
+                            name:
+                              type: string
+                          type: object
+                        type: array
+                  description: fetched users
+              summary: Get users
+              tags:
+              - users
+        security:
+        - bearerAuth: []
+        servers:
+        - url: https://localhost:8080
+        x-tyk-api-gateway:
+          info:
+            name: user
+            state:
+              active: true
+          server:
+            listenPath:
+              strip: true
+              value: /user-test/
+          upstream:
+            url: https://localhost:8080
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

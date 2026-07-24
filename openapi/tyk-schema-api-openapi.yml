@@ -1,0 +1,171 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Schema API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: Get OAS schema.
+  name: Schema
+paths:
+  /api/schema:
+    get:
+      description: Get OAS schema.
+      operationId: getSchema
+      parameters:
+      - description: The OAS version.
+        example: 3.0.3
+        in: query
+        name: oasVersion
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/OASSchemaResponse'
+          description: OAS schema response.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/schema'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve OAS schema. Schema not found for version.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get OAS schema.
+      tags:
+      - Schema
+  /tyk/schema:
+    get:
+      description: Get OAS schema definition using a version.
+      operationId: getSchema
+      parameters:
+      - description: The OAS version to fetch.
+        example: 3.0.3
+        in: query
+        name: oasVersion
+        required: false
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                message: ''
+                status: Success
+              schema:
+                $ref: '#/components/schemas/OASSchemaResponse_2'
+          description: OAS schema response.
+        '403':
+          content:
+            application/json:
+              example:
+                message: Attempted administrative access with invalid or missing key!
+                status: error
+              schema:
+                $ref: '#/components/schemas/ApiStatusMessage'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                message: Schema not found for version "4"
+                status: Failed
+              schema:
+                $ref: '#/components/schemas/OASSchemaResponse_2'
+          description: Version not found
+      summary: Tyk Get Oas Schema.
+      tags:
+      - Schema
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    OASSchemaResponse:
+      properties:
+        message:
+          type: string
+        schema: {}
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    OASSchemaResponse_2:
+      properties:
+        message:
+          type: string
+          example: example_value
+        schema:
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

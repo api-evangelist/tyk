@@ -1,0 +1,73 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Env API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- name: Env
+paths:
+  /env:
+    get:
+      summary: Tyk Retrieve Environment Variables
+      description: "Returns the current configuration status of the system.\n\n**Example curl command:**\n\n```bash\ncurl -X GET \\ \nhttp://localhost:8181/config\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+      operationId: envGet
+      parameters:
+      - in: header
+        name: X-Tyk-Authorization
+        description: Secret value set in sink.conf
+        required: true
+        schema:
+          type: string
+        example: your-secret-key
+      responses:
+        '200':
+          description: Successful retrieval of environment variables.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: string
+                  example: TYK_MDCB_ANALYTICSSTORAGE_SSLINSECURESKIPVERIFY=false
+        '401':
+          description: Forbidden access due to invalid or missing administrative key.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+      tags:
+      - Env
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Attempted administrative access with invalid or missing key!
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

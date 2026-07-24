@@ -1,0 +1,371 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Analytics API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: The Tyk Dashboard provides a full set of analytics functions and graphs that you can use to segment and view your API traffic and activity.
+  externalDocs:
+    description: Traffic Analytics.
+    url: https://tyk.io/docs/tyk-dashboard-analytics/
+  name: Analytics
+paths:
+  /api/activity/keys/{keyHash}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}:
+    get:
+      description: It returns analytics of the endpoints of all APIs called a key between start and end date.
+      operationId: getAnalyticsOfApiKey
+      parameters:
+      - description: Day to start querying the analytics from.
+        example: '15'
+        in: path
+        name: startDay
+        required: true
+        schema:
+          type: string
+      - description: Month to start querying the analytics from.
+        example: '1'
+        in: path
+        name: startMonth
+        required: true
+        schema:
+          type: string
+      - description: Year to start querying the analytics from.
+        example: '2024'
+        in: path
+        name: startYear
+        required: true
+        schema:
+          type: string
+      - description: End date of analytics to query.
+        example: '20'
+        in: path
+        name: EndDay
+        required: true
+        schema:
+          type: string
+      - description: End month of analytics to query.
+        example: '6'
+        in: path
+        name: EndMonth
+        required: true
+        schema:
+          type: string
+      - description: End year of analytics to query.
+        example: '2025'
+        in: path
+        name: EndYear
+        required: true
+        schema:
+          type: string
+      - description: Hash of your API key.
+        in: path
+        name: keyHash
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                aggregateAnalytics:
+                  $ref: '#/components/examples/aggregateAnalytics'
+              schema:
+                $ref: '#/components/schemas/AggregateAnalyticsData'
+          description: Returns analytics of all endpoints called using the given key between the given time range.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Key could not be decoded.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad Request
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: User does not have access to the API with ID.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to fetch analytics.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Analytics of API Key.
+      tags:
+      - Analytics
+  /api/activity/oauthid/{OAuthClientID}/{startDay}/{startMonth}/{startYear}/{EndDay}/{EndMonth}/{EndYear}:
+    get:
+      description: Returns activity of all endpoints which used the given OAuth client between the given time range.
+      operationId: getAnalyticsOfOauthClientId
+      parameters:
+      - description: Day to start querying the analytics from.
+        example: '15'
+        in: path
+        name: startDay
+        required: true
+        schema:
+          type: string
+      - description: Month to start querying the analytics from.
+        example: '1'
+        in: path
+        name: startMonth
+        required: true
+        schema:
+          type: string
+      - description: Year to start querying the analytics from.
+        example: '2024'
+        in: path
+        name: startYear
+        required: true
+        schema:
+          type: string
+      - description: End date of analytics to query.
+        example: '20'
+        in: path
+        name: EndDay
+        required: true
+        schema:
+          type: string
+      - description: End month of analytics to query.
+        example: '6'
+        in: path
+        name: EndMonth
+        required: true
+        schema:
+          type: string
+      - description: End year of analytics to query.
+        example: '2025'
+        in: path
+        name: EndYear
+        required: true
+        schema:
+          type: string
+      - description: OAuthClientID
+        in: path
+        name: OAuthClientID
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              examples:
+                aggregateAnalytics:
+                  $ref: '#/components/examples/aggregateAnalytics'
+              schema:
+                $ref: '#/components/schemas/AggregateAnalyticsData'
+          description: Fetched analytics successfully.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: User does not have access to the API with ID.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to fetch analytics.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Analytics of Oauth Client ID.
+      tags:
+      - Analytics
+components:
+  schemas:
+    AggregateAnalyticsData:
+      properties:
+        data:
+          items:
+            $ref: '#/components/schemas/ResultUnit'
+          nullable: true
+          type: array
+        pages:
+          type: integer
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    ResultUnit:
+      properties:
+        error:
+          example: 4
+          type: integer
+        hits:
+          example: 26
+          type: integer
+        id:
+          $ref: '#/components/schemas/ResultId'
+        last_hit:
+          example: '2024-06-19T06:33:30Z'
+          format: date-time
+          type: string
+        latency:
+          example: 0
+          format: double
+          type: number
+        max_latency:
+          example: 0
+          format: int64
+          type: integer
+        max_upstream_latency:
+          example: 0
+          format: int64
+          type: integer
+        min_latency:
+          example: 0
+          format: int64
+          type: integer
+        min_upstream_latency:
+          example: 0
+          format: int64
+          type: integer
+        request_time:
+          example: 190.2
+          format: double
+          type: number
+        success:
+          example: 22
+          type: integer
+        upstream_latency:
+          example: 0
+          format: double
+          type: number
+      type: object
+    ResultId:
+      properties:
+        alias:
+          type: string
+        api_id:
+          example: 7364617cc7d345d9755d182635dfd46d
+          type: string
+        api_name:
+          example: OAS http
+          type: string
+        code:
+          type: integer
+        day:
+          example: 12
+          type: integer
+        hour:
+          example: 0
+          type: integer
+        iso_country:
+          type: string
+        key:
+          type: string
+        month:
+          example: 6
+          type: integer
+        path:
+          type: string
+        queries:
+          additionalProperties:
+            type: integer
+          type: object
+        url:
+          type: string
+        year:
+          example: 2024
+          type: integer
+      type: object
+  examples:
+    aggregateAnalytics:
+      value:
+        data:
+        - error: 4
+          hits: 31
+          id:
+            alias: ''
+            api_id: 41351a6a94094da05f75146a695a16f6
+            api_name: Keyless
+            code: 404
+            day: 0
+            hour: 0
+            iso_country: ''
+            key: ''
+            month: 0
+            path: /anything
+            url: ''
+            year: 0
+          last_hit: '2024-06-19T07:11:39Z'
+          latency: 0
+          max_latency: 0
+          max_upstream_latency: 0
+          min_latency: 0
+          min_upstream_latency: 0
+          request_time: 174.5
+          success: 27
+          upstream_latency: 0
+        pages: 1
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

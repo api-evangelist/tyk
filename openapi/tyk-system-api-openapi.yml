@@ -1,0 +1,206 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions System API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: System API.
+  name: System
+paths:
+  /api/system/stats:
+    get:
+      description: Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided.
+      operationId: getSystemStats
+      parameters:
+      - $ref: '#/components/parameters/startDate'
+      - $ref: '#/components/parameters/endDate'
+      - description: Resolve daily.
+        example: day
+        in: query
+        name: resolution
+        required: false
+        schema:
+          enum:
+          - day
+          type: string
+      - description: The entity for which stats should be retrieved.
+        example: apis
+        in: query
+        name: entity
+        required: false
+        schema:
+          default: apis
+          enum:
+          - apis
+          - dataplanes
+          - dataplanes.gateways
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SystemStatsResp'
+          description: System statistics details.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Request validation failed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Bad request.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/system/stats'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Stats not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Stats not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to system stats.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get system usage info.
+      tags:
+      - System
+components:
+  parameters:
+    startDate:
+      description: start date
+      example: '2023-07-01'
+      in: query
+      name: start_day
+      schema:
+        format: date
+        type: string
+    endDate:
+      description: end date
+      example: ' 2023-07-31'
+      in: query
+      name: end_day
+      schema:
+        format: date
+        type: string
+  schemas:
+    SystemStatsResp:
+      properties:
+        message:
+          type: string
+        stats:
+          $ref: '#/components/schemas/EntityStats'
+        status:
+          example: Success
+          type: string
+      type: object
+    EntityStats:
+      nullable: true
+      properties:
+        apis:
+          items:
+            $ref: '#/components/schemas/IndividualStats'
+          nullable: true
+          type: array
+        dataplanes:
+          items:
+            $ref: '#/components/schemas/IndividualStats'
+          type: array
+        dataplanes_gateways:
+          items:
+            $ref: '#/components/schemas/IndividualStats'
+          type: array
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    IndividualStats:
+      properties:
+        avg_active_usage:
+          example: 13
+          type: integer
+        avg_usage:
+          example: 15
+          type: integer
+        date:
+          example: '2023-07-01'
+          type: string
+        license_entitlement:
+          example: 25
+          type: integer
+        license_entitlement_active:
+          example: 20
+          type: integer
+        max_active_usage:
+          example: 18
+          type: integer
+        max_usage:
+          example: 20
+          type: integer
+        min_active_usage:
+          example: 8
+          type: integer
+        min_usage:
+          example: 10
+          type: integer
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth

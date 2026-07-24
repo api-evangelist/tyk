@@ -1,0 +1,527 @@
+openapi: 3.0.0
+info:
+  title: Tyk Dashboard Admin Additional Permissions Webhooks API
+  version: 5.3.0
+  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+
+
+    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+
+
+    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+
+
+    ```
+
+    admin-auth: <your-secret>
+
+    ```'
+servers:
+- url: http://localhost/
+- url: https://localhost/
+security:
+- ApiKeyAuth: []
+tags:
+- description: 'Webhooks are a great way to let external applications know about the status of a user, an API or an event that has occurred in the Tyk gateway <br/>
+
+
+    You can create webhooks that you can then re-use in your API definitions and assign to different Tyk Events such as quota violations or rate-limiting violations.<br/>
+
+
+    Each webhook require a target_path (which is an absolute URL that should be targeted by the webhook e.g https://httpbin.org/expired-keys) and a method which can be any of GET, PUT, POST, PATCH or DELETE.<br/>
+
+
+    Request types that do not support an encoded body will not have the event metadata encoded as part of the request. We would advise using POST where possible.
+
+    '
+  name: Webhooks
+paths:
+  /api/hooks:
+    get:
+      description: Return a paginated list of webhooks.
+      operationId: getWebhookList
+      parameters:
+      - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
+        example: 1
+        in: query
+        name: p
+        required: false
+        schema:
+          type: integer
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                hooks:
+                - api_model: {}
+                  event_timeout: 0
+                  header_map:
+                    secret: superscretkey
+                    x-auth: authvalue
+                  id: '363634393863643165326663643130303031383465636239'
+                  method: POST
+                  name: Expired Keys webhook
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  target_path: https://httpbin.org/expired-keys
+                  template_path: ''
+                  webhook_id: 1f78e319202b430e92286cff3ca759e3
+                - api_model: {}
+                  event_timeout: 0
+                  header_map:
+                    x-auth: keith
+                  id: '363634623338353335373135656334633936636265663364'
+                  method: POST
+                  name: Webhook Receiver Post
+                  org_id: 5e9d9544a1dcd60001d0ed20
+                  target_path: https://httpbin.org/receiver
+                  template_path: ''
+                  webhook_id: 9aef65505d694792a25fd0334dde2661
+                pages: 1
+              schema:
+                $ref: '#/components/schemas/WebHooks'
+          description: Webhook fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve webhooks.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Failed to retrieve webhooks.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/hooks'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal data for APIs.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: List webhooks.
+      tags:
+      - Webhooks
+    post:
+      description: Create a webhook. The webhook method and target_path fields are required. Method can either be DELETE,GET,PUT,POST or PATCH.
+      operationId: createWebhook
+      requestBody:
+        content:
+          application/json:
+            example:
+              header_map:
+                another-value: somevalue
+                secret: superscretkey
+              method: POST
+              name: Expired Keys webhook
+              target_path: https://httpbin.org/expired-keys
+            schema:
+              properties:
+                header_map:
+                  additionalProperties:
+                    type: string
+                  nullable: true
+                  type: object
+                method:
+                  type: string
+                name:
+                  type: string
+                target_path:
+                  type: string
+              type: object
+        description: Webhook data.
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Webhook created
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook created.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Webhook object validation failed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: validation failed (required fields not sent in request body).
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request body.
+        '409':
+          content:
+            application/json:
+              example:
+                Message: Duplicate webhook_id.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook with ID exist.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to read response body, body empty.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Empty request body.
+      summary: Create a webhook.
+      tags:
+      - Webhooks
+  /api/hooks/{hookId}:
+    delete:
+      description: Delete webhook with ID.
+      operationId: deleteWebhook
+      parameters:
+      - description: ID of the webhook to delete.
+        example: 66498cd1e2fcd1000184ecb9
+        in: path
+        name: hookId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Webhook deleted
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Deleted successfully.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not delete the webhook.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Deletion failed.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/hooks/{hookId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '404':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve webhook detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook with ID not found.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Attempted unauthorised access.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: You are not allowed in this org.
+      summary: Delete web hook.
+      tags:
+      - Webhooks
+    get:
+      description: Get a webhook details with its ID.
+      operationId: getWebhookDetail
+      parameters:
+      - description: ID of the webhook to fetch.
+        example: 66498cd1e2fcd1000184ecb9
+        in: path
+        name: hookId
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                api_model: {}
+                event_timeout: 0
+                header_map:
+                  secret: superscretkey
+                  x-auth: authvalue
+                id: '363634393863643165326663643130303031383465636239'
+                method: POST
+                name: Expired Keys webhook
+                org_id: 5e9d9544a1dcd60001d0ed20
+                target_path: https://httpbin.org/expired-keys
+                template_path: ''
+                webhook_id: 1f78e319202b430e92286cff3ca759e3
+              schema:
+                $ref: '#/components/schemas/WebHookHandlerConf'
+          description: Webhook fetched.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Could not retrieve webhook detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook not found.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: 'access denied: You do not have permission to access  /api/hooks/{hookId}'
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Forbidden
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to marshal data for webhook detail.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Internal server error.
+      summary: Get single webhook.
+      tags:
+      - Webhooks
+    put:
+      description: Update a web hook using its ID. The webhook method and target_path fields are required in the request body when updating. *Note the original webhook data will be completely replaced with the new update request object(so if for example you don't send the name or webhook_id fields in your request body those fields will be updated to empty string even if they existed in your original webhook object.)*
+      operationId: updateWebhook
+      parameters:
+      - description: ID of the webhook to update
+        example: 664b70285715ec4c96cbef3f
+        in: path
+        name: hookId
+        required: true
+        schema:
+          type: string
+      requestBody:
+        content:
+          application/json:
+            example:
+              header_map:
+                another-value: somevalue
+                secret: superscretkey
+              method: POST
+              name: Update WebHook Name
+              target_path: https://httpbin.org/v2/changed-expired-keys
+            schema:
+              properties:
+                header_map:
+                  additionalProperties:
+                    type: string
+                  nullable: true
+                  type: object
+                method:
+                  type: string
+                name:
+                  type: string
+                target_path:
+                  type: string
+              type: object
+      responses:
+        '200':
+          content:
+            application/json:
+              example:
+                Message: Hook updated
+                Meta: null
+                Status: OK
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook updated.
+        '400':
+          content:
+            application/json:
+              example:
+                Message: Webhook not found.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Webhook with ID not found.
+        '401':
+          content:
+            application/json:
+              example:
+                Message: Not authorised
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Unauthorized
+        '403':
+          content:
+            application/json:
+              example:
+                Message: Request body malformed.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Malformed request body.
+        '500':
+          content:
+            application/json:
+              example:
+                Message: Failed to read response body, body empty.
+                Meta: null
+                Status: Error
+              schema:
+                $ref: '#/components/schemas/ApiResponse'
+          description: Empty request body.
+      summary: Update Webhook
+      tags:
+      - Webhooks
+components:
+  schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    WebHookHandlerConf:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        event_timeout:
+          example: 0
+          format: int64
+          type: integer
+        header_map:
+          additionalProperties:
+            type: string
+          example:
+            secret: superscretkey
+            x-auth: authvalue
+          nullable: true
+          type: object
+        id:
+          example: 664b613f5715ec4c96cbef3e
+          type: string
+        method:
+          example: POST
+          type: string
+        name:
+          example: Expired Keys webhook
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        target_path:
+          example: https://httpbin.org/expired-keys
+          type: string
+        template_path:
+          example: templates/default_webhook.json
+          type: string
+        webhook_id:
+          example: 1f78e319202b430e92286cff3ca759e3
+          type: string
+      required:
+      - method
+      - target_path
+      type: object
+    WebHooks:
+      properties:
+        hooks:
+          items:
+            $ref: '#/components/schemas/WebHookHandlerConf'
+          nullable: true
+          type: array
+        pages:
+          type: integer
+      type: object
+    ApiModel:
+      type: object
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Admin-Auth
