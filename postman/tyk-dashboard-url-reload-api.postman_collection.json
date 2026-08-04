@@ -1,0 +1,188 @@
+{
+  "info": {
+    "_postman_id": "a9429e31-d733-44f2-a4d7-7d2880d7d150",
+    "name": "Tyk Dashboard Admin Additional Permissions Dashboard URL Reload API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:40.000Z",
+    "updatedAt": "2026-07-28T03:21:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a9429e31-d733-44f2-a4d7-7d2880d7d150"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "system",
+          "item": [
+            {
+              "name": "reload",
+              "item": [
+                {
+                  "name": "Reloads dashboard urls",
+                  "id": "5787caef-1dec-4d82-87ed-d636c28989ad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/system/reload",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "system",
+                        "reload"
+                      ]
+                    },
+                    "description": "Reloads dashboard urls."
+                  },
+                  "response": [
+                    {
+                      "id": "527acb7d-c7a2-41bd-a6a4-33bac857fac0",
+                      "name": "URLs reloaded successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/system/reload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "system",
+                            "reload"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:41.000Z",
+                      "updatedAt": "2026-07-28T03:21:41.000Z",
+                      "uid": "35240-527acb7d-c7a2-41bd-a6a4-33bac857fac0"
+                    },
+                    {
+                      "id": "5820a268-64ce-4178-858f-abbc319d42c7",
+                      "name": "Unauthorized.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/admin/system/reload",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "admin",
+                            "system",
+                            "reload"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:41.000Z",
+                      "updatedAt": "2026-07-28T03:21:41.000Z",
+                      "uid": "35240-5820a268-64ce-4178-858f-abbc319d42c7"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:41.000Z",
+                  "updatedAt": "2026-07-28T03:21:41.000Z",
+                  "uid": "35240-5787caef-1dec-4d82-87ed-d636c28989ad"
+                }
+              ],
+              "id": "0f7ea47a-d16f-4ed1-9e99-8b97674d6273",
+              "createdAt": "2026-07-28T03:21:41.000Z",
+              "updatedAt": "2026-07-28T03:21:41.000Z",
+              "uid": "35240-0f7ea47a-d16f-4ed1-9e99-8b97674d6273"
+            }
+          ],
+          "id": "8055613c-5da1-4b65-a40e-a3f342192701",
+          "createdAt": "2026-07-28T03:21:41.000Z",
+          "updatedAt": "2026-07-28T03:21:41.000Z",
+          "uid": "35240-8055613c-5da1-4b65-a40e-a3f342192701"
+        }
+      ],
+      "id": "52337e94-19ff-4ac5-915e-c57034f4f11e",
+      "createdAt": "2026-07-28T03:21:41.000Z",
+      "updatedAt": "2026-07-28T03:21:41.000Z",
+      "uid": "35240-52337e94-19ff-4ac5-915e-c57034f4f11e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

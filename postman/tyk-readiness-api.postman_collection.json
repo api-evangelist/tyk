@@ -1,0 +1,164 @@
+{
+  "info": {
+    "_postman_id": "90158af0-7e0f-4b62-a90b-a854aa158610",
+    "name": "Tyk Dashboard Admin Additional Permissions Readiness API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:17.000Z",
+    "updatedAt": "2026-07-28T03:22:17.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90158af0-7e0f-4b62-a90b-a854aa158610"
+  },
+  "item": [
+    {
+      "name": "readiness",
+      "item": [
+        {
+          "name": "Tyk Check System Readiness Status",
+          "id": "45986234-ca13-4703-8c2d-fdb5e2916724",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/readiness",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "readiness"
+              ]
+            },
+            "description": "Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.\n"
+          },
+          "response": [
+            {
+              "id": "0853cf03-1063-4795-b974-c54ae311ede0",
+              "name": "System is ready. All critical components are operational and  the system is capable of handling requests.\n",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/readiness",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "readiness"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"status_code\": \"<integer>\",\n  \"components\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"observation_ts\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"observation_ts\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:22:18.000Z",
+              "updatedAt": "2026-07-28T03:22:18.000Z",
+              "uid": "35240-0853cf03-1063-4795-b974-c54ae311ede0"
+            },
+            {
+              "id": "2aca3c0b-d73b-454e-9d90-ab547f574d17",
+              "name": "System is not ready. One or more critical components are  non-operational, preventing the system from handling requests properly.\n",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/readiness",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "readiness"
+                  ]
+                }
+              },
+              "status": "Service Unavailable",
+              "code": 503,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"status_code\": \"<integer>\",\n  \"components\": [\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"observation_ts\": \"<dateTime>\"\n    },\n    {\n      \"name\": \"<string>\",\n      \"status\": \"<string>\",\n      \"observation_ts\": \"<dateTime>\"\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:22:18.000Z",
+              "updatedAt": "2026-07-28T03:22:18.000Z",
+              "uid": "35240-2aca3c0b-d73b-454e-9d90-ab547f574d17"
+            }
+          ],
+          "createdAt": "2026-07-28T03:22:18.000Z",
+          "updatedAt": "2026-07-28T03:22:18.000Z",
+          "uid": "35240-45986234-ca13-4703-8c2d-fdb5e2916724"
+        }
+      ],
+      "id": "acde3e33-6239-43dc-95bb-11a69c805d48",
+      "createdAt": "2026-07-28T03:22:18.000Z",
+      "updatedAt": "2026-07-28T03:22:18.000Z",
+      "uid": "35240-acde3e33-6239-43dc-95bb-11a69c805d48"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

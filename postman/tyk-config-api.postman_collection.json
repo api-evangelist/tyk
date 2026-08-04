@@ -1,0 +1,179 @@
+{
+  "info": {
+    "_postman_id": "d4b88a2d-a602-4859-b239-d12ce46cfce1",
+    "name": "Tyk Dashboard Admin Additional Permissions Config API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:39.000Z",
+    "updatedAt": "2026-07-28T03:21:40.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-d4b88a2d-a602-4859-b239-d12ce46cfce1"
+  },
+  "item": [
+    {
+      "name": "config",
+      "item": [
+        {
+          "name": "Tyk Retrieve Current Configuration Status",
+          "id": "a98df5a9-8970-49cd-a0a4-3f8192061b97",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "X-Tyk-Authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/config",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "config"
+              ]
+            },
+            "description": "Returns the current configuration status of the system.\n\nExample curl command:\n```\ncurl -X GET \\\nhttp://localhost:8181/config \\\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+          },
+          "response": [
+            {
+              "id": "06ec25fb-90f8-43c8-95c6-6404bd29bf17",
+              "name": "Successful retrieval of the current configuration.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"listen_port\": \"<integer>\",\n  \"healthcheck_port\": \"<integer>\",\n  \"http_port\": \"<integer>\",\n  \"enable_http_profiler\": \"<boolean>\",\n  \"server_options\": {\n    \"use_ssl\": \"<boolean>\",\n    \"certificate\": {\n      \"cert_file\": \"<string>\",\n      \"key_file\": \"<string>\"\n    },\n    \"min_version\": \"<integer>\",\n    \"ssl_ciphers\": \"<string>\",\n    \"ssl_certificates\": \"<string>\"\n  },\n  \"http_server_options\": {\n    \"use_ssl\": \"<boolean>\",\n    \"certificate\": {\n      \"cert_file\": \"<string>\",\n      \"key_file\": \"<string>\"\n    },\n    \"min_version\": \"<integer>\",\n    \"ssl_ciphers\": \"<string>\",\n    \"ssl_certificates\": \"<string>\"\n  },\n  \"security\": {\n    \"private_certificate_encoding_secret\": \"<string>\",\n    \"enable_http_secure_endpoints\": \"<boolean>\",\n    \"secret\": \"<string>\"\n  },\n  \"storage\": {\n    \"type\": \"<string>\",\n    \"host\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"master_name\": \"<string>\",\n    \"sentinel_password\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"database\": \"<integer>\",\n    \"optimisation_max_idle\": \"<integer>\",\n    \"optimisation_max_active\": \"<integer>\",\n    \"enable_cluster\": \"<boolean>\",\n    \"hosts\": \"<string>\",\n    \"addrs\": \"<string>\",\n    \"redis_use_ssl\": \"<boolean>\",\n    \"redis_ssl_insecure_skip_verify\": \"<boolean>\",\n    \"debug\": \"<boolean>\",\n    \"timeout\": \"<integer>\",\n    \"use_ssl\": \"<boolean>\",\n    \"ssl_insecure_skip_verify\": \"<boolean>\",\n    \"ca_file\": \"<string>\",\n    \"cert_file\": \"<string>\",\n    \"key_file\": \"<string>\",\n    \"max_version\": \"<string>\",\n    \"min_version\": \"<string>\"\n  },\n  \"analytics\": {\n    \"type\": \"<string>\",\n    \"connection_string\": \"<string>\",\n    \"table_sharding\": \"<boolean>\",\n    \"batch_size\": \"<integer>\",\n    \"postgres\": {\n      \"prefer_simple_protocol\": \"<boolean>\"\n    },\n    \"mysql\": {\n      \"default_string_size\": \"<integer>\",\n      \"disable_datetime_precision\": \"<boolean>\",\n      \"dont_support_rename_index\": \"<boolean>\",\n      \"dont_support_rename_column\": \"<boolean>\",\n      \"skip_initialize_with_version\": \"<boolean>\"\n    },\n    \"mongo_url\": \"<string>\",\n    \"mongo_use_ssl\": \"<boolean>\",\n    \"mongo_ssl_insecure_skip_verify\": \"<boolean>\",\n    \"mongo_ssl_allow_invalid_hostnames\": \"<boolean>\",\n    \"mongo_ssl_ca_file\": \"<string>\",\n    \"mongo_ssl_pem_keyfile\": \"<string>\",\n    \"mongo_session_consistency\": \"<string>\",\n    \"mongo_batch_size\": \"<integer>\",\n    \"driver\": \"<string>\",\n    \"mongo_direct_connection\": \"<boolean>\"\n  },\n  \"hash_keys\": \"<boolean>\",\n  \"session_timeout\": \"<integer>\",\n  \"forward_analytics_to_pump\": \"<boolean>\",\n  \"enable_multiple_analytics_keys\": \"<boolean>\",\n  \"dont_store_selective\": \"<boolean>\",\n  \"dont_store_aggregate\": \"<boolean>\",\n  \"org_session_expiration\": \"<integer>\",\n  \"org_session_cleanup\": \"<integer>\",\n  \"license\": \"<string>\",\n  \"aggregates_ignore_tags\": \"<string>\",\n  \"track_all_paths\": \"<boolean>\",\n  \"store_analytics_per_minute\": \"<boolean>\",\n  \"ignore_tag_prefix_list\": \"<string>\",\n  \"threshold_len_tag_list\": \"<integer>\",\n  \"omit_analytics_index_creation\": \"<boolean>\",\n  \"enable_separate_analytics_store\": \"<boolean>\",\n  \"analytics_storage\": {\n    \"type\": \"<string>\",\n    \"host\": \"<string>\",\n    \"port\": \"<integer>\",\n    \"master_name\": \"<string>\",\n    \"sentinel_password\": \"<string>\",\n    \"username\": \"<string>\",\n    \"password\": \"<string>\",\n    \"database\": \"<integer>\",\n    \"optimisation_max_idle\": \"<integer>\",\n    \"optimisation_max_active\": \"<integer>\",\n    \"enable_cluster\": \"<boolean>\",\n    \"hosts\": \"<string>\",\n    \"addrs\": \"<string>\",\n    \"redis_use_ssl\": \"<boolean>\",\n    \"redis_ssl_insecure_skip_verify\": \"<boolean>\",\n    \"debug\": \"<boolean>\",\n    \"timeout\": \"<integer>\",\n    \"use_ssl\": \"<boolean>\",\n    \"ssl_insecure_skip_verify\": \"<boolean>\",\n    \"ca_file\": \"<string>\",\n    \"cert_file\": \"<string>\",\n    \"key_file\": \"<string>\",\n    \"max_version\": \"<string>\",\n    \"min_version\": \"<string>\"\n  },\n  \"log_level\": \"<string>\",\n  \"enable_key_logging\": \"<boolean>\",\n  \"sync_worker_config\": {\n    \"enabled\": \"<boolean>\",\n    \"hash_keys\": \"<boolean>\",\n    \"max_batch_size\": \"<integer>\",\n    \"time_between_batches\": \"<integer>\",\n    \"max_workers\": \"<integer>\",\n    \"warmup_time\": \"<integer>\",\n    \"group_key_ttl\": \"<integer>\"\n  },\n  \"enable_ownership\": \"<boolean>\"\n}",
+              "createdAt": "2026-07-28T03:21:40.000Z",
+              "updatedAt": "2026-07-28T03:21:40.000Z",
+              "uid": "35240-06ec25fb-90f8-43c8-95c6-6404bd29bf17"
+            },
+            {
+              "id": "0468bfd4-1ba2-48af-8339-51d6ece6d119",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/config",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "config"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:21:40.000Z",
+              "updatedAt": "2026-07-28T03:21:40.000Z",
+              "uid": "35240-0468bfd4-1ba2-48af-8339-51d6ece6d119"
+            }
+          ],
+          "createdAt": "2026-07-28T03:21:40.000Z",
+          "updatedAt": "2026-07-28T03:21:40.000Z",
+          "uid": "35240-a98df5a9-8970-49cd-a0a4-3f8192061b97"
+        }
+      ],
+      "id": "3bbd21fe-7908-4af0-931b-22f46317ce46",
+      "createdAt": "2026-07-28T03:21:40.000Z",
+      "updatedAt": "2026-07-28T03:21:40.000Z",
+      "uid": "35240-3bbd21fe-7908-4af0-931b-22f46317ce46"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

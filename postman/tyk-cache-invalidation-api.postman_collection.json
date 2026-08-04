@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "2b00a2f9-5e80-4a5f-ab27-d926e6f44342",
+    "name": "Tyk Dashboard Admin Additional Permissions Cache Invalidation API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:35.000Z",
+    "updatedAt": "2026-07-28T03:21:35.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-2b00a2f9-5e80-4a5f-ab27-d926e6f44342"
+  },
+  "item": [
+    {
+      "name": "tyk",
+      "item": [
+        {
+          "name": "cache",
+          "item": [
+            {
+              "name": "{apiID}",
+              "item": [
+                {
+                  "name": "Tyk Invalidate Cache.",
+                  "id": "53ebe19d-d13d-49bd-872b-4eff9e042ce3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/cache/:apiID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "cache",
+                        ":apiID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "2710a7ed-dce8-41ff-8042-3574fd5ed4af",
+                          "key": "apiID",
+                          "value": "<string>",
+                          "description": "(Required) The API ID."
+                        }
+                      ]
+                    },
+                    "description": "Invalidate cache for the given API."
+                  },
+                  "response": [
+                    {
+                      "id": "b0253ef6-824a-4e5e-98c0-32efb2394e54",
+                      "name": "Cache invalidated.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/cache/:apiID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "cache",
+                            ":apiID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:36.000Z",
+                      "updatedAt": "2026-07-28T03:21:36.000Z",
+                      "uid": "35240-b0253ef6-824a-4e5e-98c0-32efb2394e54"
+                    },
+                    {
+                      "id": "7f513cb0-d6e1-4365-bd7e-b8caab69d6c7",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/cache/:apiID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "cache",
+                            ":apiID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:36.000Z",
+                      "updatedAt": "2026-07-28T03:21:36.000Z",
+                      "uid": "35240-7f513cb0-d6e1-4365-bd7e-b8caab69d6c7"
+                    },
+                    {
+                      "id": "d14372c6-cb98-4f61-ba4e-67e39580b7f8",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/cache/:apiID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "cache",
+                            ":apiID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "apiID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:36.000Z",
+                      "updatedAt": "2026-07-28T03:21:36.000Z",
+                      "uid": "35240-d14372c6-cb98-4f61-ba4e-67e39580b7f8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:36.000Z",
+                  "updatedAt": "2026-07-28T03:21:36.000Z",
+                  "uid": "35240-53ebe19d-d13d-49bd-872b-4eff9e042ce3"
+                }
+              ],
+              "id": "d3915f1c-b683-4e76-813d-624bb0ffe4a0",
+              "createdAt": "2026-07-28T03:21:36.000Z",
+              "updatedAt": "2026-07-28T03:21:36.000Z",
+              "uid": "35240-d3915f1c-b683-4e76-813d-624bb0ffe4a0"
+            }
+          ],
+          "id": "6def5dc0-a1c2-42cf-ac96-c24be6dbdb51",
+          "createdAt": "2026-07-28T03:21:36.000Z",
+          "updatedAt": "2026-07-28T03:21:36.000Z",
+          "uid": "35240-6def5dc0-a1c2-42cf-ac96-c24be6dbdb51"
+        }
+      ],
+      "id": "13ba2f01-ec14-46be-839f-40c9b66d17a1",
+      "createdAt": "2026-07-28T03:21:36.000Z",
+      "updatedAt": "2026-07-28T03:21:36.000Z",
+      "uid": "35240-13ba2f01-ec14-46be-839f-40c9b66d17a1"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

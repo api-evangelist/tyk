@@ -1,0 +1,1567 @@
+{
+  "info": {
+    "_postman_id": "39932123-7173-4fec-8b02-d1ebf46dd31c",
+    "name": "Tyk Dashboard Admin Additional Permissions Organisation Quotas API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:58.000Z",
+    "updatedAt": "2026-07-28T03:21:58.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-39932123-7173-4fec-8b02-d1ebf46dd31c"
+  },
+  "item": [
+    {
+      "name": "tyk",
+      "item": [
+        {
+          "name": "org",
+          "item": [
+            {
+              "name": "keys",
+              "item": [
+                {
+                  "name": "{keyID}",
+                  "item": [
+                    {
+                      "name": "Tyk Delete Key",
+                      "id": "9fc62535-4ac1-4850-be3b-81b5724ae2f3",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys/:keyID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys",
+                            ":keyID"
+                          ],
+                          "variable": [
+                            {
+                              "id": "0b9c697d-0379-4e13-bd48-9e03311432c3",
+                              "key": "keyID",
+                              "value": "<string>",
+                              "description": "(Required) The Key ID"
+                            }
+                          ]
+                        },
+                        "description": "Deleting a key will remove all limits from organisation. It does not affects regular keys created within organisation."
+                      },
+                      "response": [
+                        {
+                          "id": "f771214c-b395-4095-a0e9-3641d2c5cf2a",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"key\": \"<string>\",\n  \"key_hash\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-f771214c-b395-4095-a0e9-3641d2c5cf2a"
+                        },
+                        {
+                          "id": "713b512c-5127-4319-bd75-cbda58a3d6a7",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-713b512c-5127-4319-bd75-cbda58a3d6a7"
+                        },
+                        {
+                          "id": "2c81696e-714a-48c4-9688-8f74137d244e",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-2c81696e-714a-48c4-9688-8f74137d244e"
+                        },
+                        {
+                          "id": "e12ba9c7-4523-4f60-98ab-1c8bc3439c5d",
+                          "name": "Org not found",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-e12ba9c7-4523-4f60-98ab-1c8bc3439c5d"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-9fc62535-4ac1-4850-be3b-81b5724ae2f3"
+                    },
+                    {
+                      "name": "Tyk Get an Organisation Key",
+                      "id": "0f51c9bc-98c8-41ff-a3a2-6168d0f04426",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys/:keyID?orgID=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys",
+                            ":keyID"
+                          ],
+                          "query": [
+                            {
+                              "description": "The Org ID",
+                              "key": "orgID",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "3bcd1616-2380-4cd0-937a-149aebf9bc10",
+                              "key": "keyID",
+                              "value": "<string>",
+                              "description": "(Required) The Key ID"
+                            }
+                          ]
+                        },
+                        "description": "Get session info about specified organisation key. Should return up to date rate limit and quota usage numbers."
+                      },
+                      "response": [
+                        {
+                          "id": "bbd1187f-d215-4fde-8d57-dd3d88dd01b1",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?orgID=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The Org ID",
+                                  "key": "orgID",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"access_rights\": {\n    \"Excepteur490\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"limit\": {\n        \"per\": \"<integer>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"rate\": \"<integer>\",\n        \"throttle_interval\": \"<integer>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"et7\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"limit\": {\n        \"per\": \"<integer>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"rate\": \"<integer>\",\n        \"throttle_interval\": \"<integer>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<integer>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"date_created\": \"<dateTime>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"last_updated\": \"<string>\",\n  \"meta_data\": {\n    \"consequat1fa\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<integer>\",\n  \"quota_max\": \"<integer>\",\n  \"quota_renewal_rate\": \"<integer>\",\n  \"quota_renews\": \"<integer>\",\n  \"rate\": \"<integer>\",\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<integer>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-bbd1187f-d215-4fde-8d57-dd3d88dd01b1"
+                        },
+                        {
+                          "id": "0beb7bfd-754e-4c73-b5ee-461430767f12",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?orgID=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The Org ID",
+                                  "key": "orgID",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-0beb7bfd-754e-4c73-b5ee-461430767f12"
+                        },
+                        {
+                          "id": "346afeb8-ba9b-40eb-85e8-18472d6a0aca",
+                          "name": "Org not found",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?orgID=<string>",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "The Org ID",
+                                  "key": "orgID",
+                                  "value": "<string>"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-346afeb8-ba9b-40eb-85e8-18472d6a0aca"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-0f51c9bc-98c8-41ff-a3a2-6168d0f04426"
+                    },
+                    {
+                      "name": "Tyk Create an Organisation Key",
+                      "id": "f741f979-89d5-4543-b6c7-56ec0022a164",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys",
+                            ":keyID"
+                          ],
+                          "query": [
+                            {
+                              "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                              "key": "reset_quota",
+                              "value": "1"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "5ee4f98a-a064-49f2-bdeb-30e22741e696",
+                              "key": "keyID",
+                              "value": "<string>",
+                              "description": "(Required) The Key ID"
+                            }
+                          ]
+                        },
+                        "description": "This work similar to Keys API except that Key ID is always equals Organisation ID"
+                      },
+                      "response": [
+                        {
+                          "id": "481c7b36-39f1-4884-a7c5-80445ce369bc",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"key\": \"<string>\",\n  \"key_hash\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-481c7b36-39f1-4884-a7c5-80445ce369bc"
+                        },
+                        {
+                          "id": "ee0f78e0-6923-4361-af43-a0bb66d60cee",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-ee0f78e0-6923-4361-af43-a0bb66d60cee"
+                        },
+                        {
+                          "id": "55dd2c41-7c7c-4e35-b527-36b51bcce236",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-55dd2c41-7c7c-4e35-b527-36b51bcce236"
+                        },
+                        {
+                          "id": "10fdcb66-98c2-4811-9b67-4169c5607b85",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-10fdcb66-98c2-4811-9b67-4169c5607b85"
+                        },
+                        {
+                          "id": "f37dc990-68f9-4c22-99bc-a5fc77a44bb4",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-f37dc990-68f9-4c22-99bc-a5fc77a44bb4"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-f741f979-89d5-4543-b6c7-56ec0022a164"
+                    },
+                    {
+                      "name": "Tyk Update Organisation Key",
+                      "id": "1b953aa0-2803-4091-9177-334678b68d17",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys",
+                            ":keyID"
+                          ],
+                          "query": [
+                            {
+                              "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                              "key": "reset_quota",
+                              "value": "1"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "id": "a88b881f-8a50-4cba-a865-35793cf0485c",
+                              "key": "keyID",
+                              "value": "<string>",
+                              "description": "(Required) The Key ID"
+                            }
+                          ]
+                        },
+                        "description": "This work similar to Keys API except that Key ID is always equals Organisation ID\n\nFor Gateway v2.6.0 onwards, you can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set `rate` or `per` to zero, or don't add them to your request."
+                      },
+                      "response": [
+                        {
+                          "id": "32c64828-545d-40ac-9217-1c151f7a736f",
+                          "name": "OK",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"action\": \"<string>\",\n  \"key\": \"<string>\",\n  \"key_hash\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-32c64828-545d-40ac-9217-1c151f7a736f"
+                        },
+                        {
+                          "id": "62c4b274-6e63-4db5-8766-221efc8b93f4",
+                          "name": "Bad Request",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-62c4b274-6e63-4db5-8766-221efc8b93f4"
+                        },
+                        {
+                          "id": "3608baf7-7d9c-4cd2-afe9-b6d3bd6eb616",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-3608baf7-7d9c-4cd2-afe9-b6d3bd6eb616"
+                        },
+                        {
+                          "id": "f65635a8-0bed-4b9f-9fa0-05044fecdfdb",
+                          "name": "Not Found",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Not Found",
+                          "code": 404,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-f65635a8-0bed-4b9f-9fa0-05044fecdfdb"
+                        },
+                        {
+                          "id": "365d2747-c245-4466-a6c2-93a376d97795",
+                          "name": "Internal server error.",
+                          "originalRequest": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"access_rights\": {\n    \"Lorem_807\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            },\n            {\n              \"limit\": {\n                \"per\": \"<number>\",\n                \"rate\": \"<number>\",\n                \"smoothing\": {\n                  \"delay\": \"<integer>\",\n                  \"enabled\": \"<boolean>\",\n                  \"step\": \"<integer>\",\n                  \"threshold\": \"<integer>\",\n                  \"trigger\": \"<number>\"\n                }\n              },\n              \"name\": \"<string>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"commodof3\": {},\n    \"minim_d25\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"sit_7\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/tyk/org/keys/:keyID?reset_quota=1",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "tyk",
+                                "org",
+                                "keys",
+                                ":keyID"
+                              ],
+                              "query": [
+                                {
+                                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place.",
+                                  "key": "reset_quota",
+                                  "value": "1"
+                                }
+                              ],
+                              "variable": [
+                                {
+                                  "key": "keyID"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Internal Server Error",
+                          "code": 500,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:59.000Z",
+                          "updatedAt": "2026-07-28T03:21:59.000Z",
+                          "uid": "35240-365d2747-c245-4466-a6c2-93a376d97795"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-1b953aa0-2803-4091-9177-334678b68d17"
+                    }
+                  ],
+                  "id": "b3dd930f-3908-483d-9e1d-47ffb8860209",
+                  "createdAt": "2026-07-28T03:21:59.000Z",
+                  "updatedAt": "2026-07-28T03:21:59.000Z",
+                  "uid": "35240-b3dd930f-3908-483d-9e1d-47ffb8860209"
+                },
+                {
+                  "name": "Tyk List Organisation Keys",
+                  "id": "9f6f505f-62e4-432b-8a28-28efba77d8a7",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/org/keys?filter=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "org",
+                        "keys"
+                      ],
+                      "query": [
+                        {
+                          "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys",
+                          "key": "filter",
+                          "value": "<string>"
+                        }
+                      ]
+                    },
+                    "description": "You can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set 'rate' or 'per' to zero, or don't add them to your request."
+                  },
+                  "response": [
+                    {
+                      "id": "b7c689e5-4716-4d84-a385-35ee124b03c5",
+                      "name": "List of all org keys",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"keys\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-b7c689e5-4716-4d84-a385-35ee124b03c5"
+                    },
+                    {
+                      "id": "b5de078c-de9a-425f-802b-55f3b5f6994f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-b5de078c-de9a-425f-802b-55f3b5f6994f"
+                    },
+                    {
+                      "id": "73333487-0e57-487e-b510-f62680bdaf4d",
+                      "name": "ORG not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/org/keys?filter=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "org",
+                            "keys"
+                          ],
+                          "query": [
+                            {
+                              "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys",
+                              "key": "filter",
+                              "value": "<string>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:59.000Z",
+                      "updatedAt": "2026-07-28T03:21:59.000Z",
+                      "uid": "35240-73333487-0e57-487e-b510-f62680bdaf4d"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:59.000Z",
+                  "updatedAt": "2026-07-28T03:21:59.000Z",
+                  "uid": "35240-9f6f505f-62e4-432b-8a28-28efba77d8a7"
+                }
+              ],
+              "id": "9a3ea61c-9da7-4535-b852-800caac4ce39",
+              "createdAt": "2026-07-28T03:21:59.000Z",
+              "updatedAt": "2026-07-28T03:21:59.000Z",
+              "uid": "35240-9a3ea61c-9da7-4535-b852-800caac4ce39"
+            }
+          ],
+          "id": "95bc6227-7ee7-4347-9c25-b4fd5ed0ea22",
+          "createdAt": "2026-07-28T03:21:59.000Z",
+          "updatedAt": "2026-07-28T03:21:59.000Z",
+          "uid": "35240-95bc6227-7ee7-4347-9c25-b4fd5ed0ea22"
+        }
+      ],
+      "id": "de54153d-0c24-428e-8067-11a3cd760c7d",
+      "createdAt": "2026-07-28T03:21:59.000Z",
+      "updatedAt": "2026-07-28T03:21:59.000Z",
+      "uid": "35240-de54153d-0c24-428e-8067-11a3cd760c7d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

@@ -1,0 +1,518 @@
+{
+  "info": {
+    "_postman_id": "f09495f2-532e-4843-90ec-3cbcc3b06d68",
+    "name": "Tyk Dashboard Admin Additional Permissions System API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:21.000Z",
+    "updatedAt": "2026-07-28T03:22:22.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-f09495f2-532e-4843-90ec-3cbcc3b06d68"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "system",
+          "item": [
+            {
+              "name": "stats",
+              "item": [
+                {
+                  "name": "Get system usage info.",
+                  "id": "a17bf7db-bbac-4b71-b3ef-c6e61954ae48",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "system",
+                        "stats"
+                      ],
+                      "query": [
+                        {
+                          "description": "start date",
+                          "key": "start_day",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "end date",
+                          "key": "end_day",
+                          "value": "<date>"
+                        },
+                        {
+                          "description": "Resolve daily.",
+                          "key": "resolution",
+                          "value": "day"
+                        },
+                        {
+                          "description": "The entity for which stats should be retrieved.",
+                          "key": "entity",
+                          "value": "apis"
+                        }
+                      ]
+                    },
+                    "description": "Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided."
+                  },
+                  "response": [
+                    {
+                      "id": "64b445ca-4a83-4637-ba00-af7037ac3fb1",
+                      "name": "System statistics details.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"stats\": {\n    \"apis\": [\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      },\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      }\n    ],\n    \"dataplanes\": [\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      },\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      }\n    ],\n    \"dataplanes_gateways\": [\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      },\n      {\n        \"avg_active_usage\": \"<integer>\",\n        \"avg_usage\": \"<integer>\",\n        \"date\": \"<string>\",\n        \"license_entitlement\": \"<integer>\",\n        \"license_entitlement_active\": \"<integer>\",\n        \"max_active_usage\": \"<integer>\",\n        \"max_usage\": \"<integer>\",\n        \"min_active_usage\": \"<integer>\",\n        \"min_usage\": \"<integer>\"\n      }\n    ]\n  },\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-64b445ca-4a83-4637-ba00-af7037ac3fb1"
+                    },
+                    {
+                      "id": "032bde41-7641-4ef0-abe2-964d6904d339",
+                      "name": "Bad request.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-032bde41-7641-4ef0-abe2-964d6904d339"
+                    },
+                    {
+                      "id": "2c0aa899-736a-4159-b1a2-a32493c63e07",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-2c0aa899-736a-4159-b1a2-a32493c63e07"
+                    },
+                    {
+                      "id": "25358bef-7b1b-4bd5-9d9b-f00be938a3dd",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-25358bef-7b1b-4bd5-9d9b-f00be938a3dd"
+                    },
+                    {
+                      "id": "3516300b-c086-46ba-8d33-3673278fbb21",
+                      "name": "Stats not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-3516300b-c086-46ba-8d33-3673278fbb21"
+                    },
+                    {
+                      "id": "c49e6414-49fd-4f50-a3dd-026649527222",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/system/stats?start_day=<date>&end_day=<date>&resolution=day&entity=apis",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "system",
+                            "stats"
+                          ],
+                          "query": [
+                            {
+                              "description": "start date",
+                              "key": "start_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "end date",
+                              "key": "end_day",
+                              "value": "<date>"
+                            },
+                            {
+                              "description": "Resolve daily.",
+                              "key": "resolution",
+                              "value": "day"
+                            },
+                            {
+                              "description": "The entity for which stats should be retrieved.",
+                              "key": "entity",
+                              "value": "apis"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:22.000Z",
+                      "updatedAt": "2026-07-28T03:22:22.000Z",
+                      "uid": "35240-c49e6414-49fd-4f50-a3dd-026649527222"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:22.000Z",
+                  "updatedAt": "2026-07-28T03:22:22.000Z",
+                  "uid": "35240-a17bf7db-bbac-4b71-b3ef-c6e61954ae48"
+                }
+              ],
+              "id": "fdcd0330-81fd-45b0-ba94-bc679d93f094",
+              "createdAt": "2026-07-28T03:22:22.000Z",
+              "updatedAt": "2026-07-28T03:22:22.000Z",
+              "uid": "35240-fdcd0330-81fd-45b0-ba94-bc679d93f094"
+            }
+          ],
+          "id": "4b6e9789-1a9c-4adb-bd4e-c216411ebd1c",
+          "createdAt": "2026-07-28T03:22:22.000Z",
+          "updatedAt": "2026-07-28T03:22:22.000Z",
+          "uid": "35240-4b6e9789-1a9c-4adb-bd4e-c216411ebd1c"
+        }
+      ],
+      "id": "cde8fcca-79eb-4e20-8cb7-611f6f04559d",
+      "createdAt": "2026-07-28T03:22:22.000Z",
+      "updatedAt": "2026-07-28T03:22:22.000Z",
+      "uid": "35240-cde8fcca-79eb-4e20-8cb7-611f6f04559d"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

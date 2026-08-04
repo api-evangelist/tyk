@@ -1,0 +1,1735 @@
+{
+  "info": {
+    "_postman_id": "8c0bf6d9-a1cb-4417-9cf2-983e5201b048",
+    "name": "Tyk Dashboard Admin Additional Permissions Webhooks API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:31.000Z",
+    "updatedAt": "2026-07-28T03:22:31.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-8c0bf6d9-a1cb-4417-9cf2-983e5201b048"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "hooks",
+          "item": [
+            {
+              "name": "{hookId}",
+              "item": [
+                {
+                  "name": "Delete web hook.",
+                  "id": "da43b75d-e189-407d-96f5-17c25a83edc3",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks/:hookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks",
+                        ":hookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "0701726c-300c-409a-bfe9-e5fa6797d682",
+                          "key": "hookId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the webhook to delete."
+                        }
+                      ]
+                    },
+                    "description": "Delete webhook with ID."
+                  },
+                  "response": [
+                    {
+                      "id": "0f81e087-bf8e-407a-885a-e1b47a37f57a",
+                      "name": "Deleted successfully.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-0f81e087-bf8e-407a-885a-e1b47a37f57a"
+                    },
+                    {
+                      "id": "a99d3676-3a55-45b1-957e-0ebe9ad109de",
+                      "name": "Deletion failed.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-a99d3676-3a55-45b1-957e-0ebe9ad109de"
+                    },
+                    {
+                      "id": "2bfd8c88-1f82-480d-9a23-86ef807722a3",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-2bfd8c88-1f82-480d-9a23-86ef807722a3"
+                    },
+                    {
+                      "id": "60e391d7-73a8-41a3-bd63-22383367f08f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-60e391d7-73a8-41a3-bd63-22383367f08f"
+                    },
+                    {
+                      "id": "247e0024-f072-4a49-b468-ba987f62ec4a",
+                      "name": "Webhook with ID not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-247e0024-f072-4a49-b468-ba987f62ec4a"
+                    },
+                    {
+                      "id": "7269c040-b5da-4056-9a1a-4d6881121252",
+                      "name": "You are not allowed in this org.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-7269c040-b5da-4056-9a1a-4d6881121252"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-da43b75d-e189-407d-96f5-17c25a83edc3"
+                },
+                {
+                  "name": "Get single webhook.",
+                  "id": "fe1074f5-4315-4955-8ddb-bd6b347e7c28",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks/:hookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks",
+                        ":hookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3ef8e21b-59c9-4a19-86f1-0461bbdd4048",
+                          "key": "hookId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the webhook to fetch."
+                        }
+                      ]
+                    },
+                    "description": "Get a webhook details with its ID."
+                  },
+                  "response": [
+                    {
+                      "id": "a8cb1233-adce-40f6-9e42-d70355b773e4",
+                      "name": "Webhook fetched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"method\": \"<string>\",\n  \"target_path\": \"<string>\",\n  \"api_model\": {},\n  \"event_timeout\": \"<long>\",\n  \"header_map\": {\n    \"ex_e_b\": \"<string>\",\n    \"non_61\": \"<string>\"\n  },\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"template_path\": \"<string>\",\n  \"webhook_id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-a8cb1233-adce-40f6-9e42-d70355b773e4"
+                    },
+                    {
+                      "id": "c008c127-cc42-4e7e-8358-8b035fd455b7",
+                      "name": "Webhook not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-c008c127-cc42-4e7e-8358-8b035fd455b7"
+                    },
+                    {
+                      "id": "aa28ffbf-f866-46d2-adf8-f05a3f604d8a",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-aa28ffbf-f866-46d2-adf8-f05a3f604d8a"
+                    },
+                    {
+                      "id": "eef3de26-bd5a-4218-96e5-fed700ace031",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-eef3de26-bd5a-4218-96e5-fed700ace031"
+                    },
+                    {
+                      "id": "ac4ba148-ff8f-489b-b693-d4080570e2b0",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-ac4ba148-ff8f-489b-b693-d4080570e2b0"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-fe1074f5-4315-4955-8ddb-bd6b347e7c28"
+                },
+                {
+                  "name": "Update Webhook",
+                  "id": "7c5a2d7d-73ae-4bcd-87fd-750b8a56fe34",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks/:hookId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks",
+                        ":hookId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fcfa5631-adb4-44e2-b7d1-1403d405ab68",
+                          "key": "hookId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the webhook to update"
+                        }
+                      ]
+                    },
+                    "description": "Update a web hook using its ID. The webhook method and target_path fields are required in the request body when updating. *Note the original webhook data will be completely replaced with the new update request object(so if for example you don't send the name or webhook_id fields in your request body those fields will be updated to empty string even if they existed in your original webhook object.)*"
+                  },
+                  "response": [
+                    {
+                      "id": "05cb028c-6c67-4945-823d-55c9692662bd",
+                      "name": "Webhook updated.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-05cb028c-6c67-4945-823d-55c9692662bd"
+                    },
+                    {
+                      "id": "54aafdb0-cc97-4b4c-84ee-0f1dc8e48f14",
+                      "name": "Webhook with ID not found.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-54aafdb0-cc97-4b4c-84ee-0f1dc8e48f14"
+                    },
+                    {
+                      "id": "aff4e098-232f-48c3-9ba7-472cdd8dfde2",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-aff4e098-232f-48c3-9ba7-472cdd8dfde2"
+                    },
+                    {
+                      "id": "c3bdec88-605c-4141-9624-630999e90527",
+                      "name": "Malformed request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-c3bdec88-605c-4141-9624-630999e90527"
+                    },
+                    {
+                      "id": "0cd9fd39-23af-4e48-bbf7-f562570b2184",
+                      "name": "Empty request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/hooks/:hookId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "hooks",
+                            ":hookId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "hookId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:31.000Z",
+                      "updatedAt": "2026-07-28T03:22:31.000Z",
+                      "uid": "35240-0cd9fd39-23af-4e48-bbf7-f562570b2184"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-7c5a2d7d-73ae-4bcd-87fd-750b8a56fe34"
+                }
+              ],
+              "id": "2d2ea4d8-edc9-441f-8ab2-f6457f0c5af3",
+              "createdAt": "2026-07-28T03:22:31.000Z",
+              "updatedAt": "2026-07-28T03:22:31.000Z",
+              "uid": "35240-2d2ea4d8-edc9-441f-8ab2-f6457f0c5af3"
+            },
+            {
+              "name": "List webhooks.",
+              "id": "122c28a8-5333-4f70-b50d-11e4981a9423",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "hooks"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                      "key": "p",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Return a paginated list of webhooks."
+              },
+              "response": [
+                {
+                  "id": "b0942c2d-0f78-4d81-810a-64405a869f49",
+                  "name": "Webhook fetched.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"hooks\": [\n    {\n      \"method\": \"<string>\",\n      \"target_path\": \"<string>\",\n      \"api_model\": {},\n      \"event_timeout\": \"<long>\",\n      \"header_map\": {\n        \"sed613\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"template_path\": \"<string>\",\n      \"webhook_id\": \"<string>\"\n    },\n    {\n      \"method\": \"<string>\",\n      \"target_path\": \"<string>\",\n      \"api_model\": {},\n      \"event_timeout\": \"<long>\",\n      \"header_map\": {\n        \"nisi_5\": \"<string>\"\n      },\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"template_path\": \"<string>\",\n      \"webhook_id\": \"<string>\"\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-b0942c2d-0f78-4d81-810a-64405a869f49"
+                },
+                {
+                  "id": "a592f917-1926-4815-8ff4-b0b168c602a5",
+                  "name": "Failed to retrieve webhooks.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-a592f917-1926-4815-8ff4-b0b168c602a5"
+                },
+                {
+                  "id": "64f1cd3d-301c-4a19-b688-6071803e15d6",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-64f1cd3d-301c-4a19-b688-6071803e15d6"
+                },
+                {
+                  "id": "40e9f603-81f7-4f79-9e98-95e730014378",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-40e9f603-81f7-4f79-9e98-95e730014378"
+                },
+                {
+                  "id": "7b979227-ae57-41c8-a27d-6ffced53560d",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-7b979227-ae57-41c8-a27d-6ffced53560d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:31.000Z",
+              "updatedAt": "2026-07-28T03:22:31.000Z",
+              "uid": "35240-122c28a8-5333-4f70-b50d-11e4981a9423"
+            },
+            {
+              "name": "Create a webhook.",
+              "id": "3016cf53-f798-466e-ae29-a9d851d6473f",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/hooks",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "hooks"
+                  ]
+                },
+                "description": "Create a webhook. The webhook method and target_path fields are required. Method can either be DELETE,GET,PUT,POST or PATCH."
+              },
+              "response": [
+                {
+                  "id": "b9ea8de3-1233-48db-b8e9-55b87d850d43",
+                  "name": "Webhook created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-b9ea8de3-1233-48db-b8e9-55b87d850d43"
+                },
+                {
+                  "id": "e1844308-08c6-4155-84dd-e79743c1d8ea",
+                  "name": "validation failed (required fields not sent in request body).",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-e1844308-08c6-4155-84dd-e79743c1d8ea"
+                },
+                {
+                  "id": "7c210850-7c48-41c3-b72b-35364023c894",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-7c210850-7c48-41c3-b72b-35364023c894"
+                },
+                {
+                  "id": "a6573bd8-e349-4af0-994a-a3e90a33caa8",
+                  "name": "Malformed request body.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-a6573bd8-e349-4af0-994a-a3e90a33caa8"
+                },
+                {
+                  "id": "5ab965d0-2907-4ec0-a1d1-48d171a57aca",
+                  "name": "Webhook with ID exist.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-5ab965d0-2907-4ec0-a1d1-48d171a57aca"
+                },
+                {
+                  "id": "72be2aeb-4dcd-4c4e-84f9-1b010b54a934",
+                  "name": "Empty request body.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"header_map\": {\n    \"ut2\": \"<string>\",\n    \"sint_c1\": \"<string>\"\n  },\n  \"method\": \"<string>\",\n  \"name\": \"<string>\",\n  \"target_path\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/hooks",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "hooks"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:31.000Z",
+                  "updatedAt": "2026-07-28T03:22:31.000Z",
+                  "uid": "35240-72be2aeb-4dcd-4c4e-84f9-1b010b54a934"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:31.000Z",
+              "updatedAt": "2026-07-28T03:22:31.000Z",
+              "uid": "35240-3016cf53-f798-466e-ae29-a9d851d6473f"
+            }
+          ],
+          "id": "8ee4dd66-3a28-4c13-9f29-5fa021d6d34b",
+          "createdAt": "2026-07-28T03:22:31.000Z",
+          "updatedAt": "2026-07-28T03:22:31.000Z",
+          "uid": "35240-8ee4dd66-3a28-4c13-9f29-5fa021d6d34b"
+        }
+      ],
+      "id": "0b71f8cf-5428-4ae1-ac8f-457327cf1271",
+      "createdAt": "2026-07-28T03:22:31.000Z",
+      "updatedAt": "2026-07-28T03:22:31.000Z",
+      "uid": "35240-0b71f8cf-5428-4ae1-ac8f-457327cf1271"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

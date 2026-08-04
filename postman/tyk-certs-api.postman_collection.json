@@ -1,0 +1,602 @@
+{
+  "info": {
+    "_postman_id": "257f0e5e-715b-4518-862e-60a4679b605c",
+    "name": "Tyk Dashboard Admin Additional Permissions Certs API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:37.000Z",
+    "updatedAt": "2026-07-28T03:21:37.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-257f0e5e-715b-4518-862e-60a4679b605c"
+  },
+  "item": [
+    {
+      "name": "tyk",
+      "item": [
+        {
+          "name": "certs",
+          "item": [
+            {
+              "name": "{certID}",
+              "item": [
+                {
+                  "name": "Tyk Delete Certificate.",
+                  "id": "39e810ad-e2a3-4126-b643-e5c35cdb8a4c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs/:certID?org_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs",
+                        ":certID"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to delete the certificates from.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        }
+                      ],
+                      "variable": [
+                        {
+                          "id": "187e5d0b-6d43-46f8-8a57-11c3a748692a",
+                          "key": "certID",
+                          "value": "<string>",
+                          "description": "(Required) Certificate ID to be deleted."
+                        }
+                      ]
+                    },
+                    "description": "Delete certificate by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "fc19aab6-dad0-4b45-8be4-efeb243da20f",
+                      "name": "Deleted certificate.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/certs/:certID?org_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "certs",
+                            ":certID"
+                          ],
+                          "query": [
+                            {
+                              "description": "Organisation ID to delete the certificates from.",
+                              "key": "org_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "certID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:38.000Z",
+                      "updatedAt": "2026-07-28T03:21:38.000Z",
+                      "uid": "35240-fc19aab6-dad0-4b45-8be4-efeb243da20f"
+                    },
+                    {
+                      "id": "f78ae64c-daf0-4128-aa3f-23ab2cc4b513",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/certs/:certID?org_id=<string>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "certs",
+                            ":certID"
+                          ],
+                          "query": [
+                            {
+                              "description": "Organisation ID to delete the certificates from.",
+                              "key": "org_id",
+                              "value": "<string>"
+                            }
+                          ],
+                          "variable": [
+                            {
+                              "key": "certID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:38.000Z",
+                      "updatedAt": "2026-07-28T03:21:38.000Z",
+                      "uid": "35240-f78ae64c-daf0-4128-aa3f-23ab2cc4b513"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-39e810ad-e2a3-4126-b643-e5c35cdb8a4c"
+                }
+              ],
+              "id": "1edb374e-c1e4-4da0-92d0-e2bd889f4345",
+              "createdAt": "2026-07-28T03:21:38.000Z",
+              "updatedAt": "2026-07-28T03:21:38.000Z",
+              "uid": "35240-1edb374e-c1e4-4da0-92d0-e2bd889f4345"
+            },
+            {
+              "name": "Tyk List Certificates.",
+              "id": "89eb542d-9ad4-4a79-ac93-c6d9026d21d7",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tyk/certs?org_id=<string>&mode=detailed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tyk",
+                    "certs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Organisation ID to list the certificates.",
+                      "key": "org_id",
+                      "value": "<string>"
+                    },
+                    {
+                      "description": "Mode to list the certificate details.",
+                      "key": "mode",
+                      "value": "detailed"
+                    }
+                  ]
+                },
+                "description": "List all certificates in the Tyk Gateway."
+              },
+              "response": [
+                {
+                  "id": "0f9092cd-994b-45ca-a940-691e92e68ce0",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs?org_id=<string>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to list the certificates.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Mode to list the certificate details.",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"certs\": [\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer_cn\": \"<string>\",\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject_cn\": \"<string>\"\n    },\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer_cn\": \"<string>\",\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject_cn\": \"<string>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-0f9092cd-994b-45ca-a940-691e92e68ce0"
+                },
+                {
+                  "id": "3c911060-0081-4f54-b51c-167bb9b492db",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs?org_id=<string>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to list the certificates.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Mode to list the certificate details.",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-3c911060-0081-4f54-b51c-167bb9b492db"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:38.000Z",
+              "updatedAt": "2026-07-28T03:21:38.000Z",
+              "uid": "35240-89eb542d-9ad4-4a79-ac93-c6d9026d21d7"
+            },
+            {
+              "name": "Tyk Add a Certificate.",
+              "id": "940fe5cc-8070-4108-8f60-fbc71dc6f24c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "text/plain"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "<string>"
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/tyk/certs?org_id=<string>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tyk",
+                    "certs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Organisation ID to add the certificate to.",
+                      "key": "org_id",
+                      "value": "<string>"
+                    }
+                  ]
+                },
+                "description": "Add a certificate to the Tyk Gateway."
+              },
+              "response": [
+                {
+                  "id": "4f91fdd1-9fe2-43b2-a6e1-52981bcb4f05",
+                  "name": "New certificate added.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/plain"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs?org_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to add the certificate to.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-4f91fdd1-9fe2-43b2-a6e1-52981bcb4f05"
+                },
+                {
+                  "id": "8d6c6bd2-323d-4e38-9151-8cd61246877a",
+                  "name": "When certificates you send already exist in the gateway.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/plain"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs?org_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to add the certificate to.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-8d6c6bd2-323d-4e38-9151-8cd61246877a"
+                },
+                {
+                  "id": "eadfee5e-c76f-4c41-8c92-1cd57fbfcde5",
+                  "name": "Malformed request body.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "text/plain"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "<string>"
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs?org_id=<string>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Organisation ID to add the certificate to.",
+                          "key": "org_id",
+                          "value": "<string>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Method Not Allowed",
+                  "code": 405,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:38.000Z",
+                  "updatedAt": "2026-07-28T03:21:38.000Z",
+                  "uid": "35240-eadfee5e-c76f-4c41-8c92-1cd57fbfcde5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:38.000Z",
+              "updatedAt": "2026-07-28T03:21:38.000Z",
+              "uid": "35240-940fe5cc-8070-4108-8f60-fbc71dc6f24c"
+            }
+          ],
+          "id": "2095257e-a370-4047-a6c0-2d540766438a",
+          "createdAt": "2026-07-28T03:21:38.000Z",
+          "updatedAt": "2026-07-28T03:21:38.000Z",
+          "uid": "35240-2095257e-a370-4047-a6c0-2d540766438a"
+        }
+      ],
+      "id": "6d411584-5618-40b3-9cf7-50559ce08d00",
+      "createdAt": "2026-07-28T03:21:38.000Z",
+      "updatedAt": "2026-07-28T03:21:38.000Z",
+      "uid": "35240-6d411584-5618-40b3-9cf7-50559ce08d00"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

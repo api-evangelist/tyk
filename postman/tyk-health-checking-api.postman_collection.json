@@ -1,0 +1,206 @@
+{
+  "info": {
+    "_postman_id": "83b76474-2b69-4db3-9d23-a6f6321b5de0",
+    "name": "Tyk Dashboard Admin Additional Permissions Health Checking API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:47.000Z",
+    "updatedAt": "2026-07-28T03:21:47.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-83b76474-2b69-4db3-9d23-a6f6321b5de0"
+  },
+  "item": [
+    {
+      "name": "hello",
+      "item": [
+        {
+          "name": "Check the Health of the Tyk Gateway.",
+          "id": "082949fd-39b6-467c-a762-393fbc40a16f",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/hello",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "hello"
+              ]
+            },
+            "description": "From v2.7.5 you can now rename the `/hello`  endpoint by using the `health_check_endpoint_name` option."
+          },
+          "response": [
+            {
+              "id": "e098b898-568c-4fb6-9022-d6f424b82cfe",
+              "name": "Success.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hello",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hello"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"description\": \"<string>\",\n  \"details\": {\n    \"laborumf0b\": {\n      \"componentId\": \"<string>\",\n      \"componentType\": \"<string>\",\n      \"output\": \"<string>\",\n      \"status\": \"fail\",\n      \"time\": \"<string>\"\n    },\n    \"esse_d\": {\n      \"componentId\": \"<string>\",\n      \"componentType\": \"<string>\",\n      \"output\": \"<string>\",\n      \"status\": \"warn\",\n      \"time\": \"<string>\"\n    }\n  },\n  \"output\": \"<string>\",\n  \"status\": \"fail\",\n  \"version\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:21:47.000Z",
+              "updatedAt": "2026-07-28T03:21:47.000Z",
+              "uid": "35240-e098b898-568c-4fb6-9022-d6f424b82cfe"
+            },
+            {
+              "id": "836f02e6-8c3f-4b98-b97f-2b90f81fa6ae",
+              "name": "Forbidden",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hello",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hello"
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:21:47.000Z",
+              "updatedAt": "2026-07-28T03:21:47.000Z",
+              "uid": "35240-836f02e6-8c3f-4b98-b97f-2b90f81fa6ae"
+            },
+            {
+              "id": "e74f76be-94c6-467d-bbbb-7444dff9811c",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/hello",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "hello"
+                  ]
+                }
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:21:47.000Z",
+              "updatedAt": "2026-07-28T03:21:47.000Z",
+              "uid": "35240-e74f76be-94c6-467d-bbbb-7444dff9811c"
+            }
+          ],
+          "createdAt": "2026-07-28T03:21:47.000Z",
+          "updatedAt": "2026-07-28T03:21:47.000Z",
+          "uid": "35240-082949fd-39b6-467c-a762-393fbc40a16f"
+        }
+      ],
+      "id": "becce3ab-e203-40be-9a3b-8efb96aa852f",
+      "createdAt": "2026-07-28T03:21:47.000Z",
+      "updatedAt": "2026-07-28T03:21:47.000Z",
+      "uid": "35240-becce3ab-e203-40be-9a3b-8efb96aa852f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

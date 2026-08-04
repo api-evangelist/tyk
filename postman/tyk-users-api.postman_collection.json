@@ -1,0 +1,3875 @@
+{
+  "info": {
+    "_postman_id": "fe26d9a3-9e9e-49bf-87a9-b61b2d35ecb5",
+    "name": "Tyk Dashboard Admin Additional Permissions Users API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:30.000Z",
+    "updatedAt": "2026-07-28T03:22:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-fe26d9a3-9e9e-49bf-87a9-b61b2d35ecb5"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{USER_ID}",
+              "item": [
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "allow_reset_passwords",
+                      "item": [
+                        {
+                          "name": "Allow password reset for a User",
+                          "id": "7b2067f7-ccd0-48f0-9f71-b618aba707fb",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                                "key": "admin-auth",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/users/:USER_ID/actions/allow_reset_passwords",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "users",
+                                ":USER_ID",
+                                "actions",
+                                "allow_reset_passwords"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "1a8dad15-3185-4430-9f22-1474f99d206f",
+                                  "key": "USER_ID",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID of the user whose password is being reset"
+                                }
+                              ]
+                            },
+                            "description": "Allow password reset for a User."
+                          },
+                          "response": [
+                            {
+                              "id": "d8a080e9-65a3-485e-89fe-1923775fa931",
+                              "name": "Password reset for user enabled",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                                    "key": "admin-auth",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/users/:USER_ID/actions/allow_reset_passwords",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "users",
+                                    ":USER_ID",
+                                    "actions",
+                                    "allow_reset_passwords"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "USER_ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"example\": {\n    \"Status\": \"OK\",\n    \"Message\": \"User updated\",\n    \"Meta\": {\n      \"api_model\": {},\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"email_address\": \"john@test.com\",\n      \"org_id\": \"60ef3a1dcb83670001bf2df9\",\n      \"active\": true,\n      \"access_key\": \"68b225c4376748207453c235ed8e2a82\",\n      \"user_permissions\": {\n        \"IsAdmin\": \"admin\",\n        \"ResetPassword\": \"admin\"\n      },\n      \"group_id\": \"\",\n      \"password_max_days\": 0,\n      \"password_updated\": \"2021-09-15T15:49:01.863Z\",\n      \"PWHistory\": [],\n      \"last_login_date\": \"2021-09-15T15:49:49.754Z\",\n      \"created_at\": \"2021-09-15T15:49:01Z\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-d8a080e9-65a3-485e-89fe-1923775fa931"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:30.000Z",
+                          "updatedAt": "2026-07-28T03:22:30.000Z",
+                          "uid": "35240-7b2067f7-ccd0-48f0-9f71-b618aba707fb"
+                        }
+                      ],
+                      "id": "0755b505-246f-4cff-a543-438001930735",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-0755b505-246f-4cff-a543-438001930735"
+                    },
+                    {
+                      "name": "disallow_reset_passwords",
+                      "item": [
+                        {
+                          "name": "Disallow password reset for a User",
+                          "id": "b81c7f63-a23b-4d18-9be4-6657c7a51b7a",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                                "key": "admin-auth",
+                                "value": "<string>"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/admin/users/:USER_ID/actions/disallow_reset_passwords",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "admin",
+                                "users",
+                                ":USER_ID",
+                                "actions",
+                                "disallow_reset_passwords"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "7d648401-fec8-413e-bf5d-54493054b351",
+                                  "key": "USER_ID",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID of the user whose password reset capability is being disallowed"
+                                }
+                              ]
+                            },
+                            "description": "Disallow password reset for a User."
+                          },
+                          "response": [
+                            {
+                              "id": "63fdbb55-7929-4ff4-8f87-a8b25c36f5ef",
+                              "name": "Password reset for user disabled",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                                    "key": "admin-auth",
+                                    "value": "<string>"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/admin/users/:USER_ID/actions/disallow_reset_passwords",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "admin",
+                                    "users",
+                                    ":USER_ID",
+                                    "actions",
+                                    "disallow_reset_passwords"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "USER_ID"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"example\": {\n    \"Status\": \"OK\",\n    \"Message\": \"User updated\",\n    \"Meta\": {\n      \"api_model\": {},\n      \"first_name\": \"John\",\n      \"last_name\": \"Doe\",\n      \"email_address\": \"john@test.com\",\n      \"org_id\": \"60ef3a1dcb83670001bf2df9\",\n      \"active\": true,\n      \"access_key\": \"68b225c4376748207453c235ed8e2a82\",\n      \"user_permissions\": {\n        \"IsAdmin\": \"admin\"\n      },\n      \"group_id\": \"\",\n      \"password_max_days\": 0,\n      \"password_updated\": \"2021-09-15T15:49:01.863Z\",\n      \"PWHistory\": [],\n      \"last_login_date\": \"2021-09-15T15:49:49.754Z\",\n      \"created_at\": \"2021-09-15T15:49:01Z\"\n    }\n  }\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-63fdbb55-7929-4ff4-8f87-a8b25c36f5ef"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:30.000Z",
+                          "updatedAt": "2026-07-28T03:22:30.000Z",
+                          "uid": "35240-b81c7f63-a23b-4d18-9be4-6657c7a51b7a"
+                        }
+                      ],
+                      "id": "3237f553-acd3-4127-aa9e-addc237e9a4f",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-3237f553-acd3-4127-aa9e-addc237e9a4f"
+                    }
+                  ],
+                  "id": "1f39be01-2044-4845-92df-12e815b11831",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-1f39be01-2044-4845-92df-12e815b11831"
+                }
+              ],
+              "id": "d485d99c-d41a-4ccb-bed3-ac776836c5d8",
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-d485d99c-d41a-4ccb-bed3-ac776836c5d8"
+            }
+          ],
+          "id": "a1623b54-6f19-4355-8deb-35587ce92dbb",
+          "createdAt": "2026-07-28T03:22:30.000Z",
+          "updatedAt": "2026-07-28T03:22:30.000Z",
+          "uid": "35240-a1623b54-6f19-4355-8deb-35587ce92dbb"
+        }
+      ],
+      "id": "bfde890e-7004-43e9-8905-b03e366bdb6b",
+      "createdAt": "2026-07-28T03:22:30.000Z",
+      "updatedAt": "2026-07-28T03:22:30.000Z",
+      "uid": "35240-bfde890e-7004-43e9-8905-b03e366bdb6b"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "users",
+          "item": [
+            {
+              "name": "{userId}",
+              "item": [
+                {
+                  "name": "actions",
+                  "item": [
+                    {
+                      "name": "key",
+                      "item": [
+                        {
+                          "name": "reset",
+                          "item": [
+                            {
+                              "name": "Reset user Dashboard API access credentials.",
+                              "id": "9c1ae94c-3cd9-464d-bfb7-45954948d2ad",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "key",
+                                    "reset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "58dc7de7-cbb9-40f8-b01c-9a1c92e73cba",
+                                      "key": "userId",
+                                      "value": "<string>",
+                                      "description": "(Required) User ID of the user whose key you want to reset."
+                                    }
+                                  ]
+                                },
+                                "description": "Reset specified user's Dashboard API access credentials by generating a new access key for the specified user."
+                              },
+                              "response": [
+                                {
+                                  "id": "2b2ed7a0-5118-4766-aee0-9711345597a0",
+                                  "name": "New access key generated.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "OK",
+                                  "code": 200,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-2b2ed7a0-5118-4766-aee0-9711345597a0"
+                                },
+                                {
+                                  "id": "7d48e982-092d-49b0-80c7-95dfdac1e2d1",
+                                  "name": "Unable to update user details.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-7d48e982-092d-49b0-80c7-95dfdac1e2d1"
+                                },
+                                {
+                                  "id": "3b0785ff-c01e-4318-8dc1-a961d22ba151",
+                                  "name": "Unauthorized",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-3b0785ff-c01e-4318-8dc1-a961d22ba151"
+                                },
+                                {
+                                  "id": "e7237dd7-6ddb-4007-aaa6-0c37f7ccfa67",
+                                  "name": "Forbidden",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Forbidden",
+                                  "code": 403,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-e7237dd7-6ddb-4007-aaa6-0c37f7ccfa67"
+                                },
+                                {
+                                  "id": "c0ca8596-c5a7-4bd8-8b1d-785dba30ea7a",
+                                  "name": "User not found",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Not Found",
+                                  "code": 404,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-c0ca8596-c5a7-4bd8-8b1d-785dba30ea7a"
+                                },
+                                {
+                                  "id": "1f0c3a1a-77b3-49ca-a0d5-7e79d05a2b81",
+                                  "name": "Internal server error.",
+                                  "originalRequest": {
+                                    "method": "PUT",
+                                    "header": [
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: apikey",
+                                        "key": "Admin-Auth",
+                                        "value": "<API Key>"
+                                      }
+                                    ],
+                                    "url": {
+                                      "raw": "{{baseUrl}}/api/users/:userId/actions/key/reset",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "api",
+                                        "users",
+                                        ":userId",
+                                        "actions",
+                                        "key",
+                                        "reset"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "userId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Internal Server Error",
+                                  "code": 500,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                  "createdAt": "2026-07-28T03:22:30.000Z",
+                                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                                  "uid": "35240-1f0c3a1a-77b3-49ca-a0d5-7e79d05a2b81"
+                                }
+                              ],
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-9c1ae94c-3cd9-464d-bfb7-45954948d2ad"
+                            }
+                          ],
+                          "id": "055d9f96-94d6-4136-9c3b-047aa12b06eb",
+                          "createdAt": "2026-07-28T03:22:30.000Z",
+                          "updatedAt": "2026-07-28T03:22:30.000Z",
+                          "uid": "35240-055d9f96-94d6-4136-9c3b-047aa12b06eb"
+                        }
+                      ],
+                      "id": "dea7beb8-7d00-4a51-bdbb-48a079db1d35",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-dea7beb8-7d00-4a51-bdbb-48a079db1d35"
+                    },
+                    {
+                      "name": "reset",
+                      "item": [
+                        {
+                          "name": "Set user password.",
+                          "id": "451d3ea8-93f1-4600-a5cb-b474ab9f6440",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"api_model\": {},\n  \"current_password\": \"<string>\",\n  \"new_password\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:userId/actions/reset",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":userId",
+                                "actions",
+                                "reset"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "11a4caf0-8f79-4452-8970-9629416d5dfa",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID of the user whose password is being reset."
+                                }
+                              ]
+                            },
+                            "description": "Set a user's password. The password need to be 6 character long. If you are trying to update another users password you also need to have permission to update they password or you need to be a super-admin. You cannot also reuse a password."
+                          },
+                          "response": [
+                            {
+                              "id": "8205ca17-9013-4f7f-82f8-b2546abc0eb1",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_model\": {},\n  \"current_password\": \"<string>\",\n  \"new_password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/reset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "reset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-8205ca17-9013-4f7f-82f8-b2546abc0eb1"
+                            },
+                            {
+                              "id": "803204b0-a455-4db8-b6da-fad1c14210a8",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_model\": {},\n  \"current_password\": \"<string>\",\n  \"new_password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/reset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "reset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-803204b0-a455-4db8-b6da-fad1c14210a8"
+                            },
+                            {
+                              "id": "d2ccd092-7570-459d-8a5a-1c7785f51f4b",
+                              "name": "Malformed request body or you don't have permission to change this users password.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_model\": {},\n  \"current_password\": \"<string>\",\n  \"new_password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/reset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "reset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-d2ccd092-7570-459d-8a5a-1c7785f51f4b"
+                            },
+                            {
+                              "id": "88635295-397b-4a46-9556-0058ac516702",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "raw",
+                                  "raw": "{\n  \"api_model\": {},\n  \"current_password\": \"<string>\",\n  \"new_password\": \"<string>\"\n}",
+                                  "options": {
+                                    "raw": {
+                                      "headerFamily": "json",
+                                      "language": "json"
+                                    }
+                                  }
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/reset",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "reset"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-88635295-397b-4a46-9556-0058ac516702"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:30.000Z",
+                          "updatedAt": "2026-07-28T03:22:30.000Z",
+                          "uid": "35240-451d3ea8-93f1-4600-a5cb-b474ab9f6440"
+                        }
+                      ],
+                      "id": "4fdd2e5b-0faf-435c-b336-8df4eb92773f",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-4fdd2e5b-0faf-435c-b336-8df4eb92773f"
+                    },
+                    {
+                      "name": "revoke",
+                      "item": [
+                        {
+                          "name": "Revoke user.",
+                          "id": "616154c2-abbb-43b7-8cae-709de6df96b8",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "PUT",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "users",
+                                ":userId",
+                                "actions",
+                                "revoke"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "37756a5b-6799-4f3c-a0be-2278085e8e9b",
+                                  "key": "userId",
+                                  "value": "<string>",
+                                  "description": "(Required) User ID of the user whose access you want to revoke."
+                                }
+                              ]
+                            },
+                            "description": "This will set the use account as inactive. It will also disable API Access and log out the user from all dashboards."
+                          },
+                          "response": [
+                            {
+                              "id": "3af92b87-cdd4-41d0-addd-c832bc08e161",
+                              "name": "OK",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-3af92b87-cdd4-41d0-addd-c832bc08e161"
+                            },
+                            {
+                              "id": "caed74ca-431f-4192-9108-ea24df46561a",
+                              "name": "User not found.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Bad Request",
+                              "code": 400,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-caed74ca-431f-4192-9108-ea24df46561a"
+                            },
+                            {
+                              "id": "23589261-38e3-4e3e-9de2-ebb99597926d",
+                              "name": "Unauthorized",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-23589261-38e3-4e3e-9de2-ebb99597926d"
+                            },
+                            {
+                              "id": "bfd3876f-45fe-4e90-8a7a-eb30785cf44c",
+                              "name": "Forbidden",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Forbidden",
+                              "code": 403,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-bfd3876f-45fe-4e90-8a7a-eb30785cf44c"
+                            },
+                            {
+                              "id": "f4052e16-28de-4f5e-90e6-88996dee5ea4",
+                              "name": "Internal server error.",
+                              "originalRequest": {
+                                "method": "PUT",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: apikey",
+                                    "key": "Admin-Auth",
+                                    "value": "<API Key>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/api/users/:userId/actions/revoke",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "api",
+                                    "users",
+                                    ":userId",
+                                    "actions",
+                                    "revoke"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "userId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Internal Server Error",
+                              "code": 500,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                              "createdAt": "2026-07-28T03:22:30.000Z",
+                              "updatedAt": "2026-07-28T03:22:30.000Z",
+                              "uid": "35240-f4052e16-28de-4f5e-90e6-88996dee5ea4"
+                            }
+                          ],
+                          "createdAt": "2026-07-28T03:22:30.000Z",
+                          "updatedAt": "2026-07-28T03:22:30.000Z",
+                          "uid": "35240-616154c2-abbb-43b7-8cae-709de6df96b8"
+                        }
+                      ],
+                      "id": "f0556962-da42-4bba-b587-65ba9dbd5e17",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-f0556962-da42-4bba-b587-65ba9dbd5e17"
+                    }
+                  ],
+                  "id": "083426ff-c643-4437-b64e-83e5b5fc53a4",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-083426ff-c643-4437-b64e-83e5b5fc53a4"
+                },
+                {
+                  "name": "Delete a user.",
+                  "id": "4794ae45-73d5-4a68-b728-5218b96339a9",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a3c72f65-5b1b-4503-ace4-961ea906e7d6",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) User ID of the user to delete."
+                        }
+                      ]
+                    },
+                    "description": "Delete a user with user ID."
+                  },
+                  "response": [
+                    {
+                      "id": "c45f1390-e40c-4e39-8acd-a5869cb1d038",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-c45f1390-e40c-4e39-8acd-a5869cb1d038"
+                    },
+                    {
+                      "id": "16de7561-1945-45fd-81ea-cab0496d8182",
+                      "name": "Failed to delete user.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-16de7561-1945-45fd-81ea-cab0496d8182"
+                    },
+                    {
+                      "id": "67376178-5fa4-4851-8390-e49d58587133",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-67376178-5fa4-4851-8390-e49d58587133"
+                    },
+                    {
+                      "id": "02246652-f7e5-47e3-bec3-460ee94fde4c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-02246652-f7e5-47e3-bec3-460ee94fde4c"
+                    },
+                    {
+                      "id": "d0dbb796-e869-4567-b5e1-ef4c53b02f04",
+                      "name": "User not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-d0dbb796-e869-4567-b5e1-ef4c53b02f04"
+                    },
+                    {
+                      "id": "3417d82b-12cf-441e-a1ea-b51bc3803d44",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-3417d82b-12cf-441e-a1ea-b51bc3803d44"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-4794ae45-73d5-4a68-b728-5218b96339a9"
+                },
+                {
+                  "name": "Get user details.",
+                  "id": "be9fedef-f565-420e-b9c3-f9f44ec23038",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "eb7f7687-65cc-4379-b3cf-0bb74acc6622",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) User ID of the user to retrieve data for."
+                        }
+                      ]
+                    },
+                    "description": "Return a user object with details of the user specified by user ID in path."
+                  },
+                  "response": [
+                    {
+                      "id": "7fa8d667-d83a-4adc-9c4a-2e0b617c3334",
+                      "name": "User retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-7fa8d667-d83a-4adc-9c4a-2e0b617c3334"
+                    },
+                    {
+                      "id": "ee27022a-c4d9-482a-b7d9-5f62efa4d678",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-ee27022a-c4d9-482a-b7d9-5f62efa4d678"
+                    },
+                    {
+                      "id": "18804de0-8f0e-4481-b9e6-cc99c3dbd411",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-18804de0-8f0e-4481-b9e6-cc99c3dbd411"
+                    },
+                    {
+                      "id": "0024851b-e7a1-4877-add9-6140a7fb6cda",
+                      "name": "User not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-0024851b-e7a1-4877-add9-6140a7fb6cda"
+                    },
+                    {
+                      "id": "3397787b-0b2b-457e-864d-a932d75cf530",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-3397787b-0b2b-457e-864d-a932d75cf530"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-be9fedef-f565-420e-b9c3-f9f44ec23038"
+                },
+                {
+                  "name": "Update user.",
+                  "id": "25da419a-f4b5-467d-abee-4e762eea061c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/:userId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        ":userId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "79d61594-7b52-4542-8a0e-9a5f32f6cc5d",
+                          "key": "userId",
+                          "value": "<string>",
+                          "description": "(Required) USER ID of the user to update"
+                        }
+                      ]
+                    },
+                    "description": "Update a user with user ID. If you update the user as inactive they will be logged out of all dashboard sessions. User password can only be updated via admin API or the update password endpoint. ResetPassword is also only available via the admin API."
+                  },
+                  "response": [
+                    {
+                      "id": "6d4678d4-9487-432e-9bff-8c9a1e8d7be5",
+                      "name": "Updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-6d4678d4-9487-432e-9bff-8c9a1e8d7be5"
+                    },
+                    {
+                      "id": "d86ab71f-4b36-4a11-b57e-ebbe87265f85",
+                      "name": "User not found or malformed request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-d86ab71f-4b36-4a11-b57e-ebbe87265f85"
+                    },
+                    {
+                      "id": "2b9741c8-cd84-427d-91d5-22b6ca59e677",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-2b9741c8-cd84-427d-91d5-22b6ca59e677"
+                    },
+                    {
+                      "id": "eab44c2d-3eff-48be-8dc6-be05ae7cdbb5",
+                      "name": "Empty user rights or invalid email format.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-eab44c2d-3eff-48be-8dc6-be05ae7cdbb5"
+                    },
+                    {
+                      "id": "0893c78c-5dba-4377-90d4-b0c245f26f62",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"email_address\": \"<string>\",\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"user_permissions\": {\n    \"in4\": \"<string>\",\n    \"dolor_65\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/:userId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            ":userId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "userId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-0893c78c-5dba-4377-90d4-b0c245f26f62"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-25da419a-f4b5-467d-abee-4e762eea061c"
+                }
+              ],
+              "id": "fbfbe066-a529-45e5-a526-a1d0e1568b18",
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-fbfbe066-a529-45e5-a526-a1d0e1568b18"
+            },
+            {
+              "name": "me",
+              "item": [
+                {
+                  "name": "Get current user.",
+                  "id": "58a782f1-209a-42fc-9150-822a30764e32",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/me",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "me"
+                      ]
+                    },
+                    "description": "Return a user object with the details of the current user. This request need to have a session cookie with the key authorisation."
+                  },
+                  "response": [
+                    {
+                      "id": "4516b6f5-567a-428c-b796-ad48bb899851",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-4516b6f5-567a-428c-b796-ad48bb899851"
+                    },
+                    {
+                      "id": "85b05f8d-cf27-479c-b950-e47c70f43c72",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-85b05f8d-cf27-479c-b950-e47c70f43c72"
+                    },
+                    {
+                      "id": "b1d02ae1-205a-407f-9690-e88253be57ef",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-b1d02ae1-205a-407f-9690-e88253be57ef"
+                    },
+                    {
+                      "id": "fbb6c96b-fd9b-4edb-b52e-f0927e1f67c6",
+                      "name": "User not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-fbb6c96b-fd9b-4edb-b52e-f0927e1f67c6"
+                    },
+                    {
+                      "id": "0df46951-9e55-4a17-921a-9b91aa846994",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/me",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "me"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-0df46951-9e55-4a17-921a-9b91aa846994"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-58a782f1-209a-42fc-9150-822a30764e32"
+                }
+              ],
+              "id": "8dec2685-5008-4d60-b293-c394ccdcf3c0",
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-8dec2685-5008-4d60-b293-c394ccdcf3c0"
+            },
+            {
+              "name": "search",
+              "item": [
+                {
+                  "name": "Search Users(Deprecated)",
+                  "id": "8b3f448a-095a-46c7-9927-683c3f51c2d1",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/search?q=<string>&p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "(Required) Query term used to search for users (email address).",
+                          "key": "q",
+                          "value": "<string>"
+                        },
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to search for users by providing their email address as a query parameter."
+                  },
+                  "response": [
+                    {
+                      "id": "86b24266-f99b-4f1e-8a83-da4892ab6c3a",
+                      "name": "User searched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?q=<string>&p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Query term used to search for users (email address).",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pages\": \"<integer>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"anim30\": \"<string>\",\n        \"non_50\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"non7cc\": \"<string>\",\n        \"ex__fa\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-86b24266-f99b-4f1e-8a83-da4892ab6c3a"
+                    },
+                    {
+                      "id": "6f0067d0-6926-43e0-8e76-700395eb1a47",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?q=<string>&p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Query term used to search for users (email address).",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-6f0067d0-6926-43e0-8e76-700395eb1a47"
+                    },
+                    {
+                      "id": "cca3099a-00ef-42af-90ee-f73e2e50879f",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?q=<string>&p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Query term used to search for users (email address).",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-cca3099a-00ef-42af-90ee-f73e2e50879f"
+                    },
+                    {
+                      "id": "004c0ceb-5b4d-4cb6-af5b-1a317a30ceaf",
+                      "name": "Unable to search user.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?q=<string>&p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "(Required) Query term used to search for users (email address).",
+                              "key": "q",
+                              "value": "<string>"
+                            },
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-004c0ceb-5b4d-4cb6-af5b-1a317a30ceaf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-8b3f448a-095a-46c7-9927-683c3f51c2d1"
+                },
+                {
+                  "name": "Search user with email.",
+                  "id": "4ba2c5c0-6416-46c9-9059-d369872da267",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users",
+                        "search"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "This endpoint allows you to search for users with their email address (e.g if you send the filter @gmail.com` in the request payload, all users whole email contain the string @gmail.com will be returned)."
+                  },
+                  "response": [
+                    {
+                      "id": "e7512d15-7af2-4b26-aa84-6e7182f53803",
+                      "name": "User searched.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"pages\": \"<integer>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"anim30\": \"<string>\",\n        \"non_50\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"non7cc\": \"<string>\",\n        \"ex__fa\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    }\n  ]\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-e7512d15-7af2-4b26-aa84-6e7182f53803"
+                    },
+                    {
+                      "id": "8fdf7550-8ceb-421b-8589-86cae0fe04a1",
+                      "name": "Unable to get filters.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-8fdf7550-8ceb-421b-8589-86cae0fe04a1"
+                    },
+                    {
+                      "id": "a04074b4-7012-4fe1-bb10-3173c4bb650e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-a04074b4-7012-4fe1-bb10-3173c4bb650e"
+                    },
+                    {
+                      "id": "fa090ba6-2c4b-4069-9801-9215febaa9fd",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-fa090ba6-2c4b-4069-9801-9215febaa9fd"
+                    },
+                    {
+                      "id": "4567ed6d-03dc-4a98-86aa-dbee65612164",
+                      "name": "Unable to search user.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"filters\": {\n    \"query\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/users/search?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "users",
+                            "search"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:30.000Z",
+                      "updatedAt": "2026-07-28T03:22:30.000Z",
+                      "uid": "35240-4567ed6d-03dc-4a98-86aa-dbee65612164"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-4ba2c5c0-6416-46c9-9059-d369872da267"
+                }
+              ],
+              "id": "7b9da7d8-7cc4-4630-bf67-c2b49378b4c4",
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-7b9da7d8-7cc4-4630-bf67-c2b49378b4c4"
+            },
+            {
+              "name": "List users",
+              "id": "59db8e7a-9bfd-4106-b85a-abff0805b02b",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/users?p=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                      "key": "p",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "Lists dashboard users"
+              },
+              "response": [
+                {
+                  "id": "1534a8e6-fdf6-44ee-b140-d114e78d41a7",
+                  "name": "Users retrieved successfully.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"pages\": \"<integer>\",\n  \"users\": [\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"anim30\": \"<string>\",\n        \"non_50\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    },\n    {\n      \"first_name\": \"<string>\",\n      \"last_name\": \"<string>\",\n      \"email_address\": \"<string>\",\n      \"user_permissions\": {\n        \"non7cc\": \"<string>\",\n        \"ex__fa\": \"<string>\"\n      },\n      \"access_key\": \"<string>\",\n      \"active\": \"<boolean>\",\n      \"api_model\": {},\n      \"created_at\": \"<dateTime>\",\n      \"group_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"last_login_date\": \"<dateTime>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"password_updated\": \"<dateTime>\"\n    }\n  ]\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-1534a8e6-fdf6-44ee-b140-d114e78d41a7"
+                },
+                {
+                  "id": "1f4854f1-e343-4e30-a14c-98dfb7976f28",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-1f4854f1-e343-4e30-a14c-98dfb7976f28"
+                },
+                {
+                  "id": "b91fe3cf-a73b-4e57-b2c8-1b07bc79e632",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-b91fe3cf-a73b-4e57-b2c8-1b07bc79e632"
+                },
+                {
+                  "id": "a4e57560-1c2c-43f1-bbb7-5628912e6ee7",
+                  "name": "Error retrieving users from db.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-a4e57560-1c2c-43f1-bbb7-5628912e6ee7"
+                },
+                {
+                  "id": "fdb312dc-3cc9-42c4-9383-f634331050d8",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-fdb312dc-3cc9-42c4-9383-f634331050d8"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-59db8e7a-9bfd-4106-b85a-abff0805b02b"
+            },
+            {
+              "name": "Add user.",
+              "id": "46ebf63f-5d11-4f99-ba43-66e1b495bd82",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/users",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "users"
+                  ]
+                },
+                "description": "Create a user. If you want to create an admin user, you need to send {IsAdmin: admin} in the user_permissions field e.g ```{user_permissions: {IsAdmin: admin},last_name: sasuke,email_address: itachi@gmail.com,first_name: itachi}```. You can add a user to a given user-group by sending the group_id in the request body. If you want to give a user access only to specific objects e.g policies you can send the object and the permission granted to the user (read or write permission in the  user_permissions field  (check the request example given for more details))."
+              },
+              "response": [
+                {
+                  "id": "509dcf11-7278-411f-af2a-6a45abe2cf84",
+                  "name": "User added successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-509dcf11-7278-411f-af2a-6a45abe2cf84"
+                },
+                {
+                  "id": "c7fd8f95-a433-443a-a9cf-d669f0825855",
+                  "name": "Failure to send all required fields.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-c7fd8f95-a433-443a-a9cf-d669f0825855"
+                },
+                {
+                  "id": "7f8bfcb0-c048-4d71-a363-6a130af0aed3",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-7f8bfcb0-c048-4d71-a363-6a130af0aed3"
+                },
+                {
+                  "id": "e5905a38-218e-4135-9156-dabe21616931",
+                  "name": "User already exist.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-e5905a38-218e-4135-9156-dabe21616931"
+                },
+                {
+                  "id": "5c2dc552-ce56-4ebd-a3b3-a83f682cb30e",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"first_name\": \"<string>\",\n  \"last_name\": \"<string>\",\n  \"email_address\": \"<string>\",\n  \"user_permissions\": {\n    \"reprehenderit_0b\": \"<string>\",\n    \"eiusmod_43\": \"<string>\"\n  },\n  \"access_key\": \"<string>\",\n  \"active\": \"<boolean>\",\n  \"api_model\": {},\n  \"created_at\": \"<dateTime>\",\n  \"group_id\": \"<string>\",\n  \"id\": \"<string>\",\n  \"last_login_date\": \"<dateTime>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"password_updated\": \"<dateTime>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/users",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "users"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:30.000Z",
+                  "updatedAt": "2026-07-28T03:22:30.000Z",
+                  "uid": "35240-5c2dc552-ce56-4ebd-a3b3-a83f682cb30e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:30.000Z",
+              "updatedAt": "2026-07-28T03:22:30.000Z",
+              "uid": "35240-46ebf63f-5d11-4f99-ba43-66e1b495bd82"
+            }
+          ],
+          "id": "571b6824-6380-460d-905b-62764ac24452",
+          "createdAt": "2026-07-28T03:22:30.000Z",
+          "updatedAt": "2026-07-28T03:22:30.000Z",
+          "uid": "35240-571b6824-6380-460d-905b-62764ac24452"
+        }
+      ],
+      "id": "26f0b1d1-ff7a-4a11-9933-25084b988f44",
+      "createdAt": "2026-07-28T03:22:30.000Z",
+      "updatedAt": "2026-07-28T03:22:30.000Z",
+      "uid": "35240-26f0b1d1-ff7a-4a11-9933-25084b988f44"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

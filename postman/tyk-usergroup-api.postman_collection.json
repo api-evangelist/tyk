@@ -1,0 +1,1621 @@
+{
+  "info": {
+    "_postman_id": "6d2c6697-47a5-4caf-9f44-bec38d529ee4",
+    "name": "Tyk Dashboard Admin Additional Permissions UserGroup API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:27.000Z",
+    "updatedAt": "2026-07-28T03:22:28.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6d2c6697-47a5-4caf-9f44-bec38d529ee4"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "usergroups",
+          "item": [
+            {
+              "name": "{groupId}",
+              "item": [
+                {
+                  "name": "Delete user group.",
+                  "id": "d99034f3-0efe-4418-98c8-de00ae80c320",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "204e5efe-8aa2-4f6c-b4aa-ee2beb79422a",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the group you want to delete."
+                        }
+                      ]
+                    },
+                    "description": "Delete user group using the group ID."
+                  },
+                  "response": [
+                    {
+                      "id": "d6bb008b-e5d5-4960-bbad-5d86317039fc",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-d6bb008b-e5d5-4960-bbad-5d86317039fc"
+                    },
+                    {
+                      "id": "c5b9632f-6005-4dc9-9196-9df24015f83f",
+                      "name": "Failed to delete user group.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-c5b9632f-6005-4dc9-9196-9df24015f83f"
+                    },
+                    {
+                      "id": "9e6807da-fb72-4a2a-aeb5-c8c92478d370",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-9e6807da-fb72-4a2a-aeb5-c8c92478d370"
+                    },
+                    {
+                      "id": "441f3e15-e184-4796-b3ba-b188969b13c4",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-441f3e15-e184-4796-b3ba-b188969b13c4"
+                    },
+                    {
+                      "id": "8bbcb980-d646-4930-844d-2b0c3662a6d5",
+                      "name": "Group not found.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-8bbcb980-d646-4930-844d-2b0c3662a6d5"
+                    },
+                    {
+                      "id": "0a2aa9f3-2548-43ee-bbf4-eb4155c9d0df",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-0a2aa9f3-2548-43ee-bbf4-eb4155c9d0df"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-d99034f3-0efe-4418-98c8-de00ae80c320"
+                },
+                {
+                  "name": "Get user group details.",
+                  "id": "c9a64de4-e188-494f-a031-c761b809ec03",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a5604914-aa9a-4106-b8f6-8918ab12e04d",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the group you want to fetch."
+                        }
+                      ]
+                    },
+                    "description": "Return a user group object with all the details of a specified group."
+                  },
+                  "response": [
+                    {
+                      "id": "7c06cd83-4d40-4d7d-8f2d-838a529cf807",
+                      "name": "User grouped fetched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-7c06cd83-4d40-4d7d-8f2d-838a529cf807"
+                    },
+                    {
+                      "id": "2a979800-8cf2-4b92-aac4-858d81fff988",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-2a979800-8cf2-4b92-aac4-858d81fff988"
+                    },
+                    {
+                      "id": "9c4cad78-b6f8-427f-8caa-df277798e0dd",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-9c4cad78-b6f8-427f-8caa-df277798e0dd"
+                    },
+                    {
+                      "id": "d7f9f56f-65ca-4644-a766-1bfdae160d81",
+                      "name": "Group not found.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-d7f9f56f-65ca-4644-a766-1bfdae160d81"
+                    },
+                    {
+                      "id": "f7991fa0-a34a-4e1a-8d70-a197868ab1bf",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-f7991fa0-a34a-4e1a-8d70-a197868ab1bf"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-c9a64de4-e188-494f-a031-c761b809ec03"
+                },
+                {
+                  "name": "Update user group.",
+                  "id": "06360c63-40d2-4c22-8687-3f31ed4ac075",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups",
+                        ":groupId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "e1af935f-6297-4d91-a858-3449b0d2ad44",
+                          "key": "groupId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the group you want to update."
+                        }
+                      ]
+                    },
+                    "description": "Update the details of a user group. You must have either admin or user groups permission to be able to modify user groups. Note you cannot update the ResetPassword permission with this endpoint. For that you need to use Admin API. When updating a user group you also need to specify at least one permission in the user_permissions field."
+                  },
+                  "response": [
+                    {
+                      "id": "1910ba24-c759-47b5-92ae-eb0672307111",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-1910ba24-c759-47b5-92ae-eb0672307111"
+                    },
+                    {
+                      "id": "97bd637a-ffba-4298-9b07-8d132e040563",
+                      "name": "Group not found or malformed request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-97bd637a-ffba-4298-9b07-8d132e040563"
+                    },
+                    {
+                      "id": "1d85459f-695a-47cb-a0a0-f81f3749dabb",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-1d85459f-695a-47cb-a0a0-f81f3749dabb"
+                    },
+                    {
+                      "id": "6c751238-0593-4130-85b9-b9f6fa140e01",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-6c751238-0593-4130-85b9-b9f6fa140e01"
+                    },
+                    {
+                      "id": "a82fdf49-1b3b-4f86-ba63-e6c3860e0297",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/usergroups/:groupId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "usergroups",
+                            ":groupId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "groupId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:22:28.000Z",
+                      "updatedAt": "2026-07-28T03:22:28.000Z",
+                      "uid": "35240-a82fdf49-1b3b-4f86-ba63-e6c3860e0297"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-06360c63-40d2-4c22-8687-3f31ed4ac075"
+                }
+              ],
+              "id": "9f110f7b-bab2-421f-b0e5-b5ebb2546887",
+              "createdAt": "2026-07-28T03:22:28.000Z",
+              "updatedAt": "2026-07-28T03:22:28.000Z",
+              "uid": "35240-9f110f7b-bab2-421f-b0e5-b5ebb2546887"
+            },
+            {
+              "name": "List user groups.",
+              "id": "480bb53d-b153-4181-a590-df01e4f50759",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "usergroups"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                      "key": "p",
+                      "value": "<integer>"
+                    }
+                  ]
+                },
+                "description": "This will return a list of all the user groups. The returned user groups are paginated."
+              },
+              "response": [
+                {
+                  "id": "ba18037c-37ab-411d-bc1c-909f3d47d326",
+                  "name": "User groups fetched.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"groups\": [\n    {\n      \"active\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"user_permissions\": {\n        \"occaecat_6\": \"<string>\",\n        \"eiusmod_8a\": \"<string>\"\n      }\n    },\n    {\n      \"active\": \"<boolean>\",\n      \"description\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"password_max_days\": \"<integer>\",\n      \"user_permissions\": {\n        \"exercitation_a4\": \"<string>\",\n        \"sit__b7\": \"<string>\"\n      }\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-ba18037c-37ab-411d-bc1c-909f3d47d326"
+                },
+                {
+                  "id": "a87e822d-94b5-4b21-917c-b5cabe9a6547",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-a87e822d-94b5-4b21-917c-b5cabe9a6547"
+                },
+                {
+                  "id": "0f1e04e9-acb1-44eb-99cb-8b188846a285",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-0f1e04e9-acb1-44eb-99cb-8b188846a285"
+                },
+                {
+                  "id": "8f60fdb0-2843-44ac-b6eb-ed1a2b7f782a",
+                  "name": "Unable to fetch groups.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-8f60fdb0-2843-44ac-b6eb-ed1a2b7f782a"
+                },
+                {
+                  "id": "38a70d00-c040-4a53-9b28-3b65d068ceb7",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-38a70d00-c040-4a53-9b28-3b65d068ceb7"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:28.000Z",
+              "updatedAt": "2026-07-28T03:22:28.000Z",
+              "uid": "35240-480bb53d-b153-4181-a590-df01e4f50759"
+            },
+            {
+              "name": "Create user group.",
+              "id": "bc8d91de-7bf7-44ce-9655-fb3ec01ffd62",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/usergroups",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "usergroups"
+                  ]
+                },
+                "description": "Instead of assigning permission to each individual users, per user, you can create a user group and configure the permissions for all users in the group. This endpoint allow you to create a user group and set permission for the user group."
+              },
+              "response": [
+                {
+                  "id": "f9ce687d-e3fd-433a-b16d-d2d9a4ed4569",
+                  "name": "User group created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-f9ce687d-e3fd-433a-b16d-d2d9a4ed4569"
+                },
+                {
+                  "id": "83cb1f6e-4c15-438b-997d-dbceda01dc85",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-83cb1f6e-4c15-438b-997d-dbceda01dc85"
+                },
+                {
+                  "id": "7a6a1436-ea73-4a5d-8a79-6c67cdfafdc6",
+                  "name": "Malformed request data.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-7a6a1436-ea73-4a5d-8a79-6c67cdfafdc6"
+                },
+                {
+                  "id": "d0b75828-ab8e-49c9-8a84-b94c4c54d5e5",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"active\": \"<boolean>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"password_max_days\": \"<integer>\",\n  \"user_permissions\": {\n    \"sed_476\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/usergroups",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "usergroups"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:28.000Z",
+                  "updatedAt": "2026-07-28T03:22:28.000Z",
+                  "uid": "35240-d0b75828-ab8e-49c9-8a84-b94c4c54d5e5"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:28.000Z",
+              "updatedAt": "2026-07-28T03:22:28.000Z",
+              "uid": "35240-bc8d91de-7bf7-44ce-9655-fb3ec01ffd62"
+            }
+          ],
+          "id": "7fdeae79-60d3-4be4-a545-34f268bb0dc6",
+          "createdAt": "2026-07-28T03:22:28.000Z",
+          "updatedAt": "2026-07-28T03:22:28.000Z",
+          "uid": "35240-7fdeae79-60d3-4be4-a545-34f268bb0dc6"
+        }
+      ],
+      "id": "1170871d-2642-4edc-b014-9b546c9c669c",
+      "createdAt": "2026-07-28T03:22:28.000Z",
+      "updatedAt": "2026-07-28T03:22:28.000Z",
+      "uid": "35240-1170871d-2642-4edc-b014-9b546c9c669c"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

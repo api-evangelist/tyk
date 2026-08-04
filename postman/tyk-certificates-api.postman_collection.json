@@ -1,0 +1,1996 @@
+{
+  "info": {
+    "_postman_id": "a01fc874-9dc1-4850-9e08-c1e01cd29717",
+    "name": "Tyk Dashboard Admin Additional Permissions Certificates API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:36.000Z",
+    "updatedAt": "2026-07-28T03:21:36.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a01fc874-9dc1-4850-9e08-c1e01cd29717"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "certs",
+          "item": [
+            {
+              "name": "{certId}",
+              "item": [
+                {
+                  "name": "Delete Certificate.",
+                  "id": "424f6786-8d8c-4025-bebe-19a7312986aa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs/:certId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs",
+                        ":certId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "fe3d06ae-9b98-48f9-9702-3a80010676b4",
+                          "key": "certId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the certificate you want to delete."
+                        }
+                      ]
+                    },
+                    "description": "Delete certificate by their ID."
+                  },
+                  "response": [
+                    {
+                      "id": "557efd77-bce2-4567-90ce-f9080efd63e2",
+                      "name": "Certs deleted.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-557efd77-bce2-4567-90ce-f9080efd63e2"
+                    },
+                    {
+                      "id": "e3ed7129-c7f2-4c4d-914d-ee6c034451d5",
+                      "name": "Trying to delete certs you don't own.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-e3ed7129-c7f2-4c4d-914d-ee6c034451d5"
+                    },
+                    {
+                      "id": "2ca6e18e-d218-4d9c-afb5-f17dbdab736f",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-2ca6e18e-d218-4d9c-afb5-f17dbdab736f"
+                    },
+                    {
+                      "id": "d0d8425a-c183-4cba-8396-5f3871b53dbc",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-d0d8425a-c183-4cba-8396-5f3871b53dbc"
+                    },
+                    {
+                      "id": "7ba2135b-5bc3-4f4f-9328-51cd65ac9157",
+                      "name": "Failed to delete certs.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-7ba2135b-5bc3-4f4f-9328-51cd65ac9157"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-424f6786-8d8c-4025-bebe-19a7312986aa"
+                },
+                {
+                  "name": "Get single certificate with ID.",
+                  "id": "e9b5e40a-9a4b-4d57-806c-96a00ef5ebbe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs/:certId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs",
+                        ":certId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "58d3c66f-230b-45d9-ac66-86edffbd35e7",
+                          "key": "certId",
+                          "value": "<string>",
+                          "description": "(Required) ID of the certificate you want to fetch."
+                        }
+                      ]
+                    },
+                    "description": "Get a single certificate details with the certificate's ID."
+                  },
+                  "response": [
+                    {
+                      "id": "a06f1af2-6b69-4ded-9990-86768f47ba52",
+                      "name": "Certificates fetched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"dns_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fingerprint\": \"<string>\",\n  \"has_private\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_ca\": \"<boolean>\",\n  \"issuer\": {},\n  \"not_after\": \"<dateTime>\",\n  \"not_before\": \"<dateTime>\",\n  \"subject\": {}\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-a06f1af2-6b69-4ded-9990-86768f47ba52"
+                    },
+                    {
+                      "id": "515f53f1-dd08-475b-959e-2a88acd79049",
+                      "name": "Trying to fetch certs you don't own.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-515f53f1-dd08-475b-959e-2a88acd79049"
+                    },
+                    {
+                      "id": "2a1c7bd8-8462-46b9-8e87-1fdaaeb04e57",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-2a1c7bd8-8462-46b9-8e87-1fdaaeb04e57"
+                    },
+                    {
+                      "id": "93f81a1f-4e9e-4f9c-8404-5ca7cd4c829c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-93f81a1f-4e9e-4f9c-8404-5ca7cd4c829c"
+                    },
+                    {
+                      "id": "e1957ad9-8c98-4e93-afce-5a1f2a3118f9",
+                      "name": "Failed to fetch certs.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-e1957ad9-8c98-4e93-afce-5a1f2a3118f9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-e9b5e40a-9a4b-4d57-806c-96a00ef5ebbe"
+                }
+              ],
+              "id": "8b93f300-d386-46e6-b714-b8ca04aefc0c",
+              "createdAt": "2026-07-28T03:21:37.000Z",
+              "updatedAt": "2026-07-28T03:21:37.000Z",
+              "uid": "35240-8b93f300-d386-46e6-b714-b8ca04aefc0c"
+            },
+            {
+              "name": "dependencies",
+              "item": [
+                {
+                  "name": "{certId}",
+                  "item": [
+                    {
+                      "name": "Delete Certificate dependencies.",
+                      "id": "d290bcb3-ac72-4d34-821d-15e8af418f4c",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "dependencies",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "d5ff080f-2d97-4730-9f67-466c9fa3033d",
+                              "key": "certId",
+                              "value": "<string>",
+                              "description": "(Required) ID of the certificate you want to delete dependencies for."
+                            }
+                          ]
+                        },
+                        "description": "This endpoint will remove the certificates from any APIs that contains it as an upstream certificates or as a client certificate. It will also remove any key that uses this certificate."
+                      },
+                      "response": [
+                        {
+                          "id": "ed4ba5d3-2a1b-46ea-92c0-62e05b314a18",
+                          "name": "Dependencies deleted.",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-ed4ba5d3-2a1b-46ea-92c0-62e05b314a18"
+                        },
+                        {
+                          "id": "adc2c98d-b178-410d-9eee-6d79a9221b18",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-adc2c98d-b178-410d-9eee-6d79a9221b18"
+                        },
+                        {
+                          "id": "55189edb-bd08-4eaf-b9d9-14200391c0ab",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "DELETE",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-55189edb-bd08-4eaf-b9d9-14200391c0ab"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-d290bcb3-ac72-4d34-821d-15e8af418f4c"
+                    },
+                    {
+                      "name": "Get Certificate Dependencies.",
+                      "id": "165291fd-2381-4f4a-8359-fc745c9a2f33",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "dependencies",
+                            ":certId"
+                          ],
+                          "variable": [
+                            {
+                              "id": "dc419836-790c-4674-b615-807ed29d15c8",
+                              "key": "certId",
+                              "value": "<string>",
+                              "description": "(Required) ID of the certificate you want to fetch dependencies for."
+                            }
+                          ]
+                        },
+                        "description": "This will return the API IDs and API names of all APIs that uses this certificates as either upstream certificates or as client certificates."
+                      },
+                      "response": [
+                        {
+                          "id": "1dee17ff-0087-44dd-8faf-0137c1977a90",
+                          "name": "Dependencies fetched.",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "OK",
+                          "code": 200,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"certID\": \"<string>\",\n  \"client_cert_api_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"client_cert_apis\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"key_cert\": \"<string>\",\n  \"upstream_cert_api_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"upstream_cert_apis\": [\n    \"<string>\",\n    \"<string>\"\n  ]\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-1dee17ff-0087-44dd-8faf-0137c1977a90"
+                        },
+                        {
+                          "id": "8c1008ae-22e5-4eb1-a023-f560946dcd3a",
+                          "name": "Unauthorized",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-8c1008ae-22e5-4eb1-a023-f560946dcd3a"
+                        },
+                        {
+                          "id": "4548ba31-525c-4878-80ca-618eeb1aa1e6",
+                          "name": "Forbidden",
+                          "originalRequest": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: apikey",
+                                "key": "Admin-Auth",
+                                "value": "<API Key>"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/api/certs/dependencies/:certId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "api",
+                                "certs",
+                                "dependencies",
+                                ":certId"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "certId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Forbidden",
+                          "code": 403,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                          "createdAt": "2026-07-28T03:21:37.000Z",
+                          "updatedAt": "2026-07-28T03:21:37.000Z",
+                          "uid": "35240-4548ba31-525c-4878-80ca-618eeb1aa1e6"
+                        }
+                      ],
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-165291fd-2381-4f4a-8359-fc745c9a2f33"
+                    }
+                  ],
+                  "id": "90e99c0b-8e61-4e97-864f-12a84bd949d3",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-90e99c0b-8e61-4e97-864f-12a84bd949d3"
+                }
+              ],
+              "id": "ec0ddcf6-1851-454a-92f4-bb5b82fac921",
+              "createdAt": "2026-07-28T03:21:37.000Z",
+              "updatedAt": "2026-07-28T03:21:37.000Z",
+              "uid": "35240-ec0ddcf6-1851-454a-92f4-bb5b82fac921"
+            },
+            {
+              "name": "details",
+              "item": [
+                {
+                  "name": "List all certificates details.",
+                  "id": "9341babf-5d02-40a3-b21e-9b7df6c12bfe",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs",
+                        "details"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        }
+                      ]
+                    },
+                    "description": "Return a list that contains certificates and their full details."
+                  },
+                  "response": [
+                    {
+                      "id": "3c5e4989-af32-4a00-b7fe-6e6569fd0134",
+                      "name": "Fetched certificates.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"certificates\": [\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fingerprint\": \"<string>\",\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer\": {},\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject\": {}\n    },\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"fingerprint\": \"<string>\",\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer\": {},\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject\": {}\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-3c5e4989-af32-4a00-b7fe-6e6569fd0134"
+                    },
+                    {
+                      "id": "c2e0d217-ad08-42c3-b8f2-a0c0e68ee9c7",
+                      "name": "Could not connect to gateway.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-c2e0d217-ad08-42c3-b8f2-a0c0e68ee9c7"
+                    },
+                    {
+                      "id": "28442b9a-8fc8-4ee3-9248-a9c50a75a5fd",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-28442b9a-8fc8-4ee3-9248-a9c50a75a5fd"
+                    },
+                    {
+                      "id": "fd2c659a-139f-45d2-a0b5-8564650a2933",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-fd2c659a-139f-45d2-a0b5-8564650a2933"
+                    },
+                    {
+                      "id": "8a9f3ae5-a052-4da7-b783-4f0081c5db06",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/certs/details?p=<integer>",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "certs",
+                            "details"
+                          ],
+                          "query": [
+                            {
+                              "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                              "key": "p",
+                              "value": "<integer>"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:37.000Z",
+                      "updatedAt": "2026-07-28T03:21:37.000Z",
+                      "uid": "35240-8a9f3ae5-a052-4da7-b783-4f0081c5db06"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-9341babf-5d02-40a3-b21e-9b7df6c12bfe"
+                }
+              ],
+              "id": "e0249d6c-3022-4a5c-825e-90aedef5a4d1",
+              "createdAt": "2026-07-28T03:21:37.000Z",
+              "updatedAt": "2026-07-28T03:21:37.000Z",
+              "uid": "35240-e0249d6c-3022-4a5c-825e-90aedef5a4d1"
+            },
+            {
+              "name": "List Certificates.",
+              "id": "86675ee2-9f75-47fc-b475-7663bffd1f21",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "certs"
+                  ],
+                  "query": [
+                    {
+                      "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                      "key": "p",
+                      "value": "<integer>"
+                    },
+                    {
+                      "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                      "key": "mode",
+                      "value": "detailed"
+                    }
+                  ]
+                },
+                "description": "Return list of certificates. If you send the mode query parameter with the value `detailed` the certificates returned will have more information (Will contains all certs basic details). To retrieve a list with complete certificate details use [this endpoint](#operation/listDetailedCertificates). If the mode query parameter is omitted or is empty this endpoint will only return the certificates IDs. The list of certificates returned is paginated."
+              },
+              "response": [
+                {
+                  "id": "681b3e89-3685-408a-b188-1b89607e6b65",
+                  "name": "OK",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"cert_basics\": [\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer_cn\": \"<string>\",\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject_cn\": \"<string>\"\n    },\n    {\n      \"dns_names\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"has_private\": \"<boolean>\",\n      \"id\": \"<string>\",\n      \"is_ca\": \"<boolean>\",\n      \"issuer_cn\": \"<string>\",\n      \"not_after\": \"<dateTime>\",\n      \"not_before\": \"<dateTime>\",\n      \"subject_cn\": \"<string>\"\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-681b3e89-3685-408a-b188-1b89607e6b65"
+                },
+                {
+                  "id": "124efcad-b363-4b61-8b4c-cf138ffcec36",
+                  "name": "Unable to retrieve certificates.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-124efcad-b363-4b61-8b4c-cf138ffcec36"
+                },
+                {
+                  "id": "b1309df4-2bab-4d75-8a91-0d2d50104023",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-b1309df4-2bab-4d75-8a91-0d2d50104023"
+                },
+                {
+                  "id": "62d8a496-4355-41fa-9596-d1c314a60b98",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-62d8a496-4355-41fa-9596-d1c314a60b98"
+                },
+                {
+                  "id": "98342754-bead-4b9b-8ab1-1918aa14112e",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs?p=<integer>&mode=detailed",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ],
+                      "query": [
+                        {
+                          "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items.",
+                          "key": "p",
+                          "value": "<integer>"
+                        },
+                        {
+                          "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates).",
+                          "key": "mode",
+                          "value": "detailed"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-98342754-bead-4b9b-8ab1-1918aa14112e"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:37.000Z",
+              "updatedAt": "2026-07-28T03:21:37.000Z",
+              "uid": "35240-86675ee2-9f75-47fc-b475-7663bffd1f21"
+            },
+            {
+              "name": "Create a certificate in Tyk org cert store.",
+              "id": "b04eb2e0-0230-41ee-8126-61dc87ef6f17",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "multipart/form-data"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": "(Required) ",
+                      "key": "file",
+                      "type": "file",
+                      "value": null
+                    }
+                  ]
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/certs",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "certs"
+                  ]
+                },
+                "description": "Upload new SSL certificate in PEM format (you should upload as a file). If the certificate should have a private key, convert both the public certificate and the associated private key to PEM format and concatenate them to a single file. You can only upload one certificate at a time."
+              },
+              "response": [
+                {
+                  "id": "bef635ac-ba16-46af-a92b-42d38b0cdb41",
+                  "name": "Certificates created.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"id\": \"<string>\",\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-bef635ac-ba16-46af-a92b-42d38b0cdb41"
+                },
+                {
+                  "id": "a5e4f159-98b7-47b9-998c-2e11958e43fd",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-a5e4f159-98b7-47b9-998c-2e11958e43fd"
+                },
+                {
+                  "id": "3e6c981a-24b7-4ea5-9696-89812552a904",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-3e6c981a-24b7-4ea5-9696-89812552a904"
+                },
+                {
+                  "id": "eb79995a-0bf0-45f3-8276-c8231f35b88b",
+                  "name": "unable to create certs",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ]
+                    }
+                  },
+                  "status": "Not Found",
+                  "code": 404,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-eb79995a-0bf0-45f3-8276-c8231f35b88b"
+                },
+                {
+                  "id": "6832d18c-faa1-47f8-9c1b-b036e6172a79",
+                  "name": "Sending data without the certs file.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "multipart/form-data"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "formdata",
+                      "formdata": [
+                        {
+                          "description": "(Required) ",
+                          "key": "file",
+                          "type": "file"
+                        }
+                      ]
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/certs",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "certs"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:37.000Z",
+                  "updatedAt": "2026-07-28T03:21:37.000Z",
+                  "uid": "35240-6832d18c-faa1-47f8-9c1b-b036e6172a79"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:37.000Z",
+              "updatedAt": "2026-07-28T03:21:37.000Z",
+              "uid": "35240-b04eb2e0-0230-41ee-8126-61dc87ef6f17"
+            }
+          ],
+          "id": "f479bc9a-90fa-4211-947a-f780eb047730",
+          "createdAt": "2026-07-28T03:21:37.000Z",
+          "updatedAt": "2026-07-28T03:21:37.000Z",
+          "uid": "35240-f479bc9a-90fa-4211-947a-f780eb047730"
+        }
+      ],
+      "id": "37527691-eac4-4fd6-bd3d-3129a89c0170",
+      "createdAt": "2026-07-28T03:21:37.000Z",
+      "updatedAt": "2026-07-28T03:21:37.000Z",
+      "uid": "35240-37527691-eac4-4fd6-bd3d-3129a89c0170"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

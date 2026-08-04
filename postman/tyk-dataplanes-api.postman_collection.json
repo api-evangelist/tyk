@@ -1,0 +1,179 @@
+{
+  "info": {
+    "_postman_id": "c643db82-6b8f-44f5-9613-d53751d277bc",
+    "name": "Tyk Dashboard Admin Additional Permissions Dataplanes API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:41.000Z",
+    "updatedAt": "2026-07-28T03:21:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-c643db82-6b8f-44f5-9613-d53751d277bc"
+  },
+  "item": [
+    {
+      "name": "dataplanes",
+      "item": [
+        {
+          "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+          "id": "85b80d69-83c6-4f0b-bf6d-23389a270528",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "x-tyk-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/dataplanes",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "dataplanes"
+              ]
+            },
+            "description": "Provides a list of all the data plane nodes connected to MDCB. Data plane nodes are Tyk Gateways that make your APIs available to your consumers. MDCB offers centralised management of your data plane nodes. This endpoint offers metadata and status for all connected data plane nodes, allowing for monitoring and troubleshooting."
+          },
+          "response": [
+            {
+              "id": "68c04df8-db45-4119-ab06-4620ff852e52",
+              "name": "Successful retrieval of the connected data planes.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataplanes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataplanes"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"suntb7\": [\n    {\n      \"node_id\": \"<string>\",\n      \"api_key\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"node_version\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"<string>\",\n          \"componentType\": \"<string>\",\n          \"time\": \"<dateTime>\"\n        },\n        \"rpc\": {\n          \"status\": \"<string>\",\n          \"componentType\": \"<string>\",\n          \"time\": \"<dateTime>\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": \"<integer>\",\n        \"policies_count\": \"<integer>\"\n      },\n      \"host_details\": {\n        \"Hostname\": \"<string>\",\n        \"PID\": \"<integer>\",\n        \"Address\": \"<string>\"\n      }\n    },\n    {\n      \"node_id\": \"<string>\",\n      \"api_key\": \"<string>\",\n      \"group_id\": \"<string>\",\n      \"node_version\": \"<string>\",\n      \"ttl\": \"<integer>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"<string>\",\n          \"componentType\": \"<string>\",\n          \"time\": \"<dateTime>\"\n        },\n        \"rpc\": {\n          \"status\": \"<string>\",\n          \"componentType\": \"<string>\",\n          \"time\": \"<dateTime>\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": \"<integer>\",\n        \"policies_count\": \"<integer>\"\n      },\n      \"host_details\": {\n        \"Hostname\": \"<string>\",\n        \"PID\": \"<integer>\",\n        \"Address\": \"<string>\"\n      }\n    }\n  ]\n}",
+              "createdAt": "2026-07-28T03:21:42.000Z",
+              "updatedAt": "2026-07-28T03:21:42.000Z",
+              "uid": "35240-68c04df8-db45-4119-ab06-4620ff852e52"
+            },
+            {
+              "id": "f8b9d8cc-5304-42fe-a274-3f9f68706d10",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/dataplanes",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "dataplanes"
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"error\": \"<string>\"\n}",
+              "createdAt": "2026-07-28T03:21:42.000Z",
+              "updatedAt": "2026-07-28T03:21:42.000Z",
+              "uid": "35240-f8b9d8cc-5304-42fe-a274-3f9f68706d10"
+            }
+          ],
+          "createdAt": "2026-07-28T03:21:42.000Z",
+          "updatedAt": "2026-07-28T03:21:42.000Z",
+          "uid": "35240-85b80d69-83c6-4f0b-bf6d-23389a270528"
+        }
+      ],
+      "id": "1b2019be-bd55-4e18-809a-57317d19496f",
+      "createdAt": "2026-07-28T03:21:42.000Z",
+      "updatedAt": "2026-07-28T03:21:42.000Z",
+      "uid": "35240-1b2019be-bd55-4e18-809a-57317d19496f"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

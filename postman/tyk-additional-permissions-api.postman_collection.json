@@ -1,0 +1,613 @@
+{
+  "info": {
+    "_postman_id": "23370946-d324-4436-9164-dbaace2c076c",
+    "name": "Tyk Dashboard Admin Additional Permissions API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:26.000Z",
+    "updatedAt": "2026-07-28T03:21:26.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-23370946-d324-4436-9164-dbaace2c076c"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "org",
+          "item": [
+            {
+              "name": "permissions",
+              "item": [
+                {
+                  "name": "List additional permissions.",
+                  "id": "d6c0a7dc-5ee1-463c-b408-98ace3c82c03",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/org/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "org",
+                        "permissions"
+                      ]
+                    },
+                    "description": "This API returns by default the initial set of additional permissions defined in your Tyk Dashboard configuration, under `security.additional_permissions`. Once you update the permissions via the API, they will be stored at organisation level."
+                  },
+                  "response": [
+                    {
+                      "id": "2701a104-7cf7-47d7-b67b-752d112553f2",
+                      "name": "Additional Permissions retrieved successfully.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-2701a104-7cf7-47d7-b67b-752d112553f2"
+                    },
+                    {
+                      "id": "e55cb131-aa55-4416-90c6-7f99aa9b1daf",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-e55cb131-aa55-4416-90c6-7f99aa9b1daf"
+                    },
+                    {
+                      "id": "83c04f0f-bf17-4924-8d2f-7149de401094",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-83c04f0f-bf17-4924-8d2f-7149de401094"
+                    },
+                    {
+                      "id": "fdcecc42-c1bb-4704-8137-bfbf783f2d04",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-fdcecc42-c1bb-4704-8137-bfbf783f2d04"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:26.000Z",
+                  "updatedAt": "2026-07-28T03:21:26.000Z",
+                  "uid": "35240-d6c0a7dc-5ee1-463c-b408-98ace3c82c03"
+                },
+                {
+                  "name": "Add/Delete/Update additional permission.",
+                  "id": "8fb36893-ec46-40d8-97f2-cdb4dbfdad1c",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/org/permissions",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "org",
+                        "permissions"
+                      ]
+                    },
+                    "description": "Whenever you want to add/update/delete an additional permission, just send back the updated list of permissions, through this PUT request to the API. For example if you initially had two additional permissions e.g ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager}}``` to add a third permission called `custom_permission` you would append it to the original permission list and your request body would be: ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager, custom_permission: Custom Permission}}```."
+                  },
+                  "response": [
+                    {
+                      "id": "157a2ece-d9d0-4538-b328-f53bf0b9e082",
+                      "name": "Additional Permissions updated successfully.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-157a2ece-d9d0-4538-b328-f53bf0b9e082"
+                    },
+                    {
+                      "id": "38b57a47-82d5-4db4-9b04-2cf62e25b1b4",
+                      "name": "Empty request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-38b57a47-82d5-4db4-9b04-2cf62e25b1b4"
+                    },
+                    {
+                      "id": "1074124f-37ab-4941-9f20-1c0e2e7884b9",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-1074124f-37ab-4941-9f20-1c0e2e7884b9"
+                    },
+                    {
+                      "id": "6d733852-d8f0-42e9-84eb-b5e1de62ded2",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-6d733852-d8f0-42e9-84eb-b5e1de62ded2"
+                    },
+                    {
+                      "id": "726bbffd-00f2-4cc6-9afb-4958c90cea75",
+                      "name": "Invalid request body or failed to save permission.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"additional_permissions\": {\n    \"veniamf\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/permissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "permissions"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:26.000Z",
+                      "updatedAt": "2026-07-28T03:21:26.000Z",
+                      "uid": "35240-726bbffd-00f2-4cc6-9afb-4958c90cea75"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:26.000Z",
+                  "updatedAt": "2026-07-28T03:21:26.000Z",
+                  "uid": "35240-8fb36893-ec46-40d8-97f2-cdb4dbfdad1c"
+                }
+              ],
+              "id": "b8938103-7e1d-44f4-b23c-895dbd6aec4d",
+              "createdAt": "2026-07-28T03:21:26.000Z",
+              "updatedAt": "2026-07-28T03:21:26.000Z",
+              "uid": "35240-b8938103-7e1d-44f4-b23c-895dbd6aec4d"
+            }
+          ],
+          "id": "7d4e492b-b306-4fb9-80e7-60cd2a0157d2",
+          "createdAt": "2026-07-28T03:21:26.000Z",
+          "updatedAt": "2026-07-28T03:21:26.000Z",
+          "uid": "35240-7d4e492b-b306-4fb9-80e7-60cd2a0157d2"
+        }
+      ],
+      "id": "af59a692-4e89-426f-9c9c-c4372f555028",
+      "createdAt": "2026-07-28T03:21:26.000Z",
+      "updatedAt": "2026-07-28T03:21:26.000Z",
+      "uid": "35240-af59a692-4e89-426f-9c9c-c4372f555028"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

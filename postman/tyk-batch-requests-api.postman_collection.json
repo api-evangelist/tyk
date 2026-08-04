@@ -1,0 +1,311 @@
+{
+  "info": {
+    "_postman_id": "7ebb7ca2-580a-491c-bbfa-93ab3eda391f",
+    "name": "Tyk Dashboard Admin Additional Permissions Batch Requests API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:34.000Z",
+    "updatedAt": "2026-07-28T03:21:34.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-7ebb7ca2-580a-491c-bbfa-93ab3eda391f"
+  },
+  "item": [
+    {
+      "name": "{listen_path}",
+      "item": [
+        {
+          "name": "tyk",
+          "item": [
+            {
+              "name": "batch",
+              "item": [
+                {
+                  "name": "Tyk Run Batch Request.",
+                  "id": "932a770d-1ef4-432b-b47c-32ed7251c978",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"requests\": [\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"quis_6a3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    },\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"sed_1\": \"<string>\",\n        \"sed_3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    }\n  ],\n  \"suppress_parallel_execution\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/:listen_path/tyk/batch",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        ":listen_path",
+                        "tyk",
+                        "batch"
+                      ],
+                      "variable": [
+                        {
+                          "id": "9b9cf5a8-110c-4d30-9c8f-f3f57c358cfb",
+                          "key": "listen_path",
+                          "value": "<string>",
+                          "description": "(Required) API listen path"
+                        }
+                      ]
+                    },
+                    "description": "Endpoint to run batch request."
+                  },
+                  "response": [
+                    {
+                      "id": "dc6ab225-5a5e-43fd-a484-676af4a83666",
+                      "name": "Success.",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requests\": [\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"quis_6a3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    },\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"sed_1\": \"<string>\",\n        \"sed_3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    }\n  ],\n  \"suppress_parallel_execution\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:listen_path/tyk/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":listen_path",
+                            "tyk",
+                            "batch"
+                          ],
+                          "variable": [
+                            {
+                              "key": "listen_path"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "[\n  {\n    \"body\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"headers\": {\n      \"aliqua_6\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cupidatatf\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relative_url\": \"<string>\"\n  },\n  {\n    \"body\": \"<string>\",\n    \"code\": \"<integer>\",\n    \"headers\": {\n      \"voluptate_d25\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"ipsum4\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"relative_url\": \"<string>\"\n  }\n]",
+                      "createdAt": "2026-07-28T03:21:35.000Z",
+                      "updatedAt": "2026-07-28T03:21:35.000Z",
+                      "uid": "35240-dc6ab225-5a5e-43fd-a484-676af4a83666"
+                    },
+                    {
+                      "id": "d5d1011f-5222-4513-81e1-6b134ec3bda5",
+                      "name": "Bad Request",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requests\": [\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"quis_6a3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    },\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"sed_1\": \"<string>\",\n        \"sed_3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    }\n  ],\n  \"suppress_parallel_execution\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:listen_path/tyk/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":listen_path",
+                            "tyk",
+                            "batch"
+                          ],
+                          "variable": [
+                            {
+                              "key": "listen_path"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:35.000Z",
+                      "updatedAt": "2026-07-28T03:21:35.000Z",
+                      "uid": "35240-d5d1011f-5222-4513-81e1-6b134ec3bda5"
+                    },
+                    {
+                      "id": "c5ad431e-51bb-40f3-a232-59fd85298fc8",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"requests\": [\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"quis_6a3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    },\n    {\n      \"body\": \"<string>\",\n      \"headers\": {\n        \"sed_1\": \"<string>\",\n        \"sed_3\": \"<string>\"\n      },\n      \"method\": \"<string>\",\n      \"relative_url\": \"<string>\"\n    }\n  ],\n  \"suppress_parallel_execution\": \"<boolean>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/:listen_path/tyk/batch",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            ":listen_path",
+                            "tyk",
+                            "batch"
+                          ],
+                          "variable": [
+                            {
+                              "key": "listen_path"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:35.000Z",
+                      "updatedAt": "2026-07-28T03:21:35.000Z",
+                      "uid": "35240-c5ad431e-51bb-40f3-a232-59fd85298fc8"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:35.000Z",
+                  "updatedAt": "2026-07-28T03:21:35.000Z",
+                  "uid": "35240-932a770d-1ef4-432b-b47c-32ed7251c978"
+                }
+              ],
+              "id": "1339dee7-08e4-4dde-a3d1-6e052c727859",
+              "createdAt": "2026-07-28T03:21:35.000Z",
+              "updatedAt": "2026-07-28T03:21:35.000Z",
+              "uid": "35240-1339dee7-08e4-4dde-a3d1-6e052c727859"
+            }
+          ],
+          "id": "2d5d4f69-6d8a-4f30-825a-20c7df1ffbd1",
+          "createdAt": "2026-07-28T03:21:35.000Z",
+          "updatedAt": "2026-07-28T03:21:35.000Z",
+          "uid": "35240-2d5d4f69-6d8a-4f30-825a-20c7df1ffbd1"
+        }
+      ],
+      "id": "be0fdc8f-7ead-4cdc-80bf-5a8da00cee19",
+      "createdAt": "2026-07-28T03:21:35.000Z",
+      "updatedAt": "2026-07-28T03:21:35.000Z",
+      "uid": "35240-be0fdc8f-7ead-4cdc-80bf-5a8da00cee19"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

@@ -1,0 +1,1036 @@
+{
+  "info": {
+    "_postman_id": "90b8b680-c9b2-4c1e-aedb-9a639336a250",
+    "name": "Tyk Dashboard Admin Additional Permissions Analytics API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:27.000Z",
+    "updatedAt": "2026-07-28T03:21:27.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-90b8b680-c9b2-4c1e-aedb-9a639336a250"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "activity",
+          "item": [
+            {
+              "name": "keys",
+              "item": [
+                {
+                  "name": "{keyHash}",
+                  "item": [
+                    {
+                      "name": "{startDay}",
+                      "item": [
+                        {
+                          "name": "{startMonth}",
+                          "item": [
+                            {
+                              "name": "{startYear}",
+                              "item": [
+                                {
+                                  "name": "{EndDay}",
+                                  "item": [
+                                    {
+                                      "name": "{EndMonth}",
+                                      "item": [
+                                        {
+                                          "name": "{EndYear}",
+                                          "item": [
+                                            {
+                                              "name": "Analytics of API Key.",
+                                              "id": "c914d322-96f8-45f6-8a16-b3af9877a45c",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "activity",
+                                                    "keys",
+                                                    ":keyHash",
+                                                    ":startDay",
+                                                    ":startMonth",
+                                                    ":startYear",
+                                                    ":EndDay",
+                                                    ":EndMonth",
+                                                    ":EndYear"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "0b716b50-8a18-4d43-9d4e-f3f08311073a",
+                                                      "key": "keyHash",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Hash of your API key."
+                                                    },
+                                                    {
+                                                      "id": "f326d31e-5f08-4dc0-815f-afc3878e782d",
+                                                      "key": "startDay",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Day to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "19c217be-3d2a-4406-9f97-a24bce2b1b4c",
+                                                      "key": "startMonth",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Month to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "621abaae-13ce-4e9a-aab2-264adc662d1c",
+                                                      "key": "startYear",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Year to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "8d648ac5-0196-4ceb-9c2b-49d1dddf088f",
+                                                      "key": "EndDay",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End date of analytics to query."
+                                                    },
+                                                    {
+                                                      "id": "f664a808-e942-41a4-a8f3-0292eedc5910",
+                                                      "key": "EndMonth",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End month of analytics to query."
+                                                    },
+                                                    {
+                                                      "id": "b5cf0ca0-4dc2-4287-aaee-7bcb44949427",
+                                                      "key": "EndYear",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End year of analytics to query."
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "It returns analytics of the endpoints of all APIs called a key between start and end date."
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "b699a4e3-0af1-4f24-b5b8-ebf56db68f20",
+                                                  "name": "Returns analytics of all endpoints called using the given key between the given time range.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "keys",
+                                                        ":keyHash",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "keyHash"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"data\": [\n    {\n      \"error\": \"<integer>\",\n      \"hits\": \"<integer>\",\n      \"id\": {\n        \"alias\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"code\": \"<integer>\",\n        \"day\": \"<integer>\",\n        \"hour\": \"<integer>\",\n        \"iso_country\": \"<string>\",\n        \"key\": \"<string>\",\n        \"month\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"queries\": {\n          \"Duisd1\": \"<integer>\",\n          \"sunt44d\": \"<integer>\",\n          \"in09_\": \"<integer>\",\n          \"ut_0f\": \"<integer>\"\n        },\n        \"url\": \"<string>\",\n        \"year\": \"<integer>\"\n      },\n      \"last_hit\": \"<dateTime>\",\n      \"latency\": \"<double>\",\n      \"max_latency\": \"<long>\",\n      \"max_upstream_latency\": \"<long>\",\n      \"min_latency\": \"<long>\",\n      \"min_upstream_latency\": \"<long>\",\n      \"request_time\": \"<double>\",\n      \"success\": \"<integer>\",\n      \"upstream_latency\": \"<double>\"\n    },\n    {\n      \"error\": \"<integer>\",\n      \"hits\": \"<integer>\",\n      \"id\": {\n        \"alias\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"code\": \"<integer>\",\n        \"day\": \"<integer>\",\n        \"hour\": \"<integer>\",\n        \"iso_country\": \"<string>\",\n        \"key\": \"<string>\",\n        \"month\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"queries\": {\n          \"nostrude\": \"<integer>\"\n        },\n        \"url\": \"<string>\",\n        \"year\": \"<integer>\"\n      },\n      \"last_hit\": \"<dateTime>\",\n      \"latency\": \"<double>\",\n      \"max_latency\": \"<long>\",\n      \"max_upstream_latency\": \"<long>\",\n      \"min_latency\": \"<long>\",\n      \"min_upstream_latency\": \"<long>\",\n      \"request_time\": \"<double>\",\n      \"success\": \"<integer>\",\n      \"upstream_latency\": \"<double>\"\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-b699a4e3-0af1-4f24-b5b8-ebf56db68f20"
+                                                },
+                                                {
+                                                  "id": "fa7decb5-3930-44e7-8ccb-9255de16bf17",
+                                                  "name": "Bad Request",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "keys",
+                                                        ":keyHash",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "keyHash"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Bad Request",
+                                                  "code": 400,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-fa7decb5-3930-44e7-8ccb-9255de16bf17"
+                                                },
+                                                {
+                                                  "id": "f8f6b45e-27ad-4c14-8c74-d0c0b036ac0d",
+                                                  "name": "Unauthorized",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "keys",
+                                                        ":keyHash",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "keyHash"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Unauthorized",
+                                                  "code": 401,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-f8f6b45e-27ad-4c14-8c74-d0c0b036ac0d"
+                                                },
+                                                {
+                                                  "id": "2c57eb5c-7707-4722-a105-78458db81b3a",
+                                                  "name": "Forbidden",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "keys",
+                                                        ":keyHash",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "keyHash"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Forbidden",
+                                                  "code": 403,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-2c57eb5c-7707-4722-a105-78458db81b3a"
+                                                },
+                                                {
+                                                  "id": "b9f8b48c-70c1-4c49-b433-9d710716194a",
+                                                  "name": "Internal server error.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "keys",
+                                                        ":keyHash",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "keyHash"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Internal Server Error",
+                                                  "code": 500,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-b9f8b48c-70c1-4c49-b433-9d710716194a"
+                                                }
+                                              ],
+                                              "createdAt": "2026-07-28T03:21:27.000Z",
+                                              "updatedAt": "2026-07-28T03:21:27.000Z",
+                                              "uid": "35240-c914d322-96f8-45f6-8a16-b3af9877a45c"
+                                            }
+                                          ],
+                                          "id": "4479f698-d1cc-4305-92c4-1b38f01cf890",
+                                          "createdAt": "2026-07-28T03:21:27.000Z",
+                                          "updatedAt": "2026-07-28T03:21:27.000Z",
+                                          "uid": "35240-4479f698-d1cc-4305-92c4-1b38f01cf890"
+                                        }
+                                      ],
+                                      "id": "14b15d7c-2fff-48e6-b103-f45db3ede1d2",
+                                      "createdAt": "2026-07-28T03:21:27.000Z",
+                                      "updatedAt": "2026-07-28T03:21:27.000Z",
+                                      "uid": "35240-14b15d7c-2fff-48e6-b103-f45db3ede1d2"
+                                    }
+                                  ],
+                                  "id": "3330985c-5424-4b6b-acd2-ce228e5f22d4",
+                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                  "uid": "35240-3330985c-5424-4b6b-acd2-ce228e5f22d4"
+                                }
+                              ],
+                              "id": "1242ad01-1b05-4d16-8834-bda4e9896bb0",
+                              "createdAt": "2026-07-28T03:21:27.000Z",
+                              "updatedAt": "2026-07-28T03:21:27.000Z",
+                              "uid": "35240-1242ad01-1b05-4d16-8834-bda4e9896bb0"
+                            }
+                          ],
+                          "id": "8adb98d5-d665-4d8f-bc5f-78c990c30403",
+                          "createdAt": "2026-07-28T03:21:27.000Z",
+                          "updatedAt": "2026-07-28T03:21:27.000Z",
+                          "uid": "35240-8adb98d5-d665-4d8f-bc5f-78c990c30403"
+                        }
+                      ],
+                      "id": "7eea1844-26a4-4003-9cc3-dc1775da3b04",
+                      "createdAt": "2026-07-28T03:21:27.000Z",
+                      "updatedAt": "2026-07-28T03:21:27.000Z",
+                      "uid": "35240-7eea1844-26a4-4003-9cc3-dc1775da3b04"
+                    }
+                  ],
+                  "id": "b65dd5f8-c809-44ea-81da-83ce10d1d19c",
+                  "createdAt": "2026-07-28T03:21:27.000Z",
+                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                  "uid": "35240-b65dd5f8-c809-44ea-81da-83ce10d1d19c"
+                }
+              ],
+              "id": "ec0035e7-8752-4e05-84d3-b9433b2ae05d",
+              "createdAt": "2026-07-28T03:21:27.000Z",
+              "updatedAt": "2026-07-28T03:21:27.000Z",
+              "uid": "35240-ec0035e7-8752-4e05-84d3-b9433b2ae05d"
+            },
+            {
+              "name": "oauthid",
+              "item": [
+                {
+                  "name": "{OAuthClientID}",
+                  "item": [
+                    {
+                      "name": "{startDay}",
+                      "item": [
+                        {
+                          "name": "{startMonth}",
+                          "item": [
+                            {
+                              "name": "{startYear}",
+                              "item": [
+                                {
+                                  "name": "{EndDay}",
+                                  "item": [
+                                    {
+                                      "name": "{EndMonth}",
+                                      "item": [
+                                        {
+                                          "name": "{EndYear}",
+                                          "item": [
+                                            {
+                                              "name": "Analytics of Oauth Client ID.",
+                                              "id": "92001a53-ddd5-4dd9-ac36-56ebaaf5f18f",
+                                              "protocolProfileBehavior": {
+                                                "disableBodyPruning": true
+                                              },
+                                              "request": {
+                                                "method": "GET",
+                                                "header": [
+                                                  {
+                                                    "key": "Accept",
+                                                    "value": "application/json"
+                                                  }
+                                                ],
+                                                "url": {
+                                                  "raw": "{{baseUrl}}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                  "host": [
+                                                    "{{baseUrl}}"
+                                                  ],
+                                                  "path": [
+                                                    "api",
+                                                    "activity",
+                                                    "oauthid",
+                                                    ":OAuthClientID",
+                                                    ":startDay",
+                                                    ":startMonth",
+                                                    ":startYear",
+                                                    ":EndDay",
+                                                    ":EndMonth",
+                                                    ":EndYear"
+                                                  ],
+                                                  "variable": [
+                                                    {
+                                                      "id": "e78dbbbe-ab32-4832-bb5b-392da9e89e50",
+                                                      "key": "OAuthClientID",
+                                                      "value": "<string>",
+                                                      "description": "(Required) OAuthClientID"
+                                                    },
+                                                    {
+                                                      "id": "da5b69b5-c9f8-4232-98ff-f3335b3fc26e",
+                                                      "key": "startDay",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Day to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "9118d7ba-03c4-417a-8252-22f008344d24",
+                                                      "key": "startMonth",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Month to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "8cd30b97-10e5-4d62-9e5d-73d2b4523998",
+                                                      "key": "startYear",
+                                                      "value": "<string>",
+                                                      "description": "(Required) Year to start querying the analytics from."
+                                                    },
+                                                    {
+                                                      "id": "ac3cd62b-a58e-4813-ba1c-d16a1d50e295",
+                                                      "key": "EndDay",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End date of analytics to query."
+                                                    },
+                                                    {
+                                                      "id": "1b765469-3447-4ca3-a339-31ff7adc941b",
+                                                      "key": "EndMonth",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End month of analytics to query."
+                                                    },
+                                                    {
+                                                      "id": "1522d688-f946-4aef-8480-187b7d6f52a7",
+                                                      "key": "EndYear",
+                                                      "value": "<string>",
+                                                      "description": "(Required) End year of analytics to query."
+                                                    }
+                                                  ]
+                                                },
+                                                "description": "Returns activity of all endpoints which used the given OAuth client between the given time range."
+                                              },
+                                              "response": [
+                                                {
+                                                  "id": "bd22e1df-df7f-4a2f-b633-9821d99c2f27",
+                                                  "name": "Fetched analytics successfully.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "oauthid",
+                                                        ":OAuthClientID",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "OAuthClientID"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "OK",
+                                                  "code": 200,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"data\": [\n    {\n      \"error\": \"<integer>\",\n      \"hits\": \"<integer>\",\n      \"id\": {\n        \"alias\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"code\": \"<integer>\",\n        \"day\": \"<integer>\",\n        \"hour\": \"<integer>\",\n        \"iso_country\": \"<string>\",\n        \"key\": \"<string>\",\n        \"month\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"queries\": {\n          \"Duisd1\": \"<integer>\",\n          \"sunt44d\": \"<integer>\",\n          \"in09_\": \"<integer>\",\n          \"ut_0f\": \"<integer>\"\n        },\n        \"url\": \"<string>\",\n        \"year\": \"<integer>\"\n      },\n      \"last_hit\": \"<dateTime>\",\n      \"latency\": \"<double>\",\n      \"max_latency\": \"<long>\",\n      \"max_upstream_latency\": \"<long>\",\n      \"min_latency\": \"<long>\",\n      \"min_upstream_latency\": \"<long>\",\n      \"request_time\": \"<double>\",\n      \"success\": \"<integer>\",\n      \"upstream_latency\": \"<double>\"\n    },\n    {\n      \"error\": \"<integer>\",\n      \"hits\": \"<integer>\",\n      \"id\": {\n        \"alias\": \"<string>\",\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"code\": \"<integer>\",\n        \"day\": \"<integer>\",\n        \"hour\": \"<integer>\",\n        \"iso_country\": \"<string>\",\n        \"key\": \"<string>\",\n        \"month\": \"<integer>\",\n        \"path\": \"<string>\",\n        \"queries\": {\n          \"nostrude\": \"<integer>\"\n        },\n        \"url\": \"<string>\",\n        \"year\": \"<integer>\"\n      },\n      \"last_hit\": \"<dateTime>\",\n      \"latency\": \"<double>\",\n      \"max_latency\": \"<long>\",\n      \"max_upstream_latency\": \"<long>\",\n      \"min_latency\": \"<long>\",\n      \"min_upstream_latency\": \"<long>\",\n      \"request_time\": \"<double>\",\n      \"success\": \"<integer>\",\n      \"upstream_latency\": \"<double>\"\n    }\n  ],\n  \"pages\": \"<integer>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-bd22e1df-df7f-4a2f-b633-9821d99c2f27"
+                                                },
+                                                {
+                                                  "id": "e3ad4dad-dbf6-405f-a587-e3e53221949c",
+                                                  "name": "Unauthorized",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "oauthid",
+                                                        ":OAuthClientID",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "OAuthClientID"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Unauthorized",
+                                                  "code": 401,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-e3ad4dad-dbf6-405f-a587-e3e53221949c"
+                                                },
+                                                {
+                                                  "id": "652f0e5a-a8ee-4466-a840-ff2f6d52c979",
+                                                  "name": "Forbidden",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "oauthid",
+                                                        ":OAuthClientID",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "OAuthClientID"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Forbidden",
+                                                  "code": 403,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-652f0e5a-a8ee-4466-a840-ff2f6d52c979"
+                                                },
+                                                {
+                                                  "id": "80f6a9db-a3af-40f5-9536-419690dc51e0",
+                                                  "name": "Internal server error.",
+                                                  "originalRequest": {
+                                                    "method": "GET",
+                                                    "header": [
+                                                      {
+                                                        "key": "Accept",
+                                                        "value": "application/json"
+                                                      },
+                                                      {
+                                                        "description": "Added as a part of security scheme: apikey",
+                                                        "key": "Admin-Auth",
+                                                        "value": "<API Key>"
+                                                      }
+                                                    ],
+                                                    "url": {
+                                                      "raw": "{{baseUrl}}/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+                                                      "host": [
+                                                        "{{baseUrl}}"
+                                                      ],
+                                                      "path": [
+                                                        "api",
+                                                        "activity",
+                                                        "oauthid",
+                                                        ":OAuthClientID",
+                                                        ":startDay",
+                                                        ":startMonth",
+                                                        ":startYear",
+                                                        ":EndDay",
+                                                        ":EndMonth",
+                                                        ":EndYear"
+                                                      ],
+                                                      "variable": [
+                                                        {
+                                                          "key": "OAuthClientID"
+                                                        },
+                                                        {
+                                                          "key": "startDay"
+                                                        },
+                                                        {
+                                                          "key": "startMonth"
+                                                        },
+                                                        {
+                                                          "key": "startYear"
+                                                        },
+                                                        {
+                                                          "key": "EndDay"
+                                                        },
+                                                        {
+                                                          "key": "EndMonth"
+                                                        },
+                                                        {
+                                                          "key": "EndYear"
+                                                        }
+                                                      ]
+                                                    }
+                                                  },
+                                                  "status": "Internal Server Error",
+                                                  "code": 500,
+                                                  "_postman_previewlanguage": "json",
+                                                  "header": [
+                                                    {
+                                                      "key": "Content-Type",
+                                                      "value": "application/json"
+                                                    }
+                                                  ],
+                                                  "cookie": [],
+                                                  "responseTime": null,
+                                                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                                  "uid": "35240-80f6a9db-a3af-40f5-9536-419690dc51e0"
+                                                }
+                                              ],
+                                              "createdAt": "2026-07-28T03:21:27.000Z",
+                                              "updatedAt": "2026-07-28T03:21:27.000Z",
+                                              "uid": "35240-92001a53-ddd5-4dd9-ac36-56ebaaf5f18f"
+                                            }
+                                          ],
+                                          "id": "3d1dc0ff-475c-4aee-a9a1-e751b2b8842d",
+                                          "createdAt": "2026-07-28T03:21:27.000Z",
+                                          "updatedAt": "2026-07-28T03:21:27.000Z",
+                                          "uid": "35240-3d1dc0ff-475c-4aee-a9a1-e751b2b8842d"
+                                        }
+                                      ],
+                                      "id": "82b393a6-5061-49d5-b059-222a81b9e858",
+                                      "createdAt": "2026-07-28T03:21:27.000Z",
+                                      "updatedAt": "2026-07-28T03:21:27.000Z",
+                                      "uid": "35240-82b393a6-5061-49d5-b059-222a81b9e858"
+                                    }
+                                  ],
+                                  "id": "cbd6a45f-aa0c-4e08-9625-f74ee6e7fb20",
+                                  "createdAt": "2026-07-28T03:21:27.000Z",
+                                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                                  "uid": "35240-cbd6a45f-aa0c-4e08-9625-f74ee6e7fb20"
+                                }
+                              ],
+                              "id": "81230619-6e0c-4159-97c8-db614ebf40b1",
+                              "createdAt": "2026-07-28T03:21:27.000Z",
+                              "updatedAt": "2026-07-28T03:21:27.000Z",
+                              "uid": "35240-81230619-6e0c-4159-97c8-db614ebf40b1"
+                            }
+                          ],
+                          "id": "5cbbbe8d-ce62-43e2-b415-14653f8f502c",
+                          "createdAt": "2026-07-28T03:21:27.000Z",
+                          "updatedAt": "2026-07-28T03:21:27.000Z",
+                          "uid": "35240-5cbbbe8d-ce62-43e2-b415-14653f8f502c"
+                        }
+                      ],
+                      "id": "c94d69c8-d96d-4f0c-a3ff-3587446ef7f3",
+                      "createdAt": "2026-07-28T03:21:27.000Z",
+                      "updatedAt": "2026-07-28T03:21:27.000Z",
+                      "uid": "35240-c94d69c8-d96d-4f0c-a3ff-3587446ef7f3"
+                    }
+                  ],
+                  "id": "c89cf3d6-ecd4-402f-b367-a63927f8f5b5",
+                  "createdAt": "2026-07-28T03:21:27.000Z",
+                  "updatedAt": "2026-07-28T03:21:27.000Z",
+                  "uid": "35240-c89cf3d6-ecd4-402f-b367-a63927f8f5b5"
+                }
+              ],
+              "id": "e66c2a2d-6841-4078-aaa8-e45381b848f3",
+              "createdAt": "2026-07-28T03:21:27.000Z",
+              "updatedAt": "2026-07-28T03:21:27.000Z",
+              "uid": "35240-e66c2a2d-6841-4078-aaa8-e45381b848f3"
+            }
+          ],
+          "id": "fb107495-9b65-49a1-9f65-f110732dc698",
+          "createdAt": "2026-07-28T03:21:27.000Z",
+          "updatedAt": "2026-07-28T03:21:27.000Z",
+          "uid": "35240-fb107495-9b65-49a1-9f65-f110732dc698"
+        }
+      ],
+      "id": "c7ad9b86-19b5-4c7e-a563-4c6a667e2f70",
+      "createdAt": "2026-07-28T03:21:27.000Z",
+      "updatedAt": "2026-07-28T03:21:27.000Z",
+      "uid": "35240-c7ad9b86-19b5-4c7e-a563-4c6a667e2f70"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

@@ -1,0 +1,255 @@
+{
+  "info": {
+    "_postman_id": "25bdc7a4-3ae0-416b-b112-8eb55bf22556",
+    "name": "Tyk Dashboard Admin Additional Permissions CertsTag API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:38.000Z",
+    "updatedAt": "2026-07-28T03:21:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-25bdc7a4-3ae0-416b-b112-8eb55bf22556"
+  },
+  "item": [
+    {
+      "name": "tyk",
+      "item": [
+        {
+          "name": "certs",
+          "item": [
+            {
+              "name": "{certID}",
+              "item": [
+                {
+                  "name": "Return One Certificate or List Multiple Certificates in the Tyk Gateway Given a Comma Separated List of Cert Ids.",
+                  "id": "5e1990d6-184d-482c-bc6f-99f10e8dd3df",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/certs/:certID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "certs",
+                        ":certID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "a6e42d54-8652-40eb-99e9-4fc55ed77bd4",
+                          "key": "certID",
+                          "value": "<string>",
+                          "description": "(Required) Comma separated list of certificates to list."
+                        }
+                      ]
+                    },
+                    "description": "Note that the certID path parameter can take a list of certIDs separated with commas (e.g /tyk/certs/certIDOne,certIDTwo).\n If you send a single certID it will return a single CertificateMeta object otherwise if you send more than two certIDs is will return an array of certificateMeta objects."
+                  },
+                  "response": [
+                    {
+                      "id": "25f6cfe2-ef98-4992-b326-ffdb204231d7",
+                      "name": "OK",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/certs/:certID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "certs",
+                            ":certID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"dns_names\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"fingerprint\": \"<string>\",\n  \"has_private\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_ca\": \"<boolean>\",\n  \"issuer\": {},\n  \"not_after\": \"<dateTime>\",\n  \"not_before\": \"<dateTime>\",\n  \"subject\": {}\n}",
+                      "createdAt": "2026-07-28T03:21:39.000Z",
+                      "updatedAt": "2026-07-28T03:21:39.000Z",
+                      "uid": "35240-25f6cfe2-ef98-4992-b326-ffdb204231d7"
+                    },
+                    {
+                      "id": "3453ef64-c435-4bbc-9b37-1ad94f2fbf21",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/certs/:certID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "certs",
+                            ":certID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:39.000Z",
+                      "updatedAt": "2026-07-28T03:21:39.000Z",
+                      "uid": "35240-3453ef64-c435-4bbc-9b37-1ad94f2fbf21"
+                    },
+                    {
+                      "id": "11a3453d-8484-45c3-a498-8c99bdfe3346",
+                      "name": "Not Found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/certs/:certID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "certs",
+                            ":certID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "certID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:39.000Z",
+                      "updatedAt": "2026-07-28T03:21:39.000Z",
+                      "uid": "35240-11a3453d-8484-45c3-a498-8c99bdfe3346"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:39.000Z",
+                  "updatedAt": "2026-07-28T03:21:39.000Z",
+                  "uid": "35240-5e1990d6-184d-482c-bc6f-99f10e8dd3df"
+                }
+              ],
+              "id": "06c1118c-ffd9-43ba-89f4-455e3186df16",
+              "createdAt": "2026-07-28T03:21:39.000Z",
+              "updatedAt": "2026-07-28T03:21:39.000Z",
+              "uid": "35240-06c1118c-ffd9-43ba-89f4-455e3186df16"
+            }
+          ],
+          "id": "c1cb5890-bdb0-46c9-b4ae-9ceede8884e9",
+          "createdAt": "2026-07-28T03:21:39.000Z",
+          "updatedAt": "2026-07-28T03:21:39.000Z",
+          "uid": "35240-c1cb5890-bdb0-46c9-b4ae-9ceede8884e9"
+        }
+      ],
+      "id": "357aff0b-1c5a-40f9-bccc-a91977c48bab",
+      "createdAt": "2026-07-28T03:21:39.000Z",
+      "updatedAt": "2026-07-28T03:21:39.000Z",
+      "uid": "35240-357aff0b-1c5a-40f9-bccc-a91977c48bab"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

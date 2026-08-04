@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "5fe78e27-f584-482c-920b-01babcd2adbc",
+    "name": "Tyk Dashboard Admin Additional Permissions Health API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:46.000Z",
+    "updatedAt": "2026-07-28T03:21:46.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-5fe78e27-f584-482c-920b-01babcd2adbc"
+  },
+  "item": [
+    {
+      "name": "health",
+      "item": [
+        {
+          "name": "Tyk Health Check",
+          "id": "dc9c48be-7d7e-4d4c-9053-4fcbcf8f14ec",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/health",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "health"
+              ]
+            },
+            "description": "Returns OK if the service is up and running."
+          },
+          "response": [
+            {
+              "id": "f8c9cfd3-d2af-4d15-8d08-f2a852509dc4",
+              "name": "Service is up and running.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/health",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "health"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "<string>",
+              "createdAt": "2026-07-28T03:21:46.000Z",
+              "updatedAt": "2026-07-28T03:21:46.000Z",
+              "uid": "35240-f8c9cfd3-d2af-4d15-8d08-f2a852509dc4"
+            }
+          ],
+          "createdAt": "2026-07-28T03:21:46.000Z",
+          "updatedAt": "2026-07-28T03:21:46.000Z",
+          "uid": "35240-dc9c48be-7d7e-4d4c-9053-4fcbcf8f14ec"
+        }
+      ],
+      "id": "1845dfbb-196e-4b41-95d6-f0b1fa0baad2",
+      "createdAt": "2026-07-28T03:21:46.000Z",
+      "updatedAt": "2026-07-28T03:21:46.000Z",
+      "uid": "35240-1845dfbb-196e-4b41-95d6-f0b1fa0baad2"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

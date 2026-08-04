@@ -1,0 +1,122 @@
+{
+  "info": {
+    "_postman_id": "662e298c-2f43-4ea1-90f7-49c773c9018d",
+    "name": "Tyk Dashboard Admin Additional Permissions Liveness API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:53.000Z",
+    "updatedAt": "2026-07-28T03:21:53.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-662e298c-2f43-4ea1-90f7-49c773c9018d"
+  },
+  "item": [
+    {
+      "name": "liveness",
+      "item": [
+        {
+          "name": "Tyk Check Liveness Status",
+          "id": "3b1011a7-cfb1-4f8d-984c-210253c136ca",
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          },
+          "request": {
+            "method": "GET",
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/liveness",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "liveness"
+              ]
+            },
+            "description": "Provides the liveness status of the service."
+          },
+          "response": [
+            {
+              "id": "8108e2cc-6c66-4bec-b5fa-5c5a5037897a",
+              "name": "MDCB is alive.",
+              "originalRequest": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  },
+                  {
+                    "description": "Added as a part of security scheme: apikey",
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/liveness",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "liveness"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "cookie": [],
+              "responseTime": null,
+              "body": "{\n  \"status\": \"<string>\",\n  \"status_code\": \"<integer>\"\n}",
+              "createdAt": "2026-07-28T03:21:53.000Z",
+              "updatedAt": "2026-07-28T03:21:53.000Z",
+              "uid": "35240-8108e2cc-6c66-4bec-b5fa-5c5a5037897a"
+            }
+          ],
+          "createdAt": "2026-07-28T03:21:53.000Z",
+          "updatedAt": "2026-07-28T03:21:53.000Z",
+          "uid": "35240-3b1011a7-cfb1-4f8d-984c-210253c136ca"
+        }
+      ],
+      "id": "08396e58-bb7a-4aa7-b6a8-245d293ab64b",
+      "createdAt": "2026-07-28T03:21:53.000Z",
+      "updatedAt": "2026-07-28T03:21:53.000Z",
+      "uid": "35240-08396e58-bb7a-4aa7-b6a8-245d293ab64b"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

@@ -1,0 +1,327 @@
+{
+  "info": {
+    "_postman_id": "6fe50dad-1f17-45b5-9b04-2d82e358a488",
+    "name": "Tyk Dashboard Admin Additional Permissions Hot Reload API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:47.000Z",
+    "updatedAt": "2026-07-28T03:21:48.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-6fe50dad-1f17-45b5-9b04-2d82e358a488"
+  },
+  "item": [
+    {
+      "name": "tyk",
+      "item": [
+        {
+          "name": "reload",
+          "item": [
+            {
+              "name": "group",
+              "item": [
+                {
+                  "name": "Hot-reload a Group of Tyk Nodes.",
+                  "id": "77e5c561-62cc-434b-9f79-2dfe2ea999d8",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/reload/group",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "reload",
+                        "group"
+                      ]
+                    },
+                    "description": "To reload a whole group of Tyk nodes (without using the Dashboard or host manager). You can send an API request to a single node, this node will then send a notification through the pub/sub infrastructure to all other listening nodes (including the host manager if it is being used to manage Nginx) which will then trigger a global reload."
+                  },
+                  "response": [
+                    {
+                      "id": "81f04948-da48-4e91-aecd-e01ee50a3dcd",
+                      "name": "Reload the Tyk Gateway.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/reload/group",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "reload",
+                            "group"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:48.000Z",
+                      "updatedAt": "2026-07-28T03:21:48.000Z",
+                      "uid": "35240-81f04948-da48-4e91-aecd-e01ee50a3dcd"
+                    },
+                    {
+                      "id": "aa6ca8c6-282a-41cc-b3d8-20affa87e9e5",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/tyk/reload/group",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "tyk",
+                            "reload",
+                            "group"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:48.000Z",
+                      "updatedAt": "2026-07-28T03:21:48.000Z",
+                      "uid": "35240-aa6ca8c6-282a-41cc-b3d8-20affa87e9e5"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:48.000Z",
+                  "updatedAt": "2026-07-28T03:21:48.000Z",
+                  "uid": "35240-77e5c561-62cc-434b-9f79-2dfe2ea999d8"
+                }
+              ],
+              "id": "c93d115d-0ddf-40ba-8af1-e58a15bf7be0",
+              "createdAt": "2026-07-28T03:21:48.000Z",
+              "updatedAt": "2026-07-28T03:21:48.000Z",
+              "uid": "35240-c93d115d-0ddf-40ba-8af1-e58a15bf7be0"
+            },
+            {
+              "name": "Tyk Hot-reload a Single Node.",
+              "id": "d23c1bdc-15be-4d8c-8c62-da22224aeb05",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/tyk/reload?block=false",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "tyk",
+                    "reload"
+                  ],
+                  "query": [
+                    {
+                      "description": "Block a response until the reload is performed. This can be useful in scripting environments like CI/CD workflows.",
+                      "key": "block",
+                      "value": "false"
+                    }
+                  ]
+                },
+                "description": "Tyk is capable of reloading configurations without having to stop serving requests. This means that API configurations can be added at runtime, or even modified at runtime and those rules applied immediately without any downtime."
+              },
+              "response": [
+                {
+                  "id": "9b5ec27d-0c5b-4026-b62c-84d0ce4d929c",
+                  "name": "Reload gateway.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/reload?block=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "reload"
+                      ],
+                      "query": [
+                        {
+                          "description": "Block a response until the reload is performed. This can be useful in scripting environments like CI/CD workflows.",
+                          "key": "block",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:48.000Z",
+                  "updatedAt": "2026-07-28T03:21:48.000Z",
+                  "uid": "35240-9b5ec27d-0c5b-4026-b62c-84d0ce4d929c"
+                },
+                {
+                  "id": "db7674a1-1645-406f-8854-3758689c778d",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/tyk/reload?block=false",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "tyk",
+                        "reload"
+                      ],
+                      "query": [
+                        {
+                          "description": "Block a response until the reload is performed. This can be useful in scripting environments like CI/CD workflows.",
+                          "key": "block",
+                          "value": "false"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:48.000Z",
+                  "updatedAt": "2026-07-28T03:21:48.000Z",
+                  "uid": "35240-db7674a1-1645-406f-8854-3758689c778d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:48.000Z",
+              "updatedAt": "2026-07-28T03:21:48.000Z",
+              "uid": "35240-d23c1bdc-15be-4d8c-8c62-da22224aeb05"
+            }
+          ],
+          "id": "b630f454-84d1-4bd7-ac74-e448eb42e96e",
+          "createdAt": "2026-07-28T03:21:48.000Z",
+          "updatedAt": "2026-07-28T03:21:48.000Z",
+          "uid": "35240-b630f454-84d1-4bd7-ac74-e448eb42e96e"
+        }
+      ],
+      "id": "eaa797c3-eeea-4e02-92e2-feb453247ba5",
+      "createdAt": "2026-07-28T03:21:48.000Z",
+      "updatedAt": "2026-07-28T03:21:48.000Z",
+      "uid": "35240-eaa797c3-eeea-4e02-92e2-feb453247ba5"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

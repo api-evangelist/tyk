@@ -1,0 +1,628 @@
+{
+  "info": {
+    "_postman_id": "b12e84b9-2b4a-4d9d-940b-1f600331a950",
+    "name": "Tyk Dashboard Admin Additional Permissions Single Sign On API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:22:19.000Z",
+    "updatedAt": "2026-07-28T03:22:19.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-b12e84b9-2b4a-4d9d-940b-1f600331a950"
+  },
+  "item": [
+    {
+      "name": "admin",
+      "item": [
+        {
+          "name": "sso",
+          "item": [
+            {
+              "name": "Generate authentication token",
+              "id": "b0bfa10a-164b-47ea-b704-4becaafbaf93",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"ForSection\": \"portal\",\n  \"OrgID\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"GroupID\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/admin/sso/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "admin",
+                    "sso",
+                    ""
+                  ]
+                },
+                "description": "The Dashboard exposes the /admin/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds."
+              },
+              "response": [
+                {
+                  "id": "5d6d13ce-c588-478c-bdad-f27ea0935983",
+                  "name": "Additional Permissions updated successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ForSection\": \"portal\",\n  \"OrgID\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"GroupID\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sso/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "sso",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-5d6d13ce-c588-478c-bdad-f27ea0935983"
+                },
+                {
+                  "id": "1cb220e7-634d-4ad3-a2b7-c0e4841fd5ae",
+                  "name": "Back Request.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ForSection\": \"portal\",\n  \"OrgID\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"GroupID\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sso/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "sso",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-1cb220e7-634d-4ad3-a2b7-c0e4841fd5ae"
+                },
+                {
+                  "id": "5e9858fc-455c-46be-9fb9-806cc049301f",
+                  "name": "Unauthorized.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"ForSection\": \"portal\",\n  \"OrgID\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"GroupID\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/admin/sso/",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "admin",
+                        "sso",
+                        ""
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"message\": \"<string>\",\n  \"status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-5e9858fc-455c-46be-9fb9-806cc049301f"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:19.000Z",
+              "updatedAt": "2026-07-28T03:22:19.000Z",
+              "uid": "35240-b0bfa10a-164b-47ea-b704-4becaafbaf93"
+            }
+          ],
+          "id": "6c455511-949a-4b56-a9d2-9d791edf558d",
+          "createdAt": "2026-07-28T03:22:19.000Z",
+          "updatedAt": "2026-07-28T03:22:19.000Z",
+          "uid": "35240-6c455511-949a-4b56-a9d2-9d791edf558d"
+        }
+      ],
+      "id": "70097af2-f72c-466d-86f8-be8c4843f784",
+      "createdAt": "2026-07-28T03:22:19.000Z",
+      "updatedAt": "2026-07-28T03:22:19.000Z",
+      "uid": "35240-70097af2-f72c-466d-86f8-be8c4843f784"
+    },
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "sso",
+          "item": [
+            {
+              "name": "Generate authentication token.",
+              "id": "bac8876c-0941-4bd1-9a9b-e7dd361ce4b0",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/sso",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "sso"
+                  ]
+                },
+                "description": "The Dashboard exposes the /api/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds."
+              },
+              "response": [
+                {
+                  "id": "b21b138c-19b8-4dbf-9c54-92e77bcf81b1",
+                  "name": "Created successfully.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sso",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sso"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-b21b138c-19b8-4dbf-9c54-92e77bcf81b1"
+                },
+                {
+                  "id": "b34bd3c5-fd28-49bf-8294-a19564e29c0e",
+                  "name": "Malformed request body.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sso",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sso"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-b34bd3c5-fd28-49bf-8294-a19564e29c0e"
+                },
+                {
+                  "id": "11dfa666-8588-4cde-997d-6dc5283748e1",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sso",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sso"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-11dfa666-8588-4cde-997d-6dc5283748e1"
+                },
+                {
+                  "id": "db4355f9-4bff-40b8-a40c-520142a78e6f",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sso",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sso"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-db4355f9-4bff-40b8-a40c-520142a78e6f"
+                },
+                {
+                  "id": "e2b33818-021c-40b0-890a-ea9cd9033c60",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"DisplayName\": \"<string>\",\n  \"EmailAddress\": \"<string>\",\n  \"ForSection\": \"portal\",\n  \"GroupID\": \"<string>\",\n  \"OrgID\": \"<string>\",\n  \"SSOOnlyForRegisteredUsers\": \"<boolean>\",\n  \"UserNotAllowed\": \"<boolean>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/sso",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "sso"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:22:20.000Z",
+                  "updatedAt": "2026-07-28T03:22:20.000Z",
+                  "uid": "35240-e2b33818-021c-40b0-890a-ea9cd9033c60"
+                }
+              ],
+              "createdAt": "2026-07-28T03:22:19.000Z",
+              "updatedAt": "2026-07-28T03:22:19.000Z",
+              "uid": "35240-bac8876c-0941-4bd1-9a9b-e7dd361ce4b0"
+            }
+          ],
+          "id": "da09447c-de6f-4c08-a1b7-47aae1ec8deb",
+          "createdAt": "2026-07-28T03:22:19.000Z",
+          "updatedAt": "2026-07-28T03:22:19.000Z",
+          "uid": "35240-da09447c-de6f-4c08-a1b7-47aae1ec8deb"
+        }
+      ],
+      "id": "5e64feac-35c9-4564-8db1-e1a04cdd5bc8",
+      "createdAt": "2026-07-28T03:22:19.000Z",
+      "updatedAt": "2026-07-28T03:22:19.000Z",
+      "uid": "35240-5e64feac-35c9-4564-8db1-e1a04cdd5bc8"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

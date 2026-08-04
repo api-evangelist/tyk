@@ -1,0 +1,1932 @@
+{
+  "info": {
+    "_postman_id": "46de9256-3052-4ea9-9cf1-f0a995130397",
+    "name": "Tyk Dashboard Admin Additional Permissions Assets API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:30.000Z",
+    "updatedAt": "2026-07-28T03:21:30.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-46de9256-3052-4ea9-9cf1-f0a995130397"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "assets",
+          "item": [
+            {
+              "name": "{assetID}",
+              "item": [
+                {
+                  "name": "Delete an asset by ID.",
+                  "id": "f81597ce-e0f0-41ee-af0f-66403bf33904",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "DELETE",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets/:assetID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets",
+                        ":assetID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "3391ca79-e40d-49f5-b238-0ffa043eeebf",
+                          "key": "assetID",
+                          "value": "<string>",
+                          "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                        }
+                      ]
+                    },
+                    "description": "Remove an asset ID."
+                  },
+                  "response": [
+                    {
+                      "id": "037f14ff-19db-4ca2-b25d-898a587c7a30",
+                      "name": "Asset deleted",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-037f14ff-19db-4ca2-b25d-898a587c7a30"
+                    },
+                    {
+                      "id": "3e3a3ab8-d0a5-4694-9e96-8def5430eaec",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-3e3a3ab8-d0a5-4694-9e96-8def5430eaec"
+                    },
+                    {
+                      "id": "78d0d663-dab8-4176-9828-7e06a8dcf8fa",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-78d0d663-dab8-4176-9828-7e06a8dcf8fa"
+                    },
+                    {
+                      "id": "c05aeacb-a1c4-4275-9f76-bb357569af81",
+                      "name": "Asset with ID does not exist.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-c05aeacb-a1c4-4275-9f76-bb357569af81"
+                    },
+                    {
+                      "id": "c2a1eb4e-9d0b-47d0-82f2-f0a0df488f2c",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "DELETE",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-c2a1eb4e-9d0b-47d0-82f2-f0a0df488f2c"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-f81597ce-e0f0-41ee-af0f-66403bf33904"
+                },
+                {
+                  "name": "Retrieve an asset.",
+                  "id": "4a73509e-3b74-4873-9af5-38a5e7500937",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets/:assetID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets",
+                        ":assetID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "18803044-0179-423b-bdb4-ca970d046fc8",
+                          "key": "assetID",
+                          "value": "<string>",
+                          "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                        }
+                      ]
+                    },
+                    "description": "Retrieve an asset by ID."
+                  },
+                  "response": [
+                    {
+                      "id": "9b5cf2fa-4533-4f29-8f96-668c8c739d08",
+                      "name": "Asset fetched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"_id\": \"<string>\",\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"oas-template\",\n  \"last_updated\": \"<dateTime>\",\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-9b5cf2fa-4533-4f29-8f96-668c8c739d08"
+                    },
+                    {
+                      "id": "284bac6c-9001-4f3e-b8f1-56f799e51c21",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-284bac6c-9001-4f3e-b8f1-56f799e51c21"
+                    },
+                    {
+                      "id": "ed742d95-5880-49d1-ab87-7f46c9d20887",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-ed742d95-5880-49d1-ab87-7f46c9d20887"
+                    },
+                    {
+                      "id": "52827c5a-5244-40ab-9bd5-f93b4fd5c484",
+                      "name": "Asset with ID does not exist",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-52827c5a-5244-40ab-9bd5-f93b4fd5c484"
+                    },
+                    {
+                      "id": "702b8b9b-c572-43f7-965f-cf6762a73627",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-702b8b9b-c572-43f7-965f-cf6762a73627"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-4a73509e-3b74-4873-9af5-38a5e7500937"
+                },
+                {
+                  "name": "Update an asset by ID.",
+                  "id": "9f03ad64-e0f6-4fd7-ae88-7d5b365ed01e",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets/:assetID",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets",
+                        ":assetID"
+                      ],
+                      "variable": [
+                        {
+                          "id": "422c6446-1ba3-461d-b034-883176ea4b03",
+                          "key": "assetID",
+                          "value": "<string>",
+                          "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                        }
+                      ]
+                    },
+                    "description": "Update an asset by ID.You cannot update _id (database ID assigned by tyk)"
+                  },
+                  "response": [
+                    {
+                      "id": "6f28f290-db5a-4123-9909-e7e98e19d2a7",
+                      "name": "asset updated",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-6f28f290-db5a-4123-9909-e7e98e19d2a7"
+                    },
+                    {
+                      "id": "3ae1cbf1-99df-4462-94ce-1c21a49abbfa",
+                      "name": "malformed  request body",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-3ae1cbf1-99df-4462-94ce-1c21a49abbfa"
+                    },
+                    {
+                      "id": "bd41e708-0e37-460d-b69d-f562c87f7e98",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-bd41e708-0e37-460d-b69d-f562c87f7e98"
+                    },
+                    {
+                      "id": "5d6f430a-876b-4eeb-b605-6bec61418c6c",
+                      "name": "Forbidden",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-5d6f430a-876b-4eeb-b605-6bec61418c6c"
+                    },
+                    {
+                      "id": "e55dc014-ffcb-49c7-9971-5aae8c4b4cb7",
+                      "name": "Asset with ID does not exist.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-e55dc014-ffcb-49c7-9971-5aae8c4b4cb7"
+                    },
+                    {
+                      "id": "ec5cbd4e-e241-4c3a-b818-1107ad8703a9",
+                      "name": "Trying to update an asset ID with an ID that is used by another asset.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Conflict",
+                      "code": 409,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-ec5cbd4e-e241-4c3a-b818-1107ad8703a9"
+                    },
+                    {
+                      "id": "a2b90d97-89d7-4abc-9640-ad102cdcc9c3",
+                      "name": "validation failed.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                      "code": 422,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-a2b90d97-89d7-4abc-9640-ad102cdcc9c3"
+                    },
+                    {
+                      "id": "d31f04a6-880d-4105-8ed4-db98593df0b1",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/assets/:assetID",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "assets",
+                            ":assetID"
+                          ],
+                          "variable": [
+                            {
+                              "key": "assetID"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:31.000Z",
+                      "updatedAt": "2026-07-28T03:21:31.000Z",
+                      "uid": "35240-d31f04a6-880d-4105-8ed4-db98593df0b1"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-9f03ad64-e0f6-4fd7-ae88-7d5b365ed01e"
+                }
+              ],
+              "id": "0a5c51fe-c7ef-46b8-b365-7535b62dd5c2",
+              "createdAt": "2026-07-28T03:21:31.000Z",
+              "updatedAt": "2026-07-28T03:21:31.000Z",
+              "uid": "35240-0a5c51fe-c7ef-46b8-b365-7535b62dd5c2"
+            },
+            {
+              "name": "Retrieve list of assets.",
+              "id": "3c13c9ea-311a-4a0c-bcc8-208d86c7af38",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "query": [
+                    {
+                      "description": "Filter assets by kind (optional).",
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ]
+                },
+                "description": "Retrieves all types of assets with optional kind filter."
+              },
+              "response": [
+                {
+                  "id": "531424bc-4e87-47c7-a923-a7671b4c8983",
+                  "name": "templates fetched.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter assets by kind (optional).",
+                          "key": "kind",
+                          "value": "oas-template"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"_id\": \"<string>\",\n    \"data\": {},\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"kind\": \"oas-template\",\n    \"last_updated\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"org_id\": \"<string>\"\n  },\n  {\n    \"_id\": \"<string>\",\n    \"data\": {},\n    \"description\": \"<string>\",\n    \"id\": \"<string>\",\n    \"kind\": \"oas-template\",\n    \"last_updated\": \"<dateTime>\",\n    \"name\": \"<string>\",\n    \"org_id\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-531424bc-4e87-47c7-a923-a7671b4c8983"
+                },
+                {
+                  "id": "a2af1323-cc70-4128-8586-20e332b7ade3",
+                  "name": "sending a type that is not supported in the kind query parameter.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter assets by kind (optional).",
+                          "key": "kind",
+                          "value": "oas-template"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-a2af1323-cc70-4128-8586-20e332b7ade3"
+                },
+                {
+                  "id": "20732bbb-9a3a-4d53-913d-f7d4a9cc2156",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter assets by kind (optional).",
+                          "key": "kind",
+                          "value": "oas-template"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-20732bbb-9a3a-4d53-913d-f7d4a9cc2156"
+                },
+                {
+                  "id": "42a905eb-6e53-40de-b60e-afa20d05f86d",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter assets by kind (optional).",
+                          "key": "kind",
+                          "value": "oas-template"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-42a905eb-6e53-40de-b60e-afa20d05f86d"
+                },
+                {
+                  "id": "e29fa075-2848-4124-ab91-4fb084c6817d",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets?kind=oas-template",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ],
+                      "query": [
+                        {
+                          "description": "Filter assets by kind (optional).",
+                          "key": "kind",
+                          "value": "oas-template"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-e29fa075-2848-4124-ab91-4fb084c6817d"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:31.000Z",
+              "updatedAt": "2026-07-28T03:21:31.000Z",
+              "uid": "35240-3c13c9ea-311a-4a0c-bcc8-208d86c7af38"
+            },
+            {
+              "name": "Create an asset",
+              "id": "38f81aee-85e2-4e59-95e5-d9bf488a72f6",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "POST",
+                "header": [
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "headerFamily": "json",
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/api/assets",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "api",
+                    "assets"
+                  ]
+                },
+                "description": "Create an asset that you can use as a blueprint from which you can create a new Tyk OAS API definition."
+              },
+              "response": [
+                {
+                  "id": "391d8175-70f0-4b35-a957-4a9c0e0977e5",
+                  "name": "asset created",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Created",
+                  "code": 201,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-391d8175-70f0-4b35-a957-4a9c0e0977e5"
+                },
+                {
+                  "id": "1506d1e7-df95-4ed8-8dd0-eb23084604d2",
+                  "name": "malformed request body.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Bad Request",
+                  "code": 400,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-1506d1e7-df95-4ed8-8dd0-eb23084604d2"
+                },
+                {
+                  "id": "9355a85d-2291-4a4e-9292-b1257574fbd2",
+                  "name": "Unauthorized",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-9355a85d-2291-4a4e-9292-b1257574fbd2"
+                },
+                {
+                  "id": "8832fd68-ac5c-4514-aa95-9bc56f0555b2",
+                  "name": "Forbidden",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Forbidden",
+                  "code": 403,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-8832fd68-ac5c-4514-aa95-9bc56f0555b2"
+                },
+                {
+                  "id": "e842a590-df3c-452a-b41c-9d8751283eab",
+                  "name": "trying to add an asset with an ID that already exist.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Conflict",
+                  "code": 409,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-e842a590-df3c-452a-b41c-9d8751283eab"
+                },
+                {
+                  "id": "5b1bd3a9-e362-4346-b1f6-90275198b32c",
+                  "name": "validation failed",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+                  "code": 422,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-5b1bd3a9-e362-4346-b1f6-90275198b32c"
+                },
+                {
+                  "id": "3f87e424-28b9-4f2e-8172-3922d4d77c04",
+                  "name": "Internal server error.",
+                  "originalRequest": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: apikey",
+                        "key": "Admin-Auth",
+                        "value": "<API Key>"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"data\": {},\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/assets",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "assets"
+                      ]
+                    }
+                  },
+                  "status": "Internal Server Error",
+                  "code": 500,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                  "createdAt": "2026-07-28T03:21:31.000Z",
+                  "updatedAt": "2026-07-28T03:21:31.000Z",
+                  "uid": "35240-3f87e424-28b9-4f2e-8172-3922d4d77c04"
+                }
+              ],
+              "createdAt": "2026-07-28T03:21:31.000Z",
+              "updatedAt": "2026-07-28T03:21:31.000Z",
+              "uid": "35240-38f81aee-85e2-4e59-95e5-d9bf488a72f6"
+            }
+          ],
+          "id": "d1dbeabd-fe19-4e54-8b18-1991bf4da1bc",
+          "createdAt": "2026-07-28T03:21:31.000Z",
+          "updatedAt": "2026-07-28T03:21:31.000Z",
+          "uid": "35240-d1dbeabd-fe19-4e54-8b18-1991bf4da1bc"
+        }
+      ],
+      "id": "ccfec756-7ee4-4048-850d-a71ef217319e",
+      "createdAt": "2026-07-28T03:21:31.000Z",
+      "updatedAt": "2026-07-28T03:21:31.000Z",
+      "uid": "35240-ccfec756-7ee4-4048-850d-a71ef217319e"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}

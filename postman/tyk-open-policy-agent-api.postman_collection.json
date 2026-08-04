@@ -1,0 +1,613 @@
+{
+  "info": {
+    "_postman_id": "a913fea1-6a58-4b68-92eb-915aca7bc8dd",
+    "name": "Tyk Dashboard Admin Additional Permissions Open Policy Agent API",
+    "description": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-07-28T03:21:57.000Z",
+    "updatedAt": "2026-07-28T03:21:57.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-a913fea1-6a58-4b68-92eb-915aca7bc8dd"
+  },
+  "item": [
+    {
+      "name": "api",
+      "item": [
+        {
+          "name": "org",
+          "item": [
+            {
+              "name": "opa",
+              "item": [
+                {
+                  "name": "List OPA rules.",
+                  "id": "fa7995ac-8fc4-459f-86b9-fe11d255cfd5",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/api/org/opa",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "org",
+                        "opa"
+                      ]
+                    },
+                    "description": "List your organisation OPA rules."
+                  },
+                  "response": [
+                    {
+                      "id": "6ed5697d-6667-4d60-9026-7b95de92cb07",
+                      "name": "OPA rules fetched.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-6ed5697d-6667-4d60-9026-7b95de92cb07"
+                    },
+                    {
+                      "id": "975632ac-6eaf-456c-8f3a-3ac1038c708e",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-975632ac-6eaf-456c-8f3a-3ac1038c708e"
+                    },
+                    {
+                      "id": "77131c6b-8c40-4aab-b2ae-5bd9c1289ef3",
+                      "name": "Upgrade licence.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-77131c6b-8c40-4aab-b2ae-5bd9c1289ef3"
+                    },
+                    {
+                      "id": "5f7bed63-3b77-4c7a-84cf-44e05394104f",
+                      "name": "Internal server error.",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-5f7bed63-3b77-4c7a-84cf-44e05394104f"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:58.000Z",
+                  "updatedAt": "2026-07-28T03:21:58.000Z",
+                  "uid": "35240-fa7995ac-8fc4-459f-86b9-fe11d255cfd5"
+                },
+                {
+                  "name": "Update OPA rules.",
+                  "id": "4d538eea-434c-4181-9154-5d06d95e39ad",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Content-Type",
+                        "value": "application/json"
+                      },
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "body": {
+                      "mode": "raw",
+                      "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                      "options": {
+                        "raw": {
+                          "headerFamily": "json",
+                          "language": "json"
+                        }
+                      }
+                    },
+                    "url": {
+                      "raw": "{{baseUrl}}/api/org/opa",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "api",
+                        "org",
+                        "opa"
+                      ]
+                    },
+                    "description": "Modify your OPA rules."
+                  },
+                  "response": [
+                    {
+                      "id": "c367cff7-b155-40a4-a4d6-55849a9757ba",
+                      "name": "OPA rules updated.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-c367cff7-b155-40a4-a4d6-55849a9757ba"
+                    },
+                    {
+                      "id": "76bbbfd4-98dc-4f2c-bde2-60b1cfa56792",
+                      "name": "Invalid OPA rules.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Bad Request",
+                      "code": 400,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-76bbbfd4-98dc-4f2c-bde2-60b1cfa56792"
+                    },
+                    {
+                      "id": "243339f0-9252-4393-8034-796d2b62ecb7",
+                      "name": "Unauthorized",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-243339f0-9252-4393-8034-796d2b62ecb7"
+                    },
+                    {
+                      "id": "bc86bdd2-99e8-4ff5-8a12-11cebd6cd8ea",
+                      "name": "Upgrade licence.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Forbidden",
+                      "code": 403,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-bc86bdd2-99e8-4ff5-8a12-11cebd6cd8ea"
+                    },
+                    {
+                      "id": "727186c3-9412-4b8f-acc0-2cb3a6b2b9f9",
+                      "name": "malformed request body.",
+                      "originalRequest": {
+                        "method": "PUT",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: apikey",
+                            "key": "Admin-Auth",
+                            "value": "<API Key>"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/api/org/opa",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "api",
+                            "org",
+                            "opa"
+                          ]
+                        }
+                      },
+                      "status": "Internal Server Error",
+                      "code": 500,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"ID\": \"<string>\",\n  \"Message\": \"<string>\",\n  \"Meta\": {},\n  \"Status\": \"<string>\"\n}",
+                      "createdAt": "2026-07-28T03:21:58.000Z",
+                      "updatedAt": "2026-07-28T03:21:58.000Z",
+                      "uid": "35240-727186c3-9412-4b8f-acc0-2cb3a6b2b9f9"
+                    }
+                  ],
+                  "createdAt": "2026-07-28T03:21:58.000Z",
+                  "updatedAt": "2026-07-28T03:21:58.000Z",
+                  "uid": "35240-4d538eea-434c-4181-9154-5d06d95e39ad"
+                }
+              ],
+              "id": "f650d16a-41b5-4790-b97b-257663fe7dbb",
+              "createdAt": "2026-07-28T03:21:58.000Z",
+              "updatedAt": "2026-07-28T03:21:58.000Z",
+              "uid": "35240-f650d16a-41b5-4790-b97b-257663fe7dbb"
+            }
+          ],
+          "id": "b11f3cb9-e388-4c23-9597-eb64d2e3f5bb",
+          "createdAt": "2026-07-28T03:21:58.000Z",
+          "updatedAt": "2026-07-28T03:21:58.000Z",
+          "uid": "35240-b11f3cb9-e388-4c23-9597-eb64d2e3f5bb"
+        }
+      ],
+      "id": "80a72de3-bd7f-4461-9bb1-f65399d69a50",
+      "createdAt": "2026-07-28T03:21:58.000Z",
+      "updatedAt": "2026-07-28T03:21:58.000Z",
+      "uid": "35240-80a72de3-bd7f-4461-9bb1-f65399d69a50"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth",
+        "type": "string"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}",
+        "type": "string"
+      },
+      {
+        "key": "in",
+        "value": "header",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost/"
+    }
+  ]
+}
