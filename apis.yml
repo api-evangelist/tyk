@@ -1451,7 +1451,7 @@ common:
   url: https://tyk.io/privacy-policy
 - type: TermsOfService
   url: https://tyk.io/terms-conditions
-- type: SignUp
+- type: Signup
   url: https://tyk.io/sign-up/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/tyk/overview
