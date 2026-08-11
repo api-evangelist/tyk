@@ -63,8 +63,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -98,8 +96,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -132,8 +128,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -173,8 +167,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -207,8 +199,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -244,8 +234,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -352,8 +340,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -387,8 +373,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -422,8 +406,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -457,8 +439,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -491,8 +471,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -525,8 +503,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -560,8 +536,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -594,8 +568,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -628,8 +600,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -662,8 +632,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -697,8 +665,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -731,8 +697,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -765,8 +729,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -799,8 +761,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -834,8 +794,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -869,8 +827,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -903,8 +859,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -939,8 +893,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -973,8 +925,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1029,8 +979,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1082,8 +1030,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1116,8 +1062,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1155,8 +1099,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1189,8 +1131,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1223,8 +1163,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1258,8 +1196,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1292,8 +1228,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1326,8 +1260,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1360,8 +1292,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1394,8 +1324,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1430,8 +1358,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1465,8 +1391,6 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
@@ -1512,13 +1436,23 @@ apis:
     url: https://github.com/TykTechnologies/tyk-analytics
   - type: Documentation
     url: https://tyk.io/docs/
-  - type: JSONSchema
-    url: json-schema/tyk-mdcb-data-plane-config-schema.json
   - type: JSONLD
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: Security
+  url: https://tyk.io/responsible-disclosure/
+- type: Compliance
+  url: https://tyk.io/gdpr
+- type: StatusPage
+  url: https://status.tyk.io/
+- type: PrivacyPolicy
+  url: https://tyk.io/privacy-policy
+- type: TermsOfService
+  url: https://tyk.io/terms-conditions
+- type: SignUp
+  url: https://tyk.io/sign-up/
 - type: PostmanWorkspace
   url: https://www.postman.com/kinlaneapi/tyk/overview
 - type: AgenticAccess
