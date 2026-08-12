@@ -4,6 +4,19 @@ description: Tyk is an open-source API gateway and management platform supportin
   and Async APIs with a developer portal, analytics, and flexible deployment across cloud, on-premise,
   and hybrid environments.
 type: Index
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: false
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-11'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
