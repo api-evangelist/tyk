@@ -1,0 +1,1916 @@
+{
+  "item": [
+    {
+      "id": "558f85ce-7269-490b-8f16-d856db34a298",
+      "name": "Assets",
+      "description": {
+        "content": "An API template is an asset managed by Tyk Dashboard that is used as the starting point - a blueprint - from which you can create a new Tyk OAS API definition. <br/>\n\nTemplates are used only during the creation of an API, they cannot be applied later.\n\n[Read more about API template assets here](https://tyk.io/docs/product-stack/tyk-dashboard/advanced-configurations/templates/template-overview/)\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "e3fc995a-28f9-418d-9184-c742b7b0c4e0",
+          "name": "Retrieve list of assets.",
+          "request": {
+            "name": "Retrieve list of assets.",
+            "description": {
+              "content": "Retrieves all types of assets with optional kind filter.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "kind",
+                  "value": "oas-template",
+                  "description": "Filter assets by kind (optional)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "50cbc1ce-2912-44e4-9179-e5c570d44297",
+              "name": "templates fetched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"363634636164353135373135656333663739386262636433\",\n    \"data\": {\n      \"info\": {\n        \"title\": \"Our Sample OAS\",\n        \"version\": \"1.0.0\"\n      },\n      \"openapi\": \"3.0.3\",\n      \"paths\": {\n        \"/anything\": {\n          \"post\": {\n            \"operationId\": \"anythingpost\",\n            \"responses\": {\n              \"200\": {\n                \"description\": \"Post created\"\n              }\n            }\n          }\n        }\n      },\n      \"x-tyk-api-gateway\": {\n        \"middleware\": {\n          \"global\": {\n            \"cache\": {\n              \"cacheAllSafeRequests\": true,\n              \"enabled\": true,\n              \"timeout\": 5\n            }\n          },\n          \"operations\": {\n            \"anythingpost\": {\n              \"requestSizeLimit\": {\n                \"enabled\": true,\n                \"value\": 100\n              }\n            }\n          }\n        }\n      }\n    },\n    \"description\": \"My first template\",\n    \"id\": \"my-unique-template-id\",\n    \"kind\": \"oas-template\",\n    \"last_updated\": \"2024-05-21T17:18:57.294797+03:00\",\n    \"name\": \"my-template\",\n    \"org_id\": \"5e9d9544a1dcd60001d0ed20\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "334e907c-e4e0-47e5-b782-e325e4406c05",
+              "name": "sending a type that is not supported in the kind query parameter.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"unsupported asset kind: 'oas-temp'\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0b188edc-4fac-4177-bf23-5a4de20640ce",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8d1352ac-b8cc-4ac4-8fc4-d9ef4657b01c",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/assets\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9e897401-40bb-4804-98ec-926fc362bd4e",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "kind",
+                      "value": "oas-template"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"error listing assets.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e9b89b50-f6d7-4a89-aaeb-acc713f175a2",
+          "name": "Create an asset",
+          "request": {
+            "name": "Create an asset",
+            "description": {
+              "content": "Create an asset that you can use as a blueprint from which you can create a new Tyk OAS API definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "assets"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<object>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a70a53c2-582b-4d3c-a4bf-6dcebb690b7b",
+              "name": "asset created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ID\": \"my-unique-template-id\",\n  \"Message\": \"asset created\",\n  \"Meta\": \"664d86e35715ec0d370bbe11\",\n  \"Status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1f8f771c-7a6f-4452-a19e-e09d296933d9",
+              "name": "malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"error reading json body.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b457c884-fc0a-4dd1-bb09-bd5fa3d5e066",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "69a2095d-f1db-473f-a673-89cc7378ca54",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/assets\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1bf89cdb-670f-4638-b0a0-d8dc310d55be",
+              "name": "trying to add an asset with an ID that already exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Asset ID already exists: 'my-unique-template-id'.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "418508e8-c62e-4501-9b7f-773cd159dc6f",
+              "name": "validation failed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"unsupported asset kind: 'oas-templat'.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7f58ff7a-9f17-4ac2-9bff-5370e78a0acd",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"my-template\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"error adding asset.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "17c4821d-7f6c-421b-90f2-6aa1b2026e74",
+          "name": "Delete an asset by ID.",
+          "request": {
+            "name": "Delete an asset by ID.",
+            "description": {
+              "content": "Remove an asset ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "assets",
+                ":assetID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetID",
+                  "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8f08564a-1bd9-4bb8-9c55-b997c98cbe69",
+              "name": "Asset deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Asset removed successfully\",\n  \"Meta\": null,\n  \"Status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "18155504-7cc3-4cf1-b44c-331bc5a2fcc0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d6fdfaa3-2c8a-45d9-bb80-732c2b0fa67d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/assets/{assetID}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c30b466-327e-444e-af35-f12a58aae79b",
+              "name": "Asset with ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"asset not found\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "71567aff-6aca-4787-a510-2f4a9fc6f5e9",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Error removing asset\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "5a5fb782-8fb7-426c-ab8d-ac424a7410b0",
+          "name": "Retrieve an asset.",
+          "request": {
+            "name": "Retrieve an asset.",
+            "description": {
+              "content": "Retrieve an asset by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "assets",
+                ":assetID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetID",
+                  "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4d87e57e-908c-4c5c-8a69-75c73a5fec7b",
+              "name": "Asset fetched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"_id\": \"363634636164353135373135656333663739386262636433\",\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"Post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        },\n        \"operations\": {\n          \"anythingpost\": {\n            \"requestSizeLimit\": {\n              \"enabled\": true,\n              \"value\": 100\n            }\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"last_updated\": \"2024-05-21T17:18:57.294797+03:00\",\n  \"name\": \"my-template\",\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "88624783-a6b1-4748-ad05-f3266e3a623a",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a0e4c286-7146-43ad-b2c4-0943860bd87f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/assets/{assetID}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "362e095d-1bb1-4f8a-b989-1fd0551b8beb",
+              "name": "Asset with ID does not exist",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Asset not found\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d8940433-9923-40ca-9a26-9c04a790a0dc",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Error fetching asset.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "854042c9-736d-4f09-afc3-6c5bd47ed205",
+          "name": "Update an asset by ID.",
+          "request": {
+            "name": "Update an asset by ID.",
+            "description": {
+              "content": "Update an asset by ID.You cannot update _id (database ID assigned by tyk)",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "assets",
+                ":assetID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "assetID",
+                  "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": \"<object>\",\n  \"description\": \"<string>\",\n  \"id\": \"<string>\",\n  \"kind\": \"<string>\",\n  \"name\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a1f0c97a-62a2-41fd-885f-a5b3010cdd35",
+              "name": "asset updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ID\": \"my-unique-template-id\",\n  \"Message\": \"asset updated\",\n  \"Meta\": \"664d86e35715ec0d370bbe11\",\n  \"Status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62c03c7d-2a8e-4ae9-a951-fd5fea19b54f",
+              "name": "malformed  request body",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"error reading json body.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2744d75-743d-4561-a950-f6b6ded48c5e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "625a5c35-777f-4543-bcb1-327f9ed0cb9e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/assets/{assetID}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0ed795db-a975-43a3-9568-031e94e82f81",
+              "name": "Asset with ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Asset not found.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d72d0bed-826f-47fc-a123-e6104b5f3878",
+              "name": "Trying to update an asset ID with an ID that is used by another asset.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Asset ID already exists: 'my-unique-template-id.'.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f5b098bf-1533-4d87-ab77-74aa6667f936",
+              "name": "validation failed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"unsupported asset kind: 'oas-templat'.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e04ed87b-e56c-4562-a604-27a8d3c5a6bc",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "assets",
+                    ":assetID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "assetID",
+                      "description": "(Required) ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": {\n    \"info\": {\n      \"title\": \"Our Sample OAS\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/anything\": {\n        \"post\": {\n          \"operationId\": \"anythingpost\",\n          \"responses\": {\n            \"200\": {\n              \"description\": \"post created\"\n            }\n          }\n        }\n      }\n    },\n    \"x-tyk-api-gateway\": {\n      \"middleware\": {\n        \"global\": {\n          \"cache\": {\n            \"cacheAllSafeRequests\": true,\n            \"enabled\": true,\n            \"timeout\": 5\n          }\n        }\n      }\n    }\n  },\n  \"description\": \"My first template\",\n  \"id\": \"my-unique-template-id\",\n  \"kind\": \"oas-template\",\n  \"name\": \"Update asset name example.\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"error fetching asset.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "4c910663-6936-4a1b-b75f-43e1790b45e4",
+    "name": "Tyk Dashboard Admin Additional Permissions Assets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

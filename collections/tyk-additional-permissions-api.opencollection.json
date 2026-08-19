@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Additional Permissions",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List additional permissions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/org/permissions"
+          },
+          "docs": "This API returns by default the initial set of additional permissions defined in your Tyk Dashboard configuration, under `security.additional_permissions`. Once you update the permissions via the API, they will be stored at organisation level."
+        },
+        {
+          "info": {
+            "name": "Add/Delete/Update additional permission.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/org/permissions",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Whenever you want to add/update/delete an additional permission, just send back the updated list of permissions, through this PUT request to the API. For example if you initially had two additional permissions e.g ```{additional_permissions: {api_developer: API Developer, api_manager: API Manager}}``` to add a third permission called `custom_permission` you would append it to the original permission list and your request body would be: ```{additional_permissions: {api_developer: API Developer, a"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

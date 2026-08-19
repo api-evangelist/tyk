@@ -1,0 +1,3403 @@
+{
+  "item": [
+    {
+      "id": "8be5c425-2e4c-4af0-9440-ca5d18699ec7",
+      "name": "Tyk OAS APIs",
+      "description": {
+        "content": "**Note: Applies only to Tyk Gateway Community Edition** <br/>\n\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "47aaee91-6f88-4f64-a00d-34e574ed960d",
+          "name": "List All Apis in Tyk Oas Api Format.",
+          "request": {
+            "name": "List All Apis in Tyk Oas Api Format.",
+            "description": {
+              "content": "List all APIs in Tyk OAS API format, from Tyk Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7a66fae4-332a-43bf-b058-15e9fa764821",
+              "name": "List of API definitions in Tyk OAS format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"components\": {\n      \"securitySchemes\": {\n        \"bearerAuth\": {\n          \"description\": \"The API Access Credentials\",\n          \"scheme\": \"bearer\",\n          \"type\": \"http\"\n        }\n      }\n    },\n    \"info\": {\n      \"description\": \"This is a sample OAS.\",\n      \"title\": \"OAS Sample\",\n      \"version\": \"1.0.0\"\n    },\n    \"openapi\": \"3.0.3\",\n    \"paths\": {\n      \"/api/sample/users\": {\n        \"get\": {\n          \"operationId\": \"getUsers\",\n          \"responses\": {\n            \"200\": {\n              \"content\": {\n                \"application/json\": {\n                  \"schema\": {\n                    \"items\": {\n                      \"properties\": {\n                        \"name\": {\n                          \"type\": \"string\"\n                        }\n                      },\n                      \"type\": \"object\"\n                    },\n                    \"type\": \"array\"\n                  }\n                }\n              },\n              \"description\": \"fetched users\"\n            }\n          },\n          \"summary\": \"Get users\",\n          \"tags\": [\n            \"users\"\n          ]\n        }\n      }\n    },\n    \"security\": [\n      {\n        \"bearerAuth\": []\n      }\n    ],\n    \"servers\": [\n      {\n        \"url\": \"https://localhost:8080\"\n      }\n    ],\n    \"x-tyk-api-gateway\": {\n      \"info\": {\n        \"name\": \"user\",\n        \"state\": {\n          \"active\": true\n        }\n      },\n      \"server\": {\n        \"listenPath\": {\n          \"strip\": true,\n          \"value\": \"/user-test/\"\n        }\n      },\n      \"upstream\": {\n        \"url\": \"https://localhost:8080\"\n      }\n    }\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "462a778e-9c08-4f23-b9c9-8070007aeeaf",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0ee36244-dff4-4644-ae87-3ab99ef63425",
+          "name": "Create an Api With Tyk Oas Format.",
+          "request": {
+            "name": "Create an Api With Tyk Oas Format.",
+            "description": {
+              "content": "Create an API with Tyk OAS API format on the Tyk Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "base_api_id",
+                  "value": "<string>",
+                  "description": "The base API which the new version will be linked to."
+                },
+                {
+                  "disabled": false,
+                  "key": "base_api_version_name",
+                  "value": "<string>",
+                  "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+                },
+                {
+                  "disabled": false,
+                  "key": "new_version_name",
+                  "value": "<string>",
+                  "description": "The version name of the created version."
+                },
+                {
+                  "disabled": false,
+                  "key": "set_default",
+                  "value": "<boolean>",
+                  "description": "If true, the new version is set as default version."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": {\n    \"dbId\": \"<string>\",\n    \"expiration\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"state\": {\n      \"active\": \"<boolean>\",\n      \"internal\": \"<boolean>\"\n    },\n    \"versioning\": {\n      \"default\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"fallbackToDefault\": \"<boolean>\",\n      \"key\": \"<string>\",\n      \"location\": \"<string>\",\n      \"name\": \"<string>\",\n      \"stripVersioningData\": \"<boolean>\",\n      \"urlVersioningPattern\": \"<string>\",\n      \"versions\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  },\n  \"middleware\": {\n    \"global\": {\n      \"cache\": {\n        \"cacheAllSafeRequests\": \"<boolean>\",\n        \"cacheByHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"cacheResponseCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"controlTTLHeaderName\": \"<string>\",\n        \"enableUpstreamCacheControl\": \"<boolean>\",\n        \"enabled\": \"<boolean>\",\n        \"timeout\": \"<integer>\"\n      },\n      \"contextVariables\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"cors\": {\n        \"allowCredentials\": \"<boolean>\",\n        \"allowedHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedMethods\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedOrigins\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"debug\": \"<boolean>\",\n        \"enabled\": \"<boolean>\",\n        \"exposedHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"maxAge\": \"<integer>\",\n        \"optionsPassthrough\": \"<boolean>\"\n      },\n      \"pluginConfig\": {\n        \"bundle\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"driver\": \"<string>\"\n      },\n      \"postAuthenticationPlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"postAuthenticationPlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"postPlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"postPlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"prePlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"prePlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"responsePlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"responsePlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"trafficLogs\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"transformRequestHeaders\": {\n        \"add\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"remove\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transformResponseHeaders\": {\n        \"add\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"remove\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    \"operations\": {\n      \"key_0\": {\n        \"allow\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"circuitBreaker\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"doNotTrackEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enforceTimeout\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"ignoreAuthentication\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"internal\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mockResponse\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rateLimit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"requestSizeLimit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestBody\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestMethod\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseBody\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"urlRewrite\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"validateRequest\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"virtualEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"server\": {\n    \"authentication\": {\n      \"baseIdentityProvider\": \"<string>\",\n      \"custom\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"config\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\"\n      },\n      \"enabled\": \"<boolean>\",\n      \"hmac\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"allowedAlgorithms\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedClockSkew\": \"<number>\",\n        \"enabled\": \"<boolean>\"\n      },\n      \"oidc\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"providers\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"scopes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"segregateByClientId\": \"<boolean>\"\n      },\n      \"securitySchemes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"stripAuthorizationData\": \"<boolean>\"\n    },\n    \"clientCertificates\": {\n      \"allowlist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"customDomain\": {\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"detailedActivityLogs\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"detailedTracing\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"eventHandlers\": [\n      {\n        \"enabled\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"trigger\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"enabled\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"trigger\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"gatewayTags\": {\n      \"enabled\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"listenPath\": {\n      \"strip\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"upstream\": {\n    \"certificatePinning\": {\n      \"domainToPublicKeysMapping\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"mutualTLS\": {\n      \"domainToCertificateMapping\": [\n        {\n          \"certificate\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"domain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"certificate\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"domain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"rateLimit\": {\n      \"enabled\": \"<boolean>\",\n      \"per\": \"<integer>\",\n      \"rate\": \"<integer>\"\n    },\n    \"serviceDiscovery\": {\n      \"cache\": {\n        \"enabled\": \"<boolean>\",\n        \"timeout\": \"<integer>\"\n      },\n      \"cacheTimeout\": \"<integer>\",\n      \"dataPath\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"endpointReturnsList\": \"<boolean>\",\n      \"parentDataPath\": \"<string>\",\n      \"portDataPath\": \"<string>\",\n      \"queryEndpoint\": \"<string>\",\n      \"targetPath\": \"<string>\",\n      \"useNestedQuery\": \"<boolean>\",\n      \"useTargetList\": \"<boolean>\"\n    },\n    \"test\": {\n      \"serviceDiscovery\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cacheTimeout\": \"<integer>\",\n        \"dataPath\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"endpointReturnsList\": \"<boolean>\",\n        \"parentDataPath\": \"<string>\",\n        \"portDataPath\": \"<string>\",\n        \"queryEndpoint\": \"<string>\",\n        \"targetPath\": \"<string>\",\n        \"useNestedQuery\": \"<boolean>\",\n        \"useTargetList\": \"<boolean>\"\n      }\n    },\n    \"url\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5808ae67-88fb-4921-99fa-725febfbf3a5",
+              "name": "API created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"added\",\n  \"key\": \"e30bee13ad4248c3b529a4c58bb7be4e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "77ab912a-e67d-41d6-b1c3-7422f23530dd",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"the payload should contain x-tyk-api-gateway\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59cc858a-0d04-4e83-a842-932c672633fd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "22030d98-860c-4002-a27f-7fa66965214b",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"file object creation failed, write error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8dbdd68b-7977-4b34-a99a-714b571aa29a",
+          "name": "Deleting a Tyk Oas Api.",
+          "request": {
+            "name": "Deleting a Tyk Oas Api.",
+            "description": {
+              "content": "Deleting an API definition will remove the file from the file store, the API definition will not be unloaded, a separate reload request will need to be made to disable the API endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) The API ID."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "abe91dd3-9534-4457-85fc-a1eb787abea1",
+              "name": "API deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) The API ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"deleted\",\n  \"key\": \"1bd5c61b0e694082902cf15ddcc9e6a7\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c4b32e3-0f93-4d2b-aeca-e7d188654257",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) The API ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Must specify an apiID to delete\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef0b78ac-bb4b-4444-9749-9d5121ee1982",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) The API ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c56cf2a3-dd80-4542-81ed-006fd50244d1",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) The API ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7ef89261-e584-412e-87c0-3fb7bb449acf",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) The API ID."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Delete failed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8353a8a7-f3a7-4834-b899-c695338063cc",
+          "name": "Get a Tyk Oas Api Definition.",
+          "request": {
+            "name": "Get a Tyk Oas Api Definition.",
+            "description": {
+              "content": "Get Tyk OAS API definition using an API ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) ID of the API you want to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7d6cf1bc-1584-432e-8b4b-0d144bde02d3",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "disabled": false,
+                  "description": "ID of the base API if the requested API is a version.",
+                  "key": "x-tyk-base-api-id",
+                  "value": "string"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "defa22f4-48bb-4202-a0c9-617c82f9fae7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"the requested API definition is in Tyk classic format, please use old API endpoint\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2d8c9889-dd88-48a9-817b-fbfaab31d14e",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0fbbfe2d-7890-43cb-ae12-70ac9e73e430",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "24e7a1e8-d7a5-4e65-a8ac-720edd49103a",
+          "name": "Patch Api in Tyk Oas Format.",
+          "request": {
+            "name": "Patch Api in Tyk Oas Format.",
+            "description": {
+              "content": "You can use this endpoint to update Tyk OAS part of the Tyk API definition.\nThis endpoint allows you to configure Tyk OAS extension based on query params provided(similar to import).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "upstreamURL",
+                  "value": "<string>",
+                  "description": "Upstream URL for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "listenPath",
+                  "value": "<string>",
+                  "description": "Listen path for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "customDomain",
+                  "value": "<string>",
+                  "description": "Custom domain for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "allowList",
+                  "value": "<boolean>",
+                  "description": "Enable allowList middleware for all endpoints"
+                },
+                {
+                  "disabled": false,
+                  "key": "validateRequest",
+                  "value": "<boolean>",
+                  "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json"
+                },
+                {
+                  "disabled": false,
+                  "key": "mockResponse",
+                  "value": "<boolean>",
+                  "description": "Enable mockResponse middleware for all endpoints having responses configured."
+                },
+                {
+                  "disabled": false,
+                  "key": "authentication",
+                  "value": "<boolean>",
+                  "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) ID of the API you want to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "44849de3-5495-4110-800f-aa743c999a98",
+              "name": "API patched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"modified\",\n  \"key\": \"b13d928b9972bd18\",\n  \"key_hash\": \"example_value\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80377cb6-4ba2-4440-adcc-1a0585d25238",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Must specify an apiID to patch\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "302cf155-df10-4291-a19e-262cbb02407f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "25750929-58ea-426a-8c61-4977bfb6470e",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7232cf0f-cc7d-4519-9a92-01ca855a3421",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"file object creation failed, write error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "968df1f8-bf8d-4d7b-afcd-2fec67c44611",
+          "name": "Update a Tyk Oas Api Definition.",
+          "request": {
+            "name": "Update a Tyk Oas Api Definition.",
+            "description": {
+              "content": "Updating an API definition uses the same signature an object as a `POST`, however it will first ensure that the API ID that is being updated is the same as the one in the object being `PUT`.\n\n\n      Updating will completely replace the file descriptor and will not change an API Definition that has already been loaded, the hot-reload endpoint will need to be called to push the new definition\nto live.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) ID of the API you want to fetch"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"info\": {\n    \"dbId\": \"<string>\",\n    \"expiration\": \"<string>\",\n    \"id\": \"<string>\",\n    \"name\": \"<string>\",\n    \"orgId\": \"<string>\",\n    \"state\": {\n      \"active\": \"<boolean>\",\n      \"internal\": \"<boolean>\"\n    },\n    \"versioning\": {\n      \"default\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"fallbackToDefault\": \"<boolean>\",\n      \"key\": \"<string>\",\n      \"location\": \"<string>\",\n      \"name\": \"<string>\",\n      \"stripVersioningData\": \"<boolean>\",\n      \"urlVersioningPattern\": \"<string>\",\n      \"versions\": [\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"id\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"name\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ]\n    }\n  },\n  \"middleware\": {\n    \"global\": {\n      \"cache\": {\n        \"cacheAllSafeRequests\": \"<boolean>\",\n        \"cacheByHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"cacheResponseCodes\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"controlTTLHeaderName\": \"<string>\",\n        \"enableUpstreamCacheControl\": \"<boolean>\",\n        \"enabled\": \"<boolean>\",\n        \"timeout\": \"<integer>\"\n      },\n      \"contextVariables\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"cors\": {\n        \"allowCredentials\": \"<boolean>\",\n        \"allowedHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedMethods\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedOrigins\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"debug\": \"<boolean>\",\n        \"enabled\": \"<boolean>\",\n        \"exposedHeaders\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"maxAge\": \"<integer>\",\n        \"optionsPassthrough\": \"<boolean>\"\n      },\n      \"pluginConfig\": {\n        \"bundle\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"data\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"driver\": \"<string>\"\n      },\n      \"postAuthenticationPlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"postAuthenticationPlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"postPlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"postPlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"prePlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"prePlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"responsePlugin\": {\n        \"plugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"responsePlugins\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"trafficLogs\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"transformRequestHeaders\": {\n        \"add\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"remove\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"transformResponseHeaders\": {\n        \"add\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"remove\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    \"operations\": {\n      \"key_0\": {\n        \"allow\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"block\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"circuitBreaker\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"doNotTrackEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enforceTimeout\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"ignoreAuthentication\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"internal\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"mockResponse\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rateLimit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"requestSizeLimit\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trackEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestBody\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestMethod\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseBody\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"urlRewrite\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"validateRequest\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"virtualEndpoint\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    }\n  },\n  \"server\": {\n    \"authentication\": {\n      \"baseIdentityProvider\": \"<string>\",\n      \"custom\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"config\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\"\n      },\n      \"enabled\": \"<boolean>\",\n      \"hmac\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"allowedAlgorithms\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"allowedClockSkew\": \"<number>\",\n        \"enabled\": \"<boolean>\"\n      },\n      \"oidc\": {\n        \"AuthSources\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"providers\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"scopes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"segregateByClientId\": \"<boolean>\"\n      },\n      \"securitySchemes\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"stripAuthorizationData\": \"<boolean>\"\n    },\n    \"clientCertificates\": {\n      \"allowlist\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"customDomain\": {\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"enabled\": \"<boolean>\",\n      \"name\": \"<string>\"\n    },\n    \"detailedActivityLogs\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"detailedTracing\": {\n      \"enabled\": \"<boolean>\"\n    },\n    \"eventHandlers\": [\n      {\n        \"enabled\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"trigger\": \"<string>\",\n        \"type\": \"<string>\"\n      },\n      {\n        \"enabled\": \"<boolean>\",\n        \"id\": \"<string>\",\n        \"name\": \"<string>\",\n        \"trigger\": \"<string>\",\n        \"type\": \"<string>\"\n      }\n    ],\n    \"gatewayTags\": {\n      \"enabled\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"listenPath\": {\n      \"strip\": \"<boolean>\",\n      \"value\": \"<string>\"\n    }\n  },\n  \"upstream\": {\n    \"certificatePinning\": {\n      \"domainToPublicKeysMapping\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"mutualTLS\": {\n      \"domainToCertificateMapping\": [\n        {\n          \"certificate\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"domain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        },\n        {\n          \"certificate\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          \"domain\": {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        }\n      ],\n      \"enabled\": \"<boolean>\"\n    },\n    \"rateLimit\": {\n      \"enabled\": \"<boolean>\",\n      \"per\": \"<integer>\",\n      \"rate\": \"<integer>\"\n    },\n    \"serviceDiscovery\": {\n      \"cache\": {\n        \"enabled\": \"<boolean>\",\n        \"timeout\": \"<integer>\"\n      },\n      \"cacheTimeout\": \"<integer>\",\n      \"dataPath\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"endpointReturnsList\": \"<boolean>\",\n      \"parentDataPath\": \"<string>\",\n      \"portDataPath\": \"<string>\",\n      \"queryEndpoint\": \"<string>\",\n      \"targetPath\": \"<string>\",\n      \"useNestedQuery\": \"<boolean>\",\n      \"useTargetList\": \"<boolean>\"\n    },\n    \"test\": {\n      \"serviceDiscovery\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cacheTimeout\": \"<integer>\",\n        \"dataPath\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"endpointReturnsList\": \"<boolean>\",\n        \"parentDataPath\": \"<string>\",\n        \"portDataPath\": \"<string>\",\n        \"queryEndpoint\": \"<string>\",\n        \"targetPath\": \"<string>\",\n        \"useNestedQuery\": \"<boolean>\",\n        \"useTargetList\": \"<boolean>\"\n      }\n    },\n    \"url\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d5afe474-01ce-4654-9dbc-b0e8075775ab",
+              "name": "API updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"modified\",\n  \"key\": \"e30bee13ad4248c3b529a4c58bb7be4e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "63df9788-4872-4731-b822-2966c3c14f1b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request APIID does not match that in Definition! For Update operations these must match.\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a5be5f49-e9a6-4196-9782-9f5b9c45fe83",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb62f224-2754-4f23-8007-6433e53b17ea",
+              "name": "API not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "548c4f8d-b2cb-4628-97a5-1311f7a0bba9",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"file object creation failed, write error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d1211dec-4528-441f-ab7f-1acc0b1070a2",
+          "name": "Download a Tyk Oas Format Api.",
+          "request": {
+            "name": "Download a Tyk Oas Format Api.",
+            "description": {
+              "content": "Use the mode query parameter to specify if you want the x-tyk-api-gateway stripped out.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) ID of the API you want to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c1260a4a-829f-4e17-8932-89da158e1572",
+              "name": "Exported API definition file",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "e1b0a156-c31e-4542-ac2e-99b894353537",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"requesting API definition that is in Tyk classic format\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b2907157-d05e-4f24-88ad-64d3e912c1a8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d571b8dc-4273-4f82-95e0-083d3ddd940d",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34f94c67-4f2a-42a1-a8d5-b372a9092665",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unexpected error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "20ebcc7c-1219-4723-8c60-1c4bddbbe106",
+          "name": "Listing Versions of a Tyk Oas Api.",
+          "request": {
+            "name": "Listing Versions of a Tyk Oas Api.",
+            "description": {
+              "content": "Listing versions of a Tyk OAS API.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                ":apiID",
+                "versions"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "searchText",
+                  "value": "<string>",
+                  "description": "Search for API version name"
+                },
+                {
+                  "disabled": false,
+                  "key": "accessType",
+                  "value": "<string>",
+                  "description": "Filter for internal or external API versions"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiID",
+                  "description": "(Required) ID of the API you want to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "00159f65-7b0c-4473-b6bc-388c71596fdb",
+              "name": "API version metas.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "Sample oas"
+                    },
+                    {
+                      "key": "accessType",
+                      "value": "internal"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"apis\": [\n    {\n      \"expirationDate\": \"\",\n      \"id\": \"keyless\",\n      \"internal\": false,\n      \"isDefaultVersion\": false,\n      \"name\": \"Tyk Test Keyless API\",\n      \"versionName\": \"\"\n    },\n    {\n      \"expirationDate\": \"\",\n      \"id\": \"1f20d5d2731d47ac9c79fddf826eda00\",\n      \"internal\": false,\n      \"isDefaultVersion\": true,\n      \"name\": \"Version three Api\",\n      \"versionName\": \"v2\"\n    }\n  ],\n  \"status\": \"success\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4eaa8a40-2ff7-4ff1-9e08-be165b581cd7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "Sample oas"
+                    },
+                    {
+                      "key": "accessType",
+                      "value": "internal"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0f0e3f0d-77cd-49b6-93a5-7e36dccbaa57",
+              "name": "API not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    ":apiID",
+                    "versions"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "searchText",
+                      "value": "Sample oas"
+                    },
+                    {
+                      "key": "accessType",
+                      "value": "internal"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiID",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"API not found.\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "098a272d-1445-4d1d-96ef-ec539c4e7730",
+          "name": "Download All Tyk Oas Format Apis.",
+          "request": {
+            "name": "Download All Tyk Oas Format Apis.",
+            "description": {
+              "content": "Download all Tyk OAS format APIs, from the Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                "export"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "mode",
+                  "value": "<string>",
+                  "description": "By default mode is empty which means it will return the Tyk API OAS spec including the x-tyk-api-gateway part. \n When mode=public, the Tyk OAS API spec will exclude the x-tyk-api-gateway part in the response."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "52c5b558-a8d2-4d72-87fa-54af317aa53c",
+              "name": "Get a list of Tyk OAS APIs definitions.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "db40cf57-fb7f-4e03-805f-54c782047855",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3210f047-0c58-448d-bfbf-ba07f31291a5",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "export"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "mode",
+                      "value": "public"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unexpected error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c4870b04-07e3-4fc6-a335-2ef3de2cc007",
+          "name": "Import an Api in Tyk Oas Format.",
+          "request": {
+            "name": "Import an Api in Tyk Oas Format.",
+            "description": {
+              "content": "Import an Tyk OAS format API without x-tyk-gateway.\n For use with an existing Tyk OAS API that you want to expose via your Tyk Gateway.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "apis",
+                "oas",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "upstreamURL",
+                  "value": "<string>",
+                  "description": "Upstream URL for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "listenPath",
+                  "value": "<string>",
+                  "description": "Listen path for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "customDomain",
+                  "value": "<string>",
+                  "description": "Custom domain for the API"
+                },
+                {
+                  "disabled": false,
+                  "key": "allowList",
+                  "value": "<boolean>",
+                  "description": "Enable allowList middleware for all endpoints"
+                },
+                {
+                  "disabled": false,
+                  "key": "validateRequest",
+                  "value": "<boolean>",
+                  "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json"
+                },
+                {
+                  "disabled": false,
+                  "key": "mockResponse",
+                  "value": "<boolean>",
+                  "description": "Enable mockResponse middleware for all endpoints having responses configured."
+                },
+                {
+                  "disabled": false,
+                  "key": "authentication",
+                  "value": "<boolean>",
+                  "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API"
+                },
+                {
+                  "disabled": false,
+                  "key": "base_api_id",
+                  "value": "<string>",
+                  "description": "The base API which the new version will be linked to."
+                },
+                {
+                  "disabled": false,
+                  "key": "base_api_version_name",
+                  "value": "<string>",
+                  "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+                },
+                {
+                  "disabled": false,
+                  "key": "new_version_name",
+                  "value": "<string>",
+                  "description": "The version name of the created version."
+                },
+                {
+                  "disabled": false,
+                  "key": "set_default",
+                  "value": "<boolean>",
+                  "description": "If true, the new version is set as default version."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "79cb8d91-1530-4d57-9a91-6df7c2463580",
+              "name": "API imported.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    },
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"added\",\n  \"key\": \"e30bee13ad4248c3b529a4c58bb7be4e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "66a8bdd2-e005-4ce1-8b7f-17e56fd29a71",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    },
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"the import payload should not contain x-tyk-api-gateway\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3460dfc0-ce26-476d-b7f4-466ff05deabe",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    },
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1eac5b3b-f677-4eda-8450-a840a264003f",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "apis",
+                    "oas",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "upstreamURL",
+                      "value": "https://localhost:8080"
+                    },
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    },
+                    {
+                      "key": "base_api_id",
+                      "value": "663a4ed9b6be920001b191ae"
+                    },
+                    {
+                      "key": "base_api_version_name",
+                      "value": "Default"
+                    },
+                    {
+                      "key": "new_version_name",
+                      "value": "v2"
+                    },
+                    {
+                      "key": "set_default",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample OAS.\",\n    \"title\": \"OAS Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsers\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"file object creation failed, write error\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "95d583ca-3c68-4226-8b41-4d488d14eef0",
+    "name": "Tyk Dashboard Admin Additional Permissions Tyk OAS APIs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

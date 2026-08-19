@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Debug API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Debug",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Test an an Api Definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/debug",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Used to test API definition by sending sample request and analysing output of both response and logs."
+        },
+        {
+          "info": {
+            "name": "Tyk Cpu Profiling Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/debug/pprof/profile"
+          },
+          "docs": "Returns CPU profiling data. Available only when HTTPProfile is enabled in sink.conf."
+        },
+        {
+          "info": {
+            "name": "Tyk Pprof Data",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/debug/pprof/:profileType",
+            "params": [
+              {
+                "name": "profileType",
+                "value": "",
+                "type": "path",
+                "description": "The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+              }
+            ]
+          },
+          "docs": "Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

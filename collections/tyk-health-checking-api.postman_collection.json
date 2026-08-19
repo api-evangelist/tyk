@@ -1,0 +1,213 @@
+{
+  "item": [
+    {
+      "id": "2c92712c-7d2d-4dc6-bcc1-d19d35de8496",
+      "name": "Health Checking",
+      "description": {
+        "content": "Check health status of the Tyk Gateway and loaded APIs.\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "84d9b8c6-840e-485a-9088-89994133cd58",
+          "name": "Check the Health of the Tyk Gateway.",
+          "request": {
+            "name": "Check the Health of the Tyk Gateway.",
+            "description": {
+              "content": "From v2.7.5 you can now rename the `/hello`  endpoint by using the `health_check_endpoint_name` option.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "hello"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "68cf3242-33b9-4a8e-93c3-2793c8b80a00",
+              "name": "Success.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hello"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"Tyk GW\",\n  \"details\": {\n    \"redis\": {\n      \"componentType\": \"datastore\",\n      \"status\": \"pass\",\n      \"time\": \"2020-05-19T03:42:55+01:00\"\n    }\n  },\n  \"status\": \"pass\",\n  \"version\": \"v5.5.0-dev\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e52609de-8f57-4ee0-b4d1-69db0215219d",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hello"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "83a4ceb8-f603-45da-81fd-7b5d3a068143",
+              "name": "Method Not Allowed",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "hello"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Method Not Allowed",
+              "code": 405,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Method Not Allowed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a1f55052-bc5b-4de1-a19c-fbd851cbc12a",
+    "name": "Tyk Dashboard Admin Additional Permissions Health Checking API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

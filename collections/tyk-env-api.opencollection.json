@@ -1,0 +1,43 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Env API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Env",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Retrieve Environment Variables",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/env",
+            "headers": [
+              {
+                "name": "X-Tyk-Authorization",
+                "value": "your-secret-key"
+              }
+            ]
+          },
+          "docs": "Returns the current configuration status of the system.\n\n**Example curl command:**\n\n```bash\ncurl -X GET \\ \nhttp://localhost:8181/config\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

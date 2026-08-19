@@ -1,0 +1,361 @@
+{
+  "item": [
+    {
+      "id": "73dcdb0f-3f0f-4854-b781-5133b57d292e",
+      "name": "Basic Authentication",
+      "description": {
+        "content": "An API request made using Basic Authentication will have an Authorization header that contains the API key. The value of the Authorization header will be in the form:</br>\n`Basic base64Encode(username:password)`.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6c9e9705-84e7-461c-a09b-a5ae848612d2",
+          "name": "Create a Basic Auth User.",
+          "request": {
+            "name": "Create a Basic Auth User.",
+            "description": {
+              "content": "Create a Basic Auth user with the username specified in the path {username}. Note you have to send password via(the basic_auth_data.password field) in the request body.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "keys",
+                "basic",
+                ":username"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "username",
+                  "description": "(Required)  Username of Basic Auth user to create or update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\",\n    \"user\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"key_id\": \"<string>\",\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {},\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<double>\",\n      \"<double>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"key_0\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<long>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<long>\",\n    \"threshold\": \"<long>\",\n    \"trigger\": \"<double>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3caa9246-6317-47ab-a7ca-99e485411502",
+              "name": "User created successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "keys",
+                    "basic",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required)  Username of Basic Auth user to create or update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"62a0ec9092faf50001395817\"\n  ],\n  \"basic_auth_data\": {\n    \"password\": \"test123\"\n  },\n  \"enable_detailed_recording\": true,\n  \"expires\": 1718439136,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"meta_data\": {\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": -1,\n  \"quota_remaining\": 0,\n  \"quota_renewal_rate\": -1,\n  \"quota_renews\": 1715847135,\n  \"rate\": 1000,\n  \"tags\": [\n    \"edge-eu\",\n    \"edge\"\n  ],\n  \"throttle_interval\": 0,\n  \"throttle_retry_limit\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"api_model\": {},\n  \"data\": {\n    \"access_rights\": {\n      \"key_0\": {\n        \"allowance_scope\": \"<string>\",\n        \"allowed_types\": [\n          {\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"name\": \"<string>\"\n          },\n          {\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"name\": \"<string>\"\n          }\n        ],\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              \"GET\",\n              \"PATCH\",\n              \"HEAD\",\n              \"PUT\",\n              \"DELETE\"\n            ],\n            \"url\": \"anything/rate-limit-1-per-5\"\n          },\n          {\n            \"methods\": [\n              \"GET\",\n              \"PATCH\",\n              \"HEAD\",\n              \"PUT\",\n              \"DELETE\"\n            ],\n            \"url\": \"anything/rate-limit-1-per-5\"\n          }\n        ],\n        \"api_id\": \"d1dfc6a927a046c54c0ed470f19757cc\",\n        \"api_name\": \"Rate Limit Proxy API\",\n        \"disable_introspection\": false,\n        \"endpoints\": [\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"path\": \"<string>\"\n          },\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"path\": \"<string>\"\n          }\n        ],\n        \"field_access_rights\": [\n          {\n            \"field_name\": \"<string>\",\n            \"limits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type_name\": \"<string>\"\n          },\n          {\n            \"field_name\": \"<string>\",\n            \"limits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type_name\": \"<string>\"\n          }\n        ],\n        \"limit\": {\n          \"max_query_depth\": \"<integer>\",\n          \"per\": \"<double>\",\n          \"quota_max\": \"<long>\",\n          \"quota_remaining\": \"<long>\",\n          \"quota_renewal_rate\": \"<long>\",\n          \"quota_renews\": \"<long>\",\n          \"rate\": \"<double>\",\n          \"set_by_policy\": \"<boolean>\",\n          \"smoothing\": {\n            \"delay\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"step\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"threshold\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"trigger\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"throttle_interval\": \"<double>\",\n          \"throttle_retry_limit\": \"<integer>\"\n        },\n        \"restricted_types\": [\n          {\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"name\": \"<string>\"\n          },\n          {\n            \"fields\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"name\": \"<string>\"\n          }\n        ],\n        \"versions\": [\n          \"Default\",\n          \"v2\"\n        ]\n      }\n    },\n    \"alias\": \"portal-developer@example.org\",\n    \"allowance\": 1000,\n    \"apply_policies\": [\n      \"641c15dd0fffb800010197bf\",\n      \"615d2e528bf3980001c7c6c2\"\n    ],\n    \"apply_policy_id\": \"641c15dd0fffb800010197bf\",\n    \"basic_auth_data\": {\n      \"hash_type\": \"bcrypt\",\n      \"password\": \"testuse1\",\n      \"user\": \"admin-user@example.org\"\n    },\n    \"certificate\": \"<string>\",\n    \"data_expires\": 0,\n    \"date_created\": \"2024-05-14T13:15:46.560506+03:00\",\n    \"enable_detailed_recording\": true,\n    \"expires\": 1716895221,\n    \"hmac_enabled\": false,\n    \"hmac_string\": \"<string>\",\n    \"id_extractor_deadline\": 0,\n    \"is_inactive\": \"<boolean>\",\n    \"jwt_data\": {\n      \"secret\": \"<string>\"\n    },\n    \"key_id\": \"<string>\",\n    \"last_check\": 0,\n    \"last_updated\": \"1715681746\",\n    \"max_query_depth\": 5,\n    \"meta_data\": {},\n    \"monitor\": {\n      \"trigger_limits\": [\n        80,\n        60,\n        50\n      ]\n    },\n    \"oauth_client_id\": \"<string>\",\n    \"oauth_keys\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n    \"per\": 60,\n    \"quota_max\": 1710302205,\n    \"quota_remaining\": 20000,\n    \"quota_renewal_rate\": -1,\n    \"quota_renews\": 1715681745,\n    \"rate\": 1000,\n    \"session_lifetime\": 0,\n    \"smoothing\": {\n      \"delay\": \"<long>\",\n      \"enabled\": \"<boolean>\",\n      \"step\": \"<long>\",\n      \"threshold\": \"<long>\",\n      \"trigger\": \"<double>\"\n    },\n    \"tags\": [\n      \"edge\",\n      \"edge-eu\"\n    ],\n    \"throttle_interval\": 10,\n    \"throttle_retry_limit\": -1\n  },\n  \"key_hash\": \"41c5cb1e\",\n  \"key_id\": \"5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa13f6ce-87d4-4ed9-a529-33d70649c324",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "keys",
+                    "basic",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required)  Username of Basic Auth user to create or update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"62a0ec9092faf50001395817\"\n  ],\n  \"basic_auth_data\": {\n    \"password\": \"test123\"\n  },\n  \"enable_detailed_recording\": true,\n  \"expires\": 1718439136,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"meta_data\": {\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": -1,\n  \"quota_remaining\": 0,\n  \"quota_renewal_rate\": -1,\n  \"quota_renews\": 1715847135,\n  \"rate\": 1000,\n  \"tags\": [\n    \"edge-eu\",\n    \"edge\"\n  ],\n  \"throttle_interval\": 0,\n  \"throttle_retry_limit\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "defb2a70-12da-4b19-90d8-a90a578a301b",
+              "name": "Unmarshalling request body failed, malformed.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "keys",
+                    "basic",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required)  Username of Basic Auth user to create or update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"62a0ec9092faf50001395817\"\n  ],\n  \"basic_auth_data\": {\n    \"password\": \"test123\"\n  },\n  \"enable_detailed_recording\": true,\n  \"expires\": 1718439136,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"meta_data\": {\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": -1,\n  \"quota_remaining\": 0,\n  \"quota_renewal_rate\": -1,\n  \"quota_renews\": 1715847135,\n  \"rate\": 1000,\n  \"tags\": [\n    \"edge-eu\",\n    \"edge\"\n  ],\n  \"throttle_interval\": 0,\n  \"throttle_retry_limit\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Request body malformed\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d3ff9180-f113-42e9-b7bc-b061ddace8e5",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "keys",
+                    "basic",
+                    ":username"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "username",
+                      "description": "(Required)  Username of Basic Auth user to create or update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"62a0ec9092faf50001395817\"\n  ],\n  \"basic_auth_data\": {\n    \"password\": \"test123\"\n  },\n  \"enable_detailed_recording\": true,\n  \"expires\": 1718439136,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"meta_data\": {\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": -1,\n  \"quota_remaining\": 0,\n  \"quota_renewal_rate\": -1,\n  \"quota_renews\": 1715847135,\n  \"rate\": 1000,\n  \"tags\": [\n    \"edge-eu\",\n    \"edge\"\n  ],\n  \"throttle_interval\": 0,\n  \"throttle_retry_limit\": 0\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to unmarshal Key data.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "faacf8c8-bbcb-4673-b227-4b3c3cce7ac1",
+    "name": "Tyk Dashboard Admin Additional Permissions Basic Authentication API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

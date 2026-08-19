@@ -1,0 +1,161 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Certificates API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Certificates",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List Certificates.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/certs",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "mode",
+                "value": "detailed",
+                "type": "query",
+                "description": "Set to detailed to get certificates that are more with more details (Will contains certs basic details). To retrieve a list of certificates with all the certificate details use [this endpoint](#operation/listDetailedCertificates)."
+              }
+            ]
+          },
+          "docs": "Return list of certificates. If you send the mode query parameter with the value `detailed` the certificates returned will have more information (Will contains all certs basic details). To retrieve a list with complete certificate details use [this endpoint](#operation/listDetailedCertificates). If the mode query parameter is omitted or is empty this endpoint will only return the certificates IDs. The list of certificates returned is paginated."
+        },
+        {
+          "info": {
+            "name": "Create a certificate in Tyk org cert store.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/certs",
+            "body": {
+              "type": "multipart-form",
+              "data": []
+            }
+          },
+          "docs": "Upload new SSL certificate in PEM format (you should upload as a file). If the certificate should have a private key, convert both the public certificate and the associated private key to PEM format and concatenate them to a single file. You can only upload one certificate at a time."
+        },
+        {
+          "info": {
+            "name": "Get single certificate with ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/certs/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single certificate details with the certificate's ID."
+        },
+        {
+          "info": {
+            "name": "Delete Certificate.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/certs/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to delete."
+              }
+            ]
+          },
+          "docs": "Delete certificate by their ID."
+        },
+        {
+          "info": {
+            "name": "Get Certificate Dependencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/certs/dependencies/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to fetch dependencies for."
+              }
+            ]
+          },
+          "docs": "This will return the API IDs and API names of all APIs that uses this certificates as either upstream certificates or as client certificates."
+        },
+        {
+          "info": {
+            "name": "Delete Certificate dependencies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/certs/dependencies/:certId",
+            "params": [
+              {
+                "name": "certId",
+                "value": "5e9d9544a1dcd60001d0ed208edce514c2d0a866063550c64d6c90be99d01561ac5aa7e82b8610b7e273d37d",
+                "type": "path",
+                "description": "ID of the certificate you want to delete dependencies for."
+              }
+            ]
+          },
+          "docs": "This endpoint will remove the certificates from any APIs that contains it as an upstream certificates or as a client certificate. It will also remove any key that uses this certificate."
+        },
+        {
+          "info": {
+            "name": "List all certificates details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/certs/details",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a list that contains certificates and their full details."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

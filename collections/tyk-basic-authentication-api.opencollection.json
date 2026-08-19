@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Basic Authentication API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Basic Authentication",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create a Basic Auth User.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/keys/basic/:username",
+            "params": [
+              {
+                "name": "username",
+                "value": "itachi",
+                "type": "path",
+                "description": " Username of Basic Auth user to create or update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Basic Auth user with the username specified in the path {username}. Note you have to send password via(the basic_auth_data.password field) in the request body."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

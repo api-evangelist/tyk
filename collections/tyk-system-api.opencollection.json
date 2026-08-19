@@ -1,0 +1,63 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions System API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "System",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get system usage info.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/system/stats",
+            "params": [
+              {
+                "name": "start_day",
+                "value": "2023-07-01",
+                "type": "query",
+                "description": "start date"
+              },
+              {
+                "name": "end_day",
+                "value": " 2023-07-31",
+                "type": "query",
+                "description": "end date"
+              },
+              {
+                "name": "resolution",
+                "value": "day",
+                "type": "query",
+                "description": "Resolve daily."
+              },
+              {
+                "name": "entity",
+                "value": "apis",
+                "type": "query",
+                "description": "The entity for which stats should be retrieved."
+              }
+            ]
+          },
+          "docs": "Get system usage info with license entitlements for a specified date range. Return history for current and previous year if no date query parameters are provided."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

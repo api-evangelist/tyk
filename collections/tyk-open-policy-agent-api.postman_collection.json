@@ -1,0 +1,581 @@
+{
+  "item": [
+    {
+      "id": "a1fa20fe-e36b-40c8-ab87-ea085384d9b0",
+      "name": "Open Policy Agent",
+      "description": {
+        "content": "The Tyk Dashboard permission system can be extended by writing custom rules using an Open Policy Agent (OPA). The rules engine works on top of your Dashboard API, which means you can control not only access rules, but also behaviour of all Dashboard APIs (except your public developer portal)  <br/>\n\nBy default the Dashboard OPA engine is turned off, and you need to explicitly enable it via your Dashboard tyk_analytics.conf file. <br/>\n\nYou can use OPA rule to accomplish tasks like: <br/>\n\n1. Prevent users from creating keyless APIs.\n2. Assign specific categories to APIs created to certain user groups or users.\n3. Control access for individual fields. For example, do not allow changing the API  active  status (e.g. deploy), unless you have a specific permission set.\n4. And many more <br/>\n\n[Read more about Tyk Open Policy Agent here](https://tyk.io/docs/tyk-dashboard/open-policy-agent/)\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "de9366c3-dcb3-46f5-8a08-f0b419a8023f",
+          "name": "List OPA rules.",
+          "request": {
+            "name": "List OPA rules.",
+            "description": {
+              "content": "List your organisation OPA rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "org",
+                "opa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fe713d29-5182-4445-86c4-0b2b586c7874",
+              "name": "OPA rules fetched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7039982b-a881-423c-8137-3bf4cd1636ed",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f64a7196-3991-432f-8732-12ea1dfa8a2e",
+              "name": "Upgrade licence.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Your license does not support Open Policy.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "62da782f-5b08-4757-af68-3e289c2178ed",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to identify organisation.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f5203fbf-c466-4f2c-ab81-d3bb2d78a2df",
+          "name": "Update OPA rules.",
+          "request": {
+            "name": "Update OPA rules.",
+            "description": {
+              "content": "Modify your OPA rules.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "org",
+                "opa"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"open_policy\": {\n    \"rules\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "fbaa6ae1-7ca9-474e-ab7c-c1a55a231559",
+              "name": "OPA rules updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"OPA rules has been updated on org level.\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aa304b23-ef00-484f-8488-25053566cd1d",
+              "name": "Invalid OPA rules.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Invalid OPA rules.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "13dfe923-1c27-4de4-9161-2e9e35a1eed1",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "70ba6aeb-3cfd-40b2-bf23-81b8202313cf",
+              "name": "Upgrade licence.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Your license does not support Open Policy.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "15c49aa1-9485-4a29-b1f5-87f6e6fe5e46",
+              "name": "malformed request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "org",
+                    "opa"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"open_policy\": {\n    \"rules\": \"package dashboard_users\\ndefault request_intent = \\\"read\\\"\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"POST\\\" }\\nrequest_intent = \\\"write\\\" { input.request.method == \\\"PUT\\\" }\\nrequest_intent = \\\"delete\\\" { input.request.method == \\\"DELETE\\\" }\\ndeny[\\\"You cannot create a keyless API.\\\"] {\\n    request_intent == \\\"write\\\"\\n    contains(input.request.path, \\\"api/apis\\\")\\n    input.request.body.api_definition.use_keyless == true\\n}\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to unmarshal response body.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f1988898-60bd-4b2f-a66b-2141923d2f9f",
+    "name": "Tyk Dashboard Admin Additional Permissions Open Policy Agent API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

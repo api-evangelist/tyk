@@ -1,0 +1,475 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions OAS APIs API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "OAS APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/oas",
+            "params": [
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              },
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an API Definition in Tyk OAS API format.\n Note that the response includes the newly created Tyk OAS API Definition containing the unique identifier for the API (`ID`). You can provide a value for `ID` in the request body, otherwise Tyk will automatically generate a value."
+        },
+        {
+          "info": {
+            "name": "Get OAS API details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single API definition in OAS format."
+        },
+        {
+          "info": {
+            "name": "Update OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an API definition uses the same signature object as a `POST`. It will first ensure that the API ID being updated is the same as in the `PUT` object.<br/> Updating will completely replace the file descriptor and will not change an API definition that has already been loaded. The hot-reload endpoint will need to be called to push the new definition to live."
+        },
+        {
+          "info": {
+            "name": "Patch a single OAS API by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to patch."
+              },
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Tyk OAS API. You can use this endpoint to update the OAS part of your Tyk OAS API definition. This endpoint allows you to configure the Tyk OAS extension based on the query parameters provided (similar to import)."
+        },
+        {
+          "info": {
+            "name": "Delete OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/apis/oas/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to delete."
+              }
+            ]
+          },
+          "docs": "Deleting an API definition will remove the file from the file store. The API definition will not be unloaded and a separate reload request will need to be made to disable the API endpoint."
+        },
+        {
+          "info": {
+            "name": "Get OAS API's Categories.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oas/:apiId/categories",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Get a list of the API categories associated with the specified API."
+        },
+        {
+          "info": {
+            "name": "Update OAS API categories.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/apis/oas/:apiId/categories",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the list of API categories associated with the specified API."
+        },
+        {
+          "info": {
+            "name": "Export OAS API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oas/:apiId/export",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to export."
+              },
+              {
+                "name": "mode",
+                "value": "public",
+                "type": "query",
+                "description": "Mode of OAS export, by default mode could be empty which means to export OAS spec including OAS Tyk extension. When mode=public, OAS spec excluding Tyk extension is exported."
+              }
+            ]
+          },
+          "docs": "Download API definition in OAS format (only APIs saved in OAS format). When you set the mode query parameter to public the OAS spec exported will exclude the x-tyk-api-gateway part. When mode query parameter is empty or is set to any other value apart from public then the exported OAS spec will include the x-tyk-api-gateway part."
+        },
+        {
+          "info": {
+            "name": "List OAS API versions.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oas/:apiId/versions",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              },
+              {
+                "name": "searchText",
+                "value": "Sample oas",
+                "type": "query",
+                "description": "Search for API version name."
+              },
+              {
+                "name": "accessType",
+                "value": "internal",
+                "type": "query",
+                "description": "Filter for internal or external API versions."
+              }
+            ]
+          },
+          "docs": "List all the  versions of an OAS API."
+        },
+        {
+          "info": {
+            "name": "Dry Run OAS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/oas/dry-run",
+            "params": [
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              },
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              },
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Generate a Tyk OAS API definition without saving it to the Dashboard database.\nThis endpoint is used to produce a Tyk OAS API definition without creating the API proxy itself. This provides a dry run functionality for Tyk OAS API creation, showing what would be created in the Dashboard given the set of inputs provided."
+        },
+        {
+          "info": {
+            "name": "Import OAS.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/oas/import",
+            "params": [
+              {
+                "name": "upstreamURL",
+                "value": "https://localhost:8080",
+                "type": "query",
+                "description": "Upstream URL for the API."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              },
+              {
+                "name": "templateID",
+                "value": "my-unique-template-id",
+                "type": "query",
+                "description": "The Asset ID of template applied while creating or importing an OAS API."
+              },
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "For use with an existing OpenAPI document that you want to expose via your Tyk Gateway. <br/> Create a new Tyk OAS API from an OpenAPI document in JSON format (without x-tyk-api-gateway extension). <br/>The payload can contain either a fully fledged OpenAPI document or a URL pointing to an OpenAPI document."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

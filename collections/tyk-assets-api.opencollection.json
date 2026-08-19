@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Assets API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Assets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Retrieve list of assets.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/assets",
+            "params": [
+              {
+                "name": "kind",
+                "value": "oas-template",
+                "type": "query",
+                "description": "Filter assets by kind (optional)."
+              }
+            ]
+          },
+          "docs": "Retrieves all types of assets with optional kind filter."
+        },
+        {
+          "info": {
+            "name": "Create an asset",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/assets",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an asset that you can use as a blueprint from which you can create a new Tyk OAS API definition."
+        },
+        {
+          "info": {
+            "name": "Retrieve an asset.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to retrieve - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ]
+          },
+          "docs": "Retrieve an asset by ID."
+        },
+        {
+          "info": {
+            "name": "Update an asset by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to update - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an asset by ID.You cannot update _id (database ID assigned by tyk)"
+        },
+        {
+          "info": {
+            "name": "Delete an asset by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/assets/:assetID",
+            "params": [
+              {
+                "name": "assetID",
+                "value": "",
+                "type": "path",
+                "description": "ID of the asset to delete - this value can be the database ID of the asset or the custom ID provided during creation/update."
+              }
+            ]
+          },
+          "docs": "Remove an asset ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

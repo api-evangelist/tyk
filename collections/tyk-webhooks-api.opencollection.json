@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Webhooks API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Webhooks",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List webhooks.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/hooks",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of webhooks."
+        },
+        {
+          "info": {
+            "name": "Create a webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/hooks",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a webhook. The webhook method and target_path fields are required. Method can either be DELETE,GET,PUT,POST or PATCH."
+        },
+        {
+          "info": {
+            "name": "Get single webhook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "66498cd1e2fcd1000184ecb9",
+                "type": "path",
+                "description": "ID of the webhook to fetch."
+              }
+            ]
+          },
+          "docs": "Get a webhook details with its ID."
+        },
+        {
+          "info": {
+            "name": "Update Webhook",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "664b70285715ec4c96cbef3f",
+                "type": "path",
+                "description": "ID of the webhook to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a web hook using its ID. The webhook method and target_path fields are required in the request body when updating. *Note the original webhook data will be completely replaced with the new update request object(so if for example you don't send the name or webhook_id fields in your request body those fields will be updated to empty string even if they existed in your original webhook object.)*"
+        },
+        {
+          "info": {
+            "name": "Delete web hook.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/hooks/:hookId",
+            "params": [
+              {
+                "name": "hookId",
+                "value": "66498cd1e2fcd1000184ecb9",
+                "type": "path",
+                "description": "ID of the webhook to delete."
+              }
+            ]
+          },
+          "docs": "Delete webhook with ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

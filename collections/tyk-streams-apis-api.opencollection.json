@@ -1,0 +1,179 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Streams APIs API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Streams APIs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/streams",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a Streams API Definition in Tyk OAS API format.\n Note that the response includes the newly created Tyk Streams API Definition containing the unique identifier for the API (`ID`). You can provide a value for `ID` in the request body, otherwise Tyk will automatically generate a value."
+        },
+        {
+          "info": {
+            "name": "Get Streams API details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/streams/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to fetch."
+              }
+            ]
+          },
+          "docs": "Get a single Streams API definition."
+        },
+        {
+          "info": {
+            "name": "Update Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/apis/streams/:apiId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an API definition uses the same signature object as a `POST`. It will first ensure that the API ID being updated is the same as in the `PUT` object.<br/> Updating will completely replace the file descriptor and will not change an API definition that has already been loaded. The hot-reload endpoint will need to be called to push the new definition to live."
+        },
+        {
+          "info": {
+            "name": "Patch a single Streams API by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PATCH",
+            "url": "http://localhost/api/apis/streams/:apiId",
+            "headers": [
+              {
+                "name": "Content-Type",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to patch."
+              },
+              {
+                "name": "listenPath",
+                "value": "/user-test/",
+                "type": "query",
+                "description": "Listen path for the API."
+              },
+              {
+                "name": "customDomain",
+                "value": "tyk.io",
+                "type": "query",
+                "description": "Custom domain for the API."
+              },
+              {
+                "name": "allowList",
+                "value": "",
+                "type": "query",
+                "description": "Enable allowList middleware for all endpoints."
+              },
+              {
+                "name": "validateRequest",
+                "value": "",
+                "type": "query",
+                "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+              },
+              {
+                "name": "mockResponse",
+                "value": "",
+                "type": "query",
+                "description": "Enable mockResponse middleware for all endpoints having responses configured."
+              },
+              {
+                "name": "authentication",
+                "value": "",
+                "type": "query",
+                "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a Tyk Streams API. You can use this endpoint to update the OAS part of your Tyk Streams API definition. This endpoint allows you to configure the Tyk OAS extension based on the query parameters provided (similar to import)."
+        },
+        {
+          "info": {
+            "name": "Delete Streams API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/apis/streams/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "4c1c0d8fc885401053ddac4e39ef676b",
+                "type": "path",
+                "description": "ID of the API you want to delete."
+              }
+            ]
+          },
+          "docs": "Deleting a Streams API definition will remove the file from the file store. The API definition will not be unloaded and a separate reload request will need to be made to disable the API endpoint."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

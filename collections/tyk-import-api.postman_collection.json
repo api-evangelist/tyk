@@ -1,0 +1,676 @@
+{
+  "item": [
+    {
+      "id": "9ef84d04-3aef-44d0-af4c-a99b4ddd00b0",
+      "name": "Import",
+      "description": {
+        "content": "The import API enables you to add Organisations, APIs and Policies back into a Tyk installation while retaining their base IDs so that they work together.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "61bd0281-91ba-4849-8912-f7925ebad4b5",
+          "name": "Import organisations",
+          "request": {
+            "name": "Import organisations",
+            "description": {
+              "content": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and it s APIs, Policies and API Tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apis\": [\n    {\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"CORS\": {\n        \"allow_credentials\": \"<boolean>\",\n        \"allowed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_origins\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"debug\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"exposed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_age\": \"<long>\",\n        \"options_passthrough\": \"<boolean>\"\n      },\n      \"active\": \"<boolean>\",\n      \"allowed_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"api_id\": \"<string>\",\n      \"auth\": {\n        \"auth_header_name\": \"<string>\",\n        \"cookie_name\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"signature\": {\n          \"algorithm\": \"<string>\",\n          \"allowed_clock_skew\": \"<long>\",\n          \"error_code\": \"<long>\",\n          \"error_message\": \"<string>\",\n          \"header\": \"<string>\",\n          \"secret\": \"<string>\"\n        },\n        \"use_certificate\": \"<boolean>\",\n        \"use_cookie\": \"<boolean>\",\n        \"use_param\": \"<boolean>\",\n        \"validate_signature\": \"<boolean>\"\n      },\n      \"auth_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"base_identity_provided_by\": \"<string>\",\n      \"basic_auth\": {\n        \"body_password_regexp\": \"<string>\",\n        \"body_user_regexp\": \"<string>\",\n        \"cache_ttl\": \"<long>\",\n        \"disable_caching\": \"<boolean>\",\n        \"extract_from_body\": \"<boolean>\"\n      },\n      \"blacklisted_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cache_options\": {\n        \"cache_all_safe_requests\": \"<boolean>\",\n        \"cache_control_ttl_header\": \"<string>\",\n        \"cache_response_codes\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cache_timeout\": \"<long>\",\n        \"enable_cache\": \"<boolean>\",\n        \"enable_upstream_cache_control\": \"<boolean>\"\n      },\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"client_certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"config_data\": {\n        \"key_0\": \"<object>\",\n        \"key_1\": \"<object>\",\n        \"key_2\": \"<object>\"\n      },\n      \"custom_middleware\": {\n        \"auth_check\": {\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"require_session\": \"<boolean>\"\n        },\n        \"driver\": \"<string>\",\n        \"id_extractor\": {\n          \"extract_from\": \"<string>\",\n          \"extract_with\": \"<string>\",\n          \"extractor_config\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\"\n          }\n        },\n        \"post\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"post_key_auth\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"pre\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"response\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ]\n      },\n      \"custom_middleware_bundle\": \"<string>\",\n      \"definition\": {\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"strip_path\": \"<boolean>\"\n      },\n      \"disable_quota\": \"<boolean>\",\n      \"disable_rate_limit\": \"<boolean>\",\n      \"do_not_track\": \"<boolean>\",\n      \"domain\": \"<string>\",\n      \"dont_set_quota_on_create\": \"<boolean>\",\n      \"enable_batch_request_support\": \"<boolean>\",\n      \"enable_context_vars\": \"<boolean>\",\n      \"enable_coprocess_auth\": \"<boolean>\",\n      \"enable_ip_blacklisting\": \"<boolean>\",\n      \"enable_ip_whitelisting\": \"<boolean>\",\n      \"enable_jwt\": \"<boolean>\",\n      \"enable_signature_checking\": \"<boolean>\",\n      \"event_handlers\": {\n        \"events\": {}\n      },\n      \"expire_analytics_after\": \"<long>\",\n      \"global_rate_limit\": {\n        \"per\": \"<double>\",\n        \"rate\": \"<double>\"\n      },\n      \"hmac_allowed_algorithms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hmac_allowed_clock_skew\": \"<double>\",\n      \"id\": \"<string>\",\n      \"internal\": \"<boolean>\",\n      \"jwt_client_base_field\": \"<string>\",\n      \"jwt_expires_at_validation_skew\": \"<uint64>\",\n      \"jwt_identity_base_field\": \"<string>\",\n      \"jwt_issued_at_validation_skew\": \"<uint64>\",\n      \"jwt_not_before_validation_skew\": \"<uint64>\",\n      \"jwt_policy_field_name\": \"<string>\",\n      \"jwt_scope_claim_name\": \"<string>\",\n      \"jwt_scope_to_policy_mapping\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"jwt_signing_method\": \"<string>\",\n      \"jwt_skip_kid\": \"<boolean>\",\n      \"jwt_source\": \"<string>\",\n      \"name\": \"<string>\",\n      \"notifications\": {\n        \"oauth_on_keychange_url\": \"<string>\",\n        \"shared_secret\": \"<string>\"\n      },\n      \"oauth_meta\": {\n        \"allowed_access_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_authorize_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"auth_login_redirect\": \"<string>\"\n      },\n      \"openid_options\": {\n        \"providers\": [\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          },\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          }\n        ],\n        \"segregate_by_client\": \"<boolean>\"\n      },\n      \"org_id\": \"<string>\",\n      \"pinned_public_keys\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"proxy\": {\n        \"check_host_against_uptime_tests\": \"<boolean>\",\n        \"disable_strip_slash\": \"<boolean>\",\n        \"enable_load_balancing\": \"<boolean>\",\n        \"listen_path\": \"<string>\",\n        \"preserve_host_header\": \"<boolean>\",\n        \"service_discovery\": {\n          \"cache_timeout\": \"<long>\",\n          \"data_path\": \"<string>\",\n          \"endpoint_returns_list\": \"<boolean>\",\n          \"parent_data_path\": \"<string>\",\n          \"port_data_path\": \"<string>\",\n          \"query_endpoint\": \"<string>\",\n          \"target_path\": \"<string>\",\n          \"use_discovery_service\": \"<boolean>\",\n          \"use_nested_query\": \"<boolean>\",\n          \"use_target_list\": \"<boolean>\"\n        },\n        \"strip_listen_path\": \"<boolean>\",\n        \"target_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"target_url\": \"<string>\",\n        \"transport\": {\n          \"proxy_url\": \"<string>\",\n          \"ssl_ciphers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ssl_insecure_skip_verify\": \"<boolean>\",\n          \"ssl_min_version\": \"<uint16>\"\n        }\n      },\n      \"response_processors\": [\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        }\n      ],\n      \"session_lifetime\": \"<long>\",\n      \"session_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\",\n          \"key_3\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"slug\": \"<string>\",\n      \"strip_auth_data\": \"<boolean>\",\n      \"tag_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upstream_certificates\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"uptime_tests\": {\n        \"check_list\": [\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ],\n        \"config\": {\n          \"expire_utime_after\": \"<long>\",\n          \"recheck_wait\": \"<long>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          }\n        }\n      },\n      \"use_basic_auth\": \"<boolean>\",\n      \"use_keyless\": \"<boolean>\",\n      \"use_mutual_tls_auth\": \"<boolean>\",\n      \"use_oauth2\": \"<boolean>\",\n      \"use_openid\": \"<boolean>\",\n      \"use_standard_auth\": \"<boolean>\",\n      \"version_data\": {\n        \"default_version\": \"<string>\",\n        \"not_versioned\": \"<boolean>\",\n        \"versions\": {\n          \"key_0\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          },\n          \"key_1\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          }\n        }\n      }\n    },\n    {\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"CORS\": {\n        \"allow_credentials\": \"<boolean>\",\n        \"allowed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_methods\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_origins\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"debug\": \"<boolean>\",\n        \"enable\": \"<boolean>\",\n        \"exposed_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"max_age\": \"<long>\",\n        \"options_passthrough\": \"<boolean>\"\n      },\n      \"active\": \"<boolean>\",\n      \"allowed_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"api_id\": \"<string>\",\n      \"auth\": {\n        \"auth_header_name\": \"<string>\",\n        \"cookie_name\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"signature\": {\n          \"algorithm\": \"<string>\",\n          \"allowed_clock_skew\": \"<long>\",\n          \"error_code\": \"<long>\",\n          \"error_message\": \"<string>\",\n          \"header\": \"<string>\",\n          \"secret\": \"<string>\"\n        },\n        \"use_certificate\": \"<boolean>\",\n        \"use_cookie\": \"<boolean>\",\n        \"use_param\": \"<boolean>\",\n        \"validate_signature\": \"<boolean>\"\n      },\n      \"auth_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"base_identity_provided_by\": \"<string>\",\n      \"basic_auth\": {\n        \"body_password_regexp\": \"<string>\",\n        \"body_user_regexp\": \"<string>\",\n        \"cache_ttl\": \"<long>\",\n        \"disable_caching\": \"<boolean>\",\n        \"extract_from_body\": \"<boolean>\"\n      },\n      \"blacklisted_ips\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cache_options\": {\n        \"cache_all_safe_requests\": \"<boolean>\",\n        \"cache_control_ttl_header\": \"<string>\",\n        \"cache_response_codes\": [\n          \"<long>\",\n          \"<long>\"\n        ],\n        \"cache_timeout\": \"<long>\",\n        \"enable_cache\": \"<boolean>\",\n        \"enable_upstream_cache_control\": \"<boolean>\"\n      },\n      \"certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"client_certificates\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"config_data\": {\n        \"key_0\": \"<object>\"\n      },\n      \"custom_middleware\": {\n        \"auth_check\": {\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"require_session\": \"<boolean>\"\n        },\n        \"driver\": \"<string>\",\n        \"id_extractor\": {\n          \"extract_from\": \"<string>\",\n          \"extract_with\": \"<string>\",\n          \"extractor_config\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\"\n          }\n        },\n        \"post\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"post_key_auth\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"pre\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ],\n        \"response\": [\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          }\n        ]\n      },\n      \"custom_middleware_bundle\": \"<string>\",\n      \"definition\": {\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"strip_path\": \"<boolean>\"\n      },\n      \"disable_quota\": \"<boolean>\",\n      \"disable_rate_limit\": \"<boolean>\",\n      \"do_not_track\": \"<boolean>\",\n      \"domain\": \"<string>\",\n      \"dont_set_quota_on_create\": \"<boolean>\",\n      \"enable_batch_request_support\": \"<boolean>\",\n      \"enable_context_vars\": \"<boolean>\",\n      \"enable_coprocess_auth\": \"<boolean>\",\n      \"enable_ip_blacklisting\": \"<boolean>\",\n      \"enable_ip_whitelisting\": \"<boolean>\",\n      \"enable_jwt\": \"<boolean>\",\n      \"enable_signature_checking\": \"<boolean>\",\n      \"event_handlers\": {\n        \"events\": {}\n      },\n      \"expire_analytics_after\": \"<long>\",\n      \"global_rate_limit\": {\n        \"per\": \"<double>\",\n        \"rate\": \"<double>\"\n      },\n      \"hmac_allowed_algorithms\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"hmac_allowed_clock_skew\": \"<double>\",\n      \"id\": \"<string>\",\n      \"internal\": \"<boolean>\",\n      \"jwt_client_base_field\": \"<string>\",\n      \"jwt_expires_at_validation_skew\": \"<uint64>\",\n      \"jwt_identity_base_field\": \"<string>\",\n      \"jwt_issued_at_validation_skew\": \"<uint64>\",\n      \"jwt_not_before_validation_skew\": \"<uint64>\",\n      \"jwt_policy_field_name\": \"<string>\",\n      \"jwt_scope_claim_name\": \"<string>\",\n      \"jwt_scope_to_policy_mapping\": {\n        \"key_0\": \"<string>\"\n      },\n      \"jwt_signing_method\": \"<string>\",\n      \"jwt_skip_kid\": \"<boolean>\",\n      \"jwt_source\": \"<string>\",\n      \"name\": \"<string>\",\n      \"notifications\": {\n        \"oauth_on_keychange_url\": \"<string>\",\n        \"shared_secret\": \"<string>\"\n      },\n      \"oauth_meta\": {\n        \"allowed_access_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"allowed_authorize_types\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"auth_login_redirect\": \"<string>\"\n      },\n      \"openid_options\": {\n        \"providers\": [\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          },\n          {\n            \"client_ids\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"issuer\": \"<string>\"\n          }\n        ],\n        \"segregate_by_client\": \"<boolean>\"\n      },\n      \"org_id\": \"<string>\",\n      \"pinned_public_keys\": {\n        \"key_0\": \"<string>\"\n      },\n      \"proxy\": {\n        \"check_host_against_uptime_tests\": \"<boolean>\",\n        \"disable_strip_slash\": \"<boolean>\",\n        \"enable_load_balancing\": \"<boolean>\",\n        \"listen_path\": \"<string>\",\n        \"preserve_host_header\": \"<boolean>\",\n        \"service_discovery\": {\n          \"cache_timeout\": \"<long>\",\n          \"data_path\": \"<string>\",\n          \"endpoint_returns_list\": \"<boolean>\",\n          \"parent_data_path\": \"<string>\",\n          \"port_data_path\": \"<string>\",\n          \"query_endpoint\": \"<string>\",\n          \"target_path\": \"<string>\",\n          \"use_discovery_service\": \"<boolean>\",\n          \"use_nested_query\": \"<boolean>\",\n          \"use_target_list\": \"<boolean>\"\n        },\n        \"strip_listen_path\": \"<boolean>\",\n        \"target_list\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"target_url\": \"<string>\",\n        \"transport\": {\n          \"proxy_url\": \"<string>\",\n          \"ssl_ciphers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"ssl_insecure_skip_verify\": \"<boolean>\",\n          \"ssl_min_version\": \"<uint16>\"\n        }\n      },\n      \"response_processors\": [\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        },\n        {\n          \"name\": \"<string>\",\n          \"options\": \"<object>\"\n        }\n      ],\n      \"session_lifetime\": \"<long>\",\n      \"session_provider\": {\n        \"meta\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\",\n          \"key_2\": \"<object>\",\n          \"key_3\": \"<object>\"\n        },\n        \"name\": \"<string>\",\n        \"storage_engine\": \"<string>\"\n      },\n      \"slug\": \"<string>\",\n      \"strip_auth_data\": \"<boolean>\",\n      \"tag_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"upstream_certificates\": {\n        \"key_0\": \"<string>\",\n        \"key_1\": \"<string>\"\n      },\n      \"uptime_tests\": {\n        \"check_list\": [\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\",\n              \"key_2\": \"<string>\",\n              \"key_3\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          },\n          {\n            \"body\": \"<string>\",\n            \"headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"method\": \"<string>\",\n            \"url\": \"<string>\"\n          }\n        ],\n        \"config\": {\n          \"expire_utime_after\": \"<long>\",\n          \"recheck_wait\": \"<long>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          }\n        }\n      },\n      \"use_basic_auth\": \"<boolean>\",\n      \"use_keyless\": \"<boolean>\",\n      \"use_mutual_tls_auth\": \"<boolean>\",\n      \"use_oauth2\": \"<boolean>\",\n      \"use_openid\": \"<boolean>\",\n      \"use_standard_auth\": \"<boolean>\",\n      \"version_data\": {\n        \"default_version\": \"<string>\",\n        \"not_versioned\": \"<boolean>\",\n        \"versions\": {\n          \"key_0\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          },\n          \"key_1\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          },\n          \"key_2\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          },\n          \"key_3\": {\n            \"paths\": {\n              \"black_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"ignored\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"white_list\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ]\n            },\n            \"expires\": \"<string>\",\n            \"extended_paths\": {\n              \"advance_cache_config\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"black_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"cache\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"circuit_breakers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"do_not_track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"hard_timeouts\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"ignored\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"internal\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"method_transforms\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"size_limits\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"track_endpoints\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_jq_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"transform_response_headers\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"url_rewrites\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"validate_json\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"virtual\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"white_list\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"global_headers\": {\n              \"key_0\": \"<string>\",\n              \"key_1\": \"<string>\"\n            },\n            \"global_headers_remove\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"global_size_limit\": \"<long>\",\n            \"name\": \"<string>\",\n            \"override_target\": \"<string>\",\n            \"use_extended_paths\": \"<boolean>\"\n          }\n        }\n      }\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "cda47e81-101d-49cf-8697-f929f527ec0f",
+              "name": "Org imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org imported\",\n  \"Meta\": \"53ac07777cbb8c2d53000002\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "85984bca-74b1-4024-8b11-7032ffa244b9",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Failed to save new Org object to DB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df6bafeb-2320-4efa-a1c7-534fe09ff08d",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "46475e0a-c206-4197-bcf9-029867b2f416",
+          "name": "Import APIs",
+          "request": {
+            "name": "Import APIs",
+            "description": {
+              "content": "The import APIs operates on lists of APIs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "apis",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": \"<object>\",\n      \"api_definition\": {\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"CORS\": {\n          \"allow_credentials\": \"<boolean>\",\n          \"allowed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_origins\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"debug\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"exposed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"max_age\": \"<long>\",\n          \"options_passthrough\": \"<boolean>\"\n        },\n        \"active\": \"<boolean>\",\n        \"allowed_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"api_id\": \"<string>\",\n        \"auth\": {\n          \"auth_header_name\": \"<string>\",\n          \"cookie_name\": \"<string>\",\n          \"param_name\": \"<string>\",\n          \"signature\": {\n            \"algorithm\": \"<string>\",\n            \"allowed_clock_skew\": \"<long>\",\n            \"error_code\": \"<long>\",\n            \"error_message\": \"<string>\",\n            \"header\": \"<string>\",\n            \"secret\": \"<string>\"\n          },\n          \"use_certificate\": \"<boolean>\",\n          \"use_cookie\": \"<boolean>\",\n          \"use_param\": \"<boolean>\",\n          \"validate_signature\": \"<boolean>\"\n        },\n        \"auth_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"base_identity_provided_by\": \"<string>\",\n        \"basic_auth\": {\n          \"body_password_regexp\": \"<string>\",\n          \"body_user_regexp\": \"<string>\",\n          \"cache_ttl\": \"<long>\",\n          \"disable_caching\": \"<boolean>\",\n          \"extract_from_body\": \"<boolean>\"\n        },\n        \"blacklisted_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cache_options\": {\n          \"cache_all_safe_requests\": \"<boolean>\",\n          \"cache_control_ttl_header\": \"<string>\",\n          \"cache_response_codes\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"cache_timeout\": \"<long>\",\n          \"enable_cache\": \"<boolean>\",\n          \"enable_upstream_cache_control\": \"<boolean>\"\n        },\n        \"certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"client_certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"config_data\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"custom_middleware\": {\n          \"auth_check\": {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          \"driver\": \"<string>\",\n          \"id_extractor\": {\n            \"extract_from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extract_with\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extractor_config\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_2\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"post\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"post_key_auth\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pre\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"response\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"custom_middleware_bundle\": \"<string>\",\n        \"definition\": {\n          \"key\": \"<string>\",\n          \"location\": \"<string>\",\n          \"strip_path\": \"<boolean>\"\n        },\n        \"disable_quota\": \"<boolean>\",\n        \"disable_rate_limit\": \"<boolean>\",\n        \"do_not_track\": \"<boolean>\",\n        \"domain\": \"<string>\",\n        \"dont_set_quota_on_create\": \"<boolean>\",\n        \"enable_batch_request_support\": \"<boolean>\",\n        \"enable_context_vars\": \"<boolean>\",\n        \"enable_coprocess_auth\": \"<boolean>\",\n        \"enable_ip_blacklisting\": \"<boolean>\",\n        \"enable_ip_whitelisting\": \"<boolean>\",\n        \"enable_jwt\": \"<boolean>\",\n        \"enable_signature_checking\": \"<boolean>\",\n        \"event_handlers\": {\n          \"events\": {}\n        },\n        \"expire_analytics_after\": \"<long>\",\n        \"global_rate_limit\": {\n          \"per\": \"<double>\",\n          \"rate\": \"<double>\"\n        },\n        \"hmac_allowed_algorithms\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hmac_allowed_clock_skew\": \"<double>\",\n        \"id\": \"<string>\",\n        \"internal\": \"<boolean>\",\n        \"jwt_client_base_field\": \"<string>\",\n        \"jwt_expires_at_validation_skew\": \"<uint64>\",\n        \"jwt_identity_base_field\": \"<string>\",\n        \"jwt_issued_at_validation_skew\": \"<uint64>\",\n        \"jwt_not_before_validation_skew\": \"<uint64>\",\n        \"jwt_policy_field_name\": \"<string>\",\n        \"jwt_scope_claim_name\": \"<string>\",\n        \"jwt_scope_to_policy_mapping\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"jwt_signing_method\": \"<string>\",\n        \"jwt_skip_kid\": \"<boolean>\",\n        \"jwt_source\": \"<string>\",\n        \"name\": \"<string>\",\n        \"notifications\": {\n          \"oauth_on_keychange_url\": \"<string>\",\n          \"shared_secret\": \"<string>\"\n        },\n        \"oauth_meta\": {\n          \"allowed_access_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_authorize_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"auth_login_redirect\": \"<string>\"\n        },\n        \"openid_options\": {\n          \"providers\": [\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"segregate_by_client\": \"<boolean>\"\n        },\n        \"org_id\": \"<string>\",\n        \"pinned_public_keys\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"proxy\": {\n          \"check_host_against_uptime_tests\": \"<boolean>\",\n          \"disable_strip_slash\": \"<boolean>\",\n          \"enable_load_balancing\": \"<boolean>\",\n          \"listen_path\": \"<string>\",\n          \"preserve_host_header\": \"<boolean>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          },\n          \"strip_listen_path\": \"<boolean>\",\n          \"target_list\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"target_url\": \"<string>\",\n          \"transport\": {\n            \"proxy_url\": \"<string>\",\n            \"ssl_ciphers\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"ssl_insecure_skip_verify\": \"<boolean>\",\n            \"ssl_min_version\": \"<uint16>\"\n          }\n        },\n        \"response_processors\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          }\n        ],\n        \"session_lifetime\": \"<long>\",\n        \"session_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"slug\": \"<string>\",\n        \"strip_auth_data\": \"<boolean>\",\n        \"tag_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"upstream_certificates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\"\n        },\n        \"uptime_tests\": {\n          \"check_list\": [\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_2\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ],\n          \"config\": {\n            \"expire_utime_after\": \"<long>\",\n            \"recheck_wait\": \"<long>\",\n            \"service_discovery\": {\n              \"cache_timeout\": \"<long>\",\n              \"data_path\": \"<string>\",\n              \"endpoint_returns_list\": \"<boolean>\",\n              \"parent_data_path\": \"<string>\",\n              \"port_data_path\": \"<string>\",\n              \"query_endpoint\": \"<string>\",\n              \"target_path\": \"<string>\",\n              \"use_discovery_service\": \"<boolean>\",\n              \"use_nested_query\": \"<boolean>\",\n              \"use_target_list\": \"<boolean>\"\n            }\n          }\n        },\n        \"use_basic_auth\": \"<boolean>\",\n        \"use_keyless\": \"<boolean>\",\n        \"use_mutual_tls_auth\": \"<boolean>\",\n        \"use_oauth2\": \"<boolean>\",\n        \"use_openid\": \"<boolean>\",\n        \"use_standard_auth\": \"<boolean>\",\n        \"version_data\": {\n          \"default_version\": \"<string>\",\n          \"not_versioned\": \"<boolean>\",\n          \"versions\": {\n            \"key_0\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            }\n          }\n        }\n      },\n      \"hook_references\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"is_site\": \"<boolean>\",\n      \"sort_by\": \"<integer>\"\n    },\n    {\n      \"api_model\": \"<object>\",\n      \"api_definition\": {\n        \"tags\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"CORS\": {\n          \"allow_credentials\": \"<boolean>\",\n          \"allowed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_origins\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"debug\": \"<boolean>\",\n          \"enable\": \"<boolean>\",\n          \"exposed_headers\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"max_age\": \"<long>\",\n          \"options_passthrough\": \"<boolean>\"\n        },\n        \"active\": \"<boolean>\",\n        \"allowed_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"api_id\": \"<string>\",\n        \"auth\": {\n          \"auth_header_name\": \"<string>\",\n          \"cookie_name\": \"<string>\",\n          \"param_name\": \"<string>\",\n          \"signature\": {\n            \"algorithm\": \"<string>\",\n            \"allowed_clock_skew\": \"<long>\",\n            \"error_code\": \"<long>\",\n            \"error_message\": \"<string>\",\n            \"header\": \"<string>\",\n            \"secret\": \"<string>\"\n          },\n          \"use_certificate\": \"<boolean>\",\n          \"use_cookie\": \"<boolean>\",\n          \"use_param\": \"<boolean>\",\n          \"validate_signature\": \"<boolean>\"\n        },\n        \"auth_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"base_identity_provided_by\": \"<string>\",\n        \"basic_auth\": {\n          \"body_password_regexp\": \"<string>\",\n          \"body_user_regexp\": \"<string>\",\n          \"cache_ttl\": \"<long>\",\n          \"disable_caching\": \"<boolean>\",\n          \"extract_from_body\": \"<boolean>\"\n        },\n        \"blacklisted_ips\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"cache_options\": {\n          \"cache_all_safe_requests\": \"<boolean>\",\n          \"cache_control_ttl_header\": \"<string>\",\n          \"cache_response_codes\": [\n            \"<long>\",\n            \"<long>\"\n          ],\n          \"cache_timeout\": \"<long>\",\n          \"enable_cache\": \"<boolean>\",\n          \"enable_upstream_cache_control\": \"<boolean>\"\n        },\n        \"certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"client_certificates\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"config_data\": {\n          \"key_0\": \"<object>\",\n          \"key_1\": \"<object>\"\n        },\n        \"custom_middleware\": {\n          \"auth_check\": {\n            \"name\": \"<string>\",\n            \"path\": \"<string>\",\n            \"require_session\": \"<boolean>\"\n          },\n          \"driver\": \"<string>\",\n          \"id_extractor\": {\n            \"extract_from\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extract_with\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"extractor_config\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          },\n          \"post\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"post_key_auth\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"pre\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"response\": [\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"path\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"require_session\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ]\n        },\n        \"custom_middleware_bundle\": \"<string>\",\n        \"definition\": {\n          \"key\": \"<string>\",\n          \"location\": \"<string>\",\n          \"strip_path\": \"<boolean>\"\n        },\n        \"disable_quota\": \"<boolean>\",\n        \"disable_rate_limit\": \"<boolean>\",\n        \"do_not_track\": \"<boolean>\",\n        \"domain\": \"<string>\",\n        \"dont_set_quota_on_create\": \"<boolean>\",\n        \"enable_batch_request_support\": \"<boolean>\",\n        \"enable_context_vars\": \"<boolean>\",\n        \"enable_coprocess_auth\": \"<boolean>\",\n        \"enable_ip_blacklisting\": \"<boolean>\",\n        \"enable_ip_whitelisting\": \"<boolean>\",\n        \"enable_jwt\": \"<boolean>\",\n        \"enable_signature_checking\": \"<boolean>\",\n        \"event_handlers\": {\n          \"events\": {}\n        },\n        \"expire_analytics_after\": \"<long>\",\n        \"global_rate_limit\": {\n          \"per\": \"<double>\",\n          \"rate\": \"<double>\"\n        },\n        \"hmac_allowed_algorithms\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"hmac_allowed_clock_skew\": \"<double>\",\n        \"id\": \"<string>\",\n        \"internal\": \"<boolean>\",\n        \"jwt_client_base_field\": \"<string>\",\n        \"jwt_expires_at_validation_skew\": \"<uint64>\",\n        \"jwt_identity_base_field\": \"<string>\",\n        \"jwt_issued_at_validation_skew\": \"<uint64>\",\n        \"jwt_not_before_validation_skew\": \"<uint64>\",\n        \"jwt_policy_field_name\": \"<string>\",\n        \"jwt_scope_claim_name\": \"<string>\",\n        \"jwt_scope_to_policy_mapping\": {\n          \"key_0\": \"<string>\"\n        },\n        \"jwt_signing_method\": \"<string>\",\n        \"jwt_skip_kid\": \"<boolean>\",\n        \"jwt_source\": \"<string>\",\n        \"name\": \"<string>\",\n        \"notifications\": {\n          \"oauth_on_keychange_url\": \"<string>\",\n          \"shared_secret\": \"<string>\"\n        },\n        \"oauth_meta\": {\n          \"allowed_access_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"allowed_authorize_types\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"auth_login_redirect\": \"<string>\"\n        },\n        \"openid_options\": {\n          \"providers\": [\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"client_ids\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"issuer\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"segregate_by_client\": \"<boolean>\"\n        },\n        \"org_id\": \"<string>\",\n        \"pinned_public_keys\": {\n          \"key_0\": \"<string>\"\n        },\n        \"proxy\": {\n          \"check_host_against_uptime_tests\": \"<boolean>\",\n          \"disable_strip_slash\": \"<boolean>\",\n          \"enable_load_balancing\": \"<boolean>\",\n          \"listen_path\": \"<string>\",\n          \"preserve_host_header\": \"<boolean>\",\n          \"service_discovery\": {\n            \"cache_timeout\": \"<long>\",\n            \"data_path\": \"<string>\",\n            \"endpoint_returns_list\": \"<boolean>\",\n            \"parent_data_path\": \"<string>\",\n            \"port_data_path\": \"<string>\",\n            \"query_endpoint\": \"<string>\",\n            \"target_path\": \"<string>\",\n            \"use_discovery_service\": \"<boolean>\",\n            \"use_nested_query\": \"<boolean>\",\n            \"use_target_list\": \"<boolean>\"\n          },\n          \"strip_listen_path\": \"<boolean>\",\n          \"target_list\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"target_url\": \"<string>\",\n          \"transport\": {\n            \"proxy_url\": \"<string>\",\n            \"ssl_ciphers\": [\n              \"<string>\",\n              \"<string>\"\n            ],\n            \"ssl_insecure_skip_verify\": \"<boolean>\",\n            \"ssl_min_version\": \"<uint16>\"\n          }\n        },\n        \"response_processors\": [\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          },\n          {\n            \"name\": \"<string>\",\n            \"options\": \"<object>\"\n          }\n        ],\n        \"session_lifetime\": \"<long>\",\n        \"session_provider\": {\n          \"meta\": {\n            \"key_0\": \"<object>\",\n            \"key_1\": \"<object>\",\n            \"key_2\": \"<object>\"\n          },\n          \"name\": \"<string>\",\n          \"storage_engine\": \"<string>\"\n        },\n        \"slug\": \"<string>\",\n        \"strip_auth_data\": \"<boolean>\",\n        \"tag_headers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"upstream_certificates\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\",\n          \"key_3\": \"<string>\"\n        },\n        \"uptime_tests\": {\n          \"check_list\": [\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_2\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            },\n            {\n              \"body\": \"<string>\",\n              \"headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"method\": \"<string>\",\n              \"url\": \"<string>\"\n            }\n          ],\n          \"config\": {\n            \"expire_utime_after\": \"<long>\",\n            \"recheck_wait\": \"<long>\",\n            \"service_discovery\": {\n              \"cache_timeout\": \"<long>\",\n              \"data_path\": \"<string>\",\n              \"endpoint_returns_list\": \"<boolean>\",\n              \"parent_data_path\": \"<string>\",\n              \"port_data_path\": \"<string>\",\n              \"query_endpoint\": \"<string>\",\n              \"target_path\": \"<string>\",\n              \"use_discovery_service\": \"<boolean>\",\n              \"use_nested_query\": \"<boolean>\",\n              \"use_target_list\": \"<boolean>\"\n            }\n          }\n        },\n        \"use_basic_auth\": \"<boolean>\",\n        \"use_keyless\": \"<boolean>\",\n        \"use_mutual_tls_auth\": \"<boolean>\",\n        \"use_oauth2\": \"<boolean>\",\n        \"use_openid\": \"<boolean>\",\n        \"use_standard_auth\": \"<boolean>\",\n        \"version_data\": {\n          \"default_version\": \"<string>\",\n          \"not_versioned\": \"<boolean>\",\n          \"versions\": {\n            \"key_0\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            },\n            \"key_1\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_1\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"key_2\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            },\n            \"key_2\": {\n              \"paths\": {\n                \"black_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"ignored\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                \"white_list\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"expires\": \"<string>\",\n              \"extended_paths\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"global_headers\": {\n                \"key_0\": {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              },\n              \"global_headers_remove\": [\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                },\n                {\n                  \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n                }\n              ],\n              \"global_size_limit\": \"<long>\",\n              \"name\": \"<string>\",\n              \"override_target\": \"<string>\",\n              \"use_extended_paths\": \"<boolean>\"\n            }\n          }\n        }\n      },\n      \"hook_references\": [\n        \"<object>\",\n        \"<object>\"\n      ],\n      \"is_site\": \"<boolean>\",\n      \"sort_by\": \"<integer>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9990fd04-3053-4c06-bb52-338e61bfb83b",
+              "name": "APIs imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"APIs imported\",\n  \"Meta\": {\n    \"5fa2db834e07444f760b7ceb314209fb\": true,\n    \"7a6ddeca9244448a4233866938a0d6e2\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "67a7e2c0-4761-405b-816c-14ff4c3f35e1",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Request body malformed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0de0863c-2bb8-4da4-8af1-04d39df38cb8",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "apis",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"apis\": [\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 2\",\n        \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    },\n    {\n      \"api_model\": {},\n      \"api_definition\": {\n        \"api_human_name\": \"API 1\",\n        \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n      },\n      \"hook_references\": [],\n      \"is_site\": false,\n      \"sort_by\": 0\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9b74349e-0f02-4311-93ef-c101198d6df5",
+          "name": "Import Policies",
+          "request": {
+            "name": "Import Policies",
+            "description": {
+              "content": "The import Policies operates on lists of Policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "policies",
+                "import"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"data\": [\n    {\n      \"_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"rate\": \"<double>\",\n      \"per\": \"<double>\",\n      \"quota_max\": \"<long>\",\n      \"quota_renewal_rate\": \"<long>\",\n      \"throttle_interval\": \"<double>\",\n      \"throttle_retry_limit\": \"<number>\",\n      \"max_query_depth\": \"<number>\",\n      \"access_rights\": {\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          },\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          }\n        ],\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"limit\": {\n          \"per\": \"<double>\",\n          \"quota_max\": \"<long>\",\n          \"quota_remaining\": \"<long>\",\n          \"quota_renewal_rate\": \"<long>\",\n          \"quota_renews\": \"<long>\",\n          \"rate\": \"<double>\",\n          \"set_by_policy\": \"<boolean>\",\n          \"throttle_interval\": \"<double>\",\n          \"throttle_retry_limit\": \"<long>\"\n        },\n        \"versions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"hmac_enabled\": \"<boolean>\",\n      \"enable_http_signature_validation\": \"<boolean>\",\n      \"active\": \"<boolean>\",\n      \"is_inactive\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_expires_in\": \"<int64>\",\n      \"partitions\": {\n        \"quota\": \"<boolean>\",\n        \"rate_limit\": \"<boolean>\",\n        \"complexity\": \"<boolean>\",\n        \"acl\": \"<boolean>\",\n        \"per_api\": \"<boolean>\"\n      },\n      \"last_updated\": \"<string>\",\n      \"meta_data\": \"<object>\",\n      \"graphql_access_rights\": \"<object>\"\n    },\n    {\n      \"_id\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"org_id\": \"<string>\",\n      \"rate\": \"<double>\",\n      \"per\": \"<double>\",\n      \"quota_max\": \"<long>\",\n      \"quota_renewal_rate\": \"<long>\",\n      \"throttle_interval\": \"<double>\",\n      \"throttle_retry_limit\": \"<number>\",\n      \"max_query_depth\": \"<number>\",\n      \"access_rights\": {\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          },\n          {\n            \"methods\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"url\": \"<string>\"\n          }\n        ],\n        \"api_id\": \"<string>\",\n        \"api_name\": \"<string>\",\n        \"limit\": {\n          \"per\": \"<double>\",\n          \"quota_max\": \"<long>\",\n          \"quota_remaining\": \"<long>\",\n          \"quota_renewal_rate\": \"<long>\",\n          \"quota_renews\": \"<long>\",\n          \"rate\": \"<double>\",\n          \"set_by_policy\": \"<boolean>\",\n          \"throttle_interval\": \"<double>\",\n          \"throttle_retry_limit\": \"<long>\"\n        },\n        \"versions\": [\n          \"<string>\",\n          \"<string>\"\n        ]\n      },\n      \"hmac_enabled\": \"<boolean>\",\n      \"enable_http_signature_validation\": \"<boolean>\",\n      \"active\": \"<boolean>\",\n      \"is_inactive\": \"<boolean>\",\n      \"tags\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_expires_in\": \"<int64>\",\n      \"partitions\": {\n        \"quota\": \"<boolean>\",\n        \"rate_limit\": \"<boolean>\",\n        \"complexity\": \"<boolean>\",\n        \"acl\": \"<boolean>\",\n        \"per_api\": \"<boolean>\"\n      },\n      \"last_updated\": \"<string>\",\n      \"meta_data\": \"<object>\",\n      \"graphql_access_rights\": \"<object>\"\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c403b372-fc83-4164-97b8-8fc383550e55",
+              "name": "Policies imported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Policies imported\",\n  \"Meta\": {\n    \"61df10078f11dd00097cb55f\": true\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "07f6fcc0-83ac-4c76-b07e-d34fcbde82df",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Failed to save new Org object to DB\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5e295a4b-bb06-4703-9797-57037d79d29b",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "policies",
+                    "import"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"data\": [\n    {\n      \"access_rights\": {\n        \"5fa2db834e07444f760b7ceb314209fb\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\",\n          \"api_name\": \"API 2\",\n          \"versions\": [\n            \"Default\"\n          ]\n        },\n        \"7a6ddeca9244448a4233866938a0d6e2\": {\n          \"allowed_urls\": [],\n          \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\",\n          \"api_name\": \"API 1\",\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"0001-01-01T00:00:00Z\",\n      \"hmac_enabled\": false,\n      \"is_inactive\": false,\n      \"key_expires_in\": 0,\n      \"last_updated\": \"1478791603\",\n      \"name\": \"Default\",\n      \"org_id\": \"53ac07777cbb8c2d53000002\",\n      \"partitions\": {\n        \"acl\": false,\n        \"quota\": false,\n        \"rate_limit\": false\n      },\n      \"per\": 60,\n      \"quota_max\": -1,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"tags\": []\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2a6200cc-7532-4699-b59f-2ecac0af0531",
+    "name": "Tyk Dashboard Admin Additional Permissions Import API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

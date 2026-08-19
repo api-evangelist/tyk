@@ -1,0 +1,37 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Dashboard URL Reload API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Dashboard URL Reload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Reloads dashboard urls",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/admin/system/reload"
+          },
+          "docs": "Reloads dashboard urls."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

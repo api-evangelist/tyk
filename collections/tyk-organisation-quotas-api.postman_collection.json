@@ -1,0 +1,1537 @@
+{
+  "item": [
+    {
+      "id": "cdc11b75-ad2c-485b-a2c2-08fd746e6d85",
+      "name": "Organisation Quotas",
+      "description": {
+        "content": "It is possible to force API quota and rate limit across all keys that belong to a specific organisation ID. Rate limiting at an organisation level is useful for creating tiered access levels and trial accounts.<br />\n\nThe Organisation rate limiting middleware works with both Quotas and Rate Limiters. In order to manage this functionality, a simple API has been put in place to manage these sessions. <br />\n\nAlthough the Organisation session-limiter uses the same session object, all other security keys are optional as they are not used. <br />\n\n<h3>Managing active status</h3> <br />\n\nTo disallow access to an entire group of keys without rate limiting the organisation, create a session object with the \"is_inactive\" key set to true. This will block access before any other middleware is executed. It is useful when managing subscriptions for an organisation group and access needs to be blocked because of non-payment. <br />\n",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "7e79d3d5-e4f7-42d1-9eb8-7a6e27ad7e8f",
+          "name": "Tyk List Organisation Keys",
+          "request": {
+            "name": "Tyk List Organisation Keys",
+            "description": {
+              "content": "You can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set 'rate' or 'per' to zero, or don't add them to your request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "org",
+                "keys"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "filter",
+                  "value": "<string>",
+                  "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a7cbed4e-1558-45f1-9807-edfcb7ee93e9",
+              "name": "List of all org keys",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "default*"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"keys\": [\n    \"5e9d9544a1dcd60001d0ed2008500e44fa644f939b640a4b8b4ea58c\"\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b91e76f3-87b1-4a58-8569-76659cd3d78f",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "default*"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41d3569a-776f-44ee-bf2c-f9c4c1c1b2fa",
+              "name": "ORG not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "filter",
+                      "value": "default*"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"ORG not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "abfaf678-77f1-41f0-91df-9698f89ae18a",
+          "name": "Tyk Delete Key",
+          "request": {
+            "name": "Tyk Delete Key",
+            "description": {
+              "content": "Deleting a key will remove all limits from organisation. It does not affects regular keys created within organisation.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "org",
+                "keys",
+                ":keyID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyID",
+                  "description": "(Required) The Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7405a3f4-8333-4b73-bc35-b5d9c052f798",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"deleted\",\n  \"key\": \"e389ae00a2b145feaf28d6cc11f0f86d\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "50b0f098-1b29-4f96-98b4-56f9e8d169a8",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Failed to remove the key\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9b65868d-f92d-47a2-8801-12b7af58a136",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a54a23a-1ffb-4d87-91f5-0fbe33267109",
+              "name": "Org not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Org not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f84ef533-dce6-44bb-8167-88340031b23a",
+          "name": "Tyk Get an Organisation Key",
+          "request": {
+            "name": "Tyk Get an Organisation Key",
+            "description": {
+              "content": "Get session info about specified organisation key. Should return up to date rate limit and quota usage numbers.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "org",
+                "keys",
+                ":keyID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "orgID",
+                  "value": "<string>",
+                  "description": "The Org ID"
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyID",
+                  "description": "(Required) The Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "7351b98a-15af-4a93-8d64-b62049ce9d9f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgID",
+                      "value": "664a14650619d40001f1f00f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "184c0031-dd3c-4f6a-a820-1bc76bcf1f33",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgID",
+                      "value": "664a14650619d40001f1f00f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ebe414ae-e3e6-4408-b39f-020991a45a26",
+              "name": "Org not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "orgID",
+                      "value": "664a14650619d40001f1f00f"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Org not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "ad8779ba-e6a5-479a-982e-831c9cf1d246",
+          "name": "Tyk Create an Organisation Key",
+          "request": {
+            "name": "Tyk Create an Organisation Key",
+            "description": {
+              "content": "This work similar to Keys API except that Key ID is always equals Organisation ID",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "org",
+                "keys",
+                ":keyID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reset_quota",
+                  "value": "<string>",
+                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyID",
+                  "description": "(Required) The Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {},\n    \"key_1\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"key_0\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "4992d5e2-c3d3-4d5a-b910-54e3cb0477f8",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"added\",\n  \"key\": \"e389ae00a2b145feaf28d6cc11f0f86d\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2420bdbe-6b45-4426-a45f-aa338cd59d78",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request malformed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "55d27c8a-e88a-4821-b42a-9a6984845385",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb13c3eb-1948-4a03-8683-8c7c72f2f8b2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No such organisation found in Active API list\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7fd4a928-103a-49a2-840a-bcc1eb948504",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Error writing to key store \",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d85ffdf5-875f-46fe-a1e1-500ace08dd5d",
+          "name": "Tyk Update Organisation Key",
+          "request": {
+            "name": "Tyk Update Organisation Key",
+            "description": {
+              "content": "This work similar to Keys API except that Key ID is always equals Organisation ID\n\nFor Gateway v2.6.0 onwards, you can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set `rate` or `per` to zero, or don't add them to your request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "org",
+                "keys",
+                ":keyID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "reset_quota",
+                  "value": "<string>",
+                  "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyID",
+                  "description": "(Required) The Key ID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"alias\": \"<string>\",\n  \"allowance\": \"<double>\",\n  \"apply_policies\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"apply_policy_id\": \"<string>\",\n  \"basic_auth_data\": {\n    \"hash_type\": \"<string>\",\n    \"password\": \"<string>\"\n  },\n  \"certificate\": \"<string>\",\n  \"data_expires\": \"<long>\",\n  \"date_created\": \"<dateTime>\",\n  \"enable_detail_recording\": \"<boolean>\",\n  \"enable_detailed_recording\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"expires\": \"<long>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"hmac_string\": \"<string>\",\n  \"id_extractor_deadline\": \"<long>\",\n  \"is_inactive\": \"<boolean>\",\n  \"jwt_data\": {\n    \"secret\": \"<string>\"\n  },\n  \"last_check\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"monitor\": {\n    \"trigger_limits\": [\n      \"<number>\",\n      \"<number>\"\n    ]\n  },\n  \"oauth_client_id\": \"<string>\",\n  \"oauth_keys\": {\n    \"key_0\": \"<string>\"\n  },\n  \"org_id\": \"<string>\",\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_remaining\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"quota_renews\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"rsa_certificate_id\": \"<string>\",\n  \"session_lifetime\": \"<long>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6bfed870-f13d-42db-b9ee-87292f6e92b1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\",\n    \"update-sample-tag\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"modified\",\n  \"key\": \"b13d928b9972bd18\",\n  \"key_hash\": \"example_value\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8885454-09b4-4084-8ad5-fa7c2e42adea",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\",\n    \"update-sample-tag\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request malformed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "33afae07-120d-4da3-85ab-32341068d623",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\",\n    \"update-sample-tag\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2f7aba40-b55a-40ce-a119-9d235c3cd75e",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\",\n    \"update-sample-tag\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"No such organisation found in Active API list\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8a0e39e9-9be5-4476-a31c-ad2f8eb655dd",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "org",
+                    "keys",
+                    ":keyID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "reset_quota",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyID",
+                      "description": "(Required) The Key ID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"limit\": {\n        \"per\": 60,\n        \"quota_max\": 10000,\n        \"quota_remaining\": 10000,\n        \"quota_renewal_rate\": 3600,\n        \"rate\": 1000,\n        \"throttle_interval\": 10,\n        \"throttle_retry_limit\": 10\n      },\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"alias\": \"portal-key\",\n  \"allowance\": 1000,\n  \"apply_policies\": [\n    \"5ead7120575961000181867e\"\n  ],\n  \"date_created\": \"2024-08-09T14:40:34.87614+03:00\",\n  \"enable_detailed_recording\": true,\n  \"last_updated\": \"1723203634\",\n  \"meta_data\": {\n    \"new-update-key-sample\": \"update-key-sample\",\n    \"tyk_developer_id\": \"62b3fb9a1d5e4f00017226f5\",\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"org_id\": \"5e9d9544a1dcd60001d0ed20\",\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"quota_renews\": 1723207234,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"edge\",\n    \"edge-eu\",\n    \"update-sample-tag\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Error writing to key store \",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "9bbf02d0-6595-45d0-a71e-2cc1baa374f2",
+    "name": "Tyk Dashboard Admin Additional Permissions Organisation Quotas API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

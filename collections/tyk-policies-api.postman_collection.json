@@ -1,0 +1,3560 @@
+{
+  "item": [
+    {
+      "id": "dd89d1be-1b0a-4c4f-9da6-5ae7648c364c",
+      "name": "Policies",
+      "description": {
+        "content": "Policies are a template that enable you to create access rules, usage quota and rate limits that can be applied to multiple keys. They are a useful way to manage large groups of users, and to enforce quota changes on a global scale across any number of keys that are using a policy. When used in conjunction with the portal, developers that enroll for API access will be given a key that is attached to a specific policy. The policy settings are refreshed every time a key attempts access, meaning that updating a policy will have an effect across any keys that are attached to it.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "65a798f8-dba6-4614-ab6b-d287d5369203",
+          "name": "Get list portal policies.",
+          "request": {
+            "name": "Get list portal policies.",
+            "description": {
+              "content": "Get list of policies. The result returned are paginated. Use the p query parameter to say which page you want returned. The default pagesize of the results is 10 but this can be changed in the dashboard config.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "<integer>",
+                  "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "Send any value in this query parameter to return only the active policies."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "fee0a743-fcf8-44af-b495-327dc7e69693",
+              "name": "List of all policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Data\": [\n    {\n      \"_id\": \"363635373039383964393864643030303031646131376631\",\n      \"access_rights\": {\n        \"8ddd91f3cda9453442c477b06c4e2da4\": {\n          \"allowance_scope\": \"\",\n          \"allowed_types\": [],\n          \"allowed_urls\": [\n            {\n              \"methods\": [\n                \"GET\"\n              ],\n              \"url\": \"/users\"\n            }\n          ],\n          \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n          \"api_name\": \"Itachi API\",\n          \"disable_introspection\": false,\n          \"field_access_rights\": [],\n          \"limit\": {\n            \"max_query_depth\": 0,\n            \"per\": 0,\n            \"quota_max\": 0,\n            \"quota_remaining\": 0,\n            \"quota_renewal_rate\": 0,\n            \"quota_renews\": 0,\n            \"rate\": 0,\n            \"set_by_policy\": false,\n            \"smoothing\": {\n              \"delay\": 30,\n              \"enabled\": false,\n              \"step\": 100,\n              \"threshold\": 500,\n              \"trigger\": 0.8\n            },\n            \"throttle_interval\": 0,\n            \"throttle_retry_limit\": 0\n          },\n          \"restricted_types\": [],\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"2024-05-27T10:24:31.099Z\",\n      \"hmac_enabled\": false,\n      \"id\": \"\",\n      \"is_inactive\": false,\n      \"key_expires_in\": 2592000,\n      \"last_updated\": \"1716980105\",\n      \"max_query_depth\": -1,\n      \"meta_data\": {\n        \"user_type\": \"mobile_user\"\n      },\n      \"name\": \"Sample policy\",\n      \"org_id\": \"664a14650619d40001f1f00f\",\n      \"partitions\": {\n        \"acl\": true,\n        \"complexity\": false,\n        \"per_api\": false,\n        \"quota\": true,\n        \"rate_limit\": true\n      },\n      \"per\": 60,\n      \"quota_max\": 10000,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"smoothing\": {\n        \"delay\": 30,\n        \"enabled\": false,\n        \"step\": 100,\n        \"threshold\": 500,\n        \"trigger\": 0.8\n      },\n      \"tags\": [\n        \"security\"\n      ],\n      \"throttle_interval\": 10,\n      \"throttle_retry_limit\": 10\n    }\n  ],\n  \"Pages\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e8d61e3-2e63-4392-a7ea-4618a610330e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3000ccfa-a125-4928-b41f-637aec140e96",
+              "name": "Returned if you do not have access to policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/portal/policies\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6908d3d9-1533-4176-8a19-ae9ee74b41a2",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve object list.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "edd6590c-71cf-4fb2-9b20-9ac176904937",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to marshal data.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1acbe2f3-528b-44a9-8561-a47aed41ccc6",
+          "name": "Create policy definition.",
+          "request": {
+            "name": "Create policy definition.",
+            "description": {
+              "content": "Creating policy definitions is slightly different to the core API, API definitions are wrapped inside an api_definition field and event handlers, such as webhooks are not embedded in the main api_definition object (though they can be), webhooks are instead appended as references into the hook_references field, the API will embed the correct webhook data into the event handler interface.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_2\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_3\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_4\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"active\": \"<boolean>\",\n  \"date_created\": \"<dateTime>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_inactive\": \"<boolean>\",\n  \"key_expires_in\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {}\n  },\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"partitions\": {\n    \"acl\": \"<boolean>\",\n    \"complexity\": \"<boolean>\",\n    \"per_api\": \"<boolean>\",\n    \"quota\": \"<boolean>\",\n    \"rate_limit\": \"<boolean>\"\n  },\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"smoothing\": {\n    \"delay\": \"<long>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<long>\",\n    \"threshold\": \"<long>\",\n    \"trigger\": \"<double>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "95a2d1d4-80ac-4bc5-9e7e-f3e9192c5abd",
+              "name": "Policy created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"663b4bbd5715ec323b424dca\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45812d4b-a814-47a9-b2d6-b12c27ff573f",
+              "name": "Returned when the policy body fails validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"This policy name has already been used. Enter a unique policy name.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d4bf98e2-5109-4aba-a39f-7feb36bf240e",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "1a0d56a9-f55a-4371-bffa-3d4076d3bb6e",
+              "name": "Returned when you send a malformed request body or when you don't have permission to add this object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Request body malformed.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c88fc509-865c-4728-a1f7-9d1c5ebe5fb7",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failure creating data, please contact your administrator.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d0e4dd8a-b6ae-4f23-af84-d6e2ddfd0f23",
+          "name": "Delete a single policy by ID.",
+          "request": {
+            "name": "Delete a single policy by ID.",
+            "description": {
+              "content": "Delete a Policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of policy to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0e158ee9-05a1-4bc6-a05d-2b528575664d",
+              "name": "Deleted policy successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Data deleted\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "59d0895f-ba54-4173-ba68-5e4157a437a1",
+              "name": "Returned when you send a policy ID that is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Invalid policy ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80a361db-8f74-4013-abe3-2201fa188410",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d80c8d58-ad4e-4636-8801-dae8cba101d3",
+              "name": "Returned if you do not have access to policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/portal/policies/{id}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb2050e8-b34a-4a27-8202-788f323d4be7",
+              "name": "Returned if policy with specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve object for deletion\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a794f0fe-8491-4969-bec7-04bccddee34a",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failure deleting data, please contact your administrator.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c411dfe0-ac67-4490-8cf8-f02364e4108e",
+          "name": "Get a single policy by ID.",
+          "request": {
+            "name": "Get a single policy by ID.",
+            "description": {
+              "content": "Get a policy by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of policy to get."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "bdae5d45-3202-43dc-bf30-45b4274d6cc2",
+              "name": "Policy fetched.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "881efba8-f8fd-4b18-a510-40641394d403",
+              "name": "Returned when you send a policy ID that is invalid.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Invalid policy ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0974ea8d-01c6-49bb-b799-230ee6f426dc",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cf08c6fe-ddb9-4fd3-9343-5ed1a19695bb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/portal/policies/{id}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9afc1d5f-1403-40d5-84a1-f38295879bb5",
+              "name": "Policy with the given ID was not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve portal object.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a7cfaab-d5a2-42ce-a03d-84bd2da2e14f",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to get."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failure creating data, please contact your administrator.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "1f3e3ee0-c415-47fb-80d0-a2e04143ad41",
+          "name": "Update policy definition.",
+          "request": {
+            "name": "Update policy definition.",
+            "description": {
+              "content": "Update a policy definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies",
+                ":id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "id",
+                  "description": "(Required) ID of policy to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            {\n              \"limit\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"name\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<double>\",\n        \"quota_max\": \"<long>\",\n        \"quota_remaining\": \"<long>\",\n        \"quota_renewal_rate\": \"<long>\",\n        \"quota_renews\": \"<long>\",\n        \"rate\": \"<double>\",\n        \"set_by_policy\": \"<boolean>\",\n        \"smoothing\": {\n          \"delay\": \"<long>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<long>\",\n          \"threshold\": \"<long>\",\n          \"trigger\": \"<double>\"\n        },\n        \"throttle_interval\": \"<double>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"active\": \"<boolean>\",\n  \"date_created\": \"<dateTime>\",\n  \"hmac_enabled\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_inactive\": \"<boolean>\",\n  \"key_expires_in\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {}\n  },\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"partitions\": {\n    \"acl\": \"<boolean>\",\n    \"complexity\": \"<boolean>\",\n    \"per_api\": \"<boolean>\",\n    \"quota\": \"<boolean>\",\n    \"rate_limit\": \"<boolean>\"\n  },\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"smoothing\": {\n    \"delay\": \"<long>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<long>\",\n    \"threshold\": \"<long>\",\n    \"trigger\": \"<double>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "a6e86644-bed3-4eab-a75c-c8eedba247b0",
+              "name": "Policy updated.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Data updated\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e9ac2db4-d0a1-4bb6-80e3-a645ac036702",
+              "name": "Returned when you send an invalid ID or when the policy body fails validation.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Invalid policy ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bb9725a-2236-4221-b0ac-e457a2d9b3bf",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c7f5315c-6ea7-4f82-9877-97a727712a49",
+              "name": "Returned when you send a malformed request body or when you don't have permission to update this object.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Request body malformed.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c57e8389-c154-427d-8f9f-c6abbb8963ec",
+              "name": "Returned if policy with specified ID does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve portal object.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "61d05594-58ab-4bc3-a07c-fd208e692745",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    ":id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "id",
+                      "description": "(Required) ID of policy to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"Itachi API\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi API\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"email\": \"itachi@tyk.io\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\",\n    \"messages\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failure saving data, please contact your administrator.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "176cf9f9-5f1f-4969-9cd9-63b54572caa0",
+          "name": "Search list of policies.",
+          "request": {
+            "name": "Search list of policies.",
+            "description": {
+              "content": "Search list of policies. If query parameter q is a policy ID it will look for policies that have the given ID. However if q is not a policy ID it will return policies with whose name matches the patten based via q query parameter. If you send a policy ID in query parameter q and also send query parameter policy_ids,only policy_ids will be used for searching.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "portal",
+                "policies",
+                "search"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "q",
+                  "value": "<string>",
+                  "description": "Search for policy using policy ID or name."
+                },
+                {
+                  "disabled": false,
+                  "key": "policy_ids",
+                  "value": "<string>",
+                  "description": "A list of comma separated policy IDs that you want to search for."
+                },
+                {
+                  "disabled": false,
+                  "key": "active",
+                  "value": "<string>",
+                  "description": "Send any value in this query parameter to return only the active policies."
+                },
+                {
+                  "disabled": false,
+                  "key": "state",
+                  "value": "<string>",
+                  "description": "Return policies whose state field matches the sent value e.g if you send state as deny policies returned are those whose state filed value is set as deny."
+                },
+                {
+                  "disabled": false,
+                  "key": "sort",
+                  "value": "<string>",
+                  "description": "Field you want to use to sort the returned policies."
+                },
+                {
+                  "disabled": false,
+                  "key": "api_id",
+                  "value": "<string>",
+                  "description": "Comma separate list of API IDs. Return only policy that that have the given API IDs in their access_right."
+                },
+                {
+                  "disabled": false,
+                  "key": "auth_type",
+                  "value": "<string>",
+                  "description": "Return policy whose auth_type field has the given value."
+                },
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "<integer>",
+                  "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0896517b-6fec-4ec8-984a-b357b92ef8ac",
+              "name": "List of policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Data\": [\n    {\n      \"_id\": \"363635373039383964393864643030303031646131376631\",\n      \"access_rights\": {\n        \"8ddd91f3cda9453442c477b06c4e2da4\": {\n          \"allowance_scope\": \"\",\n          \"allowed_types\": [],\n          \"allowed_urls\": [\n            {\n              \"methods\": [\n                \"GET\"\n              ],\n              \"url\": \"/users\"\n            }\n          ],\n          \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n          \"api_name\": \"Itachi API\",\n          \"disable_introspection\": false,\n          \"field_access_rights\": [],\n          \"limit\": {\n            \"max_query_depth\": 0,\n            \"per\": 0,\n            \"quota_max\": 0,\n            \"quota_remaining\": 0,\n            \"quota_renewal_rate\": 0,\n            \"quota_renews\": 0,\n            \"rate\": 0,\n            \"set_by_policy\": false,\n            \"smoothing\": {\n              \"delay\": 30,\n              \"enabled\": false,\n              \"step\": 100,\n              \"threshold\": 500,\n              \"trigger\": 0.8\n            },\n            \"throttle_interval\": 0,\n            \"throttle_retry_limit\": 0\n          },\n          \"restricted_types\": [],\n          \"versions\": [\n            \"Default\"\n          ]\n        }\n      },\n      \"active\": true,\n      \"date_created\": \"2024-05-27T10:24:31.099Z\",\n      \"hmac_enabled\": false,\n      \"id\": \"\",\n      \"is_inactive\": false,\n      \"key_expires_in\": 2592000,\n      \"last_updated\": \"1716980105\",\n      \"max_query_depth\": -1,\n      \"meta_data\": {\n        \"user_type\": \"mobile_user\"\n      },\n      \"name\": \"Sample policy\",\n      \"org_id\": \"664a14650619d40001f1f00f\",\n      \"partitions\": {\n        \"acl\": true,\n        \"complexity\": false,\n        \"per_api\": false,\n        \"quota\": true,\n        \"rate_limit\": true\n      },\n      \"per\": 60,\n      \"quota_max\": 10000,\n      \"quota_renewal_rate\": 3600,\n      \"rate\": 1000,\n      \"smoothing\": {\n        \"delay\": 30,\n        \"enabled\": false,\n        \"step\": 100,\n        \"threshold\": 500,\n        \"trigger\": 0.8\n      },\n      \"tags\": [\n        \"security\"\n      ],\n      \"throttle_interval\": 10,\n      \"throttle_retry_limit\": 10\n    }\n  ],\n  \"Pages\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d9d9af98-2f47-45c6-b110-0c6aa029719e",
+              "name": "Returned when you send policy IDs that are not in hexadecimal format.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Policy ID is not in hex format.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "081c7725-c822-4821-8b02-60f5d96beb34",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "de312a78-2ee3-42bf-a8c0-ca9b5ae41234",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/portal/policies/search\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87def847-e134-4155-b1ba-191ccc67dafd",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve policies.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6590a8c8-cfc3-49f8-8cbd-23cf0975422c",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "portal",
+                    "policies",
+                    "search"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "q",
+                      "value": "5eb6349543f0440001373f5c"
+                    },
+                    {
+                      "key": "policy_ids",
+                      "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e"
+                    },
+                    {
+                      "key": "active",
+                      "value": "true"
+                    },
+                    {
+                      "key": "state",
+                      "value": "deny"
+                    },
+                    {
+                      "key": "sort",
+                      "value": "name"
+                    },
+                    {
+                      "key": "api_id",
+                      "value": "5963f8fdedee405143f5858ea17de422"
+                    },
+                    {
+                      "key": "auth_type",
+                      "value": "authToken"
+                    },
+                    {
+                      "key": "p",
+                      "value": "1"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to marshal data\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e5d8f57b-41fa-49b1-afa1-1e3b67df01d6",
+          "name": "Tyk List Policies.",
+          "request": {
+            "name": "Tyk List Policies.",
+            "description": {
+              "content": "Retrieve all the policies in your Tyk instance. Returns an array policies.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "67a308b5-2b47-4fab-9c1f-810a11e7add4",
+              "name": "List of all policies.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"_id\": \"\",\n    \"access_rights\": {\n      \"8ddd91f3cda9453442c477b06c4e2da4\": {\n        \"allowance_scope\": \"\",\n        \"allowed_types\": [],\n        \"allowed_urls\": [\n          {\n            \"methods\": [\n              \"GET\"\n            ],\n            \"url\": \"/users\"\n          }\n        ],\n        \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n        \"api_name\": \"Itachi api\",\n        \"disable_introspection\": false,\n        \"field_access_rights\": [],\n        \"limit\": {\n          \"max_query_depth\": 0,\n          \"per\": 0,\n          \"quota_max\": 0,\n          \"quota_remaining\": 0,\n          \"quota_renewal_rate\": 0,\n          \"quota_renews\": 0,\n          \"rate\": 0,\n          \"smoothing\": {\n            \"delay\": 30,\n            \"enabled\": false,\n            \"step\": 100,\n            \"threshold\": 500,\n            \"trigger\": 0.8\n          },\n          \"throttle_interval\": 0,\n          \"throttle_retry_limit\": 0\n        },\n        \"restricted_types\": [],\n        \"versions\": [\n          \"Default\"\n        ]\n      }\n    },\n    \"active\": true,\n    \"enable_http_signature_validation\": false,\n    \"graphql_access_rights\": null,\n    \"hmac_enabled\": false,\n    \"id\": \"5ead7120575961000181867e\",\n    \"is_inactive\": false,\n    \"key_expires_in\": 2592000,\n    \"last_updated\": \"1716980105\",\n    \"max_query_depth\": -1,\n    \"meta_data\": {\n      \"user_type\": \"mobile_user\"\n    },\n    \"name\": \"Sample policy\",\n    \"org_id\": \"664a14650619d40001f1f00f\",\n    \"partitions\": {\n      \"acl\": true,\n      \"complexity\": false,\n      \"per_api\": false,\n      \"quota\": true,\n      \"rate_limit\": true\n    },\n    \"per\": 60,\n    \"quota_max\": 10000,\n    \"quota_renewal_rate\": 3600,\n    \"rate\": 1000,\n    \"smoothing\": {\n      \"delay\": 30,\n      \"enabled\": false,\n      \"step\": 100,\n      \"threshold\": 500,\n      \"trigger\": 0.8\n    },\n    \"tags\": [\n      \"security\"\n    ],\n    \"throttle_interval\": 10,\n    \"throttle_retry_limit\": 10\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ae2d091a-6052-4156-ba3c-68f92b9d35c4",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c66d8bd4-d330-4f1f-8466-ce1ae1b3de7b",
+          "name": "Tyk Create a Policy.",
+          "request": {
+            "name": "Tyk Create a Policy.",
+            "description": {
+              "content": "Create a policy in your Tyk Instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "policies"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_2\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"active\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"graphql_access_rights\": {\n    \"key_0\": \"<object>\"\n  },\n  \"hmac_enabled\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_inactive\": \"<boolean>\",\n  \"key_expires_in\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {}\n  },\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"partitions\": {\n    \"acl\": \"<boolean>\",\n    \"complexity\": \"<boolean>\",\n    \"per_api\": \"<boolean>\",\n    \"quota\": \"<boolean>\",\n    \"rate_limit\": \"<boolean>\"\n  },\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "218757c9-6832-4535-a050-2ccfa3a313c6",
+              "name": "Policy created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"added\",\n  \"key\": \"5ead7120575961000181867e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5a61e09f-9253-4655-be33-521f2d265367",
+              "name": "Malformed request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request malformed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ac090bd1-4bd6-43e2-9856-40199b5019f8",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5ebef2f4-f7ff-4dd6-919a-7960b071821c",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Due to enabled service policy source, please use the Dashboard API.\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b63d7e38-9029-4a19-9cd8-75cb4df6855d",
+          "name": "Tyk Delete a Policy.",
+          "request": {
+            "name": "Tyk Delete a Policy.",
+            "description": {
+              "content": "Delete a policy by ID in your Tyk instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "policies",
+                ":polID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "polID",
+                  "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f05a5d3e-f2b1-4dd3-aa71-764d29b05f2a",
+              "name": "Deleted policy by ID",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"deleted\",\n  \"key\": \"5ead7120575961000181867e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "bb840c14-d0c0-4b24-86c1-636b27ae0d01",
+              "name": "Policy Id not provided",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Must specify an apiID to update\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a3f21c73-24b3-45d4-9787-eaff510577a6",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c65f43b4-3c94-4f98-a0a3-5cd90ad376d8",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Delete failed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d2a82320-44b5-40bd-82e2-3f2248cc61ed",
+          "name": "Tyk Get a Policy.",
+          "request": {
+            "name": "Tyk Get a Policy.",
+            "description": {
+              "content": "You can retrieve details of a single policy by ID in your Tyk instance.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "policies",
+                ":polID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "polID",
+                  "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "96623aba-6451-43a5-ae12-090555d54ac5",
+              "name": "Get details of a single policy.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"Sample policy\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f284ba89-c714-43dc-ab2f-50aa8ee2343a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e8cbf8c9-6a6c-4176-8b8c-48305ba1d3e9",
+              "name": "Policy not found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Policy not found\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8be15497-5684-414a-a8fc-c48f26357200",
+          "name": "Tyk Update a Policy.",
+          "request": {
+            "name": "Tyk Update a Policy.",
+            "description": {
+              "content": "You can update a Policy in your Tyk Instance by ID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "policies",
+                ":polID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "polID",
+                  "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"_id\": \"<string>\",\n  \"access_rights\": {\n    \"key_0\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"key_1\": {\n      \"allowance_scope\": \"<string>\",\n      \"allowed_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"url\": \"<string>\"\n        }\n      ],\n      \"api_id\": \"<string>\",\n      \"api_name\": \"<string>\",\n      \"disable_introspection\": \"<boolean>\",\n      \"endpoints\": [\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        },\n        {\n          \"methods\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"path\": \"<string>\"\n        }\n      ],\n      \"field_access_rights\": [\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"field_name\": \"<string>\",\n          \"limits\": {\n            \"max_query_depth\": \"<integer>\"\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"limit\": {\n        \"max_query_depth\": \"<integer>\",\n        \"per\": \"<number>\",\n        \"quota_max\": \"<integer>\",\n        \"quota_remaining\": \"<integer>\",\n        \"quota_renewal_rate\": \"<integer>\",\n        \"quota_renews\": \"<integer>\",\n        \"rate\": \"<number>\",\n        \"smoothing\": {\n          \"delay\": \"<integer>\",\n          \"enabled\": \"<boolean>\",\n          \"step\": \"<integer>\",\n          \"threshold\": \"<integer>\",\n          \"trigger\": \"<number>\"\n        },\n        \"throttle_interval\": \"<number>\",\n        \"throttle_retry_limit\": \"<integer>\"\n      },\n      \"restricted_types\": [\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        },\n        {\n          \"fields\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"name\": \"<string>\"\n        }\n      ],\n      \"versions\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    }\n  },\n  \"active\": \"<boolean>\",\n  \"enable_http_signature_validation\": \"<boolean>\",\n  \"graphql_access_rights\": {\n    \"key_0\": \"<object>\",\n    \"key_1\": \"<object>\",\n    \"key_2\": \"<object>\"\n  },\n  \"hmac_enabled\": \"<boolean>\",\n  \"id\": \"<string>\",\n  \"is_inactive\": \"<boolean>\",\n  \"key_expires_in\": \"<long>\",\n  \"last_updated\": \"<string>\",\n  \"max_query_depth\": \"<integer>\",\n  \"meta_data\": {\n    \"key_0\": {},\n    \"key_1\": {},\n    \"key_2\": {}\n  },\n  \"name\": \"<string>\",\n  \"org_id\": \"<string>\",\n  \"partitions\": {\n    \"acl\": \"<boolean>\",\n    \"complexity\": \"<boolean>\",\n    \"per_api\": \"<boolean>\",\n    \"quota\": \"<boolean>\",\n    \"rate_limit\": \"<boolean>\"\n  },\n  \"per\": \"<double>\",\n  \"quota_max\": \"<long>\",\n  \"quota_renewal_rate\": \"<long>\",\n  \"rate\": \"<double>\",\n  \"smoothing\": {\n    \"delay\": \"<integer>\",\n    \"enabled\": \"<boolean>\",\n    \"step\": \"<integer>\",\n    \"threshold\": \"<integer>\",\n    \"trigger\": \"<number>\"\n  },\n  \"tags\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"throttle_interval\": \"<double>\",\n  \"throttle_retry_limit\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "5365db22-f433-4309-9fcc-e5971f9543b9",
+              "name": "Policy updated",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"update policy sample\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"action\": \"modified\",\n  \"key\": \"5ead7120575961000181867e\",\n  \"status\": \"ok\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "00f7f6b9-76eb-4f20-988e-c5988aaaf868",
+              "name": "malformed request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"update policy sample\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request malformed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eba89e05-34a9-45ee-9206-0a0f05543eca",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"update policy sample\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "47c020e4-66a3-4ba1-9522-b77320d6409c",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "policies",
+                    ":polID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "polID",
+                      "description": "(Required) You can retrieve details of a single policy by ID in your Tyk instance."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"access_rights\": {\n    \"itachi-api\": {\n      \"allowed_urls\": [\n        {\n          \"methods\": [\n            \"GET\"\n          ],\n          \"url\": \"/users\"\n        }\n      ],\n      \"api_id\": \"8ddd91f3cda9453442c477b06c4e2da4\",\n      \"api_name\": \"Itachi api\",\n      \"disable_introspection\": false,\n      \"versions\": [\n        \"Default\"\n      ]\n    }\n  },\n  \"active\": true,\n  \"hmac_enabled\": false,\n  \"id\": \"5ead7120575961000181867e\",\n  \"is_inactive\": false,\n  \"key_expires_in\": 2592000,\n  \"max_query_depth\": -1,\n  \"meta_data\": {\n    \"update\": \"sample policy update\",\n    \"user_type\": \"mobile_user\"\n  },\n  \"name\": \"update policy sample\",\n  \"partitions\": {\n    \"acl\": true,\n    \"complexity\": false,\n    \"per_api\": false,\n    \"quota\": true,\n    \"rate_limit\": true\n  },\n  \"per\": 60,\n  \"quota_max\": 10000,\n  \"quota_renewal_rate\": 3600,\n  \"rate\": 1000,\n  \"tags\": [\n    \"security\"\n  ],\n  \"throttle_interval\": 10,\n  \"throttle_retry_limit\": 10\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Failed to create file!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f46aa1f3-6ae3-4eb9-9587-cb26d7a84b3d",
+    "name": "Tyk Dashboard Admin Additional Permissions Policies API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

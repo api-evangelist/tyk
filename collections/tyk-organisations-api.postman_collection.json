@@ -1,0 +1,609 @@
+{
+  "item": [
+    {
+      "id": "055fd043-8f94-447f-b467-1453fcada1bd",
+      "name": "Organisations",
+      "description": {
+        "content": "The organisations API gives the ability to manage your Tyk organisation(s).",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d6e2d5a5-fed6-4868-b865-40757016a1e1",
+          "name": "Retrieve a single organisation",
+          "request": {
+            "name": "Retrieve a single organisation",
+            "description": {
+              "content": "Retrieve a single organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "635362ab-07ba-435c-a2b1-0843e5ab20c4",
+              "name": "Organisation retrieved",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"5cc03283d07e7f00019404b3\",\n  \"owner_name\": \"TestOrg5 Ltd.\",\n  \"owner_slug\": \"testorg\",\n  \"cname_enabled\": true,\n  \"cname\": \"www.tyk-portal-test.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"First API #Test\",\n      \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n    }\n  ],\n  \"developer_quota\": 0,\n  \"developer_count\": 0,\n  \"event_options\": {},\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false,\n    \"cloud\": false\n  },\n  \"org_options_meta\": {}\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "8e54a3e8-5bff-48ca-a4c5-9c122db00ff8",
+          "name": "Update organisation details",
+          "request": {
+            "name": "Update organisation details",
+            "description": {
+              "content": "Update Organisation details. This operation will replace the existing Organisation details with those provided in the request payload. It is important to provide the entire object - for example linked APIs - to avoid overwriting existing data with empty values.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"id\": \"<string>\",\n  \"owner_name\": \"<string>\",\n  \"owner_slug\": \"<string>\",\n  \"cname_enabled\": \"<boolean>\",\n  \"cname\": \"<string>\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"<string>\",\n      \"api_id\": \"<string>\"\n    },\n    {\n      \"api_human_name\": \"<string>\",\n      \"api_id\": \"<string>\"\n    }\n  ],\n  \"sso_enabled\": \"<boolean>\",\n  \"developer_quota\": \"<integer>\",\n  \"developer_count\": \"<integer>\",\n  \"event_options\": {\n    \"key_0\": {\n      \"webhook\": \"<string>\",\n      \"email\": \"<string>\",\n      \"redis\": \"<boolean>\"\n    }\n  },\n  \"hybrid_enabled\": \"<boolean>\",\n  \"ui\": {\n    \"languages\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"hide_help\": \"<boolean>\",\n    \"default_lang\": \"<string>\",\n    \"login_page\": \"<object>\",\n    \"nav\": \"<object>\",\n    \"uptime\": \"<object>\",\n    \"portal_section\": \"<object>\",\n    \"designer\": \"<object>\",\n    \"dont_show_admin_sockets\": \"<boolean>\",\n    \"dont_allow_license_management\": \"<boolean>\",\n    \"dont_allow_license_management_view\": \"<boolean>\",\n    \"cloud\": \"<boolean>\",\n    \"dev\": \"<boolean>\"\n  },\n  \"org_options_meta\": \"<object>\",\n  \"open_policy\": {\n    \"rules\": \"<string>\",\n    \"enabled\": \"<boolean>\"\n  },\n  \"additional_permissions\": {\n    \"key_0\": \"<string>\",\n    \"key_1\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "9fa43fbb-68b7-4748-b0cd-a62c2dce1849",
+              "name": "Organisation updated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"id\": \"5cc03283d07e7f00019404b3\",\n  \"owner_name\": \"Jively\",\n  \"owner_slug\": \"testorg\",\n  \"cname\": \"jive.ly\",\n  \"cname_enabled\": true,\n  \"apis\": [\n    {\n      \"api_human_name\": \"First API #Test\",\n      \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n    }\n  ],\n  \"developer_quota\": 0,\n  \"developer_count\": 0,\n  \"event_options\": {},\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false,\n    \"cloud\": false\n  },\n  \"org_options_meta\": {}\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org updated\",\n  \"Meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0fabaac2-38bd-4ef6-ad50-ae51ce7c3721",
+          "name": "Delete an organisation",
+          "request": {
+            "name": "Delete an organisation",
+            "description": {
+              "content": "Delete an organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":org-id"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "org-id",
+                  "description": "(Required) Organisation ID of the org to add, update, or delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "8228b53b-a955-4434-a932-97fb9359d198",
+              "name": "Organisation deleted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":org-id"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "org-id",
+                      "description": "(Required) Organisation ID of the org to add, update, or delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org deleted\",\n  \"Meta\": \"\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "b19abf35-c158-4d87-aea0-fd19984577dd",
+          "name": "List all organisations",
+          "request": {
+            "name": "List all organisations",
+            "description": {
+              "content": "List all organisations",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "feee405f-f25f-4fa3-880e-b4ce646f0fe9",
+              "name": "Organisations retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"organisations\": [\n    {\n      \"id\": \"5cc03283d07e7f00019404b3\",\n      \"owner_name\": \"TestOrg5 Ltd.\",\n      \"owner_slug\": \"testorg\",\n      \"cname_enabled\": true,\n      \"cname\": \"www.tyk-portal-test.com\",\n      \"apis\": [\n        {\n          \"api_human_name\": \"First API #Test\",\n          \"api_id\": \"5508bd9429434d5768c423a04db259ea\"\n        }\n      ],\n      \"developer_quota\": 0,\n      \"developer_count\": 0,\n      \"event_options\": {},\n      \"hybrid_enabled\": false,\n      \"ui\": {\n        \"languages\": {},\n        \"hide_help\": false,\n        \"default_lang\": \"\",\n        \"login_page\": {},\n        \"nav\": {},\n        \"uptime\": {},\n        \"portal_section\": {},\n        \"designer\": {},\n        \"dont_show_admin_sockets\": false,\n        \"dont_allow_license_management\": false,\n        \"dont_allow_license_management_view\": false,\n        \"cloud\": false\n      },\n      \"org_options_meta\": {}\n    },\n    {\n      \"id\": \"5ccae84aa402ce00018b5435\",\n      \"owner_name\": \"Jively\",\n      \"owner_slug\": \"\",\n      \"cname_enabled\": true,\n      \"cname\": \"jive.ly\",\n      \"apis\": [],\n      \"developer_quota\": 0,\n      \"developer_count\": 0,\n      \"event_options\": {},\n      \"hybrid_enabled\": false,\n      \"ui\": {\n        \"languages\": {},\n        \"hide_help\": false,\n        \"default_lang\": \"\",\n        \"login_page\": {},\n        \"nav\": {},\n        \"uptime\": {},\n        \"portal_section\": {},\n        \"designer\": {},\n        \"dont_show_admin_sockets\": false,\n        \"dont_allow_license_management\": false,\n        \"dont_allow_license_management_view\": false,\n        \"cloud\": false\n      },\n      \"org_options_meta\": {}\n    }\n  ],\n  \"pages\": 0\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c1caadfe-2cfa-4b6f-94ce-1c5b556534a0",
+          "name": "Create an Organisation",
+          "request": {
+            "name": "Create an Organisation",
+            "description": {
+              "content": "Create an Organisation",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ""
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                "key": "admin-auth",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "<object>",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "211e24c2-8558-46c2-b495-d44b96813638",
+              "name": "Organisation created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ""
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) admin_secret value from your tyk_analtyics.conf",
+                    "key": "admin-auth",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"owner_name\": \"Jively\",\n  \"cname\": \"jive.ly\",\n  \"cname_enabled\": true\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"OK\",\n  \"Message\": \"Org created\",\n  \"Meta\": \"54b53d3aeba6db5c35000002\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e88ca28f-2974-41ff-85f6-f8fd46a3821e",
+    "name": "Tyk Dashboard Admin Additional Permissions Organisations API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

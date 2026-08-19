@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "2cc0a1c7-f7ff-451a-b356-a18bb6e49554",
+      "name": "Config",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "b49b26da-4718-4469-8468-eceda5e68fee",
+          "name": "Tyk Retrieve Current Configuration Status",
+          "request": {
+            "name": "Tyk Retrieve Current Configuration Status",
+            "description": {
+              "content": "Returns the current configuration status of the system.\n\nExample curl command:\n```\ncurl -X GET \\\nhttp://localhost:8181/config \\\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "config"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "X-Tyk-Authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2c6e23d-207a-4dce-abe4-ff07a44c4782",
+              "name": "Successful retrieval of the current configuration.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"listen_port\": 9090,\n  \"healthcheck_port\": 8180,\n  \"http_port\": 8180,\n  \"enable_http_profiler\": false,\n  \"server_options\": {\n    \"use_ssl\": false,\n    \"certificate\": {\n      \"cert_file\": \"./server.crt\",\n      \"key_file\": \"./server.key\"\n    },\n    \"min_version\": 0,\n    \"ssl_ciphers\": \"string\",\n    \"ssl_certificates\": \"string\"\n  },\n  \"http_server_options\": {\n    \"use_ssl\": false,\n    \"certificate\": {\n      \"cert_file\": \"\",\n      \"key_file\": \"\"\n    },\n    \"min_version\": 0,\n    \"ssl_ciphers\": \"string\",\n    \"ssl_certificates\": \"string\"\n  },\n  \"security\": {\n    \"private_certificate_encoding_secret\": \"\",\n    \"enable_http_secure_endpoints\": true,\n    \"secret\": \"\"\n  },\n  \"storage\": {\n    \"type\": \"redis\",\n    \"host\": \"localhost\",\n    \"port\": 6379,\n    \"master_name\": \"\",\n    \"sentinel_password\": \"\",\n    \"username\": \"\",\n    \"password\": \"\",\n    \"database\": 0,\n    \"optimisation_max_idle\": 0,\n    \"optimisation_max_active\": 0,\n    \"enable_cluster\": false,\n    \"hosts\": \"string\",\n    \"addrs\": \"string\",\n    \"redis_use_ssl\": false,\n    \"redis_ssl_insecure_skip_verify\": false,\n    \"debug\": false,\n    \"timeout\": 0,\n    \"use_ssl\": false,\n    \"ssl_insecure_skip_verify\": false,\n    \"ca_file\": \"\",\n    \"cert_file\": \"\",\n    \"key_file\": \"\",\n    \"max_version\": \"\",\n    \"min_version\": \"\"\n  },\n  \"analytics\": {\n    \"type\": \"mongo\",\n    \"connection_string\": \"\",\n    \"table_sharding\": false,\n    \"batch_size\": 0,\n    \"postgres\": {\n      \"prefer_simple_protocol\": false\n    },\n    \"mysql\": {\n      \"default_string_size\": 0,\n      \"disable_datetime_precision\": false,\n      \"dont_support_rename_index\": false,\n      \"dont_support_rename_column\": false,\n      \"skip_initialize_with_version\": false\n    },\n    \"mongo_url\": \"\",\n    \"mongo_use_ssl\": false,\n    \"mongo_ssl_insecure_skip_verify\": false,\n    \"mongo_ssl_allow_invalid_hostnames\": false,\n    \"mongo_ssl_ca_file\": \"\",\n    \"mongo_ssl_pem_keyfile\": \"\",\n    \"mongo_session_consistency\": \"\",\n    \"mongo_batch_size\": 0,\n    \"driver\": \"mongo-go\",\n    \"mongo_direct_connection\": false\n  },\n  \"hash_keys\": true,\n  \"session_timeout\": 0,\n  \"forward_analytics_to_pump\": false,\n  \"enable_multiple_analytics_keys\": false,\n  \"dont_store_selective\": false,\n  \"dont_store_aggregate\": false,\n  \"org_session_expiration\": 60,\n  \"org_session_cleanup\": 60,\n  \"license\": \"\",\n  \"aggregates_ignore_tags\": \"example_value\",\n  \"track_all_paths\": false,\n  \"store_analytics_per_minute\": false,\n  \"ignore_tag_prefix_list\": \"example_value\",\n  \"threshold_len_tag_list\": 1000,\n  \"omit_analytics_index_creation\": false,\n  \"enable_separate_analytics_store\": false,\n  \"analytics_storage\": {\n    \"type\": \"\",\n    \"host\": \"\",\n    \"port\": 0,\n    \"master_name\": \"\",\n    \"sentinel_password\": \"\",\n    \"username\": \"\",\n    \"password\": \"\",\n    \"database\": 0,\n    \"optimisation_max_idle\": 0,\n    \"optimisation_max_active\": 0,\n    \"enable_cluster\": false,\n    \"hosts\": \"string\",\n    \"addrs\": \"string\",\n    \"redis_use_ssl\": false,\n    \"redis_ssl_insecure_skip_verify\": false,\n    \"debug\": false,\n    \"timeout\": 0,\n    \"use_ssl\": false,\n    \"ssl_insecure_skip_verify\": false,\n    \"ca_file\": \"\",\n    \"cert_file\": \"\",\n    \"key_file\": \"\",\n    \"max_version\": \"\",\n    \"min_version\": \"\"\n  },\n  \"log_level\": \"info\",\n  \"enable_key_logging\": false,\n  \"sync_worker_config\": {\n    \"enabled\": true,\n    \"hash_keys\": true,\n    \"max_batch_size\": 1000,\n    \"time_between_batches\": 3,\n    \"max_workers\": 1000,\n    \"warmup_time\": 0,\n    \"group_key_ttl\": 30\n  },\n  \"enable_ownership\": false\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "91445605-137f-4af7-841b-232994c6e3b0",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "config"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "X-Tyk-Authorization",
+                    "value": "your-secret-key"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Attempted administrative access with invalid or missing key!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "eb76e0c6-ed4a-4687-bbfc-3b238277e3c1",
+    "name": "Tyk Dashboard Admin Additional Permissions Config API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

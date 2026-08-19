@@ -1,0 +1,147 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Organisation Quotas API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Organisation Quotas",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk List Organisation Keys",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/org/keys",
+            "params": [
+              {
+                "name": "filter",
+                "value": "default*",
+                "type": "query",
+                "description": "Retrieves all keys starting with the specified filter(filter is a prefix - e.g. default* or default will return all keys starting with default  like defaultbd,defaulttwo etc).We don't use filter for hashed keys"
+              }
+            ]
+          },
+          "docs": "You can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set 'rate' or 'per' to zero, or don't add them to your request."
+        },
+        {
+          "info": {
+            "name": "Tyk Get an Organisation Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/org/keys/:keyID",
+            "params": [
+              {
+                "name": "orgID",
+                "value": "664a14650619d40001f1f00f",
+                "type": "query",
+                "description": "The Org ID"
+              },
+              {
+                "name": "keyID",
+                "value": "e389ae00a2b145feaf28d6cc11f0f86d",
+                "type": "path",
+                "description": "The Key ID"
+              }
+            ]
+          },
+          "docs": "Get session info about specified organisation key. Should return up to date rate limit and quota usage numbers."
+        },
+        {
+          "info": {
+            "name": "Tyk Create an Organisation Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/org/keys/:keyID",
+            "params": [
+              {
+                "name": "keyID",
+                "value": "e389ae00a2b145feaf28d6cc11f0f86d",
+                "type": "path",
+                "description": "The Key ID"
+              },
+              {
+                "name": "reset_quota",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This work similar to Keys API except that Key ID is always equals Organisation ID"
+        },
+        {
+          "info": {
+            "name": "Tyk Update Organisation Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/org/keys/:keyID",
+            "params": [
+              {
+                "name": "reset_quota",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the reset_quota parameter and setting it to 1, will cause Tyk reset the organisations quota in the live quota manager, it is recommended to use this mechanism to reset organisation-level access if a monthly subscription is in place."
+              },
+              {
+                "name": "keyID",
+                "value": "e389ae00a2b145feaf28d6cc11f0f86d",
+                "type": "path",
+                "description": "The Key ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This work similar to Keys API except that Key ID is always equals Organisation ID\n\nFor Gateway v2.6.0 onwards, you can now set rate limits at the organisation level by using the following fields - allowance and rate. These are the number of allowed requests for the specified per value, and need to be set to the same value. If you don't want to have organisation level rate limiting, set `rate` or `per` to zero, or don't add them to your request."
+        },
+        {
+          "info": {
+            "name": "Tyk Delete Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/org/keys/:keyID",
+            "params": [
+              {
+                "name": "keyID",
+                "value": "e389ae00a2b145feaf28d6cc11f0f86d",
+                "type": "path",
+                "description": "The Key ID"
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove all limits from organisation. It does not affects regular keys created within organisation."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

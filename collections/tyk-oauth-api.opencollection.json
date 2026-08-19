@@ -1,0 +1,441 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Oauth API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Oauth",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OAuth clients.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oauth/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              }
+            ]
+          },
+          "docs": "Return all the auth 2 clients that have been registered with you tyk instance"
+        },
+        {
+          "info": {
+            "name": "Create a new OAuth2.0 client.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/apis/oauth/:apiId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Client apps are created dynamically, the only parameter required to create a new client app with Tyk is to specify the redirect URI, this is used as part of the client authentication and cannot be edited later. Please note that if you don't attach a policy to the OAuth client you will need to provide dynamic key rules to client authorization endpoint."
+        },
+        {
+          "info": {
+            "name": "Get single OAuth client details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oauth/:apiId/:clientId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "Get single  OAuth client details with its client ID."
+        },
+        {
+          "info": {
+            "name": "Delete OAuth client.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/apis/oauth/:apiId/:clientId",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "You can delete an OAuth client using this endpoint. Please note that tokens issued with the client ID will still be valid until they expire."
+        },
+        {
+          "info": {
+            "name": "List OAuth client tokens.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/oauth/:apiId/:clientId/tokens",
+            "params": [
+              {
+                "name": "apiId",
+                "value": "e95400eba23c4a2d4622a722be06fe95",
+                "type": "path",
+                "description": "The API s ID."
+              },
+              {
+                "name": "clientId",
+                "value": "2a06b398c17f46908de3dffcb71ef87",
+                "type": "path",
+                "description": "The client ID."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth client ID."
+        },
+        {
+          "info": {
+            "name": "Tyk List Oauth Clients",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/oauth/clients/:apiID",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "1bd5c61b0e694082902cf15ddcc9e6a7",
+                "type": "path",
+                "description": "The API ID"
+              }
+            ]
+          },
+          "docs": "OAuth Clients are organised by API ID, and therefore are queried as such."
+        },
+        {
+          "info": {
+            "name": "Tyk Get Oauth Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/oauth/clients/:apiID/:keyName",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API id"
+              },
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              }
+            ]
+          },
+          "docs": "Get OAuth client details tied to an api"
+        },
+        {
+          "info": {
+            "name": "Tyk Update Oauth Metadata,redirecturi,description and Policy Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/oauth/clients/:apiID/:keyName",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API id"
+              },
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Allows you to update the metadata,redirecturi,description and Policy ID for an OAuth client."
+        },
+        {
+          "info": {
+            "name": "Tyk Delete Oauth Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/oauth/clients/:apiID/:keyName",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API id"
+              },
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              }
+            ]
+          },
+          "docs": "Please note that tokens issued with the client ID will still be valid until they expire."
+        },
+        {
+          "info": {
+            "name": "Tyk Rotate the Oath Client Secret",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/oauth/clients/:apiID/:keyName/rotate",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API id"
+              },
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              }
+            ]
+          },
+          "docs": "Generate a new secret"
+        },
+        {
+          "info": {
+            "name": "Tyk List Tokens for a Provided Api Id and Oauth-client Id",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/oauth/clients/:apiID/:keyName/tokens",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "path",
+                "description": "The API id"
+              },
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              },
+              {
+                "name": "page",
+                "value": "1",
+                "type": "query",
+                "description": "Use page query parameter to say which page number you want returned."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth-client ID .If page query parameter is sent the tokens will be paginated. This endpoint will work only for newly created tokens.\n        <br/>\n        <br/>\n        You can control how long you want to store expired tokens in this list using `oauth_token_expired_retain_period` gateway option, which specifies retain period for expired tokens stored in\nRedis. By default expired to"
+        },
+        {
+          "info": {
+            "name": "Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/oauth/clients/apis/:appID",
+            "params": [
+              {
+                "name": "appID",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              },
+              {
+                "name": "orgID",
+                "value": "",
+                "type": "query",
+                "description": "The Org Id"
+              }
+            ]
+          },
+          "docs": "Get all API IDs for APIs that have use_oauth2 enabled and use the client_id (appID) specified in the path parameter for OAuth2. You can use the org_id query parameter to specify from which organization you want the API IDs to be returned. To return APIs from all organizations, send org_id as an empty string."
+        },
+        {
+          "info": {
+            "name": "Tyk Create New Oauth Client",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/oauth/clients/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Any OAuth keys must be generated with the help of a client ID. These need to be pre-registered with Tyk before they can be used (in a similar vein to how you would register your app with Twitter before attempting to ask user permissions using their API).\n        <br/><br/>\n        <h3>Creating OAuth clients with Access to Multiple APIs</h3>\n        New from Tyk Gateway 2.6.0 is the ability to create OAuth clients with access to more than one API. If you provide the api_id it works the same as in"
+        },
+        {
+          "info": {
+            "name": "Tyk Invalidate Oauth Refresh Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/oauth/refresh/:keyName",
+            "params": [
+              {
+                "name": "keyName",
+                "value": "2a06b398c17f46908de3dffcb71ef87df",
+                "type": "path",
+                "description": "The Client ID"
+              },
+              {
+                "name": "api_id",
+                "value": "b84fe1a04e5648927971c0557971565c",
+                "type": "query",
+                "description": "The API id"
+              }
+            ]
+          },
+          "docs": "It is possible to invalidate refresh tokens in order to manage OAuth client access more robustly."
+        },
+        {
+          "info": {
+            "name": "Tyk Revoke Token",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/oauth/revoke",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "org_id",
+                  "value": ""
+                },
+                {
+                  "name": "token",
+                  "value": ""
+                },
+                {
+                  "name": "token_type_hint",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "revoke a single token"
+        },
+        {
+          "info": {
+            "name": "Tyk Revoke All Client's Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/oauth/revoke_all",
+            "body": {
+              "type": "form-urlencoded",
+              "data": [
+                {
+                  "name": "client_id",
+                  "value": ""
+                },
+                {
+                  "name": "client_secret",
+                  "value": ""
+                },
+                {
+                  "name": "org_id",
+                  "value": ""
+                }
+              ]
+            }
+          },
+          "docs": "Revoke all the tokens for a given oauth client"
+        },
+        {
+          "info": {
+            "name": "Tyk Purge Lapsed Oauth Tokens",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/oauth/tokens",
+            "params": [
+              {
+                "name": "scope",
+                "value": "lapsed",
+                "type": "query",
+                "description": "purge lapsed tokens"
+              }
+            ]
+          },
+          "docs": "Purge all lapsed OAuth token"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

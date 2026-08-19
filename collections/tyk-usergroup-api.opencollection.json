@@ -1,0 +1,121 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions UserGroup API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "UserGroup",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List user groups.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/usergroups",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "This will return a list of all the user groups. The returned user groups are paginated."
+        },
+        {
+          "info": {
+            "name": "Create user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/usergroups",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Instead of assigning permission to each individual users, per user, you can create a user group and configure the permissions for all users in the group. This endpoint allow you to create a user group and set permission for the user group."
+        },
+        {
+          "info": {
+            "name": "Get user group details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to fetch."
+              }
+            ]
+          },
+          "docs": "Return a user group object with all the details of a specified group."
+        },
+        {
+          "info": {
+            "name": "Update user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the details of a user group. You must have either admin or user groups permission to be able to modify user groups. Note you cannot update the ResetPassword permission with this endpoint. For that you need to use Admin API. When updating a user group you also need to specify at least one permission in the user_permissions field."
+        },
+        {
+          "info": {
+            "name": "Delete user group.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/usergroups/:groupId",
+            "params": [
+              {
+                "name": "groupId",
+                "value": "6649fd535715ec4c96cbef39",
+                "type": "path",
+                "description": "ID of the group you want to delete."
+              }
+            ]
+          },
+          "docs": "Delete user group using the group ID."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

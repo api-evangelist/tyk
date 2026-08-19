@@ -1,0 +1,1155 @@
+{
+  "item": [
+    {
+      "id": "14a0fe0f-7087-4980-84f2-0650c7a2f35d",
+      "name": "Analytics",
+      "description": {
+        "content": "The Tyk Dashboard provides a full set of analytics functions and graphs that you can use to segment and view your API traffic and activity.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d8abfa99-b75d-4834-aa68-af7cddf0a1ef",
+          "name": "Analytics of API Key.",
+          "request": {
+            "name": "Analytics of API Key.",
+            "description": {
+              "content": "It returns analytics of the endpoints of all APIs called a key between start and end date.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "activity",
+                "keys",
+                ":keyHash",
+                ":startDay",
+                ":startMonth",
+                ":startYear",
+                ":EndDay",
+                ":EndMonth",
+                ":EndYear"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startDay",
+                  "description": "(Required) Day to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startMonth",
+                  "description": "(Required) Month to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startYear",
+                  "description": "(Required) Year to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndDay",
+                  "description": "(Required) End date of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndMonth",
+                  "description": "(Required) End month of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndYear",
+                  "description": "(Required) End year of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "keyHash",
+                  "description": "(Required) Hash of your API key."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "4477be54-cfda-453c-aafd-aacb21e44829",
+              "name": "Returns analytics of all endpoints called using the given key between the given time range.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "keys",
+                    ":keyHash",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyHash",
+                      "description": "(Required) Hash of your API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"error\": 4,\n      \"hits\": 31,\n      \"id\": {\n        \"alias\": \"\",\n        \"api_id\": \"41351a6a94094da05f75146a695a16f6\",\n        \"api_name\": \"Keyless\",\n        \"code\": 404,\n        \"day\": 0,\n        \"hour\": 0,\n        \"iso_country\": \"\",\n        \"key\": \"\",\n        \"month\": 0,\n        \"path\": \"/anything\",\n        \"url\": \"\",\n        \"year\": 0\n      },\n      \"last_hit\": \"2024-06-19T07:11:39Z\",\n      \"latency\": 0,\n      \"max_latency\": 0,\n      \"max_upstream_latency\": 0,\n      \"min_latency\": 0,\n      \"min_upstream_latency\": 0,\n      \"request_time\": 174.5,\n      \"success\": 27,\n      \"upstream_latency\": 0\n    }\n  ],\n  \"pages\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4c28f1c4-9c59-406e-9149-944b3da12818",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "keys",
+                    ":keyHash",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyHash",
+                      "description": "(Required) Hash of your API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Key could not be decoded.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "605c066e-5197-472e-96c1-9d032422bc17",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "keys",
+                    ":keyHash",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyHash",
+                      "description": "(Required) Hash of your API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80f03b25-ddc6-4627-a6fb-3b279c2a33e0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "keys",
+                    ":keyHash",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyHash",
+                      "description": "(Required) Hash of your API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"User does not have access to the API with ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d03e5d91-77d2-4a6d-88bc-e9169bcc18f3",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "keys",
+                    ":keyHash",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "keyHash",
+                      "description": "(Required) Hash of your API key."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to fetch analytics.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "bef47b23-0b03-4efe-9d00-c8be8779bcb2",
+          "name": "Analytics of Oauth Client ID.",
+          "request": {
+            "name": "Analytics of Oauth Client ID.",
+            "description": {
+              "content": "Returns activity of all endpoints which used the given OAuth client between the given time range.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "activity",
+                "oauthid",
+                ":OAuthClientID",
+                ":startDay",
+                ":startMonth",
+                ":startYear",
+                ":EndDay",
+                ":EndMonth",
+                ":EndYear"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startDay",
+                  "description": "(Required) Day to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startMonth",
+                  "description": "(Required) Month to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "startYear",
+                  "description": "(Required) Year to start querying the analytics from."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndDay",
+                  "description": "(Required) End date of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndMonth",
+                  "description": "(Required) End month of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "EndYear",
+                  "description": "(Required) End year of analytics to query."
+                },
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "OAuthClientID",
+                  "description": "(Required) OAuthClientID"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b55bfed5-f4cf-42f7-a45b-c3bc5df75f8e",
+              "name": "Fetched analytics successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "oauthid",
+                    ":OAuthClientID",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "OAuthClientID",
+                      "description": "(Required) OAuthClientID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"data\": [\n    {\n      \"error\": 4,\n      \"hits\": 31,\n      \"id\": {\n        \"alias\": \"\",\n        \"api_id\": \"41351a6a94094da05f75146a695a16f6\",\n        \"api_name\": \"Keyless\",\n        \"code\": 404,\n        \"day\": 0,\n        \"hour\": 0,\n        \"iso_country\": \"\",\n        \"key\": \"\",\n        \"month\": 0,\n        \"path\": \"/anything\",\n        \"url\": \"\",\n        \"year\": 0\n      },\n      \"last_hit\": \"2024-06-19T07:11:39Z\",\n      \"latency\": 0,\n      \"max_latency\": 0,\n      \"max_upstream_latency\": 0,\n      \"min_latency\": 0,\n      \"min_upstream_latency\": 0,\n      \"request_time\": 174.5,\n      \"success\": 27,\n      \"upstream_latency\": 0\n    }\n  ],\n  \"pages\": 1\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "c494c5df-90a2-4023-b686-42d850cdcc26",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "oauthid",
+                    ":OAuthClientID",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "OAuthClientID",
+                      "description": "(Required) OAuthClientID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "16caa4dd-2c10-4fd9-8356-3c0b5e786068",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "oauthid",
+                    ":OAuthClientID",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "OAuthClientID",
+                      "description": "(Required) OAuthClientID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"User does not have access to the API with ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6737e538-2b59-4cf1-9839-c934ba6bb776",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "activity",
+                    "oauthid",
+                    ":OAuthClientID",
+                    ":startDay",
+                    ":startMonth",
+                    ":startYear",
+                    ":EndDay",
+                    ":EndMonth",
+                    ":EndYear"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startDay",
+                      "description": "(Required) Day to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startMonth",
+                      "description": "(Required) Month to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "startYear",
+                      "description": "(Required) Year to start querying the analytics from."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndDay",
+                      "description": "(Required) End date of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndMonth",
+                      "description": "(Required) End month of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "EndYear",
+                      "description": "(Required) End year of analytics to query."
+                    },
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "OAuthClientID",
+                      "description": "(Required) OAuthClientID"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to fetch analytics.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "93ffa79d-c6f4-4db6-9fd9-398b1469143d",
+    "name": "Tyk Dashboard Admin Additional Permissions Analytics API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

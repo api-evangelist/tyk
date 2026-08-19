@@ -1,0 +1,45 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions CertsTag API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CertsTag",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Return One Certificate or List Multiple Certificates in the Tyk Gateway Given a Comma Separated List of Cert Ids.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/certs/:certID",
+            "params": [
+              {
+                "name": "certID",
+                "value": "e6ce2b49-3e31-44de-95a7-12f054724283,5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035",
+                "type": "path",
+                "description": "Comma separated list of certificates to list."
+              }
+            ]
+          },
+          "docs": "Note that the certID path parameter can take a list of certIDs separated with commas (e.g /tyk/certs/certIDOne,certIDTwo).\n If you send a single certID it will return a single CertificateMeta object otherwise if you send more than two certIDs is will return an array of certificateMeta objects."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

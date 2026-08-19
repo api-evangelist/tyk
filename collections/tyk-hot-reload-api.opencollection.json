@@ -1,0 +1,56 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Hot Reload API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Hot Reload",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Hot-reload a Single Node.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/reload",
+            "params": [
+              {
+                "name": "block",
+                "value": "false",
+                "type": "query",
+                "description": "Block a response until the reload is performed. This can be useful in scripting environments like CI/CD workflows."
+              }
+            ]
+          },
+          "docs": "Tyk is capable of reloading configurations without having to stop serving requests. This means that API configurations can be added at runtime, or even modified at runtime and those rules applied immediately without any downtime."
+        },
+        {
+          "info": {
+            "name": "Hot-reload a Group of Tyk Nodes.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/reload/group"
+          },
+          "docs": "To reload a whole group of Tyk nodes (without using the Dashboard or host manager). You can send an API request to a single node, this node will then send a notification through the pub/sub infrastructure to all other listening nodes (including the host manager if it is being used to manage Nginx) which will then trigger a global reload."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

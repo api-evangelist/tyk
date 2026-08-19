@@ -1,0 +1,648 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Keys API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Keys",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List keys by API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/:apiID/keys",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "apiID",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Lists keys that grant access to the API with the ID {apiID}."
+        },
+        {
+          "info": {
+            "name": "Get key details with API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The Key ID."
+              }
+            ]
+          },
+          "docs": "Fetches the key that grant access to the API with the ID {apiID} and key ID {keyID}."
+        },
+        {
+          "info": {
+            "name": "With API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "suppress_reset",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The Key ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way."
+        },
+        {
+          "info": {
+            "name": "Delete key with API ID and key ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/apis/:apiID/keys/:keyID",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key is a username."
+              },
+              {
+                "name": "apiID",
+                "value": "546e885199c947147e7f39b7d6e8e984",
+                "type": "path",
+                "description": "ID of API the keys grant access to. Can either be the internal or external API ID."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The key ID"
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available."
+        },
+        {
+          "info": {
+            "name": "Search keys by API.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/:apiId/keys/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi",
+                "type": "query",
+                "description": "Filter and return all keys that contain this text in there key ID."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "apiId",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "path",
+                "description": "ID of the API."
+              }
+            ]
+          },
+          "docs": "Lists keys that grant access to the API with the ID {apiID}. When q query parameter is passed it will only return keys that contains the string sent by q."
+        },
+        {
+          "info": {
+            "name": "List All the keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/apis/keys",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Return a paginated list of keys."
+        },
+        {
+          "info": {
+            "name": "Create a key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/keys",
+            "params": [
+              {
+                "name": "basic_auth",
+                "value": "true",
+                "type": "query",
+                "description": "Set this to true to create a basic user. Note you have to send basic_auth_data(user and password) in the request body if this value is set to true."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API owners should segmentation be needed at an organisational level.\n  <br/><br/>\n API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always embed access_rights data in a key to ensure that only targeted API"
+        },
+        {
+          "info": {
+            "name": "Get key Details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              },
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              }
+            ]
+          },
+          "docs": "Get the details of a key."
+        },
+        {
+          "info": {
+            "name": "Create custom key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "my-custom-key",
+                "type": "path",
+                "description": "The ID to give the key."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a key with a custom key ID."
+        },
+        {
+          "info": {
+            "name": "Update key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/keys/:keyId",
+            "params": [
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key. Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key ID is a username."
+              },
+              {
+                "name": "suppress_reset",
+                "value": "",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended if using this approach to ensure that the OrgID being used in the API definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way."
+        },
+        {
+          "info": {
+            "name": "Delete key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/keys/:keyId",
+            "params": [
+              {
+                "name": "auto_guess",
+                "value": "true",
+                "type": "query",
+                "description": "If you are not sure if a key is hashed you can send this as true."
+              },
+              {
+                "name": "hashed",
+                "value": "1",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key.Any none empty string will be interpreted as to say you want to use hash input."
+              },
+              {
+                "name": "username",
+                "value": "true",
+                "type": "query",
+                "description": "Set to true if the passed key is a username"
+              },
+              {
+                "name": "keyId",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The ID of the key."
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available."
+        },
+        {
+          "info": {
+            "name": "List All the Keys info.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/keys/detailed",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi",
+                "type": "query",
+                "description": "Filter and return all keys that contain this text in there key ID."
+              }
+            ]
+          },
+          "docs": "List all the keys and all the keys details. If `q` query parameter is passed it will only return keys whose key ID contain the passed text."
+        },
+        {
+          "info": {
+            "name": "This will validate a key definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/keys/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will check if the body of a key definition is valid. And return a response with how the key would look like if you create it."
+        },
+        {
+          "info": {
+            "name": "Tyk List Keys.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/keys"
+          },
+          "docs": "List all the API keys."
+        },
+        {
+          "info": {
+            "name": "Tyk Create a Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/keys",
+            "params": [
+              {
+                "name": "hashed",
+                "value": "true",
+                "type": "query",
+                "description": "When set to true the key_hash returned will be similar to the un-hashed key name."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API Owners should segmentation be needed at an organisational level.\n <br/><br/>\n  API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always\nembed access_rights data in a key to ensure that only targeted API"
+        },
+        {
+          "info": {
+            "name": "Tyk Get a Key With Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/keys/:keyID",
+            "params": [
+              {
+                "name": "hashed",
+                "value": "true",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The key ID."
+              }
+            ]
+          },
+          "docs": "Get session info about the specified key. Should return up to date rate limit and quota usage numbers."
+        },
+        {
+          "info": {
+            "name": "Tyk Create Custom Key / Import Key",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/keys/:keyID",
+            "params": [
+              {
+                "name": "suppress_reset",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1, will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              },
+              {
+                "name": "hashed",
+                "value": "true",
+                "type": "query",
+                "description": "When set to true the key_hash returned will be similar to the un-hashed key name."
+              },
+              {
+                "name": "keyID",
+                "value": "customKey",
+                "type": "path",
+                "description": "Name to give the custom key."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can use this endpoint to import existing keys into Tyk or to create a new custom key."
+        },
+        {
+          "info": {
+            "name": "Tyk Update Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/keys/:keyID",
+            "params": [
+              {
+                "name": "suppress_reset",
+                "value": "1",
+                "type": "query",
+                "description": "Adding the suppress_reset parameter and setting it to 1 will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour."
+              },
+              {
+                "name": "hashed",
+                "value": "true",
+                "type": "query",
+                "description": "When set to true the key_hash returned will be similar to the un-hashed key name."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20766d9a6ec6b4403b93a554feefef4708",
+                "type": "path",
+                "description": "ID of the key you want to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": " You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended that when using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way."
+        },
+        {
+          "info": {
+            "name": "Tyk Delete a Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/keys/:keyID",
+            "params": [
+              {
+                "name": "hashed",
+                "value": "false",
+                "type": "query",
+                "description": "Use the hash of the key as input instead of the full key."
+              },
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5",
+                "type": "path",
+                "description": "The key ID."
+              }
+            ]
+          },
+          "docs": "Deleting a key will remove it permanently from the system, however analytics relating to that key will still be available."
+        },
+        {
+          "info": {
+            "name": "Tyk Create a Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/keys/create",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a key."
+        },
+        {
+          "info": {
+            "name": "Tyk Set Policies for a Hashed Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/keys/policy/:keyID",
+            "params": [
+              {
+                "name": "keyID",
+                "value": "5e9d9544a1dcd60001d0ed207eb558517c3c48fb826c62cc6f6161eb",
+                "type": "path",
+                "description": "Name to give the custom key."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will set policies to a hashed key."
+        },
+        {
+          "info": {
+            "name": "Tyk This Will Validate a Key Definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/keys/preview",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This will check if the body of a key definition is valid. And return a response with how the key would look like if you were to create it."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,188 @@
+{
+  "item": [
+    {
+      "id": "1451d622-310d-452c-924d-f64331c60fc7",
+      "name": "Dataplanes",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "39be0dcc-990f-4bde-976a-0ef5d3c5f3c7",
+          "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+          "request": {
+            "name": "Tyk Retrieve Information of All the Connected Data Plane Nodes.",
+            "description": {
+              "content": "Provides a list of all the data plane nodes connected to MDCB. Data plane nodes are Tyk Gateways that make your APIs available to your consumers. MDCB offers centralised management of your data plane nodes. This endpoint offers metadata and status for all connected data plane nodes, allowing for monitoring and troubleshooting.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "dataplanes"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) Secret value set in sink.conf",
+                "key": "x-tyk-authorization",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "232d150e-96d3-42d1-8889-2e62d9c26ea2",
+              "name": "Successful retrieval of the connected data planes.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"key_0\": [\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    },\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    }\n  ],\n  \"key_1\": [\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    },\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    }\n  ],\n  \"key_2\": [\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    },\n    {\n      \"node_id\": \"solo-uid\",\n      \"api_key\": \"c5e9b9ed8dee42fb668f81cef7f905bb\",\n      \"group_id\": \"Redis Cluster Slave 1\",\n      \"node_version\": \"v5.3.0-dev\",\n      \"ttl\": 10,\n      \"tags\": [\n        \"tag1\",\n        \"tag2\"\n      ],\n      \"health\": {\n        \"redis\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        },\n        \"rpc\": {\n          \"status\": \"pass\",\n          \"componentType\": \"datastore\",\n          \"time\": \"2024-02-23T08:51:23-03:00\"\n        }\n      },\n      \"stats\": {\n        \"apis_count\": 1,\n        \"policies_count\": 0\n      },\n      \"host_details\": {\n        \"Hostname\": \"Peter-MacBook-Pro.local\",\n        \"PID\": 62663,\n        \"Address\": \"203.0.113.0\"\n      }\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "da8dbc85-4de7-4634-bb14-e47282addd79",
+              "name": "Forbidden access due to invalid or missing administrative key.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "dataplanes"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Secret value set in sink.conf",
+                    "key": "x-tyk-authorization",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": \"Attempted administrative access with invalid or missing key!\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e2ef7af-5a75-4175-ae83-dcdc6d63a3b1",
+    "name": "Tyk Dashboard Admin Additional Permissions Dataplanes API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,136 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Analytics API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Analytics of API Key.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/activity/keys/:keyHash/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+            "params": [
+              {
+                "name": "startDay",
+                "value": "15",
+                "type": "path",
+                "description": "Day to start querying the analytics from."
+              },
+              {
+                "name": "startMonth",
+                "value": "1",
+                "type": "path",
+                "description": "Month to start querying the analytics from."
+              },
+              {
+                "name": "startYear",
+                "value": "2024",
+                "type": "path",
+                "description": "Year to start querying the analytics from."
+              },
+              {
+                "name": "EndDay",
+                "value": "20",
+                "type": "path",
+                "description": "End date of analytics to query."
+              },
+              {
+                "name": "EndMonth",
+                "value": "6",
+                "type": "path",
+                "description": "End month of analytics to query."
+              },
+              {
+                "name": "EndYear",
+                "value": "2025",
+                "type": "path",
+                "description": "End year of analytics to query."
+              },
+              {
+                "name": "keyHash",
+                "value": "",
+                "type": "path",
+                "description": "Hash of your API key."
+              }
+            ]
+          },
+          "docs": "It returns analytics of the endpoints of all APIs called a key between start and end date."
+        },
+        {
+          "info": {
+            "name": "Analytics of Oauth Client ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/activity/oauthid/:OAuthClientID/:startDay/:startMonth/:startYear/:EndDay/:EndMonth/:EndYear",
+            "params": [
+              {
+                "name": "startDay",
+                "value": "15",
+                "type": "path",
+                "description": "Day to start querying the analytics from."
+              },
+              {
+                "name": "startMonth",
+                "value": "1",
+                "type": "path",
+                "description": "Month to start querying the analytics from."
+              },
+              {
+                "name": "startYear",
+                "value": "2024",
+                "type": "path",
+                "description": "Year to start querying the analytics from."
+              },
+              {
+                "name": "EndDay",
+                "value": "20",
+                "type": "path",
+                "description": "End date of analytics to query."
+              },
+              {
+                "name": "EndMonth",
+                "value": "6",
+                "type": "path",
+                "description": "End month of analytics to query."
+              },
+              {
+                "name": "EndYear",
+                "value": "2025",
+                "type": "path",
+                "description": "End year of analytics to query."
+              },
+              {
+                "name": "OAuthClientID",
+                "value": "",
+                "type": "path",
+                "description": "OAuthClientID"
+              }
+            ]
+          },
+          "docs": "Returns activity of all endpoints which used the given OAuth client between the given time range."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

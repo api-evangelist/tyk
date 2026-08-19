@@ -1,0 +1,52 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Open Policy Agent API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Open Policy Agent",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List OPA rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/org/opa"
+          },
+          "docs": "List your organisation OPA rules."
+        },
+        {
+          "info": {
+            "name": "Update OPA rules.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/org/opa",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Modify your OPA rules."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

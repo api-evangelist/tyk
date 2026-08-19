@@ -1,0 +1,306 @@
+{
+  "item": [
+    {
+      "id": "83342aac-778a-46d8-97a5-6df24898b5ab",
+      "name": "Export",
+      "description": {
+        "content": "To make Tyk installations more portable, the Export API enables you to export key configuration objects required to back-up and re-deploy a basic Tyk Pro installation.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "6088f6d7-3ae0-4dde-b99b-6993bc9761da",
+          "name": "Export Organisations",
+          "request": {
+            "name": "Export Organisations",
+            "description": {
+              "content": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and its APIs, Policies and API Tokens.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "admin",
+                "organisations",
+                ":orgID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "orgID",
+                  "description": "(Required) ID of organisation"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "3add0a8d-1ae6-4f78-8edf-0fbb5c2fae34",
+              "name": "Organisation exported successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"53ac07777cbb8c2d53000002\",\n  \"owner_name\": \"Test\",\n  \"owner_slug\": \"test\",\n  \"cname_enabled\": true,\n  \"cname\": \"my.domain.com\",\n  \"apis\": [\n    {\n      \"api_human_name\": \"API 2\",\n      \"api_id\": \"5fa2db834e07444f760b7ceb314209fb\"\n    },\n    {\n      \"api_human_name\": \"API 1\",\n      \"api_id\": \"7a6ddeca9244448a4233866938a0d6e2\"\n    },\n    {\n      \"api_human_name\": \"API 3\",\n      \"api_id\": \"109eacaa50b24b64651a1d4dce8ec385\"\n    }\n  ],\n  \"developer_quota\": 123,\n  \"developer_count\": 21,\n  \"event_options\": {\n    \"key_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": true\n    },\n    \"key_request_event\": {\n      \"webhook\": \"\",\n      \"email\": \"\",\n      \"redis\": false\n    }\n  },\n  \"hybrid_enabled\": false,\n  \"ui\": {\n    \"languages\": {},\n    \"hide_help\": false,\n    \"default_lang\": \"\",\n    \"login_page\": {},\n    \"nav\": {},\n    \"uptime\": {},\n    \"portal_section\": {},\n    \"designer\": {},\n    \"dont_show_admin_sockets\": false,\n    \"dont_allow_license_management\": false,\n    \"dont_allow_license_management_view\": false\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f4377041-7110-4e7d-969b-80e46570294b",
+              "name": "Back Request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Request body malformed\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cfa06677-01ab-4be0-82e1-8254a17448e0",
+              "name": "Unauthorized.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Not authorised\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7a0e8f28-9a9f-40ef-979b-8c017445ecd8",
+              "name": "Org not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "admin",
+                    "organisations",
+                    ":orgID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "orgID",
+                      "description": "(Required) ID of organisation"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Status\": \"Error\",\n  \"Message\": \"Could not retrieve org detail\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "212a9d3f-cb5d-4281-8c99-490c56d0fc79",
+    "name": "Tyk Dashboard Admin Additional Permissions Export API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

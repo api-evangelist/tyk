@@ -1,0 +1,170 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Dashboard Admin Additional Permissions Tyk API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Tyk",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Tyk Get List of Apis",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/apis"
+          },
+          "docs": "List APIs from Tyk Gateway"
+        },
+        {
+          "info": {
+            "name": "Tyk Creat an Api",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/apis",
+            "params": [
+              {
+                "name": "base_api_id",
+                "value": "663a4ed9b6be920001b191ae",
+                "type": "query",
+                "description": "The base API which the new version will be linked to."
+              },
+              {
+                "name": "base_api_version_name",
+                "value": "Default",
+                "type": "query",
+                "description": "The version name of the base API while creating the first version. This doesn't have to be sent for the next versions but if it is set, it will override base API version name."
+              },
+              {
+                "name": "new_version_name",
+                "value": "v2",
+                "type": "query",
+                "description": "The version name of the created version."
+              },
+              {
+                "name": "set_default",
+                "value": "true",
+                "type": "query",
+                "description": "If true, the new version is set as default version."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create API. A single Tyk node can have its API Definitions queried, deleted and updated remotely. This functionality enables you to remotely update your Tyk definitions without having to manage the files manually."
+        },
+        {
+          "info": {
+            "name": "Tyk Get Api Definition With It's Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/apis/:apiID",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "keyless",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "Get API definition from Tyk Gateway."
+        },
+        {
+          "info": {
+            "name": "Tyk Updating an Api Definition With Its Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/apis/:apiID",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "1bd5c61b0e694082902cf15ddcc9e6a7",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Updating an API definition uses the same signature and object as a `POST`, however it will first ensure that the API ID that is being updated is the same as the one in the object being `PUT`.\n\nUpdating will completely replace the file descriptor and will not change an API Definition that has already been loaded, the hot-reload endpoint will need to be called to push the new definition to live."
+        },
+        {
+          "info": {
+            "name": "Tyk Deleting an Api Definition With Id.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/apis/:apiID",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "1bd5c61b0e694082902cf15ddcc9e6a7",
+                "type": "path",
+                "description": "The API ID."
+              }
+            ]
+          },
+          "docs": "Deleting an API definition will remove the file from the file store, the API definition will NOT be unloaded, a separate reload request will need to be made to disable the API endpoint."
+        },
+        {
+          "info": {
+            "name": "Tyk Listing Versions of an Api.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/apis/:apiID/versions",
+            "params": [
+              {
+                "name": "apiID",
+                "value": "keyless",
+                "type": "path",
+                "description": "The API ID."
+              },
+              {
+                "name": "searchText",
+                "value": "Sample oas",
+                "type": "query",
+                "description": "Search for API version name"
+              },
+              {
+                "name": "accessType",
+                "value": "internal",
+                "type": "query",
+                "description": "Filter for internal or external API versions"
+              }
+            ]
+          },
+          "docs": "Listing versions of an API."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

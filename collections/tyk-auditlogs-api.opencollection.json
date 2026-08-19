@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions AuditLogs API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "AuditLogs",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List audit logs",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/audit-logs",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. The size of the page is determined by the configuration option page_size of dashboard."
+              },
+              {
+                "name": "user",
+                "value": "jhon@mail.com",
+                "type": "query",
+                "description": "Filters audit logs to show only actions performed by the specified user. This parameter allows you to focus on the activity of a particular user across the system."
+              },
+              {
+                "name": "action",
+                "value": "List APIs",
+                "type": "query",
+                "description": "Filters audit logs based on the specific action performed by users. This parameter allows you to focus on particular types of activities within the system."
+              },
+              {
+                "name": "ip",
+                "value": "127.0.0.1",
+                "type": "query",
+                "description": "Filters audit logs based on the IP address from which the action originated. This parameter allows you to focus on activities from specific network locations or to investigate actions from particular IP addresses."
+              },
+              {
+                "name": "method",
+                "value": "POST",
+                "type": "query",
+                "description": "Filters audit logs based on the HTTP method used in the API request. This parameter allows you to focus on specific types of operations performed on the API."
+              },
+              {
+                "name": "status",
+                "value": "200",
+                "type": "query",
+                "description": "Filters audit logs based on the HTTP status code returned by the API in response to the request. This parameter allows you to focus on specific outcomes of API interactions."
+              },
+              {
+                "name": "url",
+                "value": "/api/apis",
+                "type": "query",
+                "description": "Filters audit logs based on the specific URL path of the API endpoint that was accessed. This parameter allows you to focus on actions performed on particular resources or sections of your API."
+              },
+              {
+                "name": "from_date",
+                "value": "01-01-1990",
+                "type": "query",
+                "description": "Specifies the start date for the audit log search. If not provided, the search will include records from the earliest available date. Format DD-MM-YYY."
+              },
+              {
+                "name": "to_date",
+                "value": "01-01-2030",
+                "type": "query",
+                "description": "Specifies the end date for the audit log search. If not provided, the search will include records up to the current date and time. Format DD-MM-YYY."
+              }
+            ]
+          },
+          "docs": "Retrieve audit logs from database"
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,275 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Policies API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Policies",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get list portal policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/portal/policies",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              },
+              {
+                "name": "active",
+                "value": "true",
+                "type": "query",
+                "description": "Send any value in this query parameter to return only the active policies."
+              }
+            ]
+          },
+          "docs": "Get list of policies. The result returned are paginated. Use the p query parameter to say which page you want returned. The default pagesize of the results is 10 but this can be changed in the dashboard config."
+        },
+        {
+          "info": {
+            "name": "Create policy definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/portal/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creating policy definitions is slightly different to the core API, API definitions are wrapped inside an api_definition field and event handlers, such as webhooks are not embedded in the main api_definition object (though they can be), webhooks are instead appended as references into the hook_references field, the API will embed the correct webhook data into the event handler interface."
+        },
+        {
+          "info": {
+            "name": "Get a single policy by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to get."
+              }
+            ]
+          },
+          "docs": "Get a policy by ID."
+        },
+        {
+          "info": {
+            "name": "Update policy definition.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to update."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a policy definition."
+        },
+        {
+          "info": {
+            "name": "Delete a single policy by ID.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/portal/policies/:id",
+            "params": [
+              {
+                "name": "id",
+                "value": "66570989d98dd00001da17f1",
+                "type": "path",
+                "description": "ID of policy to delete."
+              }
+            ]
+          },
+          "docs": "Delete a Policy by ID."
+        },
+        {
+          "info": {
+            "name": "Search list of policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/portal/policies/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "5eb6349543f0440001373f5c",
+                "type": "query",
+                "description": "Search for policy using policy ID or name."
+              },
+              {
+                "name": "policy_ids",
+                "value": "5eb6349543f0440001373f5c,5ead7120575961000181867e",
+                "type": "query",
+                "description": "A list of comma separated policy IDs that you want to search for."
+              },
+              {
+                "name": "active",
+                "value": "true",
+                "type": "query",
+                "description": "Send any value in this query parameter to return only the active policies."
+              },
+              {
+                "name": "state",
+                "value": "deny",
+                "type": "query",
+                "description": "Return policies whose state field matches the sent value e.g if you send state as deny policies returned are those whose state filed value is set as deny."
+              },
+              {
+                "name": "sort",
+                "value": "name",
+                "type": "query",
+                "description": "Field you want to use to sort the returned policies."
+              },
+              {
+                "name": "api_id",
+                "value": "5963f8fdedee405143f5858ea17de422",
+                "type": "query",
+                "description": "Comma separate list of API IDs. Return only policy that that have the given API IDs in their access_right."
+              },
+              {
+                "name": "auth_type",
+                "value": "authToken",
+                "type": "query",
+                "description": "Return policy whose auth_type field has the given value."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Search list of policies. If query parameter q is a policy ID it will look for policies that have the given ID. However if q is not a policy ID it will return policies with whose name matches the patten based via q query parameter. If you send a policy ID in query parameter q and also send query parameter policy_ids,only policy_ids will be used for searching."
+        },
+        {
+          "info": {
+            "name": "Tyk List Policies.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/policies"
+          },
+          "docs": "Retrieve all the policies in your Tyk instance. Returns an array policies."
+        },
+        {
+          "info": {
+            "name": "Tyk Create a Policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/tyk/policies",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a policy in your Tyk Instance."
+        },
+        {
+          "info": {
+            "name": "Tyk Get a Policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/tyk/policies/:polID",
+            "params": [
+              {
+                "name": "polID",
+                "value": "5ead7120575961000181867e",
+                "type": "path",
+                "description": "You can retrieve details of a single policy by ID in your Tyk instance."
+              }
+            ]
+          },
+          "docs": "You can retrieve details of a single policy by ID in your Tyk instance."
+        },
+        {
+          "info": {
+            "name": "Tyk Update a Policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/tyk/policies/:polID",
+            "params": [
+              {
+                "name": "polID",
+                "value": "5ead7120575961000181867e",
+                "type": "path",
+                "description": "You can retrieve details of a single policy by ID in your Tyk instance."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "You can update a Policy in your Tyk Instance by ID."
+        },
+        {
+          "info": {
+            "name": "Tyk Delete a Policy.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/tyk/policies/:polID",
+            "params": [
+              {
+                "name": "polID",
+                "value": "5ead7120575961000181867e",
+                "type": "path",
+                "description": "You can retrieve details of a single policy by ID in your Tyk instance."
+              }
+            ]
+          },
+          "docs": "Delete a policy by ID in your Tyk instance."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

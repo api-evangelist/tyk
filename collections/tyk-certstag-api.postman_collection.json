@@ -1,0 +1,253 @@
+{
+  "item": [
+    {
+      "id": "9ebb316a-e35c-45a3-a278-dc1d92beed55",
+      "name": "CertsTag",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "24e86385-c3da-4be8-864f-a29babc44bb9",
+          "name": "Return One Certificate or List Multiple Certificates in the Tyk Gateway Given a Comma Separated List of Cert Ids.",
+          "request": {
+            "name": "Return One Certificate or List Multiple Certificates in the Tyk Gateway Given a Comma Separated List of Cert Ids.",
+            "description": {
+              "content": "Note that the certID path parameter can take a list of certIDs separated with commas (e.g /tyk/certs/certIDOne,certIDTwo).\n If you send a single certID it will return a single CertificateMeta object otherwise if you send more than two certIDs is will return an array of certificateMeta objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "certs",
+                ":certID"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "certID",
+                  "description": "(Required) Comma separated list of certificates to list."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "180cafac-c006-4660-9870-163f1b6be20f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "certs",
+                    ":certID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certID",
+                      "description": "(Required) Comma separated list of certificates to list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"dns_names\": [\n    \".*tyk.io\"\n  ],\n  \"fingerprint\": \"7c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90\",\n  \"has_private\": false,\n  \"id\": \"5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90\",\n  \"is_ca\": false,\n  \"issuer\": {\n    \"CommonName\": \"tyk.io\",\n    \"Country\": [\n      \"Peachtree\"\n    ],\n    \"ExtraNames\": null,\n    \"Locality\": null,\n    \"Names\": [\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          6\n        ],\n        \"Value\": \"Peachtree\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          10\n        ],\n        \"Value\": \"tyk\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          11\n        ],\n        \"Value\": \"tyk\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          3\n        ],\n        \"Value\": \"tyk.io\"\n      },\n      {\n        \"Type\": [\n          1,\n          2,\n          840,\n          113549,\n          1,\n          9,\n          1\n        ],\n        \"Value\": \"support@tyk.io\"\n      }\n    ],\n    \"Organization\": [\n      \"tyk\"\n    ],\n    \"OrganizationalUnit\": [\n      \"tyk\"\n    ],\n    \"PostalCode\": null,\n    \"Province\": null,\n    \"SerialNumber\": \"\",\n    \"StreetAddress\": null\n  },\n  \"not_after\": \"2034-03-26T08:46:37Z\",\n  \"not_before\": \"2024-03-25T08:46:37Z\",\n  \"subject\": {\n    \"CommonName\": \"tyk.io\",\n    \"Country\": [\n      \"Peachtree\"\n    ],\n    \"ExtraNames\": null,\n    \"Locality\": null,\n    \"Names\": [\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          6\n        ],\n        \"Value\": \"Peachtree\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          10\n        ],\n        \"Value\": \"tyk\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          11\n        ],\n        \"Value\": \"tyk\"\n      },\n      {\n        \"Type\": [\n          2,\n          5,\n          4,\n          3\n        ],\n        \"Value\": \"tyk.io\"\n      },\n      {\n        \"Type\": [\n          1,\n          2,\n          840,\n          113549,\n          1,\n          9,\n          1\n        ],\n        \"Value\": \"support@tyk.io\"\n      }\n    ],\n    \"Organization\": [\n      \"tyk\"\n    ],\n    \"OrganizationalUnit\": [\n      \"tyk\"\n    ],\n    \"PostalCode\": null,\n    \"Province\": null,\n    \"SerialNumber\": \"\",\n    \"StreetAddress\": null\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20365dad-9e73-4527-a64e-0e18e6d9a2eb",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "certs",
+                    ":certID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certID",
+                      "description": "(Required) Comma separated list of certificates to list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7c3b6c95-eba4-4888-857a-252b3bc2ef83",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "certs",
+                    ":certID"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "certID",
+                      "description": "(Required) Comma separated list of certificates to list."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Certificate with given SHA256 fingerprint not found.\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "92059763-cbe8-44b7-bb8c-def9cce30e8d",
+    "name": "Tyk Dashboard Admin Additional Permissions CertsTag API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

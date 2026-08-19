@@ -1,0 +1,2140 @@
+{
+  "item": [
+    {
+      "id": "2443eefd-4847-4ba4-8a3b-23aa598f94ce",
+      "name": "Streams APIs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "da3b51cc-9ccc-4a49-9acd-f7d01618fdac",
+          "name": "Create Streams API.",
+          "request": {
+            "name": "Create Streams API.",
+            "description": {
+              "content": "Create a Streams API Definition in Tyk OAS API format.\n Note that the response includes the newly created Tyk Streams API Definition containing the unique identifier for the API (`ID`). You can provide a value for `ID` in the request body, otherwise Tyk will automatically generate a value.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "streams"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"dbId\": \"<string>\",\n      \"expiration\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"orgId\": \"<string>\",\n      \"state\": {\n        \"active\": \"<boolean>\",\n        \"internal\": \"<boolean>\"\n      },\n      \"versioning\": {\n        \"default\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"fallbackToDefault\": \"<boolean>\",\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"name\": \"<string>\",\n        \"stripVersioningData\": \"<boolean>\",\n        \"urlVersioningPattern\": \"<string>\",\n        \"versions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    \"middleware\": {\n      \"global\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"contextVariables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cors\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pluginConfig\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postAuthenticationPlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postAuthenticationPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"prePlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"prePlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"responsePlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"responsePlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trafficLogs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"operations\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"key_1\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"server\": {\n      \"authentication\": {\n        \"baseIdentityProvider\": \"<string>\",\n        \"custom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"hmac\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"oidc\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"securitySchemes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"stripAuthorizationData\": \"<boolean>\"\n      },\n      \"clientCertificates\": {\n        \"allowlist\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\"\n      },\n      \"customDomain\": {\n        \"certificates\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      \"detailedActivityLogs\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"detailedTracing\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"eventHandlers\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"gatewayTags\": {\n        \"enabled\": \"<boolean>\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"listenPath\": {\n        \"strip\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"upstream\": {\n      \"certificatePinning\": {\n        \"domainToPublicKeysMapping\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\"\n      },\n      \"mutualTLS\": {\n        \"domainToCertificateMapping\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\"\n      },\n      \"rateLimit\": {\n        \"enabled\": \"<boolean>\",\n        \"per\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rate\": \"<integer>\"\n      },\n      \"serviceDiscovery\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cacheTimeout\": \"<long>\",\n        \"dataPath\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"endpointReturnsList\": \"<boolean>\",\n        \"parentDataPath\": \"<string>\",\n        \"portDataPath\": \"<string>\",\n        \"queryEndpoint\": \"<string>\",\n        \"targetPath\": \"<string>\",\n        \"useNestedQuery\": \"<boolean>\",\n        \"useTargetList\": \"<boolean>\"\n      },\n      \"test\": {\n        \"serviceDiscovery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"url\": \"<string>\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"key_0\": true\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "8547d0d4-8c1a-4334-a9fe-3b5171ca7bda",
+              "name": "API created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"ID\": \"4c1c0d8fc885401053ddac4e39ef676b\",\n  \"Message\": \"API created\",\n  \"Meta\": \"665597e0b646b300011acb69\",\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "280153f9-8f48-45f4-9fe8-84a65aeed82a",
+              "name": "Malformed data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Couldn't read body.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e15681a9-2ea7-4d99-bbd1-4c37201a2cb0",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4a50c4f7-fc7f-4c08-8b7d-e2246ac82909",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Your license does not support adding/ modifying streams API configuration.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "80fcae30-7552-497a-875e-170812c176ee",
+              "name": "Conflict",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Conflict",
+              "code": 409,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Found API with the same ID.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f01b0f7a-20cc-449a-ad22-7a9f96e4bddb",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Error while creating API.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f19bbfc5-d5bf-4d9d-b03e-7294828c335a",
+          "name": "Delete Streams API.",
+          "request": {
+            "name": "Delete Streams API.",
+            "description": {
+              "content": "Deleting a Streams API definition will remove the file from the file store. The API definition will not be unloaded and a separate reload request will need to be made to disable the API endpoint.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "streams",
+                ":apiId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) ID of the API you want to delete."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "DELETE",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "dee9cbce-ca9a-40e5-9763-49b8609d158a",
+              "name": "Deleted successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"API deleted.\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "87601d8b-2392-4ceb-ab65-bc51e2e6345e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not delete the API.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4ea3e1da-ba1d-4ebe-b369-6b0b8cde8b66",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "fa352e6f-76ef-406f-b677-110fece5937b",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/apis/streams/{apiId}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e68c6677-26f8-4870-ae19-f3b4d183a8ea",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to delete."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "DELETE",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve API detail.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d699180c-fb57-4c1a-a7cd-6024082fc81e",
+          "name": "Get Streams API details.",
+          "request": {
+            "name": "Get Streams API details.",
+            "description": {
+              "content": "Get a single Streams API definition.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "streams",
+                ":apiId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) ID of the API you want to fetch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "cebdcd9c-12cf-4002-ab60-acec134815f6",
+              "name": "Fetched API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e128318-d841-49af-a300-ed9acef79137",
+              "name": "Bad request or API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Could not retrieve API detail.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ab718e20-4b18-4526-82a6-20a72f72d400",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "20532c02-5ff4-47f9-b282-5ba403c3a1d7",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/apis/streams/{apiId}\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6b8049b1-c729-4102-a731-104ab54bf5c2",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to fetch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to marshal data for API detail.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "faac67a5-ccba-457a-b7b8-958c2b6e6f0a",
+          "name": "Patch a single Streams API by ID.",
+          "request": {
+            "name": "Patch a single Streams API by ID.",
+            "description": {
+              "content": "Update a Tyk Streams API. You can use this endpoint to update the OAS part of your Tyk Streams API definition. This endpoint allows you to configure the Tyk OAS extension based on the query parameters provided (similar to import).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "streams",
+                ":apiId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "listenPath",
+                  "value": "<string>",
+                  "description": "Listen path for the API."
+                },
+                {
+                  "disabled": false,
+                  "key": "customDomain",
+                  "value": "<string>",
+                  "description": "Custom domain for the API."
+                },
+                {
+                  "disabled": false,
+                  "key": "allowList",
+                  "value": "<boolean>",
+                  "description": "Enable allowList middleware for all endpoints."
+                },
+                {
+                  "disabled": false,
+                  "key": "validateRequest",
+                  "value": "<boolean>",
+                  "description": "Enable validateRequest middleware for all endpoints having a request body with media type application/json."
+                },
+                {
+                  "disabled": false,
+                  "key": "mockResponse",
+                  "value": "<boolean>",
+                  "description": "Enable mockResponse middleware for all endpoints having responses configured."
+                },
+                {
+                  "disabled": false,
+                  "key": "authentication",
+                  "value": "<boolean>",
+                  "description": "Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) ID of the API you want to patch."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "multipart/form-data"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PATCH",
+            "auth": null,
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "value": "<binary>",
+                  "type": "text",
+                  "description": "(Required) "
+                }
+              ]
+            }
+          },
+          "response": [
+            {
+              "id": "720d1dce-bdf5-460a-8710-9de5e536fcb8",
+              "name": "Patched API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"API updated\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "136320e5-6270-48f6-9f14-caf1c4ce7ace",
+              "name": "Malformed request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Invalid `ID` value\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cc79227-bb96-4b10-8ea8-b885b2192b36",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "98c745e4-5676-43cc-ab67-c9be820c4231",
+              "name": "Forbidden.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Failed to update org object to DB.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8cf1eda2-720e-448f-b1b3-ea558321fe70",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "listenPath",
+                      "value": "/user-test/"
+                    },
+                    {
+                      "key": "customDomain",
+                      "value": "tyk.io"
+                    },
+                    {
+                      "key": "allowList",
+                      "value": "true"
+                    },
+                    {
+                      "key": "validateRequest",
+                      "value": "true"
+                    },
+                    {
+                      "key": "mockResponse",
+                      "value": "true"
+                    },
+                    {
+                      "key": "authentication",
+                      "value": "true"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to patch."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PATCH",
+                "body": {
+                  "mode": "formdata",
+                  "formdata": [
+                    {
+                      "description": {
+                        "content": "(Required) ",
+                        "type": "text/plain"
+                      },
+                      "key": "file",
+                      "value": "<binary>",
+                      "type": "text"
+                    }
+                  ]
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"API not found.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "cd4a8176-133a-4508-aedb-a1019d9a729b",
+          "name": "Update Streams API.",
+          "request": {
+            "name": "Update Streams API.",
+            "description": {
+              "content": "Updating an API definition uses the same signature object as a `POST`. It will first ensure that the API ID being updated is the same as in the `PUT` object.<br/> Updating will completely replace the file descriptor and will not change an API definition that has already been loaded. The hot-reload endpoint will need to be called to push the new definition to live.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "apis",
+                "streams",
+                ":apiId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "apiId",
+                  "description": "(Required) ID of the API you want to update."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"dbId\": \"<string>\",\n      \"expiration\": \"<string>\",\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"orgId\": \"<string>\",\n      \"state\": {\n        \"active\": \"<boolean>\",\n        \"internal\": \"<boolean>\"\n      },\n      \"versioning\": {\n        \"default\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"fallbackToDefault\": \"<boolean>\",\n        \"key\": \"<string>\",\n        \"location\": \"<string>\",\n        \"name\": \"<string>\",\n        \"stripVersioningData\": \"<boolean>\",\n        \"urlVersioningPattern\": \"<string>\",\n        \"versions\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      }\n    },\n    \"middleware\": {\n      \"global\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"contextVariables\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cors\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"pluginConfig\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postAuthenticationPlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postAuthenticationPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"postPlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"prePlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"prePlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"responsePlugin\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"responsePlugins\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"trafficLogs\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformRequestHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"transformResponseHeaders\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"operations\": {\n        \"key_0\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      }\n    },\n    \"server\": {\n      \"authentication\": {\n        \"baseIdentityProvider\": \"<string>\",\n        \"custom\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\",\n        \"hmac\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"oidc\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"securitySchemes\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"stripAuthorizationData\": \"<boolean>\"\n      },\n      \"clientCertificates\": {\n        \"allowlist\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\"\n      },\n      \"customDomain\": {\n        \"certificates\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\",\n        \"name\": \"<string>\"\n      },\n      \"detailedActivityLogs\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"detailedTracing\": {\n        \"enabled\": \"<boolean>\"\n      },\n      \"eventHandlers\": [\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      ],\n      \"gatewayTags\": {\n        \"enabled\": \"<boolean>\",\n        \"tags\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ]\n      },\n      \"listenPath\": {\n        \"strip\": \"<boolean>\",\n        \"value\": \"<string>\"\n      }\n    },\n    \"upstream\": {\n      \"certificatePinning\": {\n        \"domainToPublicKeysMapping\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"enabled\": \"<boolean>\"\n      },\n      \"mutualTLS\": {\n        \"domainToCertificateMapping\": [\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          },\n          {\n            \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n          }\n        ],\n        \"enabled\": \"<boolean>\"\n      },\n      \"rateLimit\": {\n        \"enabled\": \"<boolean>\",\n        \"per\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"rate\": \"<integer>\"\n      },\n      \"serviceDiscovery\": {\n        \"cache\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        },\n        \"cacheTimeout\": \"<long>\",\n        \"dataPath\": \"<string>\",\n        \"enabled\": \"<boolean>\",\n        \"endpointReturnsList\": \"<boolean>\",\n        \"parentDataPath\": \"<string>\",\n        \"portDataPath\": \"<string>\",\n        \"queryEndpoint\": \"<string>\",\n        \"targetPath\": \"<string>\",\n        \"useNestedQuery\": \"<boolean>\",\n        \"useTargetList\": \"<boolean>\"\n      },\n      \"test\": {\n        \"serviceDiscovery\": {\n          \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n        }\n      },\n      \"url\": \"<string>\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"key_0\": \"string\",\n      \"key_1\": 1052.0377450077267\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c51ffaab-bd19-4a1f-8aa8-0dc07cfe63cf",
+              "name": "Updated API.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"API updated.\",\n  \"Meta\": null,\n  \"Status\": \"OK\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d33e3fb3-ac95-42a9-9111-352cd8bd1796",
+              "name": "Malformed API data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"The payload should contain x-tyk-api-gateway and/or x-tyk-streaming.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "000c2fb8-0372-4118-870b-ba2d59a91213",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "dc810cf4-b188-417c-9638-8ea355557b65",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Found API with same url.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "328deab2-f7d8-405c-a0ba-ba141f60b584",
+              "name": "API not found.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"API definition does not exist\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3dd17e51-72e3-4329-85a0-35d09190b67c",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "apis",
+                    "streams",
+                    ":apiId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "apiId",
+                      "description": "(Required) ID of the API you want to update."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) Content type for streams endpoints should be `application/vnd.tyk.streams.oas`",
+                    "key": "Content-Type",
+                    "value": "application/vnd.tyk.streams.oas"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"components\": {\n    \"securitySchemes\": {\n      \"bearerAuth\": {\n        \"description\": \"The API Access Credentials\",\n        \"scheme\": \"bearer\",\n        \"type\": \"http\"\n      }\n    }\n  },\n  \"info\": {\n    \"description\": \"This is a sample Streams API.\",\n    \"title\": \"Streams Sample\",\n    \"version\": \"1.0.0\"\n  },\n  \"openapi\": \"3.0.3\",\n  \"paths\": {\n    \"/api/sample/users\": {\n      \"get\": {\n        \"operationId\": \"getUsersSample\",\n        \"responses\": {\n          \"200\": {\n            \"content\": {\n              \"application/json\": {\n                \"schema\": {\n                  \"items\": {\n                    \"properties\": {\n                      \"name\": {\n                        \"type\": \"string\"\n                      }\n                    },\n                    \"type\": \"object\"\n                  },\n                  \"type\": \"array\"\n                }\n              }\n            },\n            \"description\": \"fetched users\"\n          }\n        },\n        \"summary\": \"Get users\",\n        \"tags\": [\n          \"users\"\n        ]\n      }\n    }\n  },\n  \"security\": [\n    {\n      \"bearerAuth\": []\n    }\n  ],\n  \"servers\": [\n    {\n      \"url\": \"https://localhost:8080\"\n    }\n  ],\n  \"x-tyk-api-gateway\": {\n    \"info\": {\n      \"name\": \"user\",\n      \"state\": {\n        \"active\": true\n      }\n    },\n    \"server\": {\n      \"listenPath\": {\n        \"strip\": true,\n        \"value\": \"/user-test/\"\n      }\n    },\n    \"upstream\": {\n      \"url\": \"https://localhost:8080\"\n    }\n  },\n  \"x-tyk-streaming\": {\n    \"streams\": {\n      \"stream1\": {\n        \"input\": {\n          \"kafka\": {\n            \"addressess\": [\n              \"localhost:9093\"\n            ],\n            \"auto_replay_nacks\": true,\n            \"checkpoint_limit\": 1024,\n            \"consumer_group\": \"group1\",\n            \"target_version\": \"3.3.0\",\n            \"topics\": [\n              \"instrument.json.AMZN\",\n              \"instrument.json.GOOG\"\n            ]\n          }\n        },\n        \"output\": {\n          \"broker\": {\n            \"outputs\": [\n              {\n                \"stdout\": {\n                  \"codec\": \"lines\"\n                }\n              },\n              {\n                \"http_server\": {\n                  \"allowed_verbs\": [\n                    \"GET\"\n                  ],\n                  \"path\": \"/one\",\n                  \"stream_path\": \"/sse\",\n                  \"ws_path\": \"/ws\"\n                }\n              }\n            ],\n            \"pattern\": \"fan_out\"\n          }\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Error while creating API.\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "cd0c305b-8def-4be8-a3f0-d9c46e76d599",
+    "name": "Tyk Dashboard Admin Additional Permissions Streams APIs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

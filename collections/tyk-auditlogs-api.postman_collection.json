@@ -1,0 +1,464 @@
+{
+  "item": [
+    {
+      "id": "c94101d8-8565-4b2c-b51d-58af7d1f4df1",
+      "name": "AuditLogs",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "fda80f49-d3a4-4430-b5f7-4681cc4f4643",
+          "name": "List audit logs",
+          "request": {
+            "name": "List audit logs",
+            "description": {
+              "content": "Retrieve audit logs from database",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "api",
+                "audit-logs"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "p",
+                  "value": "<integer>",
+                  "description": "Use p query parameter to say which page you want returned. The size of the page is determined by the configuration option page_size of dashboard."
+                },
+                {
+                  "disabled": false,
+                  "key": "user",
+                  "value": "<string>",
+                  "description": "Filters audit logs to show only actions performed by the specified user. This parameter allows you to focus on the activity of a particular user across the system."
+                },
+                {
+                  "disabled": false,
+                  "key": "action",
+                  "value": "<string>",
+                  "description": "Filters audit logs based on the specific action performed by users. This parameter allows you to focus on particular types of activities within the system."
+                },
+                {
+                  "disabled": false,
+                  "key": "ip",
+                  "value": "<string>",
+                  "description": "Filters audit logs based on the IP address from which the action originated. This parameter allows you to focus on activities from specific network locations or to investigate actions from particular IP addresses."
+                },
+                {
+                  "disabled": false,
+                  "key": "method",
+                  "value": "<string>",
+                  "description": "Filters audit logs based on the HTTP method used in the API request. This parameter allows you to focus on specific types of operations performed on the API."
+                },
+                {
+                  "disabled": false,
+                  "key": "status",
+                  "value": "<integer>",
+                  "description": "Filters audit logs based on the HTTP status code returned by the API in response to the request. This parameter allows you to focus on specific outcomes of API interactions."
+                },
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<string>",
+                  "description": "Filters audit logs based on the specific URL path of the API endpoint that was accessed. This parameter allows you to focus on actions performed on particular resources or sections of your API."
+                },
+                {
+                  "disabled": false,
+                  "key": "from_date",
+                  "value": "<string>",
+                  "description": "Specifies the start date for the audit log search. If not provided, the search will include records from the earliest available date. Format DD-MM-YYY."
+                },
+                {
+                  "disabled": false,
+                  "key": "to_date",
+                  "value": "<string>",
+                  "description": "Specifies the end date for the audit log search. If not provided, the search will include records up to the current date and time. Format DD-MM-YYY."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c5dedb1c-18ae-49ee-a079-8143cb6a0c82",
+              "name": "Audit Logs retrieved successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "jhon@mail.com"
+                    },
+                    {
+                      "key": "action",
+                      "value": "List APIs"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "127.0.0.1"
+                    },
+                    {
+                      "key": "method",
+                      "value": "POST"
+                    },
+                    {
+                      "key": "status",
+                      "value": "200"
+                    },
+                    {
+                      "key": "url",
+                      "value": "/api/apis"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "01-01-1990"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "01-01-2030"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"pages\": 1,\n  \"audit_logs\": [\n    {\n      \"_id\": \"672a83e2b0418b224440ce29\",\n      \"req_id\": \"0462e283-a55f-41ab-6482-60d2eeb1858c\",\n      \"org_id\": \"66cf7f8db0418b1fbe91852b\",\n      \"date\": \"Tue, 05 Nov 2024 17:45:22 -03\",\n      \"timestamp\": 1730839522,\n      \"ip\": \"127.0.0.1\",\n      \"user\": \"jhon@mail.com\",\n      \"action\": \"\",\n      \"method\": \"GET\",\n      \"url\": \"/api/audit-logs\",\n      \"status\": 200\n    },\n    {\n      \"_id\": \"672a83e9b0418b224440ce2a\",\n      \"req_id\": \"1276517a-a57e-4b20-5cf5-a6d830fc399d\",\n      \"org_id\": \"66cf7f8db0418b1fbe91852b\",\n      \"date\": \"Tue, 05 Nov 2024 17:45:29 -03\",\n      \"timestamp\": 1730839529,\n      \"ip\": \"127.0.0.1\",\n      \"user\": \"jhon@mail.com\",\n      \"action\": \"\",\n      \"method\": \"GET\",\n      \"url\": \"/api/audit-logs\",\n      \"status\": 200\n    },\n    {\n      \"_id\": \"672a83ecb0418b224440ce2b\",\n      \"req_id\": \"9c720384-2c93-4c38-7164-35b876fd56ef\",\n      \"org_id\": \"66cf7f8db0418b1fbe91852b\",\n      \"date\": \"Tue, 05 Nov 2024 17:45:32 -03\",\n      \"timestamp\": 1730839532,\n      \"ip\": \"127.0.0.1\",\n      \"user\": \"jhon@mail.com\",\n      \"action\": \"\",\n      \"method\": \"GET\",\n      \"url\": \"/api/audit-logs\",\n      \"status\": 200\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "45823299-8cca-48f5-91da-85970bc12fa5",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "jhon@mail.com"
+                    },
+                    {
+                      "key": "action",
+                      "value": "List APIs"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "127.0.0.1"
+                    },
+                    {
+                      "key": "method",
+                      "value": "POST"
+                    },
+                    {
+                      "key": "status",
+                      "value": "200"
+                    },
+                    {
+                      "key": "url",
+                      "value": "/api/apis"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "01-01-1990"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "01-01-2030"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"could not retrieve audit records\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a54afd5-9c50-4c39-b8e8-46c17ca58699",
+              "name": "Unauthorized",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "jhon@mail.com"
+                    },
+                    {
+                      "key": "action",
+                      "value": "List APIs"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "127.0.0.1"
+                    },
+                    {
+                      "key": "method",
+                      "value": "POST"
+                    },
+                    {
+                      "key": "status",
+                      "value": "200"
+                    },
+                    {
+                      "key": "url",
+                      "value": "/api/apis"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "01-01-1990"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "01-01-2030"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"Not authorised\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0842f906-a1f0-47cf-b09f-d98763fca7ad",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "api",
+                    "audit-logs"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "p",
+                      "value": "1"
+                    },
+                    {
+                      "key": "user",
+                      "value": "jhon@mail.com"
+                    },
+                    {
+                      "key": "action",
+                      "value": "List APIs"
+                    },
+                    {
+                      "key": "ip",
+                      "value": "127.0.0.1"
+                    },
+                    {
+                      "key": "method",
+                      "value": "POST"
+                    },
+                    {
+                      "key": "status",
+                      "value": "200"
+                    },
+                    {
+                      "key": "url",
+                      "value": "/api/apis"
+                    },
+                    {
+                      "key": "from_date",
+                      "value": "01-01-1990"
+                    },
+                    {
+                      "key": "to_date",
+                      "value": "01-01-2030"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Message\": \"access denied: You do not have permission to access  /api/audit-logs\",\n  \"Meta\": null,\n  \"Status\": \"Error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "0b406221-eae7-4046-a39f-72ecb4113d44",
+    "name": "Tyk Dashboard Admin Additional Permissions AuditLogs API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}

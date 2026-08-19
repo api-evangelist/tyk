@@ -1,0 +1,291 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Users API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Users",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Allow password reset for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/admin/users/:USER_ID/actions/allow_reset_passwords",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "USER_ID",
+                "value": "",
+                "type": "path",
+                "description": "User ID of the user whose password is being reset"
+              }
+            ]
+          },
+          "docs": "Allow password reset for a User."
+        },
+        {
+          "info": {
+            "name": "Disallow password reset for a User",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/admin/users/:USER_ID/actions/disallow_reset_passwords",
+            "headers": [
+              {
+                "name": "admin-auth",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "USER_ID",
+                "value": "",
+                "type": "path",
+                "description": "User ID of the user whose password reset capability is being disallowed"
+              }
+            ]
+          },
+          "docs": "Disallow password reset for a User."
+        },
+        {
+          "info": {
+            "name": "List users",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/users",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "Lists dashboard users"
+        },
+        {
+          "info": {
+            "name": "Add user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/users",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a user. If you want to create an admin user, you need to send {IsAdmin: admin} in the user_permissions field e.g ```{user_permissions: {IsAdmin: admin},last_name: sasuke,email_address: itachi@gmail.com,first_name: itachi}```. You can add a user to a given user-group by sending the group_id in the request body. If you want to give a user access only to specific objects e.g policies you can send the object and the permission granted to the user (read or write permission in the  user_permiss"
+        },
+        {
+          "info": {
+            "name": "Get user details.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user to retrieve data for."
+              }
+            ]
+          },
+          "docs": "Return a user object with details of the user specified by user ID in path."
+        },
+        {
+          "info": {
+            "name": "Update user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "USER ID of the user to update"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update a user with user ID. If you update the user as inactive they will be logged out of all dashboard sessions. User password can only be updated via admin API or the update password endpoint. ResetPassword is also only available via the admin API."
+        },
+        {
+          "info": {
+            "name": "Delete a user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "DELETE",
+            "url": "http://localhost/api/users/:userId",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user to delete."
+              }
+            ]
+          },
+          "docs": "Delete a user with user ID."
+        },
+        {
+          "info": {
+            "name": "Reset user Dashboard API access credentials.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/users/:userId/actions/key/reset",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose key you want to reset."
+              }
+            ]
+          },
+          "docs": "Reset specified user's Dashboard API access credentials by generating a new access key for the specified user."
+        },
+        {
+          "info": {
+            "name": "Set user password.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/users/:userId/actions/reset",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose password is being reset."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Set a user's password. The password need to be 6 character long. If you are trying to update another users password you also need to have permission to update they password or you need to be a super-admin. You cannot also reuse a password."
+        },
+        {
+          "info": {
+            "name": "Revoke user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "http://localhost/api/users/:userId/actions/revoke",
+            "params": [
+              {
+                "name": "userId",
+                "value": "66498cd1e2fcd1000184ecb4",
+                "type": "path",
+                "description": "User ID of the user whose access you want to revoke."
+              }
+            ]
+          },
+          "docs": "This will set the use account as inactive. It will also disable API Access and log out the user from all dashboards."
+        },
+        {
+          "info": {
+            "name": "Get current user.",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/users/me"
+          },
+          "docs": "Return a user object with the details of the current user. This request need to have a session cookie with the key authorisation."
+        },
+        {
+          "info": {
+            "name": "Search Users(Deprecated)",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "http://localhost/api/users/search",
+            "params": [
+              {
+                "name": "q",
+                "value": "itachi@tyk.io",
+                "type": "query",
+                "description": "Query term used to search for users (email address)."
+              },
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ]
+          },
+          "docs": "This endpoint allows you to search for users by providing their email address as a query parameter."
+        },
+        {
+          "info": {
+            "name": "Search user with email.",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/api/users/search",
+            "params": [
+              {
+                "name": "p",
+                "value": "1",
+                "type": "query",
+                "description": "Use p query parameter to say which page you want returned. Send number less than 0 to return all items."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "This endpoint allows you to search for users with their email address (e.g if you send the filter @gmail.com` in the request payload, all users whole email contain the string @gmail.com will be returned)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,71 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Tyk Dashboard Admin Additional Permissions Import API",
+    "version": "5.3.0"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "Admin-Auth",
+      "value": "{{Admin-Auth}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Import",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Import organisations",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/organisations/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The organisation object is the most fundamental object in a Tyk setup, all other ownership properties hang off the relationship between an organisation and it s APIs, Policies and API Tokens."
+        },
+        {
+          "info": {
+            "name": "Import APIs",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/apis/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The import APIs operates on lists of APIs."
+        },
+        {
+          "info": {
+            "name": "Import Policies",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "http://localhost/admin/policies/import",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "The import Policies operates on lists of Policies."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,486 @@
+{
+  "item": [
+    {
+      "id": "8c87f768-f2b8-4db9-ba7a-31cde3019951",
+      "name": "Debug",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "3c463f06-ec61-4254-b777-a3cdbdcd64e9",
+          "name": "Tyk Test an an Api Definition.",
+          "request": {
+            "name": "Tyk Test an an Api Definition.",
+            "description": {
+              "content": "Used to test API definition by sending sample request and analysing output of both response and logs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "tyk",
+                "debug"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"request\": {\n    \"body\": \"<string>\",\n    \"headers\": {\n      \"key_0\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"key_1\": [\n        \"<string>\",\n        \"<string>\"\n      ]\n    },\n    \"method\": \"<string>\",\n    \"path\": \"<string>\"\n  },\n  \"spec\": {\n    \"CORS\": {\n      \"allow_credentials\": \"<boolean>\",\n      \"allowed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_methods\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_origins\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"debug\": \"<boolean>\",\n      \"enable\": \"<boolean>\",\n      \"exposed_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"max_age\": \"<integer>\",\n      \"options_passthrough\": \"<boolean>\"\n    },\n    \"active\": \"<boolean>\",\n    \"allowed_ips\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"analytics_plugin\": {\n      \"enable\": \"<boolean>\",\n      \"func_name\": \"<string>\",\n      \"plugin_path\": \"<string>\"\n    },\n    \"api_id\": \"<string>\",\n    \"auth\": {\n      \"auth_header_name\": \"<string>\",\n      \"cookie_name\": \"<string>\",\n      \"disable_header\": \"<boolean>\",\n      \"name\": \"<string>\",\n      \"param_name\": \"<string>\",\n      \"signature\": {\n        \"algorithm\": \"<string>\",\n        \"allowed_clock_skew\": \"<integer>\",\n        \"error_code\": \"<integer>\",\n        \"error_message\": \"<string>\",\n        \"header\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"secret\": \"<string>\",\n        \"use_param\": \"<boolean>\"\n      },\n      \"use_certificate\": \"<boolean>\",\n      \"use_cookie\": \"<boolean>\",\n      \"use_param\": \"<boolean>\",\n      \"validate_signature\": \"<boolean>\"\n    },\n    \"auth_configs\": {\n      \"key_0\": {\n        \"auth_header_name\": \"<string>\",\n        \"cookie_name\": \"<string>\",\n        \"disable_header\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"param_name\": \"<string>\",\n        \"signature\": {\n          \"algorithm\": \"<string>\",\n          \"allowed_clock_skew\": \"<integer>\",\n          \"error_code\": \"<integer>\",\n          \"error_message\": \"<string>\",\n          \"header\": \"<string>\",\n          \"param_name\": \"<string>\",\n          \"secret\": \"<string>\",\n          \"use_param\": \"<boolean>\"\n        },\n        \"use_certificate\": \"<boolean>\",\n        \"use_cookie\": \"<boolean>\",\n        \"use_param\": \"<boolean>\",\n        \"validate_signature\": \"<boolean>\"\n      }\n    },\n    \"auth_provider\": {\n      \"meta\": {\n        \"key_0\": {}\n      },\n      \"name\": \"<string>\",\n      \"storage_engine\": \"<string>\"\n    },\n    \"base_identity_provided_by\": \"<string>\",\n    \"basic_auth\": {\n      \"body_password_regexp\": \"<string>\",\n      \"body_user_regexp\": \"<string>\",\n      \"cache_ttl\": \"<integer>\",\n      \"disable_caching\": \"<boolean>\",\n      \"extract_from_body\": \"<boolean>\"\n    },\n    \"blacklisted_ips\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"cache_options\": {\n      \"cache_all_safe_requests\": \"<boolean>\",\n      \"cache_by_headers\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"cache_control_ttl_header\": \"<string>\",\n      \"cache_response_codes\": [\n        \"<integer>\",\n        \"<integer>\"\n      ],\n      \"cache_timeout\": \"<long>\",\n      \"enable_cache\": \"<boolean>\",\n      \"enable_upstream_cache_control\": \"<boolean>\"\n    },\n    \"certificate_pinning_disabled\": \"<boolean>\",\n    \"certificates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"client_certificates\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"config_data\": {\n      \"key_0\": {},\n      \"key_1\": {},\n      \"key_2\": {}\n    },\n    \"config_data_disabled\": \"<boolean>\",\n    \"custom_middleware\": {\n      \"auth_check\": {\n        \"disabled\": \"<boolean>\",\n        \"name\": \"<string>\",\n        \"path\": \"<string>\",\n        \"raw_body_only\": \"<boolean>\",\n        \"require_session\": \"<boolean>\"\n      },\n      \"driver\": \"<string>\",\n      \"id_extractor\": {\n        \"disabled\": \"<boolean>\",\n        \"extract_from\": \"<string>\",\n        \"extract_with\": \"<string>\",\n        \"extractor_config\": {\n          \"key_0\": {}\n        }\n      },\n      \"post\": [\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        },\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        }\n      ],\n      \"post_key_auth\": [\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        },\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        }\n      ],\n      \"pre\": [\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        },\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        }\n      ],\n      \"response\": [\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        },\n        {\n          \"disabled\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"path\": \"<string>\",\n          \"raw_body_only\": \"<boolean>\",\n          \"require_session\": \"<boolean>\"\n        }\n      ]\n    },\n    \"custom_middleware_bundle\": \"<string>\",\n    \"custom_middleware_bundle_disabled\": \"<boolean>\",\n    \"custom_plugin_auth_enabled\": \"<boolean>\",\n    \"definition\": {\n      \"default\": \"<string>\",\n      \"enabled\": \"<boolean>\",\n      \"fallback_to_default\": \"<boolean>\",\n      \"key\": \"<string>\",\n      \"location\": \"<string>\",\n      \"name\": \"<string>\",\n      \"strip_path\": \"<boolean>\",\n      \"strip_versioning_data\": \"<boolean>\",\n      \"url_versioning_pattern\": \"<string>\",\n      \"versions\": {\n        \"key_0\": \"<string>\"\n      }\n    },\n    \"detailed_tracing\": \"<boolean>\",\n    \"disable_quota\": \"<boolean>\",\n    \"disable_rate_limit\": \"<boolean>\",\n    \"do_not_track\": \"<boolean>\",\n    \"domain\": \"<string>\",\n    \"domain_disabled\": \"<boolean>\",\n    \"dont_set_quota_on_create\": \"<boolean>\",\n    \"enable_batch_request_support\": \"<boolean>\",\n    \"enable_context_vars\": \"<boolean>\",\n    \"enable_coprocess_auth\": \"<boolean>\",\n    \"enable_detailed_recording\": \"<boolean>\",\n    \"enable_ip_blacklisting\": \"<boolean>\",\n    \"enable_ip_whitelisting\": \"<boolean>\",\n    \"enable_jwt\": \"<boolean>\",\n    \"enable_proxy_protocol\": \"<boolean>\",\n    \"enable_signature_checking\": \"<boolean>\",\n    \"event_handlers\": {\n      \"events\": {\n        \"key_0\": [\n          {\n            \"handler_meta\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"handler_name\": \"<string>\"\n          },\n          {\n            \"handler_meta\": {\n              \"key_0\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              \"key_1\": {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            },\n            \"handler_name\": \"<string>\"\n          }\n        ]\n      }\n    },\n    \"expiration\": \"<string>\",\n    \"expire_analytics_after\": \"<integer>\",\n    \"external_oauth\": {\n      \"enabled\": \"<boolean>\",\n      \"providers\": [\n        {\n          \"introspection\": {\n            \"cache\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"client_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"client_secret\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identity_base_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"jwt\": {\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expires_at_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identity_base_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"issued_at_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"not_before_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signing_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        {\n          \"introspection\": {\n            \"cache\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"client_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"client_secret\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identity_base_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"jwt\": {\n            \"enabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"expires_at_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"identity_base_field\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"issued_at_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"not_before_validation_skew\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"signing_method\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"source\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        }\n      ]\n    },\n    \"global_rate_limit\": {\n      \"disabled\": \"<boolean>\",\n      \"per\": \"<number>\",\n      \"rate\": \"<number>\"\n    },\n    \"graphql\": {\n      \"enabled\": \"<boolean>\",\n      \"engine\": {\n        \"data_sources\": [\n          {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"internal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"internal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"root_fields\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"field_configs\": [\n          {\n            \"disable_default_mapping\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"disable_default_mapping\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"field_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"type_name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"global_headers\": [\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"key\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ]\n      },\n      \"execution_mode\": \"<string>\",\n      \"introspection\": {\n        \"disabled\": \"<boolean>\"\n      },\n      \"last_schema_update\": \"<dateTime>\",\n      \"playground\": {\n        \"enabled\": \"<boolean>\",\n        \"path\": \"<string>\"\n      },\n      \"proxy\": {\n        \"auth_headers\": {\n          \"key_0\": \"<string>\"\n        },\n        \"features\": {\n          \"use_immutable_headers\": \"<boolean>\"\n        },\n        \"request_headers\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        },\n        \"request_headers_rewrite\": {\n          \"key_0\": {\n            \"remove\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"value\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        },\n        \"subscription_type\": \"<string>\",\n        \"use_response_extensions\": {\n          \"on_error_forwarding\": \"<boolean>\"\n        }\n      },\n      \"schema\": \"<string>\",\n      \"subgraph\": {\n        \"sdl\": \"<string>\"\n      },\n      \"supergraph\": {\n        \"disable_query_batching\": \"<boolean>\",\n        \"global_headers\": {\n          \"key_0\": \"<string>\"\n        },\n        \"merged_sdl\": \"<string>\",\n        \"subgraphs\": [\n          {\n            \"api_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sdl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          {\n            \"api_id\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"name\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"sdl\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"subscription_type\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          }\n        ],\n        \"updated_at\": \"<dateTime>\"\n      },\n      \"type_field_configurations\": [\n        {\n          \"data_source\": {\n            \"data_source_config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"field_name\": \"<string>\",\n          \"mapping\": {\n            \"disabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type_name\": \"<string>\"\n        },\n        {\n          \"data_source\": {\n            \"data_source_config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"kind\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"field_name\": \"<string>\",\n          \"mapping\": {\n            \"disabled\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"path\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"type_name\": \"<string>\"\n        }\n      ],\n      \"version\": \"<string>\"\n    },\n    \"hmac_allowed_algorithms\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"hmac_allowed_clock_skew\": \"<number>\",\n    \"id\": \"<string>\",\n    \"idp_client_id_mapping_disabled\": \"<boolean>\",\n    \"internal\": \"<boolean>\",\n    \"is_oas\": \"<boolean>\",\n    \"jwt_client_base_field\": \"<string>\",\n    \"jwt_default_policies\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"jwt_expires_at_validation_skew\": \"<integer>\",\n    \"jwt_identity_base_field\": \"<string>\",\n    \"jwt_issued_at_validation_skew\": \"<integer>\",\n    \"jwt_not_before_validation_skew\": \"<integer>\",\n    \"jwt_policy_field_name\": \"<string>\",\n    \"jwt_scope_claim_name\": \"<string>\",\n    \"jwt_scope_to_policy_mapping\": {\n      \"key_0\": \"<string>\"\n    },\n    \"jwt_signing_method\": \"<string>\",\n    \"jwt_skip_kid\": \"<boolean>\",\n    \"jwt_source\": \"<string>\",\n    \"listen_port\": \"<integer>\",\n    \"name\": \"<string>\",\n    \"notifications\": {\n      \"oauth_on_keychange_url\": \"<string>\",\n      \"shared_secret\": \"<string>\"\n    },\n    \"oauth_meta\": {\n      \"allowed_access_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"allowed_authorize_types\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"auth_login_redirect\": \"<string>\"\n    },\n    \"openid_options\": {\n      \"providers\": [\n        {\n          \"client_ids\": {\n            \"key_0\": \"<string>\"\n          },\n          \"issuer\": \"<string>\"\n        },\n        {\n          \"client_ids\": {\n            \"key_0\": \"<string>\"\n          },\n          \"issuer\": \"<string>\"\n        }\n      ],\n      \"segregate_by_client\": \"<boolean>\"\n    },\n    \"org_id\": \"<string>\",\n    \"pinned_public_keys\": {\n      \"key_0\": \"<string>\"\n    },\n    \"protocol\": \"<string>\",\n    \"proxy\": {\n      \"check_host_against_uptime_tests\": \"<boolean>\",\n      \"disable_strip_slash\": \"<boolean>\",\n      \"enable_load_balancing\": \"<boolean>\",\n      \"listen_path\": \"<string>\",\n      \"preserve_host_header\": \"<boolean>\",\n      \"service_discovery\": {\n        \"cache_disabled\": \"<boolean>\",\n        \"cache_timeout\": \"<integer>\",\n        \"data_path\": \"<string>\",\n        \"endpoint_returns_list\": \"<boolean>\",\n        \"parent_data_path\": \"<string>\",\n        \"port_data_path\": \"<string>\",\n        \"query_endpoint\": \"<string>\",\n        \"target_path\": \"<string>\",\n        \"use_discovery_service\": \"<boolean>\",\n        \"use_nested_query\": \"<boolean>\",\n        \"use_target_list\": \"<boolean>\"\n      },\n      \"strip_listen_path\": \"<boolean>\",\n      \"target_list\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"target_url\": \"<string>\",\n      \"transport\": {\n        \"proxy_url\": \"<string>\",\n        \"ssl_ciphers\": [\n          \"<string>\",\n          \"<string>\"\n        ],\n        \"ssl_force_common_name_check\": \"<boolean>\",\n        \"ssl_insecure_skip_verify\": \"<boolean>\",\n        \"ssl_max_version\": \"<integer>\",\n        \"ssl_min_version\": \"<integer>\"\n      }\n    },\n    \"request_signing\": {\n      \"algorithm\": \"<string>\",\n      \"certificate_id\": \"<string>\",\n      \"header_list\": [\n        \"<string>\",\n        \"<string>\"\n      ],\n      \"is_enabled\": \"<boolean>\",\n      \"key_id\": \"<string>\",\n      \"secret\": \"<string>\",\n      \"signature_header\": \"<string>\"\n    },\n    \"response_processors\": [\n      {\n        \"name\": \"<string>\",\n        \"options\": {}\n      },\n      {\n        \"name\": \"<string>\",\n        \"options\": {}\n      }\n    ],\n    \"scopes\": {\n      \"jwt\": {\n        \"scope_claim_name\": \"<string>\",\n        \"scope_to_policy\": {\n          \"key_0\": \"<string>\",\n          \"key_1\": \"<string>\",\n          \"key_2\": \"<string>\"\n        }\n      },\n      \"oidc\": {\n        \"scope_claim_name\": \"<string>\",\n        \"scope_to_policy\": {\n          \"key_0\": \"<string>\"\n        }\n      }\n    },\n    \"session_lifetime\": \"<integer>\",\n    \"session_lifetime_respects_key_expiration\": \"<boolean>\",\n    \"session_provider\": {\n      \"meta\": {\n        \"key_0\": {},\n        \"key_1\": {},\n        \"key_2\": {}\n      },\n      \"name\": \"<string>\",\n      \"storage_engine\": \"<string>\"\n    },\n    \"slug\": \"<string>\",\n    \"strip_auth_data\": \"<boolean>\",\n    \"tag_headers\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"tags_disabled\": \"<boolean>\",\n    \"upstream_certificates\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    },\n    \"upstream_certificates_disabled\": \"<boolean>\",\n    \"uptime_tests\": {\n      \"check_list\": [\n        {\n          \"body\": \"<string>\",\n          \"commands\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enable_proxy_protocol\": \"<boolean>\",\n          \"headers\": {\n            \"key_0\": \"<string>\"\n          },\n          \"method\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"timeout\": \"<integer>\",\n          \"url\": \"<string>\"\n        },\n        {\n          \"body\": \"<string>\",\n          \"commands\": [\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          ],\n          \"enable_proxy_protocol\": \"<boolean>\",\n          \"headers\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"method\": \"<string>\",\n          \"protocol\": \"<string>\",\n          \"timeout\": \"<integer>\",\n          \"url\": \"<string>\"\n        }\n      ],\n      \"config\": {\n        \"expire_utime_after\": \"<integer>\",\n        \"recheck_wait\": \"<integer>\",\n        \"service_discovery\": {\n          \"cache_disabled\": \"<boolean>\",\n          \"cache_timeout\": \"<integer>\",\n          \"data_path\": \"<string>\",\n          \"endpoint_returns_list\": \"<boolean>\",\n          \"parent_data_path\": \"<string>\",\n          \"port_data_path\": \"<string>\",\n          \"query_endpoint\": \"<string>\",\n          \"target_path\": \"<string>\",\n          \"use_discovery_service\": \"<boolean>\",\n          \"use_nested_query\": \"<boolean>\",\n          \"use_target_list\": \"<boolean>\"\n        }\n      }\n    },\n    \"use_basic_auth\": \"<boolean>\",\n    \"use_go_plugin_auth\": \"<boolean>\",\n    \"use_keyless\": \"<boolean>\",\n    \"use_mutual_tls_auth\": \"<boolean>\",\n    \"use_oauth2\": \"<boolean>\",\n    \"use_openid\": \"<boolean>\",\n    \"use_standard_auth\": \"<boolean>\",\n    \"version_data\": {\n      \"default_version\": \"<string>\",\n      \"not_versioned\": \"<boolean>\",\n      \"versions\": {\n        \"key_0\": {\n          \"expires\": \"<string>\",\n          \"extended_paths\": {\n            \"advance_cache_config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"black_list\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cache\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"circuit_breakers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"do_not_track_endpoints\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"go_plugin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hard_timeouts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ignored\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"internal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method_transforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mock_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"persist_graphql\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate_limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size_limits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"track_endpoints\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_jq\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_jq_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_response_headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url_rewrites\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validate_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validate_request\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"virtual\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"white_list\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"global_headers\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\",\n            \"key_2\": \"<string>\"\n          },\n          \"global_headers_disabled\": \"<boolean>\",\n          \"global_headers_remove\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"global_response_headers\": {\n            \"key_0\": \"<string>\",\n            \"key_1\": \"<string>\"\n          },\n          \"global_response_headers_disabled\": \"<boolean>\",\n          \"global_response_headers_remove\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"global_size_limit\": \"<long>\",\n          \"ignore_endpoint_case\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"override_target\": \"<string>\",\n          \"paths\": {\n            \"black_list\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"ignored\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"white_list\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"use_extended_paths\": \"<boolean>\"\n        },\n        \"key_1\": {\n          \"expires\": \"<string>\",\n          \"extended_paths\": {\n            \"advance_cache_config\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"black_list\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"cache\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"circuit_breakers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"do_not_track_endpoints\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"go_plugin\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"hard_timeouts\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"ignored\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"internal\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"method_transforms\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"mock_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"persist_graphql\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"rate_limit\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"size_limits\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"track_endpoints\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_jq\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_jq_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_response\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"transform_response_headers\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"url_rewrites\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validate_json\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"validate_request\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"virtual\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            },\n            \"white_list\": {\n              \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n            }\n          },\n          \"global_headers\": {\n            \"key_0\": \"<string>\"\n          },\n          \"global_headers_disabled\": \"<boolean>\",\n          \"global_headers_remove\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"global_response_headers\": {\n            \"key_0\": \"<string>\"\n          },\n          \"global_response_headers_disabled\": \"<boolean>\",\n          \"global_response_headers_remove\": [\n            \"<string>\",\n            \"<string>\"\n          ],\n          \"global_size_limit\": \"<long>\",\n          \"ignore_endpoint_case\": \"<boolean>\",\n          \"name\": \"<string>\",\n          \"override_target\": \"<string>\",\n          \"paths\": {\n            \"black_list\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"ignored\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ],\n            \"white_list\": [\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              },\n              {\n                \"value\": \"<Error: Too many levels of nesting to fake this schema>\"\n              }\n            ]\n          },\n          \"use_extended_paths\": \"<boolean>\"\n        }\n      }\n    }\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "90e6dc6e-7a59-490f-8d5c-c51301d0aef7",
+              "name": "Success tracing request.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "debug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"path\": \"/update-listen-path\"\n  },\n  \"spec\": {\n    \"api_id\": \"b84fe1a04e5648927971c0557971565c\",\n    \"auth\": {\n      \"auth_header_name\": \"authorization\"\n    },\n    \"definition\": {\n      \"key\": \"version\",\n      \"location\": \"header\"\n    },\n    \"name\": \"Tyk Test API\",\n    \"org_id\": \"664a14650619d40001f1f00f\",\n    \"proxy\": {\n      \"listen_path\": \"/tyk-api-test/\",\n      \"strip_listen_path\": true,\n      \"target_url\": \"https://httpbin.org\"\n    },\n    \"use_oauth2\": true,\n    \"version_data\": {\n      \"not_versioned\": true,\n      \"versions\": {\n        \"Default\": {\n          \"name\": \"Default\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"logs\": \"{\\\"level\\\":\\\"warning\\\",\\\"msg\\\":\\\"Legacy path detected! Upgrade to extended....\",\n  \"message\": \"ok\",\n  \"response\": \"====== Request ======\\nGET / HTTP/1.1\\r\\nHost: httpbin.org\\r\\n\\r\\n\\n====== Response...\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "36594d6d-b9cf-4316-a534-9ca58dd54f5b",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "debug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"path\": \"/update-listen-path\"\n  },\n  \"spec\": {\n    \"api_id\": \"b84fe1a04e5648927971c0557971565c\",\n    \"auth\": {\n      \"auth_header_name\": \"authorization\"\n    },\n    \"definition\": {\n      \"key\": \"version\",\n      \"location\": \"header\"\n    },\n    \"name\": \"Tyk Test API\",\n    \"org_id\": \"664a14650619d40001f1f00f\",\n    \"proxy\": {\n      \"listen_path\": \"/tyk-api-test/\",\n      \"strip_listen_path\": true,\n      \"target_url\": \"https://httpbin.org\"\n    },\n    \"use_oauth2\": true,\n    \"version_data\": {\n      \"not_versioned\": true,\n      \"versions\": {\n        \"Default\": {\n          \"name\": \"Default\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Request malformed\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "ef4cb874-3cb5-4e69-9844-911d3c84bab1",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "debug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"path\": \"/update-listen-path\"\n  },\n  \"spec\": {\n    \"api_id\": \"b84fe1a04e5648927971c0557971565c\",\n    \"auth\": {\n      \"auth_header_name\": \"authorization\"\n    },\n    \"definition\": {\n      \"key\": \"version\",\n      \"location\": \"header\"\n    },\n    \"name\": \"Tyk Test API\",\n    \"org_id\": \"664a14650619d40001f1f00f\",\n    \"proxy\": {\n      \"listen_path\": \"/tyk-api-test/\",\n      \"strip_listen_path\": true,\n      \"target_url\": \"https://httpbin.org\"\n    },\n    \"use_oauth2\": true,\n    \"version_data\": {\n      \"not_versioned\": true,\n      \"versions\": {\n        \"Default\": {\n          \"name\": \"Default\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Attempted administrative access with invalid or missing key!\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2544a54c-28d9-4e55-8f74-92af5d3ad9d2",
+              "name": "Internal server error.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "tyk",
+                    "debug"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"request\": {\n    \"method\": \"GET\",\n    \"path\": \"/update-listen-path\"\n  },\n  \"spec\": {\n    \"api_id\": \"b84fe1a04e5648927971c0557971565c\",\n    \"auth\": {\n      \"auth_header_name\": \"authorization\"\n    },\n    \"definition\": {\n      \"key\": \"version\",\n      \"location\": \"header\"\n    },\n    \"name\": \"Tyk Test API\",\n    \"org_id\": \"664a14650619d40001f1f00f\",\n    \"proxy\": {\n      \"listen_path\": \"/tyk-api-test/\",\n      \"strip_listen_path\": true,\n      \"target_url\": \"https://httpbin.org\"\n    },\n    \"use_oauth2\": true,\n    \"version_data\": {\n      \"not_versioned\": true,\n      \"versions\": {\n        \"Default\": {\n          \"name\": \"Default\"\n        }\n      }\n    }\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Internal Server Error",
+              "code": 500,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"message\": \"Unexpected failure:\",\n  \"status\": \"error\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "d05a9ed8-9535-4b2c-96f4-7bdcc1d668d7",
+          "name": "Tyk Cpu Profiling Data",
+          "request": {
+            "name": "Tyk Cpu Profiling Data",
+            "description": {
+              "content": "Returns CPU profiling data. Available only when HTTPProfile is enabled in sink.conf.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "pprof",
+                "profile"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a9dd313f-4a4b-4b8d-ad73-e1af89cd8b6f",
+              "name": "CPU profiling data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "pprof",
+                    "profile"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "7499cd88-fafe-4176-9f80-c94e132b5db5",
+          "name": "Tyk Pprof Data",
+          "request": {
+            "name": "Tyk Pprof Data",
+            "description": {
+              "content": "Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.\n",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "debug",
+                "pprof",
+                ":profileType"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "profileType",
+                  "description": "(Required) The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/octet-stream"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "c24f8bfe-4945-4b38-a1f9-dfbe45fed381",
+              "name": "pprof data.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "debug",
+                    "pprof",
+                    ":profileType"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "profileType",
+                      "description": "(Required) The specific pprof data to retrieve (heap, goroutine, threadcreate, block, etc.), or a pattern matching multiple types."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "Admin-Auth",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/octet-stream"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/octet-stream"
+                }
+              ],
+              "body": "string",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "http://localhost/",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "Admin-Auth"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "5e31ad8a-8435-4a0b-b208-0b29c4c5de56",
+    "name": "Tyk Dashboard Admin Additional Permissions Debug API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.\n\nIn order to use the Dashboard Admin API, you'll need to get the `admin_secret` value from your Tyk Dashboard configurations.\n\nThe secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:\n\n```\nadmin-auth: <your-secret>\n```",
+      "type": "text/plain"
+    }
+  }
+}
