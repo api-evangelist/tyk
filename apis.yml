@@ -35,6 +35,11 @@ tags:
 - API Gateway
 - API Management
 - GraphQL
+- Open-Source
+tags_raw:
+- API Gateway
+- API Management
+- GraphQL
 - Open Source
 url: https://raw.githubusercontent.com/api-evangelist/tyk/refs/heads/main/apis.yml
 humanURL: https://tyk.io/
@@ -118,7 +123,8 @@ apis:
   description: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -190,6 +196,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Audit Logs
+  tags_raw:
   - AuditLogs
   properties:
   - type: OpenAPI
@@ -916,6 +924,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
@@ -1187,6 +1197,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Single Sign-On
+  tags_raw:
   - Single Sign On
   properties:
   - type: OpenAPI
@@ -1382,6 +1394,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - User
+  tags_raw:
   - Users
   properties:
   - type: OpenAPI
@@ -1427,6 +1441,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Webhook
+  tags_raw:
   - Webhooks
   properties:
   - type: OpenAPI
