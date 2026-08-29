@@ -15,7 +15,7 @@ deliveryModel:
   - openapi
   - pricing
   - repository-unlicensed
-  generated: '2026-08-11'
+  generated: '2026-08-28'
   method: derived
 accessModel:
   pricing: freemium
@@ -1470,6 +1470,15 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: CapabilityMap
+  url: capabilities/tyk-capability-edges.yml
+  name: Tyk Business Capability Map
+- type: IssueTracker
+  url: https://github.com/TykTechnologies/tyk/issues
+- type: Releases
+  url: https://github.com/TykTechnologies/tyk/releases
+- type: ContributionGuide
+  url: https://github.com/TykTechnologies/tyk/blob/master/CONTRIBUTING.md
 - type: Security
   url: https://tyk.io/responsible-disclosure/
 - type: Compliance
