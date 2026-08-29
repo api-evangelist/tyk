@@ -1,26 +1,69 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Certificates API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+  contact:
+    email: support@tyk.io
+    name: Tyk Technologies
+    url: https://tyk.io/contact
+  description: '
+
+    ## <a name="introduction"></a> Introduction
 
 
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+    The Tyk Dashboard API offers granular, programmatic access to a centralised database of resources that your Tyk nodes can pull from. This API has a dynamic user administrative structure which means the secret key that is used to communicate with your Tyk nodes can be kept secret and access to the wider management functions can be handled on a user-by-user and organisation-by-organisation basis.
 
 
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+    A common question around using a database-backed configuration is how to programmatically add API definitions to your Tyk nodes, the Dashboard API allows much more fine-grained, secure and multi-user access to your Tyk cluster, and should be used to manage a database-backed Tyk node.
 
 
-    ```
+    The Tyk Dashboard API works seamlessly with the Tyk Dashboard (and the two come bundled together).
 
-    admin-auth: <your-secret>
 
-    ```'
+    ## <a name="security-hierarchy"></a> Security Hierarchy
+
+
+    The Dashboard API provides a more structured security layer to managing Tyk nodes.
+
+
+    ### Organisations, APIs and Users
+
+
+    With the Dashboard API and a database-backed Tyk setup, (and to an extent with file-based API setups - if diligence is used in naming and creating definitions), the following security model is applied to the management of Upstream APIs:
+
+
+    * **Organisations**: All APIs are *owned* by an organisation, this is designated by the ''OrgID'' parameter in the API Definition.
+
+    * **Users**: All users created in the Dashboard belong to an organisation (unless an exception is made for super-administrative access).
+
+    * **APIs**: All APIs belong to an Organisation and only Users that belong to that organisation can see the analytics for those APIs and manage their configurations.
+
+    * **API Keys**: API Keys are designated by organisation, this means an API key that has full access rights will not be allowed to access the APIs of another organisation on the same system, but can have full access to all APIs within the organisation.
+
+    * **Access Rights**: Access rights are stored with the key, this enables a key to give access to multiple APIs, this is defined by the session object in the core Tyk API.
+
+
+    In order to use the Dashboard API, you''ll need to get the ''Tyk Dashboard API Access Credentials'' secret from your user profile on the Dashboard UI.
+
+
+    The secret you set should then be sent along as a header with each Dashboard API Request in order for it to be successful:
+
+
+
+    authorization: <your-secret>
+
+    '
+  license:
+    name: Mozilla Public License Version 2.0
+    url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
+  title: Tyk Dashboard Certificates API
+  version: 5.7.1
 servers:
-- url: http://localhost/
-- url: https://localhost/
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8080
+      description: Your dashboard host
 security:
-- ApiKeyAuth: []
+- bearerAuth: []
 tags:
 - description: Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates using these endpoints.
   name: Certificates
@@ -732,62 +775,16 @@ paths:
       - Certificates
 components:
   schemas:
-    CertificateDependencies:
+    APICertificateStatusMessage:
       properties:
-        certID:
-          example: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
           type: string
-        client_cert_api_names:
-          example:
-          - Ngrok Dashboard API
-          items:
-            type: string
-          nullable: true
-          type: array
-        client_cert_apis:
-          example:
-          - edc9b2bd3e7b4cc55c4ff0a7e1529b45
-          items:
-            type: string
-          nullable: true
-          type: array
-        key_cert:
-          example: 5e9d9544a1dcd60001d0ed205e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
-          type: string
-        upstream_cert_api_names:
-          example:
-          - External HTTPbin
-          items:
-            type: string
-          nullable: true
-          type: array
-        upstream_cert_apis:
-          example:
-          - 627efb71ebae49df7a853b9769b65fce
-          items:
-            type: string
-          nullable: true
-          type: array
-      type: object
-    MultipartFile:
-      format: binary
-      nullable: true
-      type: string
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    ApiStatusMessage:
-      properties:
         message:
+          example: Certificate added
           type: string
         status:
+          example: ok
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/gateway
@@ -796,8 +793,9 @@ components:
         dns_names:
           items:
             type: string
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         has_private:
           type: boolean
         id:
@@ -816,39 +814,11 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
-    CertificateDetailedList:
-      properties:
-        certificates:
-          items:
-            $ref: '#/components/schemas/CertsCertificateMeta'
-          nullable: true
-          type: array
-        pages:
-          type: integer
-      type: object
-    CertificateBasics:
-      properties:
-        cert_basics:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          nullable: true
-          type: array
-        pages:
-          type: integer
-      type: object
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
+    MultipartFile:
+      format: binary
+      type:
+      - string
+      - 'null'
     FormDataFile:
       properties:
         file:
@@ -856,6 +826,89 @@ components:
       required:
       - file
       type: object
+    CertificateDetailedList:
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertsCertificateMeta'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    CertificateList:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    PkixName:
+      type: object
+    CertificateDependencies:
+      properties:
+        certID:
+          example: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+          type: string
+        client_cert_api_names:
+          example:
+          - Ngrok Dashboard API
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        client_cert_apis:
+          example:
+          - edc9b2bd3e7b4cc55c4ff0a7e1529b45
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        key_cert:
+          example: 5e9d9544a1dcd60001d0ed205e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+          type: string
+        upstream_cert_api_names:
+          example:
+          - External HTTPbin
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        upstream_cert_apis:
+          example:
+          - 627efb71ebae49df7a853b9769b65fce
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
     CertsCertificateMeta:
       properties:
         dns_names:
@@ -882,20 +935,19 @@ components:
           $ref: '#/components/schemas/PkixName'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
-    PkixName:
-      type: object
-    CertificateList:
+    CertificateBasics:
       properties:
-        certs:
+        cert_basics:
           items:
-            type: string
-          nullable: true
-          type: array
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
         pages:
           type: integer
       type: object
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
-      in: header
-      name: Admin-Auth
+    bearerAuth:
+      description: The Tyk Dashboard API Access Credentials
+      scheme: bearer
+      type: http

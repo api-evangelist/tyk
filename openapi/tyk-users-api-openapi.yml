@@ -1,26 +1,16 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Users API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
-
-
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
-
-
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
-
-
-    ```
-
-    admin-auth: <your-secret>
-
-    ```'
+  title: Tyk Users API
+  version: '1.0'
+  description: 'Operations tagged Users across 2 of this provider''s published API definitions: tyk-dashboard-admin-api-openapi.yml, tyk-dashboard-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
 - url: http://localhost/
 - url: https://localhost/
-security:
-- ApiKeyAuth: []
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8080
+      description: Your dashboard host
 tags:
 - name: Users
   description: The admin portion of the users API gives you the ability to manage password reset policies for your Dashboard users.
@@ -71,6 +61,11 @@ paths:
                   PWHistory: []
                   last_login_date: '2021-09-15T15:49:49.754Z'
                   created_at: '2021-09-15T15:49:01Z'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: http://localhost/
+    - url: https://localhost/
   /admin/users/{USER_ID}/actions/disallow_reset_passwords:
     parameters:
     - name: USER_ID
@@ -116,6 +111,11 @@ paths:
                   PWHistory: []
                   last_login_date: '2021-09-15T15:49:49.754Z'
                   created_at: '2021-09-15T15:49:01Z'
+      security:
+      - ApiKeyAuth: []
+    servers:
+    - url: http://localhost/
+    - url: https://localhost/
   /api/users:
     get:
       description: Lists dashboard users
@@ -257,6 +257,8 @@ paths:
       summary: List users
       tags:
       - Users
+      security:
+      - bearerAuth: []
     post:
       description: 'Create a user. If you want to create an admin user, you need to send {IsAdmin: admin} in the user_permissions field e.g ```{user_permissions: {IsAdmin: admin},last_name: sasuke,email_address: itachi@gmail.com,first_name: itachi}```. You can add a user to a given user-group by sending the group_id in the request body. If you want to give a user access only to specific objects e.g policies you can send the object and the permission granted to the user (read or write permission in the  user_permissions field  (check the request example given for more details)).'
       operationId: addUser
@@ -340,6 +342,14 @@ paths:
       summary: Add user.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/{userId}:
     delete:
       description: Delete a user with user ID.
@@ -416,6 +426,8 @@ paths:
       summary: Delete a user.
       tags:
       - Users
+      security:
+      - bearerAuth: []
     get:
       description: Return a user object with details of the user specified by user ID in path.
       operationId: getUser
@@ -494,6 +506,8 @@ paths:
       summary: Get user details.
       tags:
       - Users
+      security:
+      - bearerAuth: []
     put:
       description: Update a user with user ID. If you update the user as inactive they will be logged out of all dashboard sessions. User password can only be updated via admin API or the update password endpoint. ResetPassword is also only available via the admin API.
       operationId: updateUser
@@ -582,6 +596,14 @@ paths:
       summary: Update user.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/{userId}/actions/key/reset:
     put:
       description: Reset specified user's Dashboard API access credentials by generating a new access key for the specified user.
@@ -658,6 +680,14 @@ paths:
       summary: Reset user Dashboard API access credentials.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/{userId}/actions/reset:
     post:
       description: Set a user's password. The password need to be 6 character long. If you are trying to update another users password you also need to have permission to update they password or you need to be a super-admin. You cannot also reuse a password.
@@ -723,6 +753,14 @@ paths:
       summary: Set user password.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/{userId}/actions/revoke:
     put:
       description: This will set the use account as inactive. It will also disable API Access and log out the user from all dashboards.
@@ -789,6 +827,14 @@ paths:
       summary: Revoke user.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/me:
     get:
       description: Return a user object with the details of the current user. This request need to have a session cookie with the key authorisation.
@@ -868,6 +914,14 @@ paths:
       summary: Get current user.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/users/search:
     get:
       deprecated: true
@@ -946,6 +1000,8 @@ paths:
       summary: Search Users(Deprecated)
       tags:
       - Users
+      security:
+      - bearerAuth: []
     post:
       description: This endpoint allows you to search for users with their email address (e.g if you send the filter @gmail.com` in the request payload, all users whole email contain the string @gmail.com will be returned).
       operationId: searchUser
@@ -1034,8 +1090,42 @@ paths:
       summary: Search user with email.
       tags:
       - Users
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
 components:
   schemas:
+    Users:
+      properties:
+        pages:
+          type: integer
+        users:
+          items:
+            $ref: '#/components/schemas/User'
+          type:
+          - array
+          - 'null'
+      type: object
+    ApiModel:
+      type: object
+    UserPassword:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        current_password:
+          example: testuser1password
+          minLength: 6
+          type: string
+        new_password:
+          example: newtestuser1password
+          minLength: 6
+          type: string
+      type: object
     User:
       properties:
         access_key:
@@ -1087,11 +1177,14 @@ components:
       - email_address
       - user_permissions
       type: object
-    UserPermissionObject:
-      additionalProperties:
-        type: string
-      type: object
-    ApiModel:
+    UserSearchPayload:
+      properties:
+        filters:
+          properties:
+            query:
+              example: itachi@tyk.io
+              type: string
+          type: object
       type: object
     ApiResponse:
       properties:
@@ -1103,40 +1196,19 @@ components:
         Status:
           type: string
       type: object
-    UserPassword:
-      properties:
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
-        current_password:
-          example: testuser1password
-          minLength: 6
-          type: string
-        new_password:
-          example: newtestuser1password
-          minLength: 6
-          type: string
-      type: object
-    Users:
-      properties:
-        pages:
-          type: integer
-        users:
-          items:
-            $ref: '#/components/schemas/User'
-          nullable: true
-          type: array
-      type: object
-    UserSearchPayload:
-      properties:
-        filters:
-          properties:
-            query:
-              example: itachi@tyk.io
-              type: string
-          type: object
+    UserPermissionObject:
+      additionalProperties:
+        type: string
       type: object
   securitySchemes:
     ApiKeyAuth:
       type: apiKey
       in: header
       name: Admin-Auth
+    bearerAuth:
+      description: The Tyk Dashboard API Access Credentials
+      scheme: bearer
+      type: http
+x-refined-from:
+- tyk-dashboard-admin-api-openapi.yml
+- tyk-dashboard-api-openapi.yml

@@ -1,26 +1,21 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Policies API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
-
-
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
-
-
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
-
-
-    ```
-
-    admin-auth: <your-secret>
-
-    ```'
+  title: Tyk Policies API
+  version: 5.7.1
+  contact:
+    email: support@tyk.io
+    name: Tyk Technologies
+    url: https://tyk.io/contact
+  license:
+    name: Mozilla Public License Version 2.0
+    url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
+  description: 'Operations tagged Policies across 2 of this provider''s published API definitions: tyk-dashboard-api-openapi.yml, tyk-gateway-api-openapi.yml. Each path carries the servers of the definition it was published in.'
 servers:
-- url: http://localhost/
-- url: https://localhost/
-security:
-- ApiKeyAuth: []
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8080
+      description: Your dashboard host
 tags:
 - description: Policies are a template that enable you to create access rules, usage quota and rate limits that can be applied to multiple keys. They are a useful way to manage large groups of users, and to enforce quota changes on a global scale across any number of keys that are using a policy. When used in conjunction with the portal, developers that enroll for API access will be given a key that is attached to a specific policy. The policy settings are refreshed every time a key attempts access, meaning that updating a policy will have an effect across any keys that are attached to it.
   externalDocs:
@@ -100,6 +95,8 @@ paths:
       summary: Get list portal policies.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
     post:
       description: Creating policy definitions is slightly different to the core API, API definitions are wrapped inside an api_definition field and event handlers, such as webhooks are not embedded in the main api_definition object (though they can be), webhooks are instead appended as references into the hook_references field, the API will embed the correct webhook data into the event handler interface.
       operationId: postPolicies
@@ -197,6 +194,14 @@ paths:
       summary: Create policy definition.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/portal/policies/{id}:
     delete:
       description: Delete a Policy by ID.
@@ -273,6 +278,8 @@ paths:
       summary: Delete a single policy by ID.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
     get:
       description: Get a policy by ID.
       operationId: getPolicy
@@ -379,6 +386,8 @@ paths:
       summary: Get a single policy by ID.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
     put:
       description: Update a policy definition.
       operationId: putPolicies
@@ -495,6 +504,14 @@ paths:
       summary: Update policy definition.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /api/portal/policies/search:
     get:
       description: Search list of policies. If query parameter q is a policy ID it will look for policies that have the given ID. However if q is not a policy ID it will return policies with whose name matches the patten based via q query parameter. If you send a policy ID in query parameter q and also send query parameter policy_ids,only policy_ids will be used for searching.
@@ -627,6 +644,14 @@ paths:
       summary: Search list of policies.
       tags:
       - Policies
+      security:
+      - bearerAuth: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your dashboard host
   /tyk/policies:
     get:
       description: Retrieve all the policies in your Tyk instance. Returns an array policies.
@@ -658,6 +683,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - api_key: []
     post:
       description: Create a policy in your Tyk Instance.
       operationId: addPolicy
@@ -746,6 +773,14 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - api_key: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your gateway host
   /tyk/policies/{polID}:
     delete:
       description: Delete a policy by ID in your Tyk instance.
@@ -802,6 +837,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - api_key: []
     get:
       description: You can retrieve details of a single policy by ID in your Tyk instance.
       operationId: getPolicy
@@ -880,6 +917,8 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - api_key: []
     put:
       description: You can update a Policy in your Tyk Instance by ID.
       operationId: updatePolicy
@@ -976,10 +1015,17 @@ paths:
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
+      security:
+      - api_key: []
+    servers:
+    - url: https://{tenant}
+      variables:
+        tenant:
+          default: localhost:8080
+          description: Your gateway host
 components:
   schemas:
     APILimit:
-      nullable: true
       properties:
         max_query_depth:
           type: integer
@@ -1010,224 +1056,9 @@ components:
           type: number
         throttle_retry_limit:
           type: integer
-      type: object
-    RateLimitSmoothing:
-      nullable: true
-      properties:
-        delay:
-          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
-          format: int64
-          minimum: 1
-          type: integer
-        enabled:
-          description: ' Enabled indicates if rate limit smoothing is active.'
-          type: boolean
-        step:
-          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
-          format: int64
-          minimum: 1
-          type: integer
-        threshold:
-          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
-          format: int64
-          minimum: 1
-          type: integer
-        trigger:
-          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
-          format: double
-          minimum: 0
-          multipleOf: 0.01
-          type: number
-      type: object
-    AccessSpec_2:
-      properties:
-        methods:
-          example:
-          - GET
-          - POST
-          - DELETE
-          - PUT
-          items:
-            type: string
-          nullable: true
-          type: array
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
-      type: object
-    Policy_2:
-      properties:
-        _id:
-          example: 5ead7120575961000181867e
-          type: string
-        access_rights:
-          additionalProperties:
-            $ref: '#/components/schemas/AccessDefinition_2'
-          nullable: true
-          type: object
-          example: example_value
-        active:
-          example: true
-          type: boolean
-        enable_http_signature_validation:
-          example: false
-          type: boolean
-        graphql_access_rights:
-          additionalProperties:
-            $ref: '#/components/schemas/GraphAccessDefinition'
-          nullable: true
-          type: object
-          example: example_value
-        hmac_enabled:
-          example: false
-          type: boolean
-        id:
-          example: 5ead7120575961000181867e
-          type: string
-        is_inactive:
-          example: false
-          type: boolean
-        key_expires_in:
-          example: 0
-          format: int64
-          type: integer
-        last_updated:
-          example: '1655965189'
-          type: string
-        max_query_depth:
-          example: -1
-          type: integer
-        meta_data:
-          additionalProperties: {}
-          nullable: true
-          type: object
-          example: example_value
-        name:
-          example: Swagger Petstore Policy
-          type: string
-        org_id:
-          example: 5e9d9544a1dcd60001d0ed20
-          type: string
-        partitions:
-          $ref: '#/components/schemas/PolicyPartitions'
-        per:
-          example: 60
-          format: double
-          type: number
-        quota_max:
-          example: -1
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          example: 3600
-          format: int64
-          type: integer
-        rate:
-          example: 1000
-          format: double
-          type: number
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
-        tags:
-          items:
-            type: string
-          nullable: true
-          type: array
-          example: []
-        throttle_interval:
-          example: -1
-          format: double
-          type: number
-        throttle_retry_limit:
-          example: -1
-          type: integer
-      type: object
-    GraphqlType:
-      properties:
-        fields:
-          items:
-            type: string
-          nullable: true
-          type: array
-        name:
-          type: string
-      type: object
-    PolicyPartitions:
-      properties:
-        acl:
-          example: true
-          type: boolean
-        complexity:
-          example: false
-          type: boolean
-        per_api:
-          example: false
-          type: boolean
-        quota:
-          example: true
-          type: boolean
-        rate_limit:
-          example: true
-          type: boolean
-      type: object
-    APILimit_2:
-      properties:
-        max_query_depth:
-          type: integer
-          example: 10
-        per:
-          type: number
-          example: 42.5
-        quota_max:
-          type: integer
-          example: 10
-        quota_remaining:
-          type: integer
-          example: 10
-        quota_renewal_rate:
-          type: integer
-          example: 10
-        quota_renews:
-          type: integer
-          example: 10
-        rate:
-          type: number
-          example: 42.5
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
-        throttle_interval:
-          type: number
-          example: 42.5
-        throttle_retry_limit:
-          type: integer
-          example: 10
-      type: object
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    FieldLimits_2:
-      properties:
-        max_query_depth:
-          type: integer
-          example: 10
-      type: object
-    EndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/RateLimitType2'
-        name:
-          type: string
-          example: Example Title
-      type: object
-    SessionEndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/SessionEndpointRateLimit'
-        name:
-          type: string
-      type: object
+      type:
+      - object
+      - 'null'
     FieldAccessDefinition:
       properties:
         field_name:
@@ -1237,59 +1068,18 @@ components:
         type_name:
           type: string
       type: object
-    FieldAccessDefinition_2:
+    ReturnDataStruct:
       properties:
-        field_name:
-          type: string
-          example: example_value
-        limits:
-          $ref: '#/components/schemas/FieldLimits_2'
-        type_name:
-          type: string
-          example: example_value
+        Data:
+          $ref: '#/components/schemas/PolicyList'
+        Pages:
+          type: integer
       type: object
-    GraphqlType_2:
+    SessionEndpointMethod:
       properties:
-        fields:
-          items:
-            type: string
-          nullable: true
-          type: array
-          example: []
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
         name:
-          type: string
-          example: Example Title
-      type: object
-    EndpointMethods:
-      items:
-        $ref: '#/components/schemas/EndpointMethod'
-      type: array
-    GraphAccessDefinition:
-      type: object
-    AccessSpec:
-      properties:
-        methods:
-          example:
-          - GET
-          - PATCH
-          - HEAD
-          - PUT
-          - DELETE
-          items:
-            type: string
-          nullable: true
-          type: array
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
-      type: object
-    SessionEndpoint:
-      properties:
-        methods:
-          items:
-            $ref: '#/components/schemas/SessionEndpointMethod'
-          type: array
-        path:
           type: string
       type: object
     SessionEndpointRateLimit:
@@ -1301,102 +1091,6 @@ components:
           format: int64
           type: integer
       type: object
-    ApiModifyKeySuccess:
-      properties:
-        action:
-          example: modified
-          type: string
-        key:
-          example: b13d928b9972bd18
-          type: string
-        key_hash:
-          type: string
-          example: example_value
-        status:
-          example: ok
-          type: string
-      type: object
-    Endpoints:
-      items:
-        $ref: '#/components/schemas/Endpoint'
-      type: array
-    RateLimitSmoothing_2:
-      properties:
-        delay:
-          type: integer
-          example: 10
-        enabled:
-          type: boolean
-          example: true
-        step:
-          type: integer
-          example: 10
-        threshold:
-          type: integer
-          example: 10
-        trigger:
-          type: number
-          example: 42.5
-      type: object
-    Endpoint:
-      properties:
-        methods:
-          $ref: '#/components/schemas/EndpointMethods'
-        path:
-          type: string
-          example: example_value
-      type: object
-    AccessDefinition_2:
-      properties:
-        allowance_scope:
-          example: d371b83b249845a2497ab9a947fd6210
-          type: string
-        allowed_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType_2'
-          nullable: true
-          type: array
-          example: []
-        allowed_urls:
-          items:
-            $ref: '#/components/schemas/AccessSpec_2'
-          nullable: true
-          type: array
-          example: https://www.example.com
-        api_id:
-          example: d1dfc6a927a046c54c0ed470f19757cc
-          type: string
-        api_name:
-          example: Rate Limit Proxy API
-          type: string
-        disable_introspection:
-          example: false
-          type: boolean
-        endpoints:
-          $ref: '#/components/schemas/Endpoints'
-        field_access_rights:
-          items:
-            $ref: '#/components/schemas/FieldAccessDefinition_2'
-          nullable: true
-          type: array
-          example: []
-        limit:
-          $ref: '#/components/schemas/APILimit_2'
-        restricted_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType_2'
-          nullable: true
-          type: array
-          example: []
-        versions:
-          example:
-          - Default
-          - v2
-          items:
-            type: string
-          nullable: true
-          type: array
-      type: object
     AccessDefinition:
       properties:
         allowance_scope:
@@ -1404,13 +1098,15 @@ components:
         allowed_types:
           items:
             $ref: '#/components/schemas/GraphqlType'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         allowed_urls:
           items:
             $ref: '#/components/schemas/AccessSpec'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         api_id:
           example: d1dfc6a927a046c54c0ed470f19757cc
           type: string
@@ -1427,30 +1123,26 @@ components:
         field_access_rights:
           items:
             $ref: '#/components/schemas/FieldAccessDefinition'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         limit:
           $ref: '#/components/schemas/APILimit'
         restricted_types:
           items:
             $ref: '#/components/schemas/GraphqlType'
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         versions:
           example:
           - Default
           - v2
           items:
             type: string
-          nullable: true
-          type: array
-      type: object
-    ReturnDataStruct:
-      properties:
-        Data:
-          $ref: '#/components/schemas/PolicyList'
-        Pages:
-          type: integer
+          type:
+          - array
+          - 'null'
       type: object
     Policy:
       properties:
@@ -1459,8 +1151,9 @@ components:
         access_rights:
           additionalProperties:
             $ref: '#/components/schemas/AccessDefinition'
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
         active:
           type: boolean
         date_created:
@@ -1481,8 +1174,9 @@ components:
           type: integer
         meta_data:
           additionalProperties: {}
-          nullable: true
-          type: object
+          type:
+          - object
+          - 'null'
         name:
           type: string
         org_id:
@@ -1517,19 +1211,70 @@ components:
         tags:
           items:
             type: string
-          nullable: true
-          type: array
+          type:
+          - array
+          - 'null'
         throttle_interval:
           format: double
           type: number
         throttle_retry_limit:
           type: integer
       type: object
+    RateLimitSmoothing:
+      properties:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
+          format: int64
+          minimum: 1
+          type: integer
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
+          type: boolean
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
+          type: integer
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
+      type:
+      - object
+      - 'null'
+    SessionEndpoint:
+      properties:
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          type: string
+      type: object
     PolicyList:
       items:
         $ref: '#/components/schemas/Policy'
-      nullable: true
-      type: array
+      type:
+      - array
+      - 'null'
     ApiResponse:
       properties:
         ID:
@@ -1540,12 +1285,72 @@ components:
         Status:
           type: string
       type: object
-    ApiStatusMessage:
+    FieldLimits:
       properties:
-        message:
+        max_query_depth:
+          type: integer
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
           type: string
-          example: example_value
-        status:
+      type: object
+    APILimit_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+        per:
+          type: number
+          example: 42.5
+        quota_max:
+          type: integer
+          example: 10
+        quota_remaining:
+          type: integer
+          example: 10
+        quota_renewal_rate:
+          type: integer
+          example: 10
+        quota_renews:
+          type: integer
+          example: 10
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        throttle_interval:
+          type: number
+          example: 42.5
+        throttle_retry_limit:
+          type: integer
+          example: 10
+      type: object
+    GraphAccessDefinition:
+      type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
           type: string
           example: example_value
       type: object
@@ -1559,6 +1364,272 @@ components:
           example: 42.5
         smoothing:
           $ref: '#/components/schemas/RateLimitSmoothing_2'
+      type: object
+    FieldAccessDefinition_2:
+      properties:
+        field_name:
+          type: string
+          example: example_value
+        limits:
+          $ref: '#/components/schemas/FieldLimits_2'
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    Policy_2:
+      properties:
+        _id:
+          example: 5ead7120575961000181867e
+          type: string
+        access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/AccessDefinition_2'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        active:
+          example: true
+          type: boolean
+        enable_http_signature_validation:
+          example: false
+          type: boolean
+        graphql_access_rights:
+          additionalProperties:
+            $ref: '#/components/schemas/GraphAccessDefinition'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        hmac_enabled:
+          example: false
+          type: boolean
+        id:
+          example: 5ead7120575961000181867e
+          type: string
+        is_inactive:
+          example: false
+          type: boolean
+        key_expires_in:
+          example: 0
+          format: int64
+          type: integer
+        last_updated:
+          example: '1655965189'
+          type: string
+        max_query_depth:
+          example: -1
+          type: integer
+        meta_data:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+        name:
+          example: Swagger Petstore Policy
+          type: string
+        org_id:
+          example: 5e9d9544a1dcd60001d0ed20
+          type: string
+        partitions:
+          $ref: '#/components/schemas/PolicyPartitions'
+        per:
+          example: 60
+          format: double
+          type: number
+        quota_max:
+          example: -1
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          example: 3600
+          format: int64
+          type: integer
+        rate:
+          example: 1000
+          format: double
+          type: number
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        tags:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        throttle_interval:
+          example: -1
+          format: double
+          type: number
+        throttle_retry_limit:
+          example: -1
+          type: integer
+      type: object
+    AccessDefinition_2:
+      properties:
+        allowance_scope:
+          example: d371b83b249845a2497ab9a947fd6210
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec_2'
+          type:
+          - array
+          - 'null'
+          example: https://www.example.com
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          $ref: '#/components/schemas/Endpoints'
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        limit:
+          $ref: '#/components/schemas/APILimit_2'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    RateLimitSmoothing_2:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    PolicyPartitions:
+      properties:
+        acl:
+          example: true
+          type: boolean
+        complexity:
+          example: false
+          type: boolean
+        per_api:
+          example: false
+          type: boolean
+        quota:
+          example: true
+          type: boolean
+        rate_limit:
+          example: true
+          type: boolean
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    FieldLimits_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    AccessSpec_2:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
       type: object
   examples:
     policiesExample:
@@ -1698,7 +1769,15 @@ components:
         throttle_interval: 10
         throttle_retry_limit: 10
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
+    bearerAuth:
+      description: The Tyk Dashboard API Access Credentials
+      scheme: bearer
+      type: http
+    api_key:
+      description: Api key
       in: header
-      name: Admin-Auth
+      name: X-Tyk-Authorization
+      type: apiKey
+x-refined-from:
+- tyk-dashboard-api-openapi.yml
+- tyk-gateway-api-openapi.yml

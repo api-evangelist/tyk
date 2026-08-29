@@ -1,6 +1,6 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Organisations API
+  title: Tyk Dashboard Admin Organisations API
   version: 5.3.0
   description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
 
@@ -245,17 +245,6 @@ paths:
                 Meta: 54b53d3aeba6db5c35000002
 components:
   schemas:
-    ApiDocument:
-      properties:
-        api_human_name:
-          type: string
-        api_id:
-          type: string
-      additionalProperties: false
-      type: object
-      required:
-      - api_human_name
-      - api_id
     EventConfig:
       properties:
         webhook:
@@ -270,6 +259,28 @@ components:
       - webhook
       - email
       - redis
+    OpenPolicyConf:
+      properties:
+        rules:
+          type: string
+        enabled:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - rules
+      - enabled
+    ApiDocument:
+      properties:
+        api_human_name:
+          type: string
+        api_id:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+      - api_human_name
+      - api_id
     UIOptions:
       properties:
         languages:
@@ -316,17 +327,6 @@ components:
       - dont_allow_license_management_view
       - cloud
       - dev
-    OpenPolicyConf:
-      properties:
-        rules:
-          type: string
-        enabled:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - rules
-      - enabled
     OrganisationDocument:
       description: The fields that describe the "organisation" object as stored in Tyk
       properties:

@@ -1,26 +1,57 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions CertsTag API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+  contact:
+    email: support@tyk.io
+    name: Tyk Technologies
+    url: https://tyk.io/contact
+  description: 'The Tyk Gateway API is the primary means for integrating your application with the Tyk API Gateway system. This API is very small, and has no granular permissions system. It is intended to be used purely for internal automation and integration.
 
 
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+    **Warning: Under no circumstances should outside parties be granted access to this API.**
 
 
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+    The Tyk Gateway API is capable of:
 
 
-    ```
+    * Managing session objects (key generation).
 
-    admin-auth: <your-secret>
+    * Managing and listing policies.
 
-    ```'
+    * Managing and listing API Definitions (only when not using the Tyk Dashboard).
+
+    * Hot reloads / reloading a cluster configuration.
+
+    * OAuth client creation (only when not using the Tyk Dashboard).
+
+
+    In order to use the Gateway API, you''ll need to set the **secret** parameter in your tyk.conf file.
+
+
+    The shared secret you set should then be sent along as a header with each Gateway API Request in order for it to be successful:
+
+
+    **x-tyk-authorization: <your-secret>***
+
+    <br/>
+
+
+    <b>The Tyk Gateway API is subsumed by the Tyk Dashboard API in Pro installations.</b>
+
+
+    '
+  license:
+    name: Mozilla Public License Version 2.0
+    url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
+  title: Tyk Gateway Certs Tag API
+  version: 5.7.1
 servers:
-- url: http://localhost/
-- url: https://localhost/
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8080
+      description: Your gateway host
 security:
-- ApiKeyAuth: []
+- api_key: []
 tags:
 - name: CertsTag
 paths:
@@ -50,8 +81,9 @@ paths:
                 - $ref: '#/components/schemas/CertsCertificateMeta'
                 - items:
                     $ref: '#/components/schemas/CertsCertificateMeta'
-                  nullable: true
-                  type: array
+                  type:
+                  - array
+                  - 'null'
           description: OK
         '403':
           content:
@@ -79,112 +111,6 @@ paths:
         dispatcher: FALLBACK
 components:
   examples:
-    certificateMetaListExample:
-      value:
-      - dns_names:
-        - .*tyk.io
-        fingerprint: 7c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-        has_private: false
-        id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-        is_ca: false
-        issuer:
-          CommonName: tyk.io
-          Country:
-          - Peachtree
-          ExtraNames: null
-          Locality: null
-          Names:
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 6
-            Value: Peachtree
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 10
-            Value: tyk
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 11
-            Value: tyk
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 3
-            Value: tyk.io
-          - Type:
-            - 1
-            - 2
-            - 840
-            - 113549
-            - 1
-            - 9
-            - 1
-            Value: support@tyk.io
-          Organization:
-          - tyk
-          OrganizationalUnit:
-          - tyk
-          PostalCode: null
-          Province: null
-          SerialNumber: ''
-          StreetAddress: null
-        not_after: '2034-03-26T08:46:37Z'
-        not_before: '2024-03-25T08:46:37Z'
-        subject:
-          CommonName: tyk.io
-          Country:
-          - Peachtree
-          ExtraNames: null
-          Locality: null
-          Names:
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 6
-            Value: Peachtree
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 10
-            Value: tyk
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 11
-            Value: tyk
-          - Type:
-            - 2
-            - 5
-            - 4
-            - 3
-            Value: tyk.io
-          - Type:
-            - 1
-            - 2
-            - 840
-            - 113549
-            - 1
-            - 9
-            - 1
-            Value: support@tyk.io
-          Organization:
-          - tyk
-          OrganizationalUnit:
-          - tyk
-          PostalCode: null
-          Province: null
-          SerialNumber: ''
-          StreetAddress: null
     certificateMetaExample:
       value:
         dns_names:
@@ -291,7 +217,115 @@ components:
           Province: null
           SerialNumber: ''
           StreetAddress: null
+    certificateMetaListExample:
+      value:
+      - dns_names:
+        - .*tyk.io
+        fingerprint: 7c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+        has_private: false
+        id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+        is_ca: false
+        issuer:
+          CommonName: tyk.io
+          Country:
+          - Peachtree
+          ExtraNames: null
+          Locality: null
+          Names:
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 6
+            Value: Peachtree
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 10
+            Value: tyk
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 11
+            Value: tyk
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 3
+            Value: tyk.io
+          - Type:
+            - 1
+            - 2
+            - 840
+            - 113549
+            - 1
+            - 9
+            - 1
+            Value: support@tyk.io
+          Organization:
+          - tyk
+          OrganizationalUnit:
+          - tyk
+          PostalCode: null
+          Province: null
+          SerialNumber: ''
+          StreetAddress: null
+        not_after: '2034-03-26T08:46:37Z'
+        not_before: '2024-03-25T08:46:37Z'
+        subject:
+          CommonName: tyk.io
+          Country:
+          - Peachtree
+          ExtraNames: null
+          Locality: null
+          Names:
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 6
+            Value: Peachtree
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 10
+            Value: tyk
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 11
+            Value: tyk
+          - Type:
+            - 2
+            - 5
+            - 4
+            - 3
+            Value: tyk.io
+          - Type:
+            - 1
+            - 2
+            - 840
+            - 113549
+            - 1
+            - 9
+            - 1
+            Value: support@tyk.io
+          Organization:
+          - tyk
+          OrganizationalUnit:
+          - tyk
+          PostalCode: null
+          Province: null
+          SerialNumber: ''
+          StreetAddress: null
   schemas:
+    PkixName:
+      type: object
     ApiStatusMessage:
       properties:
         message:
@@ -334,10 +368,9 @@ components:
         subject:
           $ref: '#/components/schemas/PkixName'
       type: object
-    PkixName:
-      type: object
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
+    api_key:
+      description: Api key
       in: header
-      name: Admin-Auth
+      name: X-Tyk-Authorization
+      type: apiKey

@@ -1,26 +1,22 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Health API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+  contact:
+    email: support@tyk.io
+    name: Tyk Technologies
+    url: https://tyk.io/contact
+  version: 1.0.0
+  title: Tyk MDCB Data Planes and Diagnostics Health API
+  description: 'This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data.  It includes endpoints for retrieving connected data plane details, performing health checks,  and accessing Go''s built-in pprof diagnostics for advanced performance profiling.
 
-
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
-
-
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
-
-
-    ```
-
-    admin-auth: <your-secret>
-
-    ```'
+    '
 servers:
-- url: http://localhost/
-- url: https://localhost/
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8181
+      description: Your MDCB host
 security:
-- ApiKeyAuth: []
+- api_key: []
 tags:
 - name: Health
 paths:
@@ -44,7 +40,7 @@ paths:
         dispatcher: FALLBACK
 components:
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
+    api_key:
       in: header
-      name: Admin-Auth
+      name: X-Tyk-Authorization
+      type: apiKey

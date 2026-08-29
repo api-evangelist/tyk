@@ -1,26 +1,57 @@
-openapi: 3.0.0
+openapi: 3.2.0
 info:
-  title: Tyk Dashboard Admin Additional Permissions Hot Reload API
-  version: 5.3.0
-  description: 'For Tyk On-Premises installations only, the Dashboard Admin API has two endpoints and is used to set up and provision a Tyk Dashboard instance without the command line.
+  contact:
+    email: support@tyk.io
+    name: Tyk Technologies
+    url: https://tyk.io/contact
+  description: 'The Tyk Gateway API is the primary means for integrating your application with the Tyk API Gateway system. This API is very small, and has no granular permissions system. It is intended to be used purely for internal automation and integration.
 
 
-    In order to use the Dashboard Admin API, you''ll need to get the `admin_secret` value from your Tyk Dashboard configurations.
+    **Warning: Under no circumstances should outside parties be granted access to this API.**
 
 
-    The secret you set should then be sent along as a header with each Dashboard Admin API Request in order for it to be successful:
+    The Tyk Gateway API is capable of:
 
 
-    ```
+    * Managing session objects (key generation).
 
-    admin-auth: <your-secret>
+    * Managing and listing policies.
 
-    ```'
+    * Managing and listing API Definitions (only when not using the Tyk Dashboard).
+
+    * Hot reloads / reloading a cluster configuration.
+
+    * OAuth client creation (only when not using the Tyk Dashboard).
+
+
+    In order to use the Gateway API, you''ll need to set the **secret** parameter in your tyk.conf file.
+
+
+    The shared secret you set should then be sent along as a header with each Gateway API Request in order for it to be successful:
+
+
+    **x-tyk-authorization: <your-secret>***
+
+    <br/>
+
+
+    <b>The Tyk Gateway API is subsumed by the Tyk Dashboard API in Pro installations.</b>
+
+
+    '
+  license:
+    name: Mozilla Public License Version 2.0
+    url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
+  title: Tyk Gateway Hot Reload API
+  version: 5.7.1
 servers:
-- url: http://localhost/
-- url: https://localhost/
+- url: https://{tenant}
+  variables:
+    tenant:
+      default: localhost:8080
+      description: Your gateway host
 security:
-- ApiKeyAuth: []
+- api_key: []
 tags:
 - description: 'Force restart of the Gateway or whole cluster.
 
@@ -108,7 +139,8 @@ components:
           example: example_value
       type: object
   securitySchemes:
-    ApiKeyAuth:
-      type: apiKey
+    api_key:
+      description: Api key
       in: header
-      name: Admin-Auth
+      name: X-Tyk-Authorization
+      type: apiKey
