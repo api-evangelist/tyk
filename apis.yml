@@ -1470,6 +1470,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: Website
+  url: https://www.tyk.io/
 - type: CapabilityMap
   url: capabilities/tyk-capability-edges.yml
   name: Tyk Business Capability Map
