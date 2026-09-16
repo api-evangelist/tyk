@@ -44,7 +44,7 @@ tags_raw:
 url: https://raw.githubusercontent.com/api-evangelist/tyk/refs/heads/main/apis.yml
 humanURL: https://tyk.io/
 created: '2026-03-18'
-modified: '2026-08-03'
+modified: '2026-09-16'
 specificationVersion: '0.23'
 access: 3rd-Party
 position: Consuming
@@ -1290,7 +1290,7 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 - aid: tyk:tyk-tyk-api
-  name: Tyk Tyk API
+  name: Tyk API
   description: The Tyk API from Tyk — 3 operation(s) for tyk.
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
@@ -1322,7 +1322,7 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 - aid: tyk:tyk-tyk-oas-apis-api
-  name: Tyk Tyk OAS APIs API
+  name: Tyk OAS APIs
   description: '**Note: Applies only to Tyk Gateway Community Edition** <br/>'
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
