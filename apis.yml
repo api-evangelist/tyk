@@ -1475,16 +1475,48 @@ apis:
     url: json-ld/tyk-mdcb-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
-- aid: tyk:tyk-ap-is-api
+- aid: tyk:tyk-apis-api
   name: Tyk AP Is API
   description: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
-  - AP Is
+  - APIs
   properties:
   - type: OpenAPI
-    url: openapi/tyk-ap-is-api-openapi.yml
+    url: openapi/tyk-apis-api-openapi.yml
+  - type: Documentation
+    url: https://tyk.io/docs/tyk-apis/
+  - type: JSONSchema
+    url: json-schema/tyk-gateway-access-definition-schema.json
+  - type: JSONLD
+    url: json-ld/tyk-gateway-context.jsonld
+  - type: GitHubRepository
+    url: https://github.com/TykTechnologies/tyk
+  - type: GraphQL
+    url: graphql/tyk-graphql.md
+  - type: Documentation
+    url: https://tyk.io/docs/tyk-dashboard-api
+  - type: ChangeLog
+    url: https://tyk.io/docs/developer-support/release-notes/dashboard
+  - type: GitHubRepository
+    url: https://github.com/TykTechnologies/tyk-analytics
+  - type: Documentation
+    url: https://tyk.io/docs/
+  - type: JSONLD
+    url: json-ld/tyk-mdcb-context.jsonld
+  - type: GitHubRepository
+    url: https://github.com/TykTechnologies/tyk-sink
+- aid: tyk:tyk-oauth-api
+  name: Tyk OAUTH API
+  description: Use the endpoints in this tag to manage OAuth flow.
+  humanURL: https://tyk.io/docs/tyk-apis/
+  baseURL: https://tyk.io/
+  tags:
+  - Oauth
+  properties:
+  - type: OpenAPI
+    url: openapi/tyk-oauth-api-openapi.yml
   - type: Documentation
     url: https://tyk.io/docs/tyk-apis/
   - type: JSONSchema
@@ -1549,38 +1581,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/tyk-data-planes-api-openapi.yml
-  - type: Documentation
-    url: https://tyk.io/docs/tyk-apis/
-  - type: JSONSchema
-    url: json-schema/tyk-gateway-access-definition-schema.json
-  - type: JSONLD
-    url: json-ld/tyk-gateway-context.jsonld
-  - type: GitHubRepository
-    url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
-  - type: Documentation
-    url: https://tyk.io/docs/tyk-dashboard-api
-  - type: ChangeLog
-    url: https://tyk.io/docs/developer-support/release-notes/dashboard
-  - type: GitHubRepository
-    url: https://github.com/TykTechnologies/tyk-analytics
-  - type: Documentation
-    url: https://tyk.io/docs/
-  - type: JSONLD
-    url: json-ld/tyk-mdcb-context.jsonld
-  - type: GitHubRepository
-    url: https://github.com/TykTechnologies/tyk-sink
-- aid: tyk:tyk-o-auth-api
-  name: Tyk O Auth API
-  description: Use the endpoints in this tag to manage OAuth flow.
-  humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
-  tags:
-  - O Auth
-  properties:
-  - type: OpenAPI
-    url: openapi/tyk-o-auth-api-openapi.yml
   - type: Documentation
     url: https://tyk.io/docs/tyk-apis/
   - type: JSONSchema
