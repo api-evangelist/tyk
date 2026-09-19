@@ -1235,7 +1235,7 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
-  - Single Sign-On
+  - SSO
   tags_raw:
   - Single Sign On
   properties:
@@ -1480,7 +1480,8 @@ apis:
   description: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
-  tags:
+  tags: []
+  tags_raw:
   - APIs
   properties:
   - type: OpenAPI
@@ -1513,6 +1514,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Authentication
+  tags_raw:
   - Oauth
   properties:
   - type: OpenAPI
@@ -1577,6 +1580,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - Dataplanes
+  tags_raw:
   - data planes
   properties:
   - type: OpenAPI
@@ -1612,6 +1617,8 @@ apis:
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
   tags:
+  - UserGroup
+  tags_raw:
   - User Group
   properties:
   - type: OpenAPI
