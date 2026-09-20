@@ -74,7 +74,8 @@ edges:
   reason: Import, export, patch and version OpenAPI-format API definitions — squarely specification and
     versioning of public APIs on the platform.
 - tag: UserGroup
-  spec_file: tyk-usergroup-api-openapi.yml
+  spec_file: tyk-user-group-api-openapi.yml
+  reanchored_from: tyk-usergroup-api-openapi.yml
   capability_id: BC-620.20
   capability_id_l1: BC-620
   capability_name: Identity & Access Management
