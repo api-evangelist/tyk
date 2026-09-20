@@ -1,0 +1,115 @@
+slug: tyk
+provider: Tyk
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 10
+edges:
+- tag: OAS APIs
+  spec_file: tyk-oas-apis-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.85
+  evidence: POST /api/apis/oas createApiOAS 'Create OAS API.'; 'List OAS API versions.'; 'Import OAS.'
+  reason: CRUD, versioning, categorisation and import/export of OpenAPI (OAS) API definitions published
+    through the gateway — specification and versioning of APIs exposed to consumers.
+- tag: Keys
+  spec_file: tyk-keys-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.8
+  evidence: POST /api/keys addKey 'Create a key.'; 'List keys by API.'; schemas AccessDefinition, APILimit,
+    SessionState
+  reason: Full lifecycle of API access keys (create, update, delete, search) with per-API access definitions
+    and rate limits — issuance and stewardship of API consumer credentials on a developer/API platform.
+- tag: Oauth
+  spec_file: tyk-oauth-api-openapi.yml
+  capability_id: BC-4270.40
+  capability_id_l1: BC-4270
+  capability_name: Developer Identity & Credential Management
+  confidence: 0.8
+  evidence: POST /api/apis/oauth/{apiId} createNewClientApp 'Create a new OAuth2.0 client.'; 'Tyk Rotate
+    the Oath Client Secret'; schemas OAuthClient, OAuthClientToken
+  reason: Operations create, list, rotate and delete OAuth2 clients and their tokens for API consumers
+    — issuance and stewardship of developer credentials/OAuth clients on the API platform.
+- tag: Users
+  spec_file: tyk-users-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.78
+  evidence: PUT /admin/users/{USER_ID}/actions/allow_reset_passwords allowResetPassword; PUT /api/users/{userId}/actions/key/reset
+    Reset user Dashboard API access credentials
+  reason: Operations manage dashboard user accounts, passwords, permissions, credentials and revocation
+    — administrative identity and access management, not employee records.
+- tag: APIs
+  spec_file: tyk-apis-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.75
+  evidence: POST /api/apis  postApis  Create API Definition; GET /api/apis/{apiId}/url  getApiUrl  Get
+    API URLs; getAllApiCategories
+  reason: Operations create, version and publish API definitions in an API gateway — this is the lifecycle
+    management of APIs exposed to consumers, i.e. Public API Lifecycle Management. Some ambiguity with
+    generic IT application management, but the vendor is an API management platform.
+- tag: Tyk OAS APIs
+  spec_file: tyk-tyk-oas-apis-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.75
+  evidence: POST /tyk/apis/oas createApiOAS 'Create an Api With Tyk Oas Format.'; GET /tyk/apis/oas/{apiID}/versions
+    'Listing Versions of a Tyk Oas Api.'; POST /tyk/apis/oas/import importOAS
+  reason: Import, export, patch and version OpenAPI-format API definitions — squarely specification and
+    versioning of public APIs on the platform.
+- tag: UserGroup
+  spec_file: tyk-usergroup-api-openapi.yml
+  capability_id: BC-620.20
+  capability_id_l1: BC-620
+  capability_name: Identity & Access Management
+  confidence: 0.72
+  evidence: 'POST /api/usergroups createUserGroup Create user group; schemas: UserPermissionObject, UserGroups'
+  reason: Dashboard user groups carrying UserPermissionObject are access-permission groupings for administrative
+    users of the Tyk platform, i.e. identity and access administration rather than any HR or customer
+    capability.
+- tag: Analytics
+  spec_file: tyk-analytics-api-openapi.yml
+  capability_id: BC-4270.50
+  capability_id_l1: BC-4270
+  capability_name: API Consumption Governance
+  confidence: 0.7
+  evidence: getAnalyticsOfApiKey  Analytics of API Key.; getAnalyticsOfOauthClientId  Analytics of Oauth
+    Client ID.; schema AggregateAnalyticsData
+  reason: Usage analytics of API keys and OAuth clients is API consumption analytics/governance for the
+    developer ecosystem, not general BI.
+- tag: Organisation Quotas
+  spec_file: tyk-organisation-quotas-api-openapi.yml
+  capability_id: BC-4270.50
+  capability_id_l1: BC-4270
+  capability_name: API Consumption Governance
+  confidence: 0.7
+  evidence: POST /tyk/org/keys/{keyID} addOrgKey 'Tyk Create an Organisation Key'; schemas APILimit, RateLimitSmoothing,
+    RateLimitType2, Monitor
+  reason: Organisation-level keys carrying API limits and rate-limit settings are quota/rate-limit governance
+    over API consumption, not a general business capability.
+- tag: Tyk
+  spec_file: tyk-tyk-api-openapi.yml
+  capability_id: BC-4270.10
+  capability_id_l1: BC-4270
+  capability_name: Public API Lifecycle Management
+  confidence: 0.7
+  evidence: POST /tyk/apis createApi 'Tyk Creat an Api'; GET /tyk/apis/{apiID}/versions listApiVersions
+    'Tyk Listing Versions of an Api.'
+  reason: Create, update, delete and version API definitions on the gateway — specification and versioning
+    of APIs exposed to consumers.
