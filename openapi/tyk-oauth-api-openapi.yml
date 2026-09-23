@@ -21,7 +21,7 @@ tags:
   externalDocs:
     description: OAuth Documentation
     url: https://tyk.io/docs/basic-config-and-security/security/authentication-authorization/oauth-2-0/
-  name: Oauth
+  name: OAuth
 paths:
   /api/apis/oauth/{apiId}:
     get:
@@ -107,9 +107,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List OAuth clients.
+      summary: List OAuth clients
       tags:
-      - Oauth
+      - OAuth
       security:
       - bearerAuth: []
     post:
@@ -193,9 +193,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Create a new OAuth2.0 client.
+      summary: Create a new OAuth2.0 client
       tags:
-      - Oauth
+      - OAuth
       security:
       - bearerAuth: []
     servers:
@@ -284,13 +284,13 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Delete OAuth client.
+      summary: Delete OAuth client
       tags:
-      - Oauth
+      - OAuth
       security:
       - bearerAuth: []
     get:
-      description: Get single  OAuth client details with its client ID.
+      description: Get single OAuth client details with its client ID.
       operationId: getOAuthClientDetail
       parameters:
       - description: The API s ID.
@@ -377,9 +377,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Get single OAuth client details.
+      summary: Get single OAuth client details
       tags:
-      - Oauth
+      - OAuth
       security:
       - bearerAuth: []
     servers:
@@ -469,9 +469,9 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List OAuth client tokens.
+      summary: List OAuth client tokens
       tags:
-      - Oauth
+      - OAuth
       security:
       - bearerAuth: []
     servers:
@@ -522,7 +522,7 @@ paths:
           description: Api no found
       summary: Tyk List Oauth Clients
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -593,7 +593,7 @@ paths:
           description: Internal server error.
       summary: Tyk Delete Oauth Client
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -651,7 +651,7 @@ paths:
           description: OAuth Client not found
       summary: Tyk Get Oauth Client
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -740,7 +740,7 @@ paths:
           description: malformed request body
       summary: Tyk Update Oauth Metadata,redirecturi,description and Policy Id
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -814,7 +814,7 @@ paths:
           description: Internal server error.
       summary: Tyk Rotate the Oath Client Secret
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -828,7 +828,12 @@ paths:
           description: Your gateway host
   /tyk/oauth/clients/{apiID}/{keyName}/tokens:
     get:
-      description: "This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth-client ID .If page query parameter is sent the tokens will be paginated. This endpoint will work only for newly created tokens.\n        <br/>\n        <br/>\n        You can control how long you want to store expired tokens in this list using `oauth_token_expired_retain_period` gateway option, which specifies retain period for expired tokens stored in\nRedis. By default expired token not get removed. See <a href=\"https://tyk.io/docs/configure/tyk-gateway-configuration-options/#a-name-oauth-token-expired-retain-period-a-oauth-token-expired-retain-period\" target=\"_blank\">here</a> for more details."
+      description: 'This endpoint allows you to retrieve a list of all current tokens and their expiry date for a provided API ID and OAuth-client ID .If page query parameter is sent the tokens will be paginated. This endpoint will work only for newly created tokens.
+
+
+        You can control how long you want to store expired tokens in this list using `oauth_token_expired_retain_period` gateway option, which specifies retain period for expired tokens stored in
+
+        Redis. By default expired token not get removed. See here for more details.'
       operationId: getOAuthClientTokens
       parameters:
       - description: The API id
@@ -900,7 +905,7 @@ paths:
           description: Internal server error.
       summary: Tyk List Tokens for a Provided Api Id and Oauth-client Id
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -952,7 +957,7 @@ paths:
           description: Forbidden
       summary: Tyk Get Api Ids for Apis That Use the Specified Client_id(appid) for Oauth
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -966,7 +971,15 @@ paths:
           description: Your gateway host
   /tyk/oauth/clients/create:
     post:
-      description: "Any OAuth keys must be generated with the help of a client ID. These need to be pre-registered with Tyk before they can be used (in a similar vein to how you would register your app with Twitter before attempting to ask user permissions using their API).\n        <br/><br/>\n        <h3>Creating OAuth clients with Access to Multiple APIs</h3>\n        New from Tyk Gateway 2.6.0 is the ability to create OAuth clients with access to more than one API. If you provide the api_id it works the same as in previous releases. If you don't provide\nthe api_id the request uses policy access rights and enumerates APIs from their setting in the newly created OAuth-client.\n"
+      description: 'Any OAuth keys must be generated with the help of a client ID. These need to be pre-registered with Tyk before they can be used (in a similar vein to how you would register your app with Twitter before attempting to ask user permissions using their API).
+
+
+        Creating OAuth clients with Access to Multiple APIs
+
+
+        New from Tyk Gateway 2.6.0 is the ability to create OAuth clients with access to more than one API. If you provide the api_id it works the same as in previous releases. If you don''t provide
+
+        the api_id the request uses policy access rights and enumerates APIs from their setting in the newly created OAuth-client.'
       operationId: createOAuthClient
       requestBody:
         content:
@@ -1024,7 +1037,7 @@ paths:
           description: Unmarshalling failed
       summary: Tyk Create New Oauth Client
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -1104,7 +1117,7 @@ paths:
           description: Internal server error.
       summary: Tyk Invalidate Oauth Refresh Token
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -1175,7 +1188,7 @@ paths:
           description: Forbidden
       summary: Tyk Revoke Token
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -1259,7 +1272,7 @@ paths:
           description: not found
       summary: Tyk Revoke All Client's Tokens
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -1333,7 +1346,7 @@ paths:
           description: Internal server error.
       summary: Tyk Purge Lapsed Oauth Tokens
       tags:
-      - Oauth
+      - OAuth
       x-microcks-operation:
         delay: 0
         dispatcher: FALLBACK
@@ -1368,21 +1381,14 @@ components:
         secret:
           type: string
       type: object
-    OAuthClientTokens:
-      items:
-        $ref: '#/components/schemas/OAuthClientToken'
-      type:
-      - array
-      - 'null'
-    ApiModel:
-      type: object
-    OAuthClientToken:
+    DcrpRegistration:
       properties:
-        code:
+        access_token:
           type: string
-        expires:
-          format: int64
-          type: integer
+        client_uri:
+          type: string
+        provider:
+          type: string
       type: object
     NewClientRequest:
       properties:
@@ -1404,16 +1410,6 @@ components:
         secret:
           type: string
       type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
     OAuthApps:
       properties:
         apps:
@@ -1425,23 +1421,43 @@ components:
         pages:
           type: integer
       type: object
-    DcrpRegistration:
+    ApiModel:
+      type: object
+    OAuthClientToken:
       properties:
-        access_token:
+        code:
           type: string
-        client_uri:
+        expires:
+          format: int64
+          type: integer
+      type: object
+    ApiResponse:
+      properties:
+        ID:
           type: string
-        provider:
+        Message:
+          type: string
+        Meta: {}
+        Status:
           type: string
       type: object
-    ApiStatusMessage:
+    OAuthClientTokens:
+      items:
+        $ref: '#/components/schemas/OAuthClientToken'
+      type:
+      - array
+      - 'null'
+    PaginationStatus:
       properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
+        page_num:
+          type: integer
+          example: 10
+        page_size:
+          type: integer
+          example: 10
+        page_total:
+          type: integer
+          example: 10
       type: object
     ApiModifyKeySuccess:
       properties:
@@ -1457,27 +1473,6 @@ components:
         status:
           example: ok
           type: string
-      type: object
-    PaginatedOAuthClientTokens:
-      properties:
-        Pagination:
-          $ref: '#/components/schemas/PaginationStatus'
-        Tokens:
-          items:
-            $ref: '#/components/schemas/OAuthClientToken_2'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    OAuthClientToken_2:
-      properties:
-        code:
-          type: string
-          example: example_value
-        expires:
-          type: integer
-          example: 10
       type: object
     NewClientRequest_2:
       properties:
@@ -1507,29 +1502,37 @@ components:
           example: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
           type: string
       type: object
-    PaginationStatus:
+    PaginatedOAuthClientTokens:
       properties:
-        page_num:
-          type: integer
-          example: 10
-        page_size:
-          type: integer
-          example: 10
-        page_total:
+        Pagination:
+          $ref: '#/components/schemas/PaginationStatus'
+        Tokens:
+          items:
+            $ref: '#/components/schemas/OAuthClientToken_2'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    OAuthClientToken_2:
+      properties:
+        code:
+          type: string
+          example: example_value
+        expires:
           type: integer
           example: 10
       type: object
   examples:
-    tokenListExample:
-      value:
-      - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
-        expires: 1518158407
-      - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
-        expires: 1518158594
-      - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
-        expires: 1518158638
-      - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
-        expires: 1518159792
     paginatedTokenExample:
       value:
         Pagination:
@@ -1545,6 +1548,16 @@ components:
           expires: 1518158638
         - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
           expires: 1518159792
+    tokenListExample:
+      value:
+      - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
+        expires: 1518158407
+      - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
+        expires: 1518158594
+      - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
+        expires: 1518158638
+      - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
+        expires: 1518159792
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

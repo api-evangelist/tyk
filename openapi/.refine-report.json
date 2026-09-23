@@ -47,7 +47,9 @@
     "tyk-liveness-api-openapi.yml",
     "tyk-readiness-api-openapi.yml"
   ],
-  "archived": [],
+  "archived": [
+    "deleted 5 superseded output(s) from the previous generation"
+  ],
   "errors": [],
   "warnings": [],
   "notes": [
@@ -71,14 +73,16 @@
     "tag 'Oauth' spans 2 source specs (tyk-dashboard-api-openapi.yml, tyk-gateway-api-openapi.yml): per-path servers applied",
     "tag 'Policies' spans 2 source specs (tyk-dashboard-api-openapi.yml, tyk-gateway-api-openapi.yml): per-path servers applied",
     "tag 'Schema' spans 2 source specs (tyk-dashboard-api-openapi.yml, tyk-gateway-api-openapi.yml): per-path servers applied",
-    "tag 'Debug' spans 2 source specs (tyk-gateway-api-openapi.yml, tyk-mdcb-api-openapi.yml): per-path servers applied"
+    "tag 'Debug' spans 2 source specs (tyk-gateway-api-openapi.yml, tyk-mdcb-api-openapi.yml): per-path servers applied",
+    "superseded outputs removed: tyk-ap-is-api-openapi.yml, tyk-audit-logs-api-openapi.yml, tyk-data-planes-api-openapi.yml, tyk-o-auth-api-openapi.yml, tyk-user-group-api-openapi.yml",
+    "apis.yml register: written (+5 apis, 39 total)"
   ],
   "skipped": [
     "tyk-additional-permissions-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-analytics-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tyk-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tyk-ap-is-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-assets-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tyk-auditlogs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tyk-audit-logs-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-basic-authentication-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-batch-requests-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-cache-invalidation-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -87,7 +91,7 @@
     "tyk-certstag-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-config-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-dashboard-url-reload-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tyk-dataplanes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tyk-data-planes-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-debug-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-env-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-export-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -97,8 +101,8 @@
     "tyk-import-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-keys-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-liveness-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tyk-o-auth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-oas-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tyk-oauth-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-open-policy-agent-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-organisation-quotas-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-organisations-api-openapi.yml: previously refined output, superseded by openapi/_original/",
@@ -110,7 +114,7 @@
     "tyk-system-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-tyk-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-tyk-oas-apis-api-openapi.yml: previously refined output, superseded by openapi/_original/",
-    "tyk-usergroup-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "tyk-user-group-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-users-api-openapi.yml: previously refined output, superseded by openapi/_original/",
     "tyk-webhooks-api-openapi.yml: previously refined output, superseded by openapi/_original/"
   ]

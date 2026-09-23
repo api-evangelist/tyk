@@ -96,7 +96,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List keys by API.
+      summary: List keys by API
       tags:
       - Keys
       security:
@@ -215,7 +215,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Delete key with API ID and key ID.
+      summary: Delete key with API ID and key ID
       tags:
       - Keys
       security:
@@ -313,7 +313,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Key with ID not found.
-      summary: Get key details with API ID and key ID.
+      summary: Get key details with API ID and key ID
       tags:
       - Keys
       security:
@@ -456,7 +456,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: With API ID and key ID.
+      summary: With API ID and key ID
       tags:
       - Keys
       security:
@@ -546,7 +546,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Search keys by API.
+      summary: Search keys by API
       tags:
       - Keys
       security:
@@ -613,7 +613,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List All the keys.
+      summary: List All the keys
       tags:
       - Keys
       security:
@@ -626,7 +626,10 @@ paths:
           description: Your dashboard host
   /api/keys:
     post:
-      description: "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API owners should segmentation be needed at an organisational level.\n  <br/><br/>\n API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always embed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to."
+      description: 'Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API owners should segmentation be needed at an organisational level.
+
+
+        API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always embed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to.'
       operationId: addKey
       parameters:
       - description: Set this to true to create a basic user. Note you have to send basic_auth_data(user and password) in the request body if this value is set to true.
@@ -705,7 +708,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Create a key.
+      summary: Create a key
       tags:
       - Keys
       security:
@@ -817,7 +820,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Delete key.
+      summary: Delete key
       tags:
       - Keys
       security:
@@ -918,7 +921,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Get key Details.
+      summary: Get key Details
       tags:
       - Keys
       security:
@@ -999,7 +1002,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Create custom key.
+      summary: Create custom key
       tags:
       - Keys
       security:
@@ -1134,7 +1137,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Update key.
+      summary: Update key
       tags:
       - Keys
       security:
@@ -1204,7 +1207,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List All the Keys info.
+      summary: List All the Keys info
       tags:
       - Keys
       security:
@@ -1294,7 +1297,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: This will validate a key definition.
+      summary: This will validate a key definition
       tags:
       - Keys
       security:
@@ -1328,7 +1331,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Disabled hashed key listing.
-      summary: Tyk List Keys.
+      summary: Tyk List Keys
       tags:
       - Keys
       x-microcks-operation:
@@ -1337,7 +1340,12 @@ paths:
       security:
       - api_key: []
     post:
-      description: "Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API Owners should segmentation be needed at an organisational level.\n <br/><br/>\n  API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always\nembed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to."
+      description: 'Tyk will generate the access token based on the OrgID specified in the API Definition and a random UUID. This ensures that keys can be owned by different API Owners should segmentation be needed at an organisational level.
+
+
+        API keys without access_rights data will be written to all APIs on the system (this also means that they will be created across all SessionHandlers and StorageHandlers, it is recommended to always
+
+        embed access_rights data in a key to ensure that only targeted APIs and their back-ends are written to.'
       operationId: addKey
       parameters:
       - description: When set to true the key_hash returned will be similar to the un-hashed key name.
@@ -1436,7 +1444,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Tyk Create a Key.
+      summary: Tyk Create a Key
       tags:
       - Keys
       x-microcks-operation:
@@ -1510,7 +1518,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Key not found.
-      summary: Tyk Delete a Key.
+      summary: Tyk Delete a Key
       tags:
       - Keys
       x-microcks-operation:
@@ -1616,7 +1624,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Key not found.
-      summary: Tyk Get a Key With Id.
+      summary: Tyk Get a Key With Id
       tags:
       - Keys
       x-microcks-operation:
@@ -1749,7 +1757,7 @@ paths:
       security:
       - api_key: []
     put:
-      description: ' You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended that when using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way.'
+      description: You can also manually add keys to Tyk using your own key-generation algorithm. It is recommended that when using this approach to ensure that the OrgID being used in the API Definition and the key data is blank so that Tyk does not try to prepend or manage the key in any way.
       operationId: updateKey
       parameters:
       - description: Adding the suppress_reset parameter and setting it to 1 will cause Tyk not to reset the quota limit that is in the current live quota manager. By default Tyk will reset the quota in the live quota manager (initialising it) when adding a key. Adding the `suppress_reset` flag to the URL parameters will avoid this behaviour.
@@ -1874,7 +1882,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Tyk Update Key.
+      summary: Tyk Update Key
       tags:
       - Keys
       x-microcks-operation:
@@ -1978,7 +1986,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Malformed body.
-      summary: Tyk Create a Key.
+      summary: Tyk Create a Key
       tags:
       - Keys
       x-microcks-operation:
@@ -2060,7 +2068,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Tyk Set Policies for a Hashed Key.
+      summary: Tyk Set Policies for a Hashed Key
       tags:
       - Keys
       x-microcks-operation:
@@ -2194,7 +2202,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Tyk This Will Validate a Key Definition.
+      summary: Tyk This Will Validate a Key Definition
       tags:
       - Keys
       x-microcks-operation:
@@ -2210,51 +2218,6 @@ paths:
           description: Your gateway host
 components:
   schemas:
-    KeysDetailed:
-      properties:
-        keys:
-          items:
-            $ref: '#/components/schemas/KeyData'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    APILimit:
-      properties:
-        max_query_depth:
-          type: integer
-        per:
-          format: double
-          type: number
-        quota_max:
-          format: int64
-          type: integer
-        quota_remaining:
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          format: int64
-          type: integer
-        quota_renews:
-          format: int64
-          type: integer
-        rate:
-          format: double
-          type: number
-        set_by_policy:
-          type: boolean
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing'
-        throttle_interval:
-          format: double
-          type: number
-        throttle_retry_limit:
-          type: integer
-      type:
-      - object
-      - 'null'
     FieldAccessDefinition:
       properties:
         field_name:
@@ -2264,12 +2227,51 @@ components:
         type_name:
           type: string
       type: object
-    Keys:
+    SessionEndpointMethod:
       properties:
-        data:
-          $ref: '#/components/schemas/AllKeys'
-        pages:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
+          type: string
+      type: object
+    RateLimitSmoothing:
+      properties:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
+          format: int64
+          minimum: 1
           type: integer
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
+          type: boolean
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
+          type: integer
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
+      type:
+      - object
+      - 'null'
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
       type: object
     SessionState:
       properties:
@@ -2432,21 +2434,57 @@ components:
           example: -1
           type: integer
       type: object
-    SessionEndpointMethod:
+    APILimit:
       properties:
-        limit:
-          $ref: '#/components/schemas/SessionEndpointRateLimit'
-        name:
-          type: string
-      type: object
-    SessionEndpointRateLimit:
-      properties:
+        max_query_depth:
+          type: integer
         per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
           format: int64
           type: integer
         rate:
-          format: int64
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
           type: integer
+      type:
+      - object
+      - 'null'
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
       type: object
     AccessDefinition:
       properties:
@@ -2501,37 +2539,6 @@ components:
           - array
           - 'null'
       type: object
-    ApiModel:
-      type: object
-    RateLimitSmoothing:
-      properties:
-        delay:
-          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
-          format: int64
-          minimum: 1
-          type: integer
-        enabled:
-          description: ' Enabled indicates if rate limit smoothing is active.'
-          type: boolean
-        step:
-          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
-          format: int64
-          minimum: 1
-          type: integer
-        threshold:
-          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
-          format: int64
-          minimum: 1
-          type: integer
-        trigger:
-          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
-          format: double
-          minimum: 0
-          multipleOf: 0.01
-          type: number
-      type:
-      - object
-      - 'null'
     AllKeys:
       properties:
         keys:
@@ -2541,6 +2548,18 @@ components:
           - array
           - 'null'
       type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    Keys:
+      properties:
+        data:
+          $ref: '#/components/schemas/AllKeys'
+        pages:
+          type: integer
+      type: object
     SessionEndpoint:
       properties:
         methods:
@@ -2549,6 +2568,15 @@ components:
           type: array
         path:
           type: string
+      type: object
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
       type: object
     GraphqlType:
       properties:
@@ -2561,38 +2589,16 @@ components:
         name:
           type: string
       type: object
-    ApiResponse:
+    KeysDetailed:
       properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    AccessSpec:
-      properties:
-        methods:
-          example:
-          - GET
-          - PATCH
-          - HEAD
-          - PUT
-          - DELETE
+        keys:
           items:
-            type: string
+            $ref: '#/components/schemas/KeyData'
           type:
           - array
           - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
+        pages:
+          type: integer
       type: object
     KeyData:
       properties:
@@ -2606,6 +2612,75 @@ components:
         key_id:
           example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
           type: string
+      type: object
+    ApiModel:
+      type: object
+    RateLimitSmoothing_2:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
+      type: object
+    Monitor:
+      properties:
+        trigger_limits:
+          example:
+          - 80
+          - 60
+          - 50
+          items:
+            type: number
+          type:
+          - array
+          - 'null'
+      type: object
+    FieldLimits_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
       type: object
     APILimit_2:
       properties:
@@ -2639,6 +2714,27 @@ components:
           type: integer
           example: 10
       type: object
+    ApiAllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+      type: object
     FieldAccessDefinition_2:
       properties:
         field_name:
@@ -2650,6 +2746,36 @@ components:
           type: string
           example: example_value
       type: object
+    BasicAuthData:
+      properties:
+        hash_type:
+          type: string
+          example: example_value
+        password:
+          type: string
+          example: example_value
+      type: object
+    AccessSpec_2:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
     SessionState_2:
       properties:
         access_rights:
@@ -2804,39 +2930,6 @@ components:
           example: 1000
           type: integer
       type: object
-    ApiModifyKeySuccess:
-      properties:
-        action:
-          example: modified
-          type: string
-        key:
-          example: b13d928b9972bd18
-          type: string
-        key_hash:
-          type: string
-          example: example_value
-        status:
-          example: ok
-          type: string
-      type: object
-    Endpoint:
-      properties:
-        methods:
-          $ref: '#/components/schemas/EndpointMethods'
-        path:
-          type: string
-          example: example_value
-      type: object
-    ApiAllKeys:
-      properties:
-        keys:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
     AccessDefinition_2:
       properties:
         allowance_scope:
@@ -2893,60 +2986,33 @@ components:
           - array
           - 'null'
       type: object
-    Monitor:
+    Endpoint:
       properties:
-        trigger_limits:
-          example:
-          - 80
-          - 60
-          - 50
-          items:
-            type: number
-          type:
-          - array
-          - 'null'
-      type: object
-    JWTData:
-      properties:
-        secret:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
           type: string
           example: example_value
       type: object
-    GraphqlType_2:
+    ApiModifyKeySuccess:
       properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        name:
+        action:
+          example: modified
           type: string
-          example: Example Title
-      type: object
-    Endpoints:
-      items:
-        $ref: '#/components/schemas/Endpoint'
-      type: array
-    BasicAuthData:
-      properties:
-        hash_type:
+        key:
+          example: b13d928b9972bd18
           type: string
-          example: example_value
-        password:
-          type: string
-          example: example_value
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
+        key_hash:
           type: string
           example: example_value
         status:
+          example: ok
           type: string
-          example: example_value
       type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
     PolicyUpdateObj:
       properties:
         apply_policies:
@@ -2960,69 +3026,11 @@ components:
           type: string
           example: example_value
       type: object
-    FieldLimits_2:
+    JWTData:
       properties:
-        max_query_depth:
-          type: integer
-          example: 10
-      type: object
-    EndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/RateLimitType2'
-        name:
+        secret:
           type: string
-          example: Example Title
-      type: object
-    RateLimitSmoothing_2:
-      properties:
-        delay:
-          type: integer
-          example: 10
-        enabled:
-          type: boolean
-          example: true
-        step:
-          type: integer
-          example: 10
-        threshold:
-          type: integer
-          example: 10
-        trigger:
-          type: number
-          example: 42.5
-      type: object
-    EndpointMethods:
-      items:
-        $ref: '#/components/schemas/EndpointMethod'
-      type: array
-    RateLimitType2:
-      properties:
-        per:
-          type: number
-          example: 42.5
-        rate:
-          type: number
-          example: 42.5
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
-      type: object
-    AccessSpec_2:
-      properties:
-        methods:
-          example:
-          - GET
-          - POST
-          - DELETE
-          - PUT
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
+          example: example_value
       type: object
   securitySchemes:
     bearerAuth:

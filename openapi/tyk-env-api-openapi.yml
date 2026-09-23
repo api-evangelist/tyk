@@ -6,9 +6,7 @@ info:
     url: https://tyk.io/contact
   version: 1.0.0
   title: Tyk MDCB Data Planes and Diagnostics Env API
-  description: 'This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data.  It includes endpoints for retrieving connected data plane details, performing health checks,  and accessing Go''s built-in pprof diagnostics for advanced performance profiling.
-
-    '
+  description: This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data. It includes endpoints for retrieving connected data plane details, performing health checks, and accessing Go's built-in pprof diagnostics for advanced performance profiling.
 servers:
 - url: https://{tenant}
   variables:
@@ -23,7 +21,21 @@ paths:
   /env:
     get:
       summary: Tyk Retrieve Environment Variables
-      description: "Returns the current configuration status of the system.\n\n**Example curl command:**\n\n```bash\ncurl -X GET \\ \nhttp://localhost:8181/config\n-H 'X-Tyk-Authorization: your-secret-key'\n```\n"
+      description: 'Returns the current configuration status of the system.
+
+
+        **Example curl command:**
+
+
+        ```bash
+
+        curl -X GET \
+
+        http://localhost:8181/config
+
+        -H ''X-Tyk-Authorization: your-secret-key''
+
+        ```'
       operationId: envGet
       parameters:
       - in: header

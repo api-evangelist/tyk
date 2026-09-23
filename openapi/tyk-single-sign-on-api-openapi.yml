@@ -145,7 +145,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: Generate authentication token.
+      summary: Generate authentication token
       tags:
       - Single Sign On
       security:

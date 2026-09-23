@@ -13,7 +13,7 @@ info:
 
     ```
 
-    admin-auth: <your-secret>
+    admin-auth:
 
     ```'
 servers:
@@ -41,7 +41,6 @@ paths:
         type: string
     get:
       summary: Retrieve a single organisation
-      description: Retrieve a single organisation
       operationId: getOrg
       tags:
       - Organisations
@@ -128,7 +127,6 @@ paths:
                 Meta: ''
     delete:
       summary: Delete an organisation
-      description: Delete an organisation
       operationId: deleteOrg
       tags:
       - Organisations
@@ -153,7 +151,6 @@ paths:
         type: string
     get:
       summary: List all organisations
-      description: List all organisations
       operationId: getOrgs
       tags:
       - Organisations
@@ -219,7 +216,6 @@ paths:
                 pages: 0
     post:
       summary: Create an Organisation
-      description: Create an Organisation
       operationId: createOrg
       tags:
       - Organisations
@@ -245,42 +241,6 @@ paths:
                 Meta: 54b53d3aeba6db5c35000002
 components:
   schemas:
-    EventConfig:
-      properties:
-        webhook:
-          type: string
-        email:
-          type: string
-        redis:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - webhook
-      - email
-      - redis
-    OpenPolicyConf:
-      properties:
-        rules:
-          type: string
-        enabled:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - rules
-      - enabled
-    ApiDocument:
-      properties:
-        api_human_name:
-          type: string
-        api_id:
-          type: string
-      additionalProperties: false
-      type: object
-      required:
-      - api_human_name
-      - api_id
     UIOptions:
       properties:
         languages:
@@ -327,6 +287,31 @@ components:
       - dont_allow_license_management_view
       - cloud
       - dev
+    EventConfig:
+      properties:
+        webhook:
+          type: string
+        email:
+          type: string
+        redis:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - webhook
+      - email
+      - redis
+    ApiDocument:
+      properties:
+        api_human_name:
+          type: string
+        api_id:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+      - api_human_name
+      - api_id
     OrganisationDocument:
       description: The fields that describe the "organisation" object as stored in Tyk
       properties:
@@ -384,6 +369,17 @@ components:
       - org_options_meta
       - open_policy
       - additional_permissions
+    OpenPolicyConf:
+      properties:
+        rules:
+          type: string
+        enabled:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - rules
+      - enabled
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

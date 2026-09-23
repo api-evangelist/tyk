@@ -4,41 +4,7 @@ info:
     email: support@tyk.io
     name: Tyk Technologies
     url: https://tyk.io/contact
-  description: 'The Tyk Gateway API is the primary means for integrating your application with the Tyk API Gateway system. This API is very small, and has no granular permissions system. It is intended to be used purely for internal automation and integration.
-
-
-    **Warning: Under no circumstances should outside parties be granted access to this API.**
-
-
-    The Tyk Gateway API is capable of:
-
-
-    * Managing session objects (key generation).
-
-    * Managing and listing policies.
-
-    * Managing and listing API Definitions (only when not using the Tyk Dashboard).
-
-    * Hot reloads / reloading a cluster configuration.
-
-    * OAuth client creation (only when not using the Tyk Dashboard).
-
-
-    In order to use the Gateway API, you''ll need to set the **secret** parameter in your tyk.conf file.
-
-
-    The shared secret you set should then be sent along as a header with each Gateway API Request in order for it to be successful:
-
-
-    **x-tyk-authorization: <your-secret>***
-
-    <br/>
-
-
-    <b>The Tyk Gateway API is subsumed by the Tyk Dashboard API in Pro installations.</b>
-
-
-    '
+  description: The Tyk Gateway API is the primary means for integrating your application with the Tyk API Gateway system.
   license:
     name: Mozilla Public License Version 2.0
     url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
@@ -53,9 +19,7 @@ servers:
 security:
 - api_key: []
 tags:
-- description: 'Force restart of the Gateway or whole cluster.
-
-    '
+- description: Force restart of the Gateway or whole cluster.
   name: Hot Reload
 paths:
   /tyk/reload:
@@ -92,7 +56,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Tyk Hot-reload a Single Node.
+      summary: Tyk Hot-reload a Single Node
       tags:
       - Hot Reload
       x-microcks-operation:
@@ -121,7 +85,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Forbidden
-      summary: Hot-reload a Group of Tyk Nodes.
+      summary: Hot-reload a Group of Tyk Nodes
       tags:
       - Hot Reload
       x-microcks-operation:

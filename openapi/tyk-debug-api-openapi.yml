@@ -96,7 +96,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiStatusMessage'
           description: Internal server error.
-      summary: Tyk Test an an Api Definition.
+      summary: Tyk Test an an Api Definition
       tags:
       - Debug
       x-microcks-operation:
@@ -135,9 +135,7 @@ paths:
   /debug/pprof/{profileType}:
     get:
       summary: Tyk Pprof Data
-      description: 'Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.
-
-        '
+      description: Serves various pprof data like heap, goroutine, threadcreate, block, and so on. The `{profileType}` path parameter can accept various profiling types as well as more complex patterns. Available only when HTTPProfile is enabled in sink.conf.
       operationId: debugPprofProfileTypeGet
       parameters:
       - in: path
@@ -168,37 +166,6 @@ paths:
           description: Your MDCB host
 components:
   schemas:
-    GlobalRateLimit:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        per:
-          type: number
-          example: 42.5
-        rate:
-          type: number
-          example: 42.5
-      type: object
-    GraphQLIntrospectionConfig:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-      type: object
-    OpenIDOptions:
-      properties:
-        providers:
-          items:
-            $ref: '#/components/schemas/OIDProviderConfig'
-          type:
-          - array
-          - 'null'
-          example: []
-        segregate_by_client:
-          type: boolean
-          example: true
-      type: object
     GraphQLEngineConfig:
       properties:
         data_sources:
@@ -223,56 +190,33 @@ components:
           - 'null'
           example: []
       type: object
-    TemplateData:
+    EventHandlerMetaConfig:
       properties:
-        enable_session:
+        events:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EventHandlerTriggerConfig'
+            type: array
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
+    HostCheckObject:
+      properties:
+        body:
+          type: string
+          example: example_value
+        commands:
+          items:
+            $ref: '#/components/schemas/CheckCommand'
+          type:
+          - array
+          - 'null'
+          example: []
+        enable_proxy_protocol:
           type: boolean
           example: true
-        input_type:
-          enum:
-          - json
-          - xml
-          type: string
-          example: json
-        template_mode:
-          enum:
-          - blob
-          - file
-          type: string
-          example: blob
-        template_source:
-          type: string
-          example: example_value
-      type: object
-    Scopes:
-      properties:
-        jwt:
-          $ref: '#/components/schemas/ScopeClaim'
-        oidc:
-          $ref: '#/components/schemas/ScopeClaim'
-      type: object
-    ResponseProcessor:
-      properties:
-        name:
-          type: string
-          example: Example Title
-        options:
-          example: example_value
-      type: object
-    EndpointMethodMeta:
-      properties:
-        action:
-          enum:
-          - no_action
-          - reply
-          type: string
-          example: no_action
-        code:
-          type: integer
-          example: 10
-        data:
-          type: string
-          example: example_value
         headers:
           additionalProperties:
             type: string
@@ -280,386 +224,31 @@ components:
           - object
           - 'null'
           example: example_value
-      type: object
-    DatasourceSourceConfig:
-      properties:
-        data_source_config:
-          example: example_value
-        kind:
-          type: string
-          example: example_value
-      type: object
-    GraphQLSubgraphConfig:
-      properties:
-        sdl:
-          type: string
-          example: example_value
-      type: object
-    InternalMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
         method:
           type: string
           example: example_value
-        path:
+        protocol:
           type: string
           example: example_value
-      type: object
-    GraphQLConfig:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        engine:
-          $ref: '#/components/schemas/GraphQLEngineConfig'
-        execution_mode:
-          enum:
-          - proxyOnly
-          - executionEngine
-          - subgraph
-          - supergraph
-          type: string
-          example: proxyOnly
-        introspection:
-          $ref: '#/components/schemas/GraphQLIntrospectionConfig'
-        last_schema_update:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          example: '2026-01-15T10:30:00Z'
-        playground:
-          $ref: '#/components/schemas/GraphQLPlayground'
-        proxy:
-          $ref: '#/components/schemas/GraphQLProxyConfig'
-        schema:
-          type: string
-          example: example_value
-        subgraph:
-          $ref: '#/components/schemas/GraphQLSubgraphConfig'
-        supergraph:
-          $ref: '#/components/schemas/GraphQLSupergraphConfig'
-        type_field_configurations:
-          items:
-            $ref: '#/components/schemas/DatasourceTypeFieldConfiguration'
-          type:
-          - array
-          - 'null'
-          example: []
-        version:
-          enum:
-          - ''''
-          - '1'
-          - '2'
-          type: string
-          example: ''''
-      type: object
-    RoutingTrigger:
-      properties:
-        'on':
-          enum:
-          - all
-          - any
-          type: string
-          example: all
-        options:
-          $ref: '#/components/schemas/RoutingTriggerOptions'
-        rewrite_to:
-          type: string
-          example: example_value
-      type: object
-    HeaderInjectionMeta:
-      properties:
-        act_on:
-          type: boolean
-          example: true
-        add_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        delete_headers:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    JWTValidation:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        expires_at_validation_skew:
-          minimum: 0
+        timeout:
           type: integer
           example: 10
-        identity_base_field:
-          type: string
-          example: example_value
-        issued_at_validation_skew:
-          minimum: 0
-          type: integer
-          example: 10
-        not_before_validation_skew:
-          minimum: 0
-          type: integer
-          example: 10
-        signing_method:
-          type: string
-          example: example_value
-        source:
-          type: string
-          example: example_value
-      type: object
-    CORSConfig:
-      properties:
-        allow_credentials:
-          example: false
-          type: boolean
-        allowed_headers:
-          example:
-          - Origin
-          - Accept
-          - Content-Type
-          - Authorization
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        allowed_methods:
-          example:
-          - GET
-          - HEAD
-          - POST
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        allowed_origins:
-          example:
-          - https://*.foo.com
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        debug:
-          example: true
-          type: boolean
-        enable:
-          example: false
-          type: boolean
-        exposed_headers:
-          example:
-          - Accept
-          - Content-Type
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        max_age:
-          example: 24
-          type: integer
-        options_passthrough:
-          example: false
-          type: boolean
-      type: object
-    RequestSizeMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        size_limit:
-          format: int64
-          type: integer
-          example: 10
-      type: object
-    AuthConfig:
-      properties:
-        auth_header_name:
-          example: Authorization
-          type: string
-        cookie_name:
-          type: string
-          example: example_value
-        disable_header:
-          type: boolean
-          example: true
-        name:
-          type: string
-          example: Example Title
-        param_name:
-          type: string
-          example: example_value
-        signature:
-          $ref: '#/components/schemas/SignatureConfig'
-        use_certificate:
-          type: boolean
-          example: true
-        use_cookie:
-          type: boolean
-          example: true
-        use_param:
-          type: boolean
-          example: true
-        validate_signature:
-          type: boolean
-          example: true
-      type: object
-    RoutingTriggerOptions:
-      properties:
-        header_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-          example: example_value
-        path_part_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-          example: example_value
-        payload_matches:
-          $ref: '#/components/schemas/StringRegexMap'
-        query_val_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-          example: example_value
-        request_context_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-          example: example_value
-        session_meta_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-          example: example_value
-      type: object
-    TemplateMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        template_data:
-          $ref: '#/components/schemas/TemplateData'
-      type: object
-    EndPointMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        ignore_case:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        method_actions:
-          additionalProperties:
-            $ref: '#/components/schemas/EndpointMethodMeta'
-          type: object
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    GraphQLEngineDataSource:
-      properties:
-        config:
-          example: example_value
-        internal:
-          type: boolean
-          example: true
-        kind:
-          type: string
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        root_fields:
-          items:
-            $ref: '#/components/schemas/GraphQLTypeFields'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    Introspection:
-      properties:
-        cache:
-          $ref: '#/components/schemas/IntrospectionCache'
-        client_id:
-          type: string
-          example: '500123'
-        client_secret:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          example: true
-        identity_base_field:
-          type: string
-          example: example_value
         url:
           type: string
           example: https://www.example.com
       type: object
-    TraceRequest:
+    ExternalOAuth:
       properties:
-        request:
-          $ref: '#/components/schemas/TraceHttpRequest'
-        spec:
-          $ref: '#/components/schemas/APIDefinition'
-      type: object
-    DatasourceMappingConfiguration:
-      properties:
-        disabled:
+        enabled:
           type: boolean
           example: true
-        path:
-          type: string
-          example: example_value
+        providers:
+          items:
+            $ref: '#/components/schemas/Provider'
+          type:
+          - array
+          - 'null'
+          example: []
       type: object
     CacheOptions:
       properties:
@@ -693,422 +282,6 @@ components:
         enable_upstream_cache_control:
           example: false
           type: boolean
-      type: object
-    SignatureConfig:
-      properties:
-        algorithm:
-          type: string
-          example: example_value
-        allowed_clock_skew:
-          type: integer
-          example: 10
-        error_code:
-          type: integer
-          example: 10
-        error_message:
-          type: string
-          example: example_value
-        header:
-          type: string
-          example: example_value
-        param_name:
-          type: string
-          example: example_value
-        secret:
-          type: string
-          example: example_value
-        use_param:
-          type: boolean
-          example: true
-      type: object
-    Provider:
-      properties:
-        introspection:
-          $ref: '#/components/schemas/Introspection'
-        jwt:
-          $ref: '#/components/schemas/JWTValidation'
-      type: object
-    MockResponseMeta:
-      properties:
-        body:
-          type: string
-          example: example_value
-        code:
-          type: integer
-          example: 10
-        disabled:
-          type: boolean
-          example: true
-        headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        ignore_case:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    ProxyConfig:
-      properties:
-        check_host_against_uptime_tests:
-          type: boolean
-          example: true
-        disable_strip_slash:
-          type: boolean
-          example: true
-        enable_load_balancing:
-          type: boolean
-          example: true
-        listen_path:
-          example: /relative-path-examples/
-          type: string
-        preserve_host_header:
-          type: boolean
-          example: true
-        service_discovery:
-          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
-        strip_listen_path:
-          example: true
-          type: boolean
-        target_list:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        target_url:
-          example: https://httpbin.org/
-          type: string
-        transport:
-          properties:
-            proxy_url:
-              type: string
-            ssl_ciphers:
-              items:
-                type: string
-              type:
-              - array
-              - 'null'
-            ssl_force_common_name_check:
-              type: boolean
-            ssl_insecure_skip_verify:
-              type: boolean
-            ssl_max_version:
-              minimum: 0
-              type: integer
-            ssl_min_version:
-              minimum: 0
-              type: integer
-          type: object
-          example: example_value
-      type: object
-    VersionData:
-      properties:
-        default_version:
-          type: string
-          example: example_value
-        not_versioned:
-          type: boolean
-          example: true
-        versions:
-          additionalProperties:
-            $ref: '#/components/schemas/VersionInfo'
-          type:
-          - object
-          - 'null'
-          example: example_value
-      type: object
-    CacheMeta:
-      properties:
-        cache_key_regex:
-          type: string
-          example: example_value
-        cache_response_codes:
-          items:
-            type: integer
-          type:
-          - array
-          - 'null'
-          example: []
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        timeout:
-          format: int64
-          type: integer
-          example: 10
-      type: object
-    ValidatePathMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        error_response_code:
-          type: integer
-          example: 10
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        schema:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
-        schema_b64:
-          type: string
-          example: example_value
-      type: object
-    ValidateRequestMeta:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        error_response_code:
-          type: integer
-          example: 10
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    GraphQLFieldConfig:
-      properties:
-        disable_default_mapping:
-          type: boolean
-          example: true
-        field_name:
-          type: string
-          example: example_value
-        path:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        type_name:
-          type: string
-          example: example_value
-      type: object
-    TrackEndpointMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    HardTimeoutMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        timeout:
-          type: integer
-          example: 10
-      type: object
-    CircuitBreakerMeta:
-      properties:
-        disable_half_open_state:
-          type: boolean
-          example: true
-        disabled:
-          type: boolean
-          example: true
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        return_to_service_after:
-          type: integer
-          example: 10
-        samples:
-          format: int64
-          type: integer
-          example: 10
-        threshold_percent:
-          type: number
-          example: 42.5
-      type: object
-    GraphQLSupergraphConfig:
-      properties:
-        disable_query_batching:
-          type: boolean
-          example: true
-        global_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        merged_sdl:
-          type: string
-          example: example_value
-        subgraphs:
-          items:
-            $ref: '#/components/schemas/GraphQLSubgraphEntity'
-          type:
-          - array
-          - 'null'
-          example: []
-        updated_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-          example: '2026-01-15T10:30:00Z'
-      type: object
-    MiddlewareSection:
-      properties:
-        auth_check:
-          $ref: '#/components/schemas/MiddlewareDefinition'
-        driver:
-          type: string
-          example: example_value
-        id_extractor:
-          $ref: '#/components/schemas/MiddlewareIdExtractor'
-        post:
-          items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
-          type:
-          - array
-          - 'null'
-          example: []
-        post_key_auth:
-          items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
-          type:
-          - array
-          - 'null'
-          example: []
-        pre:
-          items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
-          type:
-          - array
-          - 'null'
-          example: []
-        response:
-          items:
-            $ref: '#/components/schemas/MiddlewareDefinition'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    DatasourceTypeFieldConfiguration:
-      properties:
-        data_source:
-          $ref: '#/components/schemas/DatasourceSourceConfig'
-        field_name:
-          type: string
-          example: example_value
-        mapping:
-          $ref: '#/components/schemas/DatasourceMappingConfiguration'
-        type_name:
-          type: string
-          example: example_value
-      type: object
-    GraphQLSubgraphEntity:
-      properties:
-        api_id:
-          type: string
-          example: '500123'
-        headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        sdl:
-          type: string
-          example: example_value
-        subscription_type:
-          type: string
-          example: example_value
-        url:
-          type: string
-          example: https://www.example.com
-      type: object
-    URLRewriteMeta:
-      properties:
-        disabled:
-          type: boolean
-          example: true
-        match_pattern:
-          type: string
-          example: example_value
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        rewrite_to:
-          type: string
-          example: example_value
-        triggers:
-          items:
-            $ref: '#/components/schemas/RoutingTrigger'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    GraphQLResponseExtensions:
-      properties:
-        on_error_forwarding:
-          type: boolean
-          example: true
-      type: object
-    UptimeTestsConfig:
-      properties:
-        expire_utime_after:
-          type: integer
-          example: 10
-        recheck_wait:
-          type: integer
-          example: 10
-        service_discovery:
-          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
       type: object
     VersionDefinition:
       properties:
@@ -1147,178 +320,138 @@ components:
           - 'null'
           example: example_value
       type: object
-    ApiStatusMessage:
+    GraphQLResponseExtensions:
       properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    AuthProviderMeta:
-      properties:
-        meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        storage_engine:
-          type: string
-          example: example_value
-      type: object
-    MiddlewareIdExtractor:
-      properties:
-        disabled:
+        on_error_forwarding:
           type: boolean
           example: true
-        extract_from:
-          type: string
-          example: example_value
-        extract_with:
-          type: string
-          example: example_value
-        extractor_config:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
       type: object
-    TransformJQMeta:
+    JWTValidation:
       properties:
-        filter:
-          type: string
-          example: example_value
-        method:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    NotificationsManager:
-      properties:
-        oauth_on_keychange_url:
-          type: string
-          example: https://www.example.com
-        shared_secret:
-          type: string
-          example: example_value
-      type: object
-    TraceHttpRequest:
-      properties:
-        body:
-          type: string
-          example: example_value
-        headers:
-          $ref: '#/components/schemas/HttpHeader'
-        method:
-          example: GET
-          type: string
-        path:
-          example: /keyless-test/
-          type: string
-      type: object
-    VersionInfo:
-      properties:
-        expires:
-          type: string
-          example: example_value
-        extended_paths:
-          $ref: '#/components/schemas/ExtendedPathsSet'
-        global_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        global_headers_disabled:
+        enabled:
           type: boolean
           example: true
-        global_headers_remove:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        global_response_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        global_response_headers_disabled:
-          type: boolean
-          example: true
-        global_response_headers_remove:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        global_size_limit:
-          format: int64
+        expires_at_validation_skew:
+          minimum: 0
           type: integer
           example: 10
-        ignore_endpoint_case:
+        identity_base_field:
+          type: string
+          example: example_value
+        issued_at_validation_skew:
+          minimum: 0
+          type: integer
+          example: 10
+        not_before_validation_skew:
+          minimum: 0
+          type: integer
+          example: 10
+        signing_method:
+          type: string
+          example: example_value
+        source:
+          type: string
+          example: example_value
+      type: object
+    UDGGlobalHeader:
+      properties:
+        key:
+          type: string
+          example: example_value
+        value:
+          type: string
+          example: example_value
+      type: object
+    AuthConfig:
+      properties:
+        auth_header_name:
+          example: Authorization
+          type: string
+        cookie_name:
+          type: string
+          example: example_value
+        disable_header:
           type: boolean
           example: true
         name:
           type: string
           example: Example Title
-        override_target:
+        param_name:
           type: string
           example: example_value
-        paths:
-          properties:
-            black_list:
-              items:
-                type: string
-              type:
-              - array
-              - 'null'
-            ignored:
-              items:
-                type: string
-              type:
-              - array
-              - 'null'
-            white_list:
-              items:
-                type: string
-              type:
-              - array
-              - 'null'
-          type: object
-          example: example_value
-        use_extended_paths:
-          example: true
+        signature:
+          $ref: '#/components/schemas/SignatureConfig'
+        use_certificate:
           type: boolean
+          example: true
+        use_cookie:
+          type: boolean
+          example: true
+        use_param:
+          type: boolean
+          example: true
+        validate_signature:
+          type: boolean
+          example: true
       type: object
-    GoPluginMeta:
+    HeaderInjectionMeta:
       properties:
+        act_on:
+          type: boolean
+          example: true
+        add_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        delete_headers:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
         disabled:
           type: boolean
           example: true
-        func_name:
-          type: string
-          example: example_value
         method:
           type: string
           example: example_value
         path:
           type: string
           example: example_value
-        plugin_path:
+      type: object
+    InternalMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+      type: object
+    EndPointMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        ignore_case:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        method_actions:
+          additionalProperties:
+            $ref: '#/components/schemas/EndpointMethodMeta'
+          type: object
+          example: example_value
+        path:
           type: string
           example: example_value
       type: object
@@ -1671,6 +804,157 @@ components:
         version_data:
           $ref: '#/components/schemas/VersionData'
       type: object
+    RequestHeadersRewriteConfig:
+      properties:
+        remove:
+          type: boolean
+          example: true
+        value:
+          type: string
+          example: example_value
+      type: object
+    TraceHttpRequest:
+      properties:
+        body:
+          type: string
+          example: example_value
+        headers:
+          $ref: '#/components/schemas/HttpHeader'
+        method:
+          example: GET
+          type: string
+        path:
+          example: /keyless-test/
+          type: string
+      type: object
+    GlobalRateLimit:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+      type: object
+    CircuitBreakerMeta:
+      properties:
+        disable_half_open_state:
+          type: boolean
+          example: true
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        return_to_service_after:
+          type: integer
+          example: 10
+        samples:
+          format: int64
+          type: integer
+          example: 10
+        threshold_percent:
+          type: number
+          example: 42.5
+      type: object
+    VirtualMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        function_source_type:
+          enum:
+          - blob
+          - file
+          type: string
+          example: blob
+        function_source_uri:
+          type: string
+          example: example_value
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        proxy_on_error:
+          type: boolean
+          example: true
+        response_function_name:
+          type: string
+          example: example_value
+        use_session:
+          type: boolean
+          example: true
+      type: object
+    TraceRequest:
+      properties:
+        request:
+          $ref: '#/components/schemas/TraceHttpRequest'
+        spec:
+          $ref: '#/components/schemas/APIDefinition'
+      type: object
+    ServiceDiscoveryConfiguration:
+      properties:
+        cache_disabled:
+          type: boolean
+          example: true
+        cache_timeout:
+          type: integer
+          example: 10
+        data_path:
+          type: string
+          example: example_value
+        endpoint_returns_list:
+          type: boolean
+          example: true
+        parent_data_path:
+          type: string
+          example: example_value
+        port_data_path:
+          type: string
+          example: example_value
+        query_endpoint:
+          type: string
+          example: example_value
+        target_path:
+          type: string
+          example: example_value
+        use_discovery_service:
+          type: boolean
+          example: true
+        use_nested_query:
+          type: boolean
+          example: true
+        use_target_list:
+          type: boolean
+          example: true
+      type: object
+    TrackEndpointMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+      type: object
+    GraphQLProxyFeaturesConfig:
+      properties:
+        use_immutable_headers:
+          type: boolean
+          example: true
+      type: object
     ExtendedPathsSet:
       properties:
         advance_cache_config:
@@ -1808,36 +1092,208 @@ components:
           type: array
           example: []
       type: object
-    MiddlewareDefinition:
+    ApiStatusMessage:
       properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    MockResponseMeta:
+      properties:
+        body:
+          type: string
+          example: example_value
+        code:
+          type: integer
+          example: 10
         disabled:
           type: boolean
           example: true
-        name:
-          example: PreMiddlewareFunction
+        headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        ignore_case:
+          type: boolean
+          example: true
+        method:
           type: string
+          example: example_value
         path:
           type: string
           example: example_value
-        raw_body_only:
-          example: false
-          type: boolean
-        require_session:
-          example: false
-          type: boolean
       type: object
-    VirtualMeta:
+    MiddlewareSection:
+      properties:
+        auth_check:
+          $ref: '#/components/schemas/MiddlewareDefinition'
+        driver:
+          type: string
+          example: example_value
+        id_extractor:
+          $ref: '#/components/schemas/MiddlewareIdExtractor'
+        post:
+          items:
+            $ref: '#/components/schemas/MiddlewareDefinition'
+          type:
+          - array
+          - 'null'
+          example: []
+        post_key_auth:
+          items:
+            $ref: '#/components/schemas/MiddlewareDefinition'
+          type:
+          - array
+          - 'null'
+          example: []
+        pre:
+          items:
+            $ref: '#/components/schemas/MiddlewareDefinition'
+          type:
+          - array
+          - 'null'
+          example: []
+        response:
+          items:
+            $ref: '#/components/schemas/MiddlewareDefinition'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    TemplateMeta:
       properties:
         disabled:
           type: boolean
           example: true
-        function_source_type:
-          enum:
-          - blob
-          - file
+        method:
           type: string
-          example: blob
-        function_source_uri:
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        template_data:
+          $ref: '#/components/schemas/TemplateData'
+      type: object
+    GraphQLFieldConfig:
+      properties:
+        disable_default_mapping:
+          type: boolean
+          example: true
+        field_name:
+          type: string
+          example: example_value
+        path:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    GraphQLSupergraphConfig:
+      properties:
+        disable_query_batching:
+          type: boolean
+          example: true
+        global_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        merged_sdl:
+          type: string
+          example: example_value
+        subgraphs:
+          items:
+            $ref: '#/components/schemas/GraphQLSubgraphEntity'
+          type:
+          - array
+          - 'null'
+          example: []
+        updated_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          example: '2026-01-15T10:30:00Z'
+      type: object
+    ValidateRequestMeta:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        error_response_code:
+          type: integer
+          example: 10
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+      type: object
+    CacheMeta:
+      properties:
+        cache_key_regex:
+          type: string
+          example: example_value
+        cache_response_codes:
+          items:
+            type: integer
+          type:
+          - array
+          - 'null'
+          example: []
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        timeout:
+          format: int64
+          type: integer
+          example: 10
+      type: object
+    GraphQLEngineDataSource:
+      properties:
+        config:
+          example: example_value
+        internal:
+          type: boolean
+          example: true
+        kind:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        root_fields:
+          items:
+            $ref: '#/components/schemas/GraphQLTypeFields'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    TransformJQMeta:
+      properties:
+        filter:
           type: string
           example: example_value
         method:
@@ -1846,59 +1302,58 @@ components:
         path:
           type: string
           example: example_value
-        proxy_on_error:
-          type: boolean
-          example: true
-        response_function_name:
+      type: object
+    NotificationsManager:
+      properties:
+        oauth_on_keychange_url:
+          type: string
+          example: https://www.example.com
+        shared_secret:
           type: string
           example: example_value
-        use_session:
-          type: boolean
-          example: true
       type: object
-    ServiceDiscoveryConfiguration:
+    GraphQLSubgraphEntity:
       properties:
-        cache_disabled:
-          type: boolean
-          example: true
-        cache_timeout:
+        api_id:
+          type: string
+          example: '500123'
+        headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        sdl:
+          type: string
+          example: example_value
+        subscription_type:
+          type: string
+          example: example_value
+        url:
+          type: string
+          example: https://www.example.com
+      type: object
+    EndpointMethodMeta:
+      properties:
+        action:
+          enum:
+          - no_action
+          - reply
+          type: string
+          example: no_action
+        code:
           type: integer
           example: 10
-        data_path:
+        data:
           type: string
           example: example_value
-        endpoint_returns_list:
-          type: boolean
-          example: true
-        parent_data_path:
-          type: string
-          example: example_value
-        port_data_path:
-          type: string
-          example: example_value
-        query_endpoint:
-          type: string
-          example: example_value
-        target_path:
-          type: string
-          example: example_value
-        use_discovery_service:
-          type: boolean
-          example: true
-        use_nested_query:
-          type: boolean
-          example: true
-        use_target_list:
-          type: boolean
-          example: true
-      type: object
-    EventHandlerMetaConfig:
-      properties:
-        events:
+        headers:
           additionalProperties:
-            items:
-              $ref: '#/components/schemas/EventHandlerTriggerConfig'
-            type: array
+            type: string
           type:
           - object
           - 'null'
@@ -1913,22 +1368,7 @@ components:
           type: string
           example: example_value
       type: object
-    HttpHeader:
-      additionalProperties:
-        items:
-          type: string
-        type: array
-      type: object
-    RequestHeadersRewriteConfig:
-      properties:
-        remove:
-          type: boolean
-          example: true
-        value:
-          type: string
-          example: example_value
-      type: object
-    MethodTransformMeta:
+    RequestSizeMeta:
       properties:
         disabled:
           type: boolean
@@ -1939,155 +1379,63 @@ components:
         path:
           type: string
           example: example_value
-        to_method:
-          type: string
-          example: example_value
-      type: object
-    StringRegexMap:
-      properties:
-        match_rx:
-          type: string
-          example: example_value
-        reverse:
-          type: boolean
-          example: true
-      type: object
-    IntrospectionCache:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        timeout:
+        size_limit:
           format: int64
           type: integer
           example: 10
       type: object
-    RequestSigningMeta:
+    TraceResponse:
       properties:
-        algorithm:
+        logs:
+          example: '{"level":"warning","msg":"Legacy path detected! Upgrade to extended....'
           type: string
-          example: example_value
-        certificate_id:
+        message:
+          example: ok
           type: string
-          example: '500123'
-        header_list:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        is_enabled:
-          type: boolean
-          example: true
-        key_id:
+        response:
+          example: '====== Request ======
+
+            GET / HTTP/1.1
+
+            Host: httpbin.org
+
+
+
+            ====== Response...'
           type: string
-          example: '500123'
-        secret:
-          type: string
-          example: example_value
-        signature_header:
-          type: string
-          example: example_value
       type: object
-    PersistGraphQLMeta:
+    GoPluginMeta:
       properties:
-        method:
-          type: string
-          example: example_value
-        operation:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-        variables:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
-      type: object
-    AnalyticsPluginConfig:
-      properties:
-        enable:
+        disabled:
           type: boolean
           example: true
         func_name:
+          type: string
+          example: example_value
+        method:
+          type: string
+          example: example_value
+        path:
           type: string
           example: example_value
         plugin_path:
           type: string
           example: example_value
       type: object
-    GraphQLProxyFeaturesConfig:
+    DatasourceMappingConfiguration:
       properties:
-        use_immutable_headers:
+        disabled:
           type: boolean
           example: true
-      type: object
-    GraphQLTypeFields:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        type:
+        path:
           type: string
           example: example_value
       type: object
-    SessionProviderMeta:
+    GraphQLIntrospectionConfig:
       properties:
-        meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        storage_engine:
-          type: string
-          example: example_value
-      type: object
-    HostCheckObject:
-      properties:
-        body:
-          type: string
-          example: example_value
-        commands:
-          items:
-            $ref: '#/components/schemas/CheckCommand'
-          type:
-          - array
-          - 'null'
-          example: []
-        enable_proxy_protocol:
+        disabled:
           type: boolean
           example: true
-        headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-          example: example_value
-        method:
-          type: string
-          example: example_value
-        protocol:
-          type: string
-          example: example_value
-        timeout:
-          type: integer
-          example: 10
-        url:
-          type: string
-          example: https://www.example.com
       type: object
     GraphQLProxyConfig:
       properties:
@@ -2120,27 +1468,6 @@ components:
         use_response_extensions:
           $ref: '#/components/schemas/GraphQLResponseExtensions'
       type: object
-    UDGGlobalHeader:
-      properties:
-        key:
-          type: string
-          example: example_value
-        value:
-          type: string
-          example: example_value
-      type: object
-    UptimeTests:
-      properties:
-        check_list:
-          items:
-            $ref: '#/components/schemas/HostCheckObject'
-          type:
-          - array
-          - 'null'
-          example: []
-        config:
-          $ref: '#/components/schemas/UptimeTestsConfig'
-      type: object
     OIDProviderConfig:
       properties:
         client_ids:
@@ -2153,51 +1480,6 @@ components:
         issuer:
           type: string
           example: example_value
-      type: object
-    TraceResponse:
-      properties:
-        logs:
-          example: '{"level":"warning","msg":"Legacy path detected! Upgrade to extended....'
-          type: string
-        message:
-          example: ok
-          type: string
-        response:
-          example: '====== Request ======
-
-            GET / HTTP/1.1
-
-            Host: httpbin.org
-
-
-
-            ====== Response...'
-          type: string
-      type: object
-    EventHandlerTriggerConfig:
-      properties:
-        handler_meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
-        handler_name:
-          type: string
-          example: example_value
-      type: object
-    ExternalOAuth:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        providers:
-          items:
-            $ref: '#/components/schemas/Provider'
-          type:
-          - array
-          - 'null'
-          example: []
       type: object
     RateLimitMeta:
       properties:
@@ -2217,6 +1499,151 @@ components:
           type: number
           example: 42.5
       type: object
+    Provider:
+      properties:
+        introspection:
+          $ref: '#/components/schemas/Introspection'
+        jwt:
+          $ref: '#/components/schemas/JWTValidation'
+      type: object
+    PersistGraphQLMeta:
+      properties:
+        method:
+          type: string
+          example: example_value
+        operation:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        variables:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
+    UptimeTestsConfig:
+      properties:
+        expire_utime_after:
+          type: integer
+          example: 10
+        recheck_wait:
+          type: integer
+          example: 10
+        service_discovery:
+          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+      type: object
+    AuthProviderMeta:
+      properties:
+        meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        storage_engine:
+          type: string
+          example: example_value
+      type: object
+    MiddlewareDefinition:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        name:
+          example: PreMiddlewareFunction
+          type: string
+        path:
+          type: string
+          example: example_value
+        raw_body_only:
+          example: false
+          type: boolean
+        require_session:
+          example: false
+          type: boolean
+      type: object
+    ValidatePathMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        error_response_code:
+          type: integer
+          example: 10
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        schema:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+        schema_b64:
+          type: string
+          example: example_value
+      type: object
+    UptimeTests:
+      properties:
+        check_list:
+          items:
+            $ref: '#/components/schemas/HostCheckObject'
+          type:
+          - array
+          - 'null'
+          example: []
+        config:
+          $ref: '#/components/schemas/UptimeTestsConfig'
+      type: object
+    RoutingTriggerOptions:
+      properties:
+        header_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        path_part_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        payload_matches:
+          $ref: '#/components/schemas/StringRegexMap'
+        query_val_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        request_context_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+          example: example_value
+        session_meta_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
     CheckCommand:
       properties:
         message:
@@ -2225,6 +1652,277 @@ components:
         name:
           type: string
           example: Example Title
+      type: object
+    EventHandlerTriggerConfig:
+      properties:
+        handler_meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+        handler_name:
+          type: string
+          example: example_value
+      type: object
+    GraphQLTypeFields:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        type:
+          type: string
+          example: example_value
+      type: object
+    SessionProviderMeta:
+      properties:
+        meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        storage_engine:
+          type: string
+          example: example_value
+      type: object
+    RoutingTrigger:
+      properties:
+        'on':
+          enum:
+          - all
+          - any
+          type: string
+          example: all
+        options:
+          $ref: '#/components/schemas/RoutingTriggerOptions'
+        rewrite_to:
+          type: string
+          example: example_value
+      type: object
+    StringRegexMap:
+      properties:
+        match_rx:
+          type: string
+          example: example_value
+        reverse:
+          type: boolean
+          example: true
+      type: object
+    IntrospectionCache:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          format: int64
+          type: integer
+          example: 10
+      type: object
+    ProxyConfig:
+      properties:
+        check_host_against_uptime_tests:
+          type: boolean
+          example: true
+        disable_strip_slash:
+          type: boolean
+          example: true
+        enable_load_balancing:
+          type: boolean
+          example: true
+        listen_path:
+          example: /relative-path-examples/
+          type: string
+        preserve_host_header:
+          type: boolean
+          example: true
+        service_discovery:
+          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+        strip_listen_path:
+          example: true
+          type: boolean
+        target_list:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        target_url:
+          example: https://httpbin.org/
+          type: string
+        transport:
+          properties:
+            proxy_url:
+              type: string
+            ssl_ciphers:
+              items:
+                type: string
+              type:
+              - array
+              - 'null'
+            ssl_force_common_name_check:
+              type: boolean
+            ssl_insecure_skip_verify:
+              type: boolean
+            ssl_max_version:
+              minimum: 0
+              type: integer
+            ssl_min_version:
+              minimum: 0
+              type: integer
+          type: object
+          example: example_value
+      type: object
+    VersionData:
+      properties:
+        default_version:
+          type: string
+          example: example_value
+        not_versioned:
+          type: boolean
+          example: true
+        versions:
+          additionalProperties:
+            $ref: '#/components/schemas/VersionInfo'
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
+    OpenIDOptions:
+      properties:
+        providers:
+          items:
+            $ref: '#/components/schemas/OIDProviderConfig'
+          type:
+          - array
+          - 'null'
+          example: []
+        segregate_by_client:
+          type: boolean
+          example: true
+      type: object
+    DatasourceTypeFieldConfiguration:
+      properties:
+        data_source:
+          $ref: '#/components/schemas/DatasourceSourceConfig'
+        field_name:
+          type: string
+          example: example_value
+        mapping:
+          $ref: '#/components/schemas/DatasourceMappingConfiguration'
+        type_name:
+          type: string
+          example: example_value
+      type: object
+    SignatureConfig:
+      properties:
+        algorithm:
+          type: string
+          example: example_value
+        allowed_clock_skew:
+          type: integer
+          example: 10
+        error_code:
+          type: integer
+          example: 10
+        error_message:
+          type: string
+          example: example_value
+        header:
+          type: string
+          example: example_value
+        param_name:
+          type: string
+          example: example_value
+        secret:
+          type: string
+          example: example_value
+        use_param:
+          type: boolean
+          example: true
+      type: object
+    TemplateData:
+      properties:
+        enable_session:
+          type: boolean
+          example: true
+        input_type:
+          enum:
+          - json
+          - xml
+          type: string
+          example: json
+        template_mode:
+          enum:
+          - blob
+          - file
+          type: string
+          example: blob
+        template_source:
+          type: string
+          example: example_value
+      type: object
+    DatasourceSourceConfig:
+      properties:
+        data_source_config:
+          example: example_value
+        kind:
+          type: string
+          example: example_value
+      type: object
+    MethodTransformMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        to_method:
+          type: string
+          example: example_value
+      type: object
+    Scopes:
+      properties:
+        jwt:
+          $ref: '#/components/schemas/ScopeClaim'
+        oidc:
+          $ref: '#/components/schemas/ScopeClaim'
+      type: object
+    ResponseProcessor:
+      properties:
+        name:
+          type: string
+          example: Example Title
+        options:
+          example: example_value
+      type: object
+    HardTimeoutMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        timeout:
+          type: integer
+          example: 10
       type: object
     ScopeClaim:
       properties:
@@ -2236,6 +1934,306 @@ components:
             type: string
           type: object
           example: example_value
+      type: object
+    HttpHeader:
+      additionalProperties:
+        items:
+          type: string
+        type: array
+      type: object
+    RequestSigningMeta:
+      properties:
+        algorithm:
+          type: string
+          example: example_value
+        certificate_id:
+          type: string
+          example: '500123'
+        header_list:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        is_enabled:
+          type: boolean
+          example: true
+        key_id:
+          type: string
+          example: '500123'
+        secret:
+          type: string
+          example: example_value
+        signature_header:
+          type: string
+          example: example_value
+      type: object
+    GraphQLSubgraphConfig:
+      properties:
+        sdl:
+          type: string
+          example: example_value
+      type: object
+    Introspection:
+      properties:
+        cache:
+          $ref: '#/components/schemas/IntrospectionCache'
+        client_id:
+          type: string
+          example: '500123'
+        client_secret:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        identity_base_field:
+          type: string
+          example: example_value
+        url:
+          type: string
+          example: https://www.example.com
+      type: object
+    VersionInfo:
+      properties:
+        expires:
+          type: string
+          example: example_value
+        extended_paths:
+          $ref: '#/components/schemas/ExtendedPathsSet'
+        global_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        global_headers_disabled:
+          type: boolean
+          example: true
+        global_headers_remove:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        global_response_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+          example: example_value
+        global_response_headers_disabled:
+          type: boolean
+          example: true
+        global_response_headers_remove:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        global_size_limit:
+          format: int64
+          type: integer
+          example: 10
+        ignore_endpoint_case:
+          type: boolean
+          example: true
+        name:
+          type: string
+          example: Example Title
+        override_target:
+          type: string
+          example: example_value
+        paths:
+          properties:
+            black_list:
+              items:
+                type: string
+              type:
+              - array
+              - 'null'
+            ignored:
+              items:
+                type: string
+              type:
+              - array
+              - 'null'
+            white_list:
+              items:
+                type: string
+              type:
+              - array
+              - 'null'
+          type: object
+          example: example_value
+        use_extended_paths:
+          example: true
+          type: boolean
+      type: object
+    URLRewriteMeta:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        match_pattern:
+          type: string
+          example: example_value
+        method:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+        rewrite_to:
+          type: string
+          example: example_value
+        triggers:
+          items:
+            $ref: '#/components/schemas/RoutingTrigger'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    GraphQLConfig:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        engine:
+          $ref: '#/components/schemas/GraphQLEngineConfig'
+        execution_mode:
+          enum:
+          - proxyOnly
+          - executionEngine
+          - subgraph
+          - supergraph
+          type: string
+          example: proxyOnly
+        introspection:
+          $ref: '#/components/schemas/GraphQLIntrospectionConfig'
+        last_schema_update:
+          format: date-time
+          type:
+          - string
+          - 'null'
+          example: '2026-01-15T10:30:00Z'
+        playground:
+          $ref: '#/components/schemas/GraphQLPlayground'
+        proxy:
+          $ref: '#/components/schemas/GraphQLProxyConfig'
+        schema:
+          type: string
+          example: example_value
+        subgraph:
+          $ref: '#/components/schemas/GraphQLSubgraphConfig'
+        supergraph:
+          $ref: '#/components/schemas/GraphQLSupergraphConfig'
+        type_field_configurations:
+          items:
+            $ref: '#/components/schemas/DatasourceTypeFieldConfiguration'
+          type:
+          - array
+          - 'null'
+          example: []
+        version:
+          enum:
+          - ''''
+          - '1'
+          - '2'
+          type: string
+          example: ''''
+      type: object
+    MiddlewareIdExtractor:
+      properties:
+        disabled:
+          type: boolean
+          example: true
+        extract_from:
+          type: string
+          example: example_value
+        extract_with:
+          type: string
+          example: example_value
+        extractor_config:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
+    AnalyticsPluginConfig:
+      properties:
+        enable:
+          type: boolean
+          example: true
+        func_name:
+          type: string
+          example: example_value
+        plugin_path:
+          type: string
+          example: example_value
+      type: object
+    CORSConfig:
+      properties:
+        allow_credentials:
+          example: false
+          type: boolean
+        allowed_headers:
+          example:
+          - Origin
+          - Accept
+          - Content-Type
+          - Authorization
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        allowed_methods:
+          example:
+          - GET
+          - HEAD
+          - POST
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        allowed_origins:
+          example:
+          - https://*.foo.com
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        debug:
+          example: true
+          type: boolean
+        enable:
+          example: false
+          type: boolean
+        exposed_headers:
+          example:
+          - Accept
+          - Content-Type
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        max_age:
+          example: 24
+          type: integer
+        options_passthrough:
+          example: false
+          type: boolean
       type: object
   securitySchemes:
     api_key:

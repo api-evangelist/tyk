@@ -13,7 +13,7 @@ info:
 
     ```
 
-    admin-auth: <your-secret>
+    admin-auth:
 
     ```'
 servers:

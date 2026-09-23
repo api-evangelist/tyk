@@ -4,53 +4,10 @@ info:
     email: support@tyk.io
     name: Tyk Technologies
     url: https://tyk.io/contact
-  description: '
-
-    ## <a name="introduction"></a> Introduction
+  description: '## Introduction
 
 
-    The Tyk Dashboard API offers granular, programmatic access to a centralised database of resources that your Tyk nodes can pull from. This API has a dynamic user administrative structure which means the secret key that is used to communicate with your Tyk nodes can be kept secret and access to the wider management functions can be handled on a user-by-user and organisation-by-organisation basis.
-
-
-    A common question around using a database-backed configuration is how to programmatically add API definitions to your Tyk nodes, the Dashboard API allows much more fine-grained, secure and multi-user access to your Tyk cluster, and should be used to manage a database-backed Tyk node.
-
-
-    The Tyk Dashboard API works seamlessly with the Tyk Dashboard (and the two come bundled together).
-
-
-    ## <a name="security-hierarchy"></a> Security Hierarchy
-
-
-    The Dashboard API provides a more structured security layer to managing Tyk nodes.
-
-
-    ### Organisations, APIs and Users
-
-
-    With the Dashboard API and a database-backed Tyk setup, (and to an extent with file-based API setups - if diligence is used in naming and creating definitions), the following security model is applied to the management of Upstream APIs:
-
-
-    * **Organisations**: All APIs are *owned* by an organisation, this is designated by the ''OrgID'' parameter in the API Definition.
-
-    * **Users**: All users created in the Dashboard belong to an organisation (unless an exception is made for super-administrative access).
-
-    * **APIs**: All APIs belong to an Organisation and only Users that belong to that organisation can see the analytics for those APIs and manage their configurations.
-
-    * **API Keys**: API Keys are designated by organisation, this means an API key that has full access rights will not be allowed to access the APIs of another organisation on the same system, but can have full access to all APIs within the organisation.
-
-    * **Access Rights**: Access rights are stored with the key, this enables a key to give access to multiple APIs, this is defined by the session object in the core Tyk API.
-
-
-    In order to use the Dashboard API, you''ll need to get the ''Tyk Dashboard API Access Credentials'' secret from your user profile on the Dashboard UI.
-
-
-    The secret you set should then be sent along as a header with each Dashboard API Request in order for it to be successful:
-
-
-
-    authorization: <your-secret>
-
-    '
+    The Tyk Dashboard API offers granular, programmatic access to a centralised database of resources that your Tyk nodes can pull from.'
   license:
     name: Mozilla Public License Version 2.0
     url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
@@ -70,7 +27,7 @@ tags:
 paths:
   /api/certs:
     get:
-      description: Return list of certificates. If you send the mode query parameter with the value `detailed` the certificates returned will have more information (Will contains all certs basic details). To retrieve a list with complete certificate details use [this endpoint](#operation/listDetailedCertificates). If the mode query parameter is omitted or is empty this endpoint will only return the certificates IDs. The list of certificates returned is paginated.
+      description: Return list of certificates. If you send the mode query parameter with the value `detailed` the certificates returned will have more information (Will contains all certs basic details). To retrieve a list with complete certificate details use this endpoint. If the mode query parameter is omitted or is empty this endpoint will only return the certificates IDs. The list of certificates returned is paginated.
       operationId: listCertificates
       parameters:
       - description: Use p query parameter to say which page you want returned. Send number less than 0 to return all items.
@@ -169,7 +126,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List Certificates.
+      summary: List Certificates
       tags:
       - Certificates
     post:
@@ -232,7 +189,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Sending data without the certs file.
-      summary: Create a certificate in Tyk org cert store.
+      summary: Create a certificate in Tyk org cert store
       tags:
       - Certificates
   /api/certs/{certId}:
@@ -297,7 +254,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Failed to delete certs.
-      summary: Delete Certificate.
+      summary: Delete Certificate
       tags:
       - Certificates
     get:
@@ -483,7 +440,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Failed to fetch certs.
-      summary: Get single certificate with ID.
+      summary: Get single certificate with ID
       tags:
       - Certificates
   /api/certs/dependencies/{certId}:
@@ -529,7 +486,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Forbidden
-      summary: Delete Certificate dependencies.
+      summary: Delete Certificate dependencies
       tags:
       - Certificates
     get:
@@ -581,7 +538,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Forbidden
-      summary: Get Certificate Dependencies.
+      summary: Get Certificate Dependencies
       tags:
       - Certificates
   /api/certs/details:
@@ -770,86 +727,11 @@ paths:
               schema:
                 $ref: '#/components/schemas/ApiResponse'
           description: Internal server error.
-      summary: List all certificates details.
+      summary: List all certificates details
       tags:
       - Certificates
 components:
   schemas:
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
-    CertsCertificateBasics:
-      properties:
-        dns_names:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        has_private:
-          type: boolean
-        id:
-          type: string
-        is_ca:
-          type: boolean
-        issuer_cn:
-          type: string
-        not_after:
-          format: date-time
-          type: string
-        not_before:
-          format: date-time
-          type: string
-        subject_cn:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/certs
-    MultipartFile:
-      format: binary
-      type:
-      - string
-      - 'null'
-    FormDataFile:
-      properties:
-        file:
-          $ref: '#/components/schemas/MultipartFile'
-      required:
-      - file
-      type: object
-    CertificateDetailedList:
-      properties:
-        certificates:
-          items:
-            $ref: '#/components/schemas/CertsCertificateMeta'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    CertificateList:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    PkixName:
-      type: object
     CertificateDependencies:
       properties:
         certID:
@@ -891,24 +773,35 @@ components:
           - array
           - 'null'
       type: object
-    ApiResponse:
+    CertificateBasics:
       properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
+        cert_basics:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
       type: object
-    ApiStatusMessage:
+    FormDataFile:
       properties:
-        message:
-          type: string
-        status:
-          type: string
+        file:
+          $ref: '#/components/schemas/MultipartFile'
+      required:
+      - file
       type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
+    CertificateDetailedList:
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertsCertificateMeta'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
     CertsCertificateMeta:
       properties:
         dns_names:
@@ -935,16 +828,80 @@ components:
           $ref: '#/components/schemas/PkixName'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
-    CertificateBasics:
+    MultipartFile:
+      format: binary
+      type:
+      - string
+      - 'null'
+    APICertificateStatusMessage:
       properties:
-        cert_basics:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    PkixName:
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    CertificateList:
+      properties:
+        certs:
           items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
+            type: string
           type:
           - array
           - 'null'
         pages:
           type: integer
+      type: object
+    CertsCertificateBasics:
+      properties:
+        dns_names:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        has_private:
+          type: boolean
+        id:
+          type: string
+        is_ca:
+          type: boolean
+        issuer_cn:
+          type: string
+        not_after:
+          format: date-time
+          type: string
+        not_before:
+          format: date-time
+          type: string
+        subject_cn:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/certs
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
       type: object
   securitySchemes:
     bearerAuth:

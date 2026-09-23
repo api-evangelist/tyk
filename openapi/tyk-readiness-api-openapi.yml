@@ -6,9 +6,7 @@ info:
     url: https://tyk.io/contact
   version: 1.0.0
   title: Tyk MDCB Data Planes and Diagnostics Readiness API
-  description: 'This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data.  It includes endpoints for retrieving connected data plane details, performing health checks,  and accessing Go''s built-in pprof diagnostics for advanced performance profiling.
-
-    '
+  description: This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data. It includes endpoints for retrieving connected data plane details, performing health checks, and accessing Go's built-in pprof diagnostics for advanced performance profiling.
 servers:
 - url: https://{tenant}
   variables:
@@ -23,9 +21,7 @@ paths:
   /readiness:
     get:
       summary: Tyk Check System Readiness Status
-      description: 'Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.
-
-        '
+      description: Assesses the readiness of the system and its critical components. This endpoint determines if the system is prepared to handle requests by evaluating the status of essential services and dependencies.
       operationId: readinessGet
       responses:
         '200':
@@ -51,32 +47,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ComponentReadiness:
-      type: object
-      properties:
-        name:
-          type: string
-          example: postgres
-        status:
-          type: string
-          example: pass
-        observation_ts:
-          type: string
-          format: date-time
-          example: '2024-07-29T13:58:56.699052-04:00'
-    ComponentReadinessFailure:
-      type: object
-      properties:
-        name:
-          type: string
-          example: postgres
-        status:
-          type: string
-          example: fail
-        observation_ts:
-          type: string
-          format: date-time
-          example: '2024-07-29T13:58:56.699052-04:00'
     ReadinessFailure:
       type: object
       properties:
@@ -91,6 +61,19 @@ components:
           items:
             $ref: '#/components/schemas/ComponentReadinessFailure'
           example: []
+    ComponentReadiness:
+      type: object
+      properties:
+        name:
+          type: string
+          example: postgres
+        status:
+          type: string
+          example: pass
+        observation_ts:
+          type: string
+          format: date-time
+          example: '2024-07-29T13:58:56.699052-04:00'
     ReadinessStatus:
       type: object
       properties:
@@ -105,6 +88,19 @@ components:
           items:
             $ref: '#/components/schemas/ComponentReadiness'
           example: []
+    ComponentReadinessFailure:
+      type: object
+      properties:
+        name:
+          type: string
+          example: postgres
+        status:
+          type: string
+          example: fail
+        observation_ts:
+          type: string
+          format: date-time
+          example: '2024-07-29T13:58:56.699052-04:00'
   securitySchemes:
     api_key:
       in: header

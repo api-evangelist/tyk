@@ -6,9 +6,7 @@ info:
     url: https://tyk.io/contact
   version: 1.0.0
   title: Tyk MDCB Data Planes and Diagnostics Health API
-  description: 'This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data.  It includes endpoints for retrieving connected data plane details, performing health checks,  and accessing Go''s built-in pprof diagnostics for advanced performance profiling.
-
-    '
+  description: This API provides operations for monitoring Data Planes connected to MDCB and accessing diagnostic data. It includes endpoints for retrieving connected data plane details, performing health checks, and accessing Go's built-in pprof diagnostics for advanced performance profiling.
 servers:
 - url: https://{tenant}
   variables:
