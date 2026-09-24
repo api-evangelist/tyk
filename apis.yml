@@ -35,12 +35,13 @@ tags:
 - API Gateway
 - API Management
 - GraphQL
-- Open-Source
+- Open Source
 tags_raw:
 - API Gateway
 - API Management
 - GraphQL
 - Open Source
+- Open-Source
 url: https://raw.githubusercontent.com/api-evangelist/tyk/refs/heads/main/apis.yml
 humanURL: https://tyk.io/
 created: '2026-03-18'
@@ -77,8 +78,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -111,8 +110,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -151,8 +148,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -187,8 +182,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -443,8 +436,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -477,8 +468,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -511,8 +500,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -545,8 +532,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -577,8 +562,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -609,8 +592,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -643,8 +624,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -675,8 +654,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -707,8 +684,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -741,8 +716,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -773,8 +746,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -805,8 +776,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -837,8 +806,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -871,8 +838,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -905,8 +870,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -937,8 +900,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -972,8 +933,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1027,8 +986,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1079,8 +1036,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1111,8 +1066,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1149,8 +1102,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1181,8 +1132,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1213,8 +1162,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1249,8 +1196,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1281,8 +1226,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1313,8 +1256,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1345,8 +1286,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1377,8 +1316,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1413,8 +1350,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1461,8 +1396,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1476,7 +1409,7 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 - aid: tyk:tyk-apis-api
-  name: Tyk AP Is API
+  name: Tyk APIs API
   description: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
   baseURL: https://tyk.io/
@@ -1494,8 +1427,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1528,8 +1459,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1560,8 +1489,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1594,8 +1521,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
@@ -1631,8 +1556,6 @@ apis:
     url: json-ld/tyk-gateway-context.jsonld
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk
-  - type: GraphQL
-    url: graphql/tyk-graphql.md
   - type: Documentation
     url: https://tyk.io/docs/tyk-dashboard-api
   - type: ChangeLog
