@@ -1569,6 +1569,8 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: VendorFacets
+  url: vendor-facets/tyk-vendor-facets.yml
 - type: Website
   url: https://www.tyk.io/
 - type: CapabilityMap
