@@ -54,34 +54,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ComponentStatus:
-      type: object
-      properties:
-        status:
-          type: string
-          example: pass
-        componentType:
-          type: string
-          example: datastore
-        time:
-          type: string
-          format: date-time
-          example: '2024-02-23T08:51:23-03:00'
-    Stats:
-      type: object
-      properties:
-        apis_count:
-          type: integer
-          example: 1
-        policies_count:
-          type: integer
-          example: 0
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Attempted administrative access with invalid or missing key!
     Health:
       type: object
       properties:
@@ -120,6 +92,25 @@ components:
           $ref: '#/components/schemas/Stats'
         host_details:
           $ref: '#/components/schemas/HostDetails'
+    ComponentStatus:
+      type: object
+      properties:
+        status:
+          type: string
+          example: pass
+        componentType:
+          type: string
+          example: datastore
+        time:
+          type: string
+          format: date-time
+          example: '2024-02-23T08:51:23-03:00'
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Attempted administrative access with invalid or missing key!
     HostDetails:
       type: object
       properties:
@@ -132,6 +123,15 @@ components:
         Address:
           type: string
           example: 203.0.113.0
+    Stats:
+      type: object
+      properties:
+        apis_count:
+          type: integer
+          example: 1
+        policies_count:
+          type: integer
+          example: 0
   securitySchemes:
     api_key:
       in: header

@@ -5,17 +5,18 @@ description: Tyk is an open-source API gateway and management platform supportin
   and hybrid environments.
 type: Index
 deliveryModel:
-  model: unknown
-  open_source: unknown
+  model: open-core
+  license: MPL-2.0
+  open_source: true
   commercial: true
   callable_host: false
-  label: Delivery model not determined — needs a product licence on record
-  confidence: low
+  label: Open core · an OSS project plus a commercial hosted product
+  confidence: high
   source:
+  - license
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium
@@ -64,7 +65,6 @@ apis:
 
     You can check the [full documentation here](https://tyk.io/docs/tyk-dashboard-api/org/permissions/).
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Additional Permissions
   properties:
@@ -96,7 +96,6 @@ apis:
     The Tyk Dashboard provides a full set of analytics functions and graphs that you can use to segment
     and view your API traffic and activity.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Analytics
   properties:
@@ -134,7 +133,6 @@ apis:
 
     [Read more about API template assets here](https://tyk.io/docs/product-stack/tyk-dashboard/advanced-configurations/templates/template-overview/)
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Assets
   properties:
@@ -168,7 +166,6 @@ apis:
 
     `Basic base64Encode(username:password)`.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Basic Authentication
   properties:
@@ -422,7 +419,6 @@ apis:
 
     The options for the `header_injector` are global, and will apply to all outbound requests.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Batch Requests
   properties:
@@ -454,7 +450,6 @@ apis:
     Sometimes a cache might contain stale data, or it may just need to be cleared because of an invalid
     configuration. This call will purge all keys associated with a cache on an API-by-API basis.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Cache Invalidation
   properties:
@@ -486,7 +481,6 @@ apis:
     Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates
     using these endpoints.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Certificates
   properties:
@@ -518,7 +512,6 @@ apis:
     Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates
     using these endpoints.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Certs
   properties:
@@ -548,7 +541,6 @@ apis:
   name: Tyk CertsTag API
   description: The CertsTag API from Tyk — 1 operation(s) for certstag.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - CertsTag
   properties:
@@ -578,7 +570,6 @@ apis:
   name: Tyk Config API
   description: The Config API from Tyk — 1 operation(s) for config.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Config
   properties:
@@ -610,7 +601,6 @@ apis:
     Since the Dashboard can have multiple URLs associated with it. It is possible to force a URL reload
     by calling an API endpoint of the Dashboard API.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Dashboard URL Reload
   properties:
@@ -640,7 +630,6 @@ apis:
   name: Tyk Debug API
   description: The Debug API from Tyk — 3 operation(s) for debug.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Debug
   properties:
@@ -670,7 +659,6 @@ apis:
   name: Tyk Env API
   description: The Env API from Tyk — 1 operation(s) for env.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Env
   properties:
@@ -702,7 +690,6 @@ apis:
     To make Tyk installations more portable, the Export API enables you to export key configuration objects
     required to back-up and re-deploy a basic Tyk Pro installation.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Export
   properties:
@@ -732,7 +719,6 @@ apis:
   name: Tyk Health API
   description: The Health API from Tyk — 1 operation(s) for health.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Health
   properties:
@@ -762,7 +748,6 @@ apis:
   name: Tyk Health Checking API
   description: Check health status of the Tyk Gateway and loaded APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Health Checking
   properties:
@@ -792,7 +777,6 @@ apis:
   name: Tyk Hot Reload API
   description: Force restart of the Gateway or whole cluster.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Hot Reload
   properties:
@@ -824,7 +808,6 @@ apis:
     The import API enables you to add Organisations, APIs and Policies back into a Tyk installation while
     retaining their base IDs so that they work together.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Import
   properties:
@@ -856,7 +839,6 @@ apis:
     All keys that are used to access services via Tyk correspond to a session object that informs Tyk
     about the context of this particular token, like access rules and rate/quota allowance.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Keys
   properties:
@@ -886,7 +868,6 @@ apis:
   name: Tyk Liveness API
   description: The Liveness API from Tyk — 1 operation(s) for liveness.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Liveness
   properties:
@@ -919,7 +900,6 @@ apis:
     making it even easier to get your API up and running. Use the endpoints in this tag to create,delete,import
     and update OAS APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - OAS APIs
   properties:
@@ -972,7 +952,6 @@ apis:
 
     [Read more about Tyk Open Policy Agent here](https://tyk.io/docs/tyk-dashboard/open-policy-agent/)
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Open Policy Agent
   properties:
@@ -1022,7 +1001,6 @@ apis:
     is executed. It is useful when managing subscriptions for an organisation group and access needs to
     be blocked because of non-payment. <br />
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Organisation Quotas
   properties:
@@ -1052,7 +1030,6 @@ apis:
   name: Tyk Organisations API
   description: The organisations API gives the ability to manage your Tyk organisation(s).
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Organisations
   properties:
@@ -1088,7 +1065,6 @@ apis:
     policy. The policy settings are refreshed every time a key attempts access, meaning that updating
     a policy will have an effect across any keys that are attached to it.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Policies
   properties:
@@ -1118,7 +1094,6 @@ apis:
   name: Tyk Readiness API
   description: The Readiness API from Tyk — 1 operation(s) for readiness.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Readiness
   properties:
@@ -1148,7 +1123,6 @@ apis:
   name: Tyk Schema API
   description: Get OAS schema.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Schema
   properties:
@@ -1180,7 +1154,6 @@ apis:
     The Dashboard SSO API allows you to implement custom authentication schemes for the Dashboard and
     Portal. Our Tyk Identity Broker (TIB) internally also uses this API.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - SSO
   tags_raw:
@@ -1212,7 +1185,6 @@ apis:
   name: Tyk Streams APIs API
   description: The Streams APIs API from Tyk — 2 operation(s) for streams apis.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Streams APIs
   properties:
@@ -1242,7 +1214,6 @@ apis:
   name: Tyk System API
   description: System API.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - System
   properties:
@@ -1272,7 +1243,6 @@ apis:
   name: Tyk API
   description: The Tyk API from Tyk — 3 operation(s) for tyk.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Tyk
   properties:
@@ -1302,7 +1272,6 @@ apis:
   name: Tyk OAS APIs
   description: '**Note: Applies only to Tyk Gateway Community Edition** <br/>'
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Tyk OAS APIs
   properties:
@@ -1334,7 +1303,6 @@ apis:
     The admin portion of the users API gives you the ability to manage password reset policies for your
     Dashboard users.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - User
   tags_raw:
@@ -1380,7 +1348,6 @@ apis:
     Request types that do not support an encoded body will not have the event metadata encoded as part
     of the request. We would advise using POST where possible.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Webhook
   tags_raw:
@@ -1412,7 +1379,6 @@ apis:
   name: Tyk APIs API
   description: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags: []
   tags_raw:
   - APIs
@@ -1443,7 +1409,6 @@ apis:
   name: Tyk OAUTH API
   description: Use the endpoints in this tag to manage OAuth flow.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Authentication
   tags_raw:
@@ -1475,7 +1440,6 @@ apis:
   name: Tyk Audit Logs API
   description: The Audit Logs API from Tyk — 1 operation(s) for audit logs.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
   - Audit Logs
   properties:
@@ -1505,10 +1469,7 @@ apis:
   name: Tyk data planes API
   description: The data planes API from Tyk — 1 operation(s) for data planes.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
-  - Dataplanes
-  tags_raw:
   - data planes
   properties:
   - type: OpenAPI
@@ -1540,10 +1501,7 @@ apis:
     permissions per user, you can create a user group and configure the permissions for all users in the
     group. Note that a user can only belong to one group.
   humanURL: https://tyk.io/docs/tyk-apis/
-  baseURL: https://tyk.io/
   tags:
-  - UserGroup
-  tags_raw:
   - User Group
   properties:
   - type: OpenAPI
@@ -1571,6 +1529,10 @@ apis:
 common:
 - type: VendorFacets
   url: vendor-facets/tyk-vendor-facets.yml
+- type: License
+  name: MPL-2.0
+  url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
+  description: The Tyk gateway is MPL-2.0; the ee/ folder is under a separate commercial licence (roadmap#628).
 - type: Website
   url: https://www.tyk.io/
 - type: CapabilityMap

@@ -243,43 +243,6 @@ components:
         pages:
           type: integer
       type: object
-    ResultId:
-      properties:
-        alias:
-          type: string
-        api_id:
-          example: 7364617cc7d345d9755d182635dfd46d
-          type: string
-        api_name:
-          example: OAS http
-          type: string
-        code:
-          type: integer
-        day:
-          example: 12
-          type: integer
-        hour:
-          example: 0
-          type: integer
-        iso_country:
-          type: string
-        key:
-          type: string
-        month:
-          example: 6
-          type: integer
-        path:
-          type: string
-        queries:
-          additionalProperties:
-            type: integer
-          type: object
-        url:
-          type: string
-        year:
-          example: 2024
-          type: integer
-      type: object
     ResultUnit:
       properties:
         error:
@@ -325,6 +288,43 @@ components:
           example: 0
           format: double
           type: number
+      type: object
+    ResultId:
+      properties:
+        alias:
+          type: string
+        api_id:
+          example: 7364617cc7d345d9755d182635dfd46d
+          type: string
+        api_name:
+          example: OAS http
+          type: string
+        code:
+          type: integer
+        day:
+          example: 12
+          type: integer
+        hour:
+          example: 0
+          type: integer
+        iso_country:
+          type: string
+        key:
+          type: string
+        month:
+          example: 6
+          type: integer
+        path:
+          type: string
+        queries:
+          additionalProperties:
+            type: integer
+          type: object
+        url:
+          type: string
+        year:
+          example: 2024
+          type: integer
       type: object
     ApiResponse:
       properties:

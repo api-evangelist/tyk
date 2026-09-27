@@ -68,28 +68,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    HealthCheckItem:
-      properties:
-        componentId:
-          type: string
-          example: '500123'
-        componentType:
-          type: string
-          example: example_value
-        output:
-          type: string
-          example: example_value
-        status:
-          enum:
-          - pass
-          - fail
-          - warn
-          type: string
-          example: pass
-        time:
-          type: string
-          example: example_value
-      type: object
     HealthCheckResponse:
       properties:
         description:
@@ -120,6 +98,28 @@ components:
           type: string
           example: example_value
         status:
+          type: string
+          example: example_value
+      type: object
+    HealthCheckItem:
+      properties:
+        componentId:
+          type: string
+          example: '500123'
+        componentType:
+          type: string
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        status:
+          enum:
+          - pass
+          - fail
+          - warn
+          type: string
+          example: pass
+        time:
           type: string
           example: example_value
       type: object

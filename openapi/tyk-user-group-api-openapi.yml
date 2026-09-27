@@ -412,20 +412,15 @@ paths:
       - User Group
 components:
   schemas:
-    UserPermissionObject:
-      additionalProperties:
-        type: string
-      type: object
-    UserGroups:
+    ApiResponse:
       properties:
-        groups:
-          items:
-            $ref: '#/components/schemas/UserGroup'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
       type: object
     UserGroup:
       properties:
@@ -450,15 +445,20 @@ components:
         user_permissions:
           $ref: '#/components/schemas/UserPermissionObject'
       type: object
-    ApiResponse:
+    UserPermissionObject:
+      additionalProperties:
+        type: string
+      type: object
+    UserGroups:
       properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
+        groups:
+          items:
+            $ref: '#/components/schemas/UserGroup'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
       type: object
   securitySchemes:
     bearerAuth:

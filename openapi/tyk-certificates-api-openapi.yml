@@ -732,6 +732,113 @@ paths:
       - Certificates
 components:
   schemas:
+    CertsCertificateBasics:
+      properties:
+        dns_names:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        has_private:
+          type: boolean
+        id:
+          type: string
+        is_ca:
+          type: boolean
+        issuer_cn:
+          type: string
+        not_after:
+          format: date-time
+          type: string
+        not_before:
+          format: date-time
+          type: string
+        subject_cn:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/certs
+    CertificateDetailedList:
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertsCertificateMeta'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    CertificateList:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    CertsCertificateMeta:
+      properties:
+        dns_names:
+          items:
+            type: string
+          type: array
+        fingerprint:
+          type: string
+        has_private:
+          type: boolean
+        id:
+          type: string
+        is_ca:
+          type: boolean
+        issuer:
+          $ref: '#/components/schemas/PkixName'
+        not_after:
+          format: date-time
+          type: string
+        not_before:
+          format: date-time
+          type: string
+        subject:
+          $ref: '#/components/schemas/PkixName'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/certs
+    CertificateBasics:
+      properties:
+        cert_basics:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    FormDataFile:
+      properties:
+        file:
+          $ref: '#/components/schemas/MultipartFile'
+      required:
+      - file
+      type: object
+    PkixName:
+      type: object
     CertificateDependencies:
       properties:
         certID:
@@ -773,126 +880,11 @@ components:
           - array
           - 'null'
       type: object
-    CertificateBasics:
-      properties:
-        cert_basics:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    FormDataFile:
-      properties:
-        file:
-          $ref: '#/components/schemas/MultipartFile'
-      required:
-      - file
-      type: object
-    CertificateDetailedList:
-      properties:
-        certificates:
-          items:
-            $ref: '#/components/schemas/CertsCertificateMeta'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    CertsCertificateMeta:
-      properties:
-        dns_names:
-          items:
-            type: string
-          type: array
-        fingerprint:
-          type: string
-        has_private:
-          type: boolean
-        id:
-          type: string
-        is_ca:
-          type: boolean
-        issuer:
-          $ref: '#/components/schemas/PkixName'
-        not_after:
-          format: date-time
-          type: string
-        not_before:
-          format: date-time
-          type: string
-        subject:
-          $ref: '#/components/schemas/PkixName'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/certs
     MultipartFile:
       format: binary
       type:
       - string
       - 'null'
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
-    PkixName:
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
-    CertificateList:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    CertsCertificateBasics:
-      properties:
-        dns_names:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        has_private:
-          type: boolean
-        id:
-          type: string
-        is_ca:
-          type: boolean
-        issuer_cn:
-          type: string
-        not_after:
-          format: date-time
-          type: string
-        not_before:
-          format: date-time
-          type: string
-        subject_cn:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/certs
     ApiResponse:
       properties:
         ID:
@@ -903,6 +895,14 @@ components:
         Status:
           type: string
       type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

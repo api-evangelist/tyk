@@ -47,21 +47,7 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ReadinessFailure:
-      type: object
-      properties:
-        status:
-          type: string
-          example: fail
-        status_code:
-          type: integer
-          example: 503
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/ComponentReadinessFailure'
-          example: []
-    ComponentReadiness:
+    ComponentReadinessFailure:
       type: object
       properties:
         name:
@@ -69,7 +55,7 @@ components:
           example: postgres
         status:
           type: string
-          example: pass
+          example: fail
         observation_ts:
           type: string
           format: date-time
@@ -88,7 +74,7 @@ components:
           items:
             $ref: '#/components/schemas/ComponentReadiness'
           example: []
-    ComponentReadinessFailure:
+    ComponentReadiness:
       type: object
       properties:
         name:
@@ -96,11 +82,25 @@ components:
           example: postgres
         status:
           type: string
-          example: fail
+          example: pass
         observation_ts:
           type: string
           format: date-time
           example: '2024-07-29T13:58:56.699052-04:00'
+    ReadinessFailure:
+      type: object
+      properties:
+        status:
+          type: string
+          example: fail
+        status_code:
+          type: integer
+          example: 503
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentReadinessFailure'
+          example: []
   securitySchemes:
     api_key:
       in: header

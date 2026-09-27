@@ -79,9 +79,9 @@ paths:
         dispatcher: FALLBACK
 components:
   examples:
-    certificateMetaListExample:
+    certificateMetaExample:
       value:
-      - dns_names:
+        dns_names:
         - .*tyk.io
         fingerprint: 7c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
         has_private: false
@@ -185,9 +185,9 @@ components:
           Province: null
           SerialNumber: ''
           StreetAddress: null
-    certificateMetaExample:
+    certificateMetaListExample:
       value:
-        dns_names:
+      - dns_names:
         - .*tyk.io
         fingerprint: 7c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
         has_private: false

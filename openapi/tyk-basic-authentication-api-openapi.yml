@@ -115,12 +115,149 @@ paths:
       - Basic Authentication
 components:
   schemas:
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+      type: object
+    SessionEndpoint:
+      properties:
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
     SessionEndpointMethod:
       properties:
         limit:
           $ref: '#/components/schemas/SessionEndpointRateLimit'
         name:
           type: string
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          type: string
+      type: object
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
+      type: object
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    KeyData:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        data:
+          $ref: '#/components/schemas/SessionState'
+        key_hash:
+          example: 41c5cb1e
+          type: string
+        key_id:
+          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+          type: string
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          type:
+          - array
+          - 'null'
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec'
+          type:
+          - array
+          - 'null'
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          items:
+            $ref: '#/components/schemas/SessionEndpoint'
+          type: array
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition'
+          type:
+          - array
+          - 'null'
+        limit:
+          $ref: '#/components/schemas/APILimit'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          type:
+          - array
+          - 'null'
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
       type: object
     RateLimitSmoothing:
       properties:
@@ -151,16 +288,6 @@ components:
       type:
       - object
       - 'null'
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
     SessionState:
       properties:
         access_rights:
@@ -322,6 +449,8 @@ components:
           example: -1
           type: integer
       type: object
+    ApiModel:
+      type: object
     APILimit:
       properties:
         max_query_depth:
@@ -356,135 +485,6 @@ components:
       type:
       - object
       - 'null'
-    AccessSpec:
-      properties:
-        methods:
-          example:
-          - GET
-          - PATCH
-          - HEAD
-          - PUT
-          - DELETE
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
-      type: object
-    AccessDefinition:
-      properties:
-        allowance_scope:
-          type: string
-        allowed_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType'
-          type:
-          - array
-          - 'null'
-        allowed_urls:
-          items:
-            $ref: '#/components/schemas/AccessSpec'
-          type:
-          - array
-          - 'null'
-        api_id:
-          example: d1dfc6a927a046c54c0ed470f19757cc
-          type: string
-        api_name:
-          example: Rate Limit Proxy API
-          type: string
-        disable_introspection:
-          example: false
-          type: boolean
-        endpoints:
-          items:
-            $ref: '#/components/schemas/SessionEndpoint'
-          type: array
-        field_access_rights:
-          items:
-            $ref: '#/components/schemas/FieldAccessDefinition'
-          type:
-          - array
-          - 'null'
-        limit:
-          $ref: '#/components/schemas/APILimit'
-        restricted_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType'
-          type:
-          - array
-          - 'null'
-        versions:
-          example:
-          - Default
-          - v2
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      type: object
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    SessionEndpoint:
-      properties:
-        methods:
-          items:
-            $ref: '#/components/schemas/SessionEndpointMethod'
-          type: array
-        path:
-          type: string
-      type: object
-    SessionEndpointRateLimit:
-      properties:
-        per:
-          format: int64
-          type: integer
-        rate:
-          format: int64
-          type: integer
-      type: object
-    GraphqlType:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        name:
-          type: string
-      type: object
-    KeyData:
-      properties:
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
-        data:
-          $ref: '#/components/schemas/SessionState'
-        key_hash:
-          example: 41c5cb1e
-          type: string
-        key_id:
-          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
-          type: string
-      type: object
-    ApiModel:
-      type: object
-    FieldAccessDefinition:
-      properties:
-        field_name:
-          type: string
-        limits:
-          $ref: '#/components/schemas/FieldLimits'
-        type_name:
-          type: string
-      type: object
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

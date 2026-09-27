@@ -164,17 +164,6 @@ paths:
       - Audit Logs
 components:
   schemas:
-    AuditLogs:
-      properties:
-        pages:
-          type: integer
-        audit_logs:
-          items:
-            $ref: '#/components/schemas/AuditLog'
-          type:
-          - array
-          - 'null'
-      type: object
     AuditLog:
       properties:
         _id:
@@ -210,6 +199,17 @@ components:
         status:
           example: 200
           type: integer
+      type: object
+    AuditLogs:
+      properties:
+        pages:
+          type: integer
+        audit_logs:
+          items:
+            $ref: '#/components/schemas/AuditLog'
+          type:
+          - array
+          - 'null'
       type: object
   securitySchemes:
     bearerAuth:

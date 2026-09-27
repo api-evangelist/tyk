@@ -100,19 +100,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    BatchReplyUnit:
+    HttpHeader:
+      additionalProperties:
+        items:
+          type: string
+        type: array
+      type: object
+    ApiStatusMessage:
       properties:
-        body:
+        message:
           type: string
           example: example_value
-        code:
-          type: integer
-          example: 10
-        headers:
-          $ref: '#/components/schemas/HttpHeader'
-        relative_url:
+        status:
           type: string
-          example: https://www.example.com
+          example: example_value
       type: object
     RequestDefinition:
       properties:
@@ -133,20 +134,19 @@ components:
           type: string
           example: https://www.example.com
       type: object
-    ApiStatusMessage:
+    BatchReplyUnit:
       properties:
-        message:
+        body:
           type: string
           example: example_value
-        status:
+        code:
+          type: integer
+          example: 10
+        headers:
+          $ref: '#/components/schemas/HttpHeader'
+        relative_url:
           type: string
-          example: example_value
-      type: object
-    HttpHeader:
-      additionalProperties:
-        items:
-          type: string
-        type: array
+          example: https://www.example.com
       type: object
     BatchRequestStructure:
       properties:

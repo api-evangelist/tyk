@@ -11,7 +11,7 @@ info:
   license:
     name: Mozilla Public License Version 2.0
     url: https://github.com/TykTechnologies/tyk/blob/master/LICENSE.md
-  title: Tyk Dashboard AP Is API
+  title: Tyk Dashboard APIs API
   version: 5.7.1
 servers:
 - url: https://{tenant}
@@ -1101,78 +1101,127 @@ paths:
       - APIs
 components:
   schemas:
-    GraphQLEngineConfig:
-      properties:
-        data_sources:
-          items:
-            $ref: '#/components/schemas/GraphQLEngineDataSource'
-          type:
-          - array
-          - 'null'
-        field_configs:
-          items:
-            $ref: '#/components/schemas/GraphQLFieldConfig'
-          type:
-          - array
-          - 'null'
-        global_headers:
-          items:
-            $ref: '#/components/schemas/UDGGlobalHeader'
-          type:
-          - array
-          - 'null'
+    Schemas:
+      additionalProperties:
+        $ref: '#/components/schemas/SchemaRef'
       type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EventHandlerMetaConfig:
+    EndpointMethodMeta:
       properties:
-        events:
-          additionalProperties:
-            items:
-              $ref: '#/components/schemas/EventHandlerTriggerConfig'
-            type: array
-          type:
-          - object
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    HostCheckObject:
-      properties:
-        body:
+        action:
           type: string
-        commands:
-          items:
-            $ref: '#/components/schemas/CheckCommand'
-          type:
-          - array
-          - 'null'
-        enable_proxy_protocol:
-          type: boolean
+        code:
+          type: integer
+        data:
+          type: string
         headers:
           additionalProperties:
             type: string
           type:
           - object
           - 'null'
-        method:
-          type: string
-        protocol:
-          type: string
-        timeout:
-          $ref: '#/components/schemas/TimeDuration'
-        url:
-          type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    ExternalOAuth:
+    RequestBodyRef:
+      type: object
+    TimeDuration:
+      format: int64
+      type: integer
+    ResponseProcessor:
       properties:
-        enabled:
-          type: boolean
-        providers:
+        name:
+          type: string
+        options: {}
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ApiDefinitionWrapper:
+      properties:
+        api_definition:
+          $ref: '#/components/schemas/APIDefinition'
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        categories:
+          $ref: '#/components/schemas/Categories'
+        created_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        hook_references:
           items:
-            $ref: '#/components/schemas/ProviderType2'
+            $ref: '#/components/schemas/HookReference'
           type:
           - array
           - 'null'
+        is_site:
+          type: boolean
+        oas:
+          $ref: '#/components/schemas/OAS'
+        sort_by:
+          type: integer
+        updated_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        user_group_owners:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        user_owners:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    HeaderInjectionMeta:
+      properties:
+        act_on:
+          type: boolean
+        add_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        delete_headers:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    AuthConfig:
+      properties:
+        auth_header_name:
+          type: string
+        cookie_name:
+          type: string
+        disable_header:
+          type: boolean
+        name:
+          type: string
+        param_name:
+          type: string
+        signature:
+          $ref: '#/components/schemas/SignatureConfig'
+        use_certificate:
+          type: boolean
+        use_cookie:
+          type: boolean
+        use_param:
+          type: boolean
+        validate_signature:
+          type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     CacheOptions:
@@ -1202,98 +1251,166 @@ components:
           type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    ServerVariable:
+    CheckCommand:
       properties:
-        default:
-          type: string
-        description:
-          type: string
-        enum:
-          items:
-            type: string
-          type: array
-      type: object
-    VersionDefinition:
-      properties:
-        default:
-          type: string
-        enabled:
-          type: boolean
-        fallback_to_default:
-          type: boolean
-        key:
-          type: string
-        location:
+        message:
           type: string
         name:
           type: string
-        strip_path:
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    IntrospectionCache:
+      properties:
+        enabled:
           type: boolean
-        strip_versioning_data:
+        timeout:
+          format: int64
+          type: integer
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    CORSConfig:
+      properties:
+        allow_credentials:
           type: boolean
-        url_versioning_pattern:
-          type: string
-        versions:
-          additionalProperties:
+        allowed_headers:
+          items:
             type: string
+          type:
+          - array
+          - 'null'
+        allowed_methods:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        allowed_origins:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        debug:
+          type: boolean
+        enable:
+          type: boolean
+        exposed_headers:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        max_age:
+          type: integer
+        options_passthrough:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    Categories:
+      items:
+        type: string
+      type: array
+    AnalyticsPluginConfig:
+      properties:
+        enable:
+          type: boolean
+        func_name:
+          type: string
+        plugin_path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    InternalMeta:
+      properties:
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    MiddlewareIdExtractor:
+      properties:
+        disabled:
+          type: boolean
+        extract_from:
+          type: string
+        extract_with:
+          type: string
+        extractor_config:
+          additionalProperties: {}
           type:
           - object
           - 'null'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    AllCategoriesResponse:
+    GraphQLEngineConfig:
       properties:
-        categories:
+        data_sources:
           items:
-            $ref: '#/components/schemas/CategoryCount'
+            $ref: '#/components/schemas/GraphQLEngineDataSource'
+          type:
+          - array
+          - 'null'
+        field_configs:
+          items:
+            $ref: '#/components/schemas/GraphQLFieldConfig'
+          type:
+          - array
+          - 'null'
+        global_headers:
+          items:
+            $ref: '#/components/schemas/UDGGlobalHeader'
           type:
           - array
           - 'null'
       type: object
-    GraphQLResponseExtensions:
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    TemplateData:
       properties:
-        on_error_forwarding:
+        enable_session:
           type: boolean
+        input_type:
+          type: string
+        template_mode:
+          type: string
+        template_source:
+          type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    CallbackRef:
-      type: object
-    Tag:
-      properties:
-        description:
-          type: string
-        externalDocs:
-          $ref: '#/components/schemas/ExternalDocs'
-        name:
-          type: string
-      type: object
-    CategoryCount:
-      properties:
-        count:
-          example: 3
-          type: integer
-        name:
-          example: tag1
-          type: string
-      type: object
-    JWTValidation:
+    GraphQLConfig:
       properties:
         enabled:
           type: boolean
-        expires_at_validation_skew:
-          minimum: 0
-          type: integer
-        identity_base_field:
+        engine:
+          $ref: '#/components/schemas/GraphQLEngineConfig'
+        execution_mode:
           type: string
-        issued_at_validation_skew:
-          minimum: 0
-          type: integer
-        not_before_validation_skew:
-          minimum: 0
-          type: integer
-        signing_method:
+        introspection:
+          $ref: '#/components/schemas/GraphQLIntrospectionConfig'
+        last_schema_update:
+          format: date-time
+          type:
+          - string
+          - 'null'
+        playground:
+          $ref: '#/components/schemas/GraphQLPlayground'
+        proxy:
+          $ref: '#/components/schemas/GraphQLProxyConfig'
+        schema:
           type: string
-        source:
+        subgraph:
+          $ref: '#/components/schemas/GraphQLSubgraphConfig'
+        supergraph:
+          $ref: '#/components/schemas/GraphQLSupergraphConfig'
+        type_field_configurations:
+          items:
+            $ref: '#/components/schemas/DatasourceTypeFieldConfiguration'
+          type:
+          - array
+          - 'null'
+        version:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
@@ -1305,94 +1422,163 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    ExampleAPIMetadata:
+    EventHandlerTriggerConfig:
       properties:
-        location:
-          example: udg/vat-checker
+        handler_meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        handler_name:
           type: string
-        name:
-          example: VAT number checker UDG
-          type: string
-        shortDescription:
-          example: Simple REST API wrapped in GQL using Universal Data Graph that allows user to check validity of a VAT number and display some details about it.
-          type: string
-      type: object
-    AuthConfig:
-      properties:
-        auth_header_name:
-          type: string
-        cookie_name:
-          type: string
-        disable_header:
-          type: boolean
-        name:
-          type: string
-        param_name:
-          type: string
-        signature:
-          $ref: '#/components/schemas/SignatureConfig'
-        use_certificate:
-          type: boolean
-        use_cookie:
-          type: boolean
-        use_param:
-          type: boolean
-        validate_signature:
-          type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    HeaderInjectionMeta:
+    RoutingTriggerOptions:
       properties:
-        act_on:
+        header_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+        path_part_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+        payload_matches:
+          $ref: '#/components/schemas/StringRegexMap'
+        query_val_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+        request_context_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+        session_meta_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type:
+          - object
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    OperationType2:
+      properties:
+        callbacks:
+          $ref: '#/components/schemas/Callbacks'
+        deprecated:
           type: boolean
-        add_headers:
+        description:
+          type: string
+        externalDocs:
+          $ref: '#/components/schemas/ExternalDocs'
+        operationId:
+          type: string
+        parameters:
+          $ref: '#/components/schemas/Parameters'
+        requestBody:
+          $ref: '#/components/schemas/RequestBodyRef'
+        responses:
+          $ref: '#/components/schemas/Responses'
+        security:
+          $ref: '#/components/schemas/SecurityRequirements'
+        servers:
+          $ref: '#/components/schemas/Servers'
+        summary:
+          type: string
+        tags:
+          items:
+            type: string
+          type: array
+      type:
+      - object
+      - 'null'
+    Tag:
+      properties:
+        description:
+          type: string
+        externalDocs:
+          $ref: '#/components/schemas/ExternalDocs'
+        name:
+          type: string
+      type: object
+    GraphQLProxyConfig:
+      properties:
+        auth_headers:
           additionalProperties:
             type: string
           type:
           - object
           - 'null'
-        delete_headers:
-          items:
+        features:
+          $ref: '#/components/schemas/GraphQLProxyFeaturesConfig'
+        request_headers:
+          additionalProperties:
             type: string
           type:
-          - array
+          - object
           - 'null'
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ResponseRef:
-      type: object
-    InternalMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EndPointMeta:
-      properties:
-        disabled:
-          type: boolean
-        ignore_case:
-          type: boolean
-        method:
-          type: string
-        method_actions:
+        request_headers_rewrite:
           additionalProperties:
-            $ref: '#/components/schemas/EndpointMethodMeta'
-          type: object
+            $ref: '#/components/schemas/RequestHeadersRewriteConfig'
+          type:
+          - object
+          - 'null'
+        subscription_type:
+          type: string
+        use_response_extensions:
+          $ref: '#/components/schemas/GraphQLResponseExtensions'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    RequestSizeMeta:
+      properties:
+        disabled:
+          type: boolean
+        method:
+          type: string
         path:
+          type: string
+        size_limit:
+          format: int64
+          type: integer
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    NotificationsManager:
+      properties:
+        oauth_on_keychange_url:
+          type: string
+        shared_secret:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
+    OAS:
+      properties:
+        components:
+          $ref: '#/components/schemas/Components'
+        externalDocs:
+          $ref: '#/components/schemas/ExternalDocs'
+        info:
+          $ref: '#/components/schemas/InfoType2'
+        openapi:
+          type: string
+        paths:
+          $ref: '#/components/schemas/Paths'
+        security:
+          $ref: '#/components/schemas/SecurityRequirements'
+        servers:
+          $ref: '#/components/schemas/Servers'
+        tags:
+          $ref: '#/components/schemas/Tags'
+      type:
+      - object
+      - 'null'
     APIDefinition:
       properties:
         CORS:
@@ -1670,20 +1856,130 @@ components:
           $ref: '#/components/schemas/VersionData'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    RequestHeadersRewriteConfig:
+    TrackEndpointMeta:
       properties:
-        remove:
+        disabled:
           type: boolean
-        value:
+        method:
+          type: string
+        path:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    Servers:
+    Callbacks:
+      additionalProperties:
+        $ref: '#/components/schemas/CallbackRef'
+      type: object
+    URLVals:
+      properties:
+        ApiURL:
+          type: string
+        BasePath:
+          type: string
+        Host:
+          type: string
+      type: object
+    Examples:
+      additionalProperties:
+        $ref: '#/components/schemas/ExampleRef'
+      type: object
+    PathItem:
+      properties:
+        $ref:
+          type: string
+        connect:
+          $ref: '#/components/schemas/OperationType2'
+        delete:
+          $ref: '#/components/schemas/OperationType2'
+        description:
+          type: string
+        get:
+          $ref: '#/components/schemas/OperationType2'
+        head:
+          $ref: '#/components/schemas/OperationType2'
+        options:
+          $ref: '#/components/schemas/OperationType2'
+        parameters:
+          $ref: '#/components/schemas/Parameters'
+        patch:
+          $ref: '#/components/schemas/OperationType2'
+        post:
+          $ref: '#/components/schemas/OperationType2'
+        put:
+          $ref: '#/components/schemas/OperationType2'
+        servers:
+          $ref: '#/components/schemas/Servers'
+        summary:
+          type: string
+        trace:
+          $ref: '#/components/schemas/OperationType2'
+      type: object
+    Parameters:
       items:
-        $ref: '#/components/schemas/ServerType2'
+        $ref: '#/components/schemas/ParameterRef'
+      type: array
+    ResponseRef:
+      type: object
+    ExternalDocs:
+      properties:
+        description:
+          type: string
+        url:
+          type: string
       type:
-      - array
+      - object
       - 'null'
+    Tags:
+      items:
+        $ref: '#/components/schemas/Tag'
+      type: array
+    ProxyConfig:
+      properties:
+        check_host_against_uptime_tests:
+          type: boolean
+        disable_strip_slash:
+          type: boolean
+        enable_load_balancing:
+          type: boolean
+        listen_path:
+          type: string
+        preserve_host_header:
+          type: boolean
+        service_discovery:
+          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+        strip_listen_path:
+          type: boolean
+        target_list:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        target_url:
+          type: string
+        transport:
+          properties:
+            proxy_url:
+              type: string
+            ssl_ciphers:
+              items:
+                type: string
+              type:
+              - array
+              - 'null'
+            ssl_force_common_name_check:
+              type: boolean
+            ssl_insecure_skip_verify:
+              type: boolean
+            ssl_max_version:
+              minimum: 0
+              type: integer
+            ssl_min_version:
+              minimum: 0
+              type: integer
+          type: object
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     WebHookHandlerConf:
       properties:
         api_model:
@@ -1726,10 +2022,246 @@ components:
       - method
       - target_path
       type: object
-    GlobalRateLimit:
+    SessionProviderMeta:
+      properties:
+        meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        name:
+          type: string
+        storage_engine:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GraphQLFieldConfig:
+      properties:
+        disable_default_mapping:
+          type: boolean
+        field_name:
+          type: string
+        path:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        type_name:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    CallbackRef:
+      type: object
+    SecuritySchemesType2:
+      additionalProperties:
+        $ref: '#/components/schemas/SecuritySchemeRef'
+      type: object
+    Responses:
+      additionalProperties:
+        $ref: '#/components/schemas/ResponseRef'
+      type: object
+    HookReference:
+      properties:
+        event_name:
+          type: string
+        event_timeout:
+          format: int64
+          type: integer
+        hook:
+          $ref: '#/components/schemas/WebHookHandlerConf'
+      type: object
+    AccessManagementPayload:
+      properties:
+        userGroupIds:
+          example:
+          - 663a4ed6b6be920001b191aa
+          - 663a4ed6b6be920001b191ab
+          items:
+            type: string
+          type: array
+        userIds:
+          example:
+          - 663b2a835715ecb6edef24e3
+          - 663a5bbf5715ec8040251f2a
+          items:
+            type: string
+          type: array
+      type: object
+    PersistGraphQLMeta:
+      properties:
+        method:
+          type: string
+        operation:
+          type: string
+        path:
+          type: string
+        variables:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    OpenIDOptions:
+      properties:
+        providers:
+          items:
+            $ref: '#/components/schemas/OIDProviderConfig'
+          type:
+          - array
+          - 'null'
+        segregate_by_client:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    Paths:
+      additionalProperties:
+        $ref: '#/components/schemas/PathItem'
+      type: object
+    GraphQLEngineDataSource:
+      properties:
+        config: {}
+        internal:
+          type: boolean
+        kind:
+          type: string
+        name:
+          type: string
+        root_fields:
+          items:
+            $ref: '#/components/schemas/GraphQLTypeFields'
+          type:
+          - array
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    SecurityRequirement:
+      additionalProperties:
+        items:
+          type: string
+        type: array
+      type: object
+    UptimeTestsConfig:
+      properties:
+        expire_utime_after:
+          format: int64
+          type: integer
+        recheck_wait:
+          type: integer
+        service_discovery:
+          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    MethodTransformMeta:
       properties:
         disabled:
           type: boolean
+        method:
+          type: string
+        path:
+          type: string
+        to_method:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ScopeClaim:
+      properties:
+        scope_claim_name:
+          type: string
+        scope_to_policy:
+          additionalProperties:
+            type: string
+          type: object
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GraphQLSupergraphConfig:
+      properties:
+        disable_query_batching:
+          type: boolean
+        global_headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        merged_sdl:
+          type: string
+        subgraphs:
+          items:
+            $ref: '#/components/schemas/GraphQLSubgraphEntity'
+          type:
+          - array
+          - 'null'
+        updated_at:
+          format: date-time
+          type:
+          - string
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    HardTimeoutMeta:
+      properties:
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+        timeout:
+          type: integer
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ServerVariable:
+      properties:
+        default:
+          type: string
+        description:
+          type: string
+        enum:
+          items:
+            type: string
+          type: array
+      type: object
+    UptimeTests:
+      properties:
+        check_list:
+          items:
+            $ref: '#/components/schemas/HostCheckObject'
+          type:
+          - array
+          - 'null'
+        config:
+          $ref: '#/components/schemas/UptimeTestsConfig'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GraphQLPlayground:
+      properties:
+        enabled:
+          type: boolean
+        path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    HeaderRef:
+      type: object
+    DatasourceMappingConfiguration:
+      properties:
+        disabled:
+          type: boolean
+        path:
+          type: string
+      type:
+      - object
+      - 'null'
+    RateLimitMeta:
+      properties:
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
         per:
           format: double
           type: number
@@ -1738,72 +2270,103 @@ components:
           type: number
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    ExampleRef:
-      type: object
-    CircuitBreakerMeta:
+    MockResponseMeta:
       properties:
-        disable_half_open_state:
-          type: boolean
+        body:
+          type: string
+        code:
+          type: integer
         disabled:
+          type: boolean
+        headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        ignore_case:
           type: boolean
         method:
           type: string
         path:
           type: string
-        return_to_service_after:
-          type: integer
-        samples:
-          format: int64
-          type: integer
-        threshold_percent:
-          format: double
-          type: number
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    LinkRef:
-      type: object
-    OperationType2:
+    GraphQLSubgraphConfig:
       properties:
-        callbacks:
-          $ref: '#/components/schemas/Callbacks'
-        deprecated:
+        sdl:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GoPluginMeta:
+      properties:
+        disabled:
           type: boolean
-        description:
+        func_name:
           type: string
-        externalDocs:
-          $ref: '#/components/schemas/ExternalDocs'
-        operationId:
+        method:
           type: string
-        parameters:
-          $ref: '#/components/schemas/Parameters'
-        requestBody:
-          $ref: '#/components/schemas/RequestBodyRef'
-        responses:
-          $ref: '#/components/schemas/Responses'
-        security:
-          $ref: '#/components/schemas/SecurityRequirements'
-        servers:
-          $ref: '#/components/schemas/Servers'
-        summary:
+        path:
           type: string
-        tags:
-          items:
-            type: string
-          type: array
-      type:
-      - object
-      - 'null'
-    ServerType2:
-      properties:
-        description:
+        plugin_path:
           type: string
-        url:
-          type: string
-        variables:
-          additionalProperties:
-            $ref: '#/components/schemas/ServerVariable'
-          type: object
       type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    AuthProviderMeta:
+      properties:
+        meta:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        name:
+          type: string
+        storage_engine:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    RequestHeadersRewriteConfig:
+      properties:
+        remove:
+          type: boolean
+        value:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    MiddlewareDefinition:
+      properties:
+        disabled:
+          type: boolean
+        name:
+          type: string
+        path:
+          type: string
+        raw_body_only:
+          type: boolean
+        require_session:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    VersionData:
+      properties:
+        default_version:
+          type: string
+        not_versioned:
+          type: boolean
+        versions:
+          additionalProperties:
+            $ref: '#/components/schemas/VersionInfo'
+          type:
+          - object
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GraphQLResponseExtensions:
+      properties:
+        on_error_forwarding:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     VirtualMeta:
       properties:
         disabled:
@@ -1824,10 +2387,198 @@ components:
           type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
+    RoutingTrigger:
+      properties:
+        'on':
+          type: string
+        options:
+          $ref: '#/components/schemas/RoutingTriggerOptions'
+        rewrite_to:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    Servers:
+      items:
+        $ref: '#/components/schemas/ServerType2'
+      type:
+      - array
+      - 'null'
+    EventHandlerMetaConfig:
+      properties:
+        events:
+          additionalProperties:
+            items:
+              $ref: '#/components/schemas/EventHandlerTriggerConfig'
+            type: array
+          type:
+          - object
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    TemplateMeta:
+      properties:
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+        template_data:
+          $ref: '#/components/schemas/TemplateData'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    SecurityRequirements:
+      items:
+        $ref: '#/components/schemas/SecurityRequirement'
+      type:
+      - array
+      - 'null'
+    DatasourceSourceConfig:
+      properties:
+        data_source_config: {}
+        kind:
+          type: string
+      type: object
+    GraphQLSubgraphEntity:
+      properties:
+        api_id:
+          type: string
+        headers:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+        name:
+          type: string
+        sdl:
+          type: string
+        subscription_type:
+          type: string
+        url:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ValidatePathMeta:
+      properties:
+        disabled:
+          type: boolean
+        error_response_code:
+          type: integer
+        method:
+          type: string
+        path:
+          type: string
+        schema:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+        schema_b64:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ScopesType2:
+      properties:
+        jwt:
+          $ref: '#/components/schemas/ScopeClaim'
+        oidc:
+          $ref: '#/components/schemas/ScopeClaim'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     Contact:
       properties:
         email:
           type: string
+        name:
+          type: string
+        url:
+          type: string
+      type:
+      - object
+      - 'null'
+    ExampleAPIMetadata:
+      properties:
+        location:
+          example: udg/vat-checker
+          type: string
+        name:
+          example: VAT number checker UDG
+          type: string
+        shortDescription:
+          example: Simple REST API wrapped in GQL using Universal Data Graph that allows user to check validity of a VAT number and display some details about it.
+          type: string
+      type: object
+    CategoryCount:
+      properties:
+        count:
+          example: 3
+          type: integer
+        name:
+          example: tag1
+          type: string
+      type: object
+    RequestBodies:
+      additionalProperties:
+        $ref: '#/components/schemas/RequestBodyRef'
+      type: object
+    GlobalRateLimit:
+      properties:
+        disabled:
+          type: boolean
+        per:
+          format: double
+          type: number
+        rate:
+          format: double
+          type: number
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    CircuitBreakerMeta:
+      properties:
+        disable_half_open_state:
+          type: boolean
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+        return_to_service_after:
+          type: integer
+        samples:
+          format: int64
+          type: integer
+        threshold_percent:
+          format: double
+          type: number
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    CacheMeta:
+      properties:
+        cache_key_regex:
+          type: string
+        cache_response_codes:
+          items:
+            type: integer
+          type:
+          - array
+          - 'null'
+        disabled:
+          type: boolean
+        method:
+          type: string
+        path:
+          type: string
+        timeout:
+          format: int64
+          type: integer
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ApiModel:
+      type: object
+    License:
+      properties:
         name:
           type: string
         url:
@@ -1862,17 +2613,173 @@ components:
           type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    TrackEndpointMeta:
+    DetailedExampleAPIMetadata:
       properties:
-        disabled:
+        api_definition:
+          $ref: '#/components/schemas/APIDefinition'
+        description:
+          type: string
+        features:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        location:
+          type: string
+        min_version:
+          type: string
+        name:
+          type: string
+        oas:
+          $ref: '#/components/schemas/OAS'
+        readme:
+          type: string
+      type: object
+    ValidateRequestMeta:
+      properties:
+        enabled:
           type: boolean
+        error_response_code:
+          type: integer
         method:
           type: string
         path:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    SchemaRef:
+    ParameterRef:
+      type: object
+    StringRegexMap:
+      properties:
+        match_rx:
+          type: string
+        reverse:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    DatasourceTypeFieldConfiguration:
+      properties:
+        data_source:
+          $ref: '#/components/schemas/DatasourceSourceConfig'
+        field_name:
+          type: string
+        mapping:
+          $ref: '#/components/schemas/DatasourceMappingConfiguration'
+        type_name:
+          type: string
+      type: object
+    URLRewriteMeta:
+      properties:
+        disabled:
+          type: boolean
+        match_pattern:
+          type: string
+        method:
+          type: string
+        path:
+          type: string
+        rewrite_to:
+          type: string
+        triggers:
+          items:
+            $ref: '#/components/schemas/RoutingTrigger'
+          type:
+          - array
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    TransformJQMeta:
+      properties:
+        filter:
+          type: string
+        method:
+          type: string
+        path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    JWTValidation:
+      properties:
+        enabled:
+          type: boolean
+        expires_at_validation_skew:
+          minimum: 0
+          type: integer
+        identity_base_field:
+          type: string
+        issued_at_validation_skew:
+          minimum: 0
+          type: integer
+        not_before_validation_skew:
+          minimum: 0
+          type: integer
+        signing_method:
+          type: string
+        source:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    Components:
+      properties:
+        callbacks:
+          $ref: '#/components/schemas/Callbacks'
+        examples:
+          $ref: '#/components/schemas/Examples'
+        headers:
+          $ref: '#/components/schemas/HeadersType2'
+        links:
+          $ref: '#/components/schemas/Links'
+        parameters:
+          $ref: '#/components/schemas/ParametersMap'
+        requestBodies:
+          $ref: '#/components/schemas/RequestBodies'
+        responses:
+          $ref: '#/components/schemas/Responses'
+        schemas:
+          $ref: '#/components/schemas/Schemas'
+        securitySchemes:
+          $ref: '#/components/schemas/SecuritySchemesType2'
+      type:
+      - object
+      - 'null'
+    SignatureConfig:
+      properties:
+        algorithm:
+          type: string
+        allowed_clock_skew:
+          format: int64
+          type: integer
+        error_code:
+          type: integer
+        error_message:
+          type: string
+        header:
+          type: string
+        param_name:
+          type: string
+        secret:
+          type: string
+        use_param:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ApiDefinitionsResponse:
+      properties:
+        apis:
+          items:
+            $ref: '#/components/schemas/ApiDefinitionWrapper'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    ExampleRef:
+      type: object
+    Links:
+      additionalProperties:
+        $ref: '#/components/schemas/LinkRef'
       type: object
     GraphQLProxyFeaturesConfig:
       properties:
@@ -1880,6 +2787,15 @@ components:
           type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
+    AllCategoriesResponse:
+      properties:
+        categories:
+          items:
+            $ref: '#/components/schemas/CategoryCount'
+          type:
+          - array
+          - 'null'
+      type: object
     ExtendedPathsSet:
       properties:
         advance_cache_config:
@@ -1992,32 +2908,61 @@ components:
           type: array
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    Categories:
-      items:
-        type: string
-      type: array
-    ApiModel:
-      type: object
-    ParametersMap:
-      additionalProperties:
-        $ref: '#/components/schemas/ParameterRef'
-      type: object
-    ExternalDocs:
+    EndPointMeta:
       properties:
-        description:
+        disabled:
+          type: boolean
+        ignore_case:
+          type: boolean
+        method:
+          type: string
+        method_actions:
+          additionalProperties:
+            $ref: '#/components/schemas/EndpointMethodMeta'
+          type: object
+        path:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    Introspection:
+      properties:
+        cache:
+          $ref: '#/components/schemas/IntrospectionCache'
+        client_id:
+          type: string
+        client_secret:
+          type: string
+        enabled:
+          type: boolean
+        identity_base_field:
           type: string
         url:
           type: string
-      type:
-      - object
-      - 'null'
-    MockResponseMeta:
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GraphQLIntrospectionConfig:
+      properties:
+        disabled:
+          type: boolean
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    SecuritySchemeRef:
+      type: object
+    HeadersType2:
+      additionalProperties:
+        $ref: '#/components/schemas/HeaderRef'
+      type: object
+    HostCheckObject:
       properties:
         body:
           type: string
-        code:
-          type: integer
-        disabled:
+        commands:
+          items:
+            $ref: '#/components/schemas/CheckCommand'
+          type:
+          - array
+          - 'null'
+        enable_proxy_protocol:
           type: boolean
         headers:
           additionalProperties:
@@ -2025,35 +2970,44 @@ components:
           type:
           - object
           - 'null'
-        ignore_case:
-          type: boolean
         method:
           type: string
-        path:
+        protocol:
+          type: string
+        timeout:
+          $ref: '#/components/schemas/TimeDuration'
+        url:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    OAS:
+    VersionDefinition:
       properties:
-        components:
-          $ref: '#/components/schemas/Components'
-        externalDocs:
-          $ref: '#/components/schemas/ExternalDocs'
-        info:
-          $ref: '#/components/schemas/InfoType2'
-        openapi:
+        default:
           type: string
-        paths:
-          $ref: '#/components/schemas/Paths'
-        security:
-          $ref: '#/components/schemas/SecurityRequirements'
-        servers:
-          $ref: '#/components/schemas/Servers'
-        tags:
-          $ref: '#/components/schemas/Tags'
-      type:
-      - object
-      - 'null'
+        enabled:
+          type: boolean
+        fallback_to_default:
+          type: boolean
+        key:
+          type: string
+        location:
+          type: string
+        name:
+          type: string
+        strip_path:
+          type: boolean
+        strip_versioning_data:
+          type: boolean
+        url_versioning_pattern:
+          type: string
+        versions:
+          additionalProperties:
+            type: string
+          type:
+          - object
+          - 'null'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     MiddlewareSection:
       properties:
         auth_check:
@@ -2088,280 +3042,6 @@ components:
           - 'null'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    TemplateMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        template_data:
-          $ref: '#/components/schemas/TemplateData'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLFieldConfig:
-      properties:
-        disable_default_mapping:
-          type: boolean
-        field_name:
-          type: string
-        path:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        type_name:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLSupergraphConfig:
-      properties:
-        disable_query_batching:
-          type: boolean
-        global_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        merged_sdl:
-          type: string
-        subgraphs:
-          items:
-            $ref: '#/components/schemas/GraphQLSubgraphEntity'
-          type:
-          - array
-          - 'null'
-        updated_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ValidateRequestMeta:
-      properties:
-        enabled:
-          type: boolean
-        error_response_code:
-          type: integer
-        method:
-          type: string
-        path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Callbacks:
-      additionalProperties:
-        $ref: '#/components/schemas/CallbackRef'
-      type: object
-    CacheMeta:
-      properties:
-        cache_key_regex:
-          type: string
-        cache_response_codes:
-          items:
-            type: integer
-          type:
-          - array
-          - 'null'
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        timeout:
-          format: int64
-          type: integer
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLEngineDataSource:
-      properties:
-        config: {}
-        internal:
-          type: boolean
-        kind:
-          type: string
-        name:
-          type: string
-        root_fields:
-          items:
-            $ref: '#/components/schemas/GraphQLTypeFields'
-          type:
-          - array
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    TransformJQMeta:
-      properties:
-        filter:
-          type: string
-        method:
-          type: string
-        path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ScopesType2:
-      properties:
-        jwt:
-          $ref: '#/components/schemas/ScopeClaim'
-        oidc:
-          $ref: '#/components/schemas/ScopeClaim'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    NotificationsManager:
-      properties:
-        oauth_on_keychange_url:
-          type: string
-        shared_secret:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLSubgraphEntity:
-      properties:
-        api_id:
-          type: string
-        headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        name:
-          type: string
-        sdl:
-          type: string
-        subscription_type:
-          type: string
-        url:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EndpointMethodMeta:
-      properties:
-        action:
-          type: string
-        code:
-          type: integer
-        data:
-          type: string
-        headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLPlayground:
-      properties:
-        enabled:
-          type: boolean
-        path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ParameterRef:
-      type: object
-    RequestSizeMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        size_limit:
-          format: int64
-          type: integer
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GoPluginMeta:
-      properties:
-        disabled:
-          type: boolean
-        func_name:
-          type: string
-        method:
-          type: string
-        path:
-          type: string
-        plugin_path:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Components:
-      properties:
-        callbacks:
-          $ref: '#/components/schemas/Callbacks'
-        examples:
-          $ref: '#/components/schemas/Examples'
-        headers:
-          $ref: '#/components/schemas/HeadersType2'
-        links:
-          $ref: '#/components/schemas/Links'
-        parameters:
-          $ref: '#/components/schemas/ParametersMap'
-        requestBodies:
-          $ref: '#/components/schemas/RequestBodies'
-        responses:
-          $ref: '#/components/schemas/Responses'
-        schemas:
-          $ref: '#/components/schemas/Schemas'
-        securitySchemes:
-          $ref: '#/components/schemas/SecuritySchemesType2'
-      type:
-      - object
-      - 'null'
-    SecuritySchemeRef:
-      type: object
-    DatasourceMappingConfiguration:
-      properties:
-        disabled:
-          type: boolean
-        path:
-          type: string
-      type:
-      - object
-      - 'null'
-    GraphQLIntrospectionConfig:
-      properties:
-        disabled:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLProxyConfig:
-      properties:
-        auth_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        features:
-          $ref: '#/components/schemas/GraphQLProxyFeaturesConfig'
-        request_headers:
-          additionalProperties:
-            type: string
-          type:
-          - object
-          - 'null'
-        request_headers_rewrite:
-          additionalProperties:
-            $ref: '#/components/schemas/RequestHeadersRewriteConfig'
-          type:
-          - object
-          - 'null'
-        subscription_type:
-          type: string
-        use_response_extensions:
-          $ref: '#/components/schemas/GraphQLResponseExtensions'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
     OIDProviderConfig:
       properties:
         client_ids:
@@ -2374,579 +3054,6 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    RateLimitMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        per:
-          format: double
-          type: number
-        rate:
-          format: double
-          type: number
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Examples:
-      additionalProperties:
-        $ref: '#/components/schemas/ExampleRef'
-      type: object
-    PersistGraphQLMeta:
-      properties:
-        method:
-          type: string
-        operation:
-          type: string
-        path:
-          type: string
-        variables:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    UptimeTestsConfig:
-      properties:
-        expire_utime_after:
-          format: int64
-          type: integer
-        recheck_wait:
-          type: integer
-        service_discovery:
-          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    AuthProviderMeta:
-      properties:
-        meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-        name:
-          type: string
-        storage_engine:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    MiddlewareDefinition:
-      properties:
-        disabled:
-          type: boolean
-        name:
-          type: string
-        path:
-          type: string
-        raw_body_only:
-          type: boolean
-        require_session:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ValidatePathMeta:
-      properties:
-        disabled:
-          type: boolean
-        error_response_code:
-          type: integer
-        method:
-          type: string
-        path:
-          type: string
-        schema:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-        schema_b64:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    UptimeTests:
-      properties:
-        check_list:
-          items:
-            $ref: '#/components/schemas/HostCheckObject'
-          type:
-          - array
-          - 'null'
-        config:
-          $ref: '#/components/schemas/UptimeTestsConfig'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RoutingTriggerOptions:
-      properties:
-        header_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-        path_part_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-        payload_matches:
-          $ref: '#/components/schemas/StringRegexMap'
-        query_val_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-        request_context_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-        session_meta_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type:
-          - object
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    License:
-      properties:
-        name:
-          type: string
-        url:
-          type: string
-      type:
-      - object
-      - 'null'
-    CheckCommand:
-      properties:
-        message:
-          type: string
-        name:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EventHandlerTriggerConfig:
-      properties:
-        handler_meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-        handler_name:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ApiDefinitionWrapper:
-      properties:
-        api_definition:
-          $ref: '#/components/schemas/APIDefinition'
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
-        categories:
-          $ref: '#/components/schemas/Categories'
-        created_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        hook_references:
-          items:
-            $ref: '#/components/schemas/HookReference'
-          type:
-          - array
-          - 'null'
-        is_site:
-          type: boolean
-        oas:
-          $ref: '#/components/schemas/OAS'
-        sort_by:
-          type: integer
-        updated_at:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        user_group_owners:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        user_owners:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      type: object
-    URLVals:
-      properties:
-        ApiURL:
-          type: string
-        BasePath:
-          type: string
-        Host:
-          type: string
-      type: object
-    Links:
-      additionalProperties:
-        $ref: '#/components/schemas/LinkRef'
-      type: object
-    GraphQLTypeFields:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        type:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    SessionProviderMeta:
-      properties:
-        meta:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-        name:
-          type: string
-        storage_engine:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RoutingTrigger:
-      properties:
-        'on':
-          type: string
-        options:
-          $ref: '#/components/schemas/RoutingTriggerOptions'
-        rewrite_to:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Paths:
-      additionalProperties:
-        $ref: '#/components/schemas/PathItem'
-      type: object
-    InfoType2:
-      properties:
-        contact:
-          $ref: '#/components/schemas/Contact'
-        description:
-          type: string
-        license:
-          $ref: '#/components/schemas/License'
-        termsOfService:
-          type: string
-        title:
-          type: string
-        version:
-          type: string
-      type:
-      - object
-      - 'null'
-    StringRegexMap:
-      properties:
-        match_rx:
-          type: string
-        reverse:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    IntrospectionCache:
-      properties:
-        enabled:
-          type: boolean
-        timeout:
-          format: int64
-          type: integer
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    TimeDuration:
-      format: int64
-      type: integer
-    HeadersType2:
-      additionalProperties:
-        $ref: '#/components/schemas/HeaderRef'
-      type: object
-    ProxyConfig:
-      properties:
-        check_host_against_uptime_tests:
-          type: boolean
-        disable_strip_slash:
-          type: boolean
-        enable_load_balancing:
-          type: boolean
-        listen_path:
-          type: string
-        preserve_host_header:
-          type: boolean
-        service_discovery:
-          $ref: '#/components/schemas/ServiceDiscoveryConfiguration'
-        strip_listen_path:
-          type: boolean
-        target_list:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        target_url:
-          type: string
-        transport:
-          properties:
-            proxy_url:
-              type: string
-            ssl_ciphers:
-              items:
-                type: string
-              type:
-              - array
-              - 'null'
-            ssl_force_common_name_check:
-              type: boolean
-            ssl_insecure_skip_verify:
-              type: boolean
-            ssl_max_version:
-              minimum: 0
-              type: integer
-            ssl_min_version:
-              minimum: 0
-              type: integer
-          type: object
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Tags:
-      items:
-        $ref: '#/components/schemas/Tag'
-      type: array
-    ApiDefinitionsResponse:
-      properties:
-        apis:
-          items:
-            $ref: '#/components/schemas/ApiDefinitionWrapper'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    VersionData:
-      properties:
-        default_version:
-          type: string
-        not_versioned:
-          type: boolean
-        versions:
-          additionalProperties:
-            $ref: '#/components/schemas/VersionInfo'
-          type:
-          - object
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    SecurityRequirements:
-      items:
-        $ref: '#/components/schemas/SecurityRequirement'
-      type:
-      - array
-      - 'null'
-    SecuritySchemesType2:
-      additionalProperties:
-        $ref: '#/components/schemas/SecuritySchemeRef'
-      type: object
-    PathItem:
-      properties:
-        $ref:
-          type: string
-        connect:
-          $ref: '#/components/schemas/OperationType2'
-        delete:
-          $ref: '#/components/schemas/OperationType2'
-        description:
-          type: string
-        get:
-          $ref: '#/components/schemas/OperationType2'
-        head:
-          $ref: '#/components/schemas/OperationType2'
-        options:
-          $ref: '#/components/schemas/OperationType2'
-        parameters:
-          $ref: '#/components/schemas/Parameters'
-        patch:
-          $ref: '#/components/schemas/OperationType2'
-        post:
-          $ref: '#/components/schemas/OperationType2'
-        put:
-          $ref: '#/components/schemas/OperationType2'
-        servers:
-          $ref: '#/components/schemas/Servers'
-        summary:
-          type: string
-        trace:
-          $ref: '#/components/schemas/OperationType2'
-      type: object
-    OpenIDOptions:
-      properties:
-        providers:
-          items:
-            $ref: '#/components/schemas/OIDProviderConfig'
-          type:
-          - array
-          - 'null'
-        segregate_by_client:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    DatasourceTypeFieldConfiguration:
-      properties:
-        data_source:
-          $ref: '#/components/schemas/DatasourceSourceConfig'
-        field_name:
-          type: string
-        mapping:
-          $ref: '#/components/schemas/DatasourceMappingConfiguration'
-        type_name:
-          type: string
-      type: object
-    HookReference:
-      properties:
-        event_name:
-          type: string
-        event_timeout:
-          format: int64
-          type: integer
-        hook:
-          $ref: '#/components/schemas/WebHookHandlerConf'
-      type: object
-    SignatureConfig:
-      properties:
-        algorithm:
-          type: string
-        allowed_clock_skew:
-          format: int64
-          type: integer
-        error_code:
-          type: integer
-        error_message:
-          type: string
-        header:
-          type: string
-        param_name:
-          type: string
-        secret:
-          type: string
-        use_param:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    DetailedExampleAPIMetadata:
-      properties:
-        api_definition:
-          $ref: '#/components/schemas/APIDefinition'
-        description:
-          type: string
-        features:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        location:
-          type: string
-        min_version:
-          type: string
-        name:
-          type: string
-        oas:
-          $ref: '#/components/schemas/OAS'
-        readme:
-          type: string
-      type: object
-    TemplateData:
-      properties:
-        enable_session:
-          type: boolean
-        input_type:
-          type: string
-        template_mode:
-          type: string
-        template_source:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    DatasourceSourceConfig:
-      properties:
-        data_source_config: {}
-        kind:
-          type: string
-      type: object
-    MethodTransformMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        to_method:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ResponseProcessor:
-      properties:
-        name:
-          type: string
-        options: {}
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RequestBodyRef:
-      type: object
-    HardTimeoutMeta:
-      properties:
-        disabled:
-          type: boolean
-        method:
-          type: string
-        path:
-          type: string
-        timeout:
-          type: integer
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ScopeClaim:
-      properties:
-        scope_claim_name:
-          type: string
-        scope_to_policy:
-          additionalProperties:
-            type: string
-          type: object
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    Schemas:
-      additionalProperties:
-        $ref: '#/components/schemas/SchemaRef'
-      type: object
     ProviderType2:
       properties:
         introspection:
@@ -2955,16 +3062,6 @@ components:
           $ref: '#/components/schemas/JWTValidation'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    HeaderRef:
-      type: object
-    Responses:
-      additionalProperties:
-        $ref: '#/components/schemas/ResponseRef'
-      type: object
-    Parameters:
-      items:
-        $ref: '#/components/schemas/ParameterRef'
-      type: array
     RequestSigningMeta:
       properties:
         algorithm:
@@ -2987,45 +3084,22 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    AccessManagementPayload:
+    ExternalOAuth:
       properties:
-        userGroupIds:
-          example:
-          - 663a4ed6b6be920001b191aa
-          - 663a4ed6b6be920001b191ab
-          items:
-            type: string
-          type: array
-        userIds:
-          example:
-          - 663b2a835715ecb6edef24e3
-          - 663a5bbf5715ec8040251f2a
-          items:
-            type: string
-          type: array
-      type: object
-    GraphQLSubgraphConfig:
-      properties:
-        sdl:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    Introspection:
-      properties:
-        cache:
-          $ref: '#/components/schemas/IntrospectionCache'
-        client_id:
-          type: string
-        client_secret:
-          type: string
         enabled:
           type: boolean
-        identity_base_field:
-          type: string
-        url:
-          type: string
+        providers:
+          items:
+            $ref: '#/components/schemas/ProviderType2'
+          type:
+          - array
+          - 'null'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
+    ParametersMap:
+      additionalProperties:
+        $ref: '#/components/schemas/ParameterRef'
+      type: object
     VersionInfo:
       properties:
         expires:
@@ -3094,134 +3168,60 @@ components:
           type: boolean
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    RequestBodies:
-      additionalProperties:
-        $ref: '#/components/schemas/RequestBodyRef'
-      type: object
-    URLRewriteMeta:
+    InfoType2:
       properties:
-        disabled:
-          type: boolean
-        match_pattern:
+        contact:
+          $ref: '#/components/schemas/Contact'
+        description:
           type: string
-        method:
+        license:
+          $ref: '#/components/schemas/License'
+        termsOfService:
           type: string
-        path:
+        title:
           type: string
-        rewrite_to:
-          type: string
-        triggers:
-          items:
-            $ref: '#/components/schemas/RoutingTrigger'
-          type:
-          - array
-          - 'null'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    GraphQLConfig:
-      properties:
-        enabled:
-          type: boolean
-        engine:
-          $ref: '#/components/schemas/GraphQLEngineConfig'
-        execution_mode:
-          type: string
-        introspection:
-          $ref: '#/components/schemas/GraphQLIntrospectionConfig'
-        last_schema_update:
-          format: date-time
-          type:
-          - string
-          - 'null'
-        playground:
-          $ref: '#/components/schemas/GraphQLPlayground'
-        proxy:
-          $ref: '#/components/schemas/GraphQLProxyConfig'
-        schema:
-          type: string
-        subgraph:
-          $ref: '#/components/schemas/GraphQLSubgraphConfig'
-        supergraph:
-          $ref: '#/components/schemas/GraphQLSupergraphConfig'
-        type_field_configurations:
-          items:
-            $ref: '#/components/schemas/DatasourceTypeFieldConfiguration'
-          type:
-          - array
-          - 'null'
         version:
           type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    SecurityRequirement:
-      additionalProperties:
-        items:
-          type: string
-        type: array
-      type: object
-    MiddlewareIdExtractor:
+      type:
+      - object
+      - 'null'
+    GraphQLTypeFields:
       properties:
-        disabled:
-          type: boolean
-        extract_from:
-          type: string
-        extract_with:
-          type: string
-        extractor_config:
-          additionalProperties: {}
+        fields:
+          items:
+            type: string
           type:
-          - object
+          - array
           - 'null'
+        type:
+          type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    AnalyticsPluginConfig:
+    SchemaRef:
+      type: object
+    ApiResponse:
       properties:
-        enable:
-          type: boolean
-        func_name:
+        ID:
           type: string
-        plugin_path:
+        Message:
+          type: string
+        Meta: {}
+        Status:
           type: string
       type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    CORSConfig:
+    ServerType2:
       properties:
-        allow_credentials:
-          type: boolean
-        allowed_headers:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        allowed_methods:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        allowed_origins:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        debug:
-          type: boolean
-        enable:
-          type: boolean
-        exposed_headers:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        max_age:
-          type: integer
-        options_passthrough:
-          type: boolean
+        description:
+          type: string
+        url:
+          type: string
+        variables:
+          additionalProperties:
+            $ref: '#/components/schemas/ServerVariable'
+          type: object
       type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
+    LinkRef:
+      type: object
   examples:
     paginatedApiExample:
       value:

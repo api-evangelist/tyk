@@ -80,7 +80,7 @@ paths:
   /api/sso:
     post:
       description: The Dashboard exposes the /api/sso Dashboard API which allows you to generate a temporary authentication token, valid for 60 seconds.
-      operationId: generateAuthToken
+      operationId: postApiSso
       requestBody:
         content:
           application/json:
@@ -150,6 +150,8 @@ paths:
       - Single Sign On
       security:
       - bearerAuth: []
+      x-operation-id-source: normalized
+      x-operation-id-original: generateAuthToken
     servers:
     - url: https://{tenant}
       variables:

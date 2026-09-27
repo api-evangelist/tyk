@@ -168,77 +168,7 @@ paths:
         delay: 0
         dispatcher: FALLBACK
 components:
-  examples:
-    certificateBasicList:
-      value:
-        certs:
-        - dns_names:
-          - example.com
-          - www.example.com
-          has_private: true
-          id: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
-          is_ca: false
-          issuer_cn: Issuer 1
-          not_after: '2024-01-01T00:00:00Z'
-          not_before: '2023-01-01T00:00:00Z'
-          subject_cn: Subject 1
-        - dns_names:
-          - example.org
-          - www.example.org
-          has_private: false
-          id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          is_ca: true
-          issuer_cn: Issuer 2
-          not_after: '2024-02-01T00:00:00Z'
-          not_before: '2023-02-01T00:00:00Z'
-          subject_cn: Subject 2
-    certIdList:
-      value:
-        certs:
-        - 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
-        - 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
   schemas:
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-    APIAllCertificates:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    APIAllCertificateBasics:
-      properties:
-        certs:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
     CertsCertificateBasics:
       properties:
         dns_names:
@@ -272,6 +202,76 @@ components:
           type: string
           example: example_value
       type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+    APIAllCertificates:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    APIAllCertificateBasics:
+      properties:
+        certs:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+  examples:
+    certIdList:
+      value:
+        certs:
+        - 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+        - 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+    certificateBasicList:
+      value:
+        certs:
+        - dns_names:
+          - example.com
+          - www.example.com
+          has_private: true
+          id: 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+          is_ca: false
+          issuer_cn: Issuer 1
+          not_after: '2024-01-01T00:00:00Z'
+          not_before: '2023-01-01T00:00:00Z'
+          subject_cn: Subject 1
+        - dns_names:
+          - example.org
+          - www.example.org
+          has_private: false
+          id: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          is_ca: true
+          issuer_cn: Issuer 2
+          not_after: '2024-02-01T00:00:00Z'
+          not_before: '2023-02-01T00:00:00Z'
+          subject_cn: Subject 2
   securitySchemes:
     api_key:
       description: Api key

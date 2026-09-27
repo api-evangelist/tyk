@@ -241,6 +241,85 @@ paths:
                 Meta: 54b53d3aeba6db5c35000002
 components:
   schemas:
+    OpenPolicyConf:
+      properties:
+        rules:
+          type: string
+        enabled:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - rules
+      - enabled
+    OrganisationDocument:
+      description: The fields that describe the "organisation" object as stored in Tyk
+      properties:
+        id:
+          type: string
+        owner_name:
+          type: string
+        owner_slug:
+          type: string
+        cname_enabled:
+          type: boolean
+        cname:
+          type: string
+        apis:
+          items:
+            $ref: '#/components/schemas/ApiDocument'
+          type: array
+        sso_enabled:
+          type: boolean
+        developer_quota:
+          type: integer
+        developer_count:
+          type: integer
+        event_options:
+          additionalProperties:
+            $ref: '#/components/schemas/EventConfig'
+          type: object
+        hybrid_enabled:
+          type: boolean
+        ui:
+          $ref: '#/components/schemas/UIOptions'
+        org_options_meta:
+          type: object
+        open_policy:
+          $ref: '#/components/schemas/OpenPolicyConf'
+        additional_permissions:
+          additionalProperties:
+            type: string
+          type: object
+      additionalProperties: false
+      type: object
+      required:
+      - id
+      - owner_name
+      - owner_slug
+      - cname_enabled
+      - cname
+      - apis
+      - sso_enabled
+      - developer_quota
+      - developer_count
+      - event_options
+      - hybrid_enabled
+      - ui
+      - org_options_meta
+      - open_policy
+      - additional_permissions
+    ApiDocument:
+      properties:
+        api_human_name:
+          type: string
+        api_id:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+      - api_human_name
+      - api_id
     UIOptions:
       properties:
         languages:
@@ -301,85 +380,6 @@ components:
       - webhook
       - email
       - redis
-    ApiDocument:
-      properties:
-        api_human_name:
-          type: string
-        api_id:
-          type: string
-      additionalProperties: false
-      type: object
-      required:
-      - api_human_name
-      - api_id
-    OrganisationDocument:
-      description: The fields that describe the "organisation" object as stored in Tyk
-      properties:
-        id:
-          type: string
-        owner_name:
-          type: string
-        owner_slug:
-          type: string
-        cname_enabled:
-          type: boolean
-        cname:
-          type: string
-        apis:
-          items:
-            $ref: '#/components/schemas/ApiDocument'
-          type: array
-        sso_enabled:
-          type: boolean
-        developer_quota:
-          type: integer
-        developer_count:
-          type: integer
-        event_options:
-          additionalProperties:
-            $ref: '#/components/schemas/EventConfig'
-          type: object
-        hybrid_enabled:
-          type: boolean
-        ui:
-          $ref: '#/components/schemas/UIOptions'
-        org_options_meta:
-          type: object
-        open_policy:
-          $ref: '#/components/schemas/OpenPolicyConf'
-        additional_permissions:
-          additionalProperties:
-            type: string
-          type: object
-      additionalProperties: false
-      type: object
-      required:
-      - id
-      - owner_name
-      - owner_slug
-      - cname_enabled
-      - cname
-      - apis
-      - sso_enabled
-      - developer_quota
-      - developer_count
-      - event_options
-      - hybrid_enabled
-      - ui
-      - org_options_meta
-      - open_policy
-      - additional_permissions
-    OpenPolicyConf:
-      properties:
-        rules:
-          type: string
-        enabled:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - rules
-      - enabled
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

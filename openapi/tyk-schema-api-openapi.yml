@@ -83,7 +83,7 @@ paths:
   /tyk/schema:
     get:
       description: Get OAS schema definition using a version.
-      operationId: getSchema
+      operationId: getTykSchema
       parameters:
       - description: The OAS version to fetch.
         example: 3.0.3
@@ -128,6 +128,8 @@ paths:
         dispatcher: FALLBACK
       security:
       - api_key: []
+      x-operation-id-source: normalized
+      x-operation-id-original: getSchema
     servers:
     - url: https://{tenant}
       variables:

@@ -115,14 +115,6 @@ paths:
       - System
 components:
   parameters:
-    startDate:
-      description: start date
-      example: '2023-07-01'
-      in: query
-      name: start_day
-      schema:
-        format: date
-        type: string
     endDate:
       description: end date
       example: ' 2023-07-31'
@@ -131,7 +123,25 @@ components:
       schema:
         format: date
         type: string
+    startDate:
+      description: start date
+      example: '2023-07-01'
+      in: query
+      name: start_day
+      schema:
+        format: date
+        type: string
   schemas:
+    SystemStatsResp:
+      properties:
+        message:
+          type: string
+        stats:
+          $ref: '#/components/schemas/EntityStats'
+        status:
+          example: Success
+          type: string
+      type: object
     IndividualStats:
       properties:
         avg_active_usage:
@@ -162,14 +172,14 @@ components:
           example: 10
           type: integer
       type: object
-    SystemStatsResp:
+    ApiResponse:
       properties:
-        message:
+        ID:
           type: string
-        stats:
-          $ref: '#/components/schemas/EntityStats'
-        status:
-          example: Success
+        Message:
+          type: string
+        Meta: {}
+        Status:
           type: string
       type: object
     EntityStats:
@@ -191,16 +201,6 @@ components:
       type:
       - object
       - 'null'
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

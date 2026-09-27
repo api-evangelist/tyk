@@ -1,6 +1,6 @@
 openapi: 3.2.0
 info:
-  title: Tyk OAUTH API
+  title: Tyk OAuth API
   version: 5.7.1
   contact:
     email: support@tyk.io
@@ -1360,6 +1360,44 @@ paths:
           description: Your gateway host
 components:
   schemas:
+    DcrpRegistration:
+      properties:
+        access_token:
+          type: string
+        client_uri:
+          type: string
+        provider:
+          type: string
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    OAuthApps:
+      properties:
+        apps:
+          items:
+            $ref: '#/components/schemas/OAuthClient'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    OAuthClientToken:
+      properties:
+        code:
+          type: string
+        expires:
+          format: int64
+          type: integer
+      type: object
     OAuthClient:
       properties:
         client_id:
@@ -1381,15 +1419,14 @@ components:
         secret:
           type: string
       type: object
-    DcrpRegistration:
-      properties:
-        access_token:
-          type: string
-        client_uri:
-          type: string
-        provider:
-          type: string
+    ApiModel:
       type: object
+    OAuthClientTokens:
+      items:
+        $ref: '#/components/schemas/OAuthClientToken'
+      type:
+      - array
+      - 'null'
     NewClientRequest:
       properties:
         api_id:
@@ -1410,43 +1447,18 @@ components:
         secret:
           type: string
       type: object
-    OAuthApps:
+    PaginatedOAuthClientTokens:
       properties:
-        apps:
+        Pagination:
+          $ref: '#/components/schemas/PaginationStatus'
+        Tokens:
           items:
-            $ref: '#/components/schemas/OAuthClient'
+            $ref: '#/components/schemas/OAuthClientToken_2'
           type:
           - array
           - 'null'
-        pages:
-          type: integer
+          example: []
       type: object
-    ApiModel:
-      type: object
-    OAuthClientToken:
-      properties:
-        code:
-          type: string
-        expires:
-          format: int64
-          type: integer
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    OAuthClientTokens:
-      items:
-        $ref: '#/components/schemas/OAuthClientToken'
-      type:
-      - array
-      - 'null'
     PaginationStatus:
       properties:
         page_num:
@@ -1456,6 +1468,15 @@ components:
           type: integer
           example: 10
         page_total:
+          type: integer
+          example: 10
+      type: object
+    OAuthClientToken_2:
+      properties:
+        code:
+          type: string
+          example: example_value
+        expires:
           type: integer
           example: 10
       type: object
@@ -1473,6 +1494,15 @@ components:
         status:
           example: ok
           type: string
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
       type: object
     NewClientRequest_2:
       properties:
@@ -1501,36 +1531,6 @@ components:
         secret:
           example: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
           type: string
-      type: object
-    PaginatedOAuthClientTokens:
-      properties:
-        Pagination:
-          $ref: '#/components/schemas/PaginationStatus'
-        Tokens:
-          items:
-            $ref: '#/components/schemas/OAuthClientToken_2'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    OAuthClientToken_2:
-      properties:
-        code:
-          type: string
-          example: example_value
-        expires:
-          type: integer
-          example: 10
       type: object
   examples:
     paginatedTokenExample:

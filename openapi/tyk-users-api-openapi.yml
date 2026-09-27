@@ -1100,15 +1100,6 @@ paths:
           description: Your dashboard host
 components:
   schemas:
-    UserSearchPayload:
-      properties:
-        filters:
-          properties:
-            query:
-              example: itachi@tyk.io
-              type: string
-          type: object
-      type: object
     UserPassword:
       properties:
         api_model:
@@ -1121,10 +1112,6 @@ components:
           example: newtestuser1password
           minLength: 6
           type: string
-      type: object
-    UserPermissionObject:
-      additionalProperties:
-        type: string
       type: object
     User:
       properties:
@@ -1177,17 +1164,18 @@ components:
       - email_address
       - user_permissions
       type: object
-    ApiModel:
-      type: object
-    ApiResponse:
+    UserSearchPayload:
       properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
+        filters:
+          properties:
+            query:
+              example: itachi@tyk.io
+              type: string
+          type: object
+      type: object
+    UserPermissionObject:
+      additionalProperties:
+        type: string
       type: object
     Users:
       properties:
@@ -1199,6 +1187,18 @@ components:
           type:
           - array
           - 'null'
+      type: object
+    ApiModel:
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
       type: object
   securitySchemes:
     ApiKeyAuth:
