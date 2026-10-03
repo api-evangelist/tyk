@@ -60,6 +60,20 @@ components:
           type: string
           format: date-time
           example: '2024-07-29T13:58:56.699052-04:00'
+    ReadinessFailure:
+      type: object
+      properties:
+        status:
+          type: string
+          example: fail
+        status_code:
+          type: integer
+          example: 503
+        components:
+          type: array
+          items:
+            $ref: '#/components/schemas/ComponentReadinessFailure'
+          example: []
     ReadinessStatus:
       type: object
       properties:
@@ -87,20 +101,6 @@ components:
           type: string
           format: date-time
           example: '2024-07-29T13:58:56.699052-04:00'
-    ReadinessFailure:
-      type: object
-      properties:
-        status:
-          type: string
-          example: fail
-        status_code:
-          type: integer
-          example: 503
-        components:
-          type: array
-          items:
-            $ref: '#/components/schemas/ComponentReadinessFailure'
-          example: []
   securitySchemes:
     api_key:
       in: header

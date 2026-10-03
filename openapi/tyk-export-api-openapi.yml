@@ -116,11 +116,59 @@ paths:
                 Message: Could not retrieve org detail
 components:
   schemas:
-    RoutingTriggerOnType:
+    SessionProviderCode:
       type: string
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    StorageEngineCode:
-      type: string
+    CacheMeta:
+      properties:
+        cache_response_codes:
+          items:
+            format: int64
+            type: integer
+          type: array
+          x-go-name: CacheOnlyResponseCodes
+        cache_key_regex:
+          type: string
+          x-go-name: CacheKeyRegex
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    OpenIDOptions:
+      properties:
+        providers:
+          items:
+            $ref: '#/components/schemas/OIDProviderConfig'
+          type: array
+          x-go-name: Providers
+        segregate_by_client:
+          type: boolean
+          x-go-name: SegregateByClient
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ResponseProcessor:
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        options:
+          type: object
+          x-go-name: Options
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    StringRegexMap:
+      properties:
+        match_rx:
+          type: string
+          x-go-name: MatchPattern
+        reverse:
+          type: boolean
+          x-go-name: Reverse
+      type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     APIDefinition:
       properties:
@@ -510,77 +558,8 @@ components:
       title: APIDefinition represents the configuration for a single proxied API and it's versions.
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    AccessRequestType:
-      description: AccessRequestType is the type for OAuth param `grant_type`
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/vendor/github.com/lonelycode/osin
-    EndpointMethodMeta:
-      properties:
-        action:
-          $ref: '#/components/schemas/EndpointMethodAction'
-        code:
-          format: int64
-          type: integer
-          x-go-name: Code
-        data:
-          type: string
-          x-go-name: Data
-        headers:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Headers
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
     TrackEndpointMeta:
       properties:
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ResponseProcessor:
-      properties:
-        name:
-          type: string
-          x-go-name: Name
-        options:
-          type: object
-          x-go-name: Options
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    StringRegexMap:
-      properties:
-        match_rx:
-          type: string
-          x-go-name: MatchPattern
-        reverse:
-          type: boolean
-          x-go-name: Reverse
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    AuthorizeRequestType:
-      description: AuthorizeRequestType is the type for OAuth param `response_type`
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/vendor/github.com/lonelycode/osin
-    HeaderInjectionMeta:
-      properties:
-        act_on:
-          type: boolean
-          x-go-name: ActOnResponse
-        add_headers:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: AddHeaders
-        delete_headers:
-          items:
-            type: string
-          type: array
-          x-go-name: DeleteHeaders
         method:
           type: string
           x-go-name: Method
@@ -602,19 +581,11 @@ components:
           $ref: '#/components/schemas/StorageEngineCode'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    TransformJQMeta:
-      properties:
-        filter:
-          type: string
-          x-go-name: Filter
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ObjectId:
+      description: http://www.mongodb.org/display/DOCS/Object+IDs
+      title: ObjectId is a unique ID identifying a BSON value. It must be exactly 12 bytes long. MongoDB objects by default have such a property set in their "_id" property.
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/vendor/gopkg.in/mgo.v2/bson
     URLRewriteMeta:
       properties:
         MatchRegexp:
@@ -638,49 +609,33 @@ components:
           x-go-name: Triggers
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    MiddlewareDefinition:
+    MiddlewareDriver:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    NotificationsManager:
+      description: 'TODO: Make this more generic'
       properties:
-        name:
+        oauth_on_keychange_url:
           type: string
-          x-go-name: Name
-        path:
+          x-go-name: OAuthKeyChangeURL
+        shared_secret:
           type: string
-          x-go-name: Path
-        require_session:
-          type: boolean
-          x-go-name: RequireSession
+          x-go-name: SharedSecret
+      title: NotificationsManager handles sending notifications to OAuth endpoints to notify the provider of key changes.
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    AuthTypeEnum:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    AuthProviderCode:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    CacheOptions:
+    TemplateData:
       properties:
-        cache_all_safe_requests:
+        enable_session:
           type: boolean
-          x-go-name: CacheAllSafeRequests
-        cache_control_ttl_header:
+          x-go-name: EnableSession
+        input_type:
+          $ref: '#/components/schemas/RequestInputType'
+        template_mode:
+          $ref: '#/components/schemas/TemplateMode'
+        template_source:
           type: string
-          x-go-name: CacheControlTTLHeader
-        cache_response_codes:
-          items:
-            format: int64
-            type: integer
-          type: array
-          x-go-name: CacheOnlyResponseCodes
-        cache_timeout:
-          format: int64
-          type: integer
-          x-go-name: CacheTimeout
-        enable_cache:
-          type: boolean
-          x-go-name: EnableCache
-        enable_upstream_cache_control:
-          type: boolean
-          x-go-name: EnableUpstreamCacheControl
+          x-go-name: TemplateSource
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     Auth:
@@ -710,21 +665,124 @@ components:
           x-go-name: ValidateSignature
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    MiddlewareDriver:
+    AuthTypeEnum:
       type: string
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    apiStatusMessage:
-      description: apiStatusMessage represents an API status message
+    CacheOptions:
       properties:
-        message:
-          description: Response details
+        cache_all_safe_requests:
+          type: boolean
+          x-go-name: CacheAllSafeRequests
+        cache_control_ttl_header:
           type: string
-          x-go-name: Message
-        status:
-          type: string
-          x-go-name: Status
+          x-go-name: CacheControlTTLHeader
+        cache_response_codes:
+          items:
+            format: int64
+            type: integer
+          type: array
+          x-go-name: CacheOnlyResponseCodes
+        cache_timeout:
+          format: int64
+          type: integer
+          x-go-name: CacheTimeout
+        enable_cache:
+          type: boolean
+          x-go-name: EnableCache
+        enable_upstream_cache_control:
+          type: boolean
+          x-go-name: EnableUpstreamCacheControl
       type: object
-      x-go-package: github.com/TykTechnologies/tyk
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    HeaderInjectionMeta:
+      properties:
+        act_on:
+          type: boolean
+          x-go-name: ActOnResponse
+        add_headers:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: AddHeaders
+        delete_headers:
+          items:
+            type: string
+          type: array
+          x-go-name: DeleteHeaders
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    HostCheckObject:
+      properties:
+        body:
+          type: string
+          x-go-name: Body
+        headers:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: Headers
+        method:
+          type: string
+          x-go-name: Method
+        url:
+          type: string
+          x-go-name: CheckURL
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    EventHandlerMetaConfig:
+      properties:
+        events:
+          x-go-name: Events
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    TemplateMeta:
+      properties:
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+        template_data:
+          $ref: '#/components/schemas/TemplateData'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    AccessRequestType:
+      description: AccessRequestType is the type for OAuth param `grant_type`
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/vendor/github.com/lonelycode/osin
+    ValidatePathMeta:
+      properties:
+        error_response_code:
+          description: Allows override of default 422 Unprocessible Entity response code for validation errors.
+          format: int64
+          type: integer
+          x-go-name: ErrorResponseCode
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+        schema:
+          additionalProperties:
+            type: object
+          type: object
+          x-go-name: Schema
+        schema_b64:
+          type: string
+          x-go-name: SchemaB64
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    IdExtractorType:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     VirtualMeta:
       properties:
         function_source_type:
@@ -750,6 +808,47 @@ components:
           x-go-name: UseSession
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
+    TransformJQMeta:
+      properties:
+        filter:
+          type: string
+          x-go-name: Filter
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    RequestInputType:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    OIDProviderConfig:
+      properties:
+        client_ids:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: ClientIDs
+        issuer:
+          type: string
+          x-go-name: Issuer
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    SessionProviderMeta:
+      properties:
+        meta:
+          additionalProperties:
+            type: object
+          type: object
+          x-go-name: Meta
+        name:
+          $ref: '#/components/schemas/SessionProviderCode'
+        storage_engine:
+          $ref: '#/components/schemas/StorageEngineCode'
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
     RoutingTrigger:
       properties:
         'on':
@@ -759,6 +858,215 @@ components:
         rewrite_to:
           type: string
           x-go-name: RewriteTo
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    GlobalRateLimit:
+      properties:
+        per:
+          format: double
+          type: number
+          x-go-name: Per
+        rate:
+          format: double
+          type: number
+          x-go-name: Rate
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    RoutingTriggerOnType:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    AuthorizeRequestType:
+      description: AuthorizeRequestType is the type for OAuth param `response_type`
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/vendor/github.com/lonelycode/osin
+    HardTimeoutMeta:
+      properties:
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+        timeout:
+          format: int64
+          type: integer
+          x-go-name: TimeOut
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    AuthProviderCode:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    ServiceDiscoveryConfiguration:
+      properties:
+        cache_timeout:
+          format: int64
+          type: integer
+          x-go-name: CacheTimeout
+        data_path:
+          type: string
+          x-go-name: DataPath
+        endpoint_returns_list:
+          type: boolean
+          x-go-name: EndpointReturnsList
+        parent_data_path:
+          type: string
+          x-go-name: ParentDataPath
+        port_data_path:
+          type: string
+          x-go-name: PortDataPath
+        query_endpoint:
+          type: string
+          x-go-name: QueryEndpoint
+        target_path:
+          type: string
+          x-go-name: TargetPath
+        use_discovery_service:
+          type: boolean
+          x-go-name: UseDiscoveryService
+        use_nested_query:
+          type: boolean
+          x-go-name: UseNestedQuery
+        use_target_list:
+          type: boolean
+          x-go-name: UseTargetList
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    StorageEngineCode:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    apiStatusMessage:
+      description: apiStatusMessage represents an API status message
+      properties:
+        message:
+          description: Response details
+          type: string
+          x-go-name: Message
+        status:
+          type: string
+          x-go-name: Status
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk
+    EndpointMethodAction:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    IdExtractorSource:
+      type: string
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    CircuitBreakerMeta:
+      properties:
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+        return_to_service_after:
+          format: int64
+          type: integer
+          x-go-name: ReturnToServiceAfter
+        samples:
+          format: int64
+          type: integer
+          x-go-name: Samples
+        threshold_percent:
+          format: double
+          type: number
+          x-go-name: ThresholdPercent
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    MiddlewareIdExtractor:
+      properties:
+        extract_from:
+          $ref: '#/components/schemas/IdExtractorSource'
+        extract_with:
+          $ref: '#/components/schemas/IdExtractorType'
+        extractor_config:
+          additionalProperties:
+            type: object
+          type: object
+          x-go-name: ExtractorConfig
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    VersionInfo:
+      properties:
+        paths:
+          properties:
+            black_list:
+              items:
+                type: string
+              type: array
+              x-go-name: BlackList
+            ignored:
+              items:
+                type: string
+              type: array
+              x-go-name: Ignored
+            white_list:
+              items:
+                type: string
+              type: array
+              x-go-name: WhiteList
+          type: object
+          x-go-name: Paths
+        expires:
+          type: string
+          x-go-name: Expires
+        extended_paths:
+          $ref: '#/components/schemas/ExtendedPathsSet'
+        global_headers:
+          additionalProperties:
+            type: string
+          type: object
+          x-go-name: GlobalHeaders
+        global_headers_remove:
+          items:
+            type: string
+          type: array
+          x-go-name: GlobalHeadersRemove
+        global_size_limit:
+          format: int64
+          type: integer
+          x-go-name: GlobalSizeLimit
+        name:
+          type: string
+          x-go-name: Name
+        override_target:
+          type: string
+          x-go-name: OverrideTarget
+        use_extended_paths:
+          type: boolean
+          x-go-name: UseExtendedPaths
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    RoutingTriggerOptions:
+      properties:
+        header_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type: object
+          x-go-name: HeaderMatches
+        path_part_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type: object
+          x-go-name: PathPartMatches
+        payload_matches:
+          $ref: '#/components/schemas/StringRegexMap'
+        query_val_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type: object
+          x-go-name: QueryValMatches
+        request_context_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type: object
+          x-go-name: RequestContextMatches
+        session_meta_matches:
+          additionalProperties:
+            $ref: '#/components/schemas/StringRegexMap'
+          type: object
+          x-go-name: SessionMetaMatches
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     SignatureConfig:
@@ -785,13 +1093,7 @@ components:
           x-go-name: Secret
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    EventHandlerMetaConfig:
-      properties:
-        events:
-          x-go-name: Events
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    TemplateMeta:
+    MethodTransformMeta:
       properties:
         method:
           type: string
@@ -799,70 +1101,21 @@ components:
         path:
           type: string
           x-go-name: Path
-        template_data:
-          $ref: '#/components/schemas/TemplateData'
+        to_method:
+          type: string
+          x-go-name: ToMethod
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    InternalMeta:
+    EndPointMeta:
       properties:
-        method:
-          type: string
-          x-go-name: Method
+        method_actions:
+          additionalProperties:
+            $ref: '#/components/schemas/EndpointMethodMeta'
+          type: object
+          x-go-name: MethodActions
         path:
           type: string
           x-go-name: Path
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    TemplateMode:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    SessionProviderMeta:
-      properties:
-        meta:
-          additionalProperties:
-            type: object
-          type: object
-          x-go-name: Meta
-        name:
-          $ref: '#/components/schemas/SessionProviderCode'
-        storage_engine:
-          $ref: '#/components/schemas/StorageEngineCode'
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    MiddlewareIdExtractor:
-      properties:
-        extract_from:
-          $ref: '#/components/schemas/IdExtractorSource'
-        extract_with:
-          $ref: '#/components/schemas/IdExtractorType'
-        extractor_config:
-          additionalProperties:
-            type: object
-          type: object
-          x-go-name: ExtractorConfig
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ValidatePathMeta:
-      properties:
-        error_response_code:
-          description: Allows override of default 422 Unprocessible Entity response code for validation errors.
-          format: int64
-          type: integer
-          x-go-name: ErrorResponseCode
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-        schema:
-          additionalProperties:
-            type: object
-          type: object
-          x-go-name: Schema
-        schema_b64:
-          type: string
-          x-go-name: SchemaB64
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
     ExtendedPathsSet:
@@ -974,121 +1227,7 @@ components:
           x-go-name: WhiteList
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    SessionProviderCode:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EndPointMeta:
-      properties:
-        method_actions:
-          additionalProperties:
-            $ref: '#/components/schemas/EndpointMethodMeta'
-          type: object
-          x-go-name: MethodActions
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    EndpointMethodAction:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    IdExtractorSource:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ObjectId:
-      description: http://www.mongodb.org/display/DOCS/Object+IDs
-      title: ObjectId is a unique ID identifying a BSON value. It must be exactly 12 bytes long. MongoDB objects by default have such a property set in their "_id" property.
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/vendor/gopkg.in/mgo.v2/bson
-    Regexp:
-      description: Regexp is a wrapper around regexp.Regexp but with caching
-      properties:
-        FromCache:
-          type: boolean
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/regexp
-    OpenIDOptions:
-      properties:
-        providers:
-          items:
-            $ref: '#/components/schemas/OIDProviderConfig'
-          type: array
-          x-go-name: Providers
-        segregate_by_client:
-          type: boolean
-          x-go-name: SegregateByClient
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    HostCheckObject:
-      properties:
-        body:
-          type: string
-          x-go-name: Body
-        headers:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: Headers
-        method:
-          type: string
-          x-go-name: Method
-        url:
-          type: string
-          x-go-name: CheckURL
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    TemplateData:
-      properties:
-        enable_session:
-          type: boolean
-          x-go-name: EnableSession
-        input_type:
-          $ref: '#/components/schemas/RequestInputType'
-        template_mode:
-          $ref: '#/components/schemas/TemplateMode'
-        template_source:
-          type: string
-          x-go-name: TemplateSource
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RequestInputType:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RoutingTriggerOptions:
-      properties:
-        header_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type: object
-          x-go-name: HeaderMatches
-        path_part_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type: object
-          x-go-name: PathPartMatches
-        payload_matches:
-          $ref: '#/components/schemas/StringRegexMap'
-        query_val_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type: object
-          x-go-name: QueryValMatches
-        request_context_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type: object
-          x-go-name: RequestContextMatches
-        session_meta_matches:
-          additionalProperties:
-            $ref: '#/components/schemas/StringRegexMap'
-          type: object
-          x-go-name: SessionMetaMatches
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    IdExtractorType:
-      type: string
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    MethodTransformMeta:
+    RequestSizeMeta:
       properties:
         method:
           type: string
@@ -1096,10 +1235,37 @@ components:
         path:
           type: string
           x-go-name: Path
-        to_method:
-          type: string
-          x-go-name: ToMethod
+        size_limit:
+          format: int64
+          type: integer
+          x-go-name: SizeLimit
       type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    InternalMeta:
+      properties:
+        method:
+          type: string
+          x-go-name: Method
+        path:
+          type: string
+          x-go-name: Path
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    MiddlewareDefinition:
+      properties:
+        name:
+          type: string
+          x-go-name: Name
+        path:
+          type: string
+          x-go-name: Path
+        require_session:
+          type: boolean
+          x-go-name: RequireSession
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/apidef
+    TemplateMode:
+      type: string
       x-go-package: github.com/TykTechnologies/tyk/apidef
     MiddlewareSection:
       properties:
@@ -1131,195 +1297,29 @@ components:
           x-go-name: Response
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
-    GlobalRateLimit:
+    Regexp:
+      description: Regexp is a wrapper around regexp.Regexp but with caching
       properties:
-        per:
-          format: double
-          type: number
-          x-go-name: Per
-        rate:
-          format: double
-          type: number
-          x-go-name: Rate
+        FromCache:
+          type: boolean
       type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    OIDProviderConfig:
+      x-go-package: github.com/TykTechnologies/tyk/regexp
+    EndpointMethodMeta:
       properties:
-        client_ids:
+        action:
+          $ref: '#/components/schemas/EndpointMethodAction'
+        code:
+          format: int64
+          type: integer
+          x-go-name: Code
+        data:
+          type: string
+          x-go-name: Data
+        headers:
           additionalProperties:
             type: string
           type: object
-          x-go-name: ClientIDs
-        issuer:
-          type: string
-          x-go-name: Issuer
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    CircuitBreakerMeta:
-      properties:
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-        return_to_service_after:
-          format: int64
-          type: integer
-          x-go-name: ReturnToServiceAfter
-        samples:
-          format: int64
-          type: integer
-          x-go-name: Samples
-        threshold_percent:
-          format: double
-          type: number
-          x-go-name: ThresholdPercent
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    HardTimeoutMeta:
-      properties:
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-        timeout:
-          format: int64
-          type: integer
-          x-go-name: TimeOut
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    CacheMeta:
-      properties:
-        cache_response_codes:
-          items:
-            format: int64
-            type: integer
-          type: array
-          x-go-name: CacheOnlyResponseCodes
-        cache_key_regex:
-          type: string
-          x-go-name: CacheKeyRegex
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    VersionInfo:
-      properties:
-        paths:
-          properties:
-            black_list:
-              items:
-                type: string
-              type: array
-              x-go-name: BlackList
-            ignored:
-              items:
-                type: string
-              type: array
-              x-go-name: Ignored
-            white_list:
-              items:
-                type: string
-              type: array
-              x-go-name: WhiteList
-          type: object
-          x-go-name: Paths
-        expires:
-          type: string
-          x-go-name: Expires
-        extended_paths:
-          $ref: '#/components/schemas/ExtendedPathsSet'
-        global_headers:
-          additionalProperties:
-            type: string
-          type: object
-          x-go-name: GlobalHeaders
-        global_headers_remove:
-          items:
-            type: string
-          type: array
-          x-go-name: GlobalHeadersRemove
-        global_size_limit:
-          format: int64
-          type: integer
-          x-go-name: GlobalSizeLimit
-        name:
-          type: string
-          x-go-name: Name
-        override_target:
-          type: string
-          x-go-name: OverrideTarget
-        use_extended_paths:
-          type: boolean
-          x-go-name: UseExtendedPaths
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    RequestSizeMeta:
-      properties:
-        method:
-          type: string
-          x-go-name: Method
-        path:
-          type: string
-          x-go-name: Path
-        size_limit:
-          format: int64
-          type: integer
-          x-go-name: SizeLimit
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    NotificationsManager:
-      description: 'TODO: Make this more generic'
-      properties:
-        oauth_on_keychange_url:
-          type: string
-          x-go-name: OAuthKeyChangeURL
-        shared_secret:
-          type: string
-          x-go-name: SharedSecret
-      title: NotificationsManager handles sending notifications to OAuth endpoints to notify the provider of key changes.
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/apidef
-    ServiceDiscoveryConfiguration:
-      properties:
-        cache_timeout:
-          format: int64
-          type: integer
-          x-go-name: CacheTimeout
-        data_path:
-          type: string
-          x-go-name: DataPath
-        endpoint_returns_list:
-          type: boolean
-          x-go-name: EndpointReturnsList
-        parent_data_path:
-          type: string
-          x-go-name: ParentDataPath
-        port_data_path:
-          type: string
-          x-go-name: PortDataPath
-        query_endpoint:
-          type: string
-          x-go-name: QueryEndpoint
-        target_path:
-          type: string
-          x-go-name: TargetPath
-        use_discovery_service:
-          type: boolean
-          x-go-name: UseDiscoveryService
-        use_nested_query:
-          type: boolean
-          x-go-name: UseNestedQuery
-        use_target_list:
-          type: boolean
-          x-go-name: UseTargetList
+          x-go-name: Headers
       type: object
       x-go-package: github.com/TykTechnologies/tyk/apidef
   securitySchemes:

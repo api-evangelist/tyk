@@ -732,6 +732,33 @@ paths:
       - Certificates
 components:
   schemas:
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    FormDataFile:
+      properties:
+        file:
+          $ref: '#/components/schemas/MultipartFile'
+      required:
+      - file
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    PkixName:
+      type: object
     CertsCertificateBasics:
       properties:
         dns_names:
@@ -758,11 +785,11 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
-    CertificateDetailedList:
+    CertificateList:
       properties:
-        certificates:
+        certs:
           items:
-            $ref: '#/components/schemas/CertsCertificateMeta'
+            type: string
           type:
           - array
           - 'null'
@@ -782,11 +809,27 @@ components:
           type: string
       type: object
       x-go-package: github.com/TykTechnologies/tyk/gateway
-    CertificateList:
+    MultipartFile:
+      format: binary
+      type:
+      - string
+      - 'null'
+    CertificateBasics:
       properties:
-        certs:
+        cert_basics:
           items:
-            type: string
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    CertificateDetailedList:
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertsCertificateMeta'
           type:
           - array
           - 'null'
@@ -819,26 +862,6 @@ components:
           $ref: '#/components/schemas/PkixName'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
-    CertificateBasics:
-      properties:
-        cert_basics:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    FormDataFile:
-      properties:
-        file:
-          $ref: '#/components/schemas/MultipartFile'
-      required:
-      - file
-      type: object
-    PkixName:
-      type: object
     CertificateDependencies:
       properties:
         certID:
@@ -880,29 +903,6 @@ components:
           - array
           - 'null'
       type: object
-    MultipartFile:
-      format: binary
-      type:
-      - string
-      - 'null'
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

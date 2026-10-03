@@ -68,30 +68,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    HealthCheckResponse:
-      properties:
-        description:
-          type: string
-          example: A sample description.
-        details:
-          additionalProperties:
-            $ref: '#/components/schemas/HealthCheckItem'
-          type: object
-          example: example_value
-        output:
-          type: string
-          example: example_value
-        status:
-          enum:
-          - pass
-          - fail
-          - warn
-          type: string
-          example: pass
-        version:
-          type: string
-          example: example_value
-      type: object
     ApiStatusMessage:
       properties:
         message:
@@ -120,6 +96,30 @@ components:
           type: string
           example: pass
         time:
+          type: string
+          example: example_value
+      type: object
+    HealthCheckResponse:
+      properties:
+        description:
+          type: string
+          example: A sample description.
+        details:
+          additionalProperties:
+            $ref: '#/components/schemas/HealthCheckItem'
+          type: object
+          example: example_value
+        output:
+          type: string
+          example: example_value
+        status:
+          enum:
+          - pass
+          - fail
+          - warn
+          type: string
+          example: pass
+        version:
           type: string
           example: example_value
       type: object

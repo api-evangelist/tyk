@@ -412,6 +412,10 @@ paths:
       - User Group
 components:
   schemas:
+    UserPermissionObject:
+      additionalProperties:
+        type: string
+      type: object
     ApiResponse:
       properties:
         ID:
@@ -444,10 +448,6 @@ components:
           type: integer
         user_permissions:
           $ref: '#/components/schemas/UserPermissionObject'
-      type: object
-    UserPermissionObject:
-      additionalProperties:
-        type: string
       type: object
     UserGroups:
       properties:

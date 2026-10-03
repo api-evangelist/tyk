@@ -1379,17 +1379,6 @@ components:
         Status:
           type: string
       type: object
-    OAuthApps:
-      properties:
-        apps:
-          items:
-            $ref: '#/components/schemas/OAuthClient'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
     OAuthClientToken:
       properties:
         code:
@@ -1419,14 +1408,6 @@ components:
         secret:
           type: string
       type: object
-    ApiModel:
-      type: object
-    OAuthClientTokens:
-      items:
-        $ref: '#/components/schemas/OAuthClientToken'
-      type:
-      - array
-      - 'null'
     NewClientRequest:
       properties:
         api_id:
@@ -1447,39 +1428,25 @@ components:
         secret:
           type: string
       type: object
-    PaginatedOAuthClientTokens:
+    OAuthApps:
       properties:
-        Pagination:
-          $ref: '#/components/schemas/PaginationStatus'
-        Tokens:
+        apps:
           items:
-            $ref: '#/components/schemas/OAuthClientToken_2'
+            $ref: '#/components/schemas/OAuthClient'
           type:
           - array
           - 'null'
-          example: []
+        pages:
+          type: integer
       type: object
-    PaginationStatus:
-      properties:
-        page_num:
-          type: integer
-          example: 10
-        page_size:
-          type: integer
-          example: 10
-        page_total:
-          type: integer
-          example: 10
+    ApiModel:
       type: object
-    OAuthClientToken_2:
-      properties:
-        code:
-          type: string
-          example: example_value
-        expires:
-          type: integer
-          example: 10
-      type: object
+    OAuthClientTokens:
+      items:
+        $ref: '#/components/schemas/OAuthClientToken'
+      type:
+      - array
+      - 'null'
     ApiModifyKeySuccess:
       properties:
         action:
@@ -1503,6 +1470,15 @@ components:
         status:
           type: string
           example: example_value
+      type: object
+    OAuthClientToken_2:
+      properties:
+        code:
+          type: string
+          example: example_value
+        expires:
+          type: integer
+          example: 10
       type: object
     NewClientRequest_2:
       properties:
@@ -1532,7 +1508,41 @@ components:
           example: MmQwNTI5NGQtYjU0YS00NjMyLWIwZjktNTZjY2M1ZjhjYWY0
           type: string
       type: object
+    PaginatedOAuthClientTokens:
+      properties:
+        Pagination:
+          $ref: '#/components/schemas/PaginationStatus'
+        Tokens:
+          items:
+            $ref: '#/components/schemas/OAuthClientToken_2'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    PaginationStatus:
+      properties:
+        page_num:
+          type: integer
+          example: 10
+        page_size:
+          type: integer
+          example: 10
+        page_total:
+          type: integer
+          example: 10
+      type: object
   examples:
+    tokenListExample:
+      value:
+      - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
+        expires: 1518158407
+      - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
+        expires: 1518158594
+      - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
+        expires: 1518158638
+      - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
+        expires: 1518159792
     paginatedTokenExample:
       value:
         Pagination:
@@ -1548,16 +1558,6 @@ components:
           expires: 1518158638
         - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
           expires: 1518159792
-    tokenListExample:
-      value:
-      - code: 5a7d110be6355b0c071cc339327563cb45174ae387f52f87a80d2496
-        expires: 1518158407
-      - code: 5a7d110be6355b0c071cc33988884222b0cf436eba7979c6c51d6dbd
-        expires: 1518158594
-      - code: 5a7d110be6355b0c071cc33990bac8b5261041c5a7d585bff291fec4
-        expires: 1518158638
-      - code: 5a7d110be6355b0c071cc339a66afe75521f49388065a106ef45af54
-        expires: 1518159792
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

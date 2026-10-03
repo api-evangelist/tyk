@@ -169,6 +169,47 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    APIAllCertificates:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+    APIAllCertificateBasics:
+      properties:
+        certs:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
     CertsCertificateBasics:
       properties:
         dns_names:
@@ -201,47 +242,6 @@ components:
         subject_cn:
           type: string
           example: example_value
-      type: object
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-    APIAllCertificates:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    APIAllCertificateBasics:
-      properties:
-        certs:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-          example: []
       type: object
   examples:
     certIdList:

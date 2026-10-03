@@ -157,21 +157,21 @@ components:
         Status:
           type: string
       type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
     OASSchemaResponse_2:
       properties:
         message:
           type: string
           example: example_value
         schema:
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
           example: example_value
         status:
           type: string

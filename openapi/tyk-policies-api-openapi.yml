@@ -1029,14 +1029,136 @@ paths:
           description: Your gateway host
 components:
   schemas:
-    FieldAccessDefinition:
+    ReturnDataStruct:
       properties:
-        field_name:
+        Data:
+          $ref: '#/components/schemas/PolicyList'
+        Pages:
+          type: integer
+      type: object
+    APILimit:
+      properties:
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type:
+      - object
+      - 'null'
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
+      type: object
+    AccessSpec:
+      properties:
+        methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
           type: string
-        limits:
-          $ref: '#/components/schemas/FieldLimits'
-        type_name:
+      type: object
+    ApiResponse:
+      properties:
+        ID:
           type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    AccessDefinition:
+      properties:
+        allowance_scope:
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          type:
+          - array
+          - 'null'
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec'
+          type:
+          - array
+          - 'null'
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          items:
+            $ref: '#/components/schemas/SessionEndpoint'
+          type: array
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition'
+          type:
+          - array
+          - 'null'
+        limit:
+          $ref: '#/components/schemas/APILimit'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType'
+          type:
+          - array
+          - 'null'
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
       type: object
     SessionEndpoint:
       properties:
@@ -1045,6 +1167,17 @@ components:
             $ref: '#/components/schemas/SessionEndpointMethod'
           type: array
         path:
+          type: string
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
           type: string
       type: object
     Policy:
@@ -1123,69 +1256,6 @@ components:
         throttle_retry_limit:
           type: integer
       type: object
-    APILimit:
-      properties:
-        max_query_depth:
-          type: integer
-        per:
-          format: double
-          type: number
-        quota_max:
-          format: int64
-          type: integer
-        quota_remaining:
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          format: int64
-          type: integer
-        quota_renews:
-          format: int64
-          type: integer
-        rate:
-          format: double
-          type: number
-        set_by_policy:
-          type: boolean
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing'
-        throttle_interval:
-          format: double
-          type: number
-        throttle_retry_limit:
-          type: integer
-      type:
-      - object
-      - 'null'
-    GraphqlType:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        name:
-          type: string
-      type: object
-    AccessSpec:
-      properties:
-        methods:
-          example:
-          - GET
-          - PATCH
-          - HEAD
-          - PUT
-          - DELETE
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
-      type: object
     SessionEndpointMethod:
       properties:
         limit:
@@ -1193,86 +1263,12 @@ components:
         name:
           type: string
       type: object
-    SessionEndpointRateLimit:
-      properties:
-        per:
-          format: int64
-          type: integer
-        rate:
-          format: int64
-          type: integer
-      type: object
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    ReturnDataStruct:
-      properties:
-        Data:
-          $ref: '#/components/schemas/PolicyList'
-        Pages:
-          type: integer
-      type: object
     PolicyList:
       items:
         $ref: '#/components/schemas/Policy'
       type:
       - array
       - 'null'
-    AccessDefinition:
-      properties:
-        allowance_scope:
-          type: string
-        allowed_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType'
-          type:
-          - array
-          - 'null'
-        allowed_urls:
-          items:
-            $ref: '#/components/schemas/AccessSpec'
-          type:
-          - array
-          - 'null'
-        api_id:
-          example: d1dfc6a927a046c54c0ed470f19757cc
-          type: string
-        api_name:
-          example: Rate Limit Proxy API
-          type: string
-        disable_introspection:
-          example: false
-          type: boolean
-        endpoints:
-          items:
-            $ref: '#/components/schemas/SessionEndpoint'
-          type: array
-        field_access_rights:
-          items:
-            $ref: '#/components/schemas/FieldAccessDefinition'
-          type:
-          - array
-          - 'null'
-        limit:
-          $ref: '#/components/schemas/APILimit'
-        restricted_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType'
-          type:
-          - array
-          - 'null'
-        versions:
-          example:
-          - Default
-          - v2
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      type: object
     RateLimitSmoothing:
       properties:
         delay:
@@ -1302,15 +1298,77 @@ components:
       type:
       - object
       - 'null'
-    ApiResponse:
+    FieldLimits:
       properties:
-        ID:
+        max_query_depth:
+          type: integer
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
           type: string
-        Message:
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
           type: string
-        Meta: {}
-        Status:
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
           type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    APILimit_2:
+      properties:
+        max_query_depth:
+          type: integer
+          example: 10
+        per:
+          type: number
+          example: 42.5
+        quota_max:
+          type: integer
+          example: 10
+        quota_remaining:
+          type: integer
+          example: 10
+        quota_renewal_rate:
+          type: integer
+          example: 10
+        quota_renews:
+          type: integer
+          example: 10
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
+        throttle_interval:
+          type: number
+          example: 42.5
+        throttle_retry_limit:
+          type: integer
+          example: 10
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
       type: object
     FieldAccessDefinition_2:
       properties:
@@ -1327,7 +1385,130 @@ components:
       items:
         $ref: '#/components/schemas/EndpointMethod'
       type: array
-    GraphAccessDefinition:
+    AccessSpec_2:
+      properties:
+        methods:
+          example:
+          - GET
+          - POST
+          - DELETE
+          - PUT
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    PolicyPartitions:
+      properties:
+        acl:
+          example: true
+          type: boolean
+        complexity:
+          example: false
+          type: boolean
+        per_api:
+          example: false
+          type: boolean
+        quota:
+          example: true
+          type: boolean
+        rate_limit:
+          example: true
+          type: boolean
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
+          type: string
+          example: example_value
+      type: object
+    AccessDefinition_2:
+      properties:
+        allowance_scope:
+          example: d371b83b249845a2497ab9a947fd6210
+          type: string
+        allowed_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        allowed_urls:
+          items:
+            $ref: '#/components/schemas/AccessSpec_2'
+          type:
+          - array
+          - 'null'
+          example: https://www.example.com
+        api_id:
+          example: d1dfc6a927a046c54c0ed470f19757cc
+          type: string
+        api_name:
+          example: Rate Limit Proxy API
+          type: string
+        disable_introspection:
+          example: false
+          type: boolean
+        endpoints:
+          $ref: '#/components/schemas/Endpoints'
+        field_access_rights:
+          items:
+            $ref: '#/components/schemas/FieldAccessDefinition_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        limit:
+          $ref: '#/components/schemas/APILimit_2'
+        restricted_types:
+          items:
+            $ref: '#/components/schemas/GraphqlType_2'
+          type:
+          - array
+          - 'null'
+          example: []
+        versions:
+          example:
+          - Default
+          - v2
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        name:
+          type: string
+          example: Example Title
       type: object
     Policy_2:
       properties:
@@ -1428,124 +1609,6 @@ components:
           type: string
           example: Example Title
       type: object
-    GraphqlType_2:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        name:
-          type: string
-          example: Example Title
-      type: object
-    AccessSpec_2:
-      properties:
-        methods:
-          example:
-          - GET
-          - POST
-          - DELETE
-          - PUT
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
-          type: string
-      type: object
-    Endpoint:
-      properties:
-        methods:
-          $ref: '#/components/schemas/EndpointMethods'
-        path:
-          type: string
-          example: example_value
-      type: object
-    PolicyPartitions:
-      properties:
-        acl:
-          example: true
-          type: boolean
-        complexity:
-          example: false
-          type: boolean
-        per_api:
-          example: false
-          type: boolean
-        quota:
-          example: true
-          type: boolean
-        rate_limit:
-          example: true
-          type: boolean
-      type: object
-    FieldLimits_2:
-      properties:
-        max_query_depth:
-          type: integer
-          example: 10
-      type: object
-    AccessDefinition_2:
-      properties:
-        allowance_scope:
-          example: d371b83b249845a2497ab9a947fd6210
-          type: string
-        allowed_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType_2'
-          type:
-          - array
-          - 'null'
-          example: []
-        allowed_urls:
-          items:
-            $ref: '#/components/schemas/AccessSpec_2'
-          type:
-          - array
-          - 'null'
-          example: https://www.example.com
-        api_id:
-          example: d1dfc6a927a046c54c0ed470f19757cc
-          type: string
-        api_name:
-          example: Rate Limit Proxy API
-          type: string
-        disable_introspection:
-          example: false
-          type: boolean
-        endpoints:
-          $ref: '#/components/schemas/Endpoints'
-        field_access_rights:
-          items:
-            $ref: '#/components/schemas/FieldAccessDefinition_2'
-          type:
-          - array
-          - 'null'
-          example: []
-        limit:
-          $ref: '#/components/schemas/APILimit_2'
-        restricted_types:
-          items:
-            $ref: '#/components/schemas/GraphqlType_2'
-          type:
-          - array
-          - 'null'
-          example: []
-        versions:
-          example:
-          - Default
-          - v2
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      type: object
     RateLimitSmoothing_2:
       properties:
         delay:
@@ -1564,77 +1627,14 @@ components:
           type: number
           example: 42.5
       type: object
-    RateLimitType2:
-      properties:
-        per:
-          type: number
-          example: 42.5
-        rate:
-          type: number
-          example: 42.5
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
-      type: object
-    ApiModifyKeySuccess:
-      properties:
-        action:
-          example: modified
-          type: string
-        key:
-          example: b13d928b9972bd18
-          type: string
-        key_hash:
-          type: string
-          example: example_value
-        status:
-          example: ok
-          type: string
-      type: object
-    APILimit_2:
+    FieldLimits_2:
       properties:
         max_query_depth:
           type: integer
           example: 10
-        per:
-          type: number
-          example: 42.5
-        quota_max:
-          type: integer
-          example: 10
-        quota_remaining:
-          type: integer
-          example: 10
-        quota_renewal_rate:
-          type: integer
-          example: 10
-        quota_renews:
-          type: integer
-          example: 10
-        rate:
-          type: number
-          example: 42.5
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
-        throttle_interval:
-          type: number
-          example: 42.5
-        throttle_retry_limit:
-          type: integer
-          example: 10
       type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
+    GraphAccessDefinition:
       type: object
-    Endpoints:
-      items:
-        $ref: '#/components/schemas/Endpoint'
-      type: array
   examples:
     policiesExample:
       value:

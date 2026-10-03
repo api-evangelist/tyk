@@ -154,6 +154,16 @@ paths:
       - Additional Permissions
 components:
   schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
     NewAdditionalPermissions:
       properties:
         additional_permissions:
@@ -166,16 +176,6 @@ components:
           type:
           - object
           - 'null'
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
       type: object
   securitySchemes:
     bearerAuth:

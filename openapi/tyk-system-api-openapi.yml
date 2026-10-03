@@ -114,24 +114,17 @@ paths:
       tags:
       - System
 components:
-  parameters:
-    endDate:
-      description: end date
-      example: ' 2023-07-31'
-      in: query
-      name: end_day
-      schema:
-        format: date
-        type: string
-    startDate:
-      description: start date
-      example: '2023-07-01'
-      in: query
-      name: start_day
-      schema:
-        format: date
-        type: string
   schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
     SystemStatsResp:
       properties:
         message:
@@ -172,16 +165,6 @@ components:
           example: 10
           type: integer
       type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
     EntityStats:
       properties:
         apis:
@@ -201,6 +184,23 @@ components:
       type:
       - object
       - 'null'
+  parameters:
+    startDate:
+      description: start date
+      example: '2023-07-01'
+      in: query
+      name: start_day
+      schema:
+        format: date
+        type: string
+    endDate:
+      description: end date
+      example: ' 2023-07-31'
+      in: query
+      name: end_day
+      schema:
+        format: date
+        type: string
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

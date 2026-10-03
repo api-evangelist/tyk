@@ -115,29 +115,57 @@ paths:
       - Basic Authentication
 components:
   schemas:
-    FieldAccessDefinition:
+    APILimit:
       properties:
-        field_name:
-          type: string
-        limits:
-          $ref: '#/components/schemas/FieldLimits'
-        type_name:
-          type: string
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type:
+      - object
+      - 'null'
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
       type: object
-    SessionEndpoint:
+    ApiResponse:
       properties:
-        methods:
-          items:
-            $ref: '#/components/schemas/SessionEndpointMethod'
-          type: array
-        path:
+        ID:
           type: string
-      type: object
-    SessionEndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/SessionEndpointRateLimit'
-        name:
+        Message:
+          type: string
+        Meta: {}
+        Status:
           type: string
       type: object
     AccessSpec:
@@ -156,54 +184,6 @@ components:
           - 'null'
         url:
           example: anything/rate-limit-1-per-5
-          type: string
-      type: object
-    GraphqlType:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        name:
-          type: string
-      type: object
-    SessionEndpointRateLimit:
-      properties:
-        per:
-          format: int64
-          type: integer
-        rate:
-          format: int64
-          type: integer
-      type: object
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    KeyData:
-      properties:
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
-        data:
-          $ref: '#/components/schemas/SessionState'
-        key_hash:
-          example: 41c5cb1e
-          type: string
-        key_id:
-          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
           type: string
       type: object
     AccessDefinition:
@@ -259,35 +239,48 @@ components:
           - array
           - 'null'
       type: object
-    RateLimitSmoothing:
+    SessionEndpoint:
       properties:
-        delay:
-          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
-          format: int64
-          minimum: 1
-          type: integer
-        enabled:
-          description: ' Enabled indicates if rate limit smoothing is active.'
-          type: boolean
-        step:
-          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
-          format: int64
-          minimum: 1
-          type: integer
-        threshold:
-          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
-          format: int64
-          minimum: 1
-          type: integer
-        trigger:
-          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
-          format: double
-          minimum: 0
-          multipleOf: 0.01
-          type: number
-      type:
-      - object
-      - 'null'
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          type: string
+      type: object
+    ApiModel:
+      type: object
+    SessionEndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
+          type: string
+      type: object
+    KeyData:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        data:
+          $ref: '#/components/schemas/SessionState'
+        key_hash:
+          example: 41c5cb1e
+          type: string
+        key_id:
+          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+          type: string
+      type: object
     SessionState:
       properties:
         access_rights:
@@ -449,42 +442,49 @@ components:
           example: -1
           type: integer
       type: object
-    ApiModel:
-      type: object
-    APILimit:
+    RateLimitSmoothing:
       properties:
-        max_query_depth:
-          type: integer
-        per:
-          format: double
-          type: number
-        quota_max:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
           format: int64
+          minimum: 1
           type: integer
-        quota_remaining:
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          format: int64
-          type: integer
-        quota_renews:
-          format: int64
-          type: integer
-        rate:
-          format: double
-          type: number
-        set_by_policy:
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
           type: boolean
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing'
-        throttle_interval:
-          format: double
-          type: number
-        throttle_retry_limit:
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
           type: integer
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
       type:
       - object
       - 'null'
+    FieldLimits:
+      properties:
+        max_query_depth:
+          type: integer
+      type: object
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+      type: object
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials

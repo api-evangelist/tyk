@@ -594,16 +594,6 @@ components:
                   enabled: true
                   value: 100
       type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
     Asset:
       properties:
         _id:
@@ -636,6 +626,16 @@ components:
           description: human-readable name for the template
           type: string
         org_id:
+          type: string
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
           type: string
       type: object
   securitySchemes:

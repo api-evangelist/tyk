@@ -241,6 +241,17 @@ paths:
                 Meta: 54b53d3aeba6db5c35000002
 components:
   schemas:
+    ApiDocument:
+      properties:
+        api_human_name:
+          type: string
+        api_id:
+          type: string
+      additionalProperties: false
+      type: object
+      required:
+      - api_human_name
+      - api_id
     OpenPolicyConf:
       properties:
         rules:
@@ -309,17 +320,20 @@ components:
       - org_options_meta
       - open_policy
       - additional_permissions
-    ApiDocument:
+    EventConfig:
       properties:
-        api_human_name:
+        webhook:
           type: string
-        api_id:
+        email:
           type: string
+        redis:
+          type: boolean
       additionalProperties: false
       type: object
       required:
-      - api_human_name
-      - api_id
+      - webhook
+      - email
+      - redis
     UIOptions:
       properties:
         languages:
@@ -366,20 +380,6 @@ components:
       - dont_allow_license_management_view
       - cloud
       - dev
-    EventConfig:
-      properties:
-        webhook:
-          type: string
-        email:
-          type: string
-        redis:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - webhook
-      - email
-      - redis
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

@@ -2228,84 +2228,19 @@ paths:
           description: Your gateway host
 components:
   schemas:
-    FieldAccessDefinition:
-      properties:
-        field_name:
-          type: string
-        limits:
-          $ref: '#/components/schemas/FieldLimits'
-        type_name:
-          type: string
-      type: object
-    AllKeys:
-      properties:
-        keys:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-      type: object
-    SessionEndpoint:
-      properties:
-        methods:
-          items:
-            $ref: '#/components/schemas/SessionEndpointMethod'
-          type: array
-        path:
-          type: string
-      type: object
-    SessionEndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/SessionEndpointRateLimit'
-        name:
-          type: string
-      type: object
-    APILimit:
+    FieldLimits:
       properties:
         max_query_depth:
           type: integer
+      type: object
+    SessionEndpointRateLimit:
+      properties:
         per:
-          format: double
-          type: number
-        quota_max:
-          format: int64
-          type: integer
-        quota_remaining:
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          format: int64
-          type: integer
-        quota_renews:
           format: int64
           type: integer
         rate:
-          format: double
-          type: number
-        set_by_policy:
-          type: boolean
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing'
-        throttle_interval:
-          format: double
-          type: number
-        throttle_retry_limit:
+          format: int64
           type: integer
-      type:
-      - object
-      - 'null'
-    GraphqlType:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        name:
-          type: string
       type: object
     AccessSpec:
       properties:
@@ -2325,32 +2260,31 @@ components:
           example: anything/rate-limit-1-per-5
           type: string
       type: object
-    SessionEndpointRateLimit:
+    ApiResponse:
       properties:
-        per:
-          format: int64
-          type: integer
-        rate:
-          format: int64
-          type: integer
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
       type: object
-    FieldLimits:
+    Keys:
       properties:
-        max_query_depth:
-          type: integer
-      type: object
-    KeyData:
-      properties:
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
         data:
-          $ref: '#/components/schemas/SessionState'
-        key_hash:
-          example: 41c5cb1e
-          type: string
-        key_id:
-          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
-          type: string
+          $ref: '#/components/schemas/AllKeys'
+        pages:
+          type: integer
+      type: object
+    AllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
       type: object
     AccessDefinition:
       properties:
@@ -2405,35 +2339,59 @@ components:
           - array
           - 'null'
       type: object
-    RateLimitSmoothing:
+    SessionEndpoint:
       properties:
-        delay:
-          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
-          format: int64
-          minimum: 1
+        methods:
+          items:
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
+          type: string
+      type: object
+    KeysDetailed:
+      properties:
+        keys:
+          items:
+            $ref: '#/components/schemas/KeyData'
+          type:
+          - array
+          - 'null'
+        pages:
           type: integer
-        enabled:
-          description: ' Enabled indicates if rate limit smoothing is active.'
-          type: boolean
-        step:
-          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
-          format: int64
-          minimum: 1
-          type: integer
-        threshold:
-          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
-          format: int64
-          minimum: 1
-          type: integer
-        trigger:
-          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
-          format: double
-          minimum: 0
-          multipleOf: 0.01
-          type: number
-      type:
-      - object
-      - 'null'
+      type: object
+    GraphqlType:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        name:
+          type: string
+      type: object
+    ApiModel:
+      type: object
+    SessionEndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
+          type: string
+      type: object
+    KeyData:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        data:
+          $ref: '#/components/schemas/SessionState'
+        key_hash:
+          example: 41c5cb1e
+          type: string
+        key_id:
+          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
+          type: string
+      type: object
     SessionState:
       properties:
         access_rights:
@@ -2595,95 +2553,88 @@ components:
           example: -1
           type: integer
       type: object
-    KeysDetailed:
+    RateLimitSmoothing:
       properties:
-        keys:
-          items:
-            $ref: '#/components/schemas/KeyData'
-          type:
-          - array
-          - 'null'
-        pages:
+        delay:
+          description: Delay is a hold-off between smoothing events and controls how frequently the current allowance will step up or down (in seconds).
+          format: int64
+          minimum: 1
           type: integer
-      type: object
-    ApiModel:
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    Keys:
-      properties:
-        data:
-          $ref: '#/components/schemas/AllKeys'
-        pages:
+        enabled:
+          description: ' Enabled indicates if rate limit smoothing is active.'
+          type: boolean
+        step:
+          description: Step is the increment by which the current allowance will be increased or decreased each time a smoothing event is emitted.
+          format: int64
+          minimum: 1
           type: integer
-      type: object
-    ApiAllKeys:
+        threshold:
+          description: Threshold is the initial rate limit beyond which smoothing will be applied. It is a count of requests during the per interval and should be less than the maximum configured rate.
+          format: int64
+          minimum: 1
+          type: integer
+        trigger:
+          description: Trigger is a fraction (typically in the range 0.1-1.0) of the step at which point a smoothing event will be emitted as the request rate approaches the current allowance.
+          format: double
+          minimum: 0
+          multipleOf: 0.01
+          type: number
+      type:
+      - object
+      - 'null'
+    APILimit:
       properties:
-        keys:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    GraphqlType_2:
-      properties:
-        fields:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        name:
-          type: string
-          example: Example Title
-      type: object
-    Endpoint:
-      properties:
-        methods:
-          $ref: '#/components/schemas/EndpointMethods'
-        path:
-          type: string
-          example: example_value
-      type: object
-    BasicAuthData:
-      properties:
-        hash_type:
-          type: string
-          example: example_value
-        password:
-          type: string
-          example: example_value
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    FieldAccessDefinition_2:
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type:
+      - object
+      - 'null'
+    FieldAccessDefinition:
       properties:
         field_name:
           type: string
-          example: example_value
         limits:
-          $ref: '#/components/schemas/FieldLimits_2'
+          $ref: '#/components/schemas/FieldLimits'
         type_name:
           type: string
-          example: example_value
+      type: object
+    RateLimitType2:
+      properties:
+        per:
+          type: number
+          example: 42.5
+        rate:
+          type: number
+          example: 42.5
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing_2'
       type: object
     Monitor:
       properties:
@@ -2697,6 +2648,92 @@ components:
           type:
           - array
           - 'null'
+      type: object
+    Endpoints:
+      items:
+        $ref: '#/components/schemas/Endpoint'
+      type: array
+    ApiAllKeys:
+      properties:
+        keys:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    Endpoint:
+      properties:
+        methods:
+          $ref: '#/components/schemas/EndpointMethods'
+        path:
+          type: string
+          example: example_value
+      type: object
+    EndpointMethod:
+      properties:
+        limit:
+          $ref: '#/components/schemas/RateLimitType2'
+        name:
+          type: string
+          example: Example Title
+      type: object
+    BasicAuthData:
+      properties:
+        hash_type:
+          type: string
+          example: example_value
+        password:
+          type: string
+          example: example_value
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    EndpointMethods:
+      items:
+        $ref: '#/components/schemas/EndpointMethod'
+      type: array
+    PolicyUpdateObj:
+      properties:
+        apply_policies:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        policy:
+          type: string
+          example: example_value
+      type: object
+    JWTData:
+      properties:
+        secret:
+          type: string
+          example: example_value
       type: object
     SessionState_2:
       properties:
@@ -2852,9 +2889,20 @@ components:
           example: 1000
           type: integer
       type: object
-    JWTData:
+    FieldLimits_2:
       properties:
-        secret:
+        max_query_depth:
+          type: integer
+          example: 10
+      type: object
+    FieldAccessDefinition_2:
+      properties:
+        field_name:
+          type: string
+          example: example_value
+        limits:
+          $ref: '#/components/schemas/FieldLimits_2'
+        type_name:
           type: string
           example: example_value
       type: object
@@ -2874,6 +2922,37 @@ components:
         url:
           example: anything/rate-limit-1-per-5
           type: string
+      type: object
+    GraphqlType_2:
+      properties:
+        fields:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        name:
+          type: string
+          example: Example Title
+      type: object
+    RateLimitSmoothing_2:
+      properties:
+        delay:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        step:
+          type: integer
+          example: 10
+        threshold:
+          type: integer
+          example: 10
+        trigger:
+          type: number
+          example: 42.5
       type: object
     APILimit_2:
       properties:
@@ -2904,28 +2983,6 @@ components:
           type: number
           example: 42.5
         throttle_retry_limit:
-          type: integer
-          example: 10
-      type: object
-    Endpoints:
-      items:
-        $ref: '#/components/schemas/Endpoint'
-      type: array
-    EndpointMethods:
-      items:
-        $ref: '#/components/schemas/EndpointMethod'
-      type: array
-    EndpointMethod:
-      properties:
-        limit:
-          $ref: '#/components/schemas/RateLimitType2'
-        name:
-          type: string
-          example: Example Title
-      type: object
-    FieldLimits_2:
-      properties:
-        max_query_depth:
           type: integer
           example: 10
       type: object
@@ -2984,63 +3041,6 @@ components:
           type:
           - array
           - 'null'
-      type: object
-    PolicyUpdateObj:
-      properties:
-        apply_policies:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-        policy:
-          type: string
-          example: example_value
-      type: object
-    ApiModifyKeySuccess:
-      properties:
-        action:
-          example: modified
-          type: string
-        key:
-          example: b13d928b9972bd18
-          type: string
-        key_hash:
-          type: string
-          example: example_value
-        status:
-          example: ok
-          type: string
-      type: object
-    RateLimitSmoothing_2:
-      properties:
-        delay:
-          type: integer
-          example: 10
-        enabled:
-          type: boolean
-          example: true
-        step:
-          type: integer
-          example: 10
-        threshold:
-          type: integer
-          example: 10
-        trigger:
-          type: number
-          example: 42.5
-      type: object
-    RateLimitType2:
-      properties:
-        per:
-          type: number
-          example: 42.5
-        rate:
-          type: number
-          example: 42.5
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing_2'
       type: object
   securitySchemes:
     bearerAuth:

@@ -232,6 +232,16 @@ paths:
       - Analytics
 components:
   schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
     AggregateAnalyticsData:
       properties:
         data:
@@ -325,16 +335,6 @@ components:
         year:
           example: 2024
           type: integer
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
       type: object
   examples:
     aggregateAnalytics:
