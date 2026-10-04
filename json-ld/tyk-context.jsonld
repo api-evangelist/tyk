@@ -1,0 +1,1951 @@
+{
+  "@context": {
+    "@vocab": "https://tyk.io/schema#",
+    "schema": "https://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+    "dcterms": "http://purl.org/dc/terms/",
+    "tyk": "https://tyk.io/schema#",
+    "ApiResponse": "tyk:ApiResponse",
+    "ID": {
+      "@id": "tyk:ID",
+      "@type": "xsd:string"
+    },
+    "Message": {
+      "@id": "tyk:Message",
+      "@type": "xsd:string"
+    },
+    "Meta": {
+      "@id": "tyk:Meta"
+    },
+    "Status": {
+      "@id": "tyk:Status",
+      "@type": "xsd:string"
+    },
+    "NewAdditionalPermissions": "tyk:NewAdditionalPermissions",
+    "additional_permissions": {
+      "@id": "tyk:additional_permissions"
+    },
+    "AggregateAnalyticsData": "tyk:AggregateAnalyticsData",
+    "data": {
+      "@id": "tyk:data",
+      "@container": "@list"
+    },
+    "pages": {
+      "@id": "tyk:pages",
+      "@type": "xsd:integer"
+    },
+    "ResultUnit": "tyk:ResultUnit",
+    "error": {
+      "@id": "tyk:error",
+      "@type": "xsd:integer"
+    },
+    "hits": {
+      "@id": "tyk:hits",
+      "@type": "xsd:integer"
+    },
+    "id": {
+      "@id": "tyk:id",
+      "@type": "@id"
+    },
+    "last_hit": {
+      "@id": "tyk:last_hit",
+      "@type": "xsd:dateTime"
+    },
+    "latency": {
+      "@id": "tyk:latency",
+      "@type": "xsd:decimal"
+    },
+    "max_latency": {
+      "@id": "tyk:max_latency",
+      "@type": "xsd:integer"
+    },
+    "max_upstream_latency": {
+      "@id": "tyk:max_upstream_latency",
+      "@type": "xsd:integer"
+    },
+    "min_latency": {
+      "@id": "tyk:min_latency",
+      "@type": "xsd:integer"
+    },
+    "min_upstream_latency": {
+      "@id": "tyk:min_upstream_latency",
+      "@type": "xsd:integer"
+    },
+    "request_time": {
+      "@id": "tyk:request_time",
+      "@type": "xsd:decimal"
+    },
+    "success": {
+      "@id": "tyk:success",
+      "@type": "xsd:integer"
+    },
+    "upstream_latency": {
+      "@id": "tyk:upstream_latency",
+      "@type": "xsd:decimal"
+    },
+    "ResultId": "tyk:ResultId",
+    "alias": {
+      "@id": "tyk:alias",
+      "@type": "xsd:string"
+    },
+    "api_id": {
+      "@id": "tyk:api_id",
+      "@type": "xsd:string"
+    },
+    "api_name": {
+      "@id": "tyk:api_name",
+      "@type": "xsd:string"
+    },
+    "code": {
+      "@id": "tyk:code",
+      "@type": "xsd:integer"
+    },
+    "day": {
+      "@id": "tyk:day",
+      "@type": "xsd:integer"
+    },
+    "hour": {
+      "@id": "tyk:hour",
+      "@type": "xsd:integer"
+    },
+    "iso_country": {
+      "@id": "tyk:iso_country",
+      "@type": "xsd:string"
+    },
+    "key": {
+      "@id": "tyk:key",
+      "@type": "xsd:string"
+    },
+    "month": {
+      "@id": "tyk:month",
+      "@type": "xsd:integer"
+    },
+    "path": {
+      "@id": "tyk:path",
+      "@type": "xsd:string"
+    },
+    "queries": {
+      "@id": "tyk:queries"
+    },
+    "url": {
+      "@id": "tyk:url",
+      "@type": "xsd:string"
+    },
+    "year": {
+      "@id": "tyk:year",
+      "@type": "xsd:integer"
+    },
+    "GraphQLSubgraphEntity": "tyk:GraphQLSubgraphEntity",
+    "headers": {
+      "@id": "tyk:headers"
+    },
+    "name": {
+      "@id": "tyk:name",
+      "@type": "xsd:string"
+    },
+    "sdl": {
+      "@id": "tyk:sdl",
+      "@type": "xsd:string"
+    },
+    "subscription_type": {
+      "@id": "tyk:subscription_type",
+      "@type": "xsd:string"
+    },
+    "ServerType2": "tyk:ServerType2",
+    "description": {
+      "@id": "tyk:description",
+      "@type": "xsd:string"
+    },
+    "variables": {
+      "@id": "tyk:variables"
+    },
+    "OpenIDOptions": "tyk:OpenIDOptions",
+    "providers": {
+      "@id": "tyk:providers",
+      "@container": "@list"
+    },
+    "segregate_by_client": {
+      "@id": "tyk:segregate_by_client",
+      "@type": "xsd:boolean"
+    },
+    "GraphQLProxyConfig": "tyk:GraphQLProxyConfig",
+    "auth_headers": {
+      "@id": "tyk:auth_headers"
+    },
+    "features": {
+      "@id": "tyk:features",
+      "@type": "@id"
+    },
+    "request_headers": {
+      "@id": "tyk:request_headers"
+    },
+    "request_headers_rewrite": {
+      "@id": "tyk:request_headers_rewrite"
+    },
+    "use_response_extensions": {
+      "@id": "tyk:use_response_extensions",
+      "@type": "@id"
+    },
+    "StringRegexMap": "tyk:StringRegexMap",
+    "match_rx": {
+      "@id": "tyk:match_rx",
+      "@type": "xsd:string"
+    },
+    "reverse": {
+      "@id": "tyk:reverse",
+      "@type": "xsd:boolean"
+    },
+    "AuthProviderMeta": "tyk:AuthProviderMeta",
+    "meta": {
+      "@id": "tyk:meta"
+    },
+    "storage_engine": {
+      "@id": "tyk:storage_engine",
+      "@type": "xsd:string"
+    },
+    "URLRewriteMeta": "tyk:URLRewriteMeta",
+    "disabled": {
+      "@id": "tyk:disabled",
+      "@type": "xsd:boolean"
+    },
+    "match_pattern": {
+      "@id": "tyk:match_pattern",
+      "@type": "xsd:string"
+    },
+    "method": {
+      "@id": "tyk:method",
+      "@type": "xsd:string"
+    },
+    "rewrite_to": {
+      "@id": "tyk:rewrite_to",
+      "@type": "xsd:string"
+    },
+    "triggers": {
+      "@id": "tyk:triggers",
+      "@container": "@list"
+    },
+    "CacheOptions": "tyk:CacheOptions",
+    "cache_all_safe_requests": {
+      "@id": "tyk:cache_all_safe_requests",
+      "@type": "xsd:boolean"
+    },
+    "cache_by_headers": {
+      "@id": "tyk:cache_by_headers",
+      "@container": "@list"
+    },
+    "cache_control_ttl_header": {
+      "@id": "tyk:cache_control_ttl_header",
+      "@type": "xsd:string"
+    },
+    "cache_response_codes": {
+      "@id": "tyk:cache_response_codes",
+      "@container": "@list"
+    },
+    "cache_timeout": {
+      "@id": "tyk:cache_timeout",
+      "@type": "xsd:integer"
+    },
+    "enable_cache": {
+      "@id": "tyk:enable_cache",
+      "@type": "xsd:boolean"
+    },
+    "enable_upstream_cache_control": {
+      "@id": "tyk:enable_upstream_cache_control",
+      "@type": "xsd:boolean"
+    },
+    "TransformJQMeta": "tyk:TransformJQMeta",
+    "filter": {
+      "@id": "tyk:filter",
+      "@type": "xsd:string"
+    },
+    "VirtualMeta": "tyk:VirtualMeta",
+    "function_source_type": {
+      "@id": "tyk:function_source_type",
+      "@type": "xsd:string"
+    },
+    "function_source_uri": {
+      "@id": "tyk:function_source_uri",
+      "@type": "xsd:string"
+    },
+    "proxy_on_error": {
+      "@id": "tyk:proxy_on_error",
+      "@type": "xsd:boolean"
+    },
+    "response_function_name": {
+      "@id": "tyk:response_function_name",
+      "@type": "xsd:string"
+    },
+    "use_session": {
+      "@id": "tyk:use_session",
+      "@type": "xsd:boolean"
+    },
+    "Components": "tyk:Components",
+    "callbacks": {
+      "@id": "tyk:callbacks",
+      "@type": "@id"
+    },
+    "examples": {
+      "@id": "tyk:examples",
+      "@type": "@id"
+    },
+    "links": {
+      "@id": "tyk:links",
+      "@type": "@id"
+    },
+    "parameters": {
+      "@id": "tyk:parameters",
+      "@type": "@id"
+    },
+    "requestBodies": {
+      "@id": "tyk:requestBodies",
+      "@type": "@id"
+    },
+    "responses": {
+      "@id": "tyk:responses",
+      "@type": "@id"
+    },
+    "schemas": {
+      "@id": "tyk:schemas",
+      "@type": "@id"
+    },
+    "securitySchemes": {
+      "@id": "tyk:securitySchemes",
+      "@type": "@id"
+    },
+    "ApiDefinitionWrapper": "tyk:ApiDefinitionWrapper",
+    "api_definition": {
+      "@id": "tyk:api_definition",
+      "@type": "@id"
+    },
+    "api_model": {
+      "@id": "tyk:api_model",
+      "@type": "@id"
+    },
+    "categories": {
+      "@id": "tyk:categories",
+      "@type": "@id"
+    },
+    "created_at": {
+      "@id": "tyk:created_at",
+      "@type": "xsd:dateTime"
+    },
+    "hook_references": {
+      "@id": "tyk:hook_references",
+      "@container": "@list"
+    },
+    "is_site": {
+      "@id": "tyk:is_site",
+      "@type": "xsd:boolean"
+    },
+    "oas": {
+      "@id": "tyk:oas",
+      "@type": "@id"
+    },
+    "sort_by": {
+      "@id": "tyk:sort_by",
+      "@type": "xsd:integer"
+    },
+    "updated_at": {
+      "@id": "tyk:updated_at",
+      "@type": "xsd:dateTime"
+    },
+    "user_group_owners": {
+      "@id": "tyk:user_group_owners",
+      "@container": "@list"
+    },
+    "user_owners": {
+      "@id": "tyk:user_owners",
+      "@container": "@list"
+    },
+    "OIDProviderConfig": "tyk:OIDProviderConfig",
+    "client_ids": {
+      "@id": "tyk:client_ids"
+    },
+    "issuer": {
+      "@id": "tyk:issuer",
+      "@type": "xsd:string"
+    },
+    "VersionDefinition": "tyk:VersionDefinition",
+    "default": {
+      "@id": "tyk:default",
+      "@type": "xsd:string"
+    },
+    "enabled": {
+      "@id": "tyk:enabled",
+      "@type": "xsd:boolean"
+    },
+    "fallback_to_default": {
+      "@id": "tyk:fallback_to_default",
+      "@type": "xsd:boolean"
+    },
+    "location": {
+      "@id": "tyk:location",
+      "@type": "xsd:string"
+    },
+    "strip_path": {
+      "@id": "tyk:strip_path",
+      "@type": "xsd:boolean"
+    },
+    "strip_versioning_data": {
+      "@id": "tyk:strip_versioning_data",
+      "@type": "xsd:boolean"
+    },
+    "url_versioning_pattern": {
+      "@id": "tyk:url_versioning_pattern",
+      "@type": "xsd:string"
+    },
+    "versions": {
+      "@id": "tyk:versions"
+    },
+    "Contact": "tyk:Contact",
+    "email": {
+      "@id": "tyk:email",
+      "@type": "xsd:string"
+    },
+    "ServerVariable": "tyk:ServerVariable",
+    "enum": {
+      "@id": "tyk:enum",
+      "@container": "@list"
+    },
+    "ExampleAPIMetadata": "tyk:ExampleAPIMetadata",
+    "shortDescription": {
+      "@id": "tyk:shortDescription",
+      "@type": "xsd:string"
+    },
+    "MiddlewareIdExtractor": "tyk:MiddlewareIdExtractor",
+    "extract_from": {
+      "@id": "tyk:extract_from",
+      "@type": "xsd:string"
+    },
+    "extract_with": {
+      "@id": "tyk:extract_with",
+      "@type": "xsd:string"
+    },
+    "extractor_config": {
+      "@id": "tyk:extractor_config"
+    },
+    "MethodTransformMeta": "tyk:MethodTransformMeta",
+    "to_method": {
+      "@id": "tyk:to_method",
+      "@type": "xsd:string"
+    },
+    "RequestSizeMeta": "tyk:RequestSizeMeta",
+    "size_limit": {
+      "@id": "tyk:size_limit",
+      "@type": "xsd:integer"
+    },
+    "RateLimitMeta": "tyk:RateLimitMeta",
+    "per": {
+      "@id": "tyk:per",
+      "@type": "xsd:decimal"
+    },
+    "rate": {
+      "@id": "tyk:rate",
+      "@type": "xsd:decimal"
+    },
+    "RequestHeadersRewriteConfig": "tyk:RequestHeadersRewriteConfig",
+    "remove": {
+      "@id": "tyk:remove",
+      "@type": "xsd:boolean"
+    },
+    "value": {
+      "@id": "tyk:value",
+      "@type": "xsd:string"
+    },
+    "ResponseProcessor": "tyk:ResponseProcessor",
+    "options": {
+      "@id": "tyk:options"
+    },
+    "URLVals": "tyk:URLVals",
+    "ApiURL": {
+      "@id": "tyk:ApiURL",
+      "@type": "xsd:string"
+    },
+    "BasePath": {
+      "@id": "tyk:BasePath",
+      "@type": "xsd:string"
+    },
+    "Host": {
+      "@id": "tyk:Host",
+      "@type": "xsd:string"
+    },
+    "GraphQLPlayground": "tyk:GraphQLPlayground",
+    "GraphQLSubgraphConfig": "tyk:GraphQLSubgraphConfig",
+    "TrackEndpointMeta": "tyk:TrackEndpointMeta",
+    "NotificationsManager": "tyk:NotificationsManager",
+    "oauth_on_keychange_url": {
+      "@id": "tyk:oauth_on_keychange_url",
+      "@type": "xsd:string"
+    },
+    "shared_secret": {
+      "@id": "tyk:shared_secret",
+      "@type": "xsd:string"
+    },
+    "CheckCommand": "tyk:CheckCommand",
+    "message": {
+      "@id": "tyk:message",
+      "@type": "xsd:string"
+    },
+    "EventHandlerMetaConfig": "tyk:EventHandlerMetaConfig",
+    "events": {
+      "@id": "tyk:events"
+    },
+    "ProxyConfig": "tyk:ProxyConfig",
+    "check_host_against_uptime_tests": {
+      "@id": "tyk:check_host_against_uptime_tests",
+      "@type": "xsd:boolean"
+    },
+    "disable_strip_slash": {
+      "@id": "tyk:disable_strip_slash",
+      "@type": "xsd:boolean"
+    },
+    "enable_load_balancing": {
+      "@id": "tyk:enable_load_balancing",
+      "@type": "xsd:boolean"
+    },
+    "listen_path": {
+      "@id": "tyk:listen_path",
+      "@type": "xsd:string"
+    },
+    "preserve_host_header": {
+      "@id": "tyk:preserve_host_header",
+      "@type": "xsd:boolean"
+    },
+    "service_discovery": {
+      "@id": "tyk:service_discovery",
+      "@type": "@id"
+    },
+    "strip_listen_path": {
+      "@id": "tyk:strip_listen_path",
+      "@type": "xsd:boolean"
+    },
+    "target_list": {
+      "@id": "tyk:target_list",
+      "@container": "@list"
+    },
+    "target_url": {
+      "@id": "tyk:target_url",
+      "@type": "xsd:string"
+    },
+    "transport": {
+      "@id": "tyk:transport"
+    },
+    "AuthConfig": "tyk:AuthConfig",
+    "auth_header_name": {
+      "@id": "tyk:auth_header_name",
+      "@type": "xsd:string"
+    },
+    "cookie_name": {
+      "@id": "tyk:cookie_name",
+      "@type": "xsd:string"
+    },
+    "disable_header": {
+      "@id": "tyk:disable_header",
+      "@type": "xsd:boolean"
+    },
+    "param_name": {
+      "@id": "tyk:param_name",
+      "@type": "xsd:string"
+    },
+    "signature": {
+      "@id": "tyk:signature",
+      "@type": "@id"
+    },
+    "use_certificate": {
+      "@id": "tyk:use_certificate",
+      "@type": "xsd:boolean"
+    },
+    "use_cookie": {
+      "@id": "tyk:use_cookie",
+      "@type": "xsd:boolean"
+    },
+    "use_param": {
+      "@id": "tyk:use_param",
+      "@type": "xsd:boolean"
+    },
+    "validate_signature": {
+      "@id": "tyk:validate_signature",
+      "@type": "xsd:boolean"
+    },
+    "ExternalDocs": "tyk:ExternalDocs",
+    "GlobalRateLimit": "tyk:GlobalRateLimit",
+    "AccessManagementPayload": "tyk:AccessManagementPayload",
+    "userGroupIds": {
+      "@id": "tyk:userGroupIds",
+      "@container": "@list"
+    },
+    "userIds": {
+      "@id": "tyk:userIds",
+      "@container": "@list"
+    },
+    "ExternalOAuth": "tyk:ExternalOAuth",
+    "RoutingTriggerOptions": "tyk:RoutingTriggerOptions",
+    "header_matches": {
+      "@id": "tyk:header_matches"
+    },
+    "path_part_matches": {
+      "@id": "tyk:path_part_matches"
+    },
+    "payload_matches": {
+      "@id": "tyk:payload_matches",
+      "@type": "@id"
+    },
+    "query_val_matches": {
+      "@id": "tyk:query_val_matches"
+    },
+    "request_context_matches": {
+      "@id": "tyk:request_context_matches"
+    },
+    "session_meta_matches": {
+      "@id": "tyk:session_meta_matches"
+    },
+    "JWTValidation": "tyk:JWTValidation",
+    "expires_at_validation_skew": {
+      "@id": "tyk:expires_at_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "identity_base_field": {
+      "@id": "tyk:identity_base_field",
+      "@type": "xsd:string"
+    },
+    "issued_at_validation_skew": {
+      "@id": "tyk:issued_at_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "not_before_validation_skew": {
+      "@id": "tyk:not_before_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "signing_method": {
+      "@id": "tyk:signing_method",
+      "@type": "xsd:string"
+    },
+    "source": {
+      "@id": "tyk:source",
+      "@type": "xsd:string"
+    },
+    "SignatureConfig": "tyk:SignatureConfig",
+    "algorithm": {
+      "@id": "tyk:algorithm",
+      "@type": "xsd:string"
+    },
+    "allowed_clock_skew": {
+      "@id": "tyk:allowed_clock_skew",
+      "@type": "xsd:integer"
+    },
+    "error_code": {
+      "@id": "tyk:error_code",
+      "@type": "xsd:integer"
+    },
+    "error_message": {
+      "@id": "tyk:error_message",
+      "@type": "xsd:string"
+    },
+    "header": {
+      "@id": "tyk:header",
+      "@type": "xsd:string"
+    },
+    "secret": {
+      "@id": "tyk:secret",
+      "@type": "xsd:string"
+    },
+    "GraphQLProxyFeaturesConfig": "tyk:GraphQLProxyFeaturesConfig",
+    "use_immutable_headers": {
+      "@id": "tyk:use_immutable_headers",
+      "@type": "xsd:boolean"
+    },
+    "ScopeClaim": "tyk:ScopeClaim",
+    "scope_claim_name": {
+      "@id": "tyk:scope_claim_name",
+      "@type": "xsd:string"
+    },
+    "scope_to_policy": {
+      "@id": "tyk:scope_to_policy"
+    },
+    "ProviderType2": "tyk:ProviderType2",
+    "introspection": {
+      "@id": "tyk:introspection",
+      "@type": "@id"
+    },
+    "jwt": {
+      "@id": "tyk:jwt",
+      "@type": "@id"
+    },
+    "CacheMeta": "tyk:CacheMeta",
+    "cache_key_regex": {
+      "@id": "tyk:cache_key_regex",
+      "@type": "xsd:string"
+    },
+    "timeout": {
+      "@id": "tyk:timeout",
+      "@type": "xsd:integer"
+    },
+    "GraphQLConfig": "tyk:GraphQLConfig",
+    "engine": {
+      "@id": "tyk:engine",
+      "@type": "@id"
+    },
+    "execution_mode": {
+      "@id": "tyk:execution_mode",
+      "@type": "xsd:string"
+    },
+    "last_schema_update": {
+      "@id": "tyk:last_schema_update",
+      "@type": "xsd:dateTime"
+    },
+    "playground": {
+      "@id": "tyk:playground",
+      "@type": "@id"
+    },
+    "proxy": {
+      "@id": "tyk:proxy",
+      "@type": "@id"
+    },
+    "subgraph": {
+      "@id": "tyk:subgraph",
+      "@type": "@id"
+    },
+    "supergraph": {
+      "@id": "tyk:supergraph",
+      "@type": "@id"
+    },
+    "type_field_configurations": {
+      "@id": "tyk:type_field_configurations",
+      "@container": "@list"
+    },
+    "version": {
+      "@id": "tyk:version",
+      "@type": "xsd:string"
+    },
+    "Introspection": "tyk:Introspection",
+    "cache": {
+      "@id": "tyk:cache",
+      "@type": "@id"
+    },
+    "client_id": {
+      "@id": "tyk:client_id",
+      "@type": "xsd:string"
+    },
+    "client_secret": {
+      "@id": "tyk:client_secret",
+      "@type": "xsd:string"
+    },
+    "GraphQLEngineConfig": "tyk:GraphQLEngineConfig",
+    "data_sources": {
+      "@id": "tyk:data_sources",
+      "@container": "@list"
+    },
+    "field_configs": {
+      "@id": "tyk:field_configs",
+      "@container": "@list"
+    },
+    "global_headers": {
+      "@id": "tyk:global_headers",
+      "@container": "@list"
+    },
+    "PersistGraphQLMeta": "tyk:PersistGraphQLMeta",
+    "operation": {
+      "@id": "tyk:operation",
+      "@type": "xsd:string"
+    },
+    "GoPluginMeta": "tyk:GoPluginMeta",
+    "func_name": {
+      "@id": "tyk:func_name",
+      "@type": "xsd:string"
+    },
+    "plugin_path": {
+      "@id": "tyk:plugin_path",
+      "@type": "xsd:string"
+    },
+    "TemplateData": "tyk:TemplateData",
+    "enable_session": {
+      "@id": "tyk:enable_session",
+      "@type": "xsd:boolean"
+    },
+    "input_type": {
+      "@id": "tyk:input_type",
+      "@type": "xsd:string"
+    },
+    "template_mode": {
+      "@id": "tyk:template_mode",
+      "@type": "xsd:string"
+    },
+    "template_source": {
+      "@id": "tyk:template_source",
+      "@type": "xsd:string"
+    },
+    "HostCheckObject": "tyk:HostCheckObject",
+    "body": {
+      "@id": "tyk:body",
+      "@type": "xsd:string"
+    },
+    "commands": {
+      "@id": "tyk:commands",
+      "@container": "@list"
+    },
+    "enable_proxy_protocol": {
+      "@id": "tyk:enable_proxy_protocol",
+      "@type": "xsd:boolean"
+    },
+    "protocol": {
+      "@id": "tyk:protocol",
+      "@type": "xsd:string"
+    },
+    "ValidatePathMeta": "tyk:ValidatePathMeta",
+    "error_response_code": {
+      "@id": "tyk:error_response_code",
+      "@type": "xsd:integer"
+    },
+    "schema_b64": {
+      "@id": "tyk:schema_b64",
+      "@type": "xsd:string"
+    },
+    "GraphQLEngineDataSource": "tyk:GraphQLEngineDataSource",
+    "config": {
+      "@id": "tyk:config"
+    },
+    "internal": {
+      "@id": "tyk:internal",
+      "@type": "xsd:boolean"
+    },
+    "kind": {
+      "@id": "tyk:kind",
+      "@type": "xsd:string"
+    },
+    "root_fields": {
+      "@id": "tyk:root_fields",
+      "@container": "@list"
+    },
+    "WebHookHandlerConf": "tyk:WebHookHandlerConf",
+    "event_timeout": {
+      "@id": "tyk:event_timeout",
+      "@type": "xsd:integer"
+    },
+    "header_map": {
+      "@id": "tyk:header_map"
+    },
+    "org_id": {
+      "@id": "tyk:org_id",
+      "@type": "xsd:string"
+    },
+    "target_path": {
+      "@id": "tyk:target_path",
+      "@type": "xsd:string"
+    },
+    "template_path": {
+      "@id": "tyk:template_path",
+      "@type": "xsd:string"
+    },
+    "webhook_id": {
+      "@id": "tyk:webhook_id",
+      "@type": "xsd:string"
+    },
+    "SessionProviderMeta": "tyk:SessionProviderMeta",
+    "OAS": "tyk:OAS",
+    "components": {
+      "@id": "tyk:components",
+      "@type": "@id"
+    },
+    "externalDocs": {
+      "@id": "tyk:externalDocs",
+      "@type": "@id"
+    },
+    "info": {
+      "@id": "tyk:info",
+      "@type": "@id"
+    },
+    "openapi": {
+      "@id": "tyk:openapi",
+      "@type": "xsd:string"
+    },
+    "paths": {
+      "@id": "tyk:paths",
+      "@type": "@id"
+    },
+    "security": {
+      "@id": "tyk:security",
+      "@type": "@id"
+    },
+    "servers": {
+      "@id": "tyk:servers",
+      "@type": "@id"
+    },
+    "tags": {
+      "@id": "tyk:tags",
+      "@type": "@id"
+    },
+    "UptimeTests": "tyk:UptimeTests",
+    "check_list": {
+      "@id": "tyk:check_list",
+      "@container": "@list"
+    },
+    "ValidateRequestMeta": "tyk:ValidateRequestMeta",
+    "DetailedExampleAPIMetadata": "tyk:DetailedExampleAPIMetadata",
+    "min_version": {
+      "@id": "tyk:min_version",
+      "@type": "xsd:string"
+    },
+    "readme": {
+      "@id": "tyk:readme",
+      "@type": "xsd:string"
+    },
+    "HardTimeoutMeta": "tyk:HardTimeoutMeta",
+    "CircuitBreakerMeta": "tyk:CircuitBreakerMeta",
+    "disable_half_open_state": {
+      "@id": "tyk:disable_half_open_state",
+      "@type": "xsd:boolean"
+    },
+    "return_to_service_after": {
+      "@id": "tyk:return_to_service_after",
+      "@type": "xsd:integer"
+    },
+    "samples": {
+      "@id": "tyk:samples",
+      "@type": "xsd:integer"
+    },
+    "threshold_percent": {
+      "@id": "tyk:threshold_percent",
+      "@type": "xsd:decimal"
+    },
+    "DatasourceTypeFieldConfiguration": "tyk:DatasourceTypeFieldConfiguration",
+    "data_source": {
+      "@id": "tyk:data_source",
+      "@type": "@id"
+    },
+    "field_name": {
+      "@id": "tyk:field_name",
+      "@type": "xsd:string"
+    },
+    "mapping": {
+      "@id": "tyk:mapping",
+      "@type": "@id"
+    },
+    "type_name": {
+      "@id": "tyk:type_name",
+      "@type": "xsd:string"
+    },
+    "VersionInfo": "tyk:VersionInfo",
+    "expires": {
+      "@id": "tyk:expires",
+      "@type": "xsd:string"
+    },
+    "extended_paths": {
+      "@id": "tyk:extended_paths",
+      "@type": "@id"
+    },
+    "global_headers_disabled": {
+      "@id": "tyk:global_headers_disabled",
+      "@type": "xsd:boolean"
+    },
+    "global_headers_remove": {
+      "@id": "tyk:global_headers_remove",
+      "@container": "@list"
+    },
+    "global_response_headers": {
+      "@id": "tyk:global_response_headers"
+    },
+    "global_response_headers_disabled": {
+      "@id": "tyk:global_response_headers_disabled",
+      "@type": "xsd:boolean"
+    },
+    "global_response_headers_remove": {
+      "@id": "tyk:global_response_headers_remove",
+      "@container": "@list"
+    },
+    "global_size_limit": {
+      "@id": "tyk:global_size_limit",
+      "@type": "xsd:integer"
+    },
+    "ignore_endpoint_case": {
+      "@id": "tyk:ignore_endpoint_case",
+      "@type": "xsd:boolean"
+    },
+    "override_target": {
+      "@id": "tyk:override_target",
+      "@type": "xsd:string"
+    },
+    "use_extended_paths": {
+      "@id": "tyk:use_extended_paths",
+      "@type": "xsd:boolean"
+    },
+    "PathItem": "tyk:PathItem",
+    "connect": {
+      "@id": "tyk:connect",
+      "@type": "@id"
+    },
+    "delete": {
+      "@id": "tyk:delete",
+      "@type": "@id"
+    },
+    "get": {
+      "@id": "tyk:get",
+      "@type": "@id"
+    },
+    "head": {
+      "@id": "tyk:head",
+      "@type": "@id"
+    },
+    "patch": {
+      "@id": "tyk:patch",
+      "@type": "@id"
+    },
+    "post": {
+      "@id": "tyk:post",
+      "@type": "@id"
+    },
+    "put": {
+      "@id": "tyk:put",
+      "@type": "@id"
+    },
+    "summary": {
+      "@id": "tyk:summary",
+      "@type": "xsd:string"
+    },
+    "trace": {
+      "@id": "tyk:trace",
+      "@type": "@id"
+    },
+    "UDGGlobalHeader": "tyk:UDGGlobalHeader",
+    "License": "tyk:License",
+    "EndPointMeta": "tyk:EndPointMeta",
+    "ignore_case": {
+      "@id": "tyk:ignore_case",
+      "@type": "xsd:boolean"
+    },
+    "method_actions": {
+      "@id": "tyk:method_actions"
+    },
+    "VersionData": "tyk:VersionData",
+    "default_version": {
+      "@id": "tyk:default_version",
+      "@type": "xsd:string"
+    },
+    "not_versioned": {
+      "@id": "tyk:not_versioned",
+      "@type": "xsd:boolean"
+    },
+    "InternalMeta": "tyk:InternalMeta",
+    "DatasourceSourceConfig": "tyk:DatasourceSourceConfig",
+    "data_source_config": {
+      "@id": "tyk:data_source_config"
+    },
+    "CategoryCount": "tyk:CategoryCount",
+    "count": {
+      "@id": "tyk:count",
+      "@type": "xsd:integer"
+    },
+    "EventHandlerTriggerConfig": "tyk:EventHandlerTriggerConfig",
+    "handler_meta": {
+      "@id": "tyk:handler_meta"
+    },
+    "handler_name": {
+      "@id": "tyk:handler_name",
+      "@type": "xsd:string"
+    },
+    "OperationType2": "tyk:OperationType2",
+    "deprecated": {
+      "@id": "tyk:deprecated",
+      "@type": "xsd:boolean"
+    },
+    "operationId": {
+      "@id": "tyk:operationId",
+      "@type": "xsd:string"
+    },
+    "requestBody": {
+      "@id": "tyk:requestBody",
+      "@type": "@id"
+    },
+    "APIDefinition": "tyk:APIDefinition",
+    "CORS": {
+      "@id": "tyk:CORS",
+      "@type": "@id"
+    },
+    "active": {
+      "@id": "tyk:active",
+      "@type": "xsd:boolean"
+    },
+    "allowed_ips": {
+      "@id": "tyk:allowed_ips",
+      "@container": "@list"
+    },
+    "analytics_plugin": {
+      "@id": "tyk:analytics_plugin",
+      "@type": "@id"
+    },
+    "auth": {
+      "@id": "tyk:auth",
+      "@type": "@id"
+    },
+    "auth_configs": {
+      "@id": "tyk:auth_configs"
+    },
+    "auth_provider": {
+      "@id": "tyk:auth_provider",
+      "@type": "@id"
+    },
+    "base_identity_provided_by": {
+      "@id": "tyk:base_identity_provided_by",
+      "@type": "xsd:string"
+    },
+    "basic_auth": {
+      "@id": "tyk:basic_auth"
+    },
+    "blacklisted_ips": {
+      "@id": "tyk:blacklisted_ips",
+      "@container": "@list"
+    },
+    "cache_options": {
+      "@id": "tyk:cache_options",
+      "@type": "@id"
+    },
+    "certificate_pinning_disabled": {
+      "@id": "tyk:certificate_pinning_disabled",
+      "@type": "xsd:boolean"
+    },
+    "certificates": {
+      "@id": "tyk:certificates",
+      "@container": "@list"
+    },
+    "client_certificates": {
+      "@id": "tyk:client_certificates",
+      "@container": "@list"
+    },
+    "config_data": {
+      "@id": "tyk:config_data"
+    },
+    "config_data_disabled": {
+      "@id": "tyk:config_data_disabled",
+      "@type": "xsd:boolean"
+    },
+    "custom_middleware": {
+      "@id": "tyk:custom_middleware",
+      "@type": "@id"
+    },
+    "custom_middleware_bundle": {
+      "@id": "tyk:custom_middleware_bundle",
+      "@type": "xsd:string"
+    },
+    "custom_middleware_bundle_disabled": {
+      "@id": "tyk:custom_middleware_bundle_disabled",
+      "@type": "xsd:boolean"
+    },
+    "custom_plugin_auth_enabled": {
+      "@id": "tyk:custom_plugin_auth_enabled",
+      "@type": "xsd:boolean"
+    },
+    "definition": {
+      "@id": "tyk:definition",
+      "@type": "@id"
+    },
+    "detailed_tracing": {
+      "@id": "tyk:detailed_tracing",
+      "@type": "xsd:boolean"
+    },
+    "disable_quota": {
+      "@id": "tyk:disable_quota",
+      "@type": "xsd:boolean"
+    },
+    "disable_rate_limit": {
+      "@id": "tyk:disable_rate_limit",
+      "@type": "xsd:boolean"
+    },
+    "do_not_track": {
+      "@id": "tyk:do_not_track",
+      "@type": "xsd:boolean"
+    },
+    "domain": {
+      "@id": "tyk:domain",
+      "@type": "xsd:string"
+    },
+    "domain_disabled": {
+      "@id": "tyk:domain_disabled",
+      "@type": "xsd:boolean"
+    },
+    "dont_set_quota_on_create": {
+      "@id": "tyk:dont_set_quota_on_create",
+      "@type": "xsd:boolean"
+    },
+    "enable_batch_request_support": {
+      "@id": "tyk:enable_batch_request_support",
+      "@type": "xsd:boolean"
+    },
+    "enable_context_vars": {
+      "@id": "tyk:enable_context_vars",
+      "@type": "xsd:boolean"
+    },
+    "enable_coprocess_auth": {
+      "@id": "tyk:enable_coprocess_auth",
+      "@type": "xsd:boolean"
+    },
+    "enable_detailed_recording": {
+      "@id": "tyk:enable_detailed_recording",
+      "@type": "xsd:boolean"
+    },
+    "enable_ip_blacklisting": {
+      "@id": "tyk:enable_ip_blacklisting",
+      "@type": "xsd:boolean"
+    },
+    "enable_ip_whitelisting": {
+      "@id": "tyk:enable_ip_whitelisting",
+      "@type": "xsd:boolean"
+    },
+    "enable_jwt": {
+      "@id": "tyk:enable_jwt",
+      "@type": "xsd:boolean"
+    },
+    "enable_signature_checking": {
+      "@id": "tyk:enable_signature_checking",
+      "@type": "xsd:boolean"
+    },
+    "event_handlers": {
+      "@id": "tyk:event_handlers",
+      "@type": "@id"
+    },
+    "expiration": {
+      "@id": "tyk:expiration",
+      "@type": "xsd:string"
+    },
+    "expire_analytics_after": {
+      "@id": "tyk:expire_analytics_after",
+      "@type": "xsd:integer"
+    },
+    "external_oauth": {
+      "@id": "tyk:external_oauth",
+      "@type": "@id"
+    },
+    "global_rate_limit": {
+      "@id": "tyk:global_rate_limit",
+      "@type": "@id"
+    },
+    "graphql": {
+      "@id": "tyk:graphql",
+      "@type": "@id"
+    },
+    "hmac_allowed_algorithms": {
+      "@id": "tyk:hmac_allowed_algorithms",
+      "@container": "@list"
+    },
+    "hmac_allowed_clock_skew": {
+      "@id": "tyk:hmac_allowed_clock_skew",
+      "@type": "xsd:decimal"
+    },
+    "idp_client_id_mapping_disabled": {
+      "@id": "tyk:idp_client_id_mapping_disabled",
+      "@type": "xsd:boolean"
+    },
+    "is_oas": {
+      "@id": "tyk:is_oas",
+      "@type": "xsd:boolean"
+    },
+    "jwt_client_base_field": {
+      "@id": "tyk:jwt_client_base_field",
+      "@type": "xsd:string"
+    },
+    "jwt_default_policies": {
+      "@id": "tyk:jwt_default_policies",
+      "@container": "@list"
+    },
+    "jwt_expires_at_validation_skew": {
+      "@id": "tyk:jwt_expires_at_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "jwt_identity_base_field": {
+      "@id": "tyk:jwt_identity_base_field",
+      "@type": "xsd:string"
+    },
+    "jwt_issued_at_validation_skew": {
+      "@id": "tyk:jwt_issued_at_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "jwt_not_before_validation_skew": {
+      "@id": "tyk:jwt_not_before_validation_skew",
+      "@type": "xsd:integer"
+    },
+    "jwt_policy_field_name": {
+      "@id": "tyk:jwt_policy_field_name",
+      "@type": "xsd:string"
+    },
+    "jwt_scope_claim_name": {
+      "@id": "tyk:jwt_scope_claim_name",
+      "@type": "xsd:string"
+    },
+    "jwt_scope_to_policy_mapping": {
+      "@id": "tyk:jwt_scope_to_policy_mapping"
+    },
+    "jwt_signing_method": {
+      "@id": "tyk:jwt_signing_method",
+      "@type": "xsd:string"
+    },
+    "jwt_skip_kid": {
+      "@id": "tyk:jwt_skip_kid",
+      "@type": "xsd:boolean"
+    },
+    "jwt_source": {
+      "@id": "tyk:jwt_source",
+      "@type": "xsd:string"
+    },
+    "listen_port": {
+      "@id": "tyk:listen_port",
+      "@type": "xsd:integer"
+    },
+    "notifications": {
+      "@id": "tyk:notifications",
+      "@type": "@id"
+    },
+    "oauth_meta": {
+      "@id": "tyk:oauth_meta"
+    },
+    "openid_options": {
+      "@id": "tyk:openid_options",
+      "@type": "@id"
+    },
+    "pinned_public_keys": {
+      "@id": "tyk:pinned_public_keys"
+    },
+    "request_signing": {
+      "@id": "tyk:request_signing",
+      "@type": "@id"
+    },
+    "response_processors": {
+      "@id": "tyk:response_processors",
+      "@container": "@list"
+    },
+    "scopes": {
+      "@id": "tyk:scopes",
+      "@type": "@id"
+    },
+    "session_lifetime": {
+      "@id": "tyk:session_lifetime",
+      "@type": "xsd:integer"
+    },
+    "session_lifetime_respects_key_expiration": {
+      "@id": "tyk:session_lifetime_respects_key_expiration",
+      "@type": "xsd:boolean"
+    },
+    "session_provider": {
+      "@id": "tyk:session_provider",
+      "@type": "@id"
+    },
+    "slug": {
+      "@id": "tyk:slug",
+      "@type": "xsd:string"
+    },
+    "strip_auth_data": {
+      "@id": "tyk:strip_auth_data",
+      "@type": "xsd:boolean"
+    },
+    "tag_headers": {
+      "@id": "tyk:tag_headers",
+      "@container": "@list"
+    },
+    "tags_disabled": {
+      "@id": "tyk:tags_disabled",
+      "@type": "xsd:boolean"
+    },
+    "upstream_certificates": {
+      "@id": "tyk:upstream_certificates"
+    },
+    "upstream_certificates_disabled": {
+      "@id": "tyk:upstream_certificates_disabled",
+      "@type": "xsd:boolean"
+    },
+    "uptime_tests": {
+      "@id": "tyk:uptime_tests",
+      "@type": "@id"
+    },
+    "use_basic_auth": {
+      "@id": "tyk:use_basic_auth",
+      "@type": "xsd:boolean"
+    },
+    "use_go_plugin_auth": {
+      "@id": "tyk:use_go_plugin_auth",
+      "@type": "xsd:boolean"
+    },
+    "use_keyless": {
+      "@id": "tyk:use_keyless",
+      "@type": "xsd:boolean"
+    },
+    "use_mutual_tls_auth": {
+      "@id": "tyk:use_mutual_tls_auth",
+      "@type": "xsd:boolean"
+    },
+    "use_oauth2": {
+      "@id": "tyk:use_oauth2",
+      "@type": "xsd:boolean"
+    },
+    "use_openid": {
+      "@id": "tyk:use_openid",
+      "@type": "xsd:boolean"
+    },
+    "use_standard_auth": {
+      "@id": "tyk:use_standard_auth",
+      "@type": "xsd:boolean"
+    },
+    "version_data": {
+      "@id": "tyk:version_data",
+      "@type": "@id"
+    },
+    "RequestSigningMeta": "tyk:RequestSigningMeta",
+    "certificate_id": {
+      "@id": "tyk:certificate_id",
+      "@type": "xsd:string"
+    },
+    "header_list": {
+      "@id": "tyk:header_list",
+      "@container": "@list"
+    },
+    "is_enabled": {
+      "@id": "tyk:is_enabled",
+      "@type": "xsd:boolean"
+    },
+    "key_id": {
+      "@id": "tyk:key_id",
+      "@type": "xsd:string"
+    },
+    "signature_header": {
+      "@id": "tyk:signature_header",
+      "@type": "xsd:string"
+    },
+    "GraphQLIntrospectionConfig": "tyk:GraphQLIntrospectionConfig",
+    "IntrospectionCache": "tyk:IntrospectionCache",
+    "HookReference": "tyk:HookReference",
+    "event_name": {
+      "@id": "tyk:event_name",
+      "@type": "xsd:string"
+    },
+    "hook": {
+      "@id": "tyk:hook",
+      "@type": "@id"
+    },
+    "HeaderInjectionMeta": "tyk:HeaderInjectionMeta",
+    "act_on": {
+      "@id": "tyk:act_on",
+      "@type": "xsd:boolean"
+    },
+    "add_headers": {
+      "@id": "tyk:add_headers"
+    },
+    "delete_headers": {
+      "@id": "tyk:delete_headers",
+      "@container": "@list"
+    },
+    "GraphQLFieldConfig": "tyk:GraphQLFieldConfig",
+    "disable_default_mapping": {
+      "@id": "tyk:disable_default_mapping",
+      "@type": "xsd:boolean"
+    },
+    "TemplateMeta": "tyk:TemplateMeta",
+    "template_data": {
+      "@id": "tyk:template_data",
+      "@type": "@id"
+    },
+    "MockResponseMeta": "tyk:MockResponseMeta",
+    "DatasourceMappingConfiguration": "tyk:DatasourceMappingConfiguration",
+    "GraphQLSupergraphConfig": "tyk:GraphQLSupergraphConfig",
+    "disable_query_batching": {
+      "@id": "tyk:disable_query_batching",
+      "@type": "xsd:boolean"
+    },
+    "merged_sdl": {
+      "@id": "tyk:merged_sdl",
+      "@type": "xsd:string"
+    },
+    "subgraphs": {
+      "@id": "tyk:subgraphs",
+      "@container": "@list"
+    },
+    "ApiDefinitionsResponse": "tyk:ApiDefinitionsResponse",
+    "apis": {
+      "@id": "tyk:apis",
+      "@container": "@list"
+    },
+    "RoutingTrigger": "tyk:RoutingTrigger",
+    "on": {
+      "@id": "tyk:on",
+      "@type": "xsd:string"
+    },
+    "InfoType2": "tyk:InfoType2",
+    "contact": {
+      "@id": "tyk:contact",
+      "@type": "@id"
+    },
+    "license": {
+      "@id": "tyk:license",
+      "@type": "@id"
+    },
+    "termsOfService": {
+      "@id": "tyk:termsOfService",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "tyk:title",
+      "@type": "xsd:string"
+    },
+    "ServiceDiscoveryConfiguration": "tyk:ServiceDiscoveryConfiguration",
+    "cache_disabled": {
+      "@id": "tyk:cache_disabled",
+      "@type": "xsd:boolean"
+    },
+    "data_path": {
+      "@id": "tyk:data_path",
+      "@type": "xsd:string"
+    },
+    "endpoint_returns_list": {
+      "@id": "tyk:endpoint_returns_list",
+      "@type": "xsd:boolean"
+    },
+    "parent_data_path": {
+      "@id": "tyk:parent_data_path",
+      "@type": "xsd:string"
+    },
+    "port_data_path": {
+      "@id": "tyk:port_data_path",
+      "@type": "xsd:string"
+    },
+    "query_endpoint": {
+      "@id": "tyk:query_endpoint",
+      "@type": "xsd:string"
+    },
+    "use_discovery_service": {
+      "@id": "tyk:use_discovery_service",
+      "@type": "xsd:boolean"
+    },
+    "use_nested_query": {
+      "@id": "tyk:use_nested_query",
+      "@type": "xsd:boolean"
+    },
+    "use_target_list": {
+      "@id": "tyk:use_target_list",
+      "@type": "xsd:boolean"
+    },
+    "GraphQLResponseExtensions": "tyk:GraphQLResponseExtensions",
+    "on_error_forwarding": {
+      "@id": "tyk:on_error_forwarding",
+      "@type": "xsd:boolean"
+    },
+    "GraphQLTypeFields": "tyk:GraphQLTypeFields",
+    "fields": {
+      "@id": "tyk:fields",
+      "@container": "@list"
+    },
+    "type": {
+      "@id": "tyk:type",
+      "@type": "xsd:string"
+    },
+    "CORSConfig": "tyk:CORSConfig",
+    "allow_credentials": {
+      "@id": "tyk:allow_credentials",
+      "@type": "xsd:boolean"
+    },
+    "allowed_headers": {
+      "@id": "tyk:allowed_headers",
+      "@container": "@list"
+    },
+    "allowed_methods": {
+      "@id": "tyk:allowed_methods",
+      "@container": "@list"
+    },
+    "allowed_origins": {
+      "@id": "tyk:allowed_origins",
+      "@container": "@list"
+    },
+    "debug": {
+      "@id": "tyk:debug",
+      "@type": "xsd:boolean"
+    },
+    "enable": {
+      "@id": "tyk:enable",
+      "@type": "xsd:boolean"
+    },
+    "exposed_headers": {
+      "@id": "tyk:exposed_headers",
+      "@container": "@list"
+    },
+    "max_age": {
+      "@id": "tyk:max_age",
+      "@type": "xsd:integer"
+    },
+    "options_passthrough": {
+      "@id": "tyk:options_passthrough",
+      "@type": "xsd:boolean"
+    },
+    "AnalyticsPluginConfig": "tyk:AnalyticsPluginConfig",
+    "UptimeTestsConfig": "tyk:UptimeTestsConfig",
+    "expire_utime_after": {
+      "@id": "tyk:expire_utime_after",
+      "@type": "xsd:integer"
+    },
+    "recheck_wait": {
+      "@id": "tyk:recheck_wait",
+      "@type": "xsd:integer"
+    },
+    "ExtendedPathsSet": "tyk:ExtendedPathsSet",
+    "advance_cache_config": {
+      "@id": "tyk:advance_cache_config",
+      "@container": "@list"
+    },
+    "black_list": {
+      "@id": "tyk:black_list",
+      "@container": "@list"
+    },
+    "circuit_breakers": {
+      "@id": "tyk:circuit_breakers",
+      "@container": "@list"
+    },
+    "do_not_track_endpoints": {
+      "@id": "tyk:do_not_track_endpoints",
+      "@container": "@list"
+    },
+    "go_plugin": {
+      "@id": "tyk:go_plugin",
+      "@container": "@list"
+    },
+    "hard_timeouts": {
+      "@id": "tyk:hard_timeouts",
+      "@container": "@list"
+    },
+    "ignored": {
+      "@id": "tyk:ignored",
+      "@container": "@list"
+    },
+    "method_transforms": {
+      "@id": "tyk:method_transforms",
+      "@container": "@list"
+    },
+    "mock_response": {
+      "@id": "tyk:mock_response",
+      "@container": "@list"
+    },
+    "persist_graphql": {
+      "@id": "tyk:persist_graphql",
+      "@container": "@list"
+    },
+    "rate_limit": {
+      "@id": "tyk:rate_limit",
+      "@container": "@list"
+    },
+    "size_limits": {
+      "@id": "tyk:size_limits",
+      "@container": "@list"
+    },
+    "track_endpoints": {
+      "@id": "tyk:track_endpoints",
+      "@container": "@list"
+    },
+    "transform": {
+      "@id": "tyk:transform",
+      "@container": "@list"
+    },
+    "transform_headers": {
+      "@id": "tyk:transform_headers",
+      "@container": "@list"
+    },
+    "transform_jq": {
+      "@id": "tyk:transform_jq",
+      "@container": "@list"
+    },
+    "transform_jq_response": {
+      "@id": "tyk:transform_jq_response",
+      "@container": "@list"
+    },
+    "transform_response": {
+      "@id": "tyk:transform_response",
+      "@container": "@list"
+    },
+    "transform_response_headers": {
+      "@id": "tyk:transform_response_headers",
+      "@container": "@list"
+    },
+    "url_rewrites": {
+      "@id": "tyk:url_rewrites",
+      "@container": "@list"
+    },
+    "validate_json": {
+      "@id": "tyk:validate_json",
+      "@container": "@list"
+    },
+    "validate_request": {
+      "@id": "tyk:validate_request",
+      "@container": "@list"
+    },
+    "virtual": {
+      "@id": "tyk:virtual",
+      "@container": "@list"
+    },
+    "white_list": {
+      "@id": "tyk:white_list",
+      "@container": "@list"
+    },
+    "Tag": "tyk:Tag",
+    "MiddlewareDefinition": "tyk:MiddlewareDefinition",
+    "raw_body_only": {
+      "@id": "tyk:raw_body_only",
+      "@type": "xsd:boolean"
+    },
+    "require_session": {
+      "@id": "tyk:require_session",
+      "@type": "xsd:boolean"
+    },
+    "ScopesType2": "tyk:ScopesType2",
+    "oidc": {
+      "@id": "tyk:oidc",
+      "@type": "@id"
+    },
+    "AllCategoriesResponse": "tyk:AllCategoriesResponse",
+    "MiddlewareSection": "tyk:MiddlewareSection",
+    "auth_check": {
+      "@id": "tyk:auth_check",
+      "@type": "@id"
+    },
+    "driver": {
+      "@id": "tyk:driver",
+      "@type": "xsd:string"
+    },
+    "id_extractor": {
+      "@id": "tyk:id_extractor",
+      "@type": "@id"
+    },
+    "post_key_auth": {
+      "@id": "tyk:post_key_auth",
+      "@container": "@list"
+    },
+    "pre": {
+      "@id": "tyk:pre",
+      "@container": "@list"
+    },
+    "response": {
+      "@id": "tyk:response",
+      "@container": "@list"
+    },
+    "EndpointMethodMeta": "tyk:EndpointMethodMeta",
+    "action": {
+      "@id": "tyk:action",
+      "@type": "xsd:string"
+    },
+    "Asset": "tyk:Asset",
+    "_id": {
+      "@id": "tyk:_id",
+      "@type": "xsd:string"
+    },
+    "last_updated": {
+      "@id": "tyk:last_updated",
+      "@type": "xsd:dateTime"
+    },
+    "AuditLog": "tyk:AuditLog",
+    "req_id": {
+      "@id": "tyk:req_id",
+      "@type": "xsd:string"
+    },
+    "date": {
+      "@id": "tyk:date",
+      "@type": "xsd:string"
+    },
+    "timestamp": {
+      "@id": "tyk:timestamp",
+      "@type": "xsd:integer"
+    },
+    "ip": {
+      "@id": "tyk:ip",
+      "@type": "xsd:string"
+    },
+    "user": {
+      "@id": "tyk:user",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "tyk:status",
+      "@type": "xsd:integer"
+    },
+    "AuditLogs": "tyk:AuditLogs",
+    "audit_logs": {
+      "@id": "tyk:audit_logs",
+      "@container": "@list"
+    },
+    "APILimit": "tyk:APILimit",
+    "max_query_depth": {
+      "@id": "tyk:max_query_depth",
+      "@type": "xsd:integer"
+    },
+    "quota_max": {
+      "@id": "tyk:quota_max",
+      "@type": "xsd:integer"
+    },
+    "quota_remaining": {
+      "@id": "tyk:quota_remaining",
+      "@type": "xsd:integer"
+    },
+    "quota_renewal_rate": {
+      "@id": "tyk:quota_renewal_rate",
+      "@type": "xsd:integer"
+    },
+    "quota_renews": {
+      "@id": "tyk:quota_renews",
+      "@type": "xsd:integer"
+    },
+    "set_by_policy": {
+      "@id": "tyk:set_by_policy",
+      "@type": "xsd:boolean"
+    },
+    "smoothing": {
+      "@id": "tyk:smoothing",
+      "@type": "@id"
+    },
+    "throttle_interval": {
+      "@id": "tyk:throttle_interval",
+      "@type": "xsd:decimal"
+    },
+    "throttle_retry_limit": {
+      "@id": "tyk:throttle_retry_limit",
+      "@type": "xsd:integer"
+    },
+    "SessionEndpointRateLimit": "tyk:SessionEndpointRateLimit",
+    "AccessSpec": "tyk:AccessSpec",
+    "methods": {
+      "@id": "tyk:methods",
+      "@container": "@list"
+    },
+    "AccessDefinition": "tyk:AccessDefinition",
+    "allowance_scope": {
+      "@id": "tyk:allowance_scope",
+      "@type": "xsd:string"
+    },
+    "allowed_types": {
+      "@id": "tyk:allowed_types",
+      "@container": "@list"
+    },
+    "allowed_urls": {
+      "@id": "tyk:allowed_urls",
+      "@container": "@list"
+    },
+    "disable_introspection": {
+      "@id": "tyk:disable_introspection",
+      "@type": "xsd:boolean"
+    },
+    "endpoints": {
+      "@id": "tyk:endpoints",
+      "@container": "@list"
+    },
+    "field_access_rights": {
+      "@id": "tyk:field_access_rights",
+      "@container": "@list"
+    },
+    "limit": {
+      "@id": "tyk:limit",
+      "@type": "@id"
+    },
+    "restricted_types": {
+      "@id": "tyk:restricted_types",
+      "@container": "@list"
+    },
+    "SessionEndpoint": "tyk:SessionEndpoint",
+    "GraphqlType": "tyk:GraphqlType",
+    "SessionEndpointMethod": "tyk:SessionEndpointMethod",
+    "KeyData": "tyk:KeyData",
+    "key_hash": {
+      "@id": "tyk:key_hash",
+      "@type": "xsd:string"
+    },
+    "SessionState": "tyk:SessionState",
+    "access_rights": {
+      "@id": "tyk:access_rights"
+    },
+    "allowance": {
+      "@id": "tyk:allowance",
+      "@type": "xsd:decimal"
+    },
+    "apply_policies": {
+      "@id": "tyk:apply_policies",
+      "@container": "@list"
+    },
+    "apply_policy_id": {
+      "@id": "tyk:apply_policy_id",
+      "@type": "xsd:string"
+    },
+    "basic_auth_data": {
+      "@id": "tyk:basic_auth_data"
+    },
+    "certificate": {
+      "@id": "tyk:certificate",
+      "@type": "xsd:string"
+    },
+    "data_expires": {
+      "@id": "tyk:data_expires",
+      "@type": "xsd:integer"
+    },
+    "date_created": {
+      "@id": "tyk:date_created",
+      "@type": "xsd:dateTime"
+    },
+    "hmac_enabled": {
+      "@id": "tyk:hmac_enabled",
+      "@type": "xsd:boolean"
+    },
+    "hmac_string": {
+      "@id": "tyk:hmac_string",
+      "@type": "xsd:string"
+    },
+    "id_extractor_deadline": {
+      "@id": "tyk:id_extractor_deadline",
+      "@type": "xsd:integer"
+    },
+    "is_inactive": {
+      "@id": "tyk:is_inactive",
+      "@type": "xsd:boolean"
+    },
+    "jwt_data": {
+      "@id": "tyk:jwt_data"
+    },
+    "last_check": {
+      "@id": "tyk:last_check",
+      "@type": "xsd:integer"
+    },
+    "meta_data": {
+      "@id": "tyk:meta_data"
+    },
+    "monitor": {
+      "@id": "tyk:monitor"
+    },
+    "oauth_client_id": {
+      "@id": "tyk:oauth_client_id",
+      "@type": "xsd:string"
+    },
+    "oauth_keys": {
+      "@id": "tyk:oauth_keys"
+    },
+    "RateLimitSmoothing": "tyk:RateLimitSmoothing",
+    "delay": {
+      "@id": "tyk:delay",
+      "@type": "xsd:integer"
+    },
+    "step": {
+      "@id": "tyk:step",
+      "@type": "xsd:integer"
+    },
+    "threshold": {
+      "@id": "tyk:threshold",
+      "@type": "xsd:integer"
+    },
+    "trigger": {
+      "@id": "tyk:trigger",
+      "@type": "xsd:decimal"
+    },
+    "FieldLimits": "tyk:FieldLimits",
+    "FieldAccessDefinition": "tyk:FieldAccessDefinition",
+    "limits": {
+      "@id": "tyk:limits",
+      "@type": "@id"
+    },
+    "ApiStatusMessage": "tyk:ApiStatusMessage"
+  },
+  "@type": "schema:Dataset",
+  "schema:name": "Tyk API JSON-LD context",
+  "schema:description": "A JSON-LD @context for the objects Tyk's own API contract declares: one class per component schema, one property per declared field, typed from the contract. Derived by script (derive-json-ld.py, 2026-10-04) from openapi/tyk-additional-permissions-api-openapi.yml, openapi/tyk-analytics-api-openapi.yml, openapi/tyk-apis-api-openapi.yml.",
+  "dcterms:created": "2026-10-04",
+  "dcterms:source": [
+    "openapi/tyk-additional-permissions-api-openapi.yml",
+    "openapi/tyk-analytics-api-openapi.yml",
+    "openapi/tyk-apis-api-openapi.yml",
+    "openapi/tyk-assets-api-openapi.yml",
+    "openapi/tyk-audit-logs-api-openapi.yml"
+  ]
+}

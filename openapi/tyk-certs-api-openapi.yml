@@ -169,47 +169,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    APIAllCertificates:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-    APIAllCertificateBasics:
-      properties:
-        certs:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
     CertsCertificateBasics:
       properties:
         dns_names:
@@ -243,12 +202,48 @@ components:
           type: string
           example: example_value
       type: object
-  examples:
-    certIdList:
-      value:
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+          example: example_value
+        status:
+          type: string
+          example: example_value
+      type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+    APIAllCertificateBasics:
+      properties:
         certs:
-        - 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
-        - 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    APIAllCertificates:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+  examples:
     certificateBasicList:
       value:
         certs:
@@ -272,6 +267,11 @@ components:
           not_after: '2024-02-01T00:00:00Z'
           not_before: '2023-02-01T00:00:00Z'
           subject_cn: Subject 2
+    certIdList:
+      value:
+        certs:
+        - 5e9d9544a1dcd60001d0ed20a6ab77653d5da938f452bb8cc9b55b0630a6743dabd8dc92bfb025abb09ce035
+        - 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
   securitySchemes:
     api_key:
       description: Api key

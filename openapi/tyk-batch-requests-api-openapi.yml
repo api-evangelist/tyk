@@ -100,6 +100,20 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BatchReplyUnit:
+      properties:
+        body:
+          type: string
+          example: example_value
+        code:
+          type: integer
+          example: 10
+        headers:
+          $ref: '#/components/schemas/HttpHeader'
+        relative_url:
+          type: string
+          example: https://www.example.com
+      type: object
     ApiStatusMessage:
       properties:
         message:
@@ -108,6 +122,19 @@ components:
         status:
           type: string
           example: example_value
+      type: object
+    BatchRequestStructure:
+      properties:
+        requests:
+          items:
+            $ref: '#/components/schemas/RequestDefinition'
+          type:
+          - array
+          - 'null'
+          example: []
+        suppress_parallel_execution:
+          type: boolean
+          example: true
       type: object
     HttpHeader:
       additionalProperties:
@@ -133,33 +160,6 @@ components:
         relative_url:
           type: string
           example: https://www.example.com
-      type: object
-    BatchReplyUnit:
-      properties:
-        body:
-          type: string
-          example: example_value
-        code:
-          type: integer
-          example: 10
-        headers:
-          $ref: '#/components/schemas/HttpHeader'
-        relative_url:
-          type: string
-          example: https://www.example.com
-      type: object
-    BatchRequestStructure:
-      properties:
-        requests:
-          items:
-            $ref: '#/components/schemas/RequestDefinition'
-          type:
-          - array
-          - 'null'
-          example: []
-        suppress_parallel_execution:
-          type: boolean
-          example: true
       type: object
   securitySchemes:
     api_key:

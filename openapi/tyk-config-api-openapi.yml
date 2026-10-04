@@ -64,6 +64,12 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        error:
+          type: string
+          example: Attempted administrative access with invalid or missing key!
     ConfigStatus:
       type: object
       properties:
@@ -458,12 +464,6 @@ components:
         enable_ownership:
           type: boolean
           example: false
-    Error:
-      type: object
-      properties:
-        error:
-          type: string
-          example: Attempted administrative access with invalid or missing key!
   securitySchemes:
     api_key:
       in: header

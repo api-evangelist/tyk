@@ -1,0 +1,88 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-problem-types.py
+source:
+- openapi/tyk-additional-permissions-api-openapi.yml
+- openapi/tyk-analytics-api-openapi.yml
+- openapi/tyk-apis-api-openapi.yml
+- openapi/tyk-assets-api-openapi.yml
+- openapi/tyk-audit-logs-api-openapi.yml
+- openapi/tyk-basic-authentication-api-openapi.yml
+- openapi/tyk-batch-requests-api-openapi.yml
+- openapi/tyk-cache-invalidation-api-openapi.yml
+- openapi/tyk-certificates-api-openapi.yml
+- openapi/tyk-certs-api-openapi.yml
+- openapi/tyk-certstag-api-openapi.yml
+- openapi/tyk-config-api-openapi.yml
+format: custom
+envelope:
+  media_type: application/json
+  schema: ApiResponse
+coverage:
+  operations: 176
+  statuses_declared: 9
+problems:
+- status: 400
+  title: Bad Request
+  description: Bad Request
+  operations: 103
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 401
+  title: Unauthorized
+  description: Unauthorized
+  operations: 107
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 403
+  title: Forbidden
+  description: Forbidden
+  operations: 155
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 404
+  title: Not Found
+  description: API not found.
+  operations: 81
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 405
+  title: Method Not Allowed
+  description: Malformed request body.
+  operations: 2
+  media_types:
+  - application/json
+  schema: ApiStatusMessage
+- status: 409
+  title: Conflict
+  description: Conflict
+  operations: 7
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 422
+  title: Unprocessable Content
+  description: validation failed
+  operations: 3
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 500
+  title: Internal Server Error
+  description: Internal server error.
+  operations: 109
+  media_types:
+  - application/json
+  schema: ApiResponse
+- status: 503
+  title: Service Unavailable
+  description: System is not ready. One or more critical components are  non-operational, preventing the system
+    from handling requests properly.
+  operations: 1
+  media_types:
+  - application/json
+  schema: ReadinessFailure

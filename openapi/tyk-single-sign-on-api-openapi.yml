@@ -172,6 +172,16 @@ components:
           x-go-name: Status
       type: object
       x-go-package: github.com/TykTechnologies/tyk
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
     SSOAccessData:
       properties:
         DisplayName:
@@ -191,16 +201,6 @@ components:
           type: boolean
         UserNotAllowed:
           type: boolean
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
       type: object
   securitySchemes:
     ApiKeyAuth:

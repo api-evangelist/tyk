@@ -877,220 +877,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    MockResponse:
+    State:
       properties:
-        body:
-          type: string
-          example: example_value
-        code:
-          type: integer
-          example: 10
-        enabled:
+        active:
           type: boolean
           example: true
-        fromOASExamples:
-          $ref: '#/components/schemas/FromOASExamples'
-        headers:
-          $ref: '#/components/schemas/Headers'
-      type: object
-    PluginBundle:
-      properties:
-        enabled:
+        internal:
           type: boolean
           example: true
-        path:
-          type: string
-          example: example_value
-      type: object
-    TrackEndpoint:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    DetailedTracing:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    XTykAPIGateway:
-      properties:
-        info:
-          $ref: '#/components/schemas/Info'
-        middleware:
-          $ref: '#/components/schemas/Middleware'
-        server:
-          $ref: '#/components/schemas/Server'
-        upstream:
-          $ref: '#/components/schemas/Upstream'
-      type: object
-    PostPlugin:
-      properties:
-        plugins:
-          $ref: '#/components/schemas/CustomPlugins'
-      type: object
-    VirtualEndpoint:
-      properties:
-        body:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          example: true
-        functionName:
-          type: string
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        path:
-          type: string
-          example: example_value
-        proxyOnError:
-          type: boolean
-          example: true
-        requireSession:
-          type: boolean
-          example: true
-      type: object
-    BooleanQueryParam:
-      enum:
-      - true
-      - false
-      example: true
-      type: boolean
-    IDExtractorConfig:
-      properties:
-        formParamName:
-          type: string
-          example: example_value
-        headerName:
-          type: string
-          example: example_value
-        regexp:
-          type: string
-          example: example_value
-        regexpMatchIndex:
-          type: integer
-          example: 10
-        xPathExp:
-          type: string
-          example: example_value
-      type: object
-    TransformHeaders:
-      properties:
-        add:
-          $ref: '#/components/schemas/Headers'
-        enabled:
-          type: boolean
-          example: true
-        remove:
-          items:
-            type: string
-          type: array
-          example: []
-      type: object
-    ResponsePlugin:
-      properties:
-        plugins:
-          $ref: '#/components/schemas/CustomPlugins'
-      type: object
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-          example: example_value
-        status:
-          type: string
-          example: example_value
-      type: object
-    PinnedPublicKeys:
-      items:
-        $ref: '#/components/schemas/PinnedPublicKey'
-      type:
-      - array
-      - 'null'
-    EventHandlers:
-      items:
-        $ref: '#/components/schemas/EventHandler'
-      type: array
-    FromOASExamples:
-      properties:
-        code:
-          type: integer
-          example: 10
-        contentType:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          example: true
-        exampleName:
-          type: string
-          example: example_value
-      type: object
-    Internal:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    EnforceTimeout:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        value:
-          type: integer
-          example: 10
-      type: object
-    CustomPluginAuthentication:
-      properties:
-        AuthSources:
-          $ref: '#/components/schemas/AuthSources'
-        config:
-          $ref: '#/components/schemas/AuthenticationPlugin'
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    TransformRequestMethod:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        toMethod:
-          type: string
-          example: example_value
-      type: object
-    PluginConfig:
-      properties:
-        bundle:
-          $ref: '#/components/schemas/PluginBundle'
-        data:
-          $ref: '#/components/schemas/PluginConfigData'
-        driver:
-          type: string
-          example: example_value
-      type: object
-    EventHandler:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        id:
-          type: string
-          example: abc123
-        name:
-          type: string
-          example: Example Title
-        trigger:
-          type: string
-          example: example_value
-        type:
-          type: string
-          example: example_value
       type: object
     EndpointPostPlugin:
       properties:
@@ -1107,200 +901,16 @@ components:
           type: string
           example: example_value
       type: object
-    ServiceDiscoveryCache:
+    ProviderType2:
       properties:
-        enabled:
-          type: boolean
-          example: true
-        timeout:
-          type: integer
-          example: 10
-      type: object
-    VersionToID:
-      properties:
-        id:
-          type: string
-          example: abc123
-        name:
-          type: string
-          example: Example Title
-      type: object
-    TransformBody:
-      properties:
-        body:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          example: true
-        format:
-          type: string
-          example: example_value
-        path:
-          type: string
-          example: example_value
-      type: object
-    AuthenticationPlugin:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        functionName:
-          type: string
-          example: example_value
-        idExtractor:
-          $ref: '#/components/schemas/IDExtractor'
-        path:
-          type: string
-          example: example_value
-        rawBodyOnly:
-          type: boolean
-          example: true
-      type: object
-    Operations:
-      additionalProperties:
-        $ref: '#/components/schemas/Operation'
-      type: object
-    SecuritySchemes:
-      additionalProperties: {}
-      type: object
-    RateLimitEndpoint:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        per:
-          type: integer
-          example: 10
-        rate:
-          type: integer
-          example: 10
-      type: object
-    DomainToCertificate:
-      properties:
-        certificate:
-          type: string
-          example: example_value
-        domain:
-          type: string
-          example: example_value
-      type: object
-    CertificatePinning:
-      properties:
-        domainToPublicKeysMapping:
-          $ref: '#/components/schemas/PinnedPublicKeys'
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    Global:
-      properties:
-        cache:
-          $ref: '#/components/schemas/Cache'
-        contextVariables:
-          $ref: '#/components/schemas/ContextVariables'
-        cors:
-          $ref: '#/components/schemas/CORS'
-        pluginConfig:
-          $ref: '#/components/schemas/PluginConfig'
-        postAuthenticationPlugin:
-          $ref: '#/components/schemas/PostAuthenticationPlugin'
-        postAuthenticationPlugins:
-          $ref: '#/components/schemas/CustomPlugins'
-        postPlugin:
-          $ref: '#/components/schemas/PostPlugin'
-        postPlugins:
-          $ref: '#/components/schemas/CustomPlugins'
-        prePlugin:
-          $ref: '#/components/schemas/PrePlugin'
-        prePlugins:
-          $ref: '#/components/schemas/CustomPlugins'
-        responsePlugin:
-          $ref: '#/components/schemas/ResponsePlugin'
-        responsePlugins:
-          $ref: '#/components/schemas/CustomPlugins'
-        trafficLogs:
-          $ref: '#/components/schemas/TrafficLogs'
-        transformRequestHeaders:
-          $ref: '#/components/schemas/TransformHeaders'
-        transformResponseHeaders:
-          $ref: '#/components/schemas/TransformHeaders'
-      type: object
-    Cache:
-      properties:
-        cacheAllSafeRequests:
-          type: boolean
-          example: true
-        cacheByHeaders:
+        clientToPolicyMapping:
           items:
-            type: string
+            $ref: '#/components/schemas/ClientToPolicy'
           type: array
           example: []
-        cacheResponseCodes:
-          items:
-            type: integer
-          type: array
-          example: []
-        controlTTLHeaderName:
+        issuer:
           type: string
           example: example_value
-        enableUpstreamCacheControl:
-          type: boolean
-          example: true
-        enabled:
-          type: boolean
-          example: true
-        timeout:
-          type: integer
-          example: 10
-      type: object
-    Test:
-      properties:
-        serviceDiscovery:
-          $ref: '#/components/schemas/ServiceDiscovery'
-      type: object
-    RequestSizeLimit:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        value:
-          type: integer
-          example: 10
-      type: object
-    Versioning:
-      properties:
-        default:
-          type: string
-          example: example_value
-        enabled:
-          type: boolean
-          example: true
-        fallbackToDefault:
-          type: boolean
-          example: true
-        key:
-          type: string
-          example: example_value
-        location:
-          type: string
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        stripVersioningData:
-          type: boolean
-          example: true
-        urlVersioningPattern:
-          type: string
-          example: https://www.example.com
-        versions:
-          items:
-            $ref: '#/components/schemas/VersionToID'
-          type:
-          - array
-          - 'null'
-          example: []
       type: object
     OIDC:
       properties:
@@ -1320,77 +930,6 @@ components:
           type: boolean
           example: '500123'
       type: object
-    ValidateRequest:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        errorResponseCode:
-          type: integer
-          example: 10
-      type: object
-    Middleware:
-      properties:
-        global:
-          $ref: '#/components/schemas/Global'
-        operations:
-          $ref: '#/components/schemas/Operations'
-      type: object
-    MutualTLS:
-      properties:
-        domainToCertificateMapping:
-          items:
-            $ref: '#/components/schemas/DomainToCertificate'
-          type:
-          - array
-          - 'null'
-          example: []
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    Domain:
-      properties:
-        certificates:
-          items:
-            type: string
-          type: array
-          example: []
-        enabled:
-          type: boolean
-          example: true
-        name:
-          type: string
-          example: Example Title
-      type: object
-    URLRewrite:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-        pattern:
-          type: string
-          example: example_value
-        rewriteTo:
-          type: string
-          example: example_value
-        triggers:
-          items:
-            $ref: '#/components/schemas/URLRewriteTrigger'
-          type: array
-          example: []
-      type: object
-    ProviderType2:
-      properties:
-        clientToPolicyMapping:
-          items:
-            $ref: '#/components/schemas/ClientToPolicy'
-          type: array
-          example: []
-        issuer:
-          type: string
-          example: example_value
-      type: object
     CachePlugin:
       properties:
         cacheByRegex:
@@ -1408,36 +947,164 @@ components:
           type: integer
           example: 10
       type: object
-    ListenPath:
+    URLRewriteRule:
       properties:
-        strip:
+        in:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        negate:
           type: boolean
           example: true
-        value:
+        pattern:
           type: string
           example: example_value
       type: object
-    TrafficLogs:
+    VersionMeta:
+      properties:
+        expirationDate:
+          example: 2026-03-26 09:00
+          type: string
+        id:
+          example: keyless
+          type: string
+        internal:
+          example: false
+          type: boolean
+        isDefaultVersion:
+          example: true
+          type: boolean
+        name:
+          example: Tyk Test Keyless API
+          type: string
+        versionName:
+          example: v2
+          type: string
+      type: object
+    ServiceDiscovery:
+      properties:
+        cache:
+          $ref: '#/components/schemas/ServiceDiscoveryCache'
+        cacheTimeout:
+          type: integer
+          example: 10
+        dataPath:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        endpointReturnsList:
+          type: boolean
+          example: true
+        parentDataPath:
+          type: string
+          example: example_value
+        portDataPath:
+          type: string
+          example: example_value
+        queryEndpoint:
+          type: string
+          example: example_value
+        targetPath:
+          type: string
+          example: example_value
+        useNestedQuery:
+          type: boolean
+          example: true
+        useTargetList:
+          type: boolean
+          example: true
+      type: object
+    FromOASExamples:
+      properties:
+        code:
+          type: integer
+          example: 10
+        contentType:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        exampleName:
+          type: string
+          example: example_value
+      type: object
+    GatewayTags:
       properties:
         enabled:
           type: boolean
           example: true
-      type: object
-    ContextVariables:
-      properties:
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    ClientCertificates:
-      properties:
-        allowlist:
+        tags:
           items:
             type: string
           type:
           - array
           - 'null'
           example: []
+      type: object
+    Middleware:
+      properties:
+        global:
+          $ref: '#/components/schemas/Global'
+        operations:
+          $ref: '#/components/schemas/Operations'
+      type: object
+    ScopeToPolicy:
+      properties:
+        policyId:
+          type: string
+          example: '500123'
+        scope:
+          type: string
+          example: example_value
+      type: object
+    VersionToID:
+      properties:
+        id:
+          type: string
+          example: abc123
+        name:
+          type: string
+          example: Example Title
+      type: object
+    ClientToPolicy:
+      properties:
+        clientId:
+          type: string
+          example: '500123'
+        policyId:
+          type: string
+          example: '500123'
+      type: object
+    EndpointPostPlugins:
+      items:
+        $ref: '#/components/schemas/EndpointPostPlugin'
+      type: array
+    SecuritySchemes:
+      additionalProperties: {}
+      type: object
+    PluginConfigData:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        value:
+          additionalProperties: {}
+          type:
+          - object
+          - 'null'
+          example: example_value
+      type: object
+    CustomPluginAuthentication:
+      properties:
+        AuthSources:
+          $ref: '#/components/schemas/AuthSources'
+        config:
+          $ref: '#/components/schemas/AuthenticationPlugin'
         enabled:
           type: boolean
           example: true
@@ -1487,64 +1154,78 @@ components:
         virtualEndpoint:
           $ref: '#/components/schemas/VirtualEndpoint'
       type: object
-    PrePlugin:
-      properties:
-        plugins:
-          $ref: '#/components/schemas/CustomPlugins'
-      type: object
-    URLRewriteRule:
-      properties:
-        in:
-          type: string
-          example: example_value
-        name:
-          type: string
-          example: Example Title
-        negate:
-          type: boolean
-          example: true
-        pattern:
-          type: string
-          example: example_value
-      type: object
-    PinnedPublicKey:
-      properties:
-        domain:
-          type: string
-          example: example_value
-        publicKeys:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
-      type: object
-    Allowance:
+    ContextVariables:
       properties:
         enabled:
           type: boolean
           example: true
-        ignoreCase:
-          type: boolean
-          example: true
       type: object
-    PostAuthenticationPlugin:
+    Test:
       properties:
-        plugins:
-          $ref: '#/components/schemas/CustomPlugins'
+        serviceDiscovery:
+          $ref: '#/components/schemas/ServiceDiscovery'
       type: object
-    RateLimit:
+    BooleanQueryParam:
+      enum:
+      - true
+      - false
+      example: true
+      type: boolean
+    Server:
+      properties:
+        authentication:
+          $ref: '#/components/schemas/Authentication'
+        clientCertificates:
+          $ref: '#/components/schemas/ClientCertificates'
+        customDomain:
+          $ref: '#/components/schemas/Domain'
+        detailedActivityLogs:
+          $ref: '#/components/schemas/DetailedActivityLogs'
+        detailedTracing:
+          $ref: '#/components/schemas/DetailedTracing'
+        eventHandlers:
+          $ref: '#/components/schemas/EventHandlers'
+        gatewayTags:
+          $ref: '#/components/schemas/GatewayTags'
+        listenPath:
+          $ref: '#/components/schemas/ListenPath'
+      type: object
+    PluginConfig:
+      properties:
+        bundle:
+          $ref: '#/components/schemas/PluginBundle'
+        data:
+          $ref: '#/components/schemas/PluginConfigData'
+        driver:
+          type: string
+          example: example_value
+      type: object
+    EventHandlers:
+      items:
+        $ref: '#/components/schemas/EventHandler'
+      type: array
+    RequestSizeLimit:
       properties:
         enabled:
           type: boolean
           example: true
-        per:
+        value:
           type: integer
           example: 10
-        rate:
-          type: integer
-          example: 10
+      type: object
+    IDExtractor:
+      properties:
+        config:
+          $ref: '#/components/schemas/IDExtractorConfig'
+        enabled:
+          type: boolean
+          example: true
+        source:
+          type: string
+          example: example_value
+        with:
+          type: string
+          example: example_value
       type: object
     CustomPlugin:
       properties:
@@ -1564,37 +1245,107 @@ components:
           type: boolean
           example: true
       type: object
-    PluginConfigData:
+    HMAC:
+      properties:
+        AuthSources:
+          $ref: '#/components/schemas/AuthSources'
+        allowedAlgorithms:
+          items:
+            type: string
+          type: array
+          example: []
+        allowedClockSkew:
+          type: number
+          example: 42.5
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    Allowance:
       properties:
         enabled:
           type: boolean
           example: true
-        value:
-          additionalProperties: {}
-          type:
-          - object
-          - 'null'
-          example: example_value
+        ignoreCase:
+          type: boolean
+          example: true
       type: object
-    Authentication:
+    DetailedActivityLogs:
       properties:
-        baseIdentityProvider:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    VersionMetas:
+      properties:
+        apis:
+          items:
+            $ref: '#/components/schemas/VersionMeta'
+          type:
+          - array
+          - 'null'
+          example: []
+        status:
+          example: success
+          type: string
+      type: object
+    Headers:
+      items:
+        $ref: '#/components/schemas/Header'
+      type: array
+    VirtualEndpoint:
+      properties:
+        body:
           type: string
           example: example_value
-        custom:
-          $ref: '#/components/schemas/CustomPluginAuthentication'
         enabled:
           type: boolean
           example: true
-        hmac:
-          $ref: '#/components/schemas/HMAC'
-        oidc:
-          $ref: '#/components/schemas/OIDC'
-        securitySchemes:
-          $ref: '#/components/schemas/SecuritySchemes'
-        stripAuthorizationData:
+        functionName:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        path:
+          type: string
+          example: example_value
+        proxyOnError:
           type: boolean
           example: true
+        requireSession:
+          type: boolean
+          example: true
+      type: object
+    PostPlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    MockResponse:
+      properties:
+        body:
+          type: string
+          example: example_value
+        code:
+          type: integer
+          example: 10
+        enabled:
+          type: boolean
+          example: true
+        fromOASExamples:
+          $ref: '#/components/schemas/FromOASExamples'
+        headers:
+          $ref: '#/components/schemas/Headers'
+      type: object
+    ServiceDiscoveryCache:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          type: integer
+          example: 10
       type: object
     AuthSources:
       properties:
@@ -1604,6 +1355,140 @@ components:
           $ref: '#/components/schemas/AuthSource'
         query:
           $ref: '#/components/schemas/AuthSource'
+      type: object
+    ValidateRequest:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        errorResponseCode:
+          type: integer
+          example: 10
+      type: object
+    TransformHeaders:
+      properties:
+        add:
+          $ref: '#/components/schemas/Headers'
+        enabled:
+          type: boolean
+          example: true
+        remove:
+          items:
+            type: string
+          type: array
+          example: []
+      type: object
+    DomainToCertificate:
+      properties:
+        certificate:
+          type: string
+          example: example_value
+        domain:
+          type: string
+          example: example_value
+      type: object
+    AuthenticationPlugin:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        functionName:
+          type: string
+          example: example_value
+        idExtractor:
+          $ref: '#/components/schemas/IDExtractor'
+        path:
+          type: string
+          example: example_value
+        rawBodyOnly:
+          type: boolean
+          example: true
+      type: object
+    DetailedTracing:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    ApiModifyKeySuccess:
+      properties:
+        action:
+          example: modified
+          type: string
+        key:
+          example: b13d928b9972bd18
+          type: string
+        key_hash:
+          type: string
+          example: example_value
+        status:
+          example: ok
+          type: string
+      type: object
+    CustomPlugins:
+      items:
+        $ref: '#/components/schemas/CustomPlugin'
+      type: array
+    TransformRequestMethod:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        toMethod:
+          type: string
+          example: example_value
+      type: object
+    TrafficLogs:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    MutualTLS:
+      properties:
+        domainToCertificateMapping:
+          items:
+            $ref: '#/components/schemas/DomainToCertificate'
+          type:
+          - array
+          - 'null'
+          example: []
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    Global:
+      properties:
+        cache:
+          $ref: '#/components/schemas/Cache'
+        contextVariables:
+          $ref: '#/components/schemas/ContextVariables'
+        cors:
+          $ref: '#/components/schemas/CORS'
+        pluginConfig:
+          $ref: '#/components/schemas/PluginConfig'
+        postAuthenticationPlugin:
+          $ref: '#/components/schemas/PostAuthenticationPlugin'
+        postAuthenticationPlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        postPlugin:
+          $ref: '#/components/schemas/PostPlugin'
+        postPlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        prePlugin:
+          $ref: '#/components/schemas/PrePlugin'
+        prePlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        responsePlugin:
+          $ref: '#/components/schemas/ResponsePlugin'
+        responsePlugins:
+          $ref: '#/components/schemas/CustomPlugins'
+        trafficLogs:
+          $ref: '#/components/schemas/TrafficLogs'
+        transformRequestHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
+        transformResponseHeaders:
+          $ref: '#/components/schemas/TransformHeaders'
       type: object
     CORS:
       properties:
@@ -1643,94 +1528,37 @@ components:
           type: boolean
           example: true
       type: object
-    ServiceDiscovery:
+    CertificatePinning:
       properties:
-        cache:
-          $ref: '#/components/schemas/ServiceDiscoveryCache'
-        cacheTimeout:
-          type: integer
-          example: 10
-        dataPath:
-          type: string
-          example: example_value
+        domainToPublicKeysMapping:
+          $ref: '#/components/schemas/PinnedPublicKeys'
         enabled:
           type: boolean
           example: true
-        endpointReturnsList:
-          type: boolean
-          example: true
-        parentDataPath:
-          type: string
-          example: example_value
-        portDataPath:
-          type: string
-          example: example_value
-        queryEndpoint:
-          type: string
-          example: example_value
-        targetPath:
-          type: string
-          example: example_value
-        useNestedQuery:
-          type: boolean
-          example: true
-        useTargetList:
-          type: boolean
-          example: true
       type: object
-    URLRewriteTrigger:
-      properties:
-        condition:
-          type: string
-          example: example_value
-        rewriteTo:
-          type: string
-          example: example_value
-        rules:
-          items:
-            $ref: '#/components/schemas/URLRewriteRule'
-          type: array
-          example: []
-      type: object
-    DetailedActivityLogs:
+    Internal:
       properties:
         enabled:
           type: boolean
           example: true
       type: object
-    VersionMeta:
+    AuthSource:
       properties:
-        expirationDate:
-          example: 2026-03-26 09:00
-          type: string
-        id:
-          example: keyless
-          type: string
-        internal:
-          example: false
+        enabled:
           type: boolean
-        isDefaultVersion:
           example: true
-          type: boolean
         name:
-          example: Tyk Test Keyless API
           type: string
-        versionName:
-          example: v2
-          type: string
+          example: Example Title
       type: object
-    GatewayTags:
+    ListenPath:
       properties:
-        enabled:
+        strip:
           type: boolean
           example: true
-        tags:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-          example: []
+        value:
+          type: string
+          example: example_value
       type: object
     CircuitBreaker:
       properties:
@@ -1750,136 +1578,31 @@ components:
           type: number
           example: 42.5
       type: object
-    CustomPlugins:
-      items:
-        $ref: '#/components/schemas/CustomPlugin'
-      type: array
-    Header:
+    EnforceTimeout:
       properties:
-        name:
-          type: string
-          example: Example Title
-        value:
-          type: string
-          example: example_value
-      type: object
-    IDExtractor:
-      properties:
-        config:
-          $ref: '#/components/schemas/IDExtractorConfig'
         enabled:
           type: boolean
           example: true
-        source:
-          type: string
-          example: example_value
-        with:
-          type: string
-          example: example_value
+        value:
+          type: integer
+          example: 10
       type: object
-    ApiModifyKeySuccess:
+    ApiStatusMessage:
       properties:
-        action:
-          example: modified
-          type: string
-        key:
-          example: b13d928b9972bd18
-          type: string
-        key_hash:
+        message:
           type: string
           example: example_value
         status:
-          example: ok
           type: string
+          example: example_value
       type: object
-    HMAC:
+    Domain:
       properties:
-        AuthSources:
-          $ref: '#/components/schemas/AuthSources'
-        allowedAlgorithms:
+        certificates:
           items:
             type: string
           type: array
           example: []
-        allowedClockSkew:
-          type: number
-          example: 42.5
-        enabled:
-          type: boolean
-          example: true
-      type: object
-    Server:
-      properties:
-        authentication:
-          $ref: '#/components/schemas/Authentication'
-        clientCertificates:
-          $ref: '#/components/schemas/ClientCertificates'
-        customDomain:
-          $ref: '#/components/schemas/Domain'
-        detailedActivityLogs:
-          $ref: '#/components/schemas/DetailedActivityLogs'
-        detailedTracing:
-          $ref: '#/components/schemas/DetailedTracing'
-        eventHandlers:
-          $ref: '#/components/schemas/EventHandlers'
-        gatewayTags:
-          $ref: '#/components/schemas/GatewayTags'
-        listenPath:
-          $ref: '#/components/schemas/ListenPath'
-      type: object
-    Headers:
-      items:
-        $ref: '#/components/schemas/Header'
-      type: array
-    Upstream:
-      properties:
-        certificatePinning:
-          $ref: '#/components/schemas/CertificatePinning'
-        mutualTLS:
-          $ref: '#/components/schemas/MutualTLS'
-        rateLimit:
-          $ref: '#/components/schemas/RateLimit'
-        serviceDiscovery:
-          $ref: '#/components/schemas/ServiceDiscovery'
-        test:
-          $ref: '#/components/schemas/Test'
-        url:
-          type: string
-          example: https://www.example.com
-      type: object
-    State:
-      properties:
-        active:
-          type: boolean
-          example: true
-        internal:
-          type: boolean
-          example: true
-      type: object
-    EndpointPostPlugins:
-      items:
-        $ref: '#/components/schemas/EndpointPostPlugin'
-      type: array
-    ScopeToPolicy:
-      properties:
-        policyId:
-          type: string
-          example: '500123'
-        scope:
-          type: string
-          example: example_value
-      type: object
-    ClientToPolicy:
-      properties:
-        clientId:
-          type: string
-          example: '500123'
-        policyId:
-          type: string
-          example: '500123'
-      type: object
-    AuthSource:
-      properties:
         enabled:
           type: boolean
           example: true
@@ -1887,16 +1610,17 @@ components:
           type: string
           example: Example Title
       type: object
-    ScopesType2:
+    RateLimitEndpoint:
       properties:
-        claimName:
-          type: string
-          example: example_value
-        scopeToPolicyMapping:
-          items:
-            $ref: '#/components/schemas/ScopeToPolicy'
-          type: array
-          example: []
+        enabled:
+          type: boolean
+          example: true
+        per:
+          type: integer
+          example: 10
+        rate:
+          type: integer
+          example: 10
       type: object
     Info:
       properties:
@@ -1920,20 +1644,313 @@ components:
         versioning:
           $ref: '#/components/schemas/Versioning'
       type: object
-    VersionMetas:
+    TrackEndpoint:
       properties:
-        apis:
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    IDExtractorConfig:
+      properties:
+        formParamName:
+          type: string
+          example: example_value
+        headerName:
+          type: string
+          example: example_value
+        regexp:
+          type: string
+          example: example_value
+        regexpMatchIndex:
+          type: integer
+          example: 10
+        xPathExp:
+          type: string
+          example: example_value
+      type: object
+    PrePlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    PinnedPublicKey:
+      properties:
+        domain:
+          type: string
+          example: example_value
+        publicKeys:
           items:
-            $ref: '#/components/schemas/VersionMeta'
+            type: string
           type:
           - array
           - 'null'
           example: []
-        status:
-          example: success
+      type: object
+    PinnedPublicKeys:
+      items:
+        $ref: '#/components/schemas/PinnedPublicKey'
+      type:
+      - array
+      - 'null'
+    PluginBundle:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        path:
           type: string
+          example: example_value
+      type: object
+    URLRewriteTrigger:
+      properties:
+        condition:
+          type: string
+          example: example_value
+        rewriteTo:
+          type: string
+          example: example_value
+        rules:
+          items:
+            $ref: '#/components/schemas/URLRewriteRule'
+          type: array
+          example: []
+      type: object
+    Cache:
+      properties:
+        cacheAllSafeRequests:
+          type: boolean
+          example: true
+        cacheByHeaders:
+          items:
+            type: string
+          type: array
+          example: []
+        cacheResponseCodes:
+          items:
+            type: integer
+          type: array
+          example: []
+        controlTTLHeaderName:
+          type: string
+          example: example_value
+        enableUpstreamCacheControl:
+          type: boolean
+          example: true
+        enabled:
+          type: boolean
+          example: true
+        timeout:
+          type: integer
+          example: 10
+      type: object
+    ResponsePlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
+      type: object
+    XTykAPIGateway:
+      properties:
+        info:
+          $ref: '#/components/schemas/Info'
+        middleware:
+          $ref: '#/components/schemas/Middleware'
+        server:
+          $ref: '#/components/schemas/Server'
+        upstream:
+          $ref: '#/components/schemas/Upstream'
+      type: object
+    Authentication:
+      properties:
+        baseIdentityProvider:
+          type: string
+          example: example_value
+        custom:
+          $ref: '#/components/schemas/CustomPluginAuthentication'
+        enabled:
+          type: boolean
+          example: true
+        hmac:
+          $ref: '#/components/schemas/HMAC'
+        oidc:
+          $ref: '#/components/schemas/OIDC'
+        securitySchemes:
+          $ref: '#/components/schemas/SecuritySchemes'
+        stripAuthorizationData:
+          type: boolean
+          example: true
+      type: object
+    Versioning:
+      properties:
+        default:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        fallbackToDefault:
+          type: boolean
+          example: true
+        key:
+          type: string
+          example: example_value
+        location:
+          type: string
+          example: example_value
+        name:
+          type: string
+          example: Example Title
+        stripVersioningData:
+          type: boolean
+          example: true
+        urlVersioningPattern:
+          type: string
+          example: https://www.example.com
+        versions:
+          items:
+            $ref: '#/components/schemas/VersionToID'
+          type:
+          - array
+          - 'null'
+          example: []
+      type: object
+    EventHandler:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        id:
+          type: string
+          example: abc123
+        name:
+          type: string
+          example: Example Title
+        trigger:
+          type: string
+          example: example_value
+        type:
+          type: string
+          example: example_value
+      type: object
+    ClientCertificates:
+      properties:
+        allowlist:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+          example: []
+        enabled:
+          type: boolean
+          example: true
+      type: object
+    Operations:
+      additionalProperties:
+        $ref: '#/components/schemas/Operation'
+      type: object
+    RateLimit:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        per:
+          type: integer
+          example: 10
+        rate:
+          type: integer
+          example: 10
+      type: object
+    ScopesType2:
+      properties:
+        claimName:
+          type: string
+          example: example_value
+        scopeToPolicyMapping:
+          items:
+            $ref: '#/components/schemas/ScopeToPolicy'
+          type: array
+          example: []
+      type: object
+    TransformBody:
+      properties:
+        body:
+          type: string
+          example: example_value
+        enabled:
+          type: boolean
+          example: true
+        format:
+          type: string
+          example: example_value
+        path:
+          type: string
+          example: example_value
+      type: object
+    Header:
+      properties:
+        name:
+          type: string
+          example: Example Title
+        value:
+          type: string
+          example: example_value
+      type: object
+    Upstream:
+      properties:
+        certificatePinning:
+          $ref: '#/components/schemas/CertificatePinning'
+        mutualTLS:
+          $ref: '#/components/schemas/MutualTLS'
+        rateLimit:
+          $ref: '#/components/schemas/RateLimit'
+        serviceDiscovery:
+          $ref: '#/components/schemas/ServiceDiscovery'
+        test:
+          $ref: '#/components/schemas/Test'
+        url:
+          type: string
+          example: https://www.example.com
+      type: object
+    URLRewrite:
+      properties:
+        enabled:
+          type: boolean
+          example: true
+        pattern:
+          type: string
+          example: example_value
+        rewriteTo:
+          type: string
+          example: example_value
+        triggers:
+          items:
+            $ref: '#/components/schemas/URLRewriteTrigger'
+          type: array
+          example: []
+      type: object
+    PostAuthenticationPlugin:
+      properties:
+        plugins:
+          $ref: '#/components/schemas/CustomPlugins'
       type: object
   parameters:
+    AccessType:
+      description: Filter for internal or external API versions
+      example: internal
+      in: query
+      name: accessType
+      required: false
+      schema:
+        enum:
+        - internal
+        - external
+        type: string
+    Authentication:
+      description: Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API
+      in: query
+      name: authentication
+      schema:
+        $ref: '#/components/schemas/BooleanQueryParam'
     ListenPath:
       description: Listen path for the API
       example: /user-test/
@@ -1942,10 +1959,19 @@ components:
       required: false
       schema:
         type: string
-    Authentication:
-      description: Enable/disable the authentication mechanism in your Tyk Gateway for your OAS API
+    CustomDomain:
+      description: Custom domain for the API
+      example: tyk.io
       in: query
-      name: authentication
+      name: customDomain
+      required: false
+      schema:
+        type: string
+    ValidateRequest:
+      description: Enable validateRequest middleware for all endpoints having a request body with media type application/json
+      in: query
+      name: validateRequest
+      required: false
       schema:
         $ref: '#/components/schemas/BooleanQueryParam'
     UpstreamURL:
@@ -1964,17 +1990,6 @@ components:
       required: false
       schema:
         type: string
-    AccessType:
-      description: Filter for internal or external API versions
-      example: internal
-      in: query
-      name: accessType
-      required: false
-      schema:
-        enum:
-        - internal
-        - external
-        type: string
     AllowList:
       description: Enable allowList middleware for all endpoints
       in: query
@@ -1982,21 +1997,6 @@ components:
       required: false
       schema:
         $ref: '#/components/schemas/BooleanQueryParam'
-    ValidateRequest:
-      description: Enable validateRequest middleware for all endpoints having a request body with media type application/json
-      in: query
-      name: validateRequest
-      required: false
-      schema:
-        $ref: '#/components/schemas/BooleanQueryParam'
-    CustomDomain:
-      description: Custom domain for the API
-      example: tyk.io
-      in: query
-      name: customDomain
-      required: false
-      schema:
-        type: string
     MockResponse:
       description: Enable mockResponse middleware for all endpoints having responses configured.
       in: query

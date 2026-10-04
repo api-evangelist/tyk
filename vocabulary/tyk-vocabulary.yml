@@ -1,0 +1,445 @@
+generated: '2026-10-04'
+method: derived
+generator: derive-vocabulary.py
+source:
+- openapi/tyk-additional-permissions-api-openapi.yml
+- openapi/tyk-analytics-api-openapi.yml
+- openapi/tyk-apis-api-openapi.yml
+- openapi/tyk-assets-api-openapi.yml
+- openapi/tyk-audit-logs-api-openapi.yml
+vocabulary:
+  name: Tyk Domain Vocabulary
+  description: 'Terms declared by Tyk''s own API contract: its resource groups, objects and enumerations, with the contract''s definitions. Derived,
+    not authored.'
+  version: '2026-10-04'
+  terms:
+  - term: Additional Permissions
+    definition: These APIs helps you get,add and delete (CRUD) a list of additional (custom) permissions for your Dashboard users. You can use
+      the created additional permissions with Open Policy Agent (OPA). Once created, a custom permission will be added to standard list of user
+      permissions. You can also configure these custom permissions in the security.additional_permissions map in the Tyk Dashboard configurat
+    tags:
+    - Resource Group
+    source: openapi/tyk-additional-permissions-api-openapi.yml
+  - term: Analytics
+    definition: The Tyk Dashboard provides a full set of analytics functions and graphs that you can use to segment and view your API traffic
+      and activity.
+    tags:
+    - Resource Group
+    source: openapi/tyk-analytics-api-openapi.yml
+  - term: APIs
+    definition: Use the endpoints under this tags to update,add ,delete and fetch the classic APIs.
+    tags:
+    - Resource Group
+    source: openapi/tyk-apis-api-openapi.yml
+  - term: Assets
+    definition: An API template is an asset managed by Tyk Dashboard that is used as the starting point - a blueprint - from which you can create
+      a new Tyk OAS API definition. Templates are used only during the creation of an API, they cannot be applied later. Read more about API template
+      assets here
+    tags:
+    - Resource Group
+    source: openapi/tyk-assets-api-openapi.yml
+  - term: Basic Authentication
+    definition: 'An API request made using Basic Authentication will have an Authorization header that contains the API key. The value of the
+      Authorization header will be in the form: `Basic base64Encode(username:password)`.'
+    tags:
+    - Resource Group
+    source: openapi/tyk-basic-authentication-api-openapi.yml
+  - term: Batch Requests
+    definition: Tyk supports batch requests, so a client makes a single request to the API but gets a compound response object back.
+    tags:
+    - Resource Group
+    source: openapi/tyk-batch-requests-api-openapi.yml
+  - term: Cache Invalidation
+    definition: Sometimes a cache might contain stale data, or it may just need to be cleared because of an invalid configuration. This call will
+      purge all keys associated with a cache on an API-by-API basis.
+    tags:
+    - Resource Group
+    source: openapi/tyk-cache-invalidation-api-openapi.yml
+  - term: Certificates
+    definition: Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates using these endpoints.
+    tags:
+    - Resource Group
+    source: openapi/tyk-certificates-api-openapi.yml
+  - term: Certs
+    definition: Use the endpoints under this tag to manage your certificates. You can add, delete and list certificates using these endpoints.
+    tags:
+    - Resource Group
+    source: openapi/tyk-certs-api-openapi.yml
+  - term: Dashboard URL Reload
+    definition: Since the Dashboard can have multiple URLs associated with it. It is possible to force a URL reload by calling an API endpoint
+      of the Dashboard API.
+    tags:
+    - Resource Group
+    source: openapi/tyk-dashboard-url-reload-api-openapi.yml
+  - term: Export
+    definition: To make Tyk installations more portable, the Export API enables you to export key configuration objects required to back-up and
+      re-deploy a basic Tyk Pro installation.
+    tags:
+    - Resource Group
+    source: openapi/tyk-export-api-openapi.yml
+  - term: Health Checking
+    definition: Check health status of the Tyk Gateway and loaded APIs.
+    tags:
+    - Resource Group
+    source: openapi/tyk-health-checking-api-openapi.yml
+  - term: Hot Reload
+    definition: Force restart of the Gateway or whole cluster.
+    tags:
+    - Resource Group
+    source: openapi/tyk-hot-reload-api-openapi.yml
+  - term: Import
+    definition: The import API enables you to add Organisations, APIs and Policies back into a Tyk installation while retaining their base IDs
+      so that they work together.
+    tags:
+    - Resource Group
+    source: openapi/tyk-import-api-openapi.yml
+  - term: Keys
+    definition: All keys that are used to access services via Tyk correspond to a session object that informs Tyk about the context of this particular
+      token, like access rules and rate/quota allowance.
+    tags:
+    - Resource Group
+    source: openapi/tyk-keys-api-openapi.yml
+  - term: OAS APIs
+    definition: Tyk allows you to work with APIs that you ve designed with the OpenAPI Specification version 3.0.x, making it even easier to get
+      your API up and running. Use the endpoints in this tag to create,delete,import and update OAS APIs.
+    tags:
+    - Resource Group
+    source: openapi/tyk-oas-apis-api-openapi.yml
+  - term: OAuth
+    definition: Use the endpoints in this tag to manage OAuth flow.
+    tags:
+    - Resource Group
+    source: openapi/tyk-oauth-api-openapi.yml
+  - term: Open Policy Agent
+    definition: The Tyk Dashboard permission system can be extended by writing custom rules using an Open Policy Agent (OPA).
+    tags:
+    - Resource Group
+    source: openapi/tyk-open-policy-agent-api-openapi.yml
+  - term: Organisation Quotas
+    definition: It is possible to force API quota and rate limit across all keys that belong to a specific organisation ID.
+    tags:
+    - Resource Group
+    source: openapi/tyk-organisation-quotas-api-openapi.yml
+  - term: Organisations
+    definition: The organisations API gives the ability to manage your Tyk organisation(s).
+    tags:
+    - Resource Group
+    source: openapi/tyk-organisations-api-openapi.yml
+  - term: Policies
+    definition: Policies are a template that enable you to create access rules, usage quota and rate limits that can be applied to multiple keys.
+    tags:
+    - Resource Group
+    source: openapi/tyk-policies-api-openapi.yml
+  - term: Schema
+    definition: Get OAS schema.
+    tags:
+    - Resource Group
+    source: openapi/tyk-schema-api-openapi.yml
+  - term: Single Sign On
+    definition: The Dashboard SSO API allows you to implement custom authentication schemes for the Dashboard and Portal. Our Tyk Identity Broker
+      (TIB) internally also uses this API.
+    tags:
+    - Resource Group
+    source: openapi/tyk-single-sign-on-api-openapi.yml
+  - term: System
+    definition: System API.
+    tags:
+    - Resource Group
+    source: openapi/tyk-system-api-openapi.yml
+  - term: Tyk OAS APIs
+    definition: '**Note: Applies only to Tyk Gateway Community Edition**'
+    tags:
+    - Resource Group
+    source: openapi/tyk-tyk-oas-apis-api-openapi.yml
+  - term: User Group
+    definition: When you have a large number of users and teams with different access requirements, instead of setting permissions per user, you
+      can create a user group and configure the permissions for all users in the group. Note that a user can only belong to one group.
+    tags:
+    - Resource Group
+    source: openapi/tyk-user-group-api-openapi.yml
+  - term: Users
+    definition: The admin portion of the users API gives you the ability to manage password reset policies for your Dashboard users.
+    tags:
+    - Resource Group
+    source: openapi/tyk-users-api-openapi.yml
+  - term: Webhooks
+    definition: Webhooks are a great way to let external applications know about the status of a user, an API or an event that has occurred in
+      the Tyk gateway You can create webhooks that you can then re-use in your API definitions and assign to different Tyk Events such as quota
+      violations or rate-limiting violations.
+    tags:
+    - Resource Group
+    source: openapi/tyk-webhooks-api-openapi.yml
+  - term: ApiResponse
+    definition: 'Object declared by the contract with fields: ID, Message, Meta, Status.'
+    tags:
+    - Object
+    source: openapi/tyk-additional-permissions-api-openapi.yml#/components/schemas/ApiResponse
+  - term: NewAdditionalPermissions
+    definition: 'Object declared by the contract with fields: additional_permissions.'
+    tags:
+    - Object
+    source: openapi/tyk-additional-permissions-api-openapi.yml#/components/schemas/NewAdditionalPermissions
+  - term: AggregateAnalyticsData
+    definition: 'Object declared by the contract with fields: data, pages.'
+    tags:
+    - Object
+    source: openapi/tyk-analytics-api-openapi.yml#/components/schemas/AggregateAnalyticsData
+  - term: ResultUnit
+    definition: 'Object declared by the contract with fields: error, hits, id, last_hit, latency, max_latency, max_upstream_latency, min_latency,
+      min_upstream_latency, request_time, success, upstream_latency.'
+    tags:
+    - Object
+    source: openapi/tyk-analytics-api-openapi.yml#/components/schemas/ResultUnit
+  - term: ResultId
+    definition: 'Object declared by the contract with fields: alias, api_id, api_name, code, day, hour, iso_country, key, month, path, queries,
+      url. (1 more)'
+    tags:
+    - Object
+    source: openapi/tyk-analytics-api-openapi.yml#/components/schemas/ResultId
+  - term: GraphQLSubgraphEntity
+    definition: 'Object declared by the contract with fields: api_id, headers, name, sdl, subscription_type, url.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLSubgraphEntity
+  - term: ServerType2
+    definition: 'Object declared by the contract with fields: description, url, variables.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ServerType2
+  - term: OpenIDOptions
+    definition: 'Object declared by the contract with fields: providers, segregate_by_client.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/OpenIDOptions
+  - term: GraphQLProxyConfig
+    definition: 'Object declared by the contract with fields: auth_headers, features, request_headers, request_headers_rewrite, subscription_type,
+      use_response_extensions.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLProxyConfig
+  - term: StringRegexMap
+    definition: 'Object declared by the contract with fields: match_rx, reverse.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/StringRegexMap
+  - term: AuthProviderMeta
+    definition: 'Object declared by the contract with fields: meta, name, storage_engine.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/AuthProviderMeta
+  - term: URLRewriteMeta
+    definition: 'Object declared by the contract with fields: disabled, match_pattern, method, path, rewrite_to, triggers.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/URLRewriteMeta
+  - term: CacheOptions
+    definition: 'Object declared by the contract with fields: cache_all_safe_requests, cache_by_headers, cache_control_ttl_header, cache_response_codes,
+      cache_timeout, enable_cache, enable_upstream_cache_control.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/CacheOptions
+  - term: TransformJQMeta
+    definition: 'Object declared by the contract with fields: filter, method, path.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/TransformJQMeta
+  - term: VirtualMeta
+    definition: 'Object declared by the contract with fields: disabled, function_source_type, function_source_uri, method, path, proxy_on_error,
+      response_function_name, use_session.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/VirtualMeta
+  - term: Components
+    definition: 'Object declared by the contract with fields: callbacks, examples, headers, links, parameters, requestBodies, responses, schemas,
+      securitySchemes.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/Components
+  - term: ApiDefinitionWrapper
+    definition: 'Object declared by the contract with fields: api_definition, api_model, categories, created_at, hook_references, is_site, oas,
+      sort_by, updated_at, user_group_owners, user_owners.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ApiDefinitionWrapper
+  - term: OIDProviderConfig
+    definition: 'Object declared by the contract with fields: client_ids, issuer.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/OIDProviderConfig
+  - term: VersionDefinition
+    definition: 'Object declared by the contract with fields: default, enabled, fallback_to_default, key, location, name, strip_path, strip_versioning_data,
+      url_versioning_pattern, versions.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/VersionDefinition
+  - term: Contact
+    definition: 'Object declared by the contract with fields: email, name, url.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/Contact
+  - term: ServerVariable
+    definition: 'Object declared by the contract with fields: default, description, enum.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ServerVariable
+  - term: ExampleAPIMetadata
+    definition: 'Object declared by the contract with fields: location, name, shortDescription.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ExampleAPIMetadata
+  - term: MiddlewareIdExtractor
+    definition: 'Object declared by the contract with fields: disabled, extract_from, extract_with, extractor_config.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/MiddlewareIdExtractor
+  - term: MethodTransformMeta
+    definition: 'Object declared by the contract with fields: disabled, method, path, to_method.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/MethodTransformMeta
+  - term: RequestSizeMeta
+    definition: 'Object declared by the contract with fields: disabled, method, path, size_limit.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/RequestSizeMeta
+  - term: RateLimitMeta
+    definition: 'Object declared by the contract with fields: disabled, method, path, per, rate.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/RateLimitMeta
+  - term: RequestHeadersRewriteConfig
+    definition: 'Object declared by the contract with fields: remove, value.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/RequestHeadersRewriteConfig
+  - term: ResponseProcessor
+    definition: 'Object declared by the contract with fields: name, options.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ResponseProcessor
+  - term: URLVals
+    definition: 'Object declared by the contract with fields: ApiURL, BasePath, Host.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/URLVals
+  - term: GraphQLPlayground
+    definition: 'Object declared by the contract with fields: enabled, path.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLPlayground
+  - term: GraphQLSubgraphConfig
+    definition: 'Object declared by the contract with fields: sdl.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLSubgraphConfig
+  - term: TrackEndpointMeta
+    definition: 'Object declared by the contract with fields: disabled, method, path.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/TrackEndpointMeta
+  - term: NotificationsManager
+    definition: 'Object declared by the contract with fields: oauth_on_keychange_url, shared_secret.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/NotificationsManager
+  - term: CheckCommand
+    definition: 'Object declared by the contract with fields: message, name.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/CheckCommand
+  - term: EventHandlerMetaConfig
+    definition: 'Object declared by the contract with fields: events.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/EventHandlerMetaConfig
+  - term: ProxyConfig
+    definition: 'Object declared by the contract with fields: check_host_against_uptime_tests, disable_strip_slash, enable_load_balancing, listen_path,
+      preserve_host_header, service_discovery, strip_listen_path, target_list, target_url, transport.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ProxyConfig
+  - term: AuthConfig
+    definition: 'Object declared by the contract with fields: auth_header_name, cookie_name, disable_header, name, param_name, signature, use_certificate,
+      use_cookie, use_param, validate_signature.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/AuthConfig
+  - term: ExternalDocs
+    definition: 'Object declared by the contract with fields: description, url.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ExternalDocs
+  - term: GlobalRateLimit
+    definition: 'Object declared by the contract with fields: disabled, per, rate.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GlobalRateLimit
+  - term: AccessManagementPayload
+    definition: 'Object declared by the contract with fields: userGroupIds, userIds.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/AccessManagementPayload
+  - term: ExternalOAuth
+    definition: 'Object declared by the contract with fields: enabled, providers.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ExternalOAuth
+  - term: RoutingTriggerOptions
+    definition: 'Object declared by the contract with fields: header_matches, path_part_matches, payload_matches, query_val_matches, request_context_matches,
+      session_meta_matches.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/RoutingTriggerOptions
+  - term: JWTValidation
+    definition: 'Object declared by the contract with fields: enabled, expires_at_validation_skew, identity_base_field, issued_at_validation_skew,
+      not_before_validation_skew, signing_method, source.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/JWTValidation
+  - term: SignatureConfig
+    definition: 'Object declared by the contract with fields: algorithm, allowed_clock_skew, error_code, error_message, header, param_name, secret,
+      use_param.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/SignatureConfig
+  - term: GraphQLProxyFeaturesConfig
+    definition: 'Object declared by the contract with fields: use_immutable_headers.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLProxyFeaturesConfig
+  - term: ScopeClaim
+    definition: 'Object declared by the contract with fields: scope_claim_name, scope_to_policy.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ScopeClaim
+  - term: ProviderType2
+    definition: 'Object declared by the contract with fields: introspection, jwt.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/ProviderType2
+  - term: CacheMeta
+    definition: 'Object declared by the contract with fields: cache_key_regex, cache_response_codes, disabled, method, path, timeout.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/CacheMeta
+  - term: GraphQLConfig
+    definition: 'Object declared by the contract with fields: enabled, engine, execution_mode, introspection, last_schema_update, playground,
+      proxy, schema, subgraph, supergraph, type_field_configurations, version.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLConfig
+  - term: Introspection
+    definition: 'Object declared by the contract with fields: cache, client_id, client_secret, enabled, identity_base_field, url.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/Introspection
+  - term: GraphQLEngineConfig
+    definition: 'Object declared by the contract with fields: data_sources, field_configs, global_headers.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/GraphQLEngineConfig
+  - term: PersistGraphQLMeta
+    definition: 'Object declared by the contract with fields: method, operation, path, variables.'
+    tags:
+    - Object
+    source: openapi/tyk-apis-api-openapi.yml#/components/schemas/PersistGraphQLMeta

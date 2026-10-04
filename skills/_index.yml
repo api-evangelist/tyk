@@ -1,0 +1,27 @@
+generated: '2026-10-04'
+method: generated
+generator: extract-docs-artifacts.py skills (local)
+source: openapi/tyk-apis-api-openapi.yml
+skills:
+- file: skills/tyk-list-apis.md
+  name: tyk-list-apis
+  api: openapi/tyk-apis-api-openapi.yml
+  operations:
+  - getApis
+  - getApi
+- file: skills/tyk-create-and-retrieve-apis.md
+  name: tyk-create-and-retrieve-apis
+  api: openapi/tyk-tyk-oas-apis-api-openapi.yml
+  operations:
+  - createApiOAS
+  - getOASApi
+  - downloadApiOASPublic
+- file: skills/tyk-manage-streams-api.md
+  name: tyk-manage-streams-api
+  api: openapi/tyk-streams-apis-api-openapi.yml
+  operations:
+  - createStreamsApi
+  - getStreamsAPIDetails
+  - updateStreamsApi
+  - patchApiStreams
+  - deleteStreamsApi

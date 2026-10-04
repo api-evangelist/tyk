@@ -115,75 +115,29 @@ paths:
       - Basic Authentication
 components:
   schemas:
-    APILimit:
+    SessionEndpointMethod:
       properties:
-        max_query_depth:
-          type: integer
-        per:
-          format: double
-          type: number
-        quota_max:
-          format: int64
-          type: integer
-        quota_remaining:
-          format: int64
-          type: integer
-        quota_renewal_rate:
-          format: int64
-          type: integer
-        quota_renews:
-          format: int64
-          type: integer
-        rate:
-          format: double
-          type: number
-        set_by_policy:
-          type: boolean
-        smoothing:
-          $ref: '#/components/schemas/RateLimitSmoothing'
-        throttle_interval:
-          format: double
-          type: number
-        throttle_retry_limit:
-          type: integer
-      type:
-      - object
-      - 'null'
-    SessionEndpointRateLimit:
-      properties:
-        per:
-          format: int64
-          type: integer
-        rate:
-          format: int64
-          type: integer
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
+        limit:
+          $ref: '#/components/schemas/SessionEndpointRateLimit'
+        name:
           type: string
       type: object
-    AccessSpec:
+    FieldAccessDefinition:
+      properties:
+        field_name:
+          type: string
+        limits:
+          $ref: '#/components/schemas/FieldLimits'
+        type_name:
+          type: string
+      type: object
+    SessionEndpoint:
       properties:
         methods:
-          example:
-          - GET
-          - PATCH
-          - HEAD
-          - PUT
-          - DELETE
           items:
-            type: string
-          type:
-          - array
-          - 'null'
-        url:
-          example: anything/rate-limit-1-per-5
+            $ref: '#/components/schemas/SessionEndpointMethod'
+          type: array
+        path:
           type: string
       type: object
     AccessDefinition:
@@ -239,13 +193,44 @@ components:
           - array
           - 'null'
       type: object
-    SessionEndpoint:
+    AccessSpec:
       properties:
         methods:
+          example:
+          - GET
+          - PATCH
+          - HEAD
+          - PUT
+          - DELETE
           items:
-            $ref: '#/components/schemas/SessionEndpointMethod'
-          type: array
-        path:
+            type: string
+          type:
+          - array
+          - 'null'
+        url:
+          example: anything/rate-limit-1-per-5
+          type: string
+      type: object
+    SessionEndpointRateLimit:
+      properties:
+        per:
+          format: int64
+          type: integer
+        rate:
+          format: int64
+          type: integer
+      type: object
+    KeyData:
+      properties:
+        api_model:
+          $ref: '#/components/schemas/ApiModel'
+        data:
+          $ref: '#/components/schemas/SessionState'
+        key_hash:
+          example: 41c5cb1e
+          type: string
+        key_id:
+          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
           type: string
       type: object
     GraphqlType:
@@ -261,25 +246,44 @@ components:
       type: object
     ApiModel:
       type: object
-    SessionEndpointMethod:
+    APILimit:
       properties:
-        limit:
-          $ref: '#/components/schemas/SessionEndpointRateLimit'
-        name:
-          type: string
-      type: object
-    KeyData:
+        max_query_depth:
+          type: integer
+        per:
+          format: double
+          type: number
+        quota_max:
+          format: int64
+          type: integer
+        quota_remaining:
+          format: int64
+          type: integer
+        quota_renewal_rate:
+          format: int64
+          type: integer
+        quota_renews:
+          format: int64
+          type: integer
+        rate:
+          format: double
+          type: number
+        set_by_policy:
+          type: boolean
+        smoothing:
+          $ref: '#/components/schemas/RateLimitSmoothing'
+        throttle_interval:
+          format: double
+          type: number
+        throttle_retry_limit:
+          type: integer
+      type:
+      - object
+      - 'null'
+    FieldLimits:
       properties:
-        api_model:
-          $ref: '#/components/schemas/ApiModel'
-        data:
-          $ref: '#/components/schemas/SessionState'
-        key_hash:
-          example: 41c5cb1e
-          type: string
-        key_id:
-          example: 5e9d9544a1dcd60001d0ed20e7f75f9e03534825b7aef9df749582e5
-          type: string
+        max_query_depth:
+          type: integer
       type: object
     SessionState:
       properties:
@@ -442,6 +446,16 @@ components:
           example: -1
           type: integer
       type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
     RateLimitSmoothing:
       properties:
         delay:
@@ -471,20 +485,6 @@ components:
       type:
       - object
       - 'null'
-    FieldLimits:
-      properties:
-        max_query_depth:
-          type: integer
-      type: object
-    FieldAccessDefinition:
-      properties:
-        field_name:
-          type: string
-        limits:
-          $ref: '#/components/schemas/FieldLimits'
-        type_name:
-          type: string
-      type: object
   securitySchemes:
     bearerAuth:
       description: The Tyk Dashboard API Access Credentials
