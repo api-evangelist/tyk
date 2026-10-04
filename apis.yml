@@ -1470,6 +1470,8 @@ apis:
   description: The data planes API from Tyk — 1 operation(s) for data planes.
   humanURL: https://tyk.io/docs/tyk-apis/
   tags:
+  - Dataplanes
+  tags_raw:
   - data planes
   properties:
   - type: OpenAPI
@@ -1502,6 +1504,8 @@ apis:
     group. Note that a user can only belong to one group.
   humanURL: https://tyk.io/docs/tyk-apis/
   tags:
+  - UserGroup
+  tags_raw:
   - User Group
   properties:
   - type: OpenAPI
