@@ -1531,6 +1531,12 @@ apis:
   - type: GitHubRepository
     url: https://github.com/TykTechnologies/tyk-sink
 common:
+- type: Plans
+  url: plans/tyk-plans-pricing.yml
+- type: RateLimits
+  url: rate-limits/tyk-rate-limits.yml
+- type: FinOps
+  url: finops/tyk-finops.yml
 - type: VendorFacets
   url: vendor-facets/tyk-vendor-facets.yml
 - type: License
