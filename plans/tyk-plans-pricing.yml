@@ -131,3 +131,53 @@ plans:
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
+x-canonical:
+  generated: '2026-10-08'
+  vocabulary: all/0-working/economics/plans-canonical.yml
+  models:
+  - metered
+  - subscription
+  units:
+  - negotiated
+  - period
+  plans:
+  - name: Tyk Open Source
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - period
+    periods:
+    - month
+  - name: Core
+    access: other
+    model: metered
+    model_how: stated
+    units:
+    - negotiated
+    periods:
+    - month
+  - name: Professional
+    access: other
+    model: subscription
+    model_how: stated
+    units:
+    - period
+    periods:
+    - month
+  - name: Enterprise
+    access: enterprise
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - year
+  - name: Tyk Cloud Free Trial
+    access: freemium
+    model: subscription
+    model_how: derived
+    units:
+    - negotiated
+    periods:
+    - day
