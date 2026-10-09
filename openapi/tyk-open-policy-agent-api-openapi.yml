@@ -143,14 +143,6 @@ paths:
       - Open Policy Agent
 components:
   schemas:
-    NewOPARules:
-      properties:
-        open_policy:
-          properties:
-            rules:
-              type: string
-          type: object
-      type: object
     ApiResponse:
       properties:
         ID:
@@ -160,6 +152,14 @@ components:
         Meta: {}
         Status:
           type: string
+      type: object
+    NewOPARules:
+      properties:
+        open_policy:
+          properties:
+            rules:
+              type: string
+          type: object
       type: object
   securitySchemes:
     bearerAuth:

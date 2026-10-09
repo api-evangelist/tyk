@@ -1,0 +1,16 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.tyk.io/docs/developer-support/deprecation
+sources:
+- https://www.tyk.io/docs/developer-support/deprecation
+- https://www.tyk.io/docs/api-management/api-versioning
+- https://www.tyk.io/docs/portal/resource-migration
+- https://www.tyk.io/docs/developer-support/release-notes/portal
+versioning:
+  how_selected: path, query parameter, request header
+  docs: https://www.tyk.io/docs/api-management/api-versioning
+deprecation:
+  docs: https://www.tyk.io/docs/developer-support/deprecation
+status_page: null
+docs: https://www.tyk.io/docs/developer-support/deprecation

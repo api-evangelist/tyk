@@ -252,17 +252,6 @@ components:
       required:
       - api_human_name
       - api_id
-    OpenPolicyConf:
-      properties:
-        rules:
-          type: string
-        enabled:
-          type: boolean
-      additionalProperties: false
-      type: object
-      required:
-      - rules
-      - enabled
     OrganisationDocument:
       description: The fields that describe the "organisation" object as stored in Tyk
       properties:
@@ -320,20 +309,17 @@ components:
       - org_options_meta
       - open_policy
       - additional_permissions
-    EventConfig:
+    OpenPolicyConf:
       properties:
-        webhook:
+        rules:
           type: string
-        email:
-          type: string
-        redis:
+        enabled:
           type: boolean
       additionalProperties: false
       type: object
       required:
-      - webhook
-      - email
-      - redis
+      - rules
+      - enabled
     UIOptions:
       properties:
         languages:
@@ -380,6 +366,20 @@ components:
       - dont_allow_license_management_view
       - cloud
       - dev
+    EventConfig:
+      properties:
+        webhook:
+          type: string
+        email:
+          type: string
+        redis:
+          type: boolean
+      additionalProperties: false
+      type: object
+      required:
+      - webhook
+      - email
+      - redis
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

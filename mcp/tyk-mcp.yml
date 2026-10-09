@@ -1,0 +1,8 @@
+generated: '2026-10-04'
+method: probed
+source: https://tyk.io/docs/mcp
+deployment:
+  mode: remote
+  endpoint: https://tyk.io/docs/mcp
+  auth: none
+  verified: probed

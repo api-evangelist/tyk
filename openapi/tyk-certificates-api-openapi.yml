@@ -732,110 +732,6 @@ paths:
       - Certificates
 components:
   schemas:
-    ApiStatusMessage:
-      properties:
-        message:
-          type: string
-        status:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
-    FormDataFile:
-      properties:
-        file:
-          $ref: '#/components/schemas/MultipartFile'
-      required:
-      - file
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
-      type: object
-    PkixName:
-      type: object
-    CertsCertificateBasics:
-      properties:
-        dns_names:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        has_private:
-          type: boolean
-        id:
-          type: string
-        is_ca:
-          type: boolean
-        issuer_cn:
-          type: string
-        not_after:
-          format: date-time
-          type: string
-        not_before:
-          format: date-time
-          type: string
-        subject_cn:
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/certs
-    CertificateList:
-      properties:
-        certs:
-          items:
-            type: string
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    APICertificateStatusMessage:
-      properties:
-        id:
-          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
-          type: string
-        message:
-          example: Certificate added
-          type: string
-        status:
-          example: ok
-          type: string
-      type: object
-      x-go-package: github.com/TykTechnologies/tyk/gateway
-    MultipartFile:
-      format: binary
-      type:
-      - string
-      - 'null'
-    CertificateBasics:
-      properties:
-        cert_basics:
-          items:
-            $ref: '#/components/schemas/CertsCertificateBasics'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    CertificateDetailedList:
-      properties:
-        certificates:
-          items:
-            $ref: '#/components/schemas/CertsCertificateMeta'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
     CertsCertificateMeta:
       properties:
         dns_names:
@@ -862,6 +758,110 @@ components:
           $ref: '#/components/schemas/PkixName'
       type: object
       x-go-package: github.com/TykTechnologies/tyk/certs
+    CertsCertificateBasics:
+      properties:
+        dns_names:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        has_private:
+          type: boolean
+        id:
+          type: string
+        is_ca:
+          type: boolean
+        issuer_cn:
+          type: string
+        not_after:
+          format: date-time
+          type: string
+        not_before:
+          format: date-time
+          type: string
+        subject_cn:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/certs
+    ApiStatusMessage:
+      properties:
+        message:
+          type: string
+        status:
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    FormDataFile:
+      properties:
+        file:
+          $ref: '#/components/schemas/MultipartFile'
+      required:
+      - file
+      type: object
+    CertificateBasics:
+      properties:
+        cert_basics:
+          items:
+            $ref: '#/components/schemas/CertsCertificateBasics'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    PkixName:
+      type: object
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    APICertificateStatusMessage:
+      properties:
+        id:
+          example: 5e9d9544a1dcd60001d0ed207c440d66ebb0a4629d21329808dce9091acf5f2fde328067a6e60e5347271d90
+          type: string
+        message:
+          example: Certificate added
+          type: string
+        status:
+          example: ok
+          type: string
+      type: object
+      x-go-package: github.com/TykTechnologies/tyk/gateway
+    MultipartFile:
+      format: binary
+      type:
+      - string
+      - 'null'
+    CertificateList:
+      properties:
+        certs:
+          items:
+            type: string
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
+    CertificateDetailedList:
+      properties:
+        certificates:
+          items:
+            $ref: '#/components/schemas/CertsCertificateMeta'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
     CertificateDependencies:
       properties:
         certID:

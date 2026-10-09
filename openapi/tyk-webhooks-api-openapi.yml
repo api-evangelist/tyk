@@ -451,6 +451,29 @@ paths:
       - Webhooks
 components:
   schemas:
+    ApiResponse:
+      properties:
+        ID:
+          type: string
+        Message:
+          type: string
+        Meta: {}
+        Status:
+          type: string
+      type: object
+    ApiModel:
+      type: object
+    WebHooks:
+      properties:
+        hooks:
+          items:
+            $ref: '#/components/schemas/WebHookHandlerConf'
+          type:
+          - array
+          - 'null'
+        pages:
+          type: integer
+      type: object
     WebHookHandlerConf:
       properties:
         api_model:
@@ -492,29 +515,6 @@ components:
       required:
       - method
       - target_path
-      type: object
-    ApiModel:
-      type: object
-    WebHooks:
-      properties:
-        hooks:
-          items:
-            $ref: '#/components/schemas/WebHookHandlerConf'
-          type:
-          - array
-          - 'null'
-        pages:
-          type: integer
-      type: object
-    ApiResponse:
-      properties:
-        ID:
-          type: string
-        Message:
-          type: string
-        Meta: {}
-        Status:
-          type: string
       type: object
   securitySchemes:
     bearerAuth:

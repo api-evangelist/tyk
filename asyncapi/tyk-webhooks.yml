@@ -1,0 +1,42 @@
+generated: '2026-10-04'
+method: searched
+generator: extract-docs-artifacts.py (local)
+source: https://www.tyk.io/docs/portal/customization/webhooks
+sources:
+- https://www.tyk.io/docs/portal/customization/webhooks
+- https://tyk.io/event-native-apim/
+- https://www.tyk.io/docs/product-stack/tyk-enterprise-developer-portal/getting-started/setup-email-notifications
+description: Tyk Developer Portal webhooks fire on specific portal events. Each webhook sends a JSON payload to a configured target URL using
+  the HTTP method and optional custom headers defined in the webhook configuration. The documentation does not specify signature headers, authentication
+  mechanisms, or retry behavior for webhook deliveries.
+events:
+- event: UserRegistered
+  description: Fired when a new user is registered.
+- event: UserAccountActivated
+  description: Fired when a user account is activated.
+- event: UserAccountDeactivated
+  description: Fired when a user account is deactivated.
+- event: PasswordReset
+  description: Fired when a user tries to reset a password.
+- event: ApplicationRegistered
+  description: Fired when a new API consumer application is created.
+- event: CredentialRegistered
+  description: Fired when a new API credential is created.
+- event: AccessRequestCreated
+  description: Fired when a new API access request is created.
+- event: AccessRequestApproved
+  description: Fired when an API access request is approved.
+- event: AccessRequestRejected
+  description: Fired when an API access request is rejected.
+- event: OrganizationRegistered
+  description: Fired when an API consumer organization is created.
+- event: OrganizationRequestCreated
+  description: Fired when a new API consumer organization registration request is created.
+- event: OrganizationRequestApproved
+  description: Fired when an API consumer organization registration request is approved.
+- event: OrganizationRequestRejected
+  description: Fired when an API consumer organization registration request is rejected.
+delivery:
+  content_type: application/json
+note: The pages do not describe any signature header, authentication, or retry policy for webhook deliveries.
+docs: https://www.tyk.io/docs/portal/customization/webhooks
