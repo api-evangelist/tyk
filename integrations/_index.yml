@@ -10,7 +10,9 @@
   use_case: Forward Tyk gateway request counts, latency, and error rates into Datadog as custom metrics for unified
     API observability dashboards.
   source: curated
-  status: pending-generation
+  status: not-a-workflow
+  evidence: https://github.com/DataDog/integrations-extras/tree/master/tyk
+  type: marketplace
   arazzo: null
 - slug: tyk-grafana
   label: Send Tyk gateway logs and traces to Grafana Cloud
