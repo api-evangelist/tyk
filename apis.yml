@@ -749,6 +749,8 @@ apis:
   description: Check health status of the Tyk Gateway and loaded APIs.
   humanURL: https://tyk.io/docs/tyk-apis/
   tags:
+  - Health Checks
+  tags_raw:
   - Health Checking
   properties:
   - type: OpenAPI
@@ -953,6 +955,8 @@ apis:
     [Read more about Tyk Open Policy Agent here](https://tyk.io/docs/tyk-dashboard/open-policy-agent/)
   humanURL: https://tyk.io/docs/tyk-apis/
   tags:
+  - OPA
+  tags_raw:
   - Open Policy Agent
   properties:
   - type: OpenAPI
