@@ -2,6 +2,7 @@ generated: '2026-10-13'
 method: searched
 checked:
 - datadog/integrations/datadog-integration-edges.yml
+- https://api-gw.platform.linuxfoundation.org/project-service/v1/public/projects/a0941000002wBykAAE/members
 - https://focus.finops.org/data-generators/
 - https://github.com/cncf/k8s-conformance
 - https://github.com/cncf/landscape
@@ -81,6 +82,30 @@ edges:
     detected: '2026-10-15'
   detected_by: sweep-cloud-native.py
   first_seen: '2026-10-15'
+- partner_name: OpenAPI Initiative (members)
+  partner: openapi-initiative
+  partner_match: register
+  type: register
+  direction: partner-built
+  category: API description standard
+  evidence: https://api-gw.platform.linuxfoundation.org/project-service/v1/public/projects/a0941000002wBykAAE/members
+  channel: standard-directory
+  relationship: standard-participant
+  contract_reference:
+    register: OpenAPI Initiative members (Linux Foundation project service, public members endpoint)
+    spec_file: null
+    standard: OpenAPI
+    role: oai-member
+    registered_name: Tyk Technologies Ltd.
+    member_tier: Participating Membership
+    membership_status: Active
+    matched_domain: tyk.io
+    matched_by: domain
+    signal_note: 'participation only: a membership is not conformance'
+    detected_by: sweep-api-management.py
+    detected: '2026-10-18'
+  detected_by: sweep-api-management.py
+  first_seen: '2026-10-18'
 source:
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/ecosystem/vendors.yaml
 - https://github.com/open-telemetry/opentelemetry.io/blob/main/data/registry/

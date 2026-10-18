@@ -188,3 +188,28 @@
     detected: '2026-10-15'
   status: not-a-workflow
   arazzo: null
+- slug: tyk-openapi-initiative-members
+  label: OpenAPI Initiative (members)
+  partner: openapi-initiative
+  partner_name: OpenAPI Initiative (members)
+  category: API description standard
+  type: register
+  channel: standard-directory
+  evidence: https://api-gw.platform.linuxfoundation.org/project-service/v1/public/projects/a0941000002wBykAAE/members
+  source: edge
+  relationship: standard-participant
+  contract_reference:
+    register: OpenAPI Initiative members (Linux Foundation project service, public members endpoint)
+    spec_file: null
+    standard: OpenAPI
+    role: oai-member
+    registered_name: Tyk Technologies Ltd.
+    member_tier: Participating Membership
+    membership_status: Active
+    matched_domain: tyk.io
+    matched_by: domain
+    signal_note: 'participation only: a membership is not conformance'
+    detected_by: sweep-api-management.py
+    detected: '2026-10-18'
+  status: not-a-workflow
+  arazzo: null
