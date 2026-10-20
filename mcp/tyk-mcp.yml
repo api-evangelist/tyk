@@ -6,3 +6,30 @@ deployment:
   endpoint: https://tyk.io/docs/mcp
   auth: none
   verified: probed
+tool_quality:
+  tool_count: 3
+  tokens_total: 2265
+  tokens_per_tool_median: 262
+  heavy_tools:
+  - name: query_docs_filesystem_tyk_documentation
+    tokens: 1766
+  heavy_tool_count: 1
+  params_total: 5
+  params_undescribed: 0
+  params_described_pct: 100.0
+  tools_with_undescribed_params: 0
+  tools_annotated: 3
+  annotated_pct: 100.0
+  state_changing_unhinted: []
+  tools_missing_schema: 0
+  short_descriptions: 0
+  duplicate_descriptions: 0
+  duplicate_names: 0
+  nonportable_names: []
+  output_schema_count: 0
+  token_estimate: chars/3.6 of each compact tool definition
+  source: mcp/tyk-mcp-tools.json
+  measured: '2026-10-20'
+  scored: false
+  note: Facts from the saved tools/list capture (mcp_tool_quality.py); recorded, not scored. Checks learned
+    from Glimind's agent-readiness audit.
